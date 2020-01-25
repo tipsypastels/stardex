@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Dispatch, createContext, useReducer } from 'react';
+import './App.scss';
+import Editor from './Editor';
+import Pokemon, { PokemonList } from './Pokemon';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type State = {
+  mons: PokemonList;
 }
 
-export default App;
+type Action = 
+  | { type: 'SET_MONS', mons: Pokemon[] };
+
+function reducer(state: State, action: Action): State {
+  switch(action.type) {
+    case 'SET_MONS': {
+      return { ...state, mons: PokemonList.from(action.mons) as PokemonList };
+    }
+  }
+}
+
+type AppContextProps = [State, Dispatch<Action>];
+// @ts-ignore
+export const AppContext = createContext<AppContextProps>(null);
+
+export default function App() {
+  const [state, dispatch] = useReducer(reducer, {
+    mons: new PokemonList(),
+  });
+
+  return (
+    <AppContext.Provider value={[state, dispatch]}>
+      <div className="App">
+        <Editor />
+      </div>
+    </AppContext.Provider>
+  );
+}
