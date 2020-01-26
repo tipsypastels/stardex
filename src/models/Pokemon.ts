@@ -1,7 +1,12 @@
 import { Type } from './Type';
 import MON_DATA from '../data/MON_DATA';
 
-const LINE_REGEX = /^([\w-']+)(?:\s+(\((?:\w+\/)*\w+\)))?(?:\s+(?:(@\w+)\s+)*(@\w+))?$/;
+const LINE_REGEX = /^([\w-']+)(?:\s+(\((?:\w+\/)*\w+\)))?(?:\s+\[(.+)\])?(?:\s+(?:(@\w+)\s+)*(@\w+))?$/;
+
+type PokemonOpts = Partial<{
+  mods: string[];
+  habitat: string | undefined;
+}>;
 
 export default class Pokemon {
   static fromLine(line: string): Pokemon | undefined {
@@ -18,6 +23,7 @@ export default class Pokemon {
     const [, name, ...values] = match;
     const mods: string[] = [];
     let types: string[] = [];
+    let habitat = undefined;
 
     for (let value of values) {
       if (!value) {
@@ -26,22 +32,26 @@ export default class Pokemon {
 
       if (value.startsWith('@')) {
         mods.push(value);
-      } else {
+      } else if (value.startsWith('(')) {
         types = value.slice(1, -1).split('/');
+      } else {
+        habitat = value;
       }
     }
 
-    return new Pokemon(name, types, mods);
+    return new Pokemon(name, types, { mods, habitat });
   }
 
   name: string;
   typeNames: string[];
   mods: string[];
+  habitat: string | undefined;
 
-  constructor(name: string, typeNames: string[] = [], mods: string[] = []) {
+  constructor(name: string, typeNames: string[] = [], opts?: PokemonOpts) {
     this.name      = name;
     this.typeNames = typeNames;
-    this.mods      = mods;
+    this.mods      = opts?.mods || [];
+    this.habitat   = opts?.habitat;
 
     if (typeNames.length === 0 && !MON_DATA[name.toLowerCase()]) {
       throw new Error(`Could not find builtin Pokémon types for "${this.name}". All custom Pokémon must specify their types.`);

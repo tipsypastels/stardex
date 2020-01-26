@@ -300,9 +300,9 @@ h4 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 999999;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999999999999999999;
 
   display: flex;
   align-items: center;
@@ -312,6 +312,12 @@ h4 {
   transition: 0.1s ease-in-out;
   opacity: 0;
   pointer-events: none;
+  cursor: pointer;
+
+  @include desktop {
+    width: 100vw;
+    height: 100vh;
+  }
 
   &.Modal--open {
     opacity: 1;
@@ -323,6 +329,7 @@ h4 {
     box-shadow: 2px 2px 2px rgba(black, 0.5);
     padding: 1rem 2rem;
     max-width: 75vw;
+    cursor: initial;
   }
 }
 

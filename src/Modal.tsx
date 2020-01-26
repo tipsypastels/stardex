@@ -1,4 +1,5 @@
 import React, { ReactNode, useRef, useEffect } from 'react'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 type Props = {
   open: boolean;
@@ -23,6 +24,14 @@ export default function Modal({ open, onClose, children }: Props) {
     document.addEventListener('keyup', listener);
     return () => document.removeEventListener('keyup', listener);
   });
+
+  useEffect(() => {
+    if (open) {
+      disableBodyScroll(document.body);
+    } else {
+      enableBodyScroll(document.body);
+    }
+  }, [open]);
 
   return (
     <div className={`Modal ${open && 'Modal--open'}`} onClick={onClick}>
