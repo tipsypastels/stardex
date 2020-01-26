@@ -6,6 +6,24 @@ $note: #F8D030;
 $add: green;
 $remove: red;
 
+@mixin mobile {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+.mobile {
+  @include desktop {
+    display: none;
+  }
+}
+
 textarea {
   resize: none;
   outline: none !important;
@@ -16,6 +34,7 @@ textarea {
   font-size: 1.5rem;
   box-sizing: border-box;
   font-family: Ubuntu Mono;
+  transition: 0.25s ease-in-out;
 }
 
 code {
@@ -35,7 +54,7 @@ code {
   background-color: $code;
   box-sizing: border-box;
   height: 100vh;
-  width: 450px;
+  width: 85vw;
   flex-shrink: 0;
   position: fixed;
   top: 0;
@@ -45,6 +64,20 @@ code {
   display: flex;
   flex-direction: column;
   transition: 0.25s ease-in-out;
+  z-index: 99999999;
+
+  &.Editor--closed {
+    @include mobile {
+      width: 0;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;      
+    }
+  }
+
+  @include desktop {
+    width: 450px !important;
+  }
 
   textarea {
     flex-grow: 1;
@@ -67,8 +100,11 @@ code {
   flex-grow: 1;
   flex-shrink: 1;
   padding: 1rem;
-  margin-left: 450px;
   margin-bottom: 3rem;
+
+  @include desktop {
+    margin-left: 450px;
+  }
 
   &.Content--error {
     h1 {
@@ -83,11 +119,21 @@ code {
   h2 {
     margin-bottom: 0.5rem;
   }
+
+  .Content__editor_toggle {
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
 }
 
 .Breakdown {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  
+  @include desktop {
+    flex-direction: row;
+    align-items: center;
+  }
 
   ul {
     padding: 0;

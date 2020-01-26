@@ -16,6 +16,7 @@ type State = {
   regions: Immutable.Set<Region>;
   selectedRegionMons: PokemonList;
   strictness: Strictness;
+  mobEditorOpen: boolean; 
 }
 
 type Action = 
@@ -23,6 +24,7 @@ type Action =
   | { type: 'ENABLE_REGION', region: Region }
   | { type: 'DISABLE_REGION', region: Region }
   | { type: 'SET_STRICTNESS', strictness: Strictness }
+  | { type: 'SET_MOB_EDITOR_OPEN', open: boolean }
 
 function reducer(state: State, action: Action): State {
   switch(action.type) {
@@ -47,6 +49,9 @@ function reducer(state: State, action: Action): State {
       setCache('strictness', action.strictness);
       return { ...state, strictness: action.strictness };
     }
+    case 'SET_MOB_EDITOR_OPEN': {
+      return { ...state, mobEditorOpen: action.open };
+    }
   }
 }
 
@@ -63,6 +68,7 @@ export default function App() {
     regions: Immutable.Set<Region>(getCacheWithDefault<Region[]>('regions', DEFAULT_CHECKED_REGIONS, JSON.parse, JSON.stringify)),
     selectedRegionMons: createSelectedRegionMons(DEFAULT_CHECKED_REGIONS),
     strictness: getCacheWithDefault('strictness', STRICTNESSES.normal, Number),
+    mobEditorOpen: false,
   });
 
   return (

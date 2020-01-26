@@ -32,6 +32,7 @@ type Props = {
   opacity?: number;
   opacity2?: number;
   alt?: string;
+  onClick?: () => void;
 }
 export type IconProps = Props;
 
@@ -40,7 +41,7 @@ export default function Icon(props: Props) {
     name, group, alt,
     fw, className,
     transform, mask, size,
-    color, color2, opacity, opacity2,
+    color, color2, opacity, opacity2, onClick,
   } = useIconProps(props);
 
   return (
@@ -64,6 +65,7 @@ export default function Icon(props: Props) {
       } as CSSProperties}
       data-fa-transform={transform}
       data-fa-mask={mask}
+      onClick={onClick}
     />
   );
 }

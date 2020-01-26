@@ -3,7 +3,7 @@ import Icon from './Icon'
 import { capitalize } from './helpers/string'
 import { Recommendation } from './models/Recommendations'
 import { AppContext } from './App'
-import { toSentence, nodesToSentence } from './helpers/array'
+import { nodesToSentence } from './helpers/array'
 
 type Props = {
   recommendation: Recommendation,
@@ -17,8 +17,6 @@ export default function RecommendedChange({ recommendation }: Props) {
     return mon.types.map(t => t.name).includes(type.name);
   });
 
-  console.log(fillers);
-  
   return (
     <div className="RecommendedChange">
       <span style={{ color: type.color }}>
@@ -39,7 +37,7 @@ export default function RecommendedChange({ recommendation }: Props) {
 
           {fillers.length > 0 && (
             <>
-              You may want to remove filler Pokémon {nodesToSentence(fillers.map(m => <strong>{m.name}</strong>), 'or')}.
+              You may want to remove filler Pokémon {nodesToSentence(fillers.map(m => <strong key={m.name}>{m.name}</strong>), 'or')}.
             </>
           )}
         </small>

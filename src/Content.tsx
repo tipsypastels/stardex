@@ -4,9 +4,10 @@ import Tutorial from './Tutorial';
 import Observations from './Observations';
 import { ErrorContext } from './ErrorBoundary';
 import ContentError from './ContentError';
+import Icon from './Icon';
 
 export default function Content() {
-  const [{ mons }] = useContext(AppContext);
+  const [{ mons, mobEditorOpen }, dispatch] = useContext(AppContext);
   const [error] = useContext(ErrorContext);
   const [openTutorial, setOpenTutorial] = useState(false);
 
@@ -18,8 +19,22 @@ export default function Content() {
 
   return (
     <div className="Content">
-      <h1>
-        Stardex
+      <h1 style={{ display: 'flex' }}>
+        <span style={{ flexGrow: 1 }}>
+          Stardex
+        </span>
+
+        <Icon
+          className="Content__editor_toggle mobile"
+          src={[mobEditorOpen
+            ? 'caret-square-left'
+            : 'caret-square-right', 'far']
+          }
+          onClick={() => dispatch({
+            type: 'SET_MOB_EDITOR_OPEN',
+            open: !mobEditorOpen,
+          })}
+        />
       </h1>
 
       {mons.length > 0 && (

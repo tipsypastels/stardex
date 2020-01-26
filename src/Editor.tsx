@@ -4,13 +4,15 @@ import { useLocalStorageState } from './helpers/hooks';
 import { AppContext } from './App';
 import { ErrorContext } from './ErrorBoundary';
 import Icon from './Icon';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 const RELOAD_AFTER = 1000; // ms
 
 export default function Editor() {
   const [, setError] = useContext(ErrorContext);
-  const [, dispatch] = useContext(AppContext);
+  const [{ mobEditorOpen }, dispatch] = useContext(AppContext);
   const [text, setText] = useLocalStorageState('', 'mon_list');
+  const ref = useRef<HTMLTextAreaElement>(null);
 
   const everChangedRef = useRef(false);
   const lastKeyUpRef = useRef(Date.now());
@@ -48,12 +50,21 @@ export default function Editor() {
     dispatch({ type: 'SET_MONS', mons: newMons });
   }, [text, dispatch, setError]);
 
+  useEffect(() => {
+    if (mobEditorOpen) {
+      ref.current?.focus();
+      disableBodyScroll(document.body);
+    } else {
+      enableBodyScroll(document.body);
+    }
+  }, [mobEditorOpen]);
+
   const displayPauseTip = (Date.now() - lastKeyUpRef.current) < RELOAD_AFTER
     && everChangedRef.current;
   
 
   return (
-    <div className="Editor">
+    <div className={`Editor ${mobEditorOpen || 'Editor--closed'}`}>
       <textarea 
         autoFocus
         value={text}
@@ -62,6 +73,7 @@ export default function Editor() {
         onBlur={computeMons}
         placeholder="Enter your Pokémon here..."
         spellCheck={false}
+        ref={ref}
       />
 
       {displayPauseTip && (
