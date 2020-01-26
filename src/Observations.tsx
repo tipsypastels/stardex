@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { AppContext } from './App';
 import Breakdown from './Breakdown';
 import CompareAgainst from './CompareAgainst';
+import RecommendationsList from './RecommendationsList';
 
 export default function Observations() {
   const [{ mons }] = useContext(AppContext);
@@ -19,12 +20,7 @@ export default function Observations() {
 
       <Breakdown mons={mons} />
       <CompareAgainst />
-
-      <h2>
-        Recommendations
-      </h2>
-
-      TODO
+      <RecommendationsList />
     </div>
   )
 }

@@ -3,10 +3,16 @@ import { IconSource } from "../Icon";
 import randomColor from 'randomcolor';
 
 export class Type {
+  static BUILTINS = Object.keys(TYPE_DATA);
+
   name: string;
 
   constructor(name: string) {
     this.name = name.toLowerCase();
+  }
+
+  get custom() {
+    return !(this.name in TYPE_DATA);
   }
 
   get color(): string {
@@ -18,9 +24,4 @@ export class Type {
     return TYPE_DATA[this.name]?.['icon']
       || 'question-circle';
   }
-}
-
-export type TypeWithDistribution = {
-  type: Type,
-  count: number,
 }

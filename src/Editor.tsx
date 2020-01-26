@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useContext, useRef } from 'react'
 import Pokemon from './models/Pokemon';
-import { useLocalStorageState } from './hooks';
+import { useLocalStorageState } from './helpers/hooks';
 import { AppContext } from './App';
 import { ErrorContext } from './ErrorBoundary';
+import Icon from './Icon';
 
 const RELOAD_AFTER = 1000; // ms
 
@@ -11,7 +12,8 @@ export default function Editor() {
   const [, dispatch] = useContext(AppContext);
   const [text, setText] = useLocalStorageState('', 'mon_list');
 
-  const lastKeyUpRef = useRef<number>(Date.now());
+  const everChangedRef = useRef(false);
+  const lastKeyUpRef = useRef(Date.now());
 
   useEffect(() => {
     text && computeMons();
@@ -19,6 +21,7 @@ export default function Editor() {
   }, []);
 
   function onKeyUp() {
+    everChangedRef.current = true;
     lastKeyUpRef.current = Date.now();
 
     setTimeout(() => {
@@ -45,6 +48,10 @@ export default function Editor() {
     dispatch({ type: 'SET_MONS', mons: newMons });
   }, [text, dispatch, setError]);
 
+  const displayPauseTip = (Date.now() - lastKeyUpRef.current) < RELOAD_AFTER
+    && everChangedRef.current;
+  
+
   return (
     <div className="Editor">
       <textarea 
@@ -52,9 +59,16 @@ export default function Editor() {
         value={text}
         onChange={e => setText(e.target.value)}
         onKeyUp={onKeyUp}
+        onBlur={computeMons}
         placeholder="Enter your Pokémon here..."
         spellCheck={false}
       />
+
+      {displayPauseTip && (
+        <div className="pause-tip">
+          <Icon src={['exclamation-circle', 'far']} /> Pause typing to reload graphs.
+        </div>
+      )}
     </div>
   )
 }

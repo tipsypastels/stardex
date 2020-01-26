@@ -2,6 +2,9 @@
 
 $primary: #7038F8;
 $code: #222;
+$note: #F8D030;
+$add: green;
+$remove: red;
 
 textarea {
   resize: none;
@@ -11,7 +14,6 @@ textarea {
   background-color: $code;
   color: white;
   font-size: 1.5rem;
-  padding: 1rem 0.5rem;
   box-sizing: border-box;
   font-family: Ubuntu Mono;
 }
@@ -30,16 +32,33 @@ code {
 }
 
 .Editor {
+  background-color: $code;
+  box-sizing: border-box;
   height: 100vh;
   width: 450px;
   flex-shrink: 0;
   position: fixed;
   top: 0;
   left: 0;
+  padding: 1rem 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  transition: 0.25s ease-in-out;
 
   textarea {
-    height: 100%;
+    flex-grow: 1;
     width: 100%;
+
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .pause-tip {
+    color: rgba(white, 0.5);
   }
 }
 
@@ -61,10 +80,6 @@ code {
 
   h2 {
     margin-bottom: 0.5rem;
-  }
-
-  label {
-    display: block;
   }
 }
 
@@ -90,6 +105,7 @@ code {
   padding: 0.5rem 0.75rem;
   border-radius: 6px;
   user-select: none;
+  cursor: pointer;
 
   &.Button--disabled {
     color: rgba(#333, 0.75);
@@ -109,6 +125,30 @@ code {
 .CompareAgainst {
   .CompareAgainst__options {
     margin-bottom: 1rem;
+
+    label {
+      display: block;
+    }
+  }
+
+  .CompareAgainst__no_breakdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 1rem 0.5rem;
+    box-sizing: border-box;
+    margin-top: 1rem;
+    height: calc(518px - 1rem);
+    
+    font-size: 2rem;
+    font-weight: bold;
+
+    .icon {
+      font-size: 6rem;
+      margin-bottom: 0.5rem;
+    }
   }
 }
 
@@ -118,10 +158,76 @@ code {
     width: 100%;
     height: 14rem;
     font-size: 1rem;
+    padding: 1rem 0.5rem;
   }
 }
 
 a {
   text-decoration: none;
   color: $primary;
+}
+
+.Note {
+  border-left: 4px solid $note;
+  background-color: lighten($note, 25%);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.Recommendations {
+  .Recommendations__strictness {
+    label {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .Recommendations__changes {
+    margin-top: 1rem;
+
+    p {
+      margin-top: 0;
+    }
+  }
+}
+
+.RecommendedChange {
+  display: flex;
+  align-items: center;
+
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background-color: mix(#eee, #fff, 25%);
+  margin-bottom: 1rem;
+
+  .icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+
+  .RecommendedChange__content {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    .action {
+      font-weight: bold;
+
+      &.action--add { color: $add }
+      &.action--remove { color: $remove }
+    }
+  }
+}
+
+.Divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin: 1.5rem 0;
 }

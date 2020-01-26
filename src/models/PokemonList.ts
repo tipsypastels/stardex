@@ -1,5 +1,6 @@
 import Pokemon from "./Pokemon";
-import { Type, TypeWithDistribution } from "./Type";
+import { Type } from "./Type";
+import Distributions from "./Distributions";
 
 export default class PokemonList extends Array<Pokemon> {
   static combine(lists: PokemonList[]) {
@@ -23,24 +24,22 @@ export default class PokemonList extends Array<Pokemon> {
       .map(typeName => new Type(typeName));
   }
 
-  get typeDistribution() {
-    const distributions = new Map<string, TypeWithDistribution>();
+  private distributionCache?: Distributions;
 
-    for (let mon of this) {
-      for (let type of mon.types) {
-        const current = distributions.get(type.name);
-        if (current) {
-          distributions.set(type.name, { ...current, count: current.count + 1 })
-        } else {
-          distributions.set(type.name, { type, count: 1 });
-        }
-      }
+  get distributions(): Distributions {
+    if (this.distributionCache) {
+      return this.distributionCache;
     }
 
-    return distributions;
+    const result = Distributions.from(this);
+    this.distributionCache = result;
+    return result;
   }
 
-  withMod(mod: string) {
-    return this.filter(mon => mon.mods.includes(mod));
+  withMod(mod: string, andCallback?: (mon: Pokemon) => boolean) {
+    return this.filter(mon => {
+      return mon.mods.includes(mod)
+        && (andCallback ? andCallback(mon) : true)
+    });
   }
 }

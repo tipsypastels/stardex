@@ -9,11 +9,8 @@ type Props = {
 }
 
 export default function Breakdown({ mons }: Props) {
-  const dists = [...mons.typeDistribution.values()]
+  const dists = mons.distributions.list
     .sort((a, b) => b.count - a.count)
-
-  const total = dists.map(({ count }) => count)
-                     .reduce((total, curr) => total + curr, 0);
 
   const data = dists.map(({ type, count }) => ({
       name: capitalize(type.name),
@@ -42,11 +39,11 @@ export default function Breakdown({ mons }: Props) {
       </div>
 
       <ul>
-        {dists.map(({ type, count }) => (
+        {dists.map(({ type, count, percent }) => (
           <li key={type.name}>
             <TypeName type={type} />
             &nbsp;—&nbsp;
-            {(count / total * 100).toFixed(1)}% ({count})
+            {percent.toFixed(1)}% ({count})
           </li>
         ))}
       </ul>
