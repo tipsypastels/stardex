@@ -11,13 +11,15 @@ export default function Observations() {
 
   return (
     <div className="Observations">
-      <div>
-        Pokédex size: <strong>{mons.length}</strong>.
-      </div>
+      <div className="Stats">
+        <div>
+          Pokédex size: <strong>{mons.length}</strong>.
+        </div>
 
-      {fillerCount > 0 && <div>
-        Filler count: <strong>{fillerCount}</strong>.
-      </div>}
+        {fillerCount > 0 && <div>
+          Filler count: <strong>{fillerCount}</strong>.
+        </div>}
+      </div>
 
       <Breakdown mons={mons} />
       <CompareAgainst />

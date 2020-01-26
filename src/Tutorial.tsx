@@ -68,7 +68,7 @@ export default function Tutorial({ welcome }: Props) {
         <Breakdown mons={TUTORIAL_MOCK_MONS} />
 
         <p>
-          Stardex was created by <a href="https://github.com/tipsypastels">@tipsypastels</a> (Dakota) and <a href="https://github.com/misnina">@misnina</a> (Nina).
+          Stardex was created by <a href="https://github.com/tipsypastels">@tipsypastels</a> (Dakota) and <a href="https://github.com/misnina">@misnina</a> (Nina) from the <a href="https://github.com/tipsypastels/pokegnosis">Pokémon Gnosis</a> team. Feel free to suggest improvements on the <a href="https://github.com/tipsypastels/stardex">Stardex Github</a>.
         </p>
       </>}
     </div>
