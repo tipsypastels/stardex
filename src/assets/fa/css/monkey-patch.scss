@@ -1,0 +1,11 @@
+// it's easier to work with svgs because they have a set size but we're not using them anymore, so we just do a bit of monkey patching to make font icons act more like them
+.fa, .fab, .fad, .fal, .far, .fas {
+  display: inline-block;
+  
+  &:not(.fa-fw) {
+    width: fit-content;
+    width: -moz-fit-content;
+    width: -ms-fit-content;
+    width: -webkit-fit-content;
+  }
+}

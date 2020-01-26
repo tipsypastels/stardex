@@ -1,5 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900|Ubuntu+Mono&display=swap');
+
+$primary: #7038F8;
+$code: #222;
+
 textarea {
   resize: none;
-  height: 10rem;
   outline: none !important;
+  border: none;
+
+  background-color: $code;
+  color: white;
+  font-size: 1.5rem;
+  padding: 1rem 0.5rem;
+  box-sizing: border-box;
+  font-family: Ubuntu Mono;
+}
+
+code {
+  font-family: Ubuntu Mono;
+  background-color: $code;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.App {
+  display: flex;
+  font-family: Lato;
+}
+
+.Editor {
+  height: 100vh;
+  width: 450px;
+  flex-shrink: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  textarea {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.Content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding: 1rem;
+  margin-left: 450px;
+
+  &.Content--error {
+    h1 {
+      color: red;
+    }
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  label {
+    display: block;
+  }
+}
+
+.Breakdown {
+  display: flex;
+  align-items: center;
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+    font-size: 1rem;
+    line-height: 1.7rem;
+  }
+}
+
+.Button {
+  background-color: #ddd;
+  color: #333;
+  border: none;
+  outline: none !important;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  user-select: none;
+
+  &.Button--disabled {
+    color: rgba(#333, 0.75);
+    cursor: not-allowed;
+  }
+
+  &.Button--primary {
+    background-color: $primary;
+    color: white;
+
+    &.Button--disabled {
+      color: rgba(255, 255, 255, 0.75);
+    }
+  }
+}
+
+.CompareAgainst {
+  .CompareAgainst__options {
+    margin-bottom: 1rem;
+  }
+}
+
+.Tutorial {
+  textarea {
+    display: block;
+    width: 100%;
+    height: 14rem;
+    font-size: 1rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
 }
