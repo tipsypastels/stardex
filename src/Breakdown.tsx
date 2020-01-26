@@ -30,6 +30,7 @@ export default function Breakdown({ mons }: Props) {
             cx={200}
             cy={200}
             outerRadius={180}
+            innerRadius={110}
           >
             {data.map(({ color }, index) => (
               <Cell key={index} fill={color} />
