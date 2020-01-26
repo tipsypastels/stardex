@@ -4,6 +4,7 @@ import { capitalize } from './helpers/string'
 import { Recommendation } from './models/Recommendations'
 import { AppContext } from './App'
 import { nodesToSentence } from './helpers/array'
+import Pokemon from './models/Pokemon'
 
 type Props = {
   recommendation: Recommendation,
@@ -13,9 +14,12 @@ export default function RecommendedChange({ recommendation }: Props) {
   const [{ mons, regions }] = useContext(AppContext);
   const { type, ownPercent, comparedPercent, action } = recommendation;
 
-  const fillers = mons.withMod('filler', mon => {
-    return mon.types.map(t => t.name).includes(type.name);
-  });
+  let fillers: Pokemon[] = [];
+  if (recommendation.action === 'remove') {
+    fillers = mons.withMod('filler', mon => {
+      return mon.types.map(t => t.name).includes(type.name);
+    });
+  }
 
   return (
     <div className="RecommendedChange">

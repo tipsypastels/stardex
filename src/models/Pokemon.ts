@@ -43,29 +43,19 @@ export default class Pokemon {
   }
 
   name: string;
-  typeNames: string[];
+  types: Type[];
   mods: string[];
   habitat: string | undefined;
 
   constructor(name: string, typeNames: string[] = [], opts?: PokemonOpts) {
     this.name      = name;
-    this.typeNames = typeNames;
+    this.types     = this.createTypes(typeNames);
     this.mods      = opts?.mods || [];
     this.habitat   = opts?.habitat;
-
-    if (typeNames.length === 0 && !MON_DATA[name.toLowerCase()]) {
-      throw new Error(`Could not find builtin Pokémon types for "${this.name}". All custom Pokémon must specify their types.`);
-    }
   }
 
-  get types(): Type[] {
-    let { typeNames } = this;
-    
-    if (!this.typeNames.length) {
-      typeNames = MON_DATA[this.name.toLowerCase()].types;
-    }
-
-    return typeNames.map(n => new Type(n));
+  get typeNames() {
+    return this.types.map(t => t.name);
   }
 
   mod(mod: string) {
@@ -74,5 +64,17 @@ export default class Pokemon {
     }
 
     return this.mods.includes(mod);
+  }
+
+  private createTypes(names: string[]) {
+    if (names.length === 0) {
+      names = MON_DATA[this.name.toLowerCase()]?.types;
+
+      if (!names) {
+        throw new Error(`Could not find builtin Pokémon types for "${this.name}". All custom Pokémon must specify their types.`);
+      }
+    }
+
+    return names.map(name => new Type(name));
   }
 }

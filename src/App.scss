@@ -288,6 +288,33 @@ h4 {
     font-size: 1.1rem;
   }
 
+  .Exporter__alt_prefix {
+    margin-bottom: 1rem;
+    display:block;
+
+    input {
+      margin-top: 0.5rem;
+      width: 100%;
+      height: calc(1.5em + 0.25rem + 2px);
+      padding: 0.175rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: white;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+    }
+  }
+
+  .Exporter__editable {
+    margin-top: 1rem;
+    max-height: 20rem;
+    overflow-y: scroll;
+  }
+
   .copied {
     background-color: green;
     color: white;
