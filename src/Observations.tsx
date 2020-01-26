@@ -3,6 +3,7 @@ import { AppContext } from './App';
 import Breakdown from './Breakdown';
 import CompareAgainst from './CompareAgainst';
 import RecommendationsList from './RecommendationsList';
+import Exporter from './Exporter';
 
 export default function Observations() {
   const [{ mons }] = useContext(AppContext);
@@ -21,6 +22,7 @@ export default function Observations() {
       <Breakdown mons={mons} />
       <CompareAgainst />
       <RecommendationsList />
+      <Exporter />
     </div>
   )
 }

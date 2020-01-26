@@ -57,4 +57,12 @@ export default class Pokemon {
 
     return typeNames.map(n => new Type(n));
   }
+
+  mod(mod: string) {
+    if (!mod.startsWith('@')) {
+      mod = `@${mod}`;
+    }
+
+    return this.mods.includes(mod);
+  }
 }

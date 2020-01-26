@@ -3,14 +3,21 @@ import Icon from './Icon'
 import { capitalize } from './helpers/string'
 import { Recommendation } from './models/Recommendations'
 import { AppContext } from './App'
+import { toSentence, nodesToSentence } from './helpers/array'
 
 type Props = {
   recommendation: Recommendation,
 }
 
 export default function RecommendedChange({ recommendation }: Props) {
-  const [{ regions }] = useContext(AppContext);
+  const [{ mons, regions }] = useContext(AppContext);
   const { type, ownPercent, comparedPercent, action } = recommendation;
+
+  const fillers = mons.withMod('filler', mon => {
+    return mon.types.map(t => t.name).includes(type.name);
+  });
+
+  console.log(fillers);
   
   return (
     <div className="RecommendedChange">
@@ -28,7 +35,13 @@ export default function RecommendedChange({ recommendation }: Props) {
         </h3>
 
         <small>
-          They make up <strong>{ownPercent.toFixed(1)}%</strong> of your Pokédex, and <strong>{comparedPercent.toFixed(1)}%</strong> of the compared Pokédex{regions.size > 1 && 'es on average'}.
+          They make up <strong>{ownPercent.toFixed(1)}%</strong> of your Pokédex, and <strong>{comparedPercent.toFixed(1)}%</strong> of the compared Pokédex{regions.size > 1 && 'es on average'}.&nbsp;
+
+          {fillers.length > 0 && (
+            <>
+              You may want to remove filler Pokémon {nodesToSentence(fillers.map(m => <strong>{m.name}</strong>), 'or')}.
+            </>
+          )}
         </small>
       </div>
     </div>

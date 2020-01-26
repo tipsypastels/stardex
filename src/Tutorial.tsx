@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PokemonList from './models/PokemonList';
 import Pokemon from './models/Pokemon';
 import Breakdown from './Breakdown';
+import Modal from './Modal';
 
 const TUTORIAL_MOCK_MONS = PokemonList.from([
   new Pokemon('Ducklett'),
@@ -17,6 +18,8 @@ type Props = {
 }
 
 export default function Tutorial({ welcome }: Props) {
+  const [showMods, setShowMods] = useState(false);
+
   return (
     <div className="Tutorial">
       {welcome && <p>
@@ -32,8 +35,28 @@ export default function Tutorial({ welcome }: Props) {
       </p>
 
       <p>
-        If you have Pokémon you think are relatively unimportant to the dex, you can use the <code>@filler</code> modifier. Stardex will recommend these Pokémon for removal when you have too many of a given type.
+        If you have Pokémon you think are relatively unimportant to the dex, you can use the <code>@filler</code> modifier. Stardex will recommend these Pokémon for removal when you have too many of a given type. Correspondingly, you can also use <code>@ignore</code>, which will exclude that Pokémon from counts and recommendations. <span className="link" onClick={() => setShowMods(true)}>Show all modifiers.</span>
       </p>
+
+      <Modal open={showMods} onClose={() => setShowMods(false)}>
+        <h1>Modifiers</h1>
+
+        <p>Modifiers change the basic functionality of a Pokédex entry. You can add one or more modifiers at the end of a line.</p>
+
+        <ul className="ModifiersList">
+          <li>
+            <code>@filler</code> will mark the Pokémon as unimportant and recommend it for removal when there are judged to be too many Pokémon with that type.
+          </li>
+
+          <li>
+            <code>@ignore</code> will exclude the Pokémon from graphs and recommendations. It will still appear in the exports list.
+          </li>
+
+          <li>
+            <code>@alt</code> will treat the Pokémon as an alternate form, and add the regular form before it in the exports list automatically (but not to graphs or recommendations).
+          </li>
+        </ul>
+      </Modal>
 
       <textarea readOnly value={`Ducklett\nSwanna\n\n# Regional Forms\nDratini (Psychic)\nDragonair (Psychic/Dragon)\n\n# Totally custom Pokémon and type\nOpaling (Fantasy)\n\n# A Pokémon we don't like and will remove if there are too many normal types\nLickitung @filler`} />
 

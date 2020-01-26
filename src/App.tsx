@@ -27,7 +27,7 @@ type Action =
 function reducer(state: State, action: Action): State {
   switch(action.type) {
     case 'SET_MONS': {
-      return { ...state, mons: PokemonList.from(action.mons) as PokemonList };
+      return { ...state, mons: PokemonList.from(action.mons) };
     }
     case 'ENABLE_REGION': {
       const regions = state.regions.add(action.region);

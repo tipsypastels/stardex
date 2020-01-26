@@ -6,7 +6,7 @@ export default class Distributions {
     let total = 0;
     const counters: { [key: string]: TypeWithCount } = {};
 
-    for (let mon of mons) {
+    for (let mon of mons.unignored) {
       for (let type of mon.types) {
         const { name } = type;
 
