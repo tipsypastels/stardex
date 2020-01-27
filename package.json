@@ -21,6 +21,7 @@
     "body-scroll-lock": "^2.6.4",
     "facepaint": "^1.2.1",
     "immutable": "^4.0.0-rc.12",
+    "node-sass": "^4.13.1",
     "pluralize": "^8.0.0",
     "randomcolor": "^0.5.4",
     "react": "^16.12.0",
