@@ -1,5 +1,8 @@
 import { Type } from "./Type";
 import PokemonList from "./PokemonList";
+import { useContext } from "react";
+import { AppContext } from "../App";
+import { useSelectedRegionMons } from "../CompareAgainst";
 
 export const STRICTNESSES = {
   easygoing: 10,
@@ -22,7 +25,7 @@ export default class Recommendations extends Array<Recommendation> {
   static generate({ ownMons, comparedMons, strictness }: RecommendationsProps) {
     const ownDists = ownMons.distributions.pad();
     const comparedDists = comparedMons.distributions.pad();
-    const recommendations: Recommendation[] = [];
+    const recommendations: { [key: string]: Recommendation } = {}
 
     for (let i = 0; i < comparedDists.list.length; i++) {
       const ownDist = ownDists.list[i];
@@ -36,12 +39,12 @@ export default class Recommendations extends Array<Recommendation> {
       }
 
       if (action) {
-        recommendations.push({
+        recommendations[ownDist.type.name] = {
           type: ownDist.type,
           ownPercent: ownDist.percent,
           comparedPercent: comparedDist.percent,
           action,
-        });
+        };
       }
     }
 
@@ -56,4 +59,19 @@ export type Recommendation = {
   ownPercent: number;
   comparedPercent: number;
   action: RecommendedAction;
+}
+
+export function useRecommendations() {
+  const [{ mons, strictness, regions }] = useContext(AppContext);
+  const selectedRegionMons = useSelectedRegionMons();
+
+  if (regions.size === 0) {
+    return {};
+  }
+
+  return Recommendations.generate({
+    ownMons: mons,
+    comparedMons: selectedRegionMons,
+    strictness,
+  });
 }

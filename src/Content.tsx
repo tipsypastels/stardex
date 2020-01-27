@@ -1,49 +1,68 @@
-import React, { useContext, useState } from 'react'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
+import { useContext, Fragment } from 'react'
 import { AppContext } from './App'
 import Tutorial from './Tutorial';
-import Observations from './Observations';
-import { ErrorContext } from './ErrorBoundary';
+import { ErrorContext } from './shared/ErrorBoundary';
 import ContentError from './ContentError';
-import Icon from './Icon';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Overview from './pages/Overview';
+import Exporter from './pages/Exporter';
+import Navigation from './shared/Navigation';
+import CompareAgainst from './CompareAgainst';
+import { mq } from './styling';
+import Header from './shared/Header';
+import Settings from './pages/Settings';
+
+const Styles = css(mq({
+  flexGrow: '1',
+  flexShrink: '1',
+  marginBottom: '3rem',
+  marginLeft: [0, 450],
+
+  '.editor-toggle': {
+    display: ['block', 'none'],
+    marginRight: '0.5rem',
+    cursor: 'pointer',
+  }
+}));
 
 export default function Content() {
-  const [{ mons, mobEditorOpen }, dispatch] = useContext(AppContext);
+  const [{ mons }] = useContext(AppContext);
   const [error] = useContext(ErrorContext);
-  const [openTutorial, setOpenTutorial] = useState(false);
 
   if (error) {
     return <ContentError />;
   }
 
-  const showTutorial = openTutorial || mons.length === 0;
-
   return (
-    <div className="Content">
-      <h1 style={{ display: 'flex' }}>
-        <span style={{ flexGrow: 1 }}>
-          Stardex
-        </span>
+    <div css={Styles}>
+      <Header />
 
-        <Icon
-          className="Content__editor_toggle mobile"
-          src={[mobEditorOpen
-            ? 'caret-square-left'
-            : 'caret-square-right', 'far']
-          }
-          onClick={() => dispatch({
-            type: 'SET_MOB_EDITOR_OPEN',
-            open: !mobEditorOpen,
-          })}
-        />
-      </h1>
+      <Router>
+        {mons.length
+          ? (
+            <Fragment>
+              <Navigation />
 
-      {mons.length > 0 && (
-        <div className="link" onClick={() => setOpenTutorial(!openTutorial)}>
-          {openTutorial ? 'Hide' : 'Show'} the tutorial.
-        </div>
-      )}
+              <div css={{ padding: '1rem', paddingTop: '0' }}>
+                <Switch>
+                  <Route exact path="/tutorial" component={Tutorial} />
+                  <Route exact path="/settings" component={Settings} />
+                  <Route exact path="/export" component={Exporter} />
+                  <Route exact path="/compare" component={CompareAgainst} />
+                  <Route exact path="/" component={Overview} />
+                </Switch>
+              </div>
 
-      {showTutorial ? <Tutorial /> : <Observations />}
+            </Fragment>
+          ) : (
+            <div css={{ padding: '1rem', paddingTop: '0' }}>
+              <Route path="/" component={Tutorial} />
+            </div>
+          )
+        }
+      </Router>
     </div>
   )
 }

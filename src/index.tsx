@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import './assets/fa/css/all.min.scss';
+import 'react-slidedown/lib/slidedown.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

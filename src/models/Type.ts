@@ -1,5 +1,5 @@
 import TYPE_DATA from "../data/TYPE_DATA";
-import { IconSource } from "../Icon";
+import { IconSource } from "../shared/Icon";
 import randomColor from 'randomcolor';
 
 export class Type {

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ErrorContext } from './ErrorBoundary'
+import { ErrorContext } from './shared/ErrorBoundary'
 import Tutorial from './Tutorial';
 
 export default function ContentError() {

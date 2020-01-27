@@ -1,9 +1,53 @@
-import React, { useContext, useEffect, useState, useRef, ReactNode } from 'react'
-import Pokemon from './models/Pokemon'
-import { AppContext } from './App';
-import { capitalize } from './helpers/string';
-import Icon from './Icon';
-import { useLocalStorageState } from './helpers/hooks';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { useContext, useEffect, useState, useRef, ReactNode } from 'react'
+import Pokemon from '../models/Pokemon'
+import { AppContext } from '../App';
+import { capitalize } from '../helpers/string';
+import Icon from '../shared/Icon';
+import { useLocalStorageState } from '../helpers/hooks';
+
+const Styles = {
+  textarea: {
+    width: '100%',
+    height: '10rem',
+    fontSize: '1.1rem',
+  },
+
+  '.alt-prefix': {
+    marginBottom: '1rem',
+    display: 'block',
+
+    input: {
+      marginBottom: '0.5rem',
+      width: '100%',
+      height: 'calc(1.5em + 0.25rem + 2px)',
+      padding: '0.175rem 0.75rem',
+      fontSize: '1rem',
+      fontWeight: 400,
+      lineHeight: 1.5,
+      color: '#495057',
+      backgroundColor: 'white',
+      backgroundClip: 'padding-box',
+      border: '1px solid #ced4da',
+      borderRadius: '0.25rem',
+      boxSizing: 'border-box' as 'border-box',
+    },
+  },
+
+  '.editable': {
+    marginTop: '1rem',
+    maxHeight: '20rem',
+    overflowY: 'scroll' as 'scroll',
+  },
+
+  '.copied': {
+    backgroundColor: 'green',
+    color: 'white',
+    borderRadius: 6,
+    padding: '0.5rem 1rem',
+  },
+}
 
 export default function Exporter() {
   const [altPrefix, setAltPrefix] = useLocalStorageState('', 'alt_prefix');
@@ -32,13 +76,6 @@ export default function Exporter() {
 
   for (let index = 0; index < mons.length; index++) {
     const mon = mons[index];
-
-    // if (mon.mod('alt')) {
-    //   exportables.push({ mon: new Pokemon(mon.name), index });
-    //   exportables.push({ mon });
-    // } else {
-    //   exportables.push({ mon, index });
-    // }
 
     if (mon.mod('alt')) {
       const origForm = new Pokemon(mon.name);
@@ -76,13 +113,8 @@ export default function Exporter() {
   }, [exportableHTML, altPrefix]);
   
   return (
-    <div className="Exporter">
-      <h2>
-        Exporter
-      </h2>
-
-
-      <label className="Exporter__alt_prefix">
+    <div css={Styles}>
+      <label className="alt-prefix">
         Alternate Form Prefix <em>(Optional)</em>
         
         <input
@@ -105,7 +137,7 @@ export default function Exporter() {
       )}
 
       <div
-        className="Exporter__editable"
+        className="editable"
         ref={ref}
         dangerouslySetInnerHTML={{ __html: exportableHTML }}
         contentEditable

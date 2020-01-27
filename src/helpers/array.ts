@@ -22,3 +22,18 @@ export function nodesToSentence(nodes: ReactNode[], connector = 'and') {
   newNodes.push(nodes[nodes.length - 1]);
   return newNodes;
 }
+
+export function partition<T>(array: T[], callback: (elem: T, index?: number, list?: T[]) => boolean): [T[], T[]] {
+  const truthy: T[] = [];
+  const falsey: T[] = [];
+
+  for (let i = 0; i < array.length; i++) {
+    if (callback(array[i], i, array)) {
+      truthy.push(array[i]);
+    } else {
+      falsey.push(array[i]);
+    }
+  }
+
+  return [truthy, falsey];
+}

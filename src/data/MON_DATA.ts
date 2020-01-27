@@ -106,13 +106,11 @@ const MON_DATA: { [key: string]: MonData } = {
   },
   "rattata": {
     "types": [
-      "dark",
       "normal"
     ]
   },
   "raticate": {
     "types": [
-      "dark",
       "normal"
     ]
   },
@@ -146,19 +144,16 @@ const MON_DATA: { [key: string]: MonData } = {
   "raichu": {
     "types": [
       "electric",
-      "psychic"
     ]
   },
   "sandshrew": {
     "types": [
-      "ice",
-      "steel"
+      "ground",
     ]
   },
   "sandslash": {
     "types": [
-      "ice",
-      "steel"
+      "ground",
     ]
   },
   "nidoran": {
@@ -200,13 +195,12 @@ const MON_DATA: { [key: string]: MonData } = {
   },
   "vulpix": {
     "types": [
-      "ice"
+      "fire"
     ]
   },
   "ninetales": {
     "types": [
-      "ice",
-      "fairy"
+      "fire",
     ]
   },
   "jigglypuff": {
@@ -278,23 +272,21 @@ const MON_DATA: { [key: string]: MonData } = {
   "diglett": {
     "types": [
       "ground",
-      "steel"
     ]
   },
   "dugtrio": {
     "types": [
       "ground",
-      "steel"
     ]
   },
   "meowth": {
     "types": [
-      "dark"
+      "normal"
     ]
   },
   "persian": {
     "types": [
-      "dark"
+      "normal"
     ]
   },
   "psyduck": {
@@ -406,19 +398,19 @@ const MON_DATA: { [key: string]: MonData } = {
   "geodude": {
     "types": [
       "rock",
-      "electric"
+      "ground"
     ]
   },
   "graveler": {
     "types": [
       "rock",
-      "electric"
+      "ground"
     ]
   },
   "golem": {
     "types": [
       "rock",
-      "electric"
+      "ground"
     ]
   },
   "ponyta": {
@@ -487,13 +479,11 @@ const MON_DATA: { [key: string]: MonData } = {
   "grimer": {
     "types": [
       "poison",
-      "dark"
     ]
   },
   "muk": {
     "types": [
       "poison",
-      "dark"
     ]
   },
   "shellder": {
@@ -570,7 +560,7 @@ const MON_DATA: { [key: string]: MonData } = {
   "exeggutor": {
     "types": [
       "grass",
-      "dragon"
+      "psychic"
     ]
   },
   "cubone": {
@@ -580,8 +570,7 @@ const MON_DATA: { [key: string]: MonData } = {
   },
   "marowak": {
     "types": [
-      "fire",
-      "ghost"
+      "ground",
     ]
   },
   "hitmonlee": {

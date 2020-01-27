@@ -1,4 +1,4 @@
-import { IconSource } from "../Icon";
+import { IconSource } from "../shared/Icon";
 
 type TypeData = {
   color: string,

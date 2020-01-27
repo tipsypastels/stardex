@@ -1,10 +1,51 @@
-import React, { useCallback, useEffect, useContext, useRef } from 'react'
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { useCallback, useEffect, useContext, useRef } from 'react'
 import Pokemon from './models/Pokemon';
 import { useLocalStorageState } from './helpers/hooks';
 import { AppContext } from './App';
-import { ErrorContext } from './ErrorBoundary';
-import Icon from './Icon';
+import { ErrorContext } from './shared/ErrorBoundary';
+import Icon from './shared/Icon';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import { mq } from './styling';
+
+const Styles = mq({
+  backgroundColor: 'var(--code)',
+  boxSizing: 'border-box',
+  height: '100vh',
+  width: ['85vw', '450px'],
+  flexShrink: 0,
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  padding: '1rem 0.5rem',
+  display: 'flex',
+  flexDirection: 'column',
+  zIndex: 99999999,
+
+  '&.closed': {
+    '@media screen and (max-width: 768px)': {
+      width: 0,
+      overflow: 'hidden',
+      opacity: 0,
+      pointerEvents: 'none',
+    },
+  },
+
+  textarea: {
+    flexGrow: 1,
+    width: '100%',
+    MsOverflowStyle: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+  },
+
+  '.pause-tip': {
+    paddingTop: '0.5rem',
+    color: 'rgba(255, 255, 255, 0.5)',
+  },
+});
 
 const RELOAD_AFTER = 1000; // ms
 
@@ -64,7 +105,7 @@ export default function Editor() {
   
 
   return (
-    <div className={`Editor ${mobEditorOpen || 'Editor--closed'}`}>
+    <div css={Styles} className={`Editor ${mobEditorOpen || 'closed'}`}>
       <textarea 
         autoFocus
         value={text}

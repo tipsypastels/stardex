@@ -1,20 +1,20 @@
-import React, { Dispatch, createContext, useReducer } from 'react';
-import './App.scss';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { Dispatch, createContext, useReducer } from 'react';
 import Editor from './Editor';
 import Pokemon from './models/Pokemon';
 import Content from './Content';
 import Region, { DEFAULT_CHECKED_REGIONS } from './models/Region';
 import Immutable from 'immutable';
 import PokemonList from './models/PokemonList';
-import ErrorBoundary from './ErrorBoundary';
-import REGION_DATA from './data/REGION_DATA';
+import ErrorBoundary from './shared/ErrorBoundary';
 import { Strictness, STRICTNESSES } from './models/Recommendations';
 import { getCacheWithDefault, setCache } from './helpers/cache';
+import { globalStyles } from './styling';
 
 type State = {
   mons: PokemonList;
   regions: Immutable.Set<Region>;
-  selectedRegionMons: PokemonList;
   strictness: Strictness;
   mobEditorOpen: boolean; 
 }
@@ -33,17 +33,13 @@ function reducer(state: State, action: Action): State {
     }
     case 'ENABLE_REGION': {
       const regions = state.regions.add(action.region);
-      const selectedRegionMons = createSelectedRegionMons([...regions]);
-
       setCache('regions', [...regions], JSON.stringify);
-      return { ...state, regions, selectedRegionMons };
+      return { ...state, regions };
     }
     case 'DISABLE_REGION': {
       const regions = state.regions.delete(action.region);
-      const selectedRegionMons = createSelectedRegionMons([...regions]);
-
       setCache('regions', [...regions], JSON.stringify);
-      return { ...state, regions, selectedRegionMons };
+      return { ...state, regions };
     }
     case 'SET_STRICTNESS': {
       setCache('strictness', action.strictness);
@@ -55,10 +51,6 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-function createSelectedRegionMons(regions: Region[]) {
-  return PokemonList.combine(regions.map(region => REGION_DATA[region]));
-}
-
 type AppContextProps = [State, Dispatch<Action>];
 export const AppContext = createContext<AppContextProps>(null as any);
 
@@ -66,7 +58,6 @@ export default function App() {
   const [state, dispatch] = useReducer(reducer, {
     mons: new PokemonList(),
     regions: Immutable.Set<Region>(getCacheWithDefault<Region[]>('regions', DEFAULT_CHECKED_REGIONS, JSON.parse, JSON.stringify)),
-    selectedRegionMons: createSelectedRegionMons(DEFAULT_CHECKED_REGIONS),
     strictness: getCacheWithDefault('strictness', STRICTNESSES.normal, Number),
     mobEditorOpen: false,
   });
@@ -74,7 +65,7 @@ export default function App() {
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <ErrorBoundary>
-        <div className="App">
+        <div css={[globalStyles, { display: 'flex', fontFamily: 'Lato' }]}>
           <Editor />
           <Content />
         </div>

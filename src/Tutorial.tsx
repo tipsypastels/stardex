@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import { useState, Fragment } from 'react';
 import PokemonList from './models/PokemonList';
 import Pokemon from './models/Pokemon';
-import Breakdown from './Breakdown';
-import Modal from './Modal';
+import Breakdown from './shared/Breakdown';
+import Modal from './shared/Modal';
+
+const Styles = {
+  textarea: {
+    display: 'block',
+    width: '100%',
+    height: '14rem',
+    fontSize: '1rem',
+    padding: '1rem 0.5rem',
+  },
+}
 
 const TUTORIAL_MOCK_MONS = PokemonList.from([
   new Pokemon('Ducklett'),
@@ -21,7 +33,7 @@ export default function Tutorial({ welcome }: Props) {
   const [showMods, setShowMods] = useState(false);
 
   return (
-    <div className="Tutorial">
+    <div css={Styles}>
       {welcome && <p>
         Welcome to Stardex! You can use this tool to build balanced Pokédexes by comparing them against the type distributions present in the base Pokémon regions.
       </p>}
@@ -43,7 +55,7 @@ export default function Tutorial({ welcome }: Props) {
 
         <p>Modifiers change the basic functionality of a Pokédex entry. You can add one or more modifiers at the end of a line.</p>
 
-        <ul className="ModifiersList">
+        <ul css={{ li: { marginBottom: '0.5rem' } }}>
           <li>
             <code>@filler</code> will mark the Pokémon as unimportant and recommend it for removal when there are judged to be too many Pokémon with that type.
           </li>
@@ -60,7 +72,7 @@ export default function Tutorial({ welcome }: Props) {
 
       <textarea readOnly value={`Ducklett\nSwanna\n\n# Regional Forms\nDratini (Psychic)\nDragonair (Psychic/Dragon)\n\n# Totally custom Pokémon and type\nOpaling (Fantasy)\n\n# A Pokémon we don't like and will remove if there are too many normal types\nLickitung @filler`} />
 
-      {welcome && <>
+      {welcome && <Fragment>
         <p>
           You'll get a type breakdown like this, along with options to compare against existing regions or a combination of them.
         </p>
@@ -70,7 +82,7 @@ export default function Tutorial({ welcome }: Props) {
         <p>
           Stardex was created by <a href="https://github.com/tipsypastels">@tipsypastels</a> (Dakota) and <a href="https://github.com/misnina">@misnina</a> (Nina) from the <a href="https://github.com/tipsypastels/pokegnosis">Pokémon Gnosis</a> team. Feel free to suggest improvements on the <a href="https://github.com/tipsypastels/stardex">Stardex Github</a>.
         </p>
-      </>}
+      </Fragment>}
     </div>
   )
 }
