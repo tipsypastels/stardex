@@ -114,7 +114,7 @@ export default function Overview() {
 
                   {fillers.length > 0 && (
                     <Fragment>
-                      You may want to remove filler Pokémon {nodesToSentence(fillers.map(m => <strong key={m.name}>{m.name}</strong>), 'or')}
+                      You may want to remove filler Pokémon {nodesToSentence(fillers.map(m => <strong key={m.name}>{m.name}</strong>), 'or')}.
                     </Fragment>
                   )}
                 </p>
