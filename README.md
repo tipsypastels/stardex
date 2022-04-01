@@ -1,5 +1,3 @@
 # Stardex
 
-Stardex helps you build balanced Pokédexes for Pokémon ROM hacks. You can try it out [here](https://stardex.dakota.zone/)!
-
-Created by the team behind [Pokémon Gnosis](https://github.com/tipsypastels/pokegnosis).
+Stardex helps you build balanced Pokédexes for Pokémon ROM hacks. A public instance is no longer maintained, but you can download and run it locally as a React project if you need it.
