@@ -26,11 +26,12 @@
 $lowlight: #490a3d;
 $highlight: #8a9b10;
 $divider: 1px solid #ccc;
-
 $animtime: 200ms;
+$sidebar-width: 350px;
 
 * {
   box-sizing: border-box;
+  overscroll-behavior: none;
 }
 
 body {
@@ -44,17 +45,16 @@ body {
   font-size: 1.2rem;
 }
 
-.container {
-  @include desktop {
-    display: grid;
-    min-height: 100vh;
-    grid-template-columns: 350px 1fr;
-  }
-}
-
 .editor {
   background-color: $lowlight;
   color: $highlight;
+
+  @include desktop {
+    top: 0;
+    position: sticky;
+    width: $sidebar-width;
+    height: 100vh;
+  }
 
   &__textarea {
     display: block;
@@ -74,9 +74,18 @@ body {
 }
 
 .router {
+  @include desktop {
+    margin-top: -100vh;
+    margin-left: $sidebar-width;
+  }
+}
+
+.page {
   width: 800px;
   max-width: 100%;
   margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
 }
 
 .page__title {
