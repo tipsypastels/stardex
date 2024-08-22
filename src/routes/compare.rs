@@ -1,4 +1,4 @@
-use crate::{components::InlineLink, layouts::Page, route::Route, state::StateContext};
+use crate::{components::InlineLink, layouts::Page, routes::Route, state::StateContext};
 use yew::prelude::*;
 
 #[function_component]

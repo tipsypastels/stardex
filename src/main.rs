@@ -1,6 +1,6 @@
 use self::{
     layouts::Editor,
-    route::Router,
+    routes::Router,
     state::{State, StateContextProvider},
 };
 use gloo::{console, utils::document_element};
@@ -11,7 +11,7 @@ mod components;
 mod lang;
 mod layouts;
 mod models;
-mod route;
+mod routes;
 mod state;
 
 #[function_component]

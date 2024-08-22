@@ -2,7 +2,7 @@ use crate::{
     components::{InlineLink, TypeName},
     layouts::Page,
     models::{Region, Strictness, Type},
-    route::Route,
+    routes::Route,
     state::{Action, SelectRegions, StateContext},
 };
 use implicit_clone::unsync::IString;
