@@ -3,7 +3,7 @@ use crate::{
     layouts::Page,
     models::{Region, Strictness, Type},
     route::Route,
-    state::{Action, StateContext},
+    state::{Action, SelectRegions, StateContext},
 };
 use implicit_clone::unsync::IString;
 use yew::prelude::*;
@@ -26,6 +26,11 @@ pub fn settings() -> Html {
                 Action::EnableRegion(r)
             })
         })
+    };
+
+    let onemit_region_bulk_action = {
+        let state = state.clone();
+        Callback::from(move |s| state.dispatch(Action::SelectRegions(s)))
     };
 
     let onchange_strictness = {
@@ -58,6 +63,27 @@ pub fn settings() -> Html {
                         />
                     }
                 })}
+            </div>
+
+            <div class="region-bulk-actions">
+                {"Select "}
+                <RegionBulkAction
+                    label="Recommended"
+                    select={SelectRegions::Recommended}
+                    onemit={onemit_region_bulk_action.clone()}
+                />
+                {" / "}
+                <RegionBulkAction
+                    label="All"
+                    select={SelectRegions::All}
+                    onemit={onemit_region_bulk_action.clone()}
+                />
+                {" / "}
+                <RegionBulkAction
+                    label="None"
+                    select={SelectRegions::None}
+                    onemit={onemit_region_bulk_action.clone()}
+                />
             </div>
 
             if state.regions.contains("Kanto") {
@@ -103,8 +129,8 @@ fn region_checkbox(props: &RegionCheckboxProps) -> Html {
 
     let onchange = {
         let onchange = props.onchange.clone();
-        let region = region.clone();
-        move |_| onchange.emit((region.name.clone(), checked))
+        let name = region.name.clone();
+        move |_| onchange.emit((name.clone(), checked))
     };
 
     html! {
@@ -129,6 +155,28 @@ fn region_checkbox(props: &RegionCheckboxProps) -> Html {
                 {&region.name}
             </div>
         </label>
+    }
+}
+
+#[derive(Properties, PartialEq)]
+struct RegionBulkActionProps {
+    label: &'static str,
+    select: SelectRegions,
+    onemit: Callback<SelectRegions>,
+}
+
+#[function_component(RegionBulkAction)]
+fn region_bulk_action(props: &RegionBulkActionProps) -> Html {
+    let onclick = {
+        let onemit = props.onemit.clone();
+        let select = props.select;
+        move |_| onemit.emit(select)
+    };
+
+    html! {
+        <button class="region-bulk-actions__action" onclick={onclick}>
+            {props.label}
+        </button>
     }
 }
 

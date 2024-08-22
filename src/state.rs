@@ -2,7 +2,7 @@ use crate::{
     collections::{MyArray, MySet},
     models::{Entry, Region, Strictness},
 };
-use implicit_clone::unsync::IString;
+use implicit_clone::{unsync::IString, ImplicitClone};
 use std::rc::Rc;
 use wasm_bindgen::prelude::*;
 use yew::{ContextProvider, Reducible, UseReducerHandle};
@@ -44,6 +44,7 @@ pub enum Action {
     SetStrictness(Strictness),
     EnableRegion(IString),
     DisableRegion(IString),
+    SelectRegions(SelectRegions),
 }
 
 impl Reducible for State {
@@ -81,6 +82,31 @@ impl Reducible for State {
                 regions: self.regions.retain(|r| r != &region),
                 strictness: self.strictness,
             }),
+            Action::SelectRegions(SelectRegions::Recommended) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries: self.entries.clone(),
+                regions: Region::dat_without_kanto().names().into(),
+                strictness: self.strictness,
+            }),
+            Action::SelectRegions(SelectRegions::All) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries: self.entries.clone(),
+                regions: Region::dat().names().into(),
+                strictness: self.strictness,
+            }),
+            Action::SelectRegions(SelectRegions::None) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries: self.entries.clone(),
+                regions: MySet::default(),
+                strictness: self.strictness,
+            }),
         }
     }
+}
+
+#[derive(Debug, Copy, Clone, ImplicitClone, PartialEq)]
+pub enum SelectRegions {
+    Recommended,
+    All,
+    None,
 }

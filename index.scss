@@ -190,9 +190,33 @@ body {
   }
 }
 
+.region-bulk-actions {
+  margin: 1rem 0;
+  font-size: 1rem;
+
+  &__action {
+    cursor: pointer;
+    padding: 0;
+
+    border: unset;
+    background-color: unset;
+    color: unset;
+
+    font-family: unset;
+    font-size: unset;
+    text-decoration: underline;
+
+    &:hover {
+      color: $highlight;
+      transition: transform $animtime ease-in-out;
+      transform: translateY(-1px);
+    }
+  }
+}
+
 .region-kanto-warning {
   padding: 1rem;
-  margin: 1rem 0;
+  margin-top: 1rem;
   border-radius: 0.5rem;
 
   background-color: $lowlight;
