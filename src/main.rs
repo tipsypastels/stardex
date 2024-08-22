@@ -14,8 +14,8 @@ mod models;
 mod route;
 mod state;
 
-#[function_component(App)]
-fn app() -> Html {
+#[function_component]
+fn App() -> Html {
     let state = use_reducer(State::default);
 
     use_effect_with((), |_| {

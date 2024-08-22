@@ -8,8 +8,8 @@ use crate::{
 use implicit_clone::unsync::IString;
 use yew::prelude::*;
 
-#[function_component(Settings)]
-pub fn settings() -> Html {
+#[function_component]
+pub fn Settings() -> Html {
     let state = use_context::<StateContext>().unwrap();
 
     let onchange_regions = {
@@ -111,8 +111,8 @@ struct RegionCheckboxProps {
     onchange: Callback<(IString, bool)>,
 }
 
-#[function_component(RegionCheckbox)]
-fn region_checkbox(props: &RegionCheckboxProps) -> Html {
+#[function_component]
+fn RegionCheckbox(props: &RegionCheckboxProps) -> Html {
     let region = props.region.clone();
     let checked = props.checked;
     let checked_class = checked.then_some("region-checkbox--checked");
@@ -156,8 +156,8 @@ struct RegionBulkActionProps {
     onemit: Callback<SelectRegions>,
 }
 
-#[function_component(RegionBulkAction)]
-fn region_bulk_action(props: &RegionBulkActionProps) -> Html {
+#[function_component]
+fn RegionBulkAction(props: &RegionBulkActionProps) -> Html {
     let onclick = {
         let onemit = props.onemit.clone();
         let select = props.select;
@@ -178,8 +178,8 @@ struct StrictnessChoiceProps {
     onchange: Callback<Strictness>,
 }
 
-#[function_component(StrictnessChoice)]
-fn strictness_choice(props: &StrictnessChoiceProps) -> Html {
+#[function_component]
+fn StrictnessChoice(props: &StrictnessChoiceProps) -> Html {
     let strictness = props.strictness;
     let checked = props.checked;
     let checked_class = checked.then_some("strictness-choice--checked");

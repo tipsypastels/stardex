@@ -1,8 +1,8 @@
 use crate::{components::InlineLink, layouts::Page, route::Route, state::StateContext};
 use yew::prelude::*;
 
-#[function_component(Compare)]
-pub fn compare() -> Html {
+#[function_component]
+pub fn Compare() -> Html {
     let state = use_context::<StateContext>().unwrap();
     let html = if state.regions.is_empty() {
         html! {

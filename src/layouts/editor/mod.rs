@@ -4,8 +4,8 @@ use yew::prelude::*;
 
 mod codemirror;
 
-#[function_component(Editor)]
-pub fn editor() -> Html {
+#[function_component]
+pub fn Editor() -> Html {
     let state = use_context::<StateContext>().unwrap();
     let mobile_open = state.mobile_editor_open;
     let mobile_open_class = mobile_open.then_some("editor--mobile-open");

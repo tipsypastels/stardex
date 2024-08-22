@@ -2,9 +2,8 @@ use crate::route::Route;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-// TODO: Figure out why navigator.basename isn't working.
-#[function_component(Nav)]
-pub fn nav() -> Html {
+#[function_component]
+pub fn Nav() -> Html {
     html! {
         <nav class="nav">
             <div class="nav__links">
@@ -22,8 +21,8 @@ struct NavLinkProps {
     to: Route,
 }
 
-#[function_component(NavLink)]
-fn nav_link(props: &NavLinkProps) -> Html {
+#[function_component]
+fn NavLink(props: &NavLinkProps) -> Html {
     let to = &props.to;
     let current_route = use_route::<Route>();
     let active = current_route.map(|cr| cr == *to).unwrap_or(false);

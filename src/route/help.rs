@@ -3,8 +3,8 @@ use crate::layouts::Page;
 use yew::prelude::*;
 use yew_router::hooks::use_route;
 
-#[function_component(Help)]
-pub fn help() -> Html {
+#[function_component]
+pub fn Help() -> Html {
     let title = if let Some(Route::Home) = use_route() {
         "Welcome"
     } else {

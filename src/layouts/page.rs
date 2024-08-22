@@ -8,8 +8,8 @@ pub struct PageProps {
     pub children: Html,
 }
 
-#[function_component(Page)]
-pub fn page(props: &PageProps) -> Html {
+#[function_component]
+pub fn Page(props: &PageProps) -> Html {
     html! {
         <div class="page">
             <h1 class="page__title">

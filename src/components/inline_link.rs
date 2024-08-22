@@ -7,8 +7,8 @@ pub struct InlineLinkProps {
     pub to: Route,
 }
 
-#[function_component(InlineLink)]
-pub fn inline_link(props: &InlineLinkProps) -> Html {
+#[function_component]
+pub fn InlineLink(props: &InlineLinkProps) -> Html {
     html! {
         <Link<Route> to={props.to.clone()} classes="inline-link">
             <span class="inline-link__icon">

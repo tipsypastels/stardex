@@ -48,8 +48,8 @@ fn switch(route: Route) -> Html {
     }
 }
 
-#[function_component(Router)]
-pub fn router() -> Html {
+#[function_component]
+pub fn Router() -> Html {
     html! {
         <div class="router">
             <BrowserRouter>
