@@ -1,0 +1,71 @@
+[Normal]
+color = "rgb(168, 168, 120)"
+icon = "balance-scale"
+
+[Fire]
+color = "rgb(240, 128, 48)"
+icon = "fire"
+
+[Fighting]
+color = "rgb(192, 48, 40)"
+icon = "fist-raised"
+
+[Water]
+color = "rgb(104, 144, 240)"
+icon = "water"
+
+[Flying]
+color = "rgb(168, 144, 240)"
+icon = "feather-alt"
+
+[Grass]
+color = "rgb(120, 200, 80)"
+icon = "leaf"
+
+[Poison]
+color = "rgb(160, 64, 160)"
+icon = "flask"
+
+[Electric]
+color = "rgb(248, 208, 48)"
+icon = "bolt"
+
+[Ground]
+color = "rgb(224, 192, 104)"
+icon = "globe"
+
+[Psychic]
+color = "rgb(248, 88, 136)"
+icon = "eye"
+
+[Rock]
+color = "rgb(184, 160, 56)"
+icon = "gem"
+
+[Ice]
+color = "rgb(152, 216, 216)"
+icon = "icicles"
+
+[Bug]
+color = "rgb(168, 184, 32)"
+icon = "bug"
+
+[Dragon]
+color = "rgb(112, 56, 248)"
+icon = "dragon"
+
+[Ghost]
+color = "rgb(112, 88, 152)"
+icon = "ghost"
+
+[Dark]
+color = "rgb(112, 88, 72)"
+icon = "moon"
+
+[Steel]
+color = "rgb(184, 184, 208)"
+icon = "robot"
+
+[Fairy]
+color = "rgb(238, 153, 172)"
+icon = "sparkles"

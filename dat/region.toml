@@ -1,0 +1,35 @@
+[Kanto]
+icon = "trees"
+pokemon = ["Bulbasaur"]
+
+[Johto]
+icon = "vihara"
+pokemon = ["Bulbasaur"]
+
+[Hoenn]
+icon = "wave"
+pokemon = ["Bulbasaur"]
+
+[Sinnoh]
+icon = "mountains"
+pokemon = ["Bulbasaur"]
+
+[Unova]
+icon = "city"
+pokemon = ["Bulbasaur"]
+
+[Kalos]
+icon = "baguette"
+pokemon = ["Bulbasaur"]
+
+[Alola]
+icon = "island-tropical"
+pokemon = ["Bulbasaur"]
+
+[Galar]
+icon = "fort"
+pokemon = ["Bulbasaur"]
+
+[Paldea]
+icon = "lighthouse"
+pokemon = ["Bulbasaur"]

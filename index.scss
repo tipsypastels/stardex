@@ -1,0 +1,257 @@
+@mixin desktop() {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin bounce {
+  // Don't animate the first page load.
+  html.loaded & {
+    animation: bounce $animtime ease-in-out;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+$lowlight: #490a3d;
+$highlight: #8a9b10;
+$divider: 1px solid #ccc;
+
+$animtime: 200ms;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: white;
+  color: $lowlight;
+
+  font-family: "Itim", cursive;
+  font-size: 1.2rem;
+}
+
+.container {
+  @include desktop {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 350px 1fr;
+  }
+}
+
+.editor {
+  background-color: $lowlight;
+  color: $highlight;
+
+  &__textarea {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+
+    border: none;
+    outline: none;
+    resize: none;
+
+    background-color: unset;
+    color: unset;
+    font-family: unset;
+    font-size: unset;
+  }
+}
+
+.router {
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.page__title {
+  text-align: center;
+  margin-bottom: 1rem;
+
+  @include desktop {
+    text-align: unset;
+  }
+}
+
+.nav {
+  border-top: $divider;
+  padding-top: 1rem;
+
+  @include desktop {
+    border-bottom: $divider;
+    padding-bottom: 1rem;
+  }
+
+  &__links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @include desktop {
+      grid-template-columns: repeat(4, max-content);
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    border-bottom: $divider;
+    padding-bottom: 1rem;
+
+    color: $lowlight;
+    text-decoration: none;
+
+    @include desktop {
+      justify-content: unset;
+      border-bottom: unset;
+      padding-bottom: unset;
+    }
+
+    &__name {
+      margin-left: 0.5rem;
+    }
+
+    &--active {
+      color: $highlight;
+
+      .nav__link__icon {
+        @include bounce;
+      }
+    }
+  }
+}
+
+.region-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.region-checkbox {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+
+  padding: 0.5rem;
+  border: $divider;
+  border-radius: 0.5rem;
+
+  display: flex;
+  align-items: center;
+
+  &__input {
+    display: none;
+  }
+
+  &__name {
+    margin-left: 0.5rem;
+  }
+
+  &:hover {
+    transition: transform $animtime ease-in-out;
+    transform: translateY(-1px);
+  }
+
+  &__check {
+    @include bounce;
+
+    display: none;
+
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    transform: rotate(3deg);
+    color: $highlight;
+  }
+
+  &--checked {
+    .region-checkbox__check {
+      display: unset;
+    }
+  }
+}
+
+.region-kanto-warning {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+
+  background-color: $lowlight;
+  color: $highlight;
+}
+
+.strictness-choice {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: $divider;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__text {
+    margin-left: 1rem;
+  }
+
+  &__description {
+    font-size: 1rem;
+  }
+
+  &--checked {
+    .strictness-choice__name,
+    .strictness-choice__icon {
+      color: $highlight;
+    }
+
+    .strictness-choice__icon {
+      @include bounce;
+    }
+  }
+}
+
+.inline-link {
+  display: inline-block;
+  color: $lowlight;
+  text-decoration: none;
+
+  &__name {
+    display: inline-block;
+    margin-left: 0.25rem;
+    text-decoration: underline;
+  }
+}
+
+.type-name {
+  display: inline-block;
+
+  &__name {
+    display: inline-block;
+    margin-left: 0.25rem;
+  }
+}

@@ -1,0 +1,86 @@
+use crate::{
+    collections::{MyArray, MySet},
+    models::{Entry, Region, Strictness},
+};
+use implicit_clone::unsync::IString;
+use std::rc::Rc;
+use wasm_bindgen::prelude::*;
+use yew::{ContextProvider, Reducible, UseReducerHandle};
+
+pub type StateContext = UseReducerHandle<State>;
+pub type StateContextProvider = ContextProvider<StateContext>;
+
+#[derive(Debug, PartialEq)]
+pub struct State {
+    pub mobile_editor_open: bool,
+    pub entries: MyArray<Entry>,
+    pub regions: MySet<IString>,
+    pub strictness: Strictness,
+}
+
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+}
+
+impl Default for State {
+    fn default() -> Self {
+        let s = Self {
+            mobile_editor_open: false,
+            entries: MyArray::<Entry>::default(),
+            regions: Region::dat_without_kanto().names().into(),
+            strictness: Strictness::Normal,
+        };
+        log(&format!("{s:?}"));
+        s
+    }
+}
+
+#[derive(Debug)]
+pub enum Action {
+    OpenMobileEditor,
+    CloseMobileEditor,
+    SetStrictness(Strictness),
+    EnableRegion(IString),
+    DisableRegion(IString),
+}
+
+impl Reducible for State {
+    type Action = Action;
+
+    fn reduce(self: Rc<Self>, action: Action) -> Rc<Self> {
+        match action {
+            Action::OpenMobileEditor => Rc::new(Self {
+                mobile_editor_open: true,
+                entries: self.entries.clone(),
+                regions: self.regions.clone(),
+                strictness: self.strictness,
+            }),
+            Action::CloseMobileEditor => Rc::new(Self {
+                mobile_editor_open: false,
+                entries: self.entries.clone(),
+                regions: self.regions.clone(),
+                strictness: self.strictness,
+            }),
+            Action::SetStrictness(strictness) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries: self.entries.clone(),
+                regions: self.regions.clone(),
+                strictness,
+            }),
+            Action::EnableRegion(region) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries: self.entries.clone(),
+                regions: self.regions.push(region),
+                strictness: self.strictness,
+            }),
+            Action::DisableRegion(region) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries: self.entries.clone(),
+                regions: self.regions.retain(|r| r != &region),
+                strictness: self.strictness,
+            }),
+        }
+    }
+}

@@ -1,0 +1,22 @@
+use self::dat::dat;
+use implicit_clone::unsync::IString;
+
+#[cfg(test)]
+mod tests;
+
+mod dat;
+mod entry;
+mod pokemon;
+mod region;
+mod strictness;
+mod typ;
+
+pub use entry::Entry;
+pub use pokemon::Pokemon;
+pub use region::Region;
+pub use strictness::Strictness;
+pub use typ::Type;
+
+pub trait Name {
+    fn name(&self) -> &IString;
+}
