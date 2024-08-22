@@ -266,16 +266,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gloo"
-version = "0.11.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d15282ece24eaf4bd338d73ef580c6714c8615155c4190c781290ee3fa0fd372"
-dependencies = [
- "gloo-console 0.3.0",
- "gloo-utils 0.2.0",
-]
-
-[[package]]
 name = "gloo-console"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -956,7 +946,6 @@ name = "stardex"
 version = "0.1.0"
 dependencies = [
  "ahash",
- "gloo 0.11.0",
  "implicit-clone",
  "indexmap",
  "serde",

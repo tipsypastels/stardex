@@ -3,7 +3,6 @@ use self::{
     routes::Router,
     state::{State, StateContextProvider},
 };
-use gloo::{console, utils::document_element};
 use yew::prelude::*;
 
 mod collections;
@@ -17,11 +16,6 @@ mod state;
 #[function_component]
 fn App() -> Html {
     let state = use_reducer(State::default);
-
-    use_effect_with((), |_| {
-        document_element().class_list().add_1("loaded").ok();
-        console::log!("Loaded");
-    });
 
     html! {
         <main class="container">

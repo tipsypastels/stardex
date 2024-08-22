@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 ahash = { version = "0.8.11", features = ["serde"] }
-gloo = { version = "0.11.0", features = ["console", "utils"], default-features = false }
+# gloo = { version = "0.11.0", features = ["console", "utils"], default-features = false }
 implicit-clone = { version = "0.4.8", features = ["map", "serde"] }
 indexmap = { version = "2.4.0", features = ["serde"] }
 serde = { version = "1.0.208", features = ["derive"] }

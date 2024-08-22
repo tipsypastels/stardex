@@ -5,10 +5,7 @@
 }
 
 @mixin bounce {
-  // Don't animate the first page load.
-  html.loaded & {
-    animation: bounce $animtime ease-in-out;
-  }
+  animation: bounce $animtime ease-in-out;
 }
 
 @keyframes bounce {
