@@ -23,6 +23,20 @@
   }
 }
 
+@mixin font-size($n) {
+  @if $n == normal {
+    font-size: 1rem;
+    @include desktop {
+      font-size: 1.2rem;
+    }
+  } @else if $n == small {
+    font-size: 0.8rem;
+    @include desktop {
+      font-size: 1rem;
+    }
+  }
+}
+
 $lowlight: #490a3d;
 $highlight: #8a9b10;
 $divider: 1px solid #ccc;
@@ -35,6 +49,8 @@ $sidebar-width: 350px;
 }
 
 body {
+  @include font-size(normal);
+
   margin: 0;
   padding: 0;
 
@@ -42,7 +58,6 @@ body {
   color: $lowlight;
 
   font-family: "Itim", cursive;
-  font-size: 1.2rem;
 }
 
 .editor {
@@ -84,6 +99,7 @@ body {
   width: 800px;
   max-width: 100%;
   margin: 0 auto;
+
   padding-top: 1rem;
   padding-bottom: 3rem;
 }
@@ -94,6 +110,14 @@ body {
 
   @include desktop {
     text-align: unset;
+  }
+}
+
+.page__content {
+  padding: 0 1.5rem;
+
+  @include desktop {
+    padding: 0;
   }
 }
 
@@ -151,8 +175,12 @@ body {
 
 .region-checkboxes {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .region-checkbox {
@@ -200,8 +228,9 @@ body {
 }
 
 .region-bulk-actions {
+  @include font-size(small);
+
   margin: 1rem 0;
-  font-size: 1rem;
 
   &__action {
     cursor: pointer;
@@ -253,7 +282,7 @@ body {
   }
 
   &__description {
-    font-size: 1rem;
+    @include font-size(small);
   }
 
   &--checked {
