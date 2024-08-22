@@ -7,10 +7,10 @@ pub fn Nav() -> Html {
     html! {
         <nav class="nav">
             <div class="nav__links">
-                <NavLink to={Route::Home} />
+                <NavLink to={Route::Overview} />
                 <NavLink to={Route::Compare} />
                 <NavLink to={Route::Settings} />
-                <NavLink to={Route::Help} />
+                <NavLink to={Route::Tutorial} />
             </div>
         </nav>
     }
