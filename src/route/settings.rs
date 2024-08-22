@@ -11,11 +11,6 @@ use yew::prelude::*;
 #[function_component(Settings)]
 pub fn settings() -> Html {
     let state = use_context::<StateContext>().unwrap();
-    let regions_phrase = if state.regions.len() == 1 {
-        "region"
-    } else {
-        "regions"
-    };
 
     let onchange_regions = {
         let state = state.clone();
@@ -42,13 +37,11 @@ pub fn settings() -> Html {
         <Page title="Settings">
             <h2>{"Regions"}</h2>
             <p>
-                {"Controls which canonical "}
-                {regions_phrase}
-                {" will be used as the basis of the "}
+                {"Controls which canonical regions will be used as the basis of the "}
                 <InlineLink to={Route::Compare} />
-                {" page. The distribution of types (for example, what percentage of Pokémon are "}
+                {" page. The average distribution of types (for example, what percentage of Pokémon are "}
                 <TypeName typ={Type::dat().named("Fire").unwrap()} />
-                {" type) will also be used to create recommendations."}
+                {" type) will be used to create recommendations."}
             </p>
 
             <div class="region-checkboxes">
@@ -96,9 +89,7 @@ pub fn settings() -> Html {
 
             <h2>{"Strictness"}</h2>
             <p>
-                {"Controls how much Stardex expects you to adhere to the type distribution in the "}
-                {regions_phrase}
-                {" you've chosen to compare against."}
+                {"Controls how much Stardex expects you to adhere to the type distribution in the regions you've chosen to compare against."}
             </p>
 
             {for Strictness::ALL.iter().map(|&s| html! {

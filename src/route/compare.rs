@@ -7,7 +7,7 @@ pub fn compare() -> Html {
     let html = if state.regions.is_empty() {
         html! {
             <p>
-                {"No regions are selected. Select some regions on the "}
+                {"No canonical regions are selected. Select some regions on the "}
                 <InlineLink to={Route::Settings} />
                 {" page to compare your Pokédex with them."}
             </p>
