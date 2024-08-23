@@ -1,3 +1,4 @@
 /dist
 /target
 /js/node_modules
+/js/dist
