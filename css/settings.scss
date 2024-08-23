@@ -1,0 +1,124 @@
+@use "./shared";
+
+.region-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @include shared.desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.region-checkbox {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+
+  padding: 0.5rem;
+  border: shared.$div;
+  border-radius: 0.5rem;
+
+  display: flex;
+  align-items: center;
+
+  &__input {
+    display: none;
+  }
+
+  &__name {
+    margin-left: 0.5rem;
+  }
+
+  &:hover {
+    transition: transform shared.$anim-time ease-in-out;
+    transform: translateY(-1px);
+  }
+
+  &__check {
+    animation: shared.$anim-bounce;
+    display: none;
+
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    transform: rotate(3deg);
+    color: shared.$light;
+  }
+
+  &--checked {
+    .region-checkbox__check {
+      display: unset;
+    }
+  }
+}
+
+.region-bulk-actions {
+  @include shared.font-size-small;
+
+  margin: 1rem 0;
+
+  &__action {
+    cursor: pointer;
+    padding: 0;
+
+    border: unset;
+    background-color: unset;
+    color: unset;
+
+    font-family: unset;
+    font-size: unset;
+    text-decoration: underline;
+
+    &:hover {
+      color: shared.$light;
+      transition: transform shared.$anim-time ease-in-out;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.region-kanto-warning {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+
+  background-color: shared.$dark;
+  color: shared.$light;
+}
+
+.strictness-choice {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: shared.$div;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__text {
+    margin-left: 1rem;
+  }
+
+  &__description {
+    @include shared.font-size-small;
+  }
+
+  &--checked {
+    .strictness-choice__name,
+    .strictness-choice__icon {
+      color: shared.$light;
+    }
+
+    .strictness-choice__icon {
+      animation: shared.$anim-bounce;
+    }
+  }
+}

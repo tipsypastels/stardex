@@ -1,0 +1,40 @@
+$bg: white;
+$dark: #490a3d;
+$light: #8a9b10;
+$div: 1px solid #ccc;
+$font: "Itim", cursive;
+
+$anim-time: 200ms;
+$anim-bounce: bounce $anim-time ease-in-out;
+
+@mixin desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin font-size-normal {
+  font-size: 1rem;
+  @include desktop {
+    font-size: 1.2rem;
+  }
+}
+
+@mixin font-size-small {
+  font-size: 0.8rem;
+  @include desktop {
+    font-size: 1rem;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

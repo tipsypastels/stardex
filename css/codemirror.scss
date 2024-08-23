@@ -1,0 +1,7 @@
+@use "./shared";
+
+.codemirror {
+  --cm-starlang-ident: #{shared.$light};
+  --cm-starlang-paren: #666;
+  --cm-starlang-comment: #444;
+}

@@ -1,0 +1,22 @@
+@use "./shared";
+
+.inline-link {
+  display: inline-block;
+  color: shared.$dark;
+  text-decoration: none;
+
+  &__name {
+    display: inline-block;
+    margin-left: 0.25rem;
+    text-decoration: underline;
+  }
+}
+
+.type-name {
+  display: inline-block;
+
+  &__name {
+    display: inline-block;
+    margin-left: 0.25rem;
+  }
+}

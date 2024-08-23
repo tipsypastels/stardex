@@ -1,0 +1,10 @@
+@use "./shared";
+
+.tutorial-editor {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+
+  background-color: shared.$dark;
+  color: red;
+}
