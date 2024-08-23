@@ -1,13 +1,12 @@
 import { basicSetup, EditorView } from "codemirror";
-import { myLang } from "./mylang";
+import { starLang } from "./starlang";
 
 let editor: EditorView;
 
-export function init(parent: HTMLElement) {
+export function editorInit(parent: HTMLElement) {
   editor = new EditorView({
     doc: "",
-    extensions: [basicSetup, myLang()],
+    extensions: [basicSetup, starLang()],
     parent,
   });
-  console.log(editor);
 }

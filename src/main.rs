@@ -5,9 +5,9 @@ use self::{
 };
 use yew::prelude::*;
 
+mod bindings;
 mod collections;
 mod components;
-mod lang;
 mod layouts;
 mod models;
 mod routes;

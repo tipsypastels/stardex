@@ -4,7 +4,6 @@ use crate::{
 };
 use implicit_clone::{unsync::IString, ImplicitClone};
 use std::rc::Rc;
-use wasm_bindgen::prelude::*;
 use yew::{ContextProvider, Reducible, UseReducerHandle};
 
 pub type StateContext = UseReducerHandle<State>;
@@ -18,22 +17,14 @@ pub struct State {
     pub strictness: Strictness,
 }
 
-#[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(s: &str);
-}
-
 impl Default for State {
     fn default() -> Self {
-        let s = Self {
+        Self {
             mobile_editor_open: false,
             entries: MyArray::<Entry>::default(),
             regions: Region::dat_without_kanto().names().into(),
             strictness: Strictness::Normal,
-        };
-        log(&format!("{s:?}"));
-        s
+        }
     }
 }
 

@@ -3,4 +3,4 @@ mod nav;
 mod page;
 
 pub use editor::Editor;
-pub use page::{Page, PageProps};
+pub use page::Page;

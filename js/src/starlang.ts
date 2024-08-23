@@ -1,4 +1,4 @@
-import { parser } from "./mylang.grammar";
+import { parser } from "./starlang.grammar";
 import {
   delimitedIndent,
   foldInside,
@@ -9,7 +9,7 @@ import {
 } from "@codemirror/language";
 import { styleTags, tags as t } from "@lezer/highlight";
 
-export const myLang = () =>
+export const starLang = () =>
   new LanguageSupport(LRLanguage.define({
     parser: parser.configure({
       props: [
