@@ -3,6 +3,7 @@ import { bracketMatching } from "@codemirror/language";
 import { closeBrackets } from "@codemirror/autocomplete";
 import { starLang } from "./starlang";
 import { EditorState } from "@codemirror/state";
+import { placeholder } from "@codemirror/view";
 
 export function createEditor(
   doc: string,
@@ -19,6 +20,7 @@ export function createEditor(
       closeBrackets(),
       starLang(),
       EditorState.readOnly.of(readonly),
+      placeholder("Enter your Pokémon here..."),
     ],
   });
 }
