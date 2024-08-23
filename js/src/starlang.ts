@@ -3,13 +3,15 @@ import {
   delimitedIndent,
   foldInside,
   foldNodeProp,
+  HighlightStyle,
   indentNodeProp,
   LanguageSupport,
   LRLanguage,
+  syntaxHighlighting,
 } from "@codemirror/language";
 import { styleTags, tags as t } from "@lezer/highlight";
 
-export const starLang = () =>
+const grammar = () =>
   new LanguageSupport(LRLanguage.define({
     parser: parser.configure({
       props: [
@@ -32,3 +34,13 @@ export const starLang = () =>
       commentTokens: { line: ";" },
     },
   }));
+
+const highlighting = () =>
+  syntaxHighlighting(
+    HighlightStyle.define([
+      { tag: t.variableName, color: "var(--highlight)" },
+      { tag: t.bool, color: "red" },
+    ]),
+  );
+
+export const starLang = () => [grammar(), highlighting()];

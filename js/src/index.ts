@@ -9,6 +9,11 @@ export function editorInit(parent: HTMLElement) {
   editor = new EditorView({
     doc: "",
     parent,
-    extensions: [minimalSetup, bracketMatching(), closeBrackets(), starLang()],
+    extensions: [
+      minimalSetup,
+      bracketMatching(),
+      closeBrackets(),
+      starLang(),
+    ],
   });
 }

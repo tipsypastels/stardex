@@ -58,8 +58,11 @@ body {
 }
 
 .editor {
+  // For codemirror.
+  --lowlight: #{$lowlight};
+  --highlight: #{$highlight};
+
   background-color: $lowlight;
-  color: $highlight;
 
   @include desktop {
     top: 0;
