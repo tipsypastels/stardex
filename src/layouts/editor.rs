@@ -1,18 +1,20 @@
-use crate::codemirror::use_codemirror;
+use crate::codemirror::{use_codemirror, CodeMirror};
 use crate::state::StateContext;
 use yew::prelude::*;
 
 #[function_component]
 pub fn Editor() -> Html {
     let state = use_context::<StateContext>().unwrap();
-    let codemirror = use_codemirror(Default::default());
+    let codemirror = use_codemirror();
 
     let mobile_open = state.mobile_editor_open;
     let mobile_open_class = mobile_open.then_some("editor--mobile-open");
 
     html! {
         <div class={classes!("editor", mobile_open_class)}>
-            <div ref={codemirror} class="editor__textarea" />
+            <div class="editor__content">
+                <CodeMirror handle={codemirror} />
+            </div>
         </div>
     }
 }

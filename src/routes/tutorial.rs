@@ -1,5 +1,5 @@
 use super::Route;
-use crate::layouts::Page;
+use crate::{codemirror::CodeMirror, layouts::Page};
 use yew::prelude::*;
 use yew_router::hooks::use_route;
 
@@ -14,8 +14,25 @@ pub fn Tutorial() -> Html {
     html! {
         <Page {title}>
             <p>
-                {"Welcome to Stardex! This tool "}
+                {"Welcome to Stardex! You can use this tool to build balanced Pokédexes by comparing them against the type distributions present in the canonical games."}
             </p>
+
+            <div class="tutorial-editor">
+                <CodeMirror doc={TUTORIAL_EDITOR_DOC} readonly={true} />
+            </div>
         </Page>
     }
 }
+
+const TUTORIAL_EDITOR_DOC: &str = r#"Ducklett
+Swanna
+
+# Regional Forms
+Dratini (Psychic)
+Dragonair (Psychic/Dragon)
+
+# Totally custom Pokémon and type
+Opaling (Fantasy)
+
+# A Pokémon we don't like and will remove if there are too many normal types
+Lickitung @filler"#;

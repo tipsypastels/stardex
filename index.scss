@@ -58,10 +58,6 @@ body {
 }
 
 .editor {
-  --cm-starlang-ident: #{$highlight};
-  --cm-starlang-paren: #666;
-  --cm-starlang-comment: #444;
-
   background-color: $lowlight;
 
   @include desktop {
@@ -71,7 +67,7 @@ body {
     height: 100vh;
   }
 
-  &__textarea {
+  &__content {
     display: block;
     width: 100%;
     height: 100%;
@@ -86,6 +82,12 @@ body {
     font-family: unset;
     font-size: unset;
   }
+}
+
+.codemirror {
+  --cm-starlang-ident: #{$highlight};
+  --cm-starlang-paren: #666;
+  --cm-starlang-comment: #444;
 }
 
 .router {
@@ -295,6 +297,15 @@ body {
       @include bounce;
     }
   }
+}
+
+.tutorial-editor {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+
+  background-color: $lowlight;
+  color: red;
 }
 
 .inline-link {
