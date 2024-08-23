@@ -26,7 +26,7 @@ mod bindings {
     use super::*;
     use wasm_bindgen::prelude::*;
 
-    #[wasm_bindgen(module = "/src/layouts/editor/codemirror.js")]
+    #[wasm_bindgen(module = "/js/dist/index.js")]
     extern "C" {
         pub fn init(parent: HtmlElement);
     }
