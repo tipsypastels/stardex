@@ -13,7 +13,9 @@ pub fn Tutorial() -> Html {
 
     html! {
         <Page {title}>
-            <h1>{"Tutorial"}</h1>
+            <p>
+                {"Welcome to Stardex! This tool "}
+            </p>
         </Page>
     }
 }

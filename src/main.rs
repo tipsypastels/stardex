@@ -6,6 +6,7 @@ use self::{
 use yew::prelude::*;
 
 mod bindings;
+mod codemirror;
 mod collections;
 mod components;
 mod layouts;

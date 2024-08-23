@@ -1,9 +1,10 @@
+use implicit_clone::ImplicitClone;
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlElement;
 
 #[wasm_bindgen(module = "/js/dist/index.js")]
 extern "C" {
-    #[derive(PartialEq)]
+    #[derive(Debug, Clone, ImplicitClone, PartialEq)]
     pub type EditorView;
 
     #[wasm_bindgen(js_name = createEditor)]
