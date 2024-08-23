@@ -5,7 +5,6 @@
 expression {
   Identifier |
   String |
-  Boolean |
   Application { "(" expression* ")" }
 }
 
@@ -14,9 +13,7 @@ expression {
 
   String { '"' (!["\\] | "\\" _)* '"' }
 
-  Boolean { "#t" | "#f" }
-
-  LineComment { ";" ![\n]* }
+  LineComment { "#" ![\n]* }
 
   space { $[ \t\n\r]+ }
 

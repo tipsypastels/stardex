@@ -23,7 +23,6 @@ const grammar = () =>
         }),
         styleTags({
           Identifier: t.variableName,
-          Boolean: t.bool,
           String: t.string,
           LineComment: t.lineComment,
           "( )": t.paren,
@@ -31,15 +30,16 @@ const grammar = () =>
       ],
     }),
     languageData: {
-      commentTokens: { line: ";" },
+      commentTokens: { line: "#" },
     },
   }));
 
 const highlighting = () =>
   syntaxHighlighting(
     HighlightStyle.define([
-      { tag: t.variableName, color: "var(--highlight)" },
-      { tag: t.bool, color: "red" },
+      { tag: t.variableName, color: "var(--cm-starlang-ident)" },
+      { tag: t.paren, color: "var(--cm-starlang-paren)" },
+      { tag: t.lineComment, color: "var(--cm-starlang-comment)" },
     ]),
   );
 

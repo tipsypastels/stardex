@@ -58,9 +58,9 @@ body {
 }
 
 .editor {
-  // For codemirror.
-  --lowlight: #{$lowlight};
-  --highlight: #{$highlight};
+  --cm-starlang-ident: #{$highlight};
+  --cm-starlang-paren: #666;
+  --cm-starlang-comment: #444;
 
   background-color: $lowlight;
 
