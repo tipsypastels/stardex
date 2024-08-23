@@ -1,4 +1,6 @@
-import { basicSetup, EditorView } from "codemirror";
+import { EditorView, minimalSetup } from "codemirror";
+import { bracketMatching } from "@codemirror/language";
+import { closeBrackets } from "@codemirror/autocomplete";
 import { starLang } from "./starlang";
 
 let editor: EditorView;
@@ -6,7 +8,7 @@ let editor: EditorView;
 export function editorInit(parent: HTMLElement) {
   editor = new EditorView({
     doc: "",
-    extensions: [basicSetup, starLang()],
     parent,
+    extensions: [minimalSetup, bracketMatching(), closeBrackets(), starLang()],
   });
 }
