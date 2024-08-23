@@ -4,9 +4,13 @@
     "build": "./node_modules/.bin/rollup -c"
   },
   "dependencies": {
+    "@codemirror/language": "^6.10.2",
+    "@lezer/highlight": "^1.2.1",
+    "@lezer/lr": "^1.4.2",
     "codemirror": "^6.0.1"
   },
   "devDependencies": {
+    "@lezer/generator": "^1.7.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
