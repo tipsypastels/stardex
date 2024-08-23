@@ -13,6 +13,15 @@ $anim-bounce: bounce $anim-time ease-in-out;
   }
 }
 
+@mixin box {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+
+  background-color: $dark;
+  color: $light;
+}
+
 @mixin font-size-normal {
   font-size: 1rem;
   @include desktop {
