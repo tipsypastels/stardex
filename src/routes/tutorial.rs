@@ -21,7 +21,7 @@ pub fn Tutorial() -> Html {
             </p>
 
             <div class="tutorial-editor">
-                <CodeMirror mode={CodeMirrorMode::Tutorial(DOC.into())} />
+                <CodeMirror mode={CodeMirrorMode::Tutorial(DOC)} />
             </div>
         </Page>
     }

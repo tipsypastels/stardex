@@ -5,7 +5,6 @@ use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct CodeMirrorProps {
-    // pub init: Callback<HtmlElement, bindings::EditorView>,
     pub mode: CodeMirrorMode,
 }
 
@@ -35,7 +34,7 @@ pub fn CodeMirror(props: &CodeMirrorProps) -> Html {
 #[derive(Debug, Clone, ImplicitClone, PartialEq)]
 pub enum CodeMirrorMode {
     Editor(IString),
-    Tutorial(IString),
+    Tutorial(&'static str),
 }
 
 impl CodeMirrorMode {

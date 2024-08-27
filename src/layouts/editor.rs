@@ -4,7 +4,6 @@ use crate::{
 };
 use yew::prelude::*;
 
-
 #[function_component]
 pub fn Editor() -> Html {
     let state = use_context::<StateContext>().unwrap();
