@@ -1,9 +1,11 @@
 import { EditorView, minimalSetup } from "codemirror";
-import { bracketMatching } from "@codemirror/language";
+import { bracketMatching, syntaxTree } from "@codemirror/language";
 import { closeBrackets } from "@codemirror/autocomplete";
-import { starLang } from "./starlang";
 import { EditorState } from "@codemirror/state";
 import { placeholder } from "@codemirror/view";
+
+import { starLang } from "./starlang";
+import { update } from "./update";
 
 // For tests.
 export * from "./starlang";
@@ -14,6 +16,7 @@ export function createEditor(doc: string, parent: HTMLElement) {
     parent,
     extensions: [
       ...shared(),
+      update(),
       placeholder("Enter your Pokémon here..."),
     ],
   });
