@@ -1,0 +1,113 @@
+# Empty
+
+
+
+==>
+
+Program()
+
+# Name
+
+Bulbasaur
+
+==>
+
+Program(Line(Name))
+
+# Name with Type
+
+Bulbasaur (Fire)
+
+==>
+
+Program(Line(Name, Types))
+
+# Name with Types
+
+Bulbasaur (Fire/Flying)
+
+==>
+
+Program(Line(Name, Types))
+
+# Name with Attr
+
+Bulbasaur @filler
+
+==>
+
+Program(Line(Name, Attr))
+
+# Name with Attrs
+
+Bulbasaur @filler @ignore
+
+==>
+
+Program(Line(Name, Attr, Attr))
+
+# Name with Type and Attr
+
+Bulbasaur (Fire) @filler 
+
+==>
+
+Program(Line(Name, Types, Attr))
+
+# Multiple Names
+
+Bulbasaur
+Ivysaur
+
+==>
+
+Program(Line(Name), Line(Name))
+
+# Multiple Names with Gap
+
+Bulbasaur
+Ivysaur
+Venusaur
+
+Charmander
+Charmeleon
+Charizard
+
+==>
+
+Program(Line(Name), Line(Name), Line(Name), Line(Name), Line(Name), Line(Name))
+
+# More Advanced Stuff
+
+Bulbasaur @filler
+Ivysaur @ignore
+Venusaur (Fire) @filler
+
+Charmander (Water/Flying) @filler @ignore
+Charmeleon (A/B/C)
+Charizard @something
+
+==>
+
+Program(
+  Line(Name, Attr),
+  Line(Name, Attr),
+  Line(Name, Types, Attr),
+  Line(Name, Types, Attr, Attr),
+  Line(Name, Types),
+  Line(Name, Attr)
+)
+
+# Space Names
+
+Slither Wing
+Sandy Shocks (Fire)
+Iron Bundle @filler
+
+==>
+
+Program(
+  Line(Name, Name),
+  Line(Name, Name, Types),
+  Line(Name, Name, Attr)
+)

@@ -5,6 +5,9 @@ import { starLang } from "./starlang";
 import { EditorState } from "@codemirror/state";
 import { placeholder } from "@codemirror/view";
 
+// For tests.
+export * from "./starlang";
+
 export function createEditor(
   doc: string,
   parent: HTMLElement,

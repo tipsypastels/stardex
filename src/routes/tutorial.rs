@@ -27,7 +27,7 @@ pub fn Tutorial() -> Html {
 const TUTORIAL_EDITOR_DOC: &str = r#"Ducklett
 Swanna
 
-# Regional Forms
+# Regional forms
 Dratini (Psychic)
 Dragonair (Psychic/Dragon)
 

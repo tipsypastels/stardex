@@ -1,0 +1,39 @@
+@top Program { Line* }
+
+@skip { 
+  spaces | 
+  LineComment | 
+  emptyLineStart (spaces | LineComment)* lineEnd
+}
+
+Name {
+  ident
+}
+
+Types {
+  "(" ident ("/" ident)* ")"
+}
+
+Attr {
+  "@" ident
+}
+
+Line {
+  Name+ Types? Attr* lineEnd
+}
+
+lineEnd { newline | eof }
+
+@external tokens emptyLineTokens from "./index.tokens.ts" {
+  emptyLineStart
+}
+
+@tokens {
+  ident { $[a-zA-Z_\-0-9]+ }
+  LineComment { "#" ![\n]* }
+  spaces { $[ \t]+ }
+  newline { "\n" }
+  eof { @eof }
+}
+
+@detectDelim

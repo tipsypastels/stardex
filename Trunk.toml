@@ -1,0 +1,2 @@
+[watch]
+ignore = ["js/src", "js/test"]

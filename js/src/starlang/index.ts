@@ -1,4 +1,4 @@
-import { parser } from "./starlang.grammar";
+import { parser } from "./index.grammar";
 import {
   delimitedIndent,
   foldInside,
@@ -11,8 +11,8 @@ import {
 } from "@codemirror/language";
 import { styleTags, tags as t } from "@lezer/highlight";
 
-const grammar = () =>
-  new LanguageSupport(LRLanguage.define({
+export const starLangLanguage = () =>
+  LRLanguage.define({
     parser: parser.configure({
       props: [
         indentNodeProp.add({
@@ -22,25 +22,32 @@ const grammar = () =>
           Application: foldInside,
         }),
         styleTags({
-          Identifier: t.variableName,
-          String: t.string,
+          Name: t.variableName,
+          Types: t.processingInstruction,
+          Attr: t.modifier,
           LineComment: t.lineComment,
-          "( )": t.paren,
         }),
       ],
     }),
     languageData: {
       commentTokens: { line: "#" },
     },
-  }));
+  });
 
-const highlighting = () =>
+export const starLangGrammar = () =>
+  new LanguageSupport(
+    starLangLanguage(),
+  );
+
+export const starLangHighlighting = () =>
   syntaxHighlighting(
     HighlightStyle.define([
       { tag: t.variableName, color: "var(--cm-starlang-ident)" },
       { tag: t.paren, color: "var(--cm-starlang-paren)" },
       { tag: t.lineComment, color: "var(--cm-starlang-comment)" },
+      { tag: t.processingInstruction, color: "white", fontStyle: "italic" },
+      { tag: t.modifier, color: "red" },
     ]),
   );
 
-export const starLang = () => [grammar(), highlighting()];
+export const starLang = () => [starLangGrammar(), starLangHighlighting()];
