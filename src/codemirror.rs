@@ -1,58 +1,48 @@
-use crate::bindings::{create_editor, EditorView};
-use html::ImplicitClone;
-use implicit_clone::unsync::IString;
-use std::{cell::RefCell, rc::Rc};
+use crate::bindings;
+use implicit_clone::{unsync::IString, ImplicitClone};
 use web_sys::HtmlElement;
 use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct CodeMirrorProps {
-    #[prop_or_default]
-    pub doc: IString,
-    #[prop_or_default]
-    pub readonly: bool,
-    #[prop_or_default]
-    pub handle: Option<CodeMirrorHandle>,
+    // pub init: Callback<HtmlElement, bindings::EditorView>,
+    pub mode: CodeMirrorMode,
 }
 
 #[function_component]
 pub fn CodeMirror(props: &CodeMirrorProps) -> Html {
-    let node = use_node_ref();
-    let editor = use_mut_ref(|| None::<EditorView>);
+    let node_ref = use_node_ref();
+    let editor_ref = use_mut_ref(|| None::<bindings::EditorView>);
 
     use_effect_with(
-        (
-            node.clone(),
-            editor.clone(),
-            props.doc.clone(),
-            props.readonly,
-            props.handle.clone(),
-        ),
-        |(node, editor, doc, readonly, handle)| {
-            let parent = node.cast::<HtmlElement>().unwrap();
-            let editor_view = create_editor(doc, parent, *readonly);
+        (node_ref.clone(), editor_ref.clone(), props.mode.clone()),
+        |(node_ref, editor_ref, mode)| {
+            let mut editor_ref = editor_ref.borrow_mut();
+            if editor_ref.is_none() {
+                let parent = node_ref.cast::<HtmlElement>().unwrap();
+                let editor = mode.init(parent);
 
-            editor.borrow_mut().replace(editor_view.clone());
-
-            if let Some(handle) = handle.as_ref() {
-                handle.editor.borrow_mut().replace(editor_view);
+                editor_ref.replace(editor);
             }
         },
     );
 
     html! {
-        <div class="codemirror" ref={node} />
+        <div class="codemirror" ref={node_ref} />
     }
 }
 
-#[derive(Clone, ImplicitClone, PartialEq)]
-pub struct CodeMirrorHandle {
-    editor: Rc<RefCell<Option<EditorView>>>,
+#[derive(Debug, Clone, ImplicitClone, PartialEq)]
+pub enum CodeMirrorMode {
+    Editor(IString),
+    Tutorial(IString),
 }
 
-#[hook]
-pub fn use_codemirror() -> CodeMirrorHandle {
-    CodeMirrorHandle {
-        editor: Rc::new(RefCell::new(None)),
+impl CodeMirrorMode {
+    pub fn init(&self, parent: HtmlElement) -> bindings::EditorView {
+        match self {
+            Self::Editor(doc) => bindings::create_editor(doc, parent),
+            Self::Tutorial(doc) => bindings::create_tutorial(doc, parent),
+        }
     }
 }
