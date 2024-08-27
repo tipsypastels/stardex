@@ -43,10 +43,18 @@ export const starLangHighlighting = () =>
   syntaxHighlighting(
     HighlightStyle.define([
       { tag: t.variableName, color: "var(--cm-starlang-ident)" },
+      {
+        tag: t.processingInstruction,
+        color: "var(--cm-starlang-types)",
+        fontStyle: "italic",
+      },
+      {
+        tag: t.modifier,
+        color: "var(--cm-starlang-attr)",
+        textDecoration: "underline",
+      },
       { tag: t.paren, color: "var(--cm-starlang-paren)" },
       { tag: t.lineComment, color: "var(--cm-starlang-comment)" },
-      { tag: t.processingInstruction, color: "white", fontStyle: "italic" },
-      { tag: t.modifier, color: "red" },
     ]),
   );
 

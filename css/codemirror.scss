@@ -2,6 +2,8 @@
 
 .codemirror {
   --cm-starlang-ident: #{shared.$light};
+  --cm-starlang-types: #aaa;
+  --cm-starlang-attr: #aaa;
   --cm-starlang-paren: #666;
   --cm-starlang-comment: #444;
 }
