@@ -1,5 +1,5 @@
 import { EditorView, minimalSetup } from "codemirror";
-import { bracketMatching, syntaxTree } from "@codemirror/language";
+import { bracketMatching } from "@codemirror/language";
 import { closeBrackets } from "@codemirror/autocomplete";
 import { EditorState } from "@codemirror/state";
 import { placeholder } from "@codemirror/view";

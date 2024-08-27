@@ -1,11 +1,6 @@
 import { EditorView } from "@codemirror/view";
 import { entries } from "./entry";
 
-interface Span {
-  from: number;
-  to: number;
-}
-
 export function update() {
   return EditorView.updateListener.of((event) => {
     if (!event.docChanged) {
