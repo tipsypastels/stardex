@@ -60,7 +60,7 @@ export function entries(state: EditorState, fn: EntryFn) {
 }
 
 function parseTypes(s: string) {
-  // Don't just slice 1..-1, because lezer's loose syntax
-  // will try to "fix" missing parens.
-  return s.replace(/^\(/, "").replace(/\)$/, "").split(/\w*\/\w*/);
+  // We have to be defensive because lezer will try to parse invalid syntax anyways.
+  return s.replace(/^\(/, "").replace(/\)$/, "").split("/").map((t) => t.trim())
+    .filter((t) => t.length > 0);
 }

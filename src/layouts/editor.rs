@@ -1,4 +1,4 @@
-use crate::{codemirror::CodeMirrorEditor, state::StateContext};
+use crate::{bindings::walk_editor, codemirror::CodeMirrorEditor, state::StateContext};
 use web_sys::console;
 use yew::prelude::*;
 
@@ -10,7 +10,11 @@ pub fn Editor() -> Html {
 
     let onupdate = {
         Callback::from(|view| {
-            console::log_1(&"editor changed".into());
+            console::log_1(&"---".into());
+            walk_editor(&view, &|name, types, attrs| {
+                console::log_3(&name.into(), &types.into(), &attrs.into());
+            });
+            console::log_1(&"---".into());
         })
     };
 
