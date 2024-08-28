@@ -5,19 +5,22 @@ import { EditorState } from "@codemirror/state";
 import { placeholder } from "@codemirror/view";
 
 import { starLang } from "./starlang";
-import { update } from "./update";
 
 // For tests.
 export * from "./starlang";
 
-export function createEditor(doc: string, parent: HTMLElement) {
+export function createEditor(
+  doc: string,
+  parent: HTMLElement,
+  onUpdate: () => void,
+) {
   return new EditorView({
     doc,
     parent,
     extensions: [
       ...shared(),
-      update(),
       placeholder("Enter your Pokémon here..."),
+      EditorView.updateListener.of((e) => e.docChanged && onUpdate()),
     ],
   });
 }

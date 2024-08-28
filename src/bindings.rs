@@ -9,7 +9,11 @@ extern "C" {
     pub type EditorView;
 
     #[wasm_bindgen(js_name = createEditor)]
-    pub fn create_editor(doc: &str, parent: HtmlElement) -> EditorView;
+    pub fn create_editor(
+        doc: &str,
+        parent: HtmlElement,
+        onupdate: &Closure<dyn Fn()>,
+    ) -> EditorView;
 
     #[wasm_bindgen(js_name = createTutorial)]
     pub fn create_tutorial(doc: &str, parent: HtmlElement) -> EditorView;

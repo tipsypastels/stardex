@@ -3,7 +3,7 @@ import { EditorState } from "@codemirror/state";
 
 export interface Entry {
   name: string;
-  types?: string[];
+  types: string[];
   attrs: string[];
 }
 
@@ -12,8 +12,7 @@ interface Span {
   to: number;
 }
 
-export function entries(state: EditorState) {
-  const entries: Entry[] = [];
+export function entries(state: EditorState, fn: (entry: Entry) => void) {
   const text = (span: Span) => state.sliceDoc(span.from, span.to);
 
   const tree = syntaxTree(state);
@@ -56,10 +55,8 @@ export function entries(state: EditorState) {
       }
     } while (cursor.nextSibling());
 
-    entries.push({ name, types, attrs });
+    fn({ name, types: types ?? [], attrs });
   }
-
-  return entries;
 }
 
 function parseTypes(s: string) {

@@ -1,5 +1,6 @@
 use crate::bindings;
 use implicit_clone::{unsync::IString, ImplicitClone};
+use wasm_bindgen::prelude::*;
 use web_sys::HtmlElement;
 use yew::prelude::*;
 
@@ -33,14 +34,22 @@ pub fn CodeMirror(props: &CodeMirrorProps) -> Html {
 
 #[derive(Debug, Clone, ImplicitClone, PartialEq)]
 pub enum CodeMirrorMode {
-    Editor(IString),
+    Editor(IString, Callback<()>),
     Tutorial(&'static str),
 }
 
 impl CodeMirrorMode {
     pub fn init(&self, parent: HtmlElement) -> bindings::EditorView {
         match self {
-            Self::Editor(doc) => bindings::create_editor(doc, parent),
+            Self::Editor(doc, cb) => {
+                let cb = cb.clone();
+                let closure = Closure::<dyn Fn()>::wrap(Box::new(move || cb.emit(())));
+                let view = bindings::create_editor(doc, parent, &closure);
+
+                // This is a long-lived closure passed into JS, don't deallocate it.
+                closure.forget();
+                view
+            }
             Self::Tutorial(doc) => bindings::create_tutorial(doc, parent),
         }
     }
