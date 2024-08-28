@@ -1,3 +1,26 @@
 [Bulbasaur]
 types = ["Grass", "Poison"]
-family = ["Ivysaur", "Venusaur"]
+
+[Ivysaur]
+types = ["Grass", "Poison"]
+
+[Venusaur]
+types = ["Grass", "Poison"]
+
+[Charmander]
+types = ["Fire"]
+
+[Charmeleon]
+types = ["Fire"]
+
+[Charizard]
+types = ["Fire", "Flying"]
+
+[Squirtle]
+types = ["Water"]
+
+[Wartortle]
+types = ["Water"]
+
+[Blastoise]
+types = ["Water"]
