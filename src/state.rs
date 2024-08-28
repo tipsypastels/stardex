@@ -28,6 +28,7 @@ impl Default for State {
     }
 }
 
+#[allow(unused)]
 #[derive(Debug)]
 pub enum Action {
     OpenMobileEditor,
