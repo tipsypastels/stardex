@@ -33,6 +33,7 @@ impl Default for State {
 pub enum Action {
     OpenMobileEditor,
     CloseMobileEditor,
+    SetEntries(MyArray<Entry>),
     SetStrictness(Strictness),
     EnableRegion(IString),
     DisableRegion(IString),
@@ -53,6 +54,12 @@ impl Reducible for State {
             Action::CloseMobileEditor => Rc::new(Self {
                 mobile_editor_open: false,
                 entries: self.entries.clone(),
+                regions: self.regions.clone(),
+                strictness: self.strictness,
+            }),
+            Action::SetEntries(entries) => Rc::new(Self {
+                mobile_editor_open: self.mobile_editor_open,
+                entries,
                 regions: self.regions.clone(),
                 strictness: self.strictness,
             }),

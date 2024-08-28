@@ -16,6 +16,14 @@ impl Type {
     pub fn dat() -> MyArray<Self> {
         DAT.get()
     }
+
+    pub fn custom(name: IString) -> Self {
+        Self {
+            name,
+            icon: "question-circle".into(),
+            color: "#ff0000".into(), // TODO
+        }
+    }
 }
 
 impl Name for Type {

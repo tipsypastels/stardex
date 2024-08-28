@@ -14,7 +14,7 @@ export function createEditor(
   doc: string,
   parent: HTMLElement,
   onUpdate: (view: EditorView) => void,
-) {
+): EditorView {
   return new EditorView({
     doc,
     parent,
@@ -26,7 +26,7 @@ export function createEditor(
   });
 }
 
-export function createTutorial(doc: string, parent: HTMLElement) {
+export function createTutorial(doc: string, parent: HTMLElement): EditorView {
   return new EditorView({
     doc,
     parent,
@@ -34,8 +34,8 @@ export function createTutorial(doc: string, parent: HTMLElement) {
   });
 }
 
-export function walkEditor(view: EditorView, fn: EntryFn) {
-  entries(view.state, fn);
+export function walkEditor(view: EditorView, fn: EntryFn): boolean {
+  return entries(view.state, fn);
 }
 
 const shared = () => [

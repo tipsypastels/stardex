@@ -28,6 +28,10 @@ body {
     height: 100vh;
   }
 
+  &__error {
+    color: red;
+  }
+
   &__content {
     display: block;
     width: 100%;

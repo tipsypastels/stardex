@@ -11,7 +11,7 @@ mod region;
 mod strictness;
 mod typ;
 
-pub use entry::Entry;
+pub use entry::{Entry, EntryError};
 pub use pokemon::Pokemon;
 pub use region::Region;
 pub use strictness::Strictness;

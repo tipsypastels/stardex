@@ -19,5 +19,8 @@ extern "C" {
     pub fn create_tutorial(doc: &str, parent: HtmlElement) -> EditorView;
 
     #[wasm_bindgen(js_name = walkEditor)]
-    pub fn walk_editor(view: &EditorView, f: &dyn Fn(String, Option<Vec<String>>, Vec<String>));
+    pub fn walk_editor(
+        view: &EditorView,
+        f: &dyn Fn(String, Option<Vec<String>>, Vec<String>) -> bool,
+    ) -> bool;
 }

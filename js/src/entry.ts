@@ -5,7 +5,7 @@ export type EntryFn = (
   name: string,
   types: string[] | undefined,
   attrs: string[],
-) => void;
+) => boolean;
 
 interface Span {
   from: number;
@@ -55,8 +55,12 @@ export function entries(state: EditorState, fn: EntryFn) {
       }
     } while (cursor.nextSibling());
 
-    fn(name, types, attrs);
+    if (!fn(name, types, attrs)) {
+      return false;
+    }
   }
+
+  return true;
 }
 
 function parseTypes(s: string) {

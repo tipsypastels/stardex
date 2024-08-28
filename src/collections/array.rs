@@ -75,6 +75,15 @@ where
     }
 }
 
+impl<T> From<Vec<T>> for MyArray<T>
+where
+    T: ImplicitClone + 'static,
+{
+    fn from(vec: Vec<T>) -> Self {
+        Self(IArray::<T>::from(vec))
+    }
+}
+
 impl<T> Hash for MyArray<T>
 where
     T: Hash + ImplicitClone + 'static,
