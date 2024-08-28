@@ -1,6 +1,7 @@
 use crate::{
     bindings::walk_editor,
     codemirror::CodeMirrorEditor,
+    debounce::use_debounce,
     models::{Entry, EntryError},
     state::{Action, StateContext},
 };
@@ -11,6 +12,7 @@ use yew::prelude::*;
 pub fn Editor() -> Html {
     let state = use_context::<StateContext>().unwrap();
     let error = use_state(|| None::<EntryError>);
+    let debounce = use_debounce();
 
     let mobile_open = state.mobile_editor_open;
     let mobile_open_class = mobile_open.then_some("editor--mobile-open");
@@ -18,33 +20,38 @@ pub fn Editor() -> Html {
     let onupdate = Callback::from({
         let state = state.clone();
         let error = error.clone();
+        let debounce = debounce.clone();
 
         move |view| {
-            const CONTINUE: bool = true;
-            const BREAK: bool = false;
+            debounce.debounce({
+                let state = state.clone();
+                let error = error.clone();
 
-            let entries = RefCell::new(Vec::<Entry>::new());
+                move || {
+                    const CONTINUE: bool = true;
+                    const BREAK: bool = false;
 
-            let walk = walk_editor(
-                &view,
-                &|name, types, attrs| match Entry::new(name, types, attrs) {
-                    Ok(entry) => {
-                        entries.borrow_mut().push(entry);
-                        CONTINUE
+                    let entries = RefCell::new(Vec::<Entry>::new());
+
+                    let walk = walk_editor(&view, &|n, t, a| match Entry::new(n, t, a) {
+                        Ok(entry) => {
+                            entries.borrow_mut().push(entry);
+                            CONTINUE
+                        }
+                        Err(e) => {
+                            error.set(Some(e));
+                            BREAK
+                        }
+                    });
+
+                    if let CONTINUE = walk {
+                        error.set(None);
                     }
-                    Err(e) => {
-                        error.set(Some(e));
-                        BREAK
-                    }
-                },
-            );
 
-            if let CONTINUE = walk {
-                error.set(None);
-            }
-
-            let entries = entries.into_inner().into();
-            state.dispatch(Action::SetEntries(entries));
+                    let entries = entries.into_inner().into();
+                    state.dispatch(Action::SetEntries(entries));
+                }
+            });
         }
     });
 
@@ -56,9 +63,17 @@ pub fn Editor() -> Html {
                 </div>
             }
 
+             if debounce.is_debouncing() {
+                <div class="editor__debounce">
+                    {"Pause typing to rebuild graphs."}
+                </div>
+            }
+
             <div class="editor__content">
                 <CodeMirrorEditor doc="" onupdate={onupdate} />
             </div>
+
+
         </div>
     }
 }
