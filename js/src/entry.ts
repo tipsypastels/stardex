@@ -1,18 +1,18 @@
 import { syntaxTree } from "@codemirror/language";
 import { EditorState } from "@codemirror/state";
 
-export interface Entry {
-  name: string;
-  types: string[];
-  attrs: string[];
-}
+export type EntryFn = (
+  name: string,
+  types: string[] | undefined,
+  attrs: string[],
+) => void;
 
 interface Span {
   from: number;
   to: number;
 }
 
-export function entries(state: EditorState, fn: (entry: Entry) => void) {
+export function entries(state: EditorState, fn: EntryFn) {
   const text = (span: Span) => state.sliceDoc(span.from, span.to);
 
   const tree = syntaxTree(state);
@@ -55,7 +55,7 @@ export function entries(state: EditorState, fn: (entry: Entry) => void) {
       }
     } while (cursor.nextSibling());
 
-    fn({ name, types: types ?? [], attrs });
+    fn(name, types, attrs);
   }
 }
 

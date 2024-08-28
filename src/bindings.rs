@@ -17,4 +17,7 @@ extern "C" {
 
     #[wasm_bindgen(js_name = createTutorial)]
     pub fn create_tutorial(doc: &str, parent: HtmlElement) -> EditorView;
+
+    #[wasm_bindgen(js_name = walkEditor)]
+    pub fn walk_editor(view: &EditorView, f: &dyn Fn(String));
 }

@@ -5,6 +5,7 @@ import { EditorState } from "@codemirror/state";
 import { placeholder } from "@codemirror/view";
 
 import { starLang } from "./starlang";
+import { entries, EntryFn } from "./entry";
 
 // For tests.
 export * from "./starlang";
@@ -31,6 +32,10 @@ export function createTutorial(doc: string, parent: HTMLElement) {
     parent,
     extensions: [...shared(), EditorState.readOnly.of(true)],
   });
+}
+
+export function walkEditor(view: EditorView, fn: EntryFn) {
+  entries(view.state, fn);
 }
 
 const shared = () => [
