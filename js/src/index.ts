@@ -13,7 +13,7 @@ export * from "./starlang";
 export function createEditor(
   doc: string,
   parent: HTMLElement,
-  onUpdate: () => void,
+  onUpdate: (view: EditorView) => void,
 ) {
   return new EditorView({
     doc,
@@ -21,7 +21,7 @@ export function createEditor(
     extensions: [
       ...shared(),
       placeholder("Enter your Pokémon here..."),
-      EditorView.updateListener.of((e) => e.docChanged && onUpdate()),
+      EditorView.updateListener.of((e) => e.docChanged && onUpdate(e.view)),
     ],
   });
 }

@@ -1,7 +1,4 @@
-use crate::{
-    codemirror::{CodeMirror, CodeMirrorMode},
-    state::StateContext,
-};
+use crate::{codemirror::CodeMirrorEditor, state::StateContext};
 use web_sys::console;
 use yew::prelude::*;
 
@@ -12,7 +9,7 @@ pub fn Editor() -> Html {
     let mobile_open_class = mobile_open.then_some("editor--mobile-open");
 
     let onupdate = {
-        Callback::from(|()| {
+        Callback::from(|view| {
             console::log_1(&"editor changed".into());
         })
     };
@@ -20,7 +17,7 @@ pub fn Editor() -> Html {
     html! {
         <div class={classes!("editor", mobile_open_class)}>
             <div class="editor__content">
-                <CodeMirror mode={CodeMirrorMode::Editor("".into(), onupdate)} />
+                <CodeMirrorEditor doc="" onupdate={onupdate} />
             </div>
         </div>
     }

@@ -1,8 +1,5 @@
 use super::Route;
-use crate::{
-    codemirror::{CodeMirror, CodeMirrorMode},
-    layouts::Page,
-};
+use crate::{codemirror::CodeMirrorTutorial, layouts::Page};
 use yew::prelude::*;
 use yew_router::hooks::use_route;
 
@@ -21,7 +18,7 @@ pub fn Tutorial() -> Html {
             </p>
 
             <div class="tutorial-editor">
-                <CodeMirror mode={CodeMirrorMode::Tutorial(DOC)} />
+                <CodeMirrorTutorial doc={DOC} />
             </div>
         </Page>
     }
