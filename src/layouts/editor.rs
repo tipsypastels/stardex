@@ -59,13 +59,13 @@ pub fn Editor() -> Html {
         <div class={classes!("editor", mobile_open_class)}>
             if let Some(error) = error.as_ref() {
                 <div class="editor__error">
-                    {error.to_string()}
-                </div>
-            }
+                    <div class="editor__error__icon">
+                        <i class="fas fa-circle-exclamation" />
+                    </div>
 
-             if debounce.is_debouncing() {
-                <div class="editor__debounce">
-                    {"Pause typing to rebuild graphs."}
+                    <div class="editor__error__text">
+                        {error.to_string()}
+                    </div>
                 </div>
             }
 
@@ -73,7 +73,17 @@ pub fn Editor() -> Html {
                 <CodeMirrorEditor doc="" onupdate={onupdate} />
             </div>
 
+            if debounce.is_debouncing() {
+                <div class="editor__debounce">
+                    <div class="editor_debounce__icon">
+                        <i class="fas fa-spinner-scale fa-spin" />
+                    </div>
 
+                    <div class="editor__debounce__text">
+                        {"Pause typing to rebuild graphs…"}
+                    </div>
+                </div>
+            }
         </div>
     }
 }

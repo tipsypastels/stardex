@@ -1,0 +1,60 @@
+@use "./shared";
+@use "./layout";
+
+.editor {
+  background-color: shared.$dark;
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+
+  @include shared.desktop {
+    top: 0;
+    position: sticky;
+    width: layout.$sidebar-width;
+    height: 100vh;
+  }
+
+  &__error {
+    top: 0;
+    position: sticky;
+    z-index: 2;
+
+    display: flex;
+    padding: 1rem;
+    border: 2px solid shared.$err;
+
+    background-color: shared.$dark;
+    color: shared.$err;
+
+    &__text {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__content {
+    display: block;
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    border: none;
+    outline: none;
+    resize: none;
+
+    background-color: unset;
+    color: unset;
+    font-family: unset;
+    font-size: unset;
+  }
+
+  &__debounce {
+    color: #aaa;
+    display: flex;
+    justify-content: center;
+
+    &__text {
+      margin-left: 0.5rem;
+    }
+  }
+}

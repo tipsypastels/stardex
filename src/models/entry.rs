@@ -63,7 +63,10 @@ pub enum EntryError {
 impl fmt::Display for EntryError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Unspecified(n) => write!(f, "No builtin Pokémon \"{n}\". Please specify types."),
+            Self::Unspecified(n) => write!(
+                f,
+                "No builtin Pokémon \"{n}\". If this is a custom Pokémon, specify its types."
+            ),
         }
     }
 }
