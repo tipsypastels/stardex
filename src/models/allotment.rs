@@ -50,5 +50,5 @@ impl Allotment {
 }
 
 fn sort_allotment((a_typ, a_cnt): &(Type, u32), (b_typ, b_cnt): &(Type, u32)) -> Ordering {
-    a_cnt.cmp(b_cnt).then_with(|| a_typ.name.cmp(&b_typ.name))
+    b_cnt.cmp(a_cnt).then_with(|| b_typ.name.cmp(&a_typ.name))
 }

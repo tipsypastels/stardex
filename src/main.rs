@@ -10,7 +10,6 @@ mod codemirror;
 mod collections;
 mod components;
 mod debounce;
-mod graphs;
 mod layouts;
 mod models;
 mod routes;

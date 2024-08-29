@@ -20,3 +20,22 @@
     margin-left: 0.25rem;
   }
 }
+
+.type-chart {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @include shared.desktop {
+    flex-direction: row;
+  }
+
+  &__legend {
+    align-self: flex-start;
+    list-style: none;
+
+    @include shared.desktop {
+      align-self: unset;
+    }
+  }
+}
