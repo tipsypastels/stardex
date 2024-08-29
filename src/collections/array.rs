@@ -6,6 +6,7 @@ use implicit_clone::{
 use serde::{Deserialize, Serialize};
 use std::{
     hash::{Hash, Hasher},
+    iter::once,
     ops::Deref,
 };
 
@@ -20,12 +21,27 @@ impl<T> MyArray<T>
 where
     T: ImplicitClone + 'static,
 {
+    pub fn new() -> Self {
+        Self(IArray::<T>::default())
+    }
+
     pub fn iter(&self) -> impl Iterator<Item = T> + '_ {
         self.0.iter()
     }
 
     pub fn retain(&self, f: impl Fn(&T) -> bool) -> Self {
         Self(self.0.iter().filter(f).collect())
+    }
+
+    pub fn push(&self, value: T) -> Self {
+        self.iter().chain(once(value)).collect()
+    }
+
+    pub fn map<U>(&self, f: impl Fn(T) -> U) -> MyArray<U>
+    where
+        U: ImplicitClone + 'static,
+    {
+        self.0.iter().map(f).collect()
     }
 }
 

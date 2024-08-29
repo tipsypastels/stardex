@@ -2,6 +2,7 @@ use super::{Entry, Type};
 use crate::collections::MyArray;
 use ahash::AHashMap;
 use implicit_clone::ImplicitClone;
+use std::cmp::Ordering;
 
 #[derive(Debug, Clone, ImplicitClone, PartialEq)]
 pub struct Allotment {
@@ -13,7 +14,7 @@ pub struct Allotment {
 pub struct AllotedType {
     pub typ: Type,
     pub count: u32,
-    pub percent: u32,
+    pub ratio: f64,
 }
 
 impl Allotment {
@@ -32,7 +33,10 @@ impl Allotment {
             }
         }
 
-        let types = map.into_iter().collect();
+        let mut vec = map.into_iter().collect::<Vec<_>>();
+        vec.sort_unstable_by(sort_allotment);
+
+        let types = vec.into();
         Self { total, types }
     }
 
@@ -40,7 +44,11 @@ impl Allotment {
         self.types.iter().map(|(typ, count)| AllotedType {
             typ,
             count,
-            percent: count / self.total * 100,
+            ratio: count as f64 / self.total as f64,
         })
     }
+}
+
+fn sort_allotment((a_typ, a_cnt): &(Type, u32), (b_typ, b_cnt): &(Type, u32)) -> Ordering {
+    a_cnt.cmp(b_cnt).then_with(|| a_typ.name.cmp(&b_typ.name))
 }

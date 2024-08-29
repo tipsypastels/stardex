@@ -1,0 +1,13 @@
+.pie {
+  transform: rotate(-90deg);
+
+  &__slice {
+    cursor: pointer;
+    transition: fill 0.15s ease-in-out;
+    fill: hsl(var(--h), var(--s), var(--l));
+
+    &:hover {
+      fill: hsl(var(--h), var(--s), calc(var(--l) + 5%));
+    }
+  }
+}

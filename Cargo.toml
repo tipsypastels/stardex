@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 ahash = { version = "0.8.11", features = ["serde"] }
+csscolorparser = { version = "0.7.0", features = ["rgb"] }
 gloo = { version = "0.11.0", features = [
   "console",
   "utils",
