@@ -19,51 +19,24 @@ pub fn CodeMirrorEditor(props: &CodeMirrorEditorProps) -> Html {
         let onupdate = props.onupdate.clone();
         let onupdating = props.onupdating.clone();
 
+        #[allow(clippy::option_map_unit_fn)]
         move |parent| {
-            let onupdate = OnUpdateClosure::new(onupdate.clone());
-            let onupdating = OnUpdatingClosure::new(onupdating.clone());
-            let view = create_editor(&doc, parent, &onupdate.0, onupdating.0.as_ref());
+            let onupdate = onupdate.clone();
+            let onupdate = Closure::new(move |v| onupdate.emit(v));
+
+            let onupdating = onupdating.clone();
+            let onupdating = onupdating.map(|f| Closure::new(move || f.emit(())));
+
+            let view = create_editor(&doc, parent, &onupdate, onupdating.as_ref());
 
             onupdate.forget();
-            onupdating.forget();
+            onupdating.map(|f| f.forget());
+
             view
         }
     });
 
     html! {
         <CodeMirror {init} />
-    }
-}
-
-#[repr(transparent)]
-struct OnUpdateClosure(Closure<dyn Fn(EditorView)>);
-
-impl OnUpdateClosure {
-    fn new(cb: Callback<EditorView>) -> Self {
-        Self(Closure::wrap(Box::new(move |v| cb.emit(v))))
-    }
-
-    fn forget(self) {
-        self.0.forget();
-    }
-}
-
-#[repr(transparent)]
-struct OnUpdatingClosure(Option<Closure<dyn Fn()>>);
-
-impl OnUpdatingClosure {
-    fn new(cb: Option<Callback<()>>) -> Self {
-        #[allow(clippy::manual_map)] // false positive
-        Self(if let Some(cb) = cb {
-            Some(Closure::wrap(Box::new(move || cb.emit(()))))
-        } else {
-            None
-        })
-    }
-
-    fn forget(self) {
-        if let Some(f) = self.0 {
-            f.forget();
-        }
     }
 }

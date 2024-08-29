@@ -26,7 +26,6 @@ pub fn Editor() -> Html {
             const BREAK: bool = false;
 
             let entries = RefCell::new(Vec::<Entry>::new());
-
             let walk = walk_editor(&view, &|n, t, a| match Entry::new(n, t, a) {
                 Ok(entry) => {
                     entries.borrow_mut().push(entry);
