@@ -23,4 +23,7 @@ extern "C" {
         view: &EditorView,
         f: &dyn Fn(String, Option<Vec<String>>, Vec<String>) -> bool,
     ) -> bool;
+
+    #[wasm_bindgen(js_name = randomColor)]
+    pub fn random_color(seed: &str) -> String;
 }

@@ -11,16 +11,19 @@
     "@codemirror/state": "^6.4.1",
     "@lezer/highlight": "^1.2.1",
     "@lezer/lr": "^1.4.2",
-    "codemirror": "^6.0.1"
+    "codemirror": "^6.0.1",
+    "randomcolor": "^0.6.2"
   },
   "devDependencies": {
     "@codemirror/view": "^6.32.0",
     "@lezer/generator": "^1.7.1",
+    "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.7",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/mocha": "^10.0.7",
+    "@types/randomcolor": "^0.5.9",
     "mocha": "^10.7.3",
     "rollup": "^4.21.0",
     "rollup-plugin-dts": "^6.1.1",

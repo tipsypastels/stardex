@@ -3,6 +3,7 @@ import { bracketMatching } from "@codemirror/language";
 import { closeBrackets } from "@codemirror/autocomplete";
 import { EditorState } from "@codemirror/state";
 import { placeholder } from "@codemirror/view";
+import randomColorFn from "randomcolor";
 
 import { starLang } from "./starlang";
 import { entries, EntryFn } from "./entry";
@@ -36,6 +37,10 @@ export function createTutorial(doc: string, parent: HTMLElement): EditorView {
 
 export function walkEditor(view: EditorView, fn: EntryFn): boolean {
   return entries(view.state, fn);
+}
+
+export function randomColor(seed: string): string {
+  return randomColorFn({ seed });
 }
 
 const shared = () => [

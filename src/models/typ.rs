@@ -1,5 +1,5 @@
 use super::{dat, Name};
-use crate::collections::MyArray;
+use crate::{bindings::random_color, collections::MyArray};
 use implicit_clone::{unsync::IString, ImplicitClone};
 use serde::Deserialize;
 
@@ -18,11 +18,9 @@ impl Type {
     }
 
     pub fn custom(name: IString) -> Self {
-        Self {
-            name,
-            icon: "question-circle".into(),
-            color: "#ff0000".into(), // TODO
-        }
+        let icon = "question-circle".into();
+        let color = random_color(&name).into();
+        Self { name, icon, color }
     }
 }
 
