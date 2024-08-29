@@ -8,11 +8,16 @@ use yew::prelude::*;
 pub struct CodeMirrorEditorProps {
     pub doc: IString,
     pub onupdate: Callback<EditorView>,
+    #[prop_or_default]
+    pub onupdating: Option<Callback<()>>,
 }
 
 #[function_component]
 pub fn CodeMirrorEditor(props: &CodeMirrorEditorProps) -> Html {
-    let imp = Imp::Editor(props.doc.clone(), props.onupdate.clone());
+    let doc = props.doc.clone();
+    let onupdate = props.onupdate.clone();
+    let onupdating = props.onupdating.clone();
+    let imp = Imp::Editor(doc, onupdate, onupdating);
     html! { <CodeMirrorImp {imp} /> }
 }
 
@@ -34,7 +39,7 @@ struct CodeMirrorImpProps {
 
 #[derive(Clone, ImplicitClone, PartialEq)]
 pub enum Imp {
-    Editor(IString, Callback<EditorView>),
+    Editor(IString, Callback<EditorView>, Option<Callback<()>>),
     Tutorial(&'static str),
 }
 
@@ -65,13 +70,22 @@ fn CodeMirrorImp(props: &CodeMirrorImpProps) -> Html {
 impl Imp {
     fn init(&self, parent: HtmlElement) -> EditorView {
         match self {
-            Self::Editor(doc, cb) => {
-                let cb = cb.clone();
-                let closure = Closure::<dyn Fn(EditorView)>::wrap(Box::new(move |v| cb.emit(v)));
-                let view = create_editor(doc, parent, &closure);
+            Self::Editor(doc, onupdate, onupdating) => {
+                let onupdate = onupdate.clone();
+                let onupdate =
+                    Closure::<dyn Fn(EditorView)>::wrap(Box::new(move |v| onupdate.emit(v)));
+
+                let onupdating = onupdating.clone();
+                let onupdating =
+                    onupdating.map(|f| Closure::<dyn Fn()>::wrap(Box::new(move || f.emit(()))));
+
+                let view = create_editor(doc, parent, &onupdate, onupdating.as_ref());
 
                 // This is a long-lived closure passed into JS, don't deallocate it.
-                closure.forget();
+                onupdate.forget();
+                if let Some(f) = onupdating {
+                    f.forget()
+                }
                 view
             }
             Self::Tutorial(doc) => create_tutorial(doc, parent),

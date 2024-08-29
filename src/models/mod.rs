@@ -12,7 +12,7 @@ mod region;
 mod strictness;
 mod typ;
 
-pub use allotment::{AllotedType, Allotment};
+pub use allotment::Allotment;
 pub use entry::{Entry, EntryError};
 pub use pokemon::Pokemon;
 pub use region::Region;

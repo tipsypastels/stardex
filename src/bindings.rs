@@ -13,6 +13,7 @@ extern "C" {
         doc: &str,
         parent: HtmlElement,
         onupdate: &Closure<dyn Fn(EditorView)>,
+        onupdating: Option<&Closure<dyn Fn()>>,
     ) -> EditorView;
 
     #[wasm_bindgen(js_name = createTutorial)]
