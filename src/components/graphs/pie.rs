@@ -54,17 +54,6 @@ fn fold_slice(array: MyArray<PieSliceComputed>, slice: PieSlice) -> MyArray<PieS
     let inc_ratio = prev_inc_ratio + slice.ratio;
     let (end_x, end_y) = coords(inc_ratio);
 
-    gloo::console::log!(
-        slice.name.as_str(),
-        slice.ratio,
-        prev_inc_ratio,
-        inc_ratio,
-        start_x,
-        start_y,
-        end_x,
-        end_y
-    );
-
     let large = if slice.ratio > 0.5 { 1 } else { 0 };
     let d = format!("M {start_x} {start_y} A 1 1 0 {large} 1 {end_x} {end_y} L 0 0").into();
 
