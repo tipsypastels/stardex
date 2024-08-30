@@ -1,0 +1,148 @@
+#!/usr/bin/env node
+// @ts-check
+
+// Got from TOML spec https://toml.io/en/v1.0.0#keys.
+const BARE_KEY = /^[A-Za-z0-9_-]+$/;
+
+/**
+ * @typedef {{
+ *  count: number,
+ *  next: string | null,
+ *  results: { url: string }[],
+ * }} Segment
+ *
+ * @typedef {{
+ *  id: number,
+ *  name: string,
+ *  names?: { name: string, language: { name: string } }[]
+ * }} PokemonSpecies
+ *
+ * @typedef {{
+ *  id: number,
+ *  is_default: boolean,
+ *  types: { type: { name: string } }[]
+ * }} PokemonForm
+ *
+ * @typedef {{
+ *  id: number,
+ *  name: string,
+ *  types: string[],
+ * }} Resolved
+ */
+
+async function main() {
+  /** @type {Promise<Resolved | null>[]} */
+  const promises = [];
+
+  let segment = await fetchSegment("https://pokeapi.co/api/v2/pokemon-species");
+  let segmentIndex = 1;
+
+  while (true) {
+    fillSegment(promises, segment);
+
+    if (!segment.next) break;
+    segment = await fetchSegment(segment.next);
+    segmentIndex++;
+  }
+
+  const resolved = await Promise.all(promises);
+  resolved.sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0));
+
+  let table = "";
+
+  for (const entry of resolved) {
+    if (!entry) {
+      continue;
+    }
+
+    if (table.length) {
+      table += "\n\n";
+    }
+
+    const { name, types } = entry;
+    const key = BARE_KEY.test(name) ? name : quote(name);
+    const typeArray = `[${types.map(quote).join(", ")}]`;
+    table += `[${key}]\ntypes = ${typeArray}`;
+  }
+
+  console.log(table);
+}
+
+/**
+ * @param {Promise<Resolved | null>[]} promises
+ * @param {Segment} segment
+ */
+function fillSegment(promises, segment) {
+  /**
+   * @param {string} url
+   * @returns {Promise<Resolved | null>}
+   */
+  async function resolve(url) {
+    const species = await fetchPokemonSpecies(url);
+    const form = await fetchPokemonDefaultForm(species);
+    const types = form.types.map((t) => capitalize(t.type.name));
+
+    const { id } = species;
+    const name = species.names?.find((n) => n.language.name === "en")?.name ??
+      capitalize(species.name);
+
+    return { id, name, types };
+  }
+
+  for (const { url } of segment.results) {
+    promises.push(resolve(url));
+  }
+}
+
+/**
+ * @param {string} url
+ * @returns {Promise<Segment>}
+ */
+async function fetchSegment(url) {
+  return fetchJson(`${url}?limit=100`);
+}
+
+/**
+ * @param {string} url
+ * @returns {Promise<PokemonSpecies>}
+ */
+async function fetchPokemonSpecies(url) {
+  return await fetchJson(url);
+}
+
+/**
+ * @param {PokemonSpecies} species
+ * @returns {Promise<PokemonForm>}
+ */
+async function fetchPokemonDefaultForm({ id }) {
+  return await fetchJson(`https://pokeapi.co/api/v2/pokemon-form/${id}`);
+}
+
+/**
+ * @template T
+ * @param {string} url
+ * @returns {Promise<T>}
+ */
+async function fetchJson(url) {
+  return (await fetch(url)).json();
+}
+
+/**
+ * @param {string} s
+ * @returns {s}
+ */
+function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1).toLowerCase();
+}
+
+/**
+ * @param {string} s
+ * @returns {s}
+ */
+function quote(s) {
+  return `"${s}"`;
+}
+
+main().catch((e) => {
+  console.error(e);
+});

@@ -24,3 +24,3051 @@ types = ["Water"]
 
 [Blastoise]
 types = ["Water"]
+
+[Caterpie]
+types = ["Bug"]
+
+[Metapod]
+types = ["Bug"]
+
+[Butterfree]
+types = ["Bug", "Flying"]
+
+[Weedle]
+types = ["Bug", "Poison"]
+
+[Kakuna]
+types = ["Bug", "Poison"]
+
+[Beedrill]
+types = ["Bug", "Poison"]
+
+[Pidgey]
+types = ["Normal", "Flying"]
+
+[Pidgeotto]
+types = ["Normal", "Flying"]
+
+[Pidgeot]
+types = ["Normal", "Flying"]
+
+[Rattata]
+types = ["Normal"]
+
+[Raticate]
+types = ["Normal"]
+
+[Spearow]
+types = ["Normal", "Flying"]
+
+[Fearow]
+types = ["Normal", "Flying"]
+
+[Ekans]
+types = ["Poison"]
+
+[Arbok]
+types = ["Poison"]
+
+[Pikachu]
+types = ["Electric"]
+
+[Raichu]
+types = ["Electric"]
+
+[Sandshrew]
+types = ["Ground"]
+
+[Sandslash]
+types = ["Ground"]
+
+["Nidoran♀"]
+types = ["Poison"]
+
+[Nidorina]
+types = ["Poison"]
+
+[Nidoqueen]
+types = ["Poison", "Ground"]
+
+["Nidoran♂"]
+types = ["Poison"]
+
+[Nidorino]
+types = ["Poison"]
+
+[Nidoking]
+types = ["Poison", "Ground"]
+
+[Clefairy]
+types = ["Fairy"]
+
+[Clefable]
+types = ["Fairy"]
+
+[Vulpix]
+types = ["Fire"]
+
+[Ninetales]
+types = ["Fire"]
+
+[Jigglypuff]
+types = ["Normal", "Fairy"]
+
+[Wigglytuff]
+types = ["Normal", "Fairy"]
+
+[Zubat]
+types = ["Poison", "Flying"]
+
+[Golbat]
+types = ["Poison", "Flying"]
+
+[Oddish]
+types = ["Grass", "Poison"]
+
+[Gloom]
+types = ["Grass", "Poison"]
+
+[Vileplume]
+types = ["Grass", "Poison"]
+
+[Paras]
+types = ["Bug", "Grass"]
+
+[Parasect]
+types = ["Bug", "Grass"]
+
+[Venonat]
+types = ["Bug", "Poison"]
+
+[Venomoth]
+types = ["Bug", "Poison"]
+
+[Diglett]
+types = ["Ground"]
+
+[Dugtrio]
+types = ["Ground"]
+
+[Meowth]
+types = ["Normal"]
+
+[Persian]
+types = ["Normal"]
+
+[Psyduck]
+types = ["Water"]
+
+[Golduck]
+types = ["Water"]
+
+[Mankey]
+types = ["Fighting"]
+
+[Primeape]
+types = ["Fighting"]
+
+[Growlithe]
+types = ["Fire"]
+
+[Arcanine]
+types = ["Fire"]
+
+[Poliwag]
+types = ["Water"]
+
+[Poliwhirl]
+types = ["Water"]
+
+[Poliwrath]
+types = ["Water", "Fighting"]
+
+[Abra]
+types = ["Psychic"]
+
+[Kadabra]
+types = ["Psychic"]
+
+[Alakazam]
+types = ["Psychic"]
+
+[Machop]
+types = ["Fighting"]
+
+[Machoke]
+types = ["Fighting"]
+
+[Machamp]
+types = ["Fighting"]
+
+[Bellsprout]
+types = ["Grass", "Poison"]
+
+[Weepinbell]
+types = ["Grass", "Poison"]
+
+[Victreebel]
+types = ["Grass", "Poison"]
+
+[Tentacool]
+types = ["Water", "Poison"]
+
+[Tentacruel]
+types = ["Water", "Poison"]
+
+[Geodude]
+types = ["Rock", "Ground"]
+
+[Graveler]
+types = ["Rock", "Ground"]
+
+[Golem]
+types = ["Rock", "Ground"]
+
+[Ponyta]
+types = ["Fire"]
+
+[Rapidash]
+types = ["Fire"]
+
+[Slowpoke]
+types = ["Water", "Psychic"]
+
+[Slowbro]
+types = ["Water", "Psychic"]
+
+[Magnemite]
+types = ["Electric", "Steel"]
+
+[Magneton]
+types = ["Electric", "Steel"]
+
+["Farfetch’d"]
+types = ["Normal", "Flying"]
+
+[Doduo]
+types = ["Normal", "Flying"]
+
+[Dodrio]
+types = ["Normal", "Flying"]
+
+[Seel]
+types = ["Water"]
+
+[Dewgong]
+types = ["Water", "Ice"]
+
+[Grimer]
+types = ["Poison"]
+
+[Muk]
+types = ["Poison"]
+
+[Shellder]
+types = ["Water"]
+
+[Cloyster]
+types = ["Water", "Ice"]
+
+[Gastly]
+types = ["Ghost", "Poison"]
+
+[Haunter]
+types = ["Ghost", "Poison"]
+
+[Gengar]
+types = ["Ghost", "Poison"]
+
+[Onix]
+types = ["Rock", "Ground"]
+
+[Drowzee]
+types = ["Psychic"]
+
+[Hypno]
+types = ["Psychic"]
+
+[Krabby]
+types = ["Water"]
+
+[Kingler]
+types = ["Water"]
+
+[Voltorb]
+types = ["Electric"]
+
+[Electrode]
+types = ["Electric"]
+
+[Exeggcute]
+types = ["Grass", "Psychic"]
+
+[Exeggutor]
+types = ["Grass", "Psychic"]
+
+[Cubone]
+types = ["Ground"]
+
+[Marowak]
+types = ["Ground"]
+
+[Hitmonlee]
+types = ["Fighting"]
+
+[Hitmonchan]
+types = ["Fighting"]
+
+[Lickitung]
+types = ["Normal"]
+
+[Koffing]
+types = ["Poison"]
+
+[Weezing]
+types = ["Poison"]
+
+[Rhyhorn]
+types = ["Ground", "Rock"]
+
+[Rhydon]
+types = ["Ground", "Rock"]
+
+[Chansey]
+types = ["Normal"]
+
+[Tangela]
+types = ["Grass"]
+
+[Kangaskhan]
+types = ["Normal"]
+
+[Horsea]
+types = ["Water"]
+
+[Seadra]
+types = ["Water"]
+
+[Goldeen]
+types = ["Water"]
+
+[Seaking]
+types = ["Water"]
+
+[Staryu]
+types = ["Water"]
+
+[Starmie]
+types = ["Water", "Psychic"]
+
+["Mr. Mime"]
+types = ["Psychic", "Fairy"]
+
+[Scyther]
+types = ["Bug", "Flying"]
+
+[Jynx]
+types = ["Ice", "Psychic"]
+
+[Electabuzz]
+types = ["Electric"]
+
+[Magmar]
+types = ["Fire"]
+
+[Pinsir]
+types = ["Bug"]
+
+[Tauros]
+types = ["Normal"]
+
+[Magikarp]
+types = ["Water"]
+
+[Gyarados]
+types = ["Water", "Flying"]
+
+[Lapras]
+types = ["Water", "Ice"]
+
+[Ditto]
+types = ["Normal"]
+
+[Eevee]
+types = ["Normal"]
+
+[Vaporeon]
+types = ["Water"]
+
+[Jolteon]
+types = ["Electric"]
+
+[Flareon]
+types = ["Fire"]
+
+[Porygon]
+types = ["Normal"]
+
+[Omanyte]
+types = ["Rock", "Water"]
+
+[Omastar]
+types = ["Rock", "Water"]
+
+[Kabuto]
+types = ["Rock", "Water"]
+
+[Kabutops]
+types = ["Rock", "Water"]
+
+[Aerodactyl]
+types = ["Rock", "Flying"]
+
+[Snorlax]
+types = ["Normal"]
+
+[Articuno]
+types = ["Ice", "Flying"]
+
+[Zapdos]
+types = ["Electric", "Flying"]
+
+[Moltres]
+types = ["Fire", "Flying"]
+
+[Dratini]
+types = ["Dragon"]
+
+[Dragonair]
+types = ["Dragon"]
+
+[Dragonite]
+types = ["Dragon", "Flying"]
+
+[Mewtwo]
+types = ["Psychic"]
+
+[Mew]
+types = ["Psychic"]
+
+[Chikorita]
+types = ["Grass"]
+
+[Bayleef]
+types = ["Grass"]
+
+[Meganium]
+types = ["Grass"]
+
+[Cyndaquil]
+types = ["Fire"]
+
+[Quilava]
+types = ["Fire"]
+
+[Typhlosion]
+types = ["Fire"]
+
+[Totodile]
+types = ["Water"]
+
+[Croconaw]
+types = ["Water"]
+
+[Feraligatr]
+types = ["Water"]
+
+[Sentret]
+types = ["Normal"]
+
+[Furret]
+types = ["Normal"]
+
+[Hoothoot]
+types = ["Normal", "Flying"]
+
+[Noctowl]
+types = ["Normal", "Flying"]
+
+[Ledyba]
+types = ["Bug", "Flying"]
+
+[Ledian]
+types = ["Bug", "Flying"]
+
+[Spinarak]
+types = ["Bug", "Poison"]
+
+[Ariados]
+types = ["Bug", "Poison"]
+
+[Crobat]
+types = ["Poison", "Flying"]
+
+[Chinchou]
+types = ["Water", "Electric"]
+
+[Lanturn]
+types = ["Water", "Electric"]
+
+[Pichu]
+types = ["Electric"]
+
+[Cleffa]
+types = ["Fairy"]
+
+[Igglybuff]
+types = ["Normal", "Fairy"]
+
+[Togepi]
+types = ["Fairy"]
+
+[Togetic]
+types = ["Fairy", "Flying"]
+
+[Natu]
+types = ["Psychic", "Flying"]
+
+[Xatu]
+types = ["Psychic", "Flying"]
+
+[Mareep]
+types = ["Electric"]
+
+[Flaaffy]
+types = ["Electric"]
+
+[Ampharos]
+types = ["Electric"]
+
+[Bellossom]
+types = ["Grass"]
+
+[Marill]
+types = ["Water", "Fairy"]
+
+[Azumarill]
+types = ["Water", "Fairy"]
+
+[Sudowoodo]
+types = ["Rock"]
+
+[Politoed]
+types = ["Water"]
+
+[Hoppip]
+types = ["Grass", "Flying"]
+
+[Skiploom]
+types = ["Grass", "Flying"]
+
+[Jumpluff]
+types = ["Grass", "Flying"]
+
+[Aipom]
+types = ["Normal"]
+
+[Sunkern]
+types = ["Grass"]
+
+[Sunflora]
+types = ["Grass"]
+
+[Yanma]
+types = ["Bug", "Flying"]
+
+[Wooper]
+types = ["Water", "Ground"]
+
+[Quagsire]
+types = ["Water", "Ground"]
+
+[Espeon]
+types = ["Psychic"]
+
+[Umbreon]
+types = ["Dark"]
+
+[Murkrow]
+types = ["Dark", "Flying"]
+
+[Slowking]
+types = ["Water", "Psychic"]
+
+[Misdreavus]
+types = ["Ghost"]
+
+[Unown]
+types = ["Psychic"]
+
+[Wobbuffet]
+types = ["Psychic"]
+
+[Girafarig]
+types = ["Normal", "Psychic"]
+
+[Pineco]
+types = ["Bug"]
+
+[Forretress]
+types = ["Bug", "Steel"]
+
+[Dunsparce]
+types = ["Normal"]
+
+[Gligar]
+types = ["Ground", "Flying"]
+
+[Steelix]
+types = ["Steel", "Ground"]
+
+[Snubbull]
+types = ["Fairy"]
+
+[Granbull]
+types = ["Fairy"]
+
+[Qwilfish]
+types = ["Water", "Poison"]
+
+[Scizor]
+types = ["Bug", "Steel"]
+
+[Shuckle]
+types = ["Bug", "Rock"]
+
+[Heracross]
+types = ["Bug", "Fighting"]
+
+[Sneasel]
+types = ["Dark", "Ice"]
+
+[Teddiursa]
+types = ["Normal"]
+
+[Ursaring]
+types = ["Normal"]
+
+[Slugma]
+types = ["Fire"]
+
+[Magcargo]
+types = ["Fire", "Rock"]
+
+[Swinub]
+types = ["Ice", "Ground"]
+
+[Piloswine]
+types = ["Ice", "Ground"]
+
+[Corsola]
+types = ["Water", "Rock"]
+
+[Remoraid]
+types = ["Water"]
+
+[Octillery]
+types = ["Water"]
+
+[Delibird]
+types = ["Ice", "Flying"]
+
+[Mantine]
+types = ["Water", "Flying"]
+
+[Skarmory]
+types = ["Steel", "Flying"]
+
+[Houndour]
+types = ["Dark", "Fire"]
+
+[Houndoom]
+types = ["Dark", "Fire"]
+
+[Kingdra]
+types = ["Water", "Dragon"]
+
+[Phanpy]
+types = ["Ground"]
+
+[Donphan]
+types = ["Ground"]
+
+[Porygon2]
+types = ["Normal"]
+
+[Stantler]
+types = ["Normal"]
+
+[Smeargle]
+types = ["Normal"]
+
+[Tyrogue]
+types = ["Fighting"]
+
+[Hitmontop]
+types = ["Fighting"]
+
+[Smoochum]
+types = ["Ice", "Psychic"]
+
+[Elekid]
+types = ["Electric"]
+
+[Magby]
+types = ["Fire"]
+
+[Miltank]
+types = ["Normal"]
+
+[Blissey]
+types = ["Normal"]
+
+[Raikou]
+types = ["Electric"]
+
+[Entei]
+types = ["Fire"]
+
+[Suicune]
+types = ["Water"]
+
+[Larvitar]
+types = ["Rock", "Ground"]
+
+[Pupitar]
+types = ["Rock", "Ground"]
+
+[Tyranitar]
+types = ["Rock", "Dark"]
+
+[Lugia]
+types = ["Psychic", "Flying"]
+
+[Ho-Oh]
+types = ["Fire", "Flying"]
+
+[Celebi]
+types = ["Psychic", "Grass"]
+
+[Treecko]
+types = ["Grass"]
+
+[Grovyle]
+types = ["Grass"]
+
+[Sceptile]
+types = ["Grass"]
+
+[Torchic]
+types = ["Fire"]
+
+[Combusken]
+types = ["Fire", "Fighting"]
+
+[Blaziken]
+types = ["Fire", "Fighting"]
+
+[Mudkip]
+types = ["Water"]
+
+[Marshtomp]
+types = ["Water", "Ground"]
+
+[Swampert]
+types = ["Water", "Ground"]
+
+[Poochyena]
+types = ["Dark"]
+
+[Mightyena]
+types = ["Dark"]
+
+[Zigzagoon]
+types = ["Normal"]
+
+[Linoone]
+types = ["Normal"]
+
+[Wurmple]
+types = ["Bug"]
+
+[Silcoon]
+types = ["Bug"]
+
+[Beautifly]
+types = ["Bug", "Flying"]
+
+[Cascoon]
+types = ["Bug"]
+
+[Dustox]
+types = ["Bug", "Poison"]
+
+[Lotad]
+types = ["Water", "Grass"]
+
+[Lombre]
+types = ["Water", "Grass"]
+
+[Ludicolo]
+types = ["Water", "Grass"]
+
+[Seedot]
+types = ["Grass"]
+
+[Nuzleaf]
+types = ["Grass", "Dark"]
+
+[Shiftry]
+types = ["Grass", "Dark"]
+
+[Taillow]
+types = ["Normal", "Flying"]
+
+[Swellow]
+types = ["Normal", "Flying"]
+
+[Wingull]
+types = ["Water", "Flying"]
+
+[Pelipper]
+types = ["Water", "Flying"]
+
+[Ralts]
+types = ["Psychic", "Fairy"]
+
+[Kirlia]
+types = ["Psychic", "Fairy"]
+
+[Gardevoir]
+types = ["Psychic", "Fairy"]
+
+[Surskit]
+types = ["Bug", "Water"]
+
+[Masquerain]
+types = ["Bug", "Flying"]
+
+[Shroomish]
+types = ["Grass"]
+
+[Breloom]
+types = ["Grass", "Fighting"]
+
+[Slakoth]
+types = ["Normal"]
+
+[Vigoroth]
+types = ["Normal"]
+
+[Slaking]
+types = ["Normal"]
+
+[Nincada]
+types = ["Bug", "Ground"]
+
+[Ninjask]
+types = ["Bug", "Flying"]
+
+[Shedinja]
+types = ["Bug", "Ghost"]
+
+[Whismur]
+types = ["Normal"]
+
+[Loudred]
+types = ["Normal"]
+
+[Exploud]
+types = ["Normal"]
+
+[Makuhita]
+types = ["Fighting"]
+
+[Hariyama]
+types = ["Fighting"]
+
+[Azurill]
+types = ["Normal", "Fairy"]
+
+[Nosepass]
+types = ["Rock"]
+
+[Skitty]
+types = ["Normal"]
+
+[Delcatty]
+types = ["Normal"]
+
+[Sableye]
+types = ["Dark", "Ghost"]
+
+[Mawile]
+types = ["Steel", "Fairy"]
+
+[Aron]
+types = ["Steel", "Rock"]
+
+[Lairon]
+types = ["Steel", "Rock"]
+
+[Aggron]
+types = ["Steel", "Rock"]
+
+[Meditite]
+types = ["Fighting", "Psychic"]
+
+[Medicham]
+types = ["Fighting", "Psychic"]
+
+[Electrike]
+types = ["Electric"]
+
+[Manectric]
+types = ["Electric"]
+
+[Plusle]
+types = ["Electric"]
+
+[Minun]
+types = ["Electric"]
+
+[Volbeat]
+types = ["Bug"]
+
+[Illumise]
+types = ["Bug"]
+
+[Roselia]
+types = ["Grass", "Poison"]
+
+[Gulpin]
+types = ["Poison"]
+
+[Swalot]
+types = ["Poison"]
+
+[Carvanha]
+types = ["Water", "Dark"]
+
+[Sharpedo]
+types = ["Water", "Dark"]
+
+[Wailmer]
+types = ["Water"]
+
+[Wailord]
+types = ["Water"]
+
+[Numel]
+types = ["Fire", "Ground"]
+
+[Camerupt]
+types = ["Fire", "Ground"]
+
+[Torkoal]
+types = ["Fire"]
+
+[Spoink]
+types = ["Psychic"]
+
+[Grumpig]
+types = ["Psychic"]
+
+[Spinda]
+types = ["Normal"]
+
+[Trapinch]
+types = ["Ground"]
+
+[Vibrava]
+types = ["Ground", "Dragon"]
+
+[Flygon]
+types = ["Ground", "Dragon"]
+
+[Cacnea]
+types = ["Grass"]
+
+[Cacturne]
+types = ["Grass", "Dark"]
+
+[Swablu]
+types = ["Normal", "Flying"]
+
+[Altaria]
+types = ["Dragon", "Flying"]
+
+[Zangoose]
+types = ["Normal"]
+
+[Seviper]
+types = ["Poison"]
+
+[Lunatone]
+types = ["Rock", "Psychic"]
+
+[Solrock]
+types = ["Rock", "Psychic"]
+
+[Barboach]
+types = ["Water", "Ground"]
+
+[Whiscash]
+types = ["Water", "Ground"]
+
+[Corphish]
+types = ["Water"]
+
+[Crawdaunt]
+types = ["Water", "Dark"]
+
+[Baltoy]
+types = ["Ground", "Psychic"]
+
+[Claydol]
+types = ["Ground", "Psychic"]
+
+[Lileep]
+types = ["Rock", "Grass"]
+
+[Cradily]
+types = ["Rock", "Grass"]
+
+[Anorith]
+types = ["Rock", "Bug"]
+
+[Armaldo]
+types = ["Rock", "Bug"]
+
+[Feebas]
+types = ["Water"]
+
+[Milotic]
+types = ["Water"]
+
+[Castform]
+types = ["Normal"]
+
+[Kecleon]
+types = ["Normal"]
+
+[Shuppet]
+types = ["Ghost"]
+
+[Banette]
+types = ["Ghost"]
+
+[Duskull]
+types = ["Ghost"]
+
+[Dusclops]
+types = ["Ghost"]
+
+[Tropius]
+types = ["Grass", "Flying"]
+
+[Chimecho]
+types = ["Psychic"]
+
+[Absol]
+types = ["Dark"]
+
+[Wynaut]
+types = ["Psychic"]
+
+[Snorunt]
+types = ["Ice"]
+
+[Glalie]
+types = ["Ice"]
+
+[Spheal]
+types = ["Ice", "Water"]
+
+[Sealeo]
+types = ["Ice", "Water"]
+
+[Walrein]
+types = ["Ice", "Water"]
+
+[Clamperl]
+types = ["Water"]
+
+[Huntail]
+types = ["Water"]
+
+[Gorebyss]
+types = ["Water"]
+
+[Relicanth]
+types = ["Water", "Rock"]
+
+[Luvdisc]
+types = ["Water"]
+
+[Bagon]
+types = ["Dragon"]
+
+[Shelgon]
+types = ["Dragon"]
+
+[Salamence]
+types = ["Dragon", "Flying"]
+
+[Beldum]
+types = ["Steel", "Psychic"]
+
+[Metang]
+types = ["Steel", "Psychic"]
+
+[Metagross]
+types = ["Steel", "Psychic"]
+
+[Regirock]
+types = ["Rock"]
+
+[Regice]
+types = ["Ice"]
+
+[Registeel]
+types = ["Steel"]
+
+[Latias]
+types = ["Dragon", "Psychic"]
+
+[Latios]
+types = ["Dragon", "Psychic"]
+
+[Kyogre]
+types = ["Water"]
+
+[Groudon]
+types = ["Ground"]
+
+[Rayquaza]
+types = ["Dragon", "Flying"]
+
+[Jirachi]
+types = ["Steel", "Psychic"]
+
+[Deoxys]
+types = ["Psychic"]
+
+[Turtwig]
+types = ["Grass"]
+
+[Grotle]
+types = ["Grass"]
+
+[Torterra]
+types = ["Grass", "Ground"]
+
+[Chimchar]
+types = ["Fire"]
+
+[Monferno]
+types = ["Fire", "Fighting"]
+
+[Infernape]
+types = ["Fire", "Fighting"]
+
+[Piplup]
+types = ["Water"]
+
+[Prinplup]
+types = ["Water"]
+
+[Empoleon]
+types = ["Water", "Steel"]
+
+[Starly]
+types = ["Normal", "Flying"]
+
+[Staravia]
+types = ["Normal", "Flying"]
+
+[Staraptor]
+types = ["Normal", "Flying"]
+
+[Bidoof]
+types = ["Normal"]
+
+[Bibarel]
+types = ["Normal", "Water"]
+
+[Kricketot]
+types = ["Bug"]
+
+[Kricketune]
+types = ["Bug"]
+
+[Shinx]
+types = ["Electric"]
+
+[Luxio]
+types = ["Electric"]
+
+[Luxray]
+types = ["Electric"]
+
+[Budew]
+types = ["Grass", "Poison"]
+
+[Roserade]
+types = ["Grass", "Poison"]
+
+[Cranidos]
+types = ["Rock"]
+
+[Rampardos]
+types = ["Rock"]
+
+[Shieldon]
+types = ["Rock", "Steel"]
+
+[Bastiodon]
+types = ["Rock", "Steel"]
+
+[Burmy]
+types = ["Bug"]
+
+[Wormadam]
+types = ["Bug", "Grass"]
+
+[Mothim]
+types = ["Bug", "Flying"]
+
+[Combee]
+types = ["Bug", "Flying"]
+
+[Vespiquen]
+types = ["Bug", "Flying"]
+
+[Pachirisu]
+types = ["Electric"]
+
+[Buizel]
+types = ["Water"]
+
+[Floatzel]
+types = ["Water"]
+
+[Cherubi]
+types = ["Grass"]
+
+[Cherrim]
+types = ["Grass"]
+
+[Shellos]
+types = ["Water"]
+
+[Gastrodon]
+types = ["Water", "Ground"]
+
+[Ambipom]
+types = ["Normal"]
+
+[Drifloon]
+types = ["Ghost", "Flying"]
+
+[Drifblim]
+types = ["Ghost", "Flying"]
+
+[Buneary]
+types = ["Normal"]
+
+[Lopunny]
+types = ["Normal"]
+
+[Mismagius]
+types = ["Ghost"]
+
+[Honchkrow]
+types = ["Dark", "Flying"]
+
+[Glameow]
+types = ["Normal"]
+
+[Purugly]
+types = ["Normal"]
+
+[Chingling]
+types = ["Psychic"]
+
+[Stunky]
+types = ["Poison", "Dark"]
+
+[Skuntank]
+types = ["Poison", "Dark"]
+
+[Bronzor]
+types = ["Steel", "Psychic"]
+
+[Bronzong]
+types = ["Steel", "Psychic"]
+
+[Bonsly]
+types = ["Rock"]
+
+["Mime Jr."]
+types = ["Psychic", "Fairy"]
+
+[Happiny]
+types = ["Normal"]
+
+[Chatot]
+types = ["Normal", "Flying"]
+
+[Spiritomb]
+types = ["Ghost", "Dark"]
+
+[Gible]
+types = ["Dragon", "Ground"]
+
+[Gabite]
+types = ["Dragon", "Ground"]
+
+[Garchomp]
+types = ["Dragon", "Ground"]
+
+[Munchlax]
+types = ["Normal"]
+
+[Riolu]
+types = ["Fighting"]
+
+[Lucario]
+types = ["Fighting", "Steel"]
+
+[Hippopotas]
+types = ["Ground"]
+
+[Hippowdon]
+types = ["Ground"]
+
+[Skorupi]
+types = ["Poison", "Bug"]
+
+[Drapion]
+types = ["Poison", "Dark"]
+
+[Croagunk]
+types = ["Poison", "Fighting"]
+
+[Toxicroak]
+types = ["Poison", "Fighting"]
+
+[Carnivine]
+types = ["Grass"]
+
+[Finneon]
+types = ["Water"]
+
+[Lumineon]
+types = ["Water"]
+
+[Mantyke]
+types = ["Water", "Flying"]
+
+[Snover]
+types = ["Grass", "Ice"]
+
+[Abomasnow]
+types = ["Grass", "Ice"]
+
+[Weavile]
+types = ["Dark", "Ice"]
+
+[Magnezone]
+types = ["Electric", "Steel"]
+
+[Lickilicky]
+types = ["Normal"]
+
+[Rhyperior]
+types = ["Ground", "Rock"]
+
+[Tangrowth]
+types = ["Grass"]
+
+[Electivire]
+types = ["Electric"]
+
+[Magmortar]
+types = ["Fire"]
+
+[Togekiss]
+types = ["Fairy", "Flying"]
+
+[Yanmega]
+types = ["Bug", "Flying"]
+
+[Leafeon]
+types = ["Grass"]
+
+[Glaceon]
+types = ["Ice"]
+
+[Gliscor]
+types = ["Ground", "Flying"]
+
+[Mamoswine]
+types = ["Ice", "Ground"]
+
+[Porygon-Z]
+types = ["Normal"]
+
+[Gallade]
+types = ["Psychic", "Fighting"]
+
+[Probopass]
+types = ["Rock", "Steel"]
+
+[Dusknoir]
+types = ["Ghost"]
+
+[Froslass]
+types = ["Ice", "Ghost"]
+
+[Rotom]
+types = ["Electric", "Ghost"]
+
+[Uxie]
+types = ["Psychic"]
+
+[Mesprit]
+types = ["Psychic"]
+
+[Azelf]
+types = ["Psychic"]
+
+[Dialga]
+types = ["Steel", "Dragon"]
+
+[Palkia]
+types = ["Water", "Dragon"]
+
+[Heatran]
+types = ["Fire", "Steel"]
+
+[Regigigas]
+types = ["Normal"]
+
+[Giratina]
+types = ["Ghost", "Dragon"]
+
+[Cresselia]
+types = ["Psychic"]
+
+[Phione]
+types = ["Water"]
+
+[Manaphy]
+types = ["Water"]
+
+[Darkrai]
+types = ["Dark"]
+
+[Shaymin]
+types = ["Grass"]
+
+[Arceus]
+types = ["Normal"]
+
+[Victini]
+types = ["Psychic", "Fire"]
+
+[Snivy]
+types = ["Grass"]
+
+[Servine]
+types = ["Grass"]
+
+[Serperior]
+types = ["Grass"]
+
+[Tepig]
+types = ["Fire"]
+
+[Pignite]
+types = ["Fire", "Fighting"]
+
+[Emboar]
+types = ["Fire", "Fighting"]
+
+[Oshawott]
+types = ["Water"]
+
+[Dewott]
+types = ["Water"]
+
+[Samurott]
+types = ["Water"]
+
+[Patrat]
+types = ["Normal"]
+
+[Watchog]
+types = ["Normal"]
+
+[Lillipup]
+types = ["Normal"]
+
+[Herdier]
+types = ["Normal"]
+
+[Stoutland]
+types = ["Normal"]
+
+[Purrloin]
+types = ["Dark"]
+
+[Liepard]
+types = ["Dark"]
+
+[Pansage]
+types = ["Grass"]
+
+[Simisage]
+types = ["Grass"]
+
+[Pansear]
+types = ["Fire"]
+
+[Simisear]
+types = ["Fire"]
+
+[Panpour]
+types = ["Water"]
+
+[Simipour]
+types = ["Water"]
+
+[Munna]
+types = ["Psychic"]
+
+[Musharna]
+types = ["Psychic"]
+
+[Pidove]
+types = ["Normal", "Flying"]
+
+[Tranquill]
+types = ["Normal", "Flying"]
+
+[Unfezant]
+types = ["Normal", "Flying"]
+
+[Blitzle]
+types = ["Electric"]
+
+[Zebstrika]
+types = ["Electric"]
+
+[Roggenrola]
+types = ["Rock"]
+
+[Boldore]
+types = ["Rock"]
+
+[Gigalith]
+types = ["Rock"]
+
+[Woobat]
+types = ["Psychic", "Flying"]
+
+[Swoobat]
+types = ["Psychic", "Flying"]
+
+[Drilbur]
+types = ["Ground"]
+
+[Excadrill]
+types = ["Ground", "Steel"]
+
+[Audino]
+types = ["Normal"]
+
+[Timburr]
+types = ["Fighting"]
+
+[Gurdurr]
+types = ["Fighting"]
+
+[Conkeldurr]
+types = ["Fighting"]
+
+[Tympole]
+types = ["Water"]
+
+[Palpitoad]
+types = ["Water", "Ground"]
+
+[Seismitoad]
+types = ["Water", "Ground"]
+
+[Throh]
+types = ["Fighting"]
+
+[Sawk]
+types = ["Fighting"]
+
+[Sewaddle]
+types = ["Bug", "Grass"]
+
+[Swadloon]
+types = ["Bug", "Grass"]
+
+[Leavanny]
+types = ["Bug", "Grass"]
+
+[Venipede]
+types = ["Bug", "Poison"]
+
+[Whirlipede]
+types = ["Bug", "Poison"]
+
+[Scolipede]
+types = ["Bug", "Poison"]
+
+[Cottonee]
+types = ["Grass", "Fairy"]
+
+[Whimsicott]
+types = ["Grass", "Fairy"]
+
+[Petilil]
+types = ["Grass"]
+
+[Lilligant]
+types = ["Grass"]
+
+[Basculin]
+types = ["Water"]
+
+[Sandile]
+types = ["Ground", "Dark"]
+
+[Krokorok]
+types = ["Ground", "Dark"]
+
+[Krookodile]
+types = ["Ground", "Dark"]
+
+[Darumaka]
+types = ["Fire"]
+
+[Darmanitan]
+types = ["Fire"]
+
+[Maractus]
+types = ["Grass"]
+
+[Dwebble]
+types = ["Bug", "Rock"]
+
+[Crustle]
+types = ["Bug", "Rock"]
+
+[Scraggy]
+types = ["Dark", "Fighting"]
+
+[Scrafty]
+types = ["Dark", "Fighting"]
+
+[Sigilyph]
+types = ["Psychic", "Flying"]
+
+[Yamask]
+types = ["Ghost"]
+
+[Cofagrigus]
+types = ["Ghost"]
+
+[Tirtouga]
+types = ["Water", "Rock"]
+
+[Carracosta]
+types = ["Water", "Rock"]
+
+[Archen]
+types = ["Rock", "Flying"]
+
+[Archeops]
+types = ["Rock", "Flying"]
+
+[Trubbish]
+types = ["Poison"]
+
+[Garbodor]
+types = ["Poison"]
+
+[Zorua]
+types = ["Dark"]
+
+[Zoroark]
+types = ["Dark"]
+
+[Minccino]
+types = ["Normal"]
+
+[Cinccino]
+types = ["Normal"]
+
+[Gothita]
+types = ["Psychic"]
+
+[Gothorita]
+types = ["Psychic"]
+
+[Gothitelle]
+types = ["Psychic"]
+
+[Solosis]
+types = ["Psychic"]
+
+[Duosion]
+types = ["Psychic"]
+
+[Reuniclus]
+types = ["Psychic"]
+
+[Ducklett]
+types = ["Water", "Flying"]
+
+[Swanna]
+types = ["Water", "Flying"]
+
+[Vanillite]
+types = ["Ice"]
+
+[Vanillish]
+types = ["Ice"]
+
+[Vanilluxe]
+types = ["Ice"]
+
+[Deerling]
+types = ["Normal", "Grass"]
+
+[Sawsbuck]
+types = ["Normal", "Grass"]
+
+[Emolga]
+types = ["Electric", "Flying"]
+
+[Karrablast]
+types = ["Bug"]
+
+[Escavalier]
+types = ["Bug", "Steel"]
+
+[Foongus]
+types = ["Grass", "Poison"]
+
+[Amoonguss]
+types = ["Grass", "Poison"]
+
+[Frillish]
+types = ["Water", "Ghost"]
+
+[Jellicent]
+types = ["Water", "Ghost"]
+
+[Alomomola]
+types = ["Water"]
+
+[Joltik]
+types = ["Bug", "Electric"]
+
+[Galvantula]
+types = ["Bug", "Electric"]
+
+[Ferroseed]
+types = ["Grass", "Steel"]
+
+[Ferrothorn]
+types = ["Grass", "Steel"]
+
+[Klink]
+types = ["Steel"]
+
+[Klang]
+types = ["Steel"]
+
+[Klinklang]
+types = ["Steel"]
+
+[Tynamo]
+types = ["Electric"]
+
+[Eelektrik]
+types = ["Electric"]
+
+[Eelektross]
+types = ["Electric"]
+
+[Elgyem]
+types = ["Psychic"]
+
+[Beheeyem]
+types = ["Psychic"]
+
+[Litwick]
+types = ["Ghost", "Fire"]
+
+[Lampent]
+types = ["Ghost", "Fire"]
+
+[Chandelure]
+types = ["Ghost", "Fire"]
+
+[Axew]
+types = ["Dragon"]
+
+[Fraxure]
+types = ["Dragon"]
+
+[Haxorus]
+types = ["Dragon"]
+
+[Cubchoo]
+types = ["Ice"]
+
+[Beartic]
+types = ["Ice"]
+
+[Cryogonal]
+types = ["Ice"]
+
+[Shelmet]
+types = ["Bug"]
+
+[Accelgor]
+types = ["Bug"]
+
+[Stunfisk]
+types = ["Ground", "Electric"]
+
+[Mienfoo]
+types = ["Fighting"]
+
+[Mienshao]
+types = ["Fighting"]
+
+[Druddigon]
+types = ["Dragon"]
+
+[Golett]
+types = ["Ground", "Ghost"]
+
+[Golurk]
+types = ["Ground", "Ghost"]
+
+[Pawniard]
+types = ["Dark", "Steel"]
+
+[Bisharp]
+types = ["Dark", "Steel"]
+
+[Bouffalant]
+types = ["Normal"]
+
+[Rufflet]
+types = ["Normal", "Flying"]
+
+[Braviary]
+types = ["Normal", "Flying"]
+
+[Vullaby]
+types = ["Dark", "Flying"]
+
+[Mandibuzz]
+types = ["Dark", "Flying"]
+
+[Heatmor]
+types = ["Fire"]
+
+[Durant]
+types = ["Bug", "Steel"]
+
+[Deino]
+types = ["Dark", "Dragon"]
+
+[Zweilous]
+types = ["Dark", "Dragon"]
+
+[Hydreigon]
+types = ["Dark", "Dragon"]
+
+[Larvesta]
+types = ["Bug", "Fire"]
+
+[Volcarona]
+types = ["Bug", "Fire"]
+
+[Cobalion]
+types = ["Steel", "Fighting"]
+
+[Terrakion]
+types = ["Rock", "Fighting"]
+
+[Virizion]
+types = ["Grass", "Fighting"]
+
+[Tornadus]
+types = ["Flying"]
+
+[Thundurus]
+types = ["Electric", "Flying"]
+
+[Reshiram]
+types = ["Dragon", "Fire"]
+
+[Zekrom]
+types = ["Dragon", "Electric"]
+
+[Landorus]
+types = ["Ground", "Flying"]
+
+[Kyurem]
+types = ["Dragon", "Ice"]
+
+[Keldeo]
+types = ["Water", "Fighting"]
+
+[Meloetta]
+types = ["Normal", "Psychic"]
+
+[Genesect]
+types = ["Bug", "Steel"]
+
+[Chespin]
+types = ["Grass"]
+
+[Quilladin]
+types = ["Grass"]
+
+[Chesnaught]
+types = ["Grass", "Fighting"]
+
+[Fennekin]
+types = ["Fire"]
+
+[Braixen]
+types = ["Fire"]
+
+[Delphox]
+types = ["Fire", "Psychic"]
+
+[Froakie]
+types = ["Water"]
+
+[Frogadier]
+types = ["Water"]
+
+[Greninja]
+types = ["Water", "Dark"]
+
+[Bunnelby]
+types = ["Normal"]
+
+[Diggersby]
+types = ["Normal", "Ground"]
+
+[Fletchling]
+types = ["Normal", "Flying"]
+
+[Fletchinder]
+types = ["Fire", "Flying"]
+
+[Talonflame]
+types = ["Fire", "Flying"]
+
+[Scatterbug]
+types = ["Bug"]
+
+[Spewpa]
+types = ["Bug"]
+
+[Vivillon]
+types = ["Bug", "Flying"]
+
+[Litleo]
+types = ["Fire", "Normal"]
+
+[Pyroar]
+types = ["Fire", "Normal"]
+
+["Flabébé"]
+types = ["Fairy"]
+
+[Floette]
+types = ["Fairy"]
+
+[Florges]
+types = ["Fairy"]
+
+[Skiddo]
+types = ["Grass"]
+
+[Gogoat]
+types = ["Grass"]
+
+[Pancham]
+types = ["Fighting"]
+
+[Pangoro]
+types = ["Fighting", "Dark"]
+
+[Furfrou]
+types = ["Normal"]
+
+[Espurr]
+types = ["Psychic"]
+
+[Meowstic]
+types = ["Psychic"]
+
+[Honedge]
+types = ["Steel", "Ghost"]
+
+[Doublade]
+types = ["Steel", "Ghost"]
+
+[Aegislash]
+types = ["Steel", "Ghost"]
+
+[Spritzee]
+types = ["Fairy"]
+
+[Aromatisse]
+types = ["Fairy"]
+
+[Swirlix]
+types = ["Fairy"]
+
+[Slurpuff]
+types = ["Fairy"]
+
+[Inkay]
+types = ["Dark", "Psychic"]
+
+[Malamar]
+types = ["Dark", "Psychic"]
+
+[Binacle]
+types = ["Rock", "Water"]
+
+[Barbaracle]
+types = ["Rock", "Water"]
+
+[Skrelp]
+types = ["Poison", "Water"]
+
+[Dragalge]
+types = ["Poison", "Dragon"]
+
+[Clauncher]
+types = ["Water"]
+
+[Clawitzer]
+types = ["Water"]
+
+[Helioptile]
+types = ["Electric", "Normal"]
+
+[Heliolisk]
+types = ["Electric", "Normal"]
+
+[Tyrunt]
+types = ["Rock", "Dragon"]
+
+[Tyrantrum]
+types = ["Rock", "Dragon"]
+
+[Amaura]
+types = ["Rock", "Ice"]
+
+[Aurorus]
+types = ["Rock", "Ice"]
+
+[Sylveon]
+types = ["Fairy"]
+
+[Hawlucha]
+types = ["Fighting", "Flying"]
+
+[Dedenne]
+types = ["Electric", "Fairy"]
+
+[Carbink]
+types = ["Rock", "Fairy"]
+
+[Goomy]
+types = ["Dragon"]
+
+[Sliggoo]
+types = ["Dragon"]
+
+[Goodra]
+types = ["Dragon"]
+
+[Klefki]
+types = ["Steel", "Fairy"]
+
+[Phantump]
+types = ["Ghost", "Grass"]
+
+[Trevenant]
+types = ["Ghost", "Grass"]
+
+[Pumpkaboo]
+types = ["Ghost", "Grass"]
+
+[Gourgeist]
+types = ["Ghost", "Grass"]
+
+[Bergmite]
+types = ["Ice"]
+
+[Avalugg]
+types = ["Ice"]
+
+[Noibat]
+types = ["Flying", "Dragon"]
+
+[Noivern]
+types = ["Flying", "Dragon"]
+
+[Xerneas]
+types = ["Fairy"]
+
+[Yveltal]
+types = ["Dark", "Flying"]
+
+[Zygarde]
+types = ["Dragon", "Ground"]
+
+[Diancie]
+types = ["Rock", "Fairy"]
+
+[Hoopa]
+types = ["Psychic", "Ghost"]
+
+[Volcanion]
+types = ["Fire", "Water"]
+
+[Rowlet]
+types = ["Grass", "Flying"]
+
+[Dartrix]
+types = ["Grass", "Flying"]
+
+[Decidueye]
+types = ["Grass", "Ghost"]
+
+[Litten]
+types = ["Fire"]
+
+[Torracat]
+types = ["Fire"]
+
+[Incineroar]
+types = ["Fire", "Dark"]
+
+[Popplio]
+types = ["Water"]
+
+[Brionne]
+types = ["Water"]
+
+[Primarina]
+types = ["Water", "Fairy"]
+
+[Pikipek]
+types = ["Normal", "Flying"]
+
+[Trumbeak]
+types = ["Normal", "Flying"]
+
+[Toucannon]
+types = ["Normal", "Flying"]
+
+[Yungoos]
+types = ["Normal"]
+
+[Gumshoos]
+types = ["Normal"]
+
+[Grubbin]
+types = ["Bug"]
+
+[Charjabug]
+types = ["Bug", "Electric"]
+
+[Vikavolt]
+types = ["Bug", "Electric"]
+
+[Crabrawler]
+types = ["Fighting"]
+
+[Crabominable]
+types = ["Fighting", "Ice"]
+
+[Oricorio]
+types = ["Fire", "Flying"]
+
+[Cutiefly]
+types = ["Bug", "Fairy"]
+
+[Ribombee]
+types = ["Bug", "Fairy"]
+
+[Rockruff]
+types = ["Rock"]
+
+[Lycanroc]
+types = ["Rock"]
+
+[Wishiwashi]
+types = ["Water"]
+
+[Mareanie]
+types = ["Poison", "Water"]
+
+[Toxapex]
+types = ["Poison", "Water"]
+
+[Mudbray]
+types = ["Ground"]
+
+[Mudsdale]
+types = ["Ground"]
+
+[Dewpider]
+types = ["Water", "Bug"]
+
+[Araquanid]
+types = ["Water", "Bug"]
+
+[Fomantis]
+types = ["Grass"]
+
+[Lurantis]
+types = ["Grass"]
+
+[Morelull]
+types = ["Grass", "Fairy"]
+
+[Shiinotic]
+types = ["Grass", "Fairy"]
+
+[Salandit]
+types = ["Poison", "Fire"]
+
+[Salazzle]
+types = ["Poison", "Fire"]
+
+[Stufful]
+types = ["Normal", "Fighting"]
+
+[Bewear]
+types = ["Normal", "Fighting"]
+
+[Bounsweet]
+types = ["Grass"]
+
+[Steenee]
+types = ["Grass"]
+
+[Tsareena]
+types = ["Grass"]
+
+[Comfey]
+types = ["Fairy"]
+
+[Oranguru]
+types = ["Normal", "Psychic"]
+
+[Passimian]
+types = ["Fighting"]
+
+[Wimpod]
+types = ["Bug", "Water"]
+
+[Golisopod]
+types = ["Bug", "Water"]
+
+[Sandygast]
+types = ["Ghost", "Ground"]
+
+[Palossand]
+types = ["Ghost", "Ground"]
+
+[Pyukumuku]
+types = ["Water"]
+
+["Type: Null"]
+types = ["Normal"]
+
+[Silvally]
+types = ["Normal"]
+
+[Minior]
+types = ["Rock", "Flying"]
+
+[Komala]
+types = ["Normal"]
+
+[Turtonator]
+types = ["Fire", "Dragon"]
+
+[Togedemaru]
+types = ["Electric", "Steel"]
+
+[Mimikyu]
+types = ["Ghost", "Fairy"]
+
+[Bruxish]
+types = ["Water", "Psychic"]
+
+[Drampa]
+types = ["Normal", "Dragon"]
+
+[Dhelmise]
+types = ["Ghost", "Grass"]
+
+[Jangmo-o]
+types = ["Dragon"]
+
+[Hakamo-o]
+types = ["Dragon", "Fighting"]
+
+[Kommo-o]
+types = ["Dragon", "Fighting"]
+
+["Tapu Koko"]
+types = ["Electric", "Fairy"]
+
+["Tapu Lele"]
+types = ["Psychic", "Fairy"]
+
+["Tapu Bulu"]
+types = ["Grass", "Fairy"]
+
+["Tapu Fini"]
+types = ["Water", "Fairy"]
+
+[Cosmog]
+types = ["Psychic"]
+
+[Cosmoem]
+types = ["Psychic"]
+
+[Solgaleo]
+types = ["Psychic", "Steel"]
+
+[Lunala]
+types = ["Psychic", "Ghost"]
+
+[Nihilego]
+types = ["Rock", "Poison"]
+
+[Buzzwole]
+types = ["Bug", "Fighting"]
+
+[Pheromosa]
+types = ["Bug", "Fighting"]
+
+[Xurkitree]
+types = ["Electric"]
+
+[Celesteela]
+types = ["Steel", "Flying"]
+
+[Kartana]
+types = ["Grass", "Steel"]
+
+[Guzzlord]
+types = ["Dark", "Dragon"]
+
+[Necrozma]
+types = ["Psychic"]
+
+[Magearna]
+types = ["Steel", "Fairy"]
+
+[Marshadow]
+types = ["Fighting", "Ghost"]
+
+[Poipole]
+types = ["Poison"]
+
+[Naganadel]
+types = ["Poison", "Dragon"]
+
+[Stakataka]
+types = ["Rock", "Steel"]
+
+[Blacephalon]
+types = ["Fire", "Ghost"]
+
+[Zeraora]
+types = ["Electric"]
+
+[Meltan]
+types = ["Steel"]
+
+[Melmetal]
+types = ["Steel"]
+
+[Grookey]
+types = ["Grass"]
+
+[Thwackey]
+types = ["Grass"]
+
+[Rillaboom]
+types = ["Grass"]
+
+[Scorbunny]
+types = ["Fire"]
+
+[Raboot]
+types = ["Fire"]
+
+[Cinderace]
+types = ["Fire"]
+
+[Sobble]
+types = ["Water"]
+
+[Drizzile]
+types = ["Water"]
+
+[Inteleon]
+types = ["Water"]
+
+[Skwovet]
+types = ["Normal"]
+
+[Greedent]
+types = ["Normal"]
+
+[Rookidee]
+types = ["Flying"]
+
+[Corvisquire]
+types = ["Flying"]
+
+[Corviknight]
+types = ["Flying", "Steel"]
+
+[Blipbug]
+types = ["Bug"]
+
+[Dottler]
+types = ["Bug", "Psychic"]
+
+[Orbeetle]
+types = ["Bug", "Psychic"]
+
+[Nickit]
+types = ["Dark"]
+
+[Thievul]
+types = ["Dark"]
+
+[Gossifleur]
+types = ["Grass"]
+
+[Eldegoss]
+types = ["Grass"]
+
+[Wooloo]
+types = ["Normal"]
+
+[Dubwool]
+types = ["Normal"]
+
+[Chewtle]
+types = ["Water"]
+
+[Drednaw]
+types = ["Water", "Rock"]
+
+[Yamper]
+types = ["Electric"]
+
+[Boltund]
+types = ["Electric"]
+
+[Rolycoly]
+types = ["Rock"]
+
+[Carkol]
+types = ["Rock", "Fire"]
+
+[Coalossal]
+types = ["Rock", "Fire"]
+
+[Applin]
+types = ["Grass", "Dragon"]
+
+[Flapple]
+types = ["Grass", "Dragon"]
+
+[Appletun]
+types = ["Grass", "Dragon"]
+
+[Silicobra]
+types = ["Ground"]
+
+[Sandaconda]
+types = ["Ground"]
+
+[Cramorant]
+types = ["Flying", "Water"]
+
+[Arrokuda]
+types = ["Water"]
+
+[Barraskewda]
+types = ["Water"]
+
+[Toxel]
+types = ["Electric", "Poison"]
+
+[Toxtricity]
+types = ["Electric", "Poison"]
+
+[Sizzlipede]
+types = ["Fire", "Bug"]
+
+[Centiskorch]
+types = ["Fire", "Bug"]
+
+[Clobbopus]
+types = ["Fighting"]
+
+[Grapploct]
+types = ["Fighting"]
+
+[Sinistea]
+types = ["Ghost"]
+
+[Polteageist]
+types = ["Ghost"]
+
+[Hatenna]
+types = ["Psychic"]
+
+[Hattrem]
+types = ["Psychic"]
+
+[Hatterene]
+types = ["Psychic", "Fairy"]
+
+[Impidimp]
+types = ["Dark", "Fairy"]
+
+[Morgrem]
+types = ["Dark", "Fairy"]
+
+[Grimmsnarl]
+types = ["Dark", "Fairy"]
+
+[Obstagoon]
+types = ["Dark", "Normal"]
+
+[Perrserker]
+types = ["Steel"]
+
+[Cursola]
+types = ["Ghost"]
+
+["Sirfetch’d"]
+types = ["Fighting"]
+
+["Mr. Rime"]
+types = ["Ice", "Psychic"]
+
+[Runerigus]
+types = ["Ground", "Ghost"]
+
+[Milcery]
+types = ["Fairy"]
+
+[Alcremie]
+types = ["Fairy"]
+
+[Falinks]
+types = ["Fighting"]
+
+[Pincurchin]
+types = ["Electric"]
+
+[Snom]
+types = ["Ice", "Bug"]
+
+[Frosmoth]
+types = ["Ice", "Bug"]
+
+[Stonjourner]
+types = ["Rock"]
+
+[Eiscue]
+types = ["Ice"]
+
+[Indeedee]
+types = ["Psychic", "Normal"]
+
+[Morpeko]
+types = ["Electric", "Dark"]
+
+[Cufant]
+types = ["Steel"]
+
+[Copperajah]
+types = ["Steel"]
+
+[Dracozolt]
+types = ["Electric", "Dragon"]
+
+[Arctozolt]
+types = ["Electric", "Ice"]
+
+[Dracovish]
+types = ["Water", "Dragon"]
+
+[Arctovish]
+types = ["Water", "Ice"]
+
+[Duraludon]
+types = ["Steel", "Dragon"]
+
+[Dreepy]
+types = ["Dragon", "Ghost"]
+
+[Drakloak]
+types = ["Dragon", "Ghost"]
+
+[Dragapult]
+types = ["Dragon", "Ghost"]
+
+[Zacian]
+types = ["Fairy"]
+
+[Zamazenta]
+types = ["Fighting"]
+
+[Eternatus]
+types = ["Poison", "Dragon"]
+
+[Kubfu]
+types = ["Fighting"]
+
+[Urshifu]
+types = ["Fighting", "Dark"]
+
+[Zarude]
+types = ["Dark", "Grass"]
+
+[Regieleki]
+types = ["Electric"]
+
+[Regidrago]
+types = ["Dragon"]
+
+[Glastrier]
+types = ["Ice"]
+
+[Spectrier]
+types = ["Ghost"]
+
+[Calyrex]
+types = ["Psychic", "Grass"]
+
+[Wyrdeer]
+types = ["Normal", "Psychic"]
+
+[Kleavor]
+types = ["Bug", "Rock"]
+
+[Ursaluna]
+types = ["Ground", "Normal"]
+
+[Basculegion]
+types = ["Water", "Ghost"]
+
+[Sneasler]
+types = ["Fighting", "Poison"]
+
+[Overqwil]
+types = ["Dark", "Poison"]
+
+[Enamorus]
+types = ["Fairy", "Flying"]
+
+[Sprigatito]
+types = ["Grass"]
+
+[Floragato]
+types = ["Grass"]
+
+[Meowscarada]
+types = ["Grass", "Dark"]
+
+[Fuecoco]
+types = ["Fire"]
+
+[Crocalor]
+types = ["Fire"]
+
+[Skeledirge]
+types = ["Fire", "Ghost"]
+
+[Quaxly]
+types = ["Water"]
+
+[Quaxwell]
+types = ["Water"]
+
+[Quaquaval]
+types = ["Water", "Fighting"]
+
+[Lechonk]
+types = ["Normal"]
+
+[Oinkologne]
+types = ["Normal"]
+
+[Tarountula]
+types = ["Bug"]
+
+[Spidops]
+types = ["Bug"]
+
+[Nymble]
+types = ["Bug"]
+
+[Lokix]
+types = ["Bug", "Dark"]
+
+[Pawmi]
+types = ["Electric"]
+
+[Pawmo]
+types = ["Electric", "Fighting"]
+
+[Pawmot]
+types = ["Electric", "Fighting"]
+
+[Tandemaus]
+types = ["Normal"]
+
+[Maushold]
+types = ["Normal"]
+
+[Fidough]
+types = ["Fairy"]
+
+[Dachsbun]
+types = ["Fairy"]
+
+[Smoliv]
+types = ["Grass", "Normal"]
+
+[Dolliv]
+types = ["Grass", "Normal"]
+
+[Arboliva]
+types = ["Grass", "Normal"]
+
+[Squawkabilly]
+types = ["Normal", "Flying"]
+
+[Nacli]
+types = ["Rock"]
+
+[Naclstack]
+types = ["Rock"]
+
+[Garganacl]
+types = ["Rock"]
+
+[Charcadet]
+types = ["Fire"]
+
+[Armarouge]
+types = ["Fire", "Psychic"]
+
+[Ceruledge]
+types = ["Fire", "Ghost"]
+
+[Tadbulb]
+types = ["Electric"]
+
+[Bellibolt]
+types = ["Electric"]
+
+[Wattrel]
+types = ["Electric", "Flying"]
+
+[Kilowattrel]
+types = ["Electric", "Flying"]
+
+[Maschiff]
+types = ["Dark"]
+
+[Mabosstiff]
+types = ["Dark"]
+
+[Shroodle]
+types = ["Poison", "Normal"]
+
+[Grafaiai]
+types = ["Poison", "Normal"]
+
+[Bramblin]
+types = ["Grass", "Ghost"]
+
+[Brambleghast]
+types = ["Grass", "Ghost"]
+
+[Toedscool]
+types = ["Ground", "Grass"]
+
+[Toedscruel]
+types = ["Ground", "Grass"]
+
+[Klawf]
+types = ["Rock"]
+
+[Capsakid]
+types = ["Grass"]
+
+[Scovillain]
+types = ["Grass", "Fire"]
+
+[Rellor]
+types = ["Bug"]
+
+[Rabsca]
+types = ["Bug", "Psychic"]
+
+[Flittle]
+types = ["Psychic"]
+
+[Espathra]
+types = ["Psychic"]
+
+[Tinkatink]
+types = ["Fairy", "Steel"]
+
+[Tinkatuff]
+types = ["Fairy", "Steel"]
+
+[Tinkaton]
+types = ["Fairy", "Steel"]
+
+[Wiglett]
+types = ["Water"]
+
+[Wugtrio]
+types = ["Water"]
+
+[Bombirdier]
+types = ["Flying", "Dark"]
+
+[Finizen]
+types = ["Water"]
+
+[Palafin]
+types = ["Water"]
+
+[Varoom]
+types = ["Steel", "Poison"]
+
+[Revavroom]
+types = ["Steel", "Poison"]
+
+[Cyclizar]
+types = ["Dragon", "Normal"]
+
+[Orthworm]
+types = ["Steel"]
+
+[Glimmet]
+types = ["Rock", "Poison"]
+
+[Glimmora]
+types = ["Rock", "Poison"]
+
+[Greavard]
+types = ["Ghost"]
+
+[Houndstone]
+types = ["Ghost"]
+
+[Flamigo]
+types = ["Flying", "Fighting"]
+
+[Cetoddle]
+types = ["Ice"]
+
+[Cetitan]
+types = ["Ice"]
+
+[Veluza]
+types = ["Water", "Psychic"]
+
+[Dondozo]
+types = ["Water"]
+
+[Tatsugiri]
+types = ["Dragon", "Water"]
+
+[Annihilape]
+types = ["Fighting", "Ghost"]
+
+[Clodsire]
+types = ["Poison", "Ground"]
+
+[Farigiraf]
+types = ["Normal", "Psychic"]
+
+[Dudunsparce]
+types = ["Normal"]
+
+[Kingambit]
+types = ["Dark", "Steel"]
+
+["Great Tusk"]
+types = ["Ground", "Fighting"]
+
+["Scream Tail"]
+types = ["Fairy", "Psychic"]
+
+["Brute Bonnet"]
+types = ["Grass", "Dark"]
+
+["Flutter Mane"]
+types = ["Ghost", "Fairy"]
+
+["Slither Wing"]
+types = ["Bug", "Fighting"]
+
+["Sandy Shocks"]
+types = ["Electric", "Ground"]
+
+["Iron Treads"]
+types = ["Ground", "Steel"]
+
+["Iron Bundle"]
+types = ["Ice", "Water"]
+
+["Iron Hands"]
+types = ["Fighting", "Electric"]
+
+["Iron Jugulis"]
+types = ["Dark", "Flying"]
+
+["Iron Moth"]
+types = ["Fire", "Poison"]
+
+["Iron Thorns"]
+types = ["Rock", "Electric"]
+
+[Frigibax]
+types = ["Dragon", "Ice"]
+
+[Arctibax]
+types = ["Dragon", "Ice"]
+
+[Baxcalibur]
+types = ["Dragon", "Ice"]
+
+[Gimmighoul]
+types = ["Ghost"]
+
+[Gholdengo]
+types = ["Steel", "Ghost"]
+
+[Wo-Chien]
+types = ["Dark", "Grass"]
+
+[Chien-Pao]
+types = ["Dark", "Ice"]
+
+[Ting-Lu]
+types = ["Dark", "Ground"]
+
+[Chi-Yu]
+types = ["Dark", "Fire"]
+
+["Roaring Moon"]
+types = ["Dragon", "Dark"]
+
+["Iron Valiant"]
+types = ["Fairy", "Fighting"]
+
+[Koraidon]
+types = ["Fighting", "Dragon"]
+
+[Miraidon]
+types = ["Electric", "Dragon"]
+
+["Walking Wake"]
+types = ["Water", "Dragon"]
+
+["Iron Leaves"]
+types = ["Grass", "Psychic"]
+
+[Dipplin]
+types = ["Grass", "Dragon"]
+
+[Poltchageist]
+types = ["Grass", "Ghost"]
+
+[Sinistcha]
+types = ["Grass", "Ghost"]
+
+[Okidogi]
+types = ["Poison", "Fighting"]
+
+[Munkidori]
+types = ["Poison", "Psychic"]
+
+[Fezandipiti]
+types = ["Poison", "Fairy"]
+
+[Ogerpon]
+types = ["Grass"]
+
+[Archaludon]
+types = ["Steel", "Dragon"]
+
+[Hydrapple]
+types = ["Grass", "Dragon"]
+
+["Gouging Fire"]
+types = ["Fire", "Dragon"]
+
+["Raging Bolt"]
+types = ["Electric", "Dragon"]
+
+["Iron Boulder"]
+types = ["Rock", "Psychic"]
+
+["Iron Crown"]
+types = ["Steel", "Psychic"]
+
+[Terapagos]
+types = ["Normal"]
+
+[Pecharunt]
+types = ["Poison", "Ghost"]
