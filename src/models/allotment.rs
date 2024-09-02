@@ -1,6 +1,6 @@
 use super::{Entry, Type};
 use crate::collections::MyArray;
-use ahash::AHashMap;
+use ahash::{AHashMap, AHashSet};
 use implicit_clone::ImplicitClone;
 use std::cmp::Ordering;
 
@@ -21,6 +21,7 @@ impl Allotment {
     pub fn new(entries: impl IntoIterator<Item = Entry>) -> Self {
         let mut total = 0u32;
         let mut map = AHashMap::<Type, u32>::new();
+        let mut unused_types = Type::dat().iter().collect::<AHashSet<_>>();
 
         for entry in entries {
             if entry.ignore {
@@ -29,8 +30,13 @@ impl Allotment {
 
             for typ in entry.types.iter() {
                 total += 1;
+                unused_types.remove(&typ);
                 map.entry(typ).and_modify(|c| *c += 1).or_insert(1);
             }
+        }
+
+        for typ in unused_types {
+            map.insert(typ, 0);
         }
 
         let mut vec = map.into_iter().collect::<Vec<_>>();
@@ -41,6 +47,10 @@ impl Allotment {
     }
 
     pub fn iter(&self) -> impl Iterator<Item = AllotedType> + '_ {
+        self.iter_with_zeroes().filter(|a| a.count > 0)
+    }
+
+    pub fn iter_with_zeroes(&self) -> impl Iterator<Item = AllotedType> + '_ {
         self.types.iter().map(|(typ, count)| AllotedType {
             typ,
             count,
