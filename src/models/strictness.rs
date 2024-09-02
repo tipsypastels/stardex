@@ -29,6 +29,15 @@ impl Strictness {
             Self::Bitchy => "If you have too much free time.",
         }
     }
+
+    pub fn maximum_ratio_difference(&self) -> f64 {
+        match self {
+            Self::Easygoing => 0.10,
+            Self::Normal => 0.04,
+            Self::Strict => 0.02,
+            Self::Bitchy => 0.01,
+        }
+    }
 }
 
 impl fmt::Display for Strictness {

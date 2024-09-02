@@ -44,6 +44,17 @@ impl Entry {
     }
 }
 
+impl From<Pokemon> for Entry {
+    fn from(pokemon: Pokemon) -> Self {
+        Self {
+            name: pokemon.name,
+            types: pokemon.types,
+            filler: false,
+            ignore: false,
+        }
+    }
+}
+
 fn type_array(names: Vec<String>) -> MyArray<Type> {
     let dat = Type::dat();
     names
