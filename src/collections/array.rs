@@ -25,7 +25,7 @@ where
         Self(IArray::<T>::default())
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = T> + '_ {
+    pub fn iter(&self) -> impl Iterator<Item = T> {
         self.0.iter()
     }
 

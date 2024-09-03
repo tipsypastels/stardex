@@ -4,8 +4,8 @@ use implicit_clone::unsync::IString;
 #[cfg(test)]
 mod tests;
 
-mod advisement;
 mod allotment;
+mod breakdown;
 mod dat;
 mod entry;
 mod pokemon;
@@ -14,6 +14,7 @@ mod strictness;
 mod typ;
 
 pub use allotment::{AllotedType, Allotment};
+pub use breakdown::{Breakdown, BreakdownAction, BreakdownType};
 pub use entry::{Entry, EntryError};
 pub use pokemon::Pokemon;
 pub use region::Region;

@@ -4,27 +4,27 @@ use ahash::AHashSet;
 use implicit_clone::ImplicitClone;
 
 #[derive(Debug, Clone, ImplicitClone, PartialEq)]
-pub struct Advisement {
-    changes: MyArray<AdvisedChange>,
+pub struct Breakdown {
+    types: MyArray<BreakdownType>,
 }
 
 #[derive(Debug, Clone, ImplicitClone, PartialEq)]
-pub struct AdvisedChange {
+pub struct BreakdownType {
     pub typ: Type,
     pub own_ratio: f64,
     pub against_ratio: f64,
-    pub action: AdvisedAction,
+    pub action: Option<BreakdownAction>,
 }
 
 #[derive(Debug, Copy, Clone, ImplicitClone, PartialEq)]
-pub enum AdvisedAction {
+pub enum BreakdownAction {
     Add,
     Remove,
 }
 
-impl Advisement {
+impl Breakdown {
     pub fn new(own: &Allotment, against: &Allotment, strictness: Strictness) -> Self {
-        let mut vec = Vec::<AdvisedChange>::new();
+        let mut vec = Vec::<BreakdownType>::new();
         let max_diff = strictness.maximum_ratio_difference();
 
         let own = list_with_empties_sorted_by_type_name(own);
@@ -35,26 +35,26 @@ impl Advisement {
             let against_ratio = against_type.ratio;
 
             let action = if own_ratio - against_ratio > max_diff {
-                Some(AdvisedAction::Remove)
+                Some(BreakdownAction::Remove)
             } else if against_ratio - own_ratio > max_diff {
-                Some(AdvisedAction::Add)
+                Some(BreakdownAction::Add)
             } else {
                 None
             };
 
-            if let Some(action) = action {
-                vec.push(AdvisedChange {
-                    typ: own_type.typ,
-                    own_ratio,
-                    against_ratio,
-                    action,
-                })
-            }
+            vec.push(BreakdownType {
+                typ: own_type.typ,
+                own_ratio,
+                against_ratio,
+                action,
+            });
         }
 
-        Self {
-            changes: vec.into(),
-        }
+        Self { types: vec.into() }
+    }
+
+    pub fn iter(&self) -> impl Iterator<Item = BreakdownType> + '_ {
+        self.types.iter()
     }
 }
 
