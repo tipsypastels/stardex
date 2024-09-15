@@ -1,7 +1,7 @@
 use implicit_clone::ImplicitClone;
 use std::fmt;
 
-#[derive(Debug, Copy, Clone, ImplicitClone, PartialEq)]
+#[derive(Debug, Copy, Clone, ImplicitClone, PartialEq, PartialOrd)]
 pub enum Strictness {
     Easygoing,
     Normal,

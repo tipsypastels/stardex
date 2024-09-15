@@ -30,7 +30,14 @@ pub fn Overview() -> Html {
             <TypeChart {allotment} />
 
             <h2>{"Breakdown"}</h2>
-            <TypeBreakdown id="overview-breakdown" {breakdown} {selected_type} />
+            <TypeBreakdown
+                id="overview-breakdown"
+                breakdown={breakdown}
+                entries={state.entries.clone()}
+                selected_type={selected_type}
+                regions_count={state.regions.len()}
+                strictness={state.strictness}
+            />
         </Page>
     }
 }
