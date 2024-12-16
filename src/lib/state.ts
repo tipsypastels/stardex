@@ -1,20 +1,16 @@
 import { Set as ISet } from "immutable";
-import { derived, writable } from "svelte/store";
+import { writable, type Readable } from "svelte/store";
 import type { Pokemon } from "./models/pokemon";
 import { INITIAL_REGION_KEYS, type RegionKey } from "./models/region";
 import { resolveSpecies } from "./models/species";
 import { Strictness } from "./models/strictness";
 
-export interface State {
-  strictness: Strictness;
-  regions: ISet<RegionKey>;
-  pokemon: Pokemon[];
-}
+const pokemon = writable([{ species: resolveSpecies("bulbasaur") }]);
+const regions = writable(ISet(INITIAL_REGION_KEYS));
+const strictness = writable(Strictness.Normal);
 
-export const state = writable<State>({
-  strictness: Strictness.Normal,
-  regions: ISet(INITIAL_REGION_KEYS),
-  pokemon: [{ species: resolveSpecies("bulbasaur") }],
-});
+const pokemon_ = pokemon as Readable<Pokemon[]>;
+const regions_ = regions as Readable<ISet<RegionKey>>;
+const strictness_ = strictness as Readable<Strictness>;
 
-export const pokemon = derived(state, (s) => s.pokemon);
+export { pokemon_ as pokemon, regions_ as regions, strictness_ as strictness };

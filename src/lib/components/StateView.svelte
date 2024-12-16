@@ -1,5 +1,11 @@
 <script lang="ts">
-  import { state as _state } from "$lib/state";
+  import { pokemon, regions, strictness } from "$lib/state";
+
+  let fullState = $derived({
+    pokemon: $pokemon,
+    regions: $regions,
+    strictness: $strictness,
+  });
 </script>
 
-<pre>{JSON.stringify($_state, null, 2)}</pre>
+<pre>{JSON.stringify(fullState, null, 2)}</pre>

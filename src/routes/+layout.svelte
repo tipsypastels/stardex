@@ -1,6 +1,8 @@
 <script lang="ts">
-	import '../app.css';
-	let { children } = $props();
+  import "../app.css";
+  let { children } = $props();
 </script>
 
-{@render children()}
+<main class="m-auto w-[800px] max-w-full">
+  {@render children()}
+</main>
