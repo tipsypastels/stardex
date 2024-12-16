@@ -1,9 +1,5 @@
 <script lang="ts">
-  import { pokemon } from "$lib/state";
-
-  const data = $derived({
-    pokemon: $pokemon,
-  });
+  import { state as _state } from "$lib/state";
 </script>
 
-<pre>{JSON.stringify(data, null, 2)}</pre>
+<pre>{JSON.stringify($_state, null, 2)}</pre>

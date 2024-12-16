@@ -1,0 +1,47 @@
+{
+  "kanto": {
+    "name": "Kanto",
+    "icon": "trees",
+    "pokemon": ["bulbasaur"]
+  },
+  "johto": {
+    "name": "Johto",
+    "icon": "vihara",
+    "pokemon": ["bulbasaur"]
+  },
+  "hoenn": {
+    "name": "Hoenn",
+    "icon": "wave",
+    "pokemon": ["bulbasaur"]
+  },
+  "sinnoh": {
+    "name": "Sinnoh",
+    "icon": "mountains",
+    "pokemon": ["bulbasaur"]
+  },
+  "unova": {
+    "name": "Unova",
+    "icon": "city",
+    "pokemon": ["bulbasaur"]
+  },
+  "kalos": {
+    "name": "Kalos",
+    "icon": "baguette",
+    "pokemon": ["bulbasaur"]
+  },
+  "alola": {
+    "name": "Alola",
+    "icon": "island-tropical",
+    "pokemon": ["bulbasaur"]
+  },
+  "galar": {
+    "name": "Galar",
+    "icon": "fort",
+    "pokemon": ["bulbasaur"]
+  },
+  "paldea": {
+    "name": "Paldea",
+    "icon": "lighthouse",
+    "pokemon": ["bulbasaur"]
+  }
+}
