@@ -2,10 +2,10 @@ import { Set as ISet } from "immutable";
 import { derived, writable } from "svelte/store";
 import { resolveSpecies } from "./models/species";
 import { type Pokemon } from "./models/pokemon";
-import { INITIAL_REGION_KEYS } from "./models/region";
+import { INITIAL_REGION_KEYS, type RegionKey } from "./models/region";
 
 export interface State {
-  regions: ISet<string>;
+  regions: ISet<RegionKey>;
   pokemon: Pokemon[];
 }
 
