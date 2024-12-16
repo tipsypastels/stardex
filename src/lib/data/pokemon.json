@@ -3,34 +3,50 @@
     "id": 1,
     "name": "Bulbasaur",
     "type": ["grass", "poison"],
-    "evos": ["ivysaur"]
+    "evos": {
+      "to": ["ivysaur"]
+    }
   },
   "ivysaur": {
     "id": 2,
     "name": "Ivysaur",
     "type": ["grass", "poison"],
-    "evos": ["venusaur"]
+    "evos": {
+      "from": "bulbasaur",
+      "to": ["venusaur"]
+    }
   },
   "venusaur": {
     "id": 3,
     "name": "Venusaur",
-    "type": ["grass", "poison"]
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "ivysaur"
+    }
   },
   "charmander": {
     "id": 4,
     "name": "Charmander",
     "type": ["fire"],
-    "evos": ["charmeleon"]
+    "evos": {
+      "to": ["charmeleon"]
+    }
   },
   "charmeleon": {
     "id": 5,
     "name": "Charmeleon",
     "type": ["fire"],
-    "evos": ["charizard"]
+    "evos": {
+      "from": "charmander",
+      "to": ["charizard"]
+    }
   },
   "charizard": {
     "id": 6,
     "name": "Charizard",
-    "type": ["fire", "flying"]
+    "type": ["fire", "flying"],
+    "evos": {
+      "from": "charizard"
+    }
   }
 }
