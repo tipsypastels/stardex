@@ -22,7 +22,7 @@ jobs:
 
       - name: build
         env:
-          REP_NAME: "${{ github.event.repository.name }}"
+          GH_REPO_NAME: "${{ github.event.repository.name }}"
         run: |
           npm run build
 

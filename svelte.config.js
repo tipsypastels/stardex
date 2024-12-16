@@ -11,7 +11,7 @@ const config = {
   kit: {
     adapter: adapter(),
     paths: {
-      base: process.argv.includes("dev") ? "" : `/${process.env.REPO_NAME}`,
+      base: process.argv.includes("dev") ? "" : `/${process.env.GH_REPO_NAME}`,
     },
   },
 
