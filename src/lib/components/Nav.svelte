@@ -4,7 +4,7 @@
 </script>
 
 {#snippet link(href: string, name: string, icon: string)}
-  {@const active = href === page.route.id}
+  {@const active = href === `${base}${page.route.id}`}
   <li>
     <a {href} class:bg-red-500={active}>
       {name}
