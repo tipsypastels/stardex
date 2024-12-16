@@ -1,0 +1,30 @@
+{
+  "bulbasaur": {
+    "name": "Bulbasaur",
+    "type": ["grass", "poison"],
+    "evos": ["ivysaur"]
+  },
+  "ivysaur": {
+    "name": "Ivysaur",
+    "type": ["grass", "poison"],
+    "evos": ["venusaur"]
+  },
+  "venusaur": {
+    "name": "Venusaur",
+    "type": ["grass", "poison"]
+  },
+  "charmander": {
+    "name": "Charmander",
+    "type": ["fire"],
+    "evos": ["charmeleon"]
+  },
+  "charmeleon": {
+    "name": "Charmeleon",
+    "type": ["fire"],
+    "evos": ["charizard"]
+  },
+  "charizard": {
+    "name": "Charizard",
+    "type": ["fire", "flying"]
+  }
+}
