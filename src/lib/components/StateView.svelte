@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { rawPokemon } from "$lib/state";
+  import { rawPokemon, resolvedPokemon } from "$lib/state";
 
   const data = $derived({
     rawPokemon: $rawPokemon,
+    resolvedPokemon: $resolvedPokemon,
   });
 </script>
 
