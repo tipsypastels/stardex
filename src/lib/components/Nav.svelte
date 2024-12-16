@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import { page } from "$app/state";
 </script>
 
@@ -13,6 +14,6 @@
 
 <nav>
   <ul>
-    {@render link("/settings", "Settings", "")}
+    {@render link(`${base}/settings`, "Settings", "")}
   </ul>
 </nav>
