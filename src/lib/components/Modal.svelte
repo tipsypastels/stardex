@@ -27,7 +27,7 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
 <dialog
-  class="mb-0 hidden max-w-full items-center justify-center open:block md:mb-auto"
+  class="mb-0 hidden max-w-full items-center justify-center shadow-lg shadow-slate-400 open:block md:mb-auto"
   bind:this={dialog}
   {onclose}
   {onclick}

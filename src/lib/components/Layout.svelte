@@ -21,7 +21,7 @@
 <Logo />
 
 <button
-  class="fixed bottom-6 right-6 z-10 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-lime-600 text-2xl text-white md:hidden"
+  class="fixed bottom-6 right-6 z-10 flex h-[50px] w-[50px] items-center justify-center rounded-full bg-lime-600 text-2xl text-white shadow-lg shadow-slate-400 md:hidden"
   onclick={openEditor}
   aria-label="Add Pokémon"
 >
