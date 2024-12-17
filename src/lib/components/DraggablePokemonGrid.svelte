@@ -23,10 +23,12 @@
       ondragstart={() => {
         draggedIdx = i;
       }}
-      ondragover={() => {
+      ondragover={(e) => {
+        // prevent the ghost from flying back
+        e.preventDefault();
         hoveredIdx = i;
       }}
-      ondragend={(e) => {
+      ondragend={() => {
         draggedIdx = undefined;
         hoveredIdx = undefined;
       }}

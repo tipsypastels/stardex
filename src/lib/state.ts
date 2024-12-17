@@ -10,8 +10,14 @@ const stored = JSON.parse(localStorage.getItem("stardex_state") ?? "{}");
 const pokemon = writable<Pokemon[]>(
   stored.pokemon ?? [
     { species: resolveSpecies("bulbasaur") },
+    { species: resolveSpecies("ivysaur") },
+    { species: resolveSpecies("venusaur") },
     { species: resolveSpecies("charmander") },
+    { species: resolveSpecies("charmeleon") },
+    { species: resolveSpecies("charizard") },
     { species: resolveSpecies("squirtle") },
+    { species: resolveSpecies("wartortle") },
+    { species: resolveSpecies("blastoise") },
   ],
 );
 const regions = writable<ISet<RegionKey>>(ISet(stored.regions ?? INITIAL_REGION_KEYS));
