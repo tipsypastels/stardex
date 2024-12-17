@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Layout from "$lib/components/Layout.svelte";
-  import PokemonEmptyCta from "$lib/components/PokemonEmptyCta.svelte";
-  import PokemonGrid from "$lib/components/PokemonGrid.svelte";
+  import Layout from "$lib/components/layout/Layout.svelte";
+  import PokemonEmptyCta from "$lib/components/pokemon/PokemonEmptyCta.svelte";
+  import PokemonGrid from "$lib/components/pokemon/PokemonGrid.svelte";
   import { pokemon } from "$lib/state";
 </script>
 

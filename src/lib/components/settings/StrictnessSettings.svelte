@@ -6,7 +6,7 @@
     STRICTNESSES,
   } from "$lib/models/strictness";
   import { setStrictness, strictness } from "$lib/state";
-  import Icon from "./Icon.svelte";
+  import Icon from "../common/Icon.svelte";
 </script>
 
 <div>

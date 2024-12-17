@@ -1,12 +1,12 @@
 <script lang="ts">
   import { base } from "$app/paths";
-  import IconLink from "$lib/components/IconLink.svelte";
-  import Layout from "$lib/components/Layout.svelte";
-  import RegionSettings from "$lib/components/RegionSettings.svelte";
-  import Section from "$lib/components/Section.svelte";
+  import IconLink from "$lib/components/common/IconLink.svelte";
+  import Layout from "$lib/components/layout/Layout.svelte";
+  import RegionSettings from "$lib/components/settings/RegionSettings.svelte";
+  import Section from "$lib/components/layout/Section.svelte";
   import { STATE_STORAGE_KEY } from "$lib/components/StateStorage.svelte";
-  import StrictnessSettings from "$lib/components/StrictnessSettings.svelte";
-  import TypeName from "$lib/components/TypeName.svelte";
+  import StrictnessSettings from "$lib/components/settings/StrictnessSettings.svelte";
+  import TypeName from "$lib/components/common/TypeName.svelte";
 </script>
 
 <Layout title="Settings">

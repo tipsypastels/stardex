@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Icon from "$lib/components/Icon.svelte";
+  import Icon from "$lib/components/common/Icon.svelte";
   import {
     ALL_REGION_KEYS,
     INITIAL_REGION_KEYS,
@@ -7,7 +7,7 @@
     type RegionKey,
   } from "$lib/models/region";
   import { disableRegion, enableRegion, regions, setRegions } from "$lib/state";
-  import TypeName from "./TypeName.svelte";
+  import TypeName from "../common/TypeName.svelte";
 </script>
 
 <div class="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">

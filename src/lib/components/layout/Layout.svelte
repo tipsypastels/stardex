@@ -4,7 +4,7 @@
   import Logo from "./Logo.svelte";
   import Modal from "./Modal.svelte";
   import { editorOpen, setEditorOpen } from "$lib/state";
-  import Icon from "./Icon.svelte";
+  import Icon from "../common/Icon.svelte";
 
   interface Props {
     title: string;

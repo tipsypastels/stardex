@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Layout from "$lib/components/Layout.svelte";
+  import Layout from "$lib/components/layout/Layout.svelte";
 </script>
 
 <Layout title="Compare">with what</Layout>

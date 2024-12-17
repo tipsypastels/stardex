@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import Icon from "./Icon.svelte";
-  import { ICON_LINKS } from "./IconLink.svelte";
+  import Icon from "../common/Icon.svelte";
+  import { ICON_LINKS } from "../common/IconLink.svelte";
 </script>
 
 <nav class="mb-8 border-y-2 border-y-slate-300">

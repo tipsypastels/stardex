@@ -1,5 +1,5 @@
 <script>
-  import { ICON_LINKS } from "./IconLink.svelte";
+  import { ICON_LINKS } from "../common/IconLink.svelte";
 </script>
 
 <a
