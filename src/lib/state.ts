@@ -1,15 +1,15 @@
 import { Set as ISet } from "immutable";
-import { writable, derived, type Readable } from "svelte/store";
+import { derived, writable, type Readable } from "svelte/store";
 import type { Pokemon } from "./models/pokemon";
 import { INITIAL_REGION_KEYS, type RegionKey } from "./models/region";
 import { resolveSpecies } from "./models/species";
-import { Strictness } from "./models/strictness";
+import type { Strictness } from "./models/strictness";
 
 const stored = JSON.parse(localStorage.getItem("stardex_state") ?? "{}");
 
 const pokemon = writable<Pokemon[]>(stored.pokemon ?? [{ species: resolveSpecies("bulbasaur") }]);
 const regions = writable<ISet<RegionKey>>(ISet(stored.regions ?? INITIAL_REGION_KEYS));
-const strictness = writable<Strictness>(stored.strictness ?? Strictness.Normal);
+const strictness = writable<Strictness>(stored.strictness ?? "normal");
 
 export const fullState = derived(
   [pokemon, regions, strictness],
