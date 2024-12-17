@@ -1,3 +1,8 @@
+<script lang="ts" module>
+  export const SPECIES_ICON_HEIGHT = 60;
+  export const SPECIES_ICON_WIDTH = 80;
+</script>
+
 <script lang="ts">
   import type { Species } from "$lib/models/species";
 

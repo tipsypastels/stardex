@@ -7,7 +7,13 @@ import type { Strictness } from "./models/strictness";
 
 const stored = JSON.parse(localStorage.getItem("stardex_state") ?? "{}");
 
-const pokemon = writable<Pokemon[]>(stored.pokemon ?? [{ species: resolveSpecies("bulbasaur") }]);
+const pokemon = writable<Pokemon[]>(
+  stored.pokemon ?? [
+    { species: resolveSpecies("bulbasaur") },
+    { species: resolveSpecies("charmander") },
+    { species: resolveSpecies("squirtle") },
+  ],
+);
 const regions = writable<ISet<RegionKey>>(ISet(stored.regions ?? INITIAL_REGION_KEYS));
 const strictness = writable<Strictness>(stored.strictness ?? "normal");
 const editorOpen = writable(false);
@@ -28,6 +34,14 @@ export {
   strictness_ as strictness,
   editorOpen_ as editorOpen,
 };
+
+export function swapPokemon(a: number, b: number) {
+  pokemon.update(($pokemon) => {
+    const $newPokemon = [...$pokemon];
+    [$newPokemon[a], $newPokemon[b]] = [$newPokemon[b], $newPokemon[a]];
+    return $newPokemon;
+  });
+}
 
 export function setRegions(keys: RegionKey[]) {
   regions.update(() => ISet(keys));

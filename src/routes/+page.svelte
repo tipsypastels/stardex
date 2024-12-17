@@ -1,18 +1,13 @@
 <script lang="ts">
   import Layout from "$lib/components/Layout.svelte";
-  import SpeciesIcon from "$lib/components/SpeciesIcon.svelte";
   import Section from "$lib/components/Section.svelte";
   import StateView from "$lib/components/StateView.svelte";
-  import { pokemon } from "$lib/state";
+  import PokemonGrid from "$lib/components/PokemonGrid.svelte";
 </script>
 
 <Layout title="Overview">
   <Section title="Pokédex">
-    <div class="flex">
-      {#each $pokemon as mon}
-        <SpeciesIcon for={mon.species} />
-      {/each}
-    </div>
+    <PokemonGrid />
   </Section>
 
   <Section title="Debug">

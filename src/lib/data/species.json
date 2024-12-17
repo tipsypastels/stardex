@@ -48,5 +48,30 @@
     "evos": {
       "from": "charizard"
     }
+  },
+  "squirtle": {
+    "id": 7,
+    "name": "Squirtle",
+    "type": ["water"],
+    "evos": {
+      "to": ["wartortle"]
+    }
+  },
+  "wartortle": {
+    "id": 8,
+    "name": "Wartortle",
+    "type": ["water"],
+    "evos": {
+      "from": "squirtle",
+      "to": ["blastoise"]
+    }
+  },
+  "blastoise": {
+    "id": 9,
+    "name": "Blastoise",
+    "type": ["water"],
+    "evos": {
+      "from": "wartortle"
+    }
   }
 }
