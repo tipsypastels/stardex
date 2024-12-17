@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import Nav from "./Nav.svelte";
+  import Logo from "./Logo.svelte";
 
   interface Props {
     title: string;
@@ -9,6 +10,8 @@
 
   let { title, children }: Props = $props();
 </script>
+
+<Logo />
 
 <h1 class="mb-8 text-center text-4xl font-bold md:text-left">
   {title}
