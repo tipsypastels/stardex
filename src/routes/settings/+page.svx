@@ -1,0 +1,16 @@
+---
+title: Settings
+---
+
+<script>
+  import IconLink from "$lib/components/IconLink.svelte";
+  import TypeName from "$lib/components/TypeName.svelte";
+</script>
+
+<h2>Regions</h2>
+
+Controls which regions will be used as the basis of the <IconLink to="compare" /> page. The average distribution of types (for example, what percentage of Pokémon are <TypeName for="fire" /> type) will be used to inform recommendations.
+
+<h2>Strictness</h2>
+
+Controls how much Stardex expects you to adhere to the type distributions in the regions you've chosen to compare against.
