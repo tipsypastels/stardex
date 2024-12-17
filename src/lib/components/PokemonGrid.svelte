@@ -13,7 +13,7 @@
   });
 </script>
 
-<ol class="mb-4">
+<ol class="mx-auto mb-4 lg:mx-0">
   {#each $pokemon as mon, i}
     <!-- TODO-->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
