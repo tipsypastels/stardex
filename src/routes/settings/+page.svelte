@@ -3,6 +3,7 @@
   import Layout from "$lib/components/Layout.svelte";
   import RegionSettings from "$lib/components/RegionSettings.svelte";
   import Section from "$lib/components/Section.svelte";
+  import StrictnessSettings from "$lib/components/StrictnessSettings.svelte";
   import TypeName from "$lib/components/TypeName.svelte";
 </script>
 
@@ -22,5 +23,7 @@
       Controls how much Stardex expects you to adhere to the type distributions in the regions
       you've chosen to compare against.
     </p>
+
+    <StrictnessSettings />
   </Section>
 </Layout>

@@ -33,3 +33,7 @@ export function enableRegion(key: RegionKey) {
 export function disableRegion(key: RegionKey) {
   regions.update(($region) => $region.remove(key));
 }
+
+export function setStrictness(s: Strictness) {
+  strictness.set(s);
+}

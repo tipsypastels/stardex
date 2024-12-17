@@ -26,7 +26,9 @@ export namespace Strictness {
 
   export const Bitchy: Strictness = {
     name: "Bitchy",
-    description: "If you care way too much.",
+    description: "If you're here for a real fight.",
     maximumRatioDifference: 0.01,
   };
+
+  export const All = [Easygoing, Normal, Strict, Bitchy];
 }

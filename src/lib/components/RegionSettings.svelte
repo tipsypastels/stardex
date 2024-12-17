@@ -1,10 +1,16 @@
 <script lang="ts">
   import Icon from "$lib/components/Icon.svelte";
-  import { ALL_REGION_KEYS, resolveRegion } from "$lib/models/region";
-  import { disableRegion, enableRegion, regions } from "$lib/state";
+  import {
+    ALL_REGION_KEYS,
+    INITIAL_REGION_KEYS,
+    resolveRegion,
+    type RegionKey,
+  } from "$lib/models/region";
+  import { disableRegion, enableRegion, regions, setRegions } from "$lib/state";
+  import TypeName from "./TypeName.svelte";
 </script>
 
-<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+<div class="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">
   {#each ALL_REGION_KEYS as regionKey}
     {@const region = resolveRegion(regionKey)}
     {@const checked = $regions.has(regionKey)}
@@ -40,3 +46,26 @@
     </label>
   {/each}
 </div>
+
+<div>
+  {#snippet bulkAction(label: string, keys: RegionKey[])}
+    <button class="underline hover:text-lime-600" onclick={() => setRegions(keys)}>{label}</button>
+  {/snippet}
+
+  Select
+  {@render bulkAction("Recommended", INITIAL_REGION_KEYS)}
+  {" / "}
+  {@render bulkAction("All", ALL_REGION_KEYS)}
+  {" / "}
+  {@render bulkAction("None", [])}
+</div>
+
+{#if $regions.has("kanto")}
+  <p class="mt-4 rounded-md bg-amber-400 p-2">
+    Kanto has a skewed type balance by the standards of later regions - for example, too many
+    <TypeName for="poison" />
+    types. You may find that you get better results if you
+    <button class="underline" onclick={() => disableRegion("kanto")}>exclude it</button>
+    .
+  </p>
+{/if}
