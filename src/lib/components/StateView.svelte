@@ -8,4 +8,4 @@
   });
 </script>
 
-<pre>{JSON.stringify(fullState, null, 2)}</pre>
+<pre class="overflow-x-scroll">{JSON.stringify(fullState, null, 2)}</pre>
