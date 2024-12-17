@@ -1,13 +1,13 @@
 <script lang="ts">
   import SpeciesIcon from "./SpeciesIcon.svelte";
-  import { pokemon, swapPokemon } from "$lib/state";
+  import { pokemon } from "$lib/state/pokemon";
 
   let draggedIdx = $state<number | undefined>();
   let hoveredIdx = $state<number | undefined>();
 
   $effect(() => {
     if (draggedIdx != null && hoveredIdx != null && draggedIdx !== hoveredIdx) {
-      swapPokemon(draggedIdx, hoveredIdx);
+      pokemon.swap(draggedIdx, hoveredIdx);
       draggedIdx = hoveredIdx;
     }
   });

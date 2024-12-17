@@ -6,7 +6,7 @@ interface Storage<T> {
   clear(): void;
   // type may differ in storage and runtime, e.g.
   // regions is iset but stored as array.
-  persist<U = T>(store: Readable<U>): void;
+  persister<U = T>(store: Readable<U>): () => void;
 }
 
 export function createStorage<T>(key: string): Storage<T> {
@@ -16,14 +16,16 @@ export function createStorage<T>(key: string): Storage<T> {
     clear() {
       localStorage.removeItem(key);
     },
-    persist<U = T>(store: Readable<U>) {
-      onMount(() =>
-        store.subscribe(($value) => {
-          console.log("storing", key);
-          const json = JSON.stringify($value);
-          localStorage.setItem(key, json);
-        }),
-      );
+    persister<U = T>(store: Readable<U>) {
+      return () => {
+        onMount(() =>
+          store.subscribe(($value) => {
+            console.log("storing", key);
+            const json = JSON.stringify($value);
+            localStorage.setItem(key, json);
+          }),
+        );
+      };
     },
   };
 }

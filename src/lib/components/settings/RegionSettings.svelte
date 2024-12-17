@@ -6,7 +6,7 @@
     resolveRegion,
     type RegionKey,
   } from "$lib/models/region";
-  import { disableRegion, enableRegion, regions, setRegions } from "$lib/state";
+  import { regions } from "$lib/state/regions";
   import TypeName from "../common/TypeName.svelte";
 </script>
 
@@ -23,9 +23,9 @@
         {checked}
         onclick={(e) => {
           if (e.currentTarget.checked) {
-            enableRegion(regionKey);
+            regions.enable(regionKey);
           } else {
-            disableRegion(regionKey);
+            regions.disable(regionKey);
           }
         }}
       />
@@ -49,7 +49,7 @@
 
 <div>
   {#snippet bulkAction(label: string, keys: RegionKey[])}
-    <button class="underline hover:text-lime-600" onclick={() => setRegions(keys)}>{label}</button>
+    <button class="underline hover:text-lime-600" onclick={() => regions.set(keys)}>{label}</button>
   {/snippet}
 
   Select
@@ -65,7 +65,7 @@
     Kanto has a skewed type balance by the standards of later regions - for example, too many
     <TypeName for="poison" />
     types. You may find that you get better results if you
-    <button class="underline" onclick={() => disableRegion("kanto")}>exclude it</button>
+    <button class="underline" onclick={() => regions.disable("kanto")}>exclude it</button>
     .
   </p>
 {/if}

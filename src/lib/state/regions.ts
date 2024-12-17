@@ -22,4 +22,4 @@ export const regions = createActions(initial, (store) => {
   };
 });
 
-storage.persist(regions);
+export const regionsPersister = storage.persister(regions);

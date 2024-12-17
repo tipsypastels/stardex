@@ -18,7 +18,7 @@ const initial = storage.initial ?? [
 
 export const pokemon = createActions(initial, (store) => {
   return {
-    swapPokemon(i1: number, i2: number) {
+    swap(i1: number, i2: number) {
       store.update(($pokemon) => {
         const $newPokemon = [...$pokemon];
         [$newPokemon[i1], $newPokemon[i2]] = [$newPokemon[i2], $newPokemon[i1]];
@@ -28,4 +28,4 @@ export const pokemon = createActions(initial, (store) => {
   };
 });
 
-storage.persist(pokemon);
+export const pokemonPersister = storage.persister(pokemon);

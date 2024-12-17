@@ -3,7 +3,7 @@
   import Nav from "./Nav.svelte";
   import Logo from "./Logo.svelte";
   import Modal from "./Modal.svelte";
-  import { editorOpen, setEditorOpen } from "$lib/state";
+  import { addPokemonModalOpen } from "$lib/state/add_pokemon_modal";
   import PokemonAddIconButton from "../pokemon/PokemonAddIconButton.svelte";
   import PokemonAddTextButton from "../pokemon/PokemonAddTextButton.svelte";
 
@@ -32,4 +32,8 @@
   {@render children()}
 </main>
 
-<Modal open={$editorOpen} onclose={() => setEditorOpen(false)} title="Add Pokémon">hi</Modal>
+<Modal
+  open={$addPokemonModalOpen}
+  onclose={() => addPokemonModalOpen.set(false)}
+  title="Add Pokémon">hi</Modal
+>

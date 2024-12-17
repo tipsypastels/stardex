@@ -6,5 +6,4 @@ const storage = createStorage<Strictness>("stardex_strictness");
 const initial = storage.initial ?? "normal";
 
 export const strictness = writable(initial);
-
-storage.persist(strictness);
+export const strictnessPersister = storage.persister(strictness);
