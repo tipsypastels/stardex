@@ -13,12 +13,12 @@
   });
 </script>
 
-<ol class="mx-auto mb-4 lg:mx-0">
+<ol class="mb-4 grid grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-8">
   {#each $pokemon as mon, i}
     <!-- TODO-->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <li
-      class="inline-block"
+      class="inline-flex justify-center"
       draggable="true"
       ondragstart={() => {
         draggedIdx = i;
