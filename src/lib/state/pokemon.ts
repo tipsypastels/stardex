@@ -14,7 +14,7 @@ const initial: Pokemon[] = storage.initial ?? [
   { species: resolveSpecies("squirtle") },
   { species: resolveSpecies("wartortle") },
   { species: resolveSpecies("blastoise") },
-  { name: "Opaling", type: ["Fantasy"] },
+  { name: "Opaling", type: ["fantasy"] },
 ];
 
 export const pokemon = createActions(initial, (store) => {

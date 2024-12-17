@@ -20,11 +20,13 @@ export function resolvePokemonName(pokemon: Pokemon) {
   return isPokemonCustom(pokemon) ? pokemon.name : pokemon.species.name;
 }
 
+export function resolvePokemonTypeKeys(pokemon: Pokemon): string[] {
+  if (pokemon.type) return pokemon.type;
+  return (pokemon as PokemonSpecies).species.type;
+}
+
 export function resolvePokemonTypes(pokemon: Pokemon): Type[] {
-  if (pokemon.type) {
-    return pokemon.type.map(resolveType);
-  }
-  return (pokemon as PokemonSpecies).species.type.map(resolveType);
+  return resolvePokemonTypeKeys(pokemon).map(resolveType);
 }
 
 export function isPokemonCustom(p: Pokemon): p is PokemonCustom {
