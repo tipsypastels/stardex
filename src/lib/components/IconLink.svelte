@@ -4,10 +4,15 @@
   export type IconLinkTo = keyof typeof ICON_LINKS;
 
   export const ICON_LINKS = {
-    overview: {
-      name: "Overview",
+    pokedex: {
+      name: "Pokédex",
       href: `${base}/`,
       icon: "table-columns",
+    },
+    breakdown: {
+      name: "Breakdown",
+      href: `${base}/breakdown`,
+      icon: "pie-chart",
     },
     compare: {
       name: "Compare",
