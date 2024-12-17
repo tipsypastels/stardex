@@ -16,6 +16,10 @@
     if (open) dialog?.showModal();
   });
 
+  $effect(() => {
+    document.body.classList[open ? "add" : "remove"]("overflow-hidden");
+  });
+
   function onclick(e: MouseEvent) {
     if (e.target === dialog) dialog.close();
   }
