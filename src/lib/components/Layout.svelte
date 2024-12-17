@@ -10,14 +10,12 @@
   let { title, children }: Props = $props();
 </script>
 
-<div>
-  <h1>
-    {title}
-  </h1>
+<h1 class="mb-8 text-center text-4xl font-bold md:text-left">
+  {title}
+</h1>
 
-  <Nav />
+<Nav />
 
-  <div>
-    {@render children()}
-  </div>
-</div>
+<main class="mx-4 md:mx-0">
+  {@render children()}
+</main>

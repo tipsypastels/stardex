@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
-  import Layout from "./Layout.svelte";
 
   interface Props {
     title: string;
@@ -10,6 +9,12 @@
   let { title, children }: Props = $props();
 </script>
 
-<Layout {title}>
-  {@render children()}
-</Layout>
+<section class="mb-8">
+  <h2 class="mb-4 text-3xl">
+    {title}
+  </h2>
+
+  <div>
+    {@render children()}
+  </div>
+</section>

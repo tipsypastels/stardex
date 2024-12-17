@@ -1,5 +1,6 @@
 <script lang="ts">
   import { resolveType } from "$lib/models/type";
+  import Icon from "./Icon.svelte";
 
   interface Props {
     for: string;
@@ -10,5 +11,10 @@
 </script>
 
 <span style="color: {type.color}">
-  {type.name}
+  <span>
+    <Icon name={type.icon} />
+  </span>
+  <span>
+    {type.name}
+  </span>
 </span>

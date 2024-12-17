@@ -6,7 +6,7 @@
   export const ICON_LINKS = {
     overview: {
       name: "Overview",
-      href: base,
+      href: `${base}/`,
       icon: "table-columns",
     },
     compare: {
@@ -43,7 +43,7 @@
     <Icon name={link.icon} />
   </span>
 
-  <span>
+  <span class="underline">
     {link.name}
   </span>
 </a>
