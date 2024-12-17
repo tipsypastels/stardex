@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { pokemon, regions, strictness } from "$lib/state";
+  import { editorOpen, pokemon, regions, strictness } from "$lib/state";
 
   let fullState = $derived({
     pokemon: $pokemon,
     regions: $regions,
     strictness: $strictness,
+    editorOpen: $editorOpen,
   });
 </script>
 

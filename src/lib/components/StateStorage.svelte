@@ -3,9 +3,9 @@
 </script>
 
 <script lang="ts">
-  import { fullState } from "$lib/state";
+  import { storableState } from "$lib/state";
 
   $effect(() => {
-    localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify($fullState));
+    localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify($storableState));
   });
 </script>
