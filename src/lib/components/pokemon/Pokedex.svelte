@@ -1,6 +1,7 @@
 <script lang="ts">
   import SpeciesIcon from "./SpeciesIcon.svelte";
   import { pokemon } from "$lib/state/pokemon";
+  import TypeDots from "../common/TypeDots.svelte";
 
   let draggedIdx = $state<number | undefined>();
   let hoveredIdx = $state<number | undefined>();
@@ -18,7 +19,7 @@
     <!-- TODO-->
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <li
-      class="inline-flex justify-center"
+      class="relative inline-flex justify-center"
       draggable="true"
       ondragstart={() => {
         draggedIdx = i;
@@ -33,6 +34,7 @@
         hoveredIdx = undefined;
       }}
     >
+      <TypeDots types={mon.species.type} />
       <SpeciesIcon for={mon.species} />
     </li>
   {/each}

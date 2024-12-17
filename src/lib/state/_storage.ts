@@ -20,7 +20,6 @@ export function createStorage<T>(key: string): Storage<T> {
       return () => {
         onMount(() =>
           store.subscribe(($value) => {
-            console.log("storing", key);
             const json = JSON.stringify($value);
             localStorage.setItem(key, json);
           }),
