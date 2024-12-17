@@ -10,7 +10,7 @@
   let type = $derived(resolveType(props.for));
 </script>
 
-<span style="color: {type.color}">
+<span class="whitespace-nowrap" style="color: {type.color}">
   <span>
     <Icon name={type.icon} />
   </span>

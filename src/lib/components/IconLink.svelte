@@ -38,7 +38,7 @@
   let link = $derived(ICON_LINKS[to]);
 </script>
 
-<a href={link.href}>
+<a class="whitespace-nowrap" href={link.href}>
   <span>
     <Icon name={link.icon} />
   </span>
