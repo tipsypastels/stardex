@@ -4,7 +4,7 @@ import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
 
 const storage = createStorage<Pokemon[]>("stardex_pokemon");
-const initial = storage.initial ?? [
+const initial: Pokemon[] = storage.initial ?? [
   { species: resolveSpecies("bulbasaur") },
   { species: resolveSpecies("ivysaur") },
   { species: resolveSpecies("venusaur") },
@@ -14,6 +14,7 @@ const initial = storage.initial ?? [
   { species: resolveSpecies("squirtle") },
   { species: resolveSpecies("wartortle") },
   { species: resolveSpecies("blastoise") },
+  { name: "Opaling", type: ["Fantasy"] },
 ];
 
 export const pokemon = createActions(initial, (store) => {

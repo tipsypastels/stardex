@@ -1,8 +1,3 @@
-<script lang="ts" module>
-  export const SPECIES_ICON_HEIGHT = 60;
-  export const SPECIES_ICON_WIDTH = 80;
-</script>
-
 <script lang="ts">
   import type { Species } from "$lib/models/species";
 
@@ -14,7 +9,7 @@
   const SCALE_2 = 2;
 
   interface Props {
-    for: Species;
+    for: Pick<Species, "id" | "name">;
   }
 
   let props: Props = $props();

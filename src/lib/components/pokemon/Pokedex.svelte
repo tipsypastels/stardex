@@ -1,10 +1,13 @@
 <script lang="ts">
-  import SpeciesIcon from "./SpeciesIcon.svelte";
   import { pokemon } from "$lib/state/pokemon";
   import TypeDots from "../common/TypeDots.svelte";
   import Modal from "../layout/Modal.svelte";
+  import { resolvePokemonName, resolvePokemonTypes } from "$lib/models/pokemon";
+  import PokemonIcon from "./PokemonIcon.svelte";
 
   let editingIdx = $state<number | undefined>();
+  let editingMon = $derived(editingIdx != null ? $pokemon[editingIdx] : undefined);
+
   let draggedIdx = $state<number | undefined>();
   let hoveredIdx = $state<number | undefined>();
 
@@ -21,6 +24,7 @@
     <!-- TODO-->
     <!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_element_interactions, a11y_click_events_have_key_events -->
     <li
+      title={resolvePokemonName(mon)}
       class="relative inline-flex cursor-pointer justify-center transition hover:-translate-y-1"
       draggable="true"
       onclick={() => {
@@ -39,8 +43,8 @@
         hoveredIdx = undefined;
       }}
     >
-      <TypeDots types={mon.species.type} />
-      <SpeciesIcon for={mon.species} />
+      <TypeDots types={resolvePokemonTypes(mon)} />
+      <PokemonIcon for={mon} />
     </li>
   {/each}
 </ol>
@@ -49,10 +53,9 @@
 <Modal
   open={editingIdx != null}
   onclose={() => (editingIdx = undefined)}
-  title={$pokemon[editingIdx!]?.species?.name ?? ""}
+  title={editingMon ? resolvePokemonName(editingMon) : ""}
 >
-  {@const mon = $pokemon[editingIdx!]}
-  {#if mon}
-    <pre>{JSON.stringify(mon.species, null, 2)}</pre>
+  {#if editingMon != null}
+    <pre>{JSON.stringify(editingMon, null, 2)}</pre>
   {/if}
 </Modal>

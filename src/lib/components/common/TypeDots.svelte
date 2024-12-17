@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { resolveType, type Type } from "$lib/models/type";
+  import type { Type } from "$lib/models/type";
 
   interface Props {
-    types: (string | Type)[];
+    types: Type[];
   }
 
-  let { types: types_ }: Props = $props();
-  let types = $derived(types_.map((t) => (typeof t === "string" ? resolveType(t) : t)));
+  let { types }: Props = $props();
 </script>
 
 <ul class="absolute left-0 top-0 flex">
