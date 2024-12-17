@@ -1,6 +1,8 @@
 <script lang="ts">
   import { base } from "$app/paths";
   import StateStorage from "$lib/components/StateStorage.svelte";
+
+  import "drag-drop-touch";
   import "../app.css";
 
   let { children } = $props();

@@ -41,6 +41,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
+    "drag-drop-touch": "^1.3.1",
     "immutable": "^5.0.3",
     "randomcolor": "^0.6.2"
   }
