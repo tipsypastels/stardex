@@ -37,7 +37,3 @@
     </li>
   {/each}
 </ol>
-
-<aside class="text-base">
-  <strong>Tip:</strong> Use drag and drop to sort your Pokédex.
-</aside>

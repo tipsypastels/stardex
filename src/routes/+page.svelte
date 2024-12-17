@@ -1,16 +1,14 @@
 <script lang="ts">
   import Layout from "$lib/components/Layout.svelte";
-  import Section from "$lib/components/Section.svelte";
-  import StateView from "$lib/components/StateView.svelte";
-  import DraggablePokemonGrid from "$lib/components/DraggablePokemonGrid.svelte";
+  import PokemonEmptyCta from "$lib/components/PokemonEmptyCta.svelte";
+  import PokemonGrid from "$lib/components/PokemonGrid.svelte";
+  import { pokemon } from "$lib/state";
 </script>
 
-<Layout title="Overview">
-  <Section title="Pokédex">
-    <DraggablePokemonGrid />
-  </Section>
-
-  <Section title="Debug">
-    <StateView />
-  </Section>
+<Layout title="Pokédex">
+  {#if $pokemon.length > 0}
+    <PokemonGrid />
+  {:else}
+    <PokemonEmptyCta />
+  {/if}
 </Layout>

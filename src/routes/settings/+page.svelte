@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import IconLink from "$lib/components/IconLink.svelte";
   import Layout from "$lib/components/Layout.svelte";
   import RegionSettings from "$lib/components/RegionSettings.svelte";
@@ -41,7 +42,7 @@
       onclick={() => {
         if (confirm("Really? You're sure? You want to lose everything?")) {
           localStorage.removeItem(STATE_STORAGE_KEY);
-          location.reload();
+          location.href = `${base}/`;
         }
       }}>Delete Local Data</button
     >

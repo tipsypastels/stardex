@@ -24,11 +24,6 @@
       href: `${base}/settings`,
       icon: "gears",
     },
-    tutorial: {
-      name: "Tutorial",
-      href: `${base}/tutorial`,
-      icon: "location-question",
-    },
   };
 </script>
 
