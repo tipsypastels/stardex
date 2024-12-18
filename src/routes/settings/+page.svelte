@@ -1,5 +1,5 @@
 <script lang="ts">
-  import IconLink, { ICON_LINKS } from "$lib/components/common/IconLink.svelte";
+  import IconLink from "$lib/components/common/IconLink.svelte";
   import Layout from "$lib/components/layout/Layout.svelte";
   import RegionSettings from "$lib/components/settings/RegionSettings.svelte";
   import Section from "$lib/components/layout/Section.svelte";
@@ -7,6 +7,7 @@
   import TypeName from "$lib/components/common/TypeName.svelte";
   import { pokemon } from "$lib/state/pokemon";
   import { goto } from "$app/navigation";
+  import { PAGE_LINKS } from "$lib/links";
 </script>
 
 <Layout title="Settings">
@@ -41,7 +42,7 @@
       onclick={() => {
         if (confirm("Really? You're sure? You want to lose everything?")) {
           pokemon.clear();
-          goto(ICON_LINKS.pokedex.href);
+          goto(PAGE_LINKS.pokedex.href);
         }
       }}>Delete My Pokédex</button
     >

@@ -5,6 +5,8 @@
   import { pokemon, pokemonInclusion } from "$lib/state/pokemon";
   import AddCustom from "./AddCustom.svelte";
   import type { Pokemon } from "$lib/models/pokemon";
+  import { onMount } from "svelte";
+  import hotkeys from "hotkeys-js";
 
   const DISTANCE_CUTOFF = 3; // in characters different
 
@@ -81,12 +83,21 @@
     };
   }
 
+  let queryInput: HTMLInputElement;
+
   let query = $state("");
   let editingCustom = $state(false);
 
   let closest = $derived(findClosest());
   let closestLine = $derived(closest ? resolveEvolutionLine(closest.species) : undefined);
   let hasExactMatch = $derived(closest?.distance === 0);
+
+  onMount(() => {
+    hotkeys("a", (e) => {
+      e.preventDefault();
+      queryInput.focus();
+    });
+  });
 </script>
 
 <div class="mb-4 border-b-[1px] border-b-slate-300 pb-4">
@@ -97,6 +108,7 @@
       class="mb-4 block h-[80px] w-full disabled:cursor-not-allowed disabled:bg-slate-100"
       placeholder="Add a Pokémon"
       bind:value={query}
+      bind:this={queryInput}
       onkeyup={handleKeyUp}
       disabled={editingCustom}
     />

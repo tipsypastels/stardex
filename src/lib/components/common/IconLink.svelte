@@ -1,41 +1,13 @@
-<script lang="ts" module>
-  import { base } from "$app/paths";
-
-  export type IconLinkTo = keyof typeof ICON_LINKS;
-
-  export const ICON_LINKS = {
-    pokedex: {
-      name: "Pokédex",
-      href: `${base}/`,
-      icon: "table-columns",
-    },
-    breakdown: {
-      name: "Breakdown",
-      href: `${base}/breakdown`,
-      icon: "pie-chart",
-    },
-    compare: {
-      name: "Compare",
-      href: `${base}/compare`,
-      icon: "code-compare",
-    },
-    settings: {
-      name: "Settings",
-      href: `${base}/settings`,
-      icon: "gears",
-    },
-  };
-</script>
-
 <script lang="ts">
+  import { PAGE_LINKS, type PageLinkTo } from "$lib/links";
   import Icon from "./Icon.svelte";
 
   interface Props {
-    to: IconLinkTo;
+    to: PageLinkTo;
   }
 
   let { to }: Props = $props();
-  let link = $derived(ICON_LINKS[to]);
+  let link = $derived(PAGE_LINKS[to]);
 </script>
 
 <a class="whitespace-nowrap" href={link.href}>
