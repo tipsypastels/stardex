@@ -44,7 +44,7 @@
   });
 </script>
 
-<div class="flex flex-col justify-center md:flex-row">
+<div class="flex flex-col justify-center gap-4 md:flex-row">
   <div class="grow md:ml-4">
     ...with type
 
