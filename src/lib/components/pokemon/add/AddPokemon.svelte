@@ -3,8 +3,10 @@
   import { levenshteinDistance } from "@std/text";
   import SpeciesIcon from "../SpeciesIcon.svelte";
   import { pokemon, pokemonInclusion } from "$lib/state/pokemon";
+  import AddCustom from "./AddCustom.svelte";
+  import type { Pokemon } from "$lib/models/pokemon";
 
-  const DISTANCE_CUTOFF = 5; // in characters different
+  const DISTANCE_CUTOFF = 3; // in characters different
 
   function addMon(species: Species) {
     const included = $pokemonInclusion.has(species.key);
@@ -26,8 +28,19 @@
     query = "";
   }
 
-  function addCustom() {
-    console.log("add custom");
+  function addCustom(mon: Pokemon) {
+    pokemon.add(mon);
+    query = "";
+    closeCustomEditor();
+  }
+
+  function openCustomEditor() {
+    editingCustom = true;
+  }
+
+  // TODO: Refocus the query input.
+  function closeCustomEditor() {
+    editingCustom = false;
   }
 
   function handleKeyUp(e: KeyboardEvent) {
@@ -39,7 +52,7 @@
     } else if (closest) {
       addMon(closest.species);
     } else {
-      addCustom();
+      openCustomEditor();
     }
   }
 
@@ -69,6 +82,8 @@
   }
 
   let query = $state("");
+  let editingCustom = $state(false);
+
   let closest = $derived(findClosest());
   let closestLine = $derived(closest ? resolveEvolutionLine(closest.species) : undefined);
   let hasExactMatch = $derived(closest?.distance === 0);
@@ -78,11 +93,12 @@
   <div class="relative">
     <!-- svelte-ignore a11y_autofocus -->
     <input
-      class="mb-4 block h-[80px] w-full"
       autofocus
+      class="mb-4 block h-[80px] w-full disabled:cursor-not-allowed disabled:bg-slate-100"
       placeholder="Add a Pokémon"
       bind:value={query}
       onkeyup={handleKeyUp}
+      disabled={editingCustom}
     />
 
     <div class="absolute right-0 top-0">
@@ -94,7 +110,9 @@
     </div>
   </div>
 
-  {#if query}
+  {#if editingCustom}
+    <AddCustom {query} submit={addCustom} cancel={closeCustomEditor} />
+  {:else if query}
     <div class="flex flex-col justify-center gap-2 md:flex-row">
       {#if closest}
         <button
@@ -115,6 +133,7 @@
       <button
         class="cursor-pointer rounded-md bg-slate-300 px-4 py-2 transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:line-through disabled:hover:translate-y-0"
         disabled={hasExactMatch}
+        onclick={openCustomEditor}
       >
         Add Custom Pokémon '{query}'
       </button>
