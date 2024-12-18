@@ -49,13 +49,10 @@
   {/each}
 </ol>
 
-<!-- TODO: It is kind of silly that modals render content eagerly :( -->
 <Modal
   open={editingIdx != null}
   onclose={() => (editingIdx = undefined)}
   title={editingMon ? resolvePokemonName(editingMon) : ""}
 >
-  {#if editingMon != null}
-    <pre>{JSON.stringify(editingMon, null, 2)}</pre>
-  {/if}
+  <pre>{JSON.stringify(editingMon, null, 2)}</pre>
 </Modal>
