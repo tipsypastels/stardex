@@ -11,8 +11,8 @@ const STRICTNESS_MAP = {
   },
   strict: {
     name: "Strict",
-    description: "If you're using Stardex as a rough guideline.",
-    maximumRatioDifference: 0.04,
+    description: "If you're using Stardex as a strict guideline.",
+    maximumRatioDifference: 0.02,
   },
   bitchy: {
     name: "Bitchy",
