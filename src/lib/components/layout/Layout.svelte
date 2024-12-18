@@ -2,10 +2,9 @@
   import type { Snippet } from "svelte";
   import Nav from "./Nav.svelte";
   import Logo from "./Logo.svelte";
-  import Modal from "./Modal.svelte";
-  import { addPokemonModalOpen } from "$lib/state/add_pokemon_modal";
   import AddPokemonBubble from "../pokemon/AddPokemonBubble.svelte";
   import AddPokemonButton from "../pokemon/AddPokemonButton.svelte";
+  import AddPokemon from "../pokemon/AddPokemon.svelte";
 
   interface Props {
     title: string;
@@ -32,9 +31,4 @@
   {@render children()}
 </main>
 
-<Modal open={$addPokemonModalOpen} onclose={() => addPokemonModalOpen.set(false)}>
-  {#snippet title()}
-    Add Pokémon
-  {/snippet}
-  hi
-</Modal>
+<AddPokemon />

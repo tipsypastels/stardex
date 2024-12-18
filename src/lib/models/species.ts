@@ -1,3 +1,4 @@
+import { levenshteinDistance } from "@std/text";
 import DATA from "../data/species.json" with { type: "json" };
 
 export interface Species {
@@ -11,6 +12,8 @@ export interface SpeciesEvos {
   from?: string;
   to?: string[];
 }
+
+export const ALL_SPECIES_NAMES = Object.values(DATA).map((s) => s.name);
 
 export function resolveSpecies(key: keyof typeof DATA): Species;
 export function resolveSpecies(key: string): Species | undefined;
@@ -48,4 +51,22 @@ function followEvolutionLine(species: Species, out: Set<Species>) {
       followEvolutionLine(to, out);
     }
   }
+}
+
+export interface SpeciesSearchResult extends Species {
+  key: string;
+  index: number;
+}
+
+const SPECIES_SEARCH_SPACE: SpeciesSearchResult[] = Object.entries(DATA).map(
+  ([key, species], index) => ({ ...species, key, index }),
+);
+
+export function searchSpecies(query: string): SpeciesSearchResult[] {
+  query = query.toLowerCase();
+  return SPECIES_SEARCH_SPACE.toSorted(
+    (a, b) =>
+      levenshteinDistance(query, a.name.toLowerCase()) -
+      levenshteinDistance(query, b.name.toLowerCase()),
+  );
 }
