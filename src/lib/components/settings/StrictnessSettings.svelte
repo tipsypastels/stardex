@@ -17,7 +17,7 @@
     >
       <input class="hidden" type="radio" name="strictness" onclick={() => strictness.set(s)} />
 
-      <div class="mr-2 text-lime-600" class:opacity-0={!checked}>
+      <div class="mr-4 text-lime-600" class:opacity-0={!checked}>
         <Icon name="badge-check" />
       </div>
 
