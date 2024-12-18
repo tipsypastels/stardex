@@ -1,16 +1,12 @@
 <script lang="ts">
   import Layout from "$lib/components/layout/Layout.svelte";
-  import PokedexEmptyCta from "$lib/components/pokemon/PokedexEmptyCta.svelte";
+  import AddPokemon from "$lib/components/pokemon/add/AddPokemon.svelte";
   import Pokedex from "$lib/components/pokemon/Pokedex.svelte";
-  import { pokemon } from "$lib/state/pokemon";
 </script>
 
 <Layout title="Pokédex">
-  {#if $pokemon.length > 0}
-    <Pokedex />
-  {:else}
-    <PokedexEmptyCta />
-  {/if}
+  <AddPokemon />
+  <Pokedex />
 </Layout>
 
 <button onclick={() => localStorage.removeItem("stardex_pokemon")}>Clear Dex</button>

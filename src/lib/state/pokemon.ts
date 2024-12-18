@@ -11,6 +11,9 @@ export const pokemon = createActions(initial, (store) => {
     add(mon: Pokemon) {
       store.update(($pokemon) => $pokemon.concat(mon));
     },
+    addBatch(mons: Pokemon[]) {
+      store.update(($pokemon) => $pokemon.concat(...mons));
+    },
     swap(i1: number, i2: number) {
       store.update(($pokemon) => {
         const $newPokemon = [...$pokemon];
