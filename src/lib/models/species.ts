@@ -1,10 +1,16 @@
-import DATA from "../data/species.json" with { type: "json" };
+import DATA_UNPROCESSED from "../data/species.json" with { type: "json" };
 
-export interface Species {
+interface SpeciesUnprocessed {
   id: number;
   name: string;
   type: string[];
   evos?: SpeciesEvos;
+}
+
+export interface Species extends SpeciesUnprocessed {
+  key: string;
+  index: number;
+  nameLower: string;
 }
 
 export interface SpeciesEvos {
@@ -12,8 +18,24 @@ export interface SpeciesEvos {
   to?: string[];
 }
 
-export const ALL_SPECIES_ENTRIES = Object.entries(DATA);
-export const ALL_SPECIES_NAMES = Object.values(DATA).map((s) => s.name);
+DATA_UNPROCESSED satisfies Record<string, SpeciesUnprocessed>;
+
+function processEntry([k, v]: [string, SpeciesUnprocessed], i: number): [string, Species] {
+  return [
+    k,
+    {
+      ...v,
+      key: k,
+      index: i,
+      nameLower: v.name.toLowerCase(),
+    } satisfies Species,
+  ];
+}
+
+const DATA_ENTRIES = Object.entries(DATA_UNPROCESSED).map(processEntry);
+const DATA = Object.fromEntries(DATA_ENTRIES) as Record<keyof typeof DATA_UNPROCESSED, Species>;
+
+export const ALL_SPECIES = DATA_ENTRIES.map(([, v]) => v);
 
 export function resolveSpecies(key: keyof typeof DATA): Species;
 export function resolveSpecies(key: string): Species | undefined;

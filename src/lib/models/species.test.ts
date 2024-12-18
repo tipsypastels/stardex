@@ -8,6 +8,9 @@ test("resolvePokemon", () => {
     name: "Bulbasaur",
     type: ["grass", "poison"],
     evos: { to: ["ivysaur"] },
+    key: "bulbasaur",
+    index: 0,
+    nameLower: "bulbasaur",
   } satisfies Species);
 });
 

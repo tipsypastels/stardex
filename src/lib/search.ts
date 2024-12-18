@@ -1,27 +1,14 @@
 import { levenshteinDistance } from "@std/text";
-import { ALL_SPECIES_ENTRIES, type Species } from "./models/species";
+import { ALL_SPECIES, type Species } from "./models/species";
 
-export interface SearchResult {
-  speciesKey: string;
-  species: Species;
-  nameLower: string;
-  index: number;
+export interface SearchResult extends Species {
   distance: number;
 }
-
-const SEARCH_SPACE: Omit<SearchResult, "distance">[] = ALL_SPECIES_ENTRIES.map(
-  ([speciesKey, species], index) => ({
-    speciesKey,
-    species,
-    nameLower: species.name.toLowerCase(),
-    index,
-  }),
-);
 
 export function search(query: string) {
   query = query.toLowerCase();
 
-  const results: SearchResult[] = SEARCH_SPACE.map((result) => ({
+  const results: SearchResult[] = ALL_SPECIES.map((result) => ({
     ...result,
     distance: levenshteinDistance(query, result.nameLower),
   }));

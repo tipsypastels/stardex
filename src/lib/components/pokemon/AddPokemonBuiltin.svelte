@@ -24,7 +24,7 @@
 
 <ol>
   {#each results as result, i}
-    {@const { species } = result}
+    {@const species = result}
     <li class="mb-2 last:mb-0">
       <AddPokemonOption
         name={species.name}
