@@ -5,7 +5,7 @@
   interface Props {
     open: boolean;
     onclose(): void;
-    title: string;
+    title: Snippet;
     children: Snippet;
   }
 
@@ -36,7 +36,7 @@
     <div class="h-[70vh] w-[500px] max-w-full p-8 md:h-[unset]">
       <div class="mb-4 flex border-b-2 border-b-slate-700 pb-4">
         <h1 class="grow text-xl font-bold">
-          {title}
+          {@render title()}
         </h1>
 
         <button class="text-slate-400" aria-label="Close" onclick={() => dialog?.close()}>

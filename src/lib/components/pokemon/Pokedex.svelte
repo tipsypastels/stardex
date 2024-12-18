@@ -49,10 +49,9 @@
   {/each}
 </ol>
 
-<Modal
-  open={editingIdx != null}
-  onclose={() => (editingIdx = undefined)}
-  title={editingMon ? resolvePokemonName(editingMon) : ""}
->
+<Modal open={editingIdx != null} onclose={() => (editingIdx = undefined)}>
+  {#snippet title()}
+    {resolvePokemonName(editingMon!)}
+  {/snippet}
   <pre>{JSON.stringify(editingMon, null, 2)}</pre>
 </Modal>

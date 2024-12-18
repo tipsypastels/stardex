@@ -32,8 +32,9 @@
   {@render children()}
 </main>
 
-<Modal
-  open={$addPokemonModalOpen}
-  onclose={() => addPokemonModalOpen.set(false)}
-  title="Add Pokémon">hi</Modal
->
+<Modal open={$addPokemonModalOpen} onclose={() => addPokemonModalOpen.set(false)}>
+  {#snippet title()}
+    Add Pokémon
+  {/snippet}
+  hi
+</Modal>
