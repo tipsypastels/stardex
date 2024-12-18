@@ -21,6 +21,9 @@ export const pokemon = createActions(initial, (store) => {
         return $newPokemon;
       });
     },
+    clear() {
+      store.set([]);
+    },
   };
 });
 

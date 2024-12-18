@@ -8,5 +8,3 @@
   <AddPokemon />
   <Pokedex />
 </Layout>
-
-<button onclick={() => localStorage.removeItem("stardex_pokemon")}>Clear Dex</button>
