@@ -1,9 +1,9 @@
 <script lang="ts">
   import { pokemon } from "$lib/state/pokemon";
   import TypeDots from "../common/TypeDots.svelte";
-  import Modal from "../layout/Modal.svelte";
   import { resolvePokemonName, resolvePokemonTypes } from "$lib/models/pokemon";
   import PokemonIcon from "./icon/PokemonIcon.svelte";
+  import EditPokemonModal from "./edit/EditPokemonModal.svelte";
 
   let editingIdx = $state<number | undefined>();
   let editingMon = $derived(editingIdx != null ? $pokemon[editingIdx] : undefined);
@@ -49,9 +49,4 @@
   {/each}
 </ol>
 
-<Modal open={editingIdx != null} onclose={() => (editingIdx = undefined)}>
-  {#snippet title()}
-    {resolvePokemonName(editingMon!)}
-  {/snippet}
-  <pre>{JSON.stringify(editingMon, null, 2)}</pre>
-</Modal>
+<EditPokemonModal index={editingIdx} mon={editingMon} close={() => (editingIdx = undefined)} />
