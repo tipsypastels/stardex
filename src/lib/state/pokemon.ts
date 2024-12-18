@@ -1,4 +1,5 @@
-import type { Pokemon } from "$lib/models/pokemon";
+import { resolvePokemonKey, type Pokemon } from "$lib/models/pokemon";
+import { derived } from "svelte/store";
 import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
 
@@ -19,5 +20,10 @@ export const pokemon = createActions(initial, (store) => {
     },
   };
 });
+
+export const pokemonInclusion = derived(
+  pokemon,
+  ($pokemon) => new Map($pokemon.map((mon, i) => [resolvePokemonKey(mon), i])),
+);
 
 export const pokemonPersister = storage.persister(pokemon);

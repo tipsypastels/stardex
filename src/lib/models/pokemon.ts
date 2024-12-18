@@ -5,6 +5,7 @@ export type PokemonRecommendationBehaviour = "filler" | "exempt";
 export type Pokemon = PokemonCustom | PokemonSpecies;
 
 export interface PokemonCustom {
+  key: string;
   name: string;
   type: string[];
   rec?: PokemonRecommendationBehaviour;
@@ -14,6 +15,10 @@ export interface PokemonSpecies {
   species: Species;
   type?: string[];
   rec?: PokemonRecommendationBehaviour;
+}
+
+export function resolvePokemonKey(pokemon: Pokemon) {
+  return isPokemonCustom(pokemon) ? pokemon.key : pokemon.species.key;
 }
 
 export function resolvePokemonName(pokemon: Pokemon) {
