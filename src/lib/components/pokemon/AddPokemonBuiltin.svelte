@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { searchSpecies } from "$lib/models/species";
+  import { search } from "$lib/search";
   import TypeName from "../common/TypeName.svelte";
   import AddPokemonOption from "./AddPokemonOption.svelte";
   import SpeciesIcon from "./SpeciesIcon.svelte";
@@ -8,30 +8,31 @@
     query: string;
   }
 
-  const MAX_RESULTS = 5;
+  const MAX_RESULTS = 3;
 
   function runSearch() {
     if (query === "") return [];
-    return searchSpecies(query).slice(0, MAX_RESULTS);
+    return search(query).slice(0, MAX_RESULTS);
   }
 
   let { query = $bindable() }: Props = $props();
   let results = $derived(runSearch());
-  let noExactMatch = $derived(!results.find((r) => r.name.toLowerCase() === query));
+  let exactMatch = $derived(results[0]?.distance === 0);
 </script>
 
 <ol>
   {#each results as result, i}
+    {@const { species } = result}
     <li class="mb-2 last:mb-0">
       <AddPokemonOption
-        name={result.name}
-        icon={result}
-        aria-label="Add {result.name}"
+        name={species.name}
+        icon={species}
+        aria-label="Add {species.name}"
         onclick={() => {}}
       >
         {#snippet subtitle()}
           <ul class="flex text-base">
-            {#each result.type as type}
+            {#each species.type as type}
               <li class="mr-2">
                 <TypeName for={type} />
               </li>
@@ -42,7 +43,7 @@
     </li>
   {/each}
 
-  {#if query && noExactMatch}
+  {#if query && !exactMatch}
     <li>
       <button
         class="flex w-full cursor-pointer items-center text-left"

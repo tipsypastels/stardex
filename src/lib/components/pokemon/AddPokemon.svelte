@@ -4,7 +4,7 @@
   import AddPokemonBuiltin from "./AddPokemonBuiltin.svelte";
   import AddPokemonCustom from "./AddPokemonCustom.svelte";
 
-  let query = $state("bu");
+  let query = $state("");
   let customMonName = $state<string | undefined>();
 </script>
 
