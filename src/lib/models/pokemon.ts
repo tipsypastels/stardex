@@ -1,7 +1,7 @@
 import type { Species } from "./species";
 import { resolveType, type Type } from "./type";
 
-export type PokemonRecommendationBehaviour = "filler" | "exempt";
+export type PokemonRecommendationBehaviour = "filler" | "exempt" | undefined;
 export type Pokemon = PokemonCustom | PokemonSpecies;
 
 export interface PokemonCustom {

@@ -14,7 +14,7 @@
 
 <Modal open={index != null} onclose={close}>
   {#snippet title()}
-    Editing Pokémon '{resolvePokemonName(mon!)}'
+    Edit {resolvePokemonName(mon!)}
   {/snippet}
   <EditPokemon index={index!} mon={mon!} {close} />
 </Modal>
