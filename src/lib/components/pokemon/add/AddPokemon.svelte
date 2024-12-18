@@ -1,7 +1,7 @@
 <script lang="ts">
   import { ALL_SPECIES, resolveEvolutionLine, type Species } from "$lib/models/species";
   import { levenshteinDistance } from "@std/text";
-  import SpeciesIcon from "../SpeciesIcon.svelte";
+  import SpeciesIcon from "../icon/SpeciesIcon.svelte";
   import { pokemon, pokemonInclusion } from "$lib/state/pokemon";
   import AddCustom from "./AddCustom.svelte";
   import type { Pokemon } from "$lib/models/pokemon";

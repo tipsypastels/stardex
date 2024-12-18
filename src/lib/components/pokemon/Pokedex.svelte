@@ -3,7 +3,7 @@
   import TypeDots from "../common/TypeDots.svelte";
   import Modal from "../layout/Modal.svelte";
   import { resolvePokemonName, resolvePokemonTypes } from "$lib/models/pokemon";
-  import PokemonIcon from "./PokemonIcon.svelte";
+  import PokemonIcon from "./icon/PokemonIcon.svelte";
 
   let editingIdx = $state<number | undefined>();
   let editingMon = $derived(editingIdx != null ? $pokemon[editingIdx] : undefined);
