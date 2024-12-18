@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Pokemon } from "$lib/models/pokemon";
-  import { BUILTIN_TYPE_KEYS, resolveType } from "$lib/models/type";
   import { capitalize } from "$lib/utils/strings";
   import { onMount } from "svelte";
+  import { TYPE_SUGGESTIONS_LIST } from "../util/TypeSuggestions.svelte";
 
   interface Props {
     query: string;
@@ -53,7 +53,7 @@
       bind:value={type1}
       bind:this={type1Input}
       onkeyup={handleKeyUp}
-      list="custom_mon_builtin_types"
+      list={TYPE_SUGGESTIONS_LIST}
     />
 
     and
@@ -62,7 +62,7 @@
       class="w-20 border-0 border-b-2 border-b-lime-600"
       bind:value={type2}
       onkeyup={handleKeyUp}
-      list="custom_mon_builtin_types"
+      list={TYPE_SUGGESTIONS_LIST}
     />
 
     .
@@ -77,12 +77,3 @@
     <button class="block text-red-500 underline" onclick={cancel}>Cancel</button>
   </div>
 </div>
-
-<datalist id="custom_mon_builtin_types">
-  {#each BUILTIN_TYPE_KEYS as typeKey}
-    {@const type = resolveType(typeKey)}
-    <option value={typeKey}>
-      {type.name}
-    </option>
-  {/each}
-</datalist>
