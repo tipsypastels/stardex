@@ -1,11 +1,13 @@
 <script lang="ts">
   import { search } from "$lib/search";
+  import { pokemon } from "$lib/state/pokemon";
   import TypeName from "../common/TypeName.svelte";
   import AddPokemonOption from "./AddPokemonOption.svelte";
   import SpeciesIcon from "./SpeciesIcon.svelte";
 
   interface Props {
     query: string;
+    onclose(): void;
   }
 
   const MAX_RESULTS = 3;
@@ -15,7 +17,7 @@
     return search(query).slice(0, MAX_RESULTS);
   }
 
-  let { query = $bindable() }: Props = $props();
+  let { query = $bindable(), onclose }: Props = $props();
   let results = $derived(runSearch());
   let exactMatch = $derived(results[0]?.distance === 0);
 </script>
@@ -28,7 +30,11 @@
         name={species.name}
         icon={species}
         aria-label="Add {species.name}"
-        onclick={() => {}}
+        onclick={() => {
+          query = "";
+          pokemon.add({ species });
+          onclose();
+        }}
       >
         {#snippet subtitle()}
           <ul class="flex text-base">

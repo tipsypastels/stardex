@@ -6,9 +6,13 @@
 
   let query = $state("");
   let customMonName = $state<string | undefined>();
+
+  function onclose() {
+    addPokemonModalOpen.set(false);
+  }
 </script>
 
-<Modal open={$addPokemonModalOpen} onclose={() => addPokemonModalOpen.set(false)}>
+<Modal open={$addPokemonModalOpen} {onclose}>
   {#snippet title()}
     Add Pokémon
   {/snippet}
@@ -19,6 +23,6 @@
   {#if customMonName}
     <AddPokemonCustom />
   {:else}
-    <AddPokemonBuiltin bind:query />
+    <AddPokemonBuiltin bind:query {onclose} />
   {/if}
 </Modal>
