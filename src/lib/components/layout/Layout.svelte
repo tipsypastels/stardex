@@ -4,8 +4,8 @@
   import Logo from "./Logo.svelte";
   import Modal from "./Modal.svelte";
   import { addPokemonModalOpen } from "$lib/state/add_pokemon_modal";
-  import PokemonAddIconButton from "../pokemon/PokemonAddIconButton.svelte";
-  import PokemonAddTextButton from "../pokemon/PokemonAddTextButton.svelte";
+  import AddPokemonBubble from "../pokemon/AddPokemonBubble.svelte";
+  import AddPokemonButton from "../pokemon/AddPokemonButton.svelte";
 
   interface Props {
     title: string;
@@ -16,14 +16,14 @@
 </script>
 
 <Logo />
-<PokemonAddIconButton />
+<AddPokemonBubble />
 
 <div class="mb-8 flex items-center">
   <h1 class="grow text-center text-4xl font-bold md:text-left">
     {title}
   </h1>
 
-  <PokemonAddTextButton />
+  <AddPokemonButton />
 </div>
 
 <Nav />
