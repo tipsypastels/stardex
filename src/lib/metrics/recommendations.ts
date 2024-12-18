@@ -23,9 +23,6 @@ export function createRecommendations(
   const own = withEmptiesAndSortedByTypeName(ownAllot);
   const against = withEmptiesAndSortedByTypeName(againstAllot);
 
-  console.log("own", own);
-  console.log("against", against);
-
   for (let i = 0; i < own.length; i++) {
     const ownAllotedType = own[i];
     const againstAllotedType = against[i];
