@@ -8,10 +8,10 @@ export const PAGE_LINKS = {
     href: `${base}/`,
     icon: "table-columns",
   },
-  files: {
-    name: "Files",
-    href: `${base}/files`,
-    icon: "files",
+  export: {
+    name: "Export",
+    href: `${base}/export`,
+    icon: "download",
   },
   settings: {
     name: "Settings",

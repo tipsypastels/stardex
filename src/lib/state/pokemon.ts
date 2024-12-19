@@ -80,6 +80,9 @@ export const pokemon = createActions(initial, (store) => {
         return $newPokemon;
       });
     },
+    set(mons: Pokemon[]) {
+      store.set(mons);
+    },
     clear() {
       store.set([]);
     },
