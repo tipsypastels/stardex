@@ -7,12 +7,15 @@
   {#each $recommendations as rec}
     {@const { type } = rec}
     <li class="flex items-center border-t-[1px] border-t-slate-300 p-4 first:border-t-0">
-      <div class="mr-4 w-[45px] text-4xl" style:color={type.color}>
+      <div class="mr-4 hidden w-[45px] text-4xl md:block" style:color={type.color}>
         <Icon name={type.icon} />
       </div>
 
       <div class="grow">
         <h2 style:color={type.color}>
+          <span class="md:hidden">
+            <Icon name={type.icon} />
+          </span>
           {type.name}
         </h2>
 
