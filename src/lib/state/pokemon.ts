@@ -1,7 +1,14 @@
-import { resolvePokemonKey, type Pokemon } from "$lib/models/pokemon";
+import {
+  isPokemonCustom,
+  resolvePokemonKey,
+  resolvePokemonTypeKeys,
+  type Pokemon,
+  type PokemonSpecies,
+} from "$lib/models/pokemon";
 import { derived } from "svelte/store";
 import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
+import { areArraysEqual } from "$lib/utils/arrays";
 
 const storage = createStorage<Pokemon[]>("stardex_pokemon");
 const initial: Pokemon[] = storage.initial ?? [];
@@ -13,6 +20,23 @@ export const pokemon = createActions(initial, (store) => {
     },
     addBatch(mons: Pokemon[]) {
       store.update(($pokemon) => $pokemon.concat(...mons));
+    },
+    setType(monIndex: number, typeIndex: number, typeKey: string) {
+      store.update(($pokemon) => {
+        const $newPokemon = [...$pokemon];
+        const mon = $newPokemon[monIndex];
+        const typeKeys = resolvePokemonTypeKeys(mon);
+        typeKeys[typeIndex] = typeKey;
+        const newMon = { ...mon, type: typeKeys };
+
+        if (!isPokemonCustom(mon) && areArraysEqual(typeKeys, mon.species.type)) {
+          console.log("resetting", typeKeys);
+          delete (newMon as PokemonSpecies).type;
+        }
+
+        $newPokemon[monIndex] = newMon;
+        return $newPokemon;
+      });
     },
     setExclude(index: number, exclude: boolean) {
       store.update(($pokemon) => {
