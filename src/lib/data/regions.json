@@ -2,46 +2,136 @@
   "kanto": {
     "name": "Kanto",
     "icon": "trees",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "johto": {
     "name": "Johto",
     "icon": "vihara",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "hoenn": {
     "name": "Hoenn",
     "icon": "wave",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "sinnoh": {
     "name": "Sinnoh",
     "icon": "mountains",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "unova": {
     "name": "Unova",
     "icon": "city",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "kalos": {
     "name": "Kalos",
     "icon": "baguette",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "alola": {
     "name": "Alola",
     "icon": "island-tropical",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "galar": {
     "name": "Galar",
     "icon": "fort",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   },
   "paldea": {
     "name": "Paldea",
     "icon": "lighthouse",
-    "pokemon": ["bulbasaur"]
+    "pokemon": [
+      "bulbasaur",
+      "ivysaur",
+      "venusaur",
+      "charmander",
+      "charmeleon",
+      "charizard",
+      "squirtle",
+      "wartortle",
+      "blastoise"
+    ]
   }
 }

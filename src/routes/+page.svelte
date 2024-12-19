@@ -7,6 +7,7 @@
   import Recommendations from "$lib/components/pokemon/Recommendations.svelte";
   import TypePieChart from "$lib/components/pokemon/util/TypePieChart.svelte";
   import { pokemonAllotment } from "$lib/state/metrics";
+  import { pokemon } from "$lib/state/pokemon";
   import { regions } from "$lib/state/regions";
 </script>
 
@@ -16,9 +17,11 @@
     <Pokedex />
   </Section>
 
-  <Section id="editor_types" title="Types">
-    <TypePieChart allotment={$pokemonAllotment} />
-  </Section>
+  {#if $pokemon.length > 0}
+    <Section id="editor_types" title="Types">
+      <TypePieChart allotment={$pokemonAllotment} />
+    </Section>
+  {/if}
 
   <Section id="editor_recs" title="Recommendations">
     {#if $regions.size > 0}
