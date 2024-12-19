@@ -25,6 +25,11 @@
           <Icon name="thumbs-down" />
           Too Many
         </div>
+      {:else}
+        <div class="font-bold text-lime-600">
+          <Icon name="check" />
+          All Good
+        </div>
       {/if}
     </li>
   {/each}
