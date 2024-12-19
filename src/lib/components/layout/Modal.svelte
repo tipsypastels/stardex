@@ -31,7 +31,7 @@
   class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center bg-black/30 lg:items-center"
   onclick={handleClick}
 >
-  <div class="flex h-[80vh] w-[500px] max-w-full flex-col rounded-md bg-white p-8 lg:h-[unset]">
+  <div class="flex h-[60vh] w-[500px] max-w-full flex-col rounded-md bg-white p-8 lg:h-[unset]">
     <div class="mb-4 flex border-b-2 border-b-slate-700 pb-4">
       <h1 class="grow text-xl font-bold">
         {@render title()}
