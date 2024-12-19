@@ -46,11 +46,9 @@
   let elem: HTMLDivElement;
 
   async function copy() {
-    elem.focus();
     const item = new ClipboardItem({ "text/html": html });
     await navigator.clipboard.write([item]);
     justCopied = true;
-    elem.blur();
   }
 </script>
 
