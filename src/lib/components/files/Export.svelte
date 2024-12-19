@@ -57,7 +57,7 @@
 <div class="relative">
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div
-    class="border-2 border-slate-300 p-4"
+    class="overflow-x-scroll border-2 border-slate-300 p-4"
     bind:this={elem}
     contenteditable
     spellcheck="false"
@@ -67,7 +67,7 @@
   </div>
 
   {#if justCopied}
-    <div class="absolute right-4 top-4 font-bold text-lime-600">
+    <div class="absolute right-4 top-4 rounded-lg bg-lime-600 px-4 py-2 font-bold text-white">
       <Icon name="check" />
       Copied
     </div>
