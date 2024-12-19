@@ -97,6 +97,7 @@
       e.preventDefault();
       queryInput.focus();
     });
+    return () => hotkeys.unbind("a");
   });
 </script>
 
