@@ -20,7 +20,7 @@
       return;
     }
 
-    const typeKey = undefinedIfEmpty(value);
+    const typeKey = undefinedIfEmpty(value.toLowerCase());
     pokemon.setType(index, typeIndex, typeKey);
   }
 

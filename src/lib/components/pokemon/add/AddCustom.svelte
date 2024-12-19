@@ -17,7 +17,9 @@
       return;
     }
 
-    const type = hasSignificantType2 ? [type1, type2] : [type1];
+    const type = hasSignificantType2
+      ? [type1.toLowerCase(), type2.toLowerCase()]
+      : [type1.toLowerCase()];
     submit({ key, name, type });
   }
 
