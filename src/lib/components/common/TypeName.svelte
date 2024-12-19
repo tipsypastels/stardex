@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { resolveType } from "$lib/models/type";
+  import { resolveType, type Type } from "$lib/models/type";
   import Icon from "./Icon.svelte";
 
   interface Props {
-    for: string;
+    for: string | Type;
   }
 
   let props: Props = $props();
-  let type = $derived(resolveType(props.for));
+  let type = $derived(typeof props.for === "string" ? resolveType(props.for) : props.for);
 </script>
 
 <span class="whitespace-nowrap" style="color: {type.color}">

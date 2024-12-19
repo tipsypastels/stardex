@@ -2,7 +2,6 @@
   import {
     getStrictnessDescription,
     getStrictnessName,
-    type Strictness,
     STRICTNESSES,
   } from "$lib/models/strictness";
   import { strictness } from "$lib/state/strictness";
