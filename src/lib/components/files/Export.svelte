@@ -55,10 +55,8 @@
 <div class="relative">
   <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
   <div
-    class="overflow-x-scroll border-2 border-slate-300 p-4"
+    class="cursor-pointer overflow-x-scroll border-2 border-slate-300 p-4"
     bind:this={elem}
-    contenteditable
-    spellcheck="false"
     onclick={copy}
   >
     {@html html}
