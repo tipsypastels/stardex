@@ -17,12 +17,12 @@
 
       {#if rec.change === "add"}
         <div class="font-bold text-red-500">
-          <Icon name="thumbs-up" />
+          <Icon name="square-plus" />
           Too Few
         </div>
       {:else if rec.change === "remove"}
         <div class="font-bold text-red-500">
-          <Icon name="thumbs-down" />
+          <Icon name="square-minus" />
           Too Many
         </div>
       {:else}
