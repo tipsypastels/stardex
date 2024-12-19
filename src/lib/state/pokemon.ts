@@ -21,20 +21,39 @@ export const pokemon = createActions(initial, (store) => {
     addBatch(mons: Pokemon[]) {
       store.update(($pokemon) => $pokemon.concat(...mons));
     },
-    setType(monIndex: number, typeIndex: number, typeKey: string) {
+    setType(monIndex: number, typeIndex: number, typeKey: string | undefined) {
       store.update(($pokemon) => {
         const $newPokemon = [...$pokemon];
         const mon = $newPokemon[monIndex];
-        const typeKeys = resolvePokemonTypeKeys(mon);
-        typeKeys[typeIndex] = typeKey;
+        const typeKeys = [...resolvePokemonTypeKeys(mon)];
+
+        if (typeKey) {
+          typeKeys[typeIndex] = typeKey;
+        } else {
+          typeKeys.splice(typeIndex, 1);
+        }
+
         const newMon = { ...mon, type: typeKeys };
 
         if (!isPokemonCustom(mon) && areArraysEqual(typeKeys, mon.species.type)) {
-          console.log("resetting", typeKeys);
           delete (newMon as PokemonSpecies).type;
         }
 
         $newPokemon[monIndex] = newMon;
+        return $newPokemon;
+      });
+    },
+    resetType(index: number) {
+      store.update(($pokemon) => {
+        const $newPokemon = [...$pokemon];
+        const mon = $newPokemon[index];
+
+        if (isPokemonCustom(mon)) {
+          throw new Error("Can't call resetType() on a custom mon");
+        }
+
+        const newMon = { ...mon, type: mon.species.type };
+        $newPokemon[index] = newMon;
         return $newPokemon;
       });
     },

@@ -1,6 +1,8 @@
 <script lang="ts">
-  import { resolvePokemonTypeKeys, type Pokemon } from "$lib/models/pokemon";
+  import { isPokemonCustom, resolvePokemonTypeKeys, type Pokemon } from "$lib/models/pokemon";
   import { pokemon } from "$lib/state/pokemon";
+  import { areArraysEqual } from "$lib/utils/arrays";
+  import { undefinedIfEmpty } from "$lib/utils/strings";
 
   interface Props {
     index: number;
@@ -14,15 +16,47 @@
   let customType1 = $state(initialTypeKeys[0] ?? "");
   let customType2 = $state(initialTypeKeys[1] ?? "");
 
-  function handleBlur(value: string, index: number) {}
+  function handleBlur(value: string, typeIndex: number) {
+    if (value === "" && index === 0) {
+      return;
+    }
+
+    const typeKey = undefinedIfEmpty(value);
+    pokemon.setType(index, typeIndex, typeKey);
+  }
+
+  function resetType() {
+    pokemon.resetType(index);
+    const typeKeys = resolvePokemonTypeKeys(mon);
+    customType1 = typeKeys[0] ?? "";
+    customType2 = typeKeys[1] ?? "";
+  }
 </script>
 
 <section class="mb-4">
   <h2 class="font-bold">Types</h2>
 
-  <input class="w-20 border-0 border-b-2 border-b-slate-600" bind:value={customType1} />
-  and
-  <input class="w-20 border-0 border-b-2 border-b-slate-600" bind:value={customType2} />
+  <div>
+    <input
+      class="w-20 border-0 border-b-2 border-b-slate-600"
+      bind:value={customType1}
+      onblur={() => handleBlur(customType1, 0)}
+    />
+    and
+    <input
+      class="w-20 border-0 border-b-2 border-b-slate-600"
+      bind:value={customType2}
+      onblur={() => handleBlur(customType2, 1)}
+    />
+  </div>
+
+  {#if !isPokemonCustom(mon) && !areArraysEqual(resolvePokemonTypeKeys(mon), mon.species.type)}
+    <div class="mt-2">
+      <button class="text-base text-lime-600 underline" onclick={resetType}
+        >Reset Customized Type</button
+      >
+    </div>
+  {/if}
 </section>
 
 <section>
