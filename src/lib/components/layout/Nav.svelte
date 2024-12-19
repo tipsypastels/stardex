@@ -5,7 +5,7 @@
 </script>
 
 <nav class="mb-8 border-y-2 border-y-slate-300">
-  <ul class="grid grid-cols-[1fr] gap-4 py-2 md:grid-cols-4">
+  <ul class="grid grid-cols-[1fr] gap-4 py-2 md:grid-cols-2">
     {#each Object.values(PAGE_LINKS) as link}
       {@const active = page.url.pathname === link.href}
       <li>
