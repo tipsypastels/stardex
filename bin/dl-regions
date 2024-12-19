@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+// @ts-check
+
+/**
+ * @typedef {{
+ *  pokemon_entries: { pokemon_species: { name: string }}[]
+ * }} Region
+ *
+ * @typedef {{
+ *  name: string;
+ *  key: string;
+ *  icon: string;
+ *  pokemon: string[];
+ * }} ResolvedRegion
+ */
+
+const REGIONS_MAP = {
+  kanto: { dexId: 2, icon: "trees" },
+  johto: { dexId: 7, icon: "vihara" },
+  hoenn: { dexId: 15, icon: "wave" },
+  sinnoh: { dexId: 6, icon: "mountains" },
+  unova: { dexId: 7, icon: "city" },
+  // kalos-central
+  kalos: { dexId: 12, icon: "baguette" },
+  alola: { dexId: 21, icon: "island-tropical" },
+  galar: { dexId: 27, icon: "fort" },
+  paldea: { dexId: 31, icon: "lighthouse" },
+};
+
+async function main() {
+  /** @type {Promise<ResolvedRegion>[]} */
+  const promises = [];
+
+  for (const [key, data] of Object.entries(REGIONS_MAP)) {
+    promises.push(resolve(key, data));
+  }
+
+  const resolved = await Promise.all(promises);
+  /** @type {Record<string, Omit<ResolvedRegion, 'key'>>} */
+  const out = {};
+
+  for (const { key, ...entry } of resolved) {
+    out[key] = entry;
+  }
+
+  console.log(JSON.stringify(out, null, 2));
+}
+
+/**
+ *
+ * @param {string} key
+ * @param {typeof REGIONS_MAP[keyof typeof REGIONS_MAP]} data
+ * @returns {Promise<ResolvedRegion>}
+ */
+async function resolve(key, { icon, dexId }) {
+  const regionReq = await fetch(`https://pokeapi.co/api/v2/pokedex/${dexId}`);
+  /** @type {Region} */
+  const region = await regionReq.json();
+  const name = key[0].toUpperCase() + key.slice(1);
+  const pokemon = region.pokemon_entries.map((e) => e.pokemon_species.name);
+
+  return { key, name, icon, pokemon };
+}
+
+main().catch((e) => {
+  console.error(e);
+});

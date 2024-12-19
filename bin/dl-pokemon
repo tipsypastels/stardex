@@ -37,11 +37,11 @@
  *  name: string,
  *  type: string[],
  *  evos?: { from?: string, to?: string[] }
- * }} Resolved
+ * }} ResolvedMon
  */
 
 async function main() {
-  /** @type {Promise<Resolved | null>[]} */
+  /** @type {Promise<ResolvedMon | null>[]} */
   const promises = [];
 
   let segment = await fetchSegment("https://pokeapi.co/api/v2/pokemon-species");
@@ -58,7 +58,7 @@ async function main() {
   const resolved = await Promise.all(promises);
   resolved.sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0));
 
-  /** @type {Record<string, Omit<Resolved, 'key'>>} */
+  /** @type {Record<string, Omit<ResolvedMon, 'key'>>} */
   let out = {};
 
   for (const maybeEntry of resolved) {
@@ -74,13 +74,13 @@ async function main() {
 }
 
 /**
- * @param {Promise<Resolved | null>[]} promises
+ * @param {Promise<ResolvedMon | null>[]} promises
  * @param {Segment} segment
  */
 function fillSegment(promises, segment) {
   /**
    * @param {string} url
-   * @returns {Promise<Resolved | null>}
+   * @returns {Promise<ResolvedMon | null>}
    */
   async function resolve(url) {
     const species = await fetchPokemonSpecies(url);
@@ -91,7 +91,7 @@ function fillSegment(promises, segment) {
     const key = species.name;
     const name =
       species.names?.find((n) => n.language.name === "en")?.name ?? capitalize(species.name);
-    /** @type {Resolved['evos']} */
+    /** @type {ResolvedMon['evos']} */
     let evos;
 
     if (species.evolves_from_species?.name) {

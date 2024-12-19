@@ -11,9 +11,16 @@
         <Icon name={type.icon} />
       </div>
 
-      <h2 class="grow" style:color={type.color}>
-        {type.name}
-      </h2>
+      <div class="grow">
+        <h2 style:color={type.color}>
+          {type.name}
+        </h2>
+
+        <div class="text-base text-gray-600">
+          {(rec.ownRatio * 100).toFixed(2)}% —
+          {(rec.againstRatio * 100).toFixed(2)}% of compared.
+        </div>
+      </div>
 
       {#if rec.change === "add"}
         <div class="font-bold text-red-500">
