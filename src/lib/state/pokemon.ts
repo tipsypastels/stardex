@@ -71,6 +71,13 @@ export const pokemon = createActions(initial, (store) => {
         return $newPokemon;
       });
     },
+    remove(index: number) {
+      store.update(($pokemon) => {
+        const $newPokemon = [...$pokemon];
+        $newPokemon.splice(index, 1);
+        return $newPokemon;
+      });
+    },
     clear() {
       store.set([]);
     },

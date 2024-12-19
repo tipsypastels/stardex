@@ -1,54 +1,53 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import { onMount, type Snippet } from "svelte";
+  import { portal } from "$lib/utils/portal";
+  import hotkeys from "hotkeys-js";
   import Icon from "../common/Icon.svelte";
 
   interface Props {
-    open: boolean;
-    onclose(): void;
     title: Snippet;
     children: Snippet;
+    footer?: Snippet;
+    close(): void;
   }
 
-  let { open, onclose, title, children }: Props = $props();
-  let dialog = $state<HTMLDialogElement>();
+  let { title, children, footer, close }: Props = $props();
 
-  $effect(() => {
-    if (open) {
-      dialog?.showModal();
-    } else {
-      dialog?.close();
+  function handleClick(e: MouseEvent) {
+    if ((e.target as HTMLElement)?.parentNode === document.body) {
+      close();
     }
-  });
-
-  $effect(() => {
-    document.body.classList[open ? "add" : "remove"]("overflow-hidden");
-  });
-
-  function onclick(e: MouseEvent) {
-    if (e.target === dialog) dialog.close();
   }
+
+  onMount(() => {
+    hotkeys("esc", close);
+    return () => hotkeys.unbind("esc");
+  });
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
-<dialog
-  class="mb-0 hidden max-w-full items-center justify-center shadow-lg shadow-slate-400 open:block md:mb-auto"
-  bind:this={dialog}
-  {onclose}
-  {onclick}
+<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+<div
+  use:portal
+  class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center bg-black/30 lg:items-center"
+  onclick={handleClick}
 >
-  {#if open}
-    <div class="h-[70vh] w-[500px] max-w-full p-8 md:h-[unset]">
-      <div class="mb-4 flex border-b-2 border-b-slate-700 pb-4">
-        <h1 class="grow text-xl font-bold">
-          {@render title()}
-        </h1>
+  <div class="flex h-[80vh] w-[500px] max-w-full flex-col rounded-md bg-white p-8 lg:h-[unset]">
+    <div class="mb-4 flex border-b-2 border-b-slate-700 pb-4">
+      <h1 class="grow text-xl font-bold">
+        {@render title()}
+      </h1>
 
-        <button class="text-slate-400" aria-label="Close" onclick={() => dialog?.close()}>
-          <Icon name="times" />
-        </button>
-      </div>
+      <button class="text-slate-400" aria-label="Close" onclick={close}>
+        <Icon name="times" />
+      </button>
+    </div>
 
+    <div class="grow">
       {@render children()}
     </div>
-  {/if}
-</dialog>
+
+    <div>
+      {@render footer?.()}
+    </div>
+  </div>
+</div>

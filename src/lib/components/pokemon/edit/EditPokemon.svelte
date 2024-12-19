@@ -1,7 +1,6 @@
 <script lang="ts">
   import { isPokemonCustom, resolvePokemonTypeKeys, type Pokemon } from "$lib/models/pokemon";
   import { pokemon } from "$lib/state/pokemon";
-  import { areArraysEqual } from "$lib/utils/arrays";
   import { undefinedIfEmpty } from "$lib/utils/strings";
 
   interface Props {
@@ -10,7 +9,7 @@
     close(): void;
   }
 
-  let { index, mon }: Props = $props();
+  let { index, mon, close }: Props = $props();
   const initialTypeKeys = resolvePokemonTypeKeys(mon);
 
   let customType1 = $state(initialTypeKeys[0] ?? "");
@@ -50,7 +49,7 @@
     />
   </div>
 
-  {#if !isPokemonCustom(mon) && !areArraysEqual(resolvePokemonTypeKeys(mon), mon.species.type)}
+  {#if !isPokemonCustom(mon) && mon.type}
     <div class="mt-2">
       <button class="text-base text-lime-600 underline" onclick={resetType}
         >Reset Customized Type</button
@@ -59,8 +58,8 @@
   {/if}
 </section>
 
-<section>
-  <h2 class="font-bold">Behaviour</h2>
+<section class="mb-4">
+  <h2 class="mb-2 font-bold">Behaviour</h2>
 
   <label class="flex items-center justify-center md:justify-normal">
     <input
