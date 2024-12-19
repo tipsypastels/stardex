@@ -6,10 +6,9 @@
   interface Props {
     index: number;
     mon: Pokemon;
-    close(): void;
   }
 
-  let { index, mon, close }: Props = $props();
+  let { index, mon }: Props = $props();
   const initialTypeKeys = resolvePokemonTypeKeys(mon);
 
   let customType1 = $state(initialTypeKeys[0] ?? "");

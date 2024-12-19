@@ -29,6 +29,6 @@
         <button class="text-lime-600 underline" onclick={close}>Close</button>
       </section>
     {/snippet}
-    <EditPokemon {index} {mon} {close} />
+    <EditPokemon {index} {mon} />
   </Modal>
 {/if}

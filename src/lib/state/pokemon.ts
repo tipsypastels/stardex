@@ -52,7 +52,9 @@ export const pokemon = createActions(initial, (store) => {
           throw new Error("Can't call resetType() on a custom mon");
         }
 
-        const newMon = { ...mon, type: mon.species.type };
+        const newMon: PokemonSpecies = { ...mon };
+        delete newMon.type;
+
         $newPokemon[index] = newMon;
         return $newPokemon;
       });
