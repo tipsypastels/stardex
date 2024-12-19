@@ -1,0 +1,187 @@
+#!/usr/bin/env node
+// @ts-check
+
+/**
+ * @typedef {{
+ *  count: number,
+ *  next: string | null,
+ *  results: { url: string }[],
+ * }} Segment
+ *
+ * @typedef {{
+ *  id: number,
+ *  name: string,
+ *  names?: { name: string, language: { name: string } }[]
+ *  evolution_chain?:  { url: string }
+ *  evolves_from_species?: { name: string }
+ * }} PokemonSpecies
+ *
+ * @typedef {{
+ *  id: number,
+ *  is_default: boolean,
+ *  types: { type: { name: string } }[]
+ * }} PokemonForm
+ *
+ * @typedef {{
+ *  chain: PokemonEvosEntry
+ * }} PokemonEvos
+ *
+ * @typedef {{
+ *  species: { name: string }
+ *  evolves_to?: PokemonEvosEntry[]
+ * }} PokemonEvosEntry
+ *
+ * @typedef {{
+ *  id: number,
+ *  key: string,
+ *  name: string,
+ *  type: string[],
+ *  evos?: { from?: string, to?: string[] }
+ * }} Resolved
+ */
+
+async function main() {
+  /** @type {Promise<Resolved | null>[]} */
+  const promises = [];
+
+  let segment = await fetchSegment("https://pokeapi.co/api/v2/pokemon-species");
+  let segmentIndex = 1;
+
+  while (true) {
+    fillSegment(promises, segment);
+
+    if (!segment.next) break;
+    segment = await fetchSegment(segment.next);
+    segmentIndex++;
+  }
+
+  const resolved = await Promise.all(promises);
+  resolved.sort((a, b) => (a?.id ?? 0) - (b?.id ?? 0));
+
+  /** @type {Record<string, Omit<Resolved, 'key'>>} */
+  let out = {};
+
+  for (const maybeEntry of resolved) {
+    if (!maybeEntry) {
+      continue;
+    }
+
+    const { key, ...entry } = maybeEntry;
+    out[key] = entry;
+  }
+
+  console.log(JSON.stringify(out, null, 2));
+}
+
+/**
+ * @param {Promise<Resolved | null>[]} promises
+ * @param {Segment} segment
+ */
+function fillSegment(promises, segment) {
+  /**
+   * @param {string} url
+   * @returns {Promise<Resolved | null>}
+   */
+  async function resolve(url) {
+    const species = await fetchPokemonSpecies(url);
+    const form = await fetchPokemonDefaultForm(species);
+    const type = form.types.map((t) => t.type.name);
+
+    const { id } = species;
+    const key = species.name;
+    const name =
+      species.names?.find((n) => n.language.name === "en")?.name ?? capitalize(species.name);
+    /** @type {Resolved['evos']} */
+    let evos;
+
+    if (species.evolves_from_species?.name) {
+      evos ??= {};
+      evos.from = species.evolves_from_species.name;
+    }
+
+    if (species.evolution_chain?.url) {
+      const evosData = await fetchEvolutions(species.evolution_chain.url);
+      const evosEntry = findOwnSpeciesInEvosChain(evosData.chain, key);
+      const evosTo = evosEntry?.evolves_to?.map((t) => t.species.name);
+
+      if (evosTo?.length) {
+        evos ??= {};
+        evos.to = evosTo;
+      }
+    }
+
+    return { id, key, name, type, evos };
+  }
+
+  for (const { url } of segment.results) {
+    promises.push(resolve(url));
+  }
+}
+
+/**
+ * @param {string} url
+ * @returns {Promise<Segment>}
+ */
+async function fetchSegment(url) {
+  return fetchJson(`${url}?limit=100`);
+}
+
+/**
+ * @param {string} url
+ * @returns {Promise<PokemonSpecies>}
+ */
+async function fetchPokemonSpecies(url) {
+  return await fetchJson(url);
+}
+
+/**
+ * @param {PokemonSpecies} species
+ * @returns {Promise<PokemonForm>}
+ */
+async function fetchPokemonDefaultForm({ id }) {
+  return await fetchJson(`https://pokeapi.co/api/v2/pokemon-form/${id}`);
+}
+
+/**
+ * @param {string} url
+ * @returns {Promise<PokemonEvos>}
+ */
+async function fetchEvolutions(url) {
+  return await fetchJson(url);
+}
+
+/**
+ * @template T
+ * @param {string} url
+ * @returns {Promise<T>}
+ */
+async function fetchJson(url) {
+  return (await fetch(url)).json();
+}
+
+/**
+ * @param {PokemonEvos['chain']} entries
+ * @param {string} speciesKey
+ * @returns {PokemonEvosEntry | undefined}
+ */
+function findOwnSpeciesInEvosChain(entries, speciesKey) {
+  if (entries.species.name === speciesKey) {
+    return entries;
+  }
+  for (const entry of entries.evolves_to ?? []) {
+    const child = findOwnSpeciesInEvosChain(entry, speciesKey);
+    if (child) return child;
+  }
+}
+
+/**
+ * @param {string} s
+ * @returns {s}
+ */
+function capitalize(s) {
+  return s[0].toUpperCase() + s.slice(1).toLowerCase();
+}
+
+main().catch((e) => {
+  console.error(e);
+});

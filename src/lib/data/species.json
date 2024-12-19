@@ -46,7 +46,7 @@
     "name": "Charizard",
     "type": ["fire", "flying"],
     "evos": {
-      "from": "charizard"
+      "from": "charmeleon"
     }
   },
   "squirtle": {
@@ -73,5 +73,7644 @@
     "evos": {
       "from": "wartortle"
     }
+  },
+  "caterpie": {
+    "id": 10,
+    "name": "Caterpie",
+    "type": ["bug"],
+    "evos": {
+      "to": ["metapod"]
+    }
+  },
+  "metapod": {
+    "id": 11,
+    "name": "Metapod",
+    "type": ["bug"],
+    "evos": {
+      "from": "caterpie",
+      "to": ["butterfree"]
+    }
+  },
+  "butterfree": {
+    "id": 12,
+    "name": "Butterfree",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "metapod"
+    }
+  },
+  "weedle": {
+    "id": 13,
+    "name": "Weedle",
+    "type": ["bug", "poison"],
+    "evos": {
+      "to": ["kakuna"]
+    }
+  },
+  "kakuna": {
+    "id": 14,
+    "name": "Kakuna",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "weedle",
+      "to": ["beedrill"]
+    }
+  },
+  "beedrill": {
+    "id": 15,
+    "name": "Beedrill",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "kakuna"
+    }
+  },
+  "pidgey": {
+    "id": 16,
+    "name": "Pidgey",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["pidgeotto"]
+    }
+  },
+  "pidgeotto": {
+    "id": 17,
+    "name": "Pidgeotto",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "pidgey",
+      "to": ["pidgeot"]
+    }
+  },
+  "pidgeot": {
+    "id": 18,
+    "name": "Pidgeot",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "pidgeotto"
+    }
+  },
+  "rattata": {
+    "id": 19,
+    "name": "Rattata",
+    "type": ["normal"],
+    "evos": {
+      "to": ["raticate"]
+    }
+  },
+  "raticate": {
+    "id": 20,
+    "name": "Raticate",
+    "type": ["normal"],
+    "evos": {
+      "from": "rattata"
+    }
+  },
+  "spearow": {
+    "id": 21,
+    "name": "Spearow",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["fearow"]
+    }
+  },
+  "fearow": {
+    "id": 22,
+    "name": "Fearow",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "spearow"
+    }
+  },
+  "ekans": {
+    "id": 23,
+    "name": "Ekans",
+    "type": ["poison"],
+    "evos": {
+      "to": ["arbok"]
+    }
+  },
+  "arbok": {
+    "id": 24,
+    "name": "Arbok",
+    "type": ["poison"],
+    "evos": {
+      "from": "ekans"
+    }
+  },
+  "pikachu": {
+    "id": 25,
+    "name": "Pikachu",
+    "type": ["electric"],
+    "evos": {
+      "from": "pichu",
+      "to": ["raichu"]
+    }
+  },
+  "raichu": {
+    "id": 26,
+    "name": "Raichu",
+    "type": ["electric"],
+    "evos": {
+      "from": "pikachu"
+    }
+  },
+  "sandshrew": {
+    "id": 27,
+    "name": "Sandshrew",
+    "type": ["ground"],
+    "evos": {
+      "to": ["sandslash"]
+    }
+  },
+  "sandslash": {
+    "id": 28,
+    "name": "Sandslash",
+    "type": ["ground"],
+    "evos": {
+      "from": "sandshrew"
+    }
+  },
+  "nidoran-f": {
+    "id": 29,
+    "name": "Nidoran♀",
+    "type": ["poison"],
+    "evos": {
+      "to": ["nidorina"]
+    }
+  },
+  "nidorina": {
+    "id": 30,
+    "name": "Nidorina",
+    "type": ["poison"],
+    "evos": {
+      "from": "nidoran-f",
+      "to": ["nidoqueen"]
+    }
+  },
+  "nidoqueen": {
+    "id": 31,
+    "name": "Nidoqueen",
+    "type": ["poison", "ground"],
+    "evos": {
+      "from": "nidorina"
+    }
+  },
+  "nidoran-m": {
+    "id": 32,
+    "name": "Nidoran♂",
+    "type": ["poison"],
+    "evos": {
+      "to": ["nidorino"]
+    }
+  },
+  "nidorino": {
+    "id": 33,
+    "name": "Nidorino",
+    "type": ["poison"],
+    "evos": {
+      "from": "nidoran-m",
+      "to": ["nidoking"]
+    }
+  },
+  "nidoking": {
+    "id": 34,
+    "name": "Nidoking",
+    "type": ["poison", "ground"],
+    "evos": {
+      "from": "nidorino"
+    }
+  },
+  "clefairy": {
+    "id": 35,
+    "name": "Clefairy",
+    "type": ["fairy"],
+    "evos": {
+      "from": "cleffa",
+      "to": ["clefable"]
+    }
+  },
+  "clefable": {
+    "id": 36,
+    "name": "Clefable",
+    "type": ["fairy"],
+    "evos": {
+      "from": "clefairy"
+    }
+  },
+  "vulpix": {
+    "id": 37,
+    "name": "Vulpix",
+    "type": ["fire"],
+    "evos": {
+      "to": ["ninetales"]
+    }
+  },
+  "ninetales": {
+    "id": 38,
+    "name": "Ninetales",
+    "type": ["fire"],
+    "evos": {
+      "from": "vulpix"
+    }
+  },
+  "jigglypuff": {
+    "id": 39,
+    "name": "Jigglypuff",
+    "type": ["normal", "fairy"],
+    "evos": {
+      "from": "igglybuff",
+      "to": ["wigglytuff"]
+    }
+  },
+  "wigglytuff": {
+    "id": 40,
+    "name": "Wigglytuff",
+    "type": ["normal", "fairy"],
+    "evos": {
+      "from": "jigglypuff"
+    }
+  },
+  "zubat": {
+    "id": 41,
+    "name": "Zubat",
+    "type": ["poison", "flying"],
+    "evos": {
+      "to": ["golbat"]
+    }
+  },
+  "golbat": {
+    "id": 42,
+    "name": "Golbat",
+    "type": ["poison", "flying"],
+    "evos": {
+      "from": "zubat",
+      "to": ["crobat"]
+    }
+  },
+  "oddish": {
+    "id": 43,
+    "name": "Oddish",
+    "type": ["grass", "poison"],
+    "evos": {
+      "to": ["gloom"]
+    }
+  },
+  "gloom": {
+    "id": 44,
+    "name": "Gloom",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "oddish",
+      "to": ["vileplume", "bellossom"]
+    }
+  },
+  "vileplume": {
+    "id": 45,
+    "name": "Vileplume",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "gloom"
+    }
+  },
+  "paras": {
+    "id": 46,
+    "name": "Paras",
+    "type": ["bug", "grass"],
+    "evos": {
+      "to": ["parasect"]
+    }
+  },
+  "parasect": {
+    "id": 47,
+    "name": "Parasect",
+    "type": ["bug", "grass"],
+    "evos": {
+      "from": "paras"
+    }
+  },
+  "venonat": {
+    "id": 48,
+    "name": "Venonat",
+    "type": ["bug", "poison"],
+    "evos": {
+      "to": ["venomoth"]
+    }
+  },
+  "venomoth": {
+    "id": 49,
+    "name": "Venomoth",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "venonat"
+    }
+  },
+  "diglett": {
+    "id": 50,
+    "name": "Diglett",
+    "type": ["ground"],
+    "evos": {
+      "to": ["dugtrio"]
+    }
+  },
+  "dugtrio": {
+    "id": 51,
+    "name": "Dugtrio",
+    "type": ["ground"],
+    "evos": {
+      "from": "diglett"
+    }
+  },
+  "meowth": {
+    "id": 52,
+    "name": "Meowth",
+    "type": ["normal"],
+    "evos": {
+      "to": ["persian", "perrserker"]
+    }
+  },
+  "persian": {
+    "id": 53,
+    "name": "Persian",
+    "type": ["normal"],
+    "evos": {
+      "from": "meowth"
+    }
+  },
+  "psyduck": {
+    "id": 54,
+    "name": "Psyduck",
+    "type": ["water"],
+    "evos": {
+      "to": ["golduck"]
+    }
+  },
+  "golduck": {
+    "id": 55,
+    "name": "Golduck",
+    "type": ["water"],
+    "evos": {
+      "from": "psyduck"
+    }
+  },
+  "mankey": {
+    "id": 56,
+    "name": "Mankey",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["primeape"]
+    }
+  },
+  "primeape": {
+    "id": 57,
+    "name": "Primeape",
+    "type": ["fighting"],
+    "evos": {
+      "from": "mankey",
+      "to": ["annihilape"]
+    }
+  },
+  "growlithe": {
+    "id": 58,
+    "name": "Growlithe",
+    "type": ["fire"],
+    "evos": {
+      "to": ["arcanine"]
+    }
+  },
+  "arcanine": {
+    "id": 59,
+    "name": "Arcanine",
+    "type": ["fire"],
+    "evos": {
+      "from": "growlithe"
+    }
+  },
+  "poliwag": {
+    "id": 60,
+    "name": "Poliwag",
+    "type": ["water"],
+    "evos": {
+      "to": ["poliwhirl"]
+    }
+  },
+  "poliwhirl": {
+    "id": 61,
+    "name": "Poliwhirl",
+    "type": ["water"],
+    "evos": {
+      "from": "poliwag",
+      "to": ["poliwrath", "politoed"]
+    }
+  },
+  "poliwrath": {
+    "id": 62,
+    "name": "Poliwrath",
+    "type": ["water", "fighting"],
+    "evos": {
+      "from": "poliwhirl"
+    }
+  },
+  "abra": {
+    "id": 63,
+    "name": "Abra",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["kadabra"]
+    }
+  },
+  "kadabra": {
+    "id": 64,
+    "name": "Kadabra",
+    "type": ["psychic"],
+    "evos": {
+      "from": "abra",
+      "to": ["alakazam"]
+    }
+  },
+  "alakazam": {
+    "id": 65,
+    "name": "Alakazam",
+    "type": ["psychic"],
+    "evos": {
+      "from": "kadabra"
+    }
+  },
+  "machop": {
+    "id": 66,
+    "name": "Machop",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["machoke"]
+    }
+  },
+  "machoke": {
+    "id": 67,
+    "name": "Machoke",
+    "type": ["fighting"],
+    "evos": {
+      "from": "machop",
+      "to": ["machamp"]
+    }
+  },
+  "machamp": {
+    "id": 68,
+    "name": "Machamp",
+    "type": ["fighting"],
+    "evos": {
+      "from": "machoke"
+    }
+  },
+  "bellsprout": {
+    "id": 69,
+    "name": "Bellsprout",
+    "type": ["grass", "poison"],
+    "evos": {
+      "to": ["weepinbell"]
+    }
+  },
+  "weepinbell": {
+    "id": 70,
+    "name": "Weepinbell",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "bellsprout",
+      "to": ["victreebel"]
+    }
+  },
+  "victreebel": {
+    "id": 71,
+    "name": "Victreebel",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "weepinbell"
+    }
+  },
+  "tentacool": {
+    "id": 72,
+    "name": "Tentacool",
+    "type": ["water", "poison"],
+    "evos": {
+      "to": ["tentacruel"]
+    }
+  },
+  "tentacruel": {
+    "id": 73,
+    "name": "Tentacruel",
+    "type": ["water", "poison"],
+    "evos": {
+      "from": "tentacool"
+    }
+  },
+  "geodude": {
+    "id": 74,
+    "name": "Geodude",
+    "type": ["rock", "ground"],
+    "evos": {
+      "to": ["graveler"]
+    }
+  },
+  "graveler": {
+    "id": 75,
+    "name": "Graveler",
+    "type": ["rock", "ground"],
+    "evos": {
+      "from": "geodude",
+      "to": ["golem"]
+    }
+  },
+  "golem": {
+    "id": 76,
+    "name": "Golem",
+    "type": ["rock", "ground"],
+    "evos": {
+      "from": "graveler"
+    }
+  },
+  "ponyta": {
+    "id": 77,
+    "name": "Ponyta",
+    "type": ["fire"],
+    "evos": {
+      "to": ["rapidash"]
+    }
+  },
+  "rapidash": {
+    "id": 78,
+    "name": "Rapidash",
+    "type": ["fire"],
+    "evos": {
+      "from": "ponyta"
+    }
+  },
+  "slowpoke": {
+    "id": 79,
+    "name": "Slowpoke",
+    "type": ["water", "psychic"],
+    "evos": {
+      "to": ["slowbro", "slowking"]
+    }
+  },
+  "slowbro": {
+    "id": 80,
+    "name": "Slowbro",
+    "type": ["water", "psychic"],
+    "evos": {
+      "from": "slowpoke"
+    }
+  },
+  "magnemite": {
+    "id": 81,
+    "name": "Magnemite",
+    "type": ["electric", "steel"],
+    "evos": {
+      "to": ["magneton"]
+    }
+  },
+  "magneton": {
+    "id": 82,
+    "name": "Magneton",
+    "type": ["electric", "steel"],
+    "evos": {
+      "from": "magnemite",
+      "to": ["magnezone"]
+    }
+  },
+  "farfetchd": {
+    "id": 83,
+    "name": "Farfetch’d",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["sirfetchd"]
+    }
+  },
+  "doduo": {
+    "id": 84,
+    "name": "Doduo",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["dodrio"]
+    }
+  },
+  "dodrio": {
+    "id": 85,
+    "name": "Dodrio",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "doduo"
+    }
+  },
+  "seel": {
+    "id": 86,
+    "name": "Seel",
+    "type": ["water"],
+    "evos": {
+      "to": ["dewgong"]
+    }
+  },
+  "dewgong": {
+    "id": 87,
+    "name": "Dewgong",
+    "type": ["water", "ice"],
+    "evos": {
+      "from": "seel"
+    }
+  },
+  "grimer": {
+    "id": 88,
+    "name": "Grimer",
+    "type": ["poison"],
+    "evos": {
+      "to": ["muk"]
+    }
+  },
+  "muk": {
+    "id": 89,
+    "name": "Muk",
+    "type": ["poison"],
+    "evos": {
+      "from": "grimer"
+    }
+  },
+  "shellder": {
+    "id": 90,
+    "name": "Shellder",
+    "type": ["water"],
+    "evos": {
+      "to": ["cloyster"]
+    }
+  },
+  "cloyster": {
+    "id": 91,
+    "name": "Cloyster",
+    "type": ["water", "ice"],
+    "evos": {
+      "from": "shellder"
+    }
+  },
+  "gastly": {
+    "id": 92,
+    "name": "Gastly",
+    "type": ["ghost", "poison"],
+    "evos": {
+      "to": ["haunter"]
+    }
+  },
+  "haunter": {
+    "id": 93,
+    "name": "Haunter",
+    "type": ["ghost", "poison"],
+    "evos": {
+      "from": "gastly",
+      "to": ["gengar"]
+    }
+  },
+  "gengar": {
+    "id": 94,
+    "name": "Gengar",
+    "type": ["ghost", "poison"],
+    "evos": {
+      "from": "haunter"
+    }
+  },
+  "onix": {
+    "id": 95,
+    "name": "Onix",
+    "type": ["rock", "ground"],
+    "evos": {
+      "to": ["steelix"]
+    }
+  },
+  "drowzee": {
+    "id": 96,
+    "name": "Drowzee",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["hypno"]
+    }
+  },
+  "hypno": {
+    "id": 97,
+    "name": "Hypno",
+    "type": ["psychic"],
+    "evos": {
+      "from": "drowzee"
+    }
+  },
+  "krabby": {
+    "id": 98,
+    "name": "Krabby",
+    "type": ["water"],
+    "evos": {
+      "to": ["kingler"]
+    }
+  },
+  "kingler": {
+    "id": 99,
+    "name": "Kingler",
+    "type": ["water"],
+    "evos": {
+      "from": "krabby"
+    }
+  },
+  "voltorb": {
+    "id": 100,
+    "name": "Voltorb",
+    "type": ["electric"],
+    "evos": {
+      "to": ["electrode"]
+    }
+  },
+  "electrode": {
+    "id": 101,
+    "name": "Electrode",
+    "type": ["electric"],
+    "evos": {
+      "from": "voltorb"
+    }
+  },
+  "exeggcute": {
+    "id": 102,
+    "name": "Exeggcute",
+    "type": ["grass", "psychic"],
+    "evos": {
+      "to": ["exeggutor"]
+    }
+  },
+  "exeggutor": {
+    "id": 103,
+    "name": "Exeggutor",
+    "type": ["grass", "psychic"],
+    "evos": {
+      "from": "exeggcute"
+    }
+  },
+  "cubone": {
+    "id": 104,
+    "name": "Cubone",
+    "type": ["ground"],
+    "evos": {
+      "to": ["marowak"]
+    }
+  },
+  "marowak": {
+    "id": 105,
+    "name": "Marowak",
+    "type": ["ground"],
+    "evos": {
+      "from": "cubone"
+    }
+  },
+  "hitmonlee": {
+    "id": 106,
+    "name": "Hitmonlee",
+    "type": ["fighting"],
+    "evos": {
+      "from": "tyrogue"
+    }
+  },
+  "hitmonchan": {
+    "id": 107,
+    "name": "Hitmonchan",
+    "type": ["fighting"],
+    "evos": {
+      "from": "tyrogue"
+    }
+  },
+  "lickitung": {
+    "id": 108,
+    "name": "Lickitung",
+    "type": ["normal"],
+    "evos": {
+      "to": ["lickilicky"]
+    }
+  },
+  "koffing": {
+    "id": 109,
+    "name": "Koffing",
+    "type": ["poison"],
+    "evos": {
+      "to": ["weezing"]
+    }
+  },
+  "weezing": {
+    "id": 110,
+    "name": "Weezing",
+    "type": ["poison"],
+    "evos": {
+      "from": "koffing"
+    }
+  },
+  "rhyhorn": {
+    "id": 111,
+    "name": "Rhyhorn",
+    "type": ["ground", "rock"],
+    "evos": {
+      "to": ["rhydon"]
+    }
+  },
+  "rhydon": {
+    "id": 112,
+    "name": "Rhydon",
+    "type": ["ground", "rock"],
+    "evos": {
+      "from": "rhyhorn",
+      "to": ["rhyperior"]
+    }
+  },
+  "chansey": {
+    "id": 113,
+    "name": "Chansey",
+    "type": ["normal"],
+    "evos": {
+      "from": "happiny",
+      "to": ["blissey"]
+    }
+  },
+  "tangela": {
+    "id": 114,
+    "name": "Tangela",
+    "type": ["grass"],
+    "evos": {
+      "to": ["tangrowth"]
+    }
+  },
+  "kangaskhan": {
+    "id": 115,
+    "name": "Kangaskhan",
+    "type": ["normal"]
+  },
+  "horsea": {
+    "id": 116,
+    "name": "Horsea",
+    "type": ["water"],
+    "evos": {
+      "to": ["seadra"]
+    }
+  },
+  "seadra": {
+    "id": 117,
+    "name": "Seadra",
+    "type": ["water"],
+    "evos": {
+      "from": "horsea",
+      "to": ["kingdra"]
+    }
+  },
+  "goldeen": {
+    "id": 118,
+    "name": "Goldeen",
+    "type": ["water"],
+    "evos": {
+      "to": ["seaking"]
+    }
+  },
+  "seaking": {
+    "id": 119,
+    "name": "Seaking",
+    "type": ["water"],
+    "evos": {
+      "from": "goldeen"
+    }
+  },
+  "staryu": {
+    "id": 120,
+    "name": "Staryu",
+    "type": ["water"],
+    "evos": {
+      "to": ["starmie"]
+    }
+  },
+  "starmie": {
+    "id": 121,
+    "name": "Starmie",
+    "type": ["water", "psychic"],
+    "evos": {
+      "from": "staryu"
+    }
+  },
+  "mr-mime": {
+    "id": 122,
+    "name": "Mr. Mime",
+    "type": ["psychic", "fairy"],
+    "evos": {
+      "from": "mime-jr",
+      "to": ["mr-rime"]
+    }
+  },
+  "scyther": {
+    "id": 123,
+    "name": "Scyther",
+    "type": ["bug", "flying"],
+    "evos": {
+      "to": ["scizor", "kleavor"]
+    }
+  },
+  "jynx": {
+    "id": 124,
+    "name": "Jynx",
+    "type": ["ice", "psychic"],
+    "evos": {
+      "from": "smoochum"
+    }
+  },
+  "electabuzz": {
+    "id": 125,
+    "name": "Electabuzz",
+    "type": ["electric"],
+    "evos": {
+      "from": "elekid",
+      "to": ["electivire"]
+    }
+  },
+  "magmar": {
+    "id": 126,
+    "name": "Magmar",
+    "type": ["fire"],
+    "evos": {
+      "from": "magby",
+      "to": ["magmortar"]
+    }
+  },
+  "pinsir": {
+    "id": 127,
+    "name": "Pinsir",
+    "type": ["bug"]
+  },
+  "tauros": {
+    "id": 128,
+    "name": "Tauros",
+    "type": ["normal"]
+  },
+  "magikarp": {
+    "id": 129,
+    "name": "Magikarp",
+    "type": ["water"],
+    "evos": {
+      "to": ["gyarados"]
+    }
+  },
+  "gyarados": {
+    "id": 130,
+    "name": "Gyarados",
+    "type": ["water", "flying"],
+    "evos": {
+      "from": "magikarp"
+    }
+  },
+  "lapras": {
+    "id": 131,
+    "name": "Lapras",
+    "type": ["water", "ice"]
+  },
+  "ditto": {
+    "id": 132,
+    "name": "Ditto",
+    "type": ["normal"]
+  },
+  "eevee": {
+    "id": 133,
+    "name": "Eevee",
+    "type": ["normal"],
+    "evos": {
+      "to": ["vaporeon", "jolteon", "flareon", "espeon", "umbreon", "leafeon", "glaceon", "sylveon"]
+    }
+  },
+  "vaporeon": {
+    "id": 134,
+    "name": "Vaporeon",
+    "type": ["water"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "jolteon": {
+    "id": 135,
+    "name": "Jolteon",
+    "type": ["electric"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "flareon": {
+    "id": 136,
+    "name": "Flareon",
+    "type": ["fire"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "porygon": {
+    "id": 137,
+    "name": "Porygon",
+    "type": ["normal"],
+    "evos": {
+      "to": ["porygon2"]
+    }
+  },
+  "omanyte": {
+    "id": 138,
+    "name": "Omanyte",
+    "type": ["rock", "water"],
+    "evos": {
+      "to": ["omastar"]
+    }
+  },
+  "omastar": {
+    "id": 139,
+    "name": "Omastar",
+    "type": ["rock", "water"],
+    "evos": {
+      "from": "omanyte"
+    }
+  },
+  "kabuto": {
+    "id": 140,
+    "name": "Kabuto",
+    "type": ["rock", "water"],
+    "evos": {
+      "to": ["kabutops"]
+    }
+  },
+  "kabutops": {
+    "id": 141,
+    "name": "Kabutops",
+    "type": ["rock", "water"],
+    "evos": {
+      "from": "kabuto"
+    }
+  },
+  "aerodactyl": {
+    "id": 142,
+    "name": "Aerodactyl",
+    "type": ["rock", "flying"]
+  },
+  "snorlax": {
+    "id": 143,
+    "name": "Snorlax",
+    "type": ["normal"],
+    "evos": {
+      "from": "munchlax"
+    }
+  },
+  "articuno": {
+    "id": 144,
+    "name": "Articuno",
+    "type": ["ice", "flying"]
+  },
+  "zapdos": {
+    "id": 145,
+    "name": "Zapdos",
+    "type": ["electric", "flying"]
+  },
+  "moltres": {
+    "id": 146,
+    "name": "Moltres",
+    "type": ["fire", "flying"]
+  },
+  "dratini": {
+    "id": 147,
+    "name": "Dratini",
+    "type": ["dragon"],
+    "evos": {
+      "to": ["dragonair"]
+    }
+  },
+  "dragonair": {
+    "id": 148,
+    "name": "Dragonair",
+    "type": ["dragon"],
+    "evos": {
+      "from": "dratini",
+      "to": ["dragonite"]
+    }
+  },
+  "dragonite": {
+    "id": 149,
+    "name": "Dragonite",
+    "type": ["dragon", "flying"],
+    "evos": {
+      "from": "dragonair"
+    }
+  },
+  "mewtwo": {
+    "id": 150,
+    "name": "Mewtwo",
+    "type": ["psychic"]
+  },
+  "mew": {
+    "id": 151,
+    "name": "Mew",
+    "type": ["psychic"]
+  },
+  "chikorita": {
+    "id": 152,
+    "name": "Chikorita",
+    "type": ["grass"],
+    "evos": {
+      "to": ["bayleef"]
+    }
+  },
+  "bayleef": {
+    "id": 153,
+    "name": "Bayleef",
+    "type": ["grass"],
+    "evos": {
+      "from": "chikorita",
+      "to": ["meganium"]
+    }
+  },
+  "meganium": {
+    "id": 154,
+    "name": "Meganium",
+    "type": ["grass"],
+    "evos": {
+      "from": "bayleef"
+    }
+  },
+  "cyndaquil": {
+    "id": 155,
+    "name": "Cyndaquil",
+    "type": ["fire"],
+    "evos": {
+      "to": ["quilava"]
+    }
+  },
+  "quilava": {
+    "id": 156,
+    "name": "Quilava",
+    "type": ["fire"],
+    "evos": {
+      "from": "cyndaquil",
+      "to": ["typhlosion"]
+    }
+  },
+  "typhlosion": {
+    "id": 157,
+    "name": "Typhlosion",
+    "type": ["fire"],
+    "evos": {
+      "from": "quilava"
+    }
+  },
+  "totodile": {
+    "id": 158,
+    "name": "Totodile",
+    "type": ["water"],
+    "evos": {
+      "to": ["croconaw"]
+    }
+  },
+  "croconaw": {
+    "id": 159,
+    "name": "Croconaw",
+    "type": ["water"],
+    "evos": {
+      "from": "totodile",
+      "to": ["feraligatr"]
+    }
+  },
+  "feraligatr": {
+    "id": 160,
+    "name": "Feraligatr",
+    "type": ["water"],
+    "evos": {
+      "from": "croconaw"
+    }
+  },
+  "sentret": {
+    "id": 161,
+    "name": "Sentret",
+    "type": ["normal"],
+    "evos": {
+      "to": ["furret"]
+    }
+  },
+  "furret": {
+    "id": 162,
+    "name": "Furret",
+    "type": ["normal"],
+    "evos": {
+      "from": "sentret"
+    }
+  },
+  "hoothoot": {
+    "id": 163,
+    "name": "Hoothoot",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["noctowl"]
+    }
+  },
+  "noctowl": {
+    "id": 164,
+    "name": "Noctowl",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "hoothoot"
+    }
+  },
+  "ledyba": {
+    "id": 165,
+    "name": "Ledyba",
+    "type": ["bug", "flying"],
+    "evos": {
+      "to": ["ledian"]
+    }
+  },
+  "ledian": {
+    "id": 166,
+    "name": "Ledian",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "ledyba"
+    }
+  },
+  "spinarak": {
+    "id": 167,
+    "name": "Spinarak",
+    "type": ["bug", "poison"],
+    "evos": {
+      "to": ["ariados"]
+    }
+  },
+  "ariados": {
+    "id": 168,
+    "name": "Ariados",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "spinarak"
+    }
+  },
+  "crobat": {
+    "id": 169,
+    "name": "Crobat",
+    "type": ["poison", "flying"],
+    "evos": {
+      "from": "golbat"
+    }
+  },
+  "chinchou": {
+    "id": 170,
+    "name": "Chinchou",
+    "type": ["water", "electric"],
+    "evos": {
+      "to": ["lanturn"]
+    }
+  },
+  "lanturn": {
+    "id": 171,
+    "name": "Lanturn",
+    "type": ["water", "electric"],
+    "evos": {
+      "from": "chinchou"
+    }
+  },
+  "pichu": {
+    "id": 172,
+    "name": "Pichu",
+    "type": ["electric"],
+    "evos": {
+      "to": ["pikachu"]
+    }
+  },
+  "cleffa": {
+    "id": 173,
+    "name": "Cleffa",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["clefairy"]
+    }
+  },
+  "igglybuff": {
+    "id": 174,
+    "name": "Igglybuff",
+    "type": ["normal", "fairy"],
+    "evos": {
+      "to": ["jigglypuff"]
+    }
+  },
+  "togepi": {
+    "id": 175,
+    "name": "Togepi",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["togetic"]
+    }
+  },
+  "togetic": {
+    "id": 176,
+    "name": "Togetic",
+    "type": ["fairy", "flying"],
+    "evos": {
+      "from": "togepi",
+      "to": ["togekiss"]
+    }
+  },
+  "natu": {
+    "id": 177,
+    "name": "Natu",
+    "type": ["psychic", "flying"],
+    "evos": {
+      "to": ["xatu"]
+    }
+  },
+  "xatu": {
+    "id": 178,
+    "name": "Xatu",
+    "type": ["psychic", "flying"],
+    "evos": {
+      "from": "natu"
+    }
+  },
+  "mareep": {
+    "id": 179,
+    "name": "Mareep",
+    "type": ["electric"],
+    "evos": {
+      "to": ["flaaffy"]
+    }
+  },
+  "flaaffy": {
+    "id": 180,
+    "name": "Flaaffy",
+    "type": ["electric"],
+    "evos": {
+      "from": "mareep",
+      "to": ["ampharos"]
+    }
+  },
+  "ampharos": {
+    "id": 181,
+    "name": "Ampharos",
+    "type": ["electric"],
+    "evos": {
+      "from": "flaaffy"
+    }
+  },
+  "bellossom": {
+    "id": 182,
+    "name": "Bellossom",
+    "type": ["grass"],
+    "evos": {
+      "from": "gloom"
+    }
+  },
+  "marill": {
+    "id": 183,
+    "name": "Marill",
+    "type": ["water", "fairy"],
+    "evos": {
+      "from": "azurill",
+      "to": ["azumarill"]
+    }
+  },
+  "azumarill": {
+    "id": 184,
+    "name": "Azumarill",
+    "type": ["water", "fairy"],
+    "evos": {
+      "from": "marill"
+    }
+  },
+  "sudowoodo": {
+    "id": 185,
+    "name": "Sudowoodo",
+    "type": ["rock"],
+    "evos": {
+      "from": "bonsly"
+    }
+  },
+  "politoed": {
+    "id": 186,
+    "name": "Politoed",
+    "type": ["water"],
+    "evos": {
+      "from": "poliwhirl"
+    }
+  },
+  "hoppip": {
+    "id": 187,
+    "name": "Hoppip",
+    "type": ["grass", "flying"],
+    "evos": {
+      "to": ["skiploom"]
+    }
+  },
+  "skiploom": {
+    "id": 188,
+    "name": "Skiploom",
+    "type": ["grass", "flying"],
+    "evos": {
+      "from": "hoppip",
+      "to": ["jumpluff"]
+    }
+  },
+  "jumpluff": {
+    "id": 189,
+    "name": "Jumpluff",
+    "type": ["grass", "flying"],
+    "evos": {
+      "from": "skiploom"
+    }
+  },
+  "aipom": {
+    "id": 190,
+    "name": "Aipom",
+    "type": ["normal"],
+    "evos": {
+      "to": ["ambipom"]
+    }
+  },
+  "sunkern": {
+    "id": 191,
+    "name": "Sunkern",
+    "type": ["grass"],
+    "evos": {
+      "to": ["sunflora"]
+    }
+  },
+  "sunflora": {
+    "id": 192,
+    "name": "Sunflora",
+    "type": ["grass"],
+    "evos": {
+      "from": "sunkern"
+    }
+  },
+  "yanma": {
+    "id": 193,
+    "name": "Yanma",
+    "type": ["bug", "flying"],
+    "evos": {
+      "to": ["yanmega"]
+    }
+  },
+  "wooper": {
+    "id": 194,
+    "name": "Wooper",
+    "type": ["water", "ground"],
+    "evos": {
+      "to": ["quagsire", "clodsire"]
+    }
+  },
+  "quagsire": {
+    "id": 195,
+    "name": "Quagsire",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "wooper"
+    }
+  },
+  "espeon": {
+    "id": 196,
+    "name": "Espeon",
+    "type": ["psychic"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "umbreon": {
+    "id": 197,
+    "name": "Umbreon",
+    "type": ["dark"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "murkrow": {
+    "id": 198,
+    "name": "Murkrow",
+    "type": ["dark", "flying"],
+    "evos": {
+      "to": ["honchkrow"]
+    }
+  },
+  "slowking": {
+    "id": 199,
+    "name": "Slowking",
+    "type": ["water", "psychic"],
+    "evos": {
+      "from": "slowpoke"
+    }
+  },
+  "misdreavus": {
+    "id": 200,
+    "name": "Misdreavus",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["mismagius"]
+    }
+  },
+  "unown": {
+    "id": 201,
+    "name": "Unown",
+    "type": ["psychic"]
+  },
+  "wobbuffet": {
+    "id": 202,
+    "name": "Wobbuffet",
+    "type": ["psychic"],
+    "evos": {
+      "from": "wynaut"
+    }
+  },
+  "girafarig": {
+    "id": 203,
+    "name": "Girafarig",
+    "type": ["normal", "psychic"],
+    "evos": {
+      "to": ["farigiraf"]
+    }
+  },
+  "pineco": {
+    "id": 204,
+    "name": "Pineco",
+    "type": ["bug"],
+    "evos": {
+      "to": ["forretress"]
+    }
+  },
+  "forretress": {
+    "id": 205,
+    "name": "Forretress",
+    "type": ["bug", "steel"],
+    "evos": {
+      "from": "pineco"
+    }
+  },
+  "dunsparce": {
+    "id": 206,
+    "name": "Dunsparce",
+    "type": ["normal"],
+    "evos": {
+      "to": ["dudunsparce"]
+    }
+  },
+  "gligar": {
+    "id": 207,
+    "name": "Gligar",
+    "type": ["ground", "flying"],
+    "evos": {
+      "to": ["gliscor"]
+    }
+  },
+  "steelix": {
+    "id": 208,
+    "name": "Steelix",
+    "type": ["steel", "ground"],
+    "evos": {
+      "from": "onix"
+    }
+  },
+  "snubbull": {
+    "id": 209,
+    "name": "Snubbull",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["granbull"]
+    }
+  },
+  "granbull": {
+    "id": 210,
+    "name": "Granbull",
+    "type": ["fairy"],
+    "evos": {
+      "from": "snubbull"
+    }
+  },
+  "qwilfish": {
+    "id": 211,
+    "name": "Qwilfish",
+    "type": ["water", "poison"],
+    "evos": {
+      "to": ["overqwil"]
+    }
+  },
+  "scizor": {
+    "id": 212,
+    "name": "Scizor",
+    "type": ["bug", "steel"],
+    "evos": {
+      "from": "scyther"
+    }
+  },
+  "shuckle": {
+    "id": 213,
+    "name": "Shuckle",
+    "type": ["bug", "rock"]
+  },
+  "heracross": {
+    "id": 214,
+    "name": "Heracross",
+    "type": ["bug", "fighting"]
+  },
+  "sneasel": {
+    "id": 215,
+    "name": "Sneasel",
+    "type": ["dark", "ice"],
+    "evos": {
+      "to": ["weavile", "sneasler"]
+    }
+  },
+  "teddiursa": {
+    "id": 216,
+    "name": "Teddiursa",
+    "type": ["normal"],
+    "evos": {
+      "to": ["ursaring"]
+    }
+  },
+  "ursaring": {
+    "id": 217,
+    "name": "Ursaring",
+    "type": ["normal"],
+    "evos": {
+      "from": "teddiursa",
+      "to": ["ursaluna"]
+    }
+  },
+  "slugma": {
+    "id": 218,
+    "name": "Slugma",
+    "type": ["fire"],
+    "evos": {
+      "to": ["magcargo"]
+    }
+  },
+  "magcargo": {
+    "id": 219,
+    "name": "Magcargo",
+    "type": ["fire", "rock"],
+    "evos": {
+      "from": "slugma"
+    }
+  },
+  "swinub": {
+    "id": 220,
+    "name": "Swinub",
+    "type": ["ice", "ground"],
+    "evos": {
+      "to": ["piloswine"]
+    }
+  },
+  "piloswine": {
+    "id": 221,
+    "name": "Piloswine",
+    "type": ["ice", "ground"],
+    "evos": {
+      "from": "swinub",
+      "to": ["mamoswine"]
+    }
+  },
+  "corsola": {
+    "id": 222,
+    "name": "Corsola",
+    "type": ["water", "rock"],
+    "evos": {
+      "to": ["cursola"]
+    }
+  },
+  "remoraid": {
+    "id": 223,
+    "name": "Remoraid",
+    "type": ["water"],
+    "evos": {
+      "to": ["octillery"]
+    }
+  },
+  "octillery": {
+    "id": 224,
+    "name": "Octillery",
+    "type": ["water"],
+    "evos": {
+      "from": "remoraid"
+    }
+  },
+  "delibird": {
+    "id": 225,
+    "name": "Delibird",
+    "type": ["ice", "flying"]
+  },
+  "mantine": {
+    "id": 226,
+    "name": "Mantine",
+    "type": ["water", "flying"],
+    "evos": {
+      "from": "mantyke"
+    }
+  },
+  "skarmory": {
+    "id": 227,
+    "name": "Skarmory",
+    "type": ["steel", "flying"]
+  },
+  "houndour": {
+    "id": 228,
+    "name": "Houndour",
+    "type": ["dark", "fire"],
+    "evos": {
+      "to": ["houndoom"]
+    }
+  },
+  "houndoom": {
+    "id": 229,
+    "name": "Houndoom",
+    "type": ["dark", "fire"],
+    "evos": {
+      "from": "houndour"
+    }
+  },
+  "kingdra": {
+    "id": 230,
+    "name": "Kingdra",
+    "type": ["water", "dragon"],
+    "evos": {
+      "from": "seadra"
+    }
+  },
+  "phanpy": {
+    "id": 231,
+    "name": "Phanpy",
+    "type": ["ground"],
+    "evos": {
+      "to": ["donphan"]
+    }
+  },
+  "donphan": {
+    "id": 232,
+    "name": "Donphan",
+    "type": ["ground"],
+    "evos": {
+      "from": "phanpy"
+    }
+  },
+  "porygon2": {
+    "id": 233,
+    "name": "Porygon2",
+    "type": ["normal"],
+    "evos": {
+      "from": "porygon",
+      "to": ["porygon-z"]
+    }
+  },
+  "stantler": {
+    "id": 234,
+    "name": "Stantler",
+    "type": ["normal"],
+    "evos": {
+      "to": ["wyrdeer"]
+    }
+  },
+  "smeargle": {
+    "id": 235,
+    "name": "Smeargle",
+    "type": ["normal"]
+  },
+  "tyrogue": {
+    "id": 236,
+    "name": "Tyrogue",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["hitmonlee", "hitmonchan", "hitmontop"]
+    }
+  },
+  "hitmontop": {
+    "id": 237,
+    "name": "Hitmontop",
+    "type": ["fighting"],
+    "evos": {
+      "from": "tyrogue"
+    }
+  },
+  "smoochum": {
+    "id": 238,
+    "name": "Smoochum",
+    "type": ["ice", "psychic"],
+    "evos": {
+      "to": ["jynx"]
+    }
+  },
+  "elekid": {
+    "id": 239,
+    "name": "Elekid",
+    "type": ["electric"],
+    "evos": {
+      "to": ["electabuzz"]
+    }
+  },
+  "magby": {
+    "id": 240,
+    "name": "Magby",
+    "type": ["fire"],
+    "evos": {
+      "to": ["magmar"]
+    }
+  },
+  "miltank": {
+    "id": 241,
+    "name": "Miltank",
+    "type": ["normal"]
+  },
+  "blissey": {
+    "id": 242,
+    "name": "Blissey",
+    "type": ["normal"],
+    "evos": {
+      "from": "chansey"
+    }
+  },
+  "raikou": {
+    "id": 243,
+    "name": "Raikou",
+    "type": ["electric"]
+  },
+  "entei": {
+    "id": 244,
+    "name": "Entei",
+    "type": ["fire"]
+  },
+  "suicune": {
+    "id": 245,
+    "name": "Suicune",
+    "type": ["water"]
+  },
+  "larvitar": {
+    "id": 246,
+    "name": "Larvitar",
+    "type": ["rock", "ground"],
+    "evos": {
+      "to": ["pupitar"]
+    }
+  },
+  "pupitar": {
+    "id": 247,
+    "name": "Pupitar",
+    "type": ["rock", "ground"],
+    "evos": {
+      "from": "larvitar",
+      "to": ["tyranitar"]
+    }
+  },
+  "tyranitar": {
+    "id": 248,
+    "name": "Tyranitar",
+    "type": ["rock", "dark"],
+    "evos": {
+      "from": "pupitar"
+    }
+  },
+  "lugia": {
+    "id": 249,
+    "name": "Lugia",
+    "type": ["psychic", "flying"]
+  },
+  "ho-oh": {
+    "id": 250,
+    "name": "Ho-Oh",
+    "type": ["fire", "flying"]
+  },
+  "celebi": {
+    "id": 251,
+    "name": "Celebi",
+    "type": ["psychic", "grass"]
+  },
+  "treecko": {
+    "id": 252,
+    "name": "Treecko",
+    "type": ["grass"],
+    "evos": {
+      "to": ["grovyle"]
+    }
+  },
+  "grovyle": {
+    "id": 253,
+    "name": "Grovyle",
+    "type": ["grass"],
+    "evos": {
+      "from": "treecko",
+      "to": ["sceptile"]
+    }
+  },
+  "sceptile": {
+    "id": 254,
+    "name": "Sceptile",
+    "type": ["grass"],
+    "evos": {
+      "from": "grovyle"
+    }
+  },
+  "torchic": {
+    "id": 255,
+    "name": "Torchic",
+    "type": ["fire"],
+    "evos": {
+      "to": ["combusken"]
+    }
+  },
+  "combusken": {
+    "id": 256,
+    "name": "Combusken",
+    "type": ["fire", "fighting"],
+    "evos": {
+      "from": "torchic",
+      "to": ["blaziken"]
+    }
+  },
+  "blaziken": {
+    "id": 257,
+    "name": "Blaziken",
+    "type": ["fire", "fighting"],
+    "evos": {
+      "from": "combusken"
+    }
+  },
+  "mudkip": {
+    "id": 258,
+    "name": "Mudkip",
+    "type": ["water"],
+    "evos": {
+      "to": ["marshtomp"]
+    }
+  },
+  "marshtomp": {
+    "id": 259,
+    "name": "Marshtomp",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "mudkip",
+      "to": ["swampert"]
+    }
+  },
+  "swampert": {
+    "id": 260,
+    "name": "Swampert",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "marshtomp"
+    }
+  },
+  "poochyena": {
+    "id": 261,
+    "name": "Poochyena",
+    "type": ["dark"],
+    "evos": {
+      "to": ["mightyena"]
+    }
+  },
+  "mightyena": {
+    "id": 262,
+    "name": "Mightyena",
+    "type": ["dark"],
+    "evos": {
+      "from": "poochyena"
+    }
+  },
+  "zigzagoon": {
+    "id": 263,
+    "name": "Zigzagoon",
+    "type": ["normal"],
+    "evos": {
+      "to": ["linoone"]
+    }
+  },
+  "linoone": {
+    "id": 264,
+    "name": "Linoone",
+    "type": ["normal"],
+    "evos": {
+      "from": "zigzagoon",
+      "to": ["obstagoon"]
+    }
+  },
+  "wurmple": {
+    "id": 265,
+    "name": "Wurmple",
+    "type": ["bug"],
+    "evos": {
+      "to": ["silcoon", "cascoon"]
+    }
+  },
+  "silcoon": {
+    "id": 266,
+    "name": "Silcoon",
+    "type": ["bug"],
+    "evos": {
+      "from": "wurmple",
+      "to": ["beautifly"]
+    }
+  },
+  "beautifly": {
+    "id": 267,
+    "name": "Beautifly",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "silcoon"
+    }
+  },
+  "cascoon": {
+    "id": 268,
+    "name": "Cascoon",
+    "type": ["bug"],
+    "evos": {
+      "from": "wurmple",
+      "to": ["dustox"]
+    }
+  },
+  "dustox": {
+    "id": 269,
+    "name": "Dustox",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "cascoon"
+    }
+  },
+  "lotad": {
+    "id": 270,
+    "name": "Lotad",
+    "type": ["water", "grass"],
+    "evos": {
+      "to": ["lombre"]
+    }
+  },
+  "lombre": {
+    "id": 271,
+    "name": "Lombre",
+    "type": ["water", "grass"],
+    "evos": {
+      "from": "lotad",
+      "to": ["ludicolo"]
+    }
+  },
+  "ludicolo": {
+    "id": 272,
+    "name": "Ludicolo",
+    "type": ["water", "grass"],
+    "evos": {
+      "from": "lombre"
+    }
+  },
+  "seedot": {
+    "id": 273,
+    "name": "Seedot",
+    "type": ["grass"],
+    "evos": {
+      "to": ["nuzleaf"]
+    }
+  },
+  "nuzleaf": {
+    "id": 274,
+    "name": "Nuzleaf",
+    "type": ["grass", "dark"],
+    "evos": {
+      "from": "seedot",
+      "to": ["shiftry"]
+    }
+  },
+  "shiftry": {
+    "id": 275,
+    "name": "Shiftry",
+    "type": ["grass", "dark"],
+    "evos": {
+      "from": "nuzleaf"
+    }
+  },
+  "taillow": {
+    "id": 276,
+    "name": "Taillow",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["swellow"]
+    }
+  },
+  "swellow": {
+    "id": 277,
+    "name": "Swellow",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "taillow"
+    }
+  },
+  "wingull": {
+    "id": 278,
+    "name": "Wingull",
+    "type": ["water", "flying"],
+    "evos": {
+      "to": ["pelipper"]
+    }
+  },
+  "pelipper": {
+    "id": 279,
+    "name": "Pelipper",
+    "type": ["water", "flying"],
+    "evos": {
+      "from": "wingull"
+    }
+  },
+  "ralts": {
+    "id": 280,
+    "name": "Ralts",
+    "type": ["psychic", "fairy"],
+    "evos": {
+      "to": ["kirlia"]
+    }
+  },
+  "kirlia": {
+    "id": 281,
+    "name": "Kirlia",
+    "type": ["psychic", "fairy"],
+    "evos": {
+      "from": "ralts",
+      "to": ["gardevoir", "gallade"]
+    }
+  },
+  "gardevoir": {
+    "id": 282,
+    "name": "Gardevoir",
+    "type": ["psychic", "fairy"],
+    "evos": {
+      "from": "kirlia"
+    }
+  },
+  "surskit": {
+    "id": 283,
+    "name": "Surskit",
+    "type": ["bug", "water"],
+    "evos": {
+      "to": ["masquerain"]
+    }
+  },
+  "masquerain": {
+    "id": 284,
+    "name": "Masquerain",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "surskit"
+    }
+  },
+  "shroomish": {
+    "id": 285,
+    "name": "Shroomish",
+    "type": ["grass"],
+    "evos": {
+      "to": ["breloom"]
+    }
+  },
+  "breloom": {
+    "id": 286,
+    "name": "Breloom",
+    "type": ["grass", "fighting"],
+    "evos": {
+      "from": "shroomish"
+    }
+  },
+  "slakoth": {
+    "id": 287,
+    "name": "Slakoth",
+    "type": ["normal"],
+    "evos": {
+      "to": ["vigoroth"]
+    }
+  },
+  "vigoroth": {
+    "id": 288,
+    "name": "Vigoroth",
+    "type": ["normal"],
+    "evos": {
+      "from": "slakoth",
+      "to": ["slaking"]
+    }
+  },
+  "slaking": {
+    "id": 289,
+    "name": "Slaking",
+    "type": ["normal"],
+    "evos": {
+      "from": "vigoroth"
+    }
+  },
+  "nincada": {
+    "id": 290,
+    "name": "Nincada",
+    "type": ["bug", "ground"],
+    "evos": {
+      "to": ["ninjask", "shedinja"]
+    }
+  },
+  "ninjask": {
+    "id": 291,
+    "name": "Ninjask",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "nincada"
+    }
+  },
+  "shedinja": {
+    "id": 292,
+    "name": "Shedinja",
+    "type": ["bug", "ghost"],
+    "evos": {
+      "from": "nincada"
+    }
+  },
+  "whismur": {
+    "id": 293,
+    "name": "Whismur",
+    "type": ["normal"],
+    "evos": {
+      "to": ["loudred"]
+    }
+  },
+  "loudred": {
+    "id": 294,
+    "name": "Loudred",
+    "type": ["normal"],
+    "evos": {
+      "from": "whismur",
+      "to": ["exploud"]
+    }
+  },
+  "exploud": {
+    "id": 295,
+    "name": "Exploud",
+    "type": ["normal"],
+    "evos": {
+      "from": "loudred"
+    }
+  },
+  "makuhita": {
+    "id": 296,
+    "name": "Makuhita",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["hariyama"]
+    }
+  },
+  "hariyama": {
+    "id": 297,
+    "name": "Hariyama",
+    "type": ["fighting"],
+    "evos": {
+      "from": "makuhita"
+    }
+  },
+  "azurill": {
+    "id": 298,
+    "name": "Azurill",
+    "type": ["normal", "fairy"],
+    "evos": {
+      "to": ["marill"]
+    }
+  },
+  "nosepass": {
+    "id": 299,
+    "name": "Nosepass",
+    "type": ["rock"],
+    "evos": {
+      "to": ["probopass"]
+    }
+  },
+  "skitty": {
+    "id": 300,
+    "name": "Skitty",
+    "type": ["normal"],
+    "evos": {
+      "to": ["delcatty"]
+    }
+  },
+  "delcatty": {
+    "id": 301,
+    "name": "Delcatty",
+    "type": ["normal"],
+    "evos": {
+      "from": "skitty"
+    }
+  },
+  "sableye": {
+    "id": 302,
+    "name": "Sableye",
+    "type": ["dark", "ghost"]
+  },
+  "mawile": {
+    "id": 303,
+    "name": "Mawile",
+    "type": ["steel", "fairy"]
+  },
+  "aron": {
+    "id": 304,
+    "name": "Aron",
+    "type": ["steel", "rock"],
+    "evos": {
+      "to": ["lairon"]
+    }
+  },
+  "lairon": {
+    "id": 305,
+    "name": "Lairon",
+    "type": ["steel", "rock"],
+    "evos": {
+      "from": "aron",
+      "to": ["aggron"]
+    }
+  },
+  "aggron": {
+    "id": 306,
+    "name": "Aggron",
+    "type": ["steel", "rock"],
+    "evos": {
+      "from": "lairon"
+    }
+  },
+  "meditite": {
+    "id": 307,
+    "name": "Meditite",
+    "type": ["fighting", "psychic"],
+    "evos": {
+      "to": ["medicham"]
+    }
+  },
+  "medicham": {
+    "id": 308,
+    "name": "Medicham",
+    "type": ["fighting", "psychic"],
+    "evos": {
+      "from": "meditite"
+    }
+  },
+  "electrike": {
+    "id": 309,
+    "name": "Electrike",
+    "type": ["electric"],
+    "evos": {
+      "to": ["manectric"]
+    }
+  },
+  "manectric": {
+    "id": 310,
+    "name": "Manectric",
+    "type": ["electric"],
+    "evos": {
+      "from": "electrike"
+    }
+  },
+  "plusle": {
+    "id": 311,
+    "name": "Plusle",
+    "type": ["electric"]
+  },
+  "minun": {
+    "id": 312,
+    "name": "Minun",
+    "type": ["electric"]
+  },
+  "volbeat": {
+    "id": 313,
+    "name": "Volbeat",
+    "type": ["bug"]
+  },
+  "illumise": {
+    "id": 314,
+    "name": "Illumise",
+    "type": ["bug"]
+  },
+  "roselia": {
+    "id": 315,
+    "name": "Roselia",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "budew",
+      "to": ["roserade"]
+    }
+  },
+  "gulpin": {
+    "id": 316,
+    "name": "Gulpin",
+    "type": ["poison"],
+    "evos": {
+      "to": ["swalot"]
+    }
+  },
+  "swalot": {
+    "id": 317,
+    "name": "Swalot",
+    "type": ["poison"],
+    "evos": {
+      "from": "gulpin"
+    }
+  },
+  "carvanha": {
+    "id": 318,
+    "name": "Carvanha",
+    "type": ["water", "dark"],
+    "evos": {
+      "to": ["sharpedo"]
+    }
+  },
+  "sharpedo": {
+    "id": 319,
+    "name": "Sharpedo",
+    "type": ["water", "dark"],
+    "evos": {
+      "from": "carvanha"
+    }
+  },
+  "wailmer": {
+    "id": 320,
+    "name": "Wailmer",
+    "type": ["water"],
+    "evos": {
+      "to": ["wailord"]
+    }
+  },
+  "wailord": {
+    "id": 321,
+    "name": "Wailord",
+    "type": ["water"],
+    "evos": {
+      "from": "wailmer"
+    }
+  },
+  "numel": {
+    "id": 322,
+    "name": "Numel",
+    "type": ["fire", "ground"],
+    "evos": {
+      "to": ["camerupt"]
+    }
+  },
+  "camerupt": {
+    "id": 323,
+    "name": "Camerupt",
+    "type": ["fire", "ground"],
+    "evos": {
+      "from": "numel"
+    }
+  },
+  "torkoal": {
+    "id": 324,
+    "name": "Torkoal",
+    "type": ["fire"]
+  },
+  "spoink": {
+    "id": 325,
+    "name": "Spoink",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["grumpig"]
+    }
+  },
+  "grumpig": {
+    "id": 326,
+    "name": "Grumpig",
+    "type": ["psychic"],
+    "evos": {
+      "from": "spoink"
+    }
+  },
+  "spinda": {
+    "id": 327,
+    "name": "Spinda",
+    "type": ["normal"]
+  },
+  "trapinch": {
+    "id": 328,
+    "name": "Trapinch",
+    "type": ["ground"],
+    "evos": {
+      "to": ["vibrava"]
+    }
+  },
+  "vibrava": {
+    "id": 329,
+    "name": "Vibrava",
+    "type": ["ground", "dragon"],
+    "evos": {
+      "from": "trapinch",
+      "to": ["flygon"]
+    }
+  },
+  "flygon": {
+    "id": 330,
+    "name": "Flygon",
+    "type": ["ground", "dragon"],
+    "evos": {
+      "from": "vibrava"
+    }
+  },
+  "cacnea": {
+    "id": 331,
+    "name": "Cacnea",
+    "type": ["grass"],
+    "evos": {
+      "to": ["cacturne"]
+    }
+  },
+  "cacturne": {
+    "id": 332,
+    "name": "Cacturne",
+    "type": ["grass", "dark"],
+    "evos": {
+      "from": "cacnea"
+    }
+  },
+  "swablu": {
+    "id": 333,
+    "name": "Swablu",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["altaria"]
+    }
+  },
+  "altaria": {
+    "id": 334,
+    "name": "Altaria",
+    "type": ["dragon", "flying"],
+    "evos": {
+      "from": "swablu"
+    }
+  },
+  "zangoose": {
+    "id": 335,
+    "name": "Zangoose",
+    "type": ["normal"]
+  },
+  "seviper": {
+    "id": 336,
+    "name": "Seviper",
+    "type": ["poison"]
+  },
+  "lunatone": {
+    "id": 337,
+    "name": "Lunatone",
+    "type": ["rock", "psychic"]
+  },
+  "solrock": {
+    "id": 338,
+    "name": "Solrock",
+    "type": ["rock", "psychic"]
+  },
+  "barboach": {
+    "id": 339,
+    "name": "Barboach",
+    "type": ["water", "ground"],
+    "evos": {
+      "to": ["whiscash"]
+    }
+  },
+  "whiscash": {
+    "id": 340,
+    "name": "Whiscash",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "barboach"
+    }
+  },
+  "corphish": {
+    "id": 341,
+    "name": "Corphish",
+    "type": ["water"],
+    "evos": {
+      "to": ["crawdaunt"]
+    }
+  },
+  "crawdaunt": {
+    "id": 342,
+    "name": "Crawdaunt",
+    "type": ["water", "dark"],
+    "evos": {
+      "from": "corphish"
+    }
+  },
+  "baltoy": {
+    "id": 343,
+    "name": "Baltoy",
+    "type": ["ground", "psychic"],
+    "evos": {
+      "to": ["claydol"]
+    }
+  },
+  "claydol": {
+    "id": 344,
+    "name": "Claydol",
+    "type": ["ground", "psychic"],
+    "evos": {
+      "from": "baltoy"
+    }
+  },
+  "lileep": {
+    "id": 345,
+    "name": "Lileep",
+    "type": ["rock", "grass"],
+    "evos": {
+      "to": ["cradily"]
+    }
+  },
+  "cradily": {
+    "id": 346,
+    "name": "Cradily",
+    "type": ["rock", "grass"],
+    "evos": {
+      "from": "lileep"
+    }
+  },
+  "anorith": {
+    "id": 347,
+    "name": "Anorith",
+    "type": ["rock", "bug"],
+    "evos": {
+      "to": ["armaldo"]
+    }
+  },
+  "armaldo": {
+    "id": 348,
+    "name": "Armaldo",
+    "type": ["rock", "bug"],
+    "evos": {
+      "from": "anorith"
+    }
+  },
+  "feebas": {
+    "id": 349,
+    "name": "Feebas",
+    "type": ["water"],
+    "evos": {
+      "to": ["milotic"]
+    }
+  },
+  "milotic": {
+    "id": 350,
+    "name": "Milotic",
+    "type": ["water"],
+    "evos": {
+      "from": "feebas"
+    }
+  },
+  "castform": {
+    "id": 351,
+    "name": "Castform",
+    "type": ["normal"]
+  },
+  "kecleon": {
+    "id": 352,
+    "name": "Kecleon",
+    "type": ["normal"]
+  },
+  "shuppet": {
+    "id": 353,
+    "name": "Shuppet",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["banette"]
+    }
+  },
+  "banette": {
+    "id": 354,
+    "name": "Banette",
+    "type": ["ghost"],
+    "evos": {
+      "from": "shuppet"
+    }
+  },
+  "duskull": {
+    "id": 355,
+    "name": "Duskull",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["dusclops"]
+    }
+  },
+  "dusclops": {
+    "id": 356,
+    "name": "Dusclops",
+    "type": ["ghost"],
+    "evos": {
+      "from": "duskull",
+      "to": ["dusknoir"]
+    }
+  },
+  "tropius": {
+    "id": 357,
+    "name": "Tropius",
+    "type": ["grass", "flying"]
+  },
+  "chimecho": {
+    "id": 358,
+    "name": "Chimecho",
+    "type": ["psychic"],
+    "evos": {
+      "from": "chingling"
+    }
+  },
+  "absol": {
+    "id": 359,
+    "name": "Absol",
+    "type": ["dark"]
+  },
+  "wynaut": {
+    "id": 360,
+    "name": "Wynaut",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["wobbuffet"]
+    }
+  },
+  "snorunt": {
+    "id": 361,
+    "name": "Snorunt",
+    "type": ["ice"],
+    "evos": {
+      "to": ["glalie", "froslass"]
+    }
+  },
+  "glalie": {
+    "id": 362,
+    "name": "Glalie",
+    "type": ["ice"],
+    "evos": {
+      "from": "snorunt"
+    }
+  },
+  "spheal": {
+    "id": 363,
+    "name": "Spheal",
+    "type": ["ice", "water"],
+    "evos": {
+      "to": ["sealeo"]
+    }
+  },
+  "sealeo": {
+    "id": 364,
+    "name": "Sealeo",
+    "type": ["ice", "water"],
+    "evos": {
+      "from": "spheal",
+      "to": ["walrein"]
+    }
+  },
+  "walrein": {
+    "id": 365,
+    "name": "Walrein",
+    "type": ["ice", "water"],
+    "evos": {
+      "from": "sealeo"
+    }
+  },
+  "clamperl": {
+    "id": 366,
+    "name": "Clamperl",
+    "type": ["water"],
+    "evos": {
+      "to": ["huntail", "gorebyss"]
+    }
+  },
+  "huntail": {
+    "id": 367,
+    "name": "Huntail",
+    "type": ["water"],
+    "evos": {
+      "from": "clamperl"
+    }
+  },
+  "gorebyss": {
+    "id": 368,
+    "name": "Gorebyss",
+    "type": ["water"],
+    "evos": {
+      "from": "clamperl"
+    }
+  },
+  "relicanth": {
+    "id": 369,
+    "name": "Relicanth",
+    "type": ["water", "rock"]
+  },
+  "luvdisc": {
+    "id": 370,
+    "name": "Luvdisc",
+    "type": ["water"]
+  },
+  "bagon": {
+    "id": 371,
+    "name": "Bagon",
+    "type": ["dragon"],
+    "evos": {
+      "to": ["shelgon"]
+    }
+  },
+  "shelgon": {
+    "id": 372,
+    "name": "Shelgon",
+    "type": ["dragon"],
+    "evos": {
+      "from": "bagon",
+      "to": ["salamence"]
+    }
+  },
+  "salamence": {
+    "id": 373,
+    "name": "Salamence",
+    "type": ["dragon", "flying"],
+    "evos": {
+      "from": "shelgon"
+    }
+  },
+  "beldum": {
+    "id": 374,
+    "name": "Beldum",
+    "type": ["steel", "psychic"],
+    "evos": {
+      "to": ["metang"]
+    }
+  },
+  "metang": {
+    "id": 375,
+    "name": "Metang",
+    "type": ["steel", "psychic"],
+    "evos": {
+      "from": "beldum",
+      "to": ["metagross"]
+    }
+  },
+  "metagross": {
+    "id": 376,
+    "name": "Metagross",
+    "type": ["steel", "psychic"],
+    "evos": {
+      "from": "metang"
+    }
+  },
+  "regirock": {
+    "id": 377,
+    "name": "Regirock",
+    "type": ["rock"]
+  },
+  "regice": {
+    "id": 378,
+    "name": "Regice",
+    "type": ["ice"]
+  },
+  "registeel": {
+    "id": 379,
+    "name": "Registeel",
+    "type": ["steel"]
+  },
+  "latias": {
+    "id": 380,
+    "name": "Latias",
+    "type": ["dragon", "psychic"]
+  },
+  "latios": {
+    "id": 381,
+    "name": "Latios",
+    "type": ["dragon", "psychic"]
+  },
+  "kyogre": {
+    "id": 382,
+    "name": "Kyogre",
+    "type": ["water"]
+  },
+  "groudon": {
+    "id": 383,
+    "name": "Groudon",
+    "type": ["ground"]
+  },
+  "rayquaza": {
+    "id": 384,
+    "name": "Rayquaza",
+    "type": ["dragon", "flying"]
+  },
+  "jirachi": {
+    "id": 385,
+    "name": "Jirachi",
+    "type": ["steel", "psychic"]
+  },
+  "deoxys": {
+    "id": 386,
+    "name": "Deoxys",
+    "type": ["psychic"]
+  },
+  "turtwig": {
+    "id": 387,
+    "name": "Turtwig",
+    "type": ["grass"],
+    "evos": {
+      "to": ["grotle"]
+    }
+  },
+  "grotle": {
+    "id": 388,
+    "name": "Grotle",
+    "type": ["grass"],
+    "evos": {
+      "from": "turtwig",
+      "to": ["torterra"]
+    }
+  },
+  "torterra": {
+    "id": 389,
+    "name": "Torterra",
+    "type": ["grass", "ground"],
+    "evos": {
+      "from": "grotle"
+    }
+  },
+  "chimchar": {
+    "id": 390,
+    "name": "Chimchar",
+    "type": ["fire"],
+    "evos": {
+      "to": ["monferno"]
+    }
+  },
+  "monferno": {
+    "id": 391,
+    "name": "Monferno",
+    "type": ["fire", "fighting"],
+    "evos": {
+      "from": "chimchar",
+      "to": ["infernape"]
+    }
+  },
+  "infernape": {
+    "id": 392,
+    "name": "Infernape",
+    "type": ["fire", "fighting"],
+    "evos": {
+      "from": "monferno"
+    }
+  },
+  "piplup": {
+    "id": 393,
+    "name": "Piplup",
+    "type": ["water"],
+    "evos": {
+      "to": ["prinplup"]
+    }
+  },
+  "prinplup": {
+    "id": 394,
+    "name": "Prinplup",
+    "type": ["water"],
+    "evos": {
+      "from": "piplup",
+      "to": ["empoleon"]
+    }
+  },
+  "empoleon": {
+    "id": 395,
+    "name": "Empoleon",
+    "type": ["water", "steel"],
+    "evos": {
+      "from": "prinplup"
+    }
+  },
+  "starly": {
+    "id": 396,
+    "name": "Starly",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["staravia"]
+    }
+  },
+  "staravia": {
+    "id": 397,
+    "name": "Staravia",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "starly",
+      "to": ["staraptor"]
+    }
+  },
+  "staraptor": {
+    "id": 398,
+    "name": "Staraptor",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "staravia"
+    }
+  },
+  "bidoof": {
+    "id": 399,
+    "name": "Bidoof",
+    "type": ["normal"],
+    "evos": {
+      "to": ["bibarel"]
+    }
+  },
+  "bibarel": {
+    "id": 400,
+    "name": "Bibarel",
+    "type": ["normal", "water"],
+    "evos": {
+      "from": "bidoof"
+    }
+  },
+  "kricketot": {
+    "id": 401,
+    "name": "Kricketot",
+    "type": ["bug"],
+    "evos": {
+      "to": ["kricketune"]
+    }
+  },
+  "kricketune": {
+    "id": 402,
+    "name": "Kricketune",
+    "type": ["bug"],
+    "evos": {
+      "from": "kricketot"
+    }
+  },
+  "shinx": {
+    "id": 403,
+    "name": "Shinx",
+    "type": ["electric"],
+    "evos": {
+      "to": ["luxio"]
+    }
+  },
+  "luxio": {
+    "id": 404,
+    "name": "Luxio",
+    "type": ["electric"],
+    "evos": {
+      "from": "shinx",
+      "to": ["luxray"]
+    }
+  },
+  "luxray": {
+    "id": 405,
+    "name": "Luxray",
+    "type": ["electric"],
+    "evos": {
+      "from": "luxio"
+    }
+  },
+  "budew": {
+    "id": 406,
+    "name": "Budew",
+    "type": ["grass", "poison"],
+    "evos": {
+      "to": ["roselia"]
+    }
+  },
+  "roserade": {
+    "id": 407,
+    "name": "Roserade",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "roselia"
+    }
+  },
+  "cranidos": {
+    "id": 408,
+    "name": "Cranidos",
+    "type": ["rock"],
+    "evos": {
+      "to": ["rampardos"]
+    }
+  },
+  "rampardos": {
+    "id": 409,
+    "name": "Rampardos",
+    "type": ["rock"],
+    "evos": {
+      "from": "cranidos"
+    }
+  },
+  "shieldon": {
+    "id": 410,
+    "name": "Shieldon",
+    "type": ["rock", "steel"],
+    "evos": {
+      "to": ["bastiodon"]
+    }
+  },
+  "bastiodon": {
+    "id": 411,
+    "name": "Bastiodon",
+    "type": ["rock", "steel"],
+    "evos": {
+      "from": "shieldon"
+    }
+  },
+  "burmy": {
+    "id": 412,
+    "name": "Burmy",
+    "type": ["bug"],
+    "evos": {
+      "to": ["wormadam", "mothim"]
+    }
+  },
+  "wormadam": {
+    "id": 413,
+    "name": "Wormadam",
+    "type": ["bug", "grass"],
+    "evos": {
+      "from": "burmy"
+    }
+  },
+  "mothim": {
+    "id": 414,
+    "name": "Mothim",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "burmy"
+    }
+  },
+  "combee": {
+    "id": 415,
+    "name": "Combee",
+    "type": ["bug", "flying"],
+    "evos": {
+      "to": ["vespiquen"]
+    }
+  },
+  "vespiquen": {
+    "id": 416,
+    "name": "Vespiquen",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "combee"
+    }
+  },
+  "pachirisu": {
+    "id": 417,
+    "name": "Pachirisu",
+    "type": ["electric"]
+  },
+  "buizel": {
+    "id": 418,
+    "name": "Buizel",
+    "type": ["water"],
+    "evos": {
+      "to": ["floatzel"]
+    }
+  },
+  "floatzel": {
+    "id": 419,
+    "name": "Floatzel",
+    "type": ["water"],
+    "evos": {
+      "from": "buizel"
+    }
+  },
+  "cherubi": {
+    "id": 420,
+    "name": "Cherubi",
+    "type": ["grass"],
+    "evos": {
+      "to": ["cherrim"]
+    }
+  },
+  "cherrim": {
+    "id": 421,
+    "name": "Cherrim",
+    "type": ["grass"],
+    "evos": {
+      "from": "cherubi"
+    }
+  },
+  "shellos": {
+    "id": 422,
+    "name": "Shellos",
+    "type": ["water"],
+    "evos": {
+      "to": ["gastrodon"]
+    }
+  },
+  "gastrodon": {
+    "id": 423,
+    "name": "Gastrodon",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "shellos"
+    }
+  },
+  "ambipom": {
+    "id": 424,
+    "name": "Ambipom",
+    "type": ["normal"],
+    "evos": {
+      "from": "aipom"
+    }
+  },
+  "drifloon": {
+    "id": 425,
+    "name": "Drifloon",
+    "type": ["ghost", "flying"],
+    "evos": {
+      "to": ["drifblim"]
+    }
+  },
+  "drifblim": {
+    "id": 426,
+    "name": "Drifblim",
+    "type": ["ghost", "flying"],
+    "evos": {
+      "from": "drifloon"
+    }
+  },
+  "buneary": {
+    "id": 427,
+    "name": "Buneary",
+    "type": ["normal"],
+    "evos": {
+      "to": ["lopunny"]
+    }
+  },
+  "lopunny": {
+    "id": 428,
+    "name": "Lopunny",
+    "type": ["normal"],
+    "evos": {
+      "from": "buneary"
+    }
+  },
+  "mismagius": {
+    "id": 429,
+    "name": "Mismagius",
+    "type": ["ghost"],
+    "evos": {
+      "from": "misdreavus"
+    }
+  },
+  "honchkrow": {
+    "id": 430,
+    "name": "Honchkrow",
+    "type": ["dark", "flying"],
+    "evos": {
+      "from": "murkrow"
+    }
+  },
+  "glameow": {
+    "id": 431,
+    "name": "Glameow",
+    "type": ["normal"],
+    "evos": {
+      "to": ["purugly"]
+    }
+  },
+  "purugly": {
+    "id": 432,
+    "name": "Purugly",
+    "type": ["normal"],
+    "evos": {
+      "from": "glameow"
+    }
+  },
+  "chingling": {
+    "id": 433,
+    "name": "Chingling",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["chimecho"]
+    }
+  },
+  "stunky": {
+    "id": 434,
+    "name": "Stunky",
+    "type": ["poison", "dark"],
+    "evos": {
+      "to": ["skuntank"]
+    }
+  },
+  "skuntank": {
+    "id": 435,
+    "name": "Skuntank",
+    "type": ["poison", "dark"],
+    "evos": {
+      "from": "stunky"
+    }
+  },
+  "bronzor": {
+    "id": 436,
+    "name": "Bronzor",
+    "type": ["steel", "psychic"],
+    "evos": {
+      "to": ["bronzong"]
+    }
+  },
+  "bronzong": {
+    "id": 437,
+    "name": "Bronzong",
+    "type": ["steel", "psychic"],
+    "evos": {
+      "from": "bronzor"
+    }
+  },
+  "bonsly": {
+    "id": 438,
+    "name": "Bonsly",
+    "type": ["rock"],
+    "evos": {
+      "to": ["sudowoodo"]
+    }
+  },
+  "mime-jr": {
+    "id": 439,
+    "name": "Mime Jr.",
+    "type": ["psychic", "fairy"],
+    "evos": {
+      "to": ["mr-mime"]
+    }
+  },
+  "happiny": {
+    "id": 440,
+    "name": "Happiny",
+    "type": ["normal"],
+    "evos": {
+      "to": ["chansey"]
+    }
+  },
+  "chatot": {
+    "id": 441,
+    "name": "Chatot",
+    "type": ["normal", "flying"]
+  },
+  "spiritomb": {
+    "id": 442,
+    "name": "Spiritomb",
+    "type": ["ghost", "dark"]
+  },
+  "gible": {
+    "id": 443,
+    "name": "Gible",
+    "type": ["dragon", "ground"],
+    "evos": {
+      "to": ["gabite"]
+    }
+  },
+  "gabite": {
+    "id": 444,
+    "name": "Gabite",
+    "type": ["dragon", "ground"],
+    "evos": {
+      "from": "gible",
+      "to": ["garchomp"]
+    }
+  },
+  "garchomp": {
+    "id": 445,
+    "name": "Garchomp",
+    "type": ["dragon", "ground"],
+    "evos": {
+      "from": "gabite"
+    }
+  },
+  "munchlax": {
+    "id": 446,
+    "name": "Munchlax",
+    "type": ["normal"],
+    "evos": {
+      "to": ["snorlax"]
+    }
+  },
+  "riolu": {
+    "id": 447,
+    "name": "Riolu",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["lucario"]
+    }
+  },
+  "lucario": {
+    "id": 448,
+    "name": "Lucario",
+    "type": ["fighting", "steel"],
+    "evos": {
+      "from": "riolu"
+    }
+  },
+  "hippopotas": {
+    "id": 449,
+    "name": "Hippopotas",
+    "type": ["ground"],
+    "evos": {
+      "to": ["hippowdon"]
+    }
+  },
+  "hippowdon": {
+    "id": 450,
+    "name": "Hippowdon",
+    "type": ["ground"],
+    "evos": {
+      "from": "hippopotas"
+    }
+  },
+  "skorupi": {
+    "id": 451,
+    "name": "Skorupi",
+    "type": ["poison", "bug"],
+    "evos": {
+      "to": ["drapion"]
+    }
+  },
+  "drapion": {
+    "id": 452,
+    "name": "Drapion",
+    "type": ["poison", "dark"],
+    "evos": {
+      "from": "skorupi"
+    }
+  },
+  "croagunk": {
+    "id": 453,
+    "name": "Croagunk",
+    "type": ["poison", "fighting"],
+    "evos": {
+      "to": ["toxicroak"]
+    }
+  },
+  "toxicroak": {
+    "id": 454,
+    "name": "Toxicroak",
+    "type": ["poison", "fighting"],
+    "evos": {
+      "from": "croagunk"
+    }
+  },
+  "carnivine": {
+    "id": 455,
+    "name": "Carnivine",
+    "type": ["grass"]
+  },
+  "finneon": {
+    "id": 456,
+    "name": "Finneon",
+    "type": ["water"],
+    "evos": {
+      "to": ["lumineon"]
+    }
+  },
+  "lumineon": {
+    "id": 457,
+    "name": "Lumineon",
+    "type": ["water"],
+    "evos": {
+      "from": "finneon"
+    }
+  },
+  "mantyke": {
+    "id": 458,
+    "name": "Mantyke",
+    "type": ["water", "flying"],
+    "evos": {
+      "to": ["mantine"]
+    }
+  },
+  "snover": {
+    "id": 459,
+    "name": "Snover",
+    "type": ["grass", "ice"],
+    "evos": {
+      "to": ["abomasnow"]
+    }
+  },
+  "abomasnow": {
+    "id": 460,
+    "name": "Abomasnow",
+    "type": ["grass", "ice"],
+    "evos": {
+      "from": "snover"
+    }
+  },
+  "weavile": {
+    "id": 461,
+    "name": "Weavile",
+    "type": ["dark", "ice"],
+    "evos": {
+      "from": "sneasel"
+    }
+  },
+  "magnezone": {
+    "id": 462,
+    "name": "Magnezone",
+    "type": ["electric", "steel"],
+    "evos": {
+      "from": "magneton"
+    }
+  },
+  "lickilicky": {
+    "id": 463,
+    "name": "Lickilicky",
+    "type": ["normal"],
+    "evos": {
+      "from": "lickitung"
+    }
+  },
+  "rhyperior": {
+    "id": 464,
+    "name": "Rhyperior",
+    "type": ["ground", "rock"],
+    "evos": {
+      "from": "rhydon"
+    }
+  },
+  "tangrowth": {
+    "id": 465,
+    "name": "Tangrowth",
+    "type": ["grass"],
+    "evos": {
+      "from": "tangela"
+    }
+  },
+  "electivire": {
+    "id": 466,
+    "name": "Electivire",
+    "type": ["electric"],
+    "evos": {
+      "from": "electabuzz"
+    }
+  },
+  "magmortar": {
+    "id": 467,
+    "name": "Magmortar",
+    "type": ["fire"],
+    "evos": {
+      "from": "magmar"
+    }
+  },
+  "togekiss": {
+    "id": 468,
+    "name": "Togekiss",
+    "type": ["fairy", "flying"],
+    "evos": {
+      "from": "togetic"
+    }
+  },
+  "yanmega": {
+    "id": 469,
+    "name": "Yanmega",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "yanma"
+    }
+  },
+  "leafeon": {
+    "id": 470,
+    "name": "Leafeon",
+    "type": ["grass"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "glaceon": {
+    "id": 471,
+    "name": "Glaceon",
+    "type": ["ice"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "gliscor": {
+    "id": 472,
+    "name": "Gliscor",
+    "type": ["ground", "flying"],
+    "evos": {
+      "from": "gligar"
+    }
+  },
+  "mamoswine": {
+    "id": 473,
+    "name": "Mamoswine",
+    "type": ["ice", "ground"],
+    "evos": {
+      "from": "piloswine"
+    }
+  },
+  "porygon-z": {
+    "id": 474,
+    "name": "Porygon-Z",
+    "type": ["normal"],
+    "evos": {
+      "from": "porygon2"
+    }
+  },
+  "gallade": {
+    "id": 475,
+    "name": "Gallade",
+    "type": ["psychic", "fighting"],
+    "evos": {
+      "from": "kirlia"
+    }
+  },
+  "probopass": {
+    "id": 476,
+    "name": "Probopass",
+    "type": ["rock", "steel"],
+    "evos": {
+      "from": "nosepass"
+    }
+  },
+  "dusknoir": {
+    "id": 477,
+    "name": "Dusknoir",
+    "type": ["ghost"],
+    "evos": {
+      "from": "dusclops"
+    }
+  },
+  "froslass": {
+    "id": 478,
+    "name": "Froslass",
+    "type": ["ice", "ghost"],
+    "evos": {
+      "from": "snorunt"
+    }
+  },
+  "rotom": {
+    "id": 479,
+    "name": "Rotom",
+    "type": ["electric", "ghost"]
+  },
+  "uxie": {
+    "id": 480,
+    "name": "Uxie",
+    "type": ["psychic"]
+  },
+  "mesprit": {
+    "id": 481,
+    "name": "Mesprit",
+    "type": ["psychic"]
+  },
+  "azelf": {
+    "id": 482,
+    "name": "Azelf",
+    "type": ["psychic"]
+  },
+  "dialga": {
+    "id": 483,
+    "name": "Dialga",
+    "type": ["steel", "dragon"]
+  },
+  "palkia": {
+    "id": 484,
+    "name": "Palkia",
+    "type": ["water", "dragon"]
+  },
+  "heatran": {
+    "id": 485,
+    "name": "Heatran",
+    "type": ["fire", "steel"]
+  },
+  "regigigas": {
+    "id": 486,
+    "name": "Regigigas",
+    "type": ["normal"]
+  },
+  "giratina": {
+    "id": 487,
+    "name": "Giratina",
+    "type": ["ghost", "dragon"]
+  },
+  "cresselia": {
+    "id": 488,
+    "name": "Cresselia",
+    "type": ["psychic"]
+  },
+  "phione": {
+    "id": 489,
+    "name": "Phione",
+    "type": ["water"],
+    "evos": {
+      "to": ["manaphy"]
+    }
+  },
+  "manaphy": {
+    "id": 490,
+    "name": "Manaphy",
+    "type": ["water"]
+  },
+  "darkrai": {
+    "id": 491,
+    "name": "Darkrai",
+    "type": ["dark"]
+  },
+  "shaymin": {
+    "id": 492,
+    "name": "Shaymin",
+    "type": ["grass"]
+  },
+  "arceus": {
+    "id": 493,
+    "name": "Arceus",
+    "type": ["normal"]
+  },
+  "victini": {
+    "id": 494,
+    "name": "Victini",
+    "type": ["psychic", "fire"]
+  },
+  "snivy": {
+    "id": 495,
+    "name": "Snivy",
+    "type": ["grass"],
+    "evos": {
+      "to": ["servine"]
+    }
+  },
+  "servine": {
+    "id": 496,
+    "name": "Servine",
+    "type": ["grass"],
+    "evos": {
+      "from": "snivy",
+      "to": ["serperior"]
+    }
+  },
+  "serperior": {
+    "id": 497,
+    "name": "Serperior",
+    "type": ["grass"],
+    "evos": {
+      "from": "servine"
+    }
+  },
+  "tepig": {
+    "id": 498,
+    "name": "Tepig",
+    "type": ["fire"],
+    "evos": {
+      "to": ["pignite"]
+    }
+  },
+  "pignite": {
+    "id": 499,
+    "name": "Pignite",
+    "type": ["fire", "fighting"],
+    "evos": {
+      "from": "tepig",
+      "to": ["emboar"]
+    }
+  },
+  "emboar": {
+    "id": 500,
+    "name": "Emboar",
+    "type": ["fire", "fighting"],
+    "evos": {
+      "from": "pignite"
+    }
+  },
+  "oshawott": {
+    "id": 501,
+    "name": "Oshawott",
+    "type": ["water"],
+    "evos": {
+      "to": ["dewott"]
+    }
+  },
+  "dewott": {
+    "id": 502,
+    "name": "Dewott",
+    "type": ["water"],
+    "evos": {
+      "from": "oshawott",
+      "to": ["samurott"]
+    }
+  },
+  "samurott": {
+    "id": 503,
+    "name": "Samurott",
+    "type": ["water"],
+    "evos": {
+      "from": "dewott"
+    }
+  },
+  "patrat": {
+    "id": 504,
+    "name": "Patrat",
+    "type": ["normal"],
+    "evos": {
+      "to": ["watchog"]
+    }
+  },
+  "watchog": {
+    "id": 505,
+    "name": "Watchog",
+    "type": ["normal"],
+    "evos": {
+      "from": "patrat"
+    }
+  },
+  "lillipup": {
+    "id": 506,
+    "name": "Lillipup",
+    "type": ["normal"],
+    "evos": {
+      "to": ["herdier"]
+    }
+  },
+  "herdier": {
+    "id": 507,
+    "name": "Herdier",
+    "type": ["normal"],
+    "evos": {
+      "from": "lillipup",
+      "to": ["stoutland"]
+    }
+  },
+  "stoutland": {
+    "id": 508,
+    "name": "Stoutland",
+    "type": ["normal"],
+    "evos": {
+      "from": "herdier"
+    }
+  },
+  "purrloin": {
+    "id": 509,
+    "name": "Purrloin",
+    "type": ["dark"],
+    "evos": {
+      "to": ["liepard"]
+    }
+  },
+  "liepard": {
+    "id": 510,
+    "name": "Liepard",
+    "type": ["dark"],
+    "evos": {
+      "from": "purrloin"
+    }
+  },
+  "pansage": {
+    "id": 511,
+    "name": "Pansage",
+    "type": ["grass"],
+    "evos": {
+      "to": ["simisage"]
+    }
+  },
+  "simisage": {
+    "id": 512,
+    "name": "Simisage",
+    "type": ["grass"],
+    "evos": {
+      "from": "pansage"
+    }
+  },
+  "pansear": {
+    "id": 513,
+    "name": "Pansear",
+    "type": ["fire"],
+    "evos": {
+      "to": ["simisear"]
+    }
+  },
+  "simisear": {
+    "id": 514,
+    "name": "Simisear",
+    "type": ["fire"],
+    "evos": {
+      "from": "pansear"
+    }
+  },
+  "panpour": {
+    "id": 515,
+    "name": "Panpour",
+    "type": ["water"],
+    "evos": {
+      "to": ["simipour"]
+    }
+  },
+  "simipour": {
+    "id": 516,
+    "name": "Simipour",
+    "type": ["water"],
+    "evos": {
+      "from": "panpour"
+    }
+  },
+  "munna": {
+    "id": 517,
+    "name": "Munna",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["musharna"]
+    }
+  },
+  "musharna": {
+    "id": 518,
+    "name": "Musharna",
+    "type": ["psychic"],
+    "evos": {
+      "from": "munna"
+    }
+  },
+  "pidove": {
+    "id": 519,
+    "name": "Pidove",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["tranquill"]
+    }
+  },
+  "tranquill": {
+    "id": 520,
+    "name": "Tranquill",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "pidove",
+      "to": ["unfezant"]
+    }
+  },
+  "unfezant": {
+    "id": 521,
+    "name": "Unfezant",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "tranquill"
+    }
+  },
+  "blitzle": {
+    "id": 522,
+    "name": "Blitzle",
+    "type": ["electric"],
+    "evos": {
+      "to": ["zebstrika"]
+    }
+  },
+  "zebstrika": {
+    "id": 523,
+    "name": "Zebstrika",
+    "type": ["electric"],
+    "evos": {
+      "from": "blitzle"
+    }
+  },
+  "roggenrola": {
+    "id": 524,
+    "name": "Roggenrola",
+    "type": ["rock"],
+    "evos": {
+      "to": ["boldore"]
+    }
+  },
+  "boldore": {
+    "id": 525,
+    "name": "Boldore",
+    "type": ["rock"],
+    "evos": {
+      "from": "roggenrola",
+      "to": ["gigalith"]
+    }
+  },
+  "gigalith": {
+    "id": 526,
+    "name": "Gigalith",
+    "type": ["rock"],
+    "evos": {
+      "from": "boldore"
+    }
+  },
+  "woobat": {
+    "id": 527,
+    "name": "Woobat",
+    "type": ["psychic", "flying"],
+    "evos": {
+      "to": ["swoobat"]
+    }
+  },
+  "swoobat": {
+    "id": 528,
+    "name": "Swoobat",
+    "type": ["psychic", "flying"],
+    "evos": {
+      "from": "woobat"
+    }
+  },
+  "drilbur": {
+    "id": 529,
+    "name": "Drilbur",
+    "type": ["ground"],
+    "evos": {
+      "to": ["excadrill"]
+    }
+  },
+  "excadrill": {
+    "id": 530,
+    "name": "Excadrill",
+    "type": ["ground", "steel"],
+    "evos": {
+      "from": "drilbur"
+    }
+  },
+  "audino": {
+    "id": 531,
+    "name": "Audino",
+    "type": ["normal"]
+  },
+  "timburr": {
+    "id": 532,
+    "name": "Timburr",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["gurdurr"]
+    }
+  },
+  "gurdurr": {
+    "id": 533,
+    "name": "Gurdurr",
+    "type": ["fighting"],
+    "evos": {
+      "from": "timburr",
+      "to": ["conkeldurr"]
+    }
+  },
+  "conkeldurr": {
+    "id": 534,
+    "name": "Conkeldurr",
+    "type": ["fighting"],
+    "evos": {
+      "from": "gurdurr"
+    }
+  },
+  "tympole": {
+    "id": 535,
+    "name": "Tympole",
+    "type": ["water"],
+    "evos": {
+      "to": ["palpitoad"]
+    }
+  },
+  "palpitoad": {
+    "id": 536,
+    "name": "Palpitoad",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "tympole",
+      "to": ["seismitoad"]
+    }
+  },
+  "seismitoad": {
+    "id": 537,
+    "name": "Seismitoad",
+    "type": ["water", "ground"],
+    "evos": {
+      "from": "palpitoad"
+    }
+  },
+  "throh": {
+    "id": 538,
+    "name": "Throh",
+    "type": ["fighting"]
+  },
+  "sawk": {
+    "id": 539,
+    "name": "Sawk",
+    "type": ["fighting"]
+  },
+  "sewaddle": {
+    "id": 540,
+    "name": "Sewaddle",
+    "type": ["bug", "grass"],
+    "evos": {
+      "to": ["swadloon"]
+    }
+  },
+  "swadloon": {
+    "id": 541,
+    "name": "Swadloon",
+    "type": ["bug", "grass"],
+    "evos": {
+      "from": "sewaddle",
+      "to": ["leavanny"]
+    }
+  },
+  "leavanny": {
+    "id": 542,
+    "name": "Leavanny",
+    "type": ["bug", "grass"],
+    "evos": {
+      "from": "swadloon"
+    }
+  },
+  "venipede": {
+    "id": 543,
+    "name": "Venipede",
+    "type": ["bug", "poison"],
+    "evos": {
+      "to": ["whirlipede"]
+    }
+  },
+  "whirlipede": {
+    "id": 544,
+    "name": "Whirlipede",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "venipede",
+      "to": ["scolipede"]
+    }
+  },
+  "scolipede": {
+    "id": 545,
+    "name": "Scolipede",
+    "type": ["bug", "poison"],
+    "evos": {
+      "from": "whirlipede"
+    }
+  },
+  "cottonee": {
+    "id": 546,
+    "name": "Cottonee",
+    "type": ["grass", "fairy"],
+    "evos": {
+      "to": ["whimsicott"]
+    }
+  },
+  "whimsicott": {
+    "id": 547,
+    "name": "Whimsicott",
+    "type": ["grass", "fairy"],
+    "evos": {
+      "from": "cottonee"
+    }
+  },
+  "petilil": {
+    "id": 548,
+    "name": "Petilil",
+    "type": ["grass"],
+    "evos": {
+      "to": ["lilligant"]
+    }
+  },
+  "lilligant": {
+    "id": 549,
+    "name": "Lilligant",
+    "type": ["grass"],
+    "evos": {
+      "from": "petilil"
+    }
+  },
+  "basculin": {
+    "id": 550,
+    "name": "Basculin",
+    "type": ["water"],
+    "evos": {
+      "to": ["basculegion"]
+    }
+  },
+  "sandile": {
+    "id": 551,
+    "name": "Sandile",
+    "type": ["ground", "dark"],
+    "evos": {
+      "to": ["krokorok"]
+    }
+  },
+  "krokorok": {
+    "id": 552,
+    "name": "Krokorok",
+    "type": ["ground", "dark"],
+    "evos": {
+      "from": "sandile",
+      "to": ["krookodile"]
+    }
+  },
+  "krookodile": {
+    "id": 553,
+    "name": "Krookodile",
+    "type": ["ground", "dark"],
+    "evos": {
+      "from": "krokorok"
+    }
+  },
+  "darumaka": {
+    "id": 554,
+    "name": "Darumaka",
+    "type": ["fire"],
+    "evos": {
+      "to": ["darmanitan"]
+    }
+  },
+  "darmanitan": {
+    "id": 555,
+    "name": "Darmanitan",
+    "type": ["fire"],
+    "evos": {
+      "from": "darumaka"
+    }
+  },
+  "maractus": {
+    "id": 556,
+    "name": "Maractus",
+    "type": ["grass"]
+  },
+  "dwebble": {
+    "id": 557,
+    "name": "Dwebble",
+    "type": ["bug", "rock"],
+    "evos": {
+      "to": ["crustle"]
+    }
+  },
+  "crustle": {
+    "id": 558,
+    "name": "Crustle",
+    "type": ["bug", "rock"],
+    "evos": {
+      "from": "dwebble"
+    }
+  },
+  "scraggy": {
+    "id": 559,
+    "name": "Scraggy",
+    "type": ["dark", "fighting"],
+    "evos": {
+      "to": ["scrafty"]
+    }
+  },
+  "scrafty": {
+    "id": 560,
+    "name": "Scrafty",
+    "type": ["dark", "fighting"],
+    "evos": {
+      "from": "scraggy"
+    }
+  },
+  "sigilyph": {
+    "id": 561,
+    "name": "Sigilyph",
+    "type": ["psychic", "flying"]
+  },
+  "yamask": {
+    "id": 562,
+    "name": "Yamask",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["cofagrigus", "runerigus"]
+    }
+  },
+  "cofagrigus": {
+    "id": 563,
+    "name": "Cofagrigus",
+    "type": ["ghost"],
+    "evos": {
+      "from": "yamask"
+    }
+  },
+  "tirtouga": {
+    "id": 564,
+    "name": "Tirtouga",
+    "type": ["water", "rock"],
+    "evos": {
+      "to": ["carracosta"]
+    }
+  },
+  "carracosta": {
+    "id": 565,
+    "name": "Carracosta",
+    "type": ["water", "rock"],
+    "evos": {
+      "from": "tirtouga"
+    }
+  },
+  "archen": {
+    "id": 566,
+    "name": "Archen",
+    "type": ["rock", "flying"],
+    "evos": {
+      "to": ["archeops"]
+    }
+  },
+  "archeops": {
+    "id": 567,
+    "name": "Archeops",
+    "type": ["rock", "flying"],
+    "evos": {
+      "from": "archen"
+    }
+  },
+  "trubbish": {
+    "id": 568,
+    "name": "Trubbish",
+    "type": ["poison"],
+    "evos": {
+      "to": ["garbodor"]
+    }
+  },
+  "garbodor": {
+    "id": 569,
+    "name": "Garbodor",
+    "type": ["poison"],
+    "evos": {
+      "from": "trubbish"
+    }
+  },
+  "zorua": {
+    "id": 570,
+    "name": "Zorua",
+    "type": ["dark"],
+    "evos": {
+      "to": ["zoroark"]
+    }
+  },
+  "zoroark": {
+    "id": 571,
+    "name": "Zoroark",
+    "type": ["dark"],
+    "evos": {
+      "from": "zorua"
+    }
+  },
+  "minccino": {
+    "id": 572,
+    "name": "Minccino",
+    "type": ["normal"],
+    "evos": {
+      "to": ["cinccino"]
+    }
+  },
+  "cinccino": {
+    "id": 573,
+    "name": "Cinccino",
+    "type": ["normal"],
+    "evos": {
+      "from": "minccino"
+    }
+  },
+  "gothita": {
+    "id": 574,
+    "name": "Gothita",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["gothorita"]
+    }
+  },
+  "gothorita": {
+    "id": 575,
+    "name": "Gothorita",
+    "type": ["psychic"],
+    "evos": {
+      "from": "gothita",
+      "to": ["gothitelle"]
+    }
+  },
+  "gothitelle": {
+    "id": 576,
+    "name": "Gothitelle",
+    "type": ["psychic"],
+    "evos": {
+      "from": "gothorita"
+    }
+  },
+  "solosis": {
+    "id": 577,
+    "name": "Solosis",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["duosion"]
+    }
+  },
+  "duosion": {
+    "id": 578,
+    "name": "Duosion",
+    "type": ["psychic"],
+    "evos": {
+      "from": "solosis",
+      "to": ["reuniclus"]
+    }
+  },
+  "reuniclus": {
+    "id": 579,
+    "name": "Reuniclus",
+    "type": ["psychic"],
+    "evos": {
+      "from": "duosion"
+    }
+  },
+  "ducklett": {
+    "id": 580,
+    "name": "Ducklett",
+    "type": ["water", "flying"],
+    "evos": {
+      "to": ["swanna"]
+    }
+  },
+  "swanna": {
+    "id": 581,
+    "name": "Swanna",
+    "type": ["water", "flying"],
+    "evos": {
+      "from": "ducklett"
+    }
+  },
+  "vanillite": {
+    "id": 582,
+    "name": "Vanillite",
+    "type": ["ice"],
+    "evos": {
+      "to": ["vanillish"]
+    }
+  },
+  "vanillish": {
+    "id": 583,
+    "name": "Vanillish",
+    "type": ["ice"],
+    "evos": {
+      "from": "vanillite",
+      "to": ["vanilluxe"]
+    }
+  },
+  "vanilluxe": {
+    "id": 584,
+    "name": "Vanilluxe",
+    "type": ["ice"],
+    "evos": {
+      "from": "vanillish"
+    }
+  },
+  "deerling": {
+    "id": 585,
+    "name": "Deerling",
+    "type": ["normal", "grass"],
+    "evos": {
+      "to": ["sawsbuck"]
+    }
+  },
+  "sawsbuck": {
+    "id": 586,
+    "name": "Sawsbuck",
+    "type": ["normal", "grass"],
+    "evos": {
+      "from": "deerling"
+    }
+  },
+  "emolga": {
+    "id": 587,
+    "name": "Emolga",
+    "type": ["electric", "flying"]
+  },
+  "karrablast": {
+    "id": 588,
+    "name": "Karrablast",
+    "type": ["bug"],
+    "evos": {
+      "to": ["escavalier"]
+    }
+  },
+  "escavalier": {
+    "id": 589,
+    "name": "Escavalier",
+    "type": ["bug", "steel"],
+    "evos": {
+      "from": "karrablast"
+    }
+  },
+  "foongus": {
+    "id": 590,
+    "name": "Foongus",
+    "type": ["grass", "poison"],
+    "evos": {
+      "to": ["amoonguss"]
+    }
+  },
+  "amoonguss": {
+    "id": 591,
+    "name": "Amoonguss",
+    "type": ["grass", "poison"],
+    "evos": {
+      "from": "foongus"
+    }
+  },
+  "frillish": {
+    "id": 592,
+    "name": "Frillish",
+    "type": ["water", "ghost"],
+    "evos": {
+      "to": ["jellicent"]
+    }
+  },
+  "jellicent": {
+    "id": 593,
+    "name": "Jellicent",
+    "type": ["water", "ghost"],
+    "evos": {
+      "from": "frillish"
+    }
+  },
+  "alomomola": {
+    "id": 594,
+    "name": "Alomomola",
+    "type": ["water"]
+  },
+  "joltik": {
+    "id": 595,
+    "name": "Joltik",
+    "type": ["bug", "electric"],
+    "evos": {
+      "to": ["galvantula"]
+    }
+  },
+  "galvantula": {
+    "id": 596,
+    "name": "Galvantula",
+    "type": ["bug", "electric"],
+    "evos": {
+      "from": "joltik"
+    }
+  },
+  "ferroseed": {
+    "id": 597,
+    "name": "Ferroseed",
+    "type": ["grass", "steel"],
+    "evos": {
+      "to": ["ferrothorn"]
+    }
+  },
+  "ferrothorn": {
+    "id": 598,
+    "name": "Ferrothorn",
+    "type": ["grass", "steel"],
+    "evos": {
+      "from": "ferroseed"
+    }
+  },
+  "klink": {
+    "id": 599,
+    "name": "Klink",
+    "type": ["steel"],
+    "evos": {
+      "to": ["klang"]
+    }
+  },
+  "klang": {
+    "id": 600,
+    "name": "Klang",
+    "type": ["steel"],
+    "evos": {
+      "from": "klink",
+      "to": ["klinklang"]
+    }
+  },
+  "klinklang": {
+    "id": 601,
+    "name": "Klinklang",
+    "type": ["steel"],
+    "evos": {
+      "from": "klang"
+    }
+  },
+  "tynamo": {
+    "id": 602,
+    "name": "Tynamo",
+    "type": ["electric"],
+    "evos": {
+      "to": ["eelektrik"]
+    }
+  },
+  "eelektrik": {
+    "id": 603,
+    "name": "Eelektrik",
+    "type": ["electric"],
+    "evos": {
+      "from": "tynamo",
+      "to": ["eelektross"]
+    }
+  },
+  "eelektross": {
+    "id": 604,
+    "name": "Eelektross",
+    "type": ["electric"],
+    "evos": {
+      "from": "eelektrik"
+    }
+  },
+  "elgyem": {
+    "id": 605,
+    "name": "Elgyem",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["beheeyem"]
+    }
+  },
+  "beheeyem": {
+    "id": 606,
+    "name": "Beheeyem",
+    "type": ["psychic"],
+    "evos": {
+      "from": "elgyem"
+    }
+  },
+  "litwick": {
+    "id": 607,
+    "name": "Litwick",
+    "type": ["ghost", "fire"],
+    "evos": {
+      "to": ["lampent"]
+    }
+  },
+  "lampent": {
+    "id": 608,
+    "name": "Lampent",
+    "type": ["ghost", "fire"],
+    "evos": {
+      "from": "litwick",
+      "to": ["chandelure"]
+    }
+  },
+  "chandelure": {
+    "id": 609,
+    "name": "Chandelure",
+    "type": ["ghost", "fire"],
+    "evos": {
+      "from": "lampent"
+    }
+  },
+  "axew": {
+    "id": 610,
+    "name": "Axew",
+    "type": ["dragon"],
+    "evos": {
+      "to": ["fraxure"]
+    }
+  },
+  "fraxure": {
+    "id": 611,
+    "name": "Fraxure",
+    "type": ["dragon"],
+    "evos": {
+      "from": "axew",
+      "to": ["haxorus"]
+    }
+  },
+  "haxorus": {
+    "id": 612,
+    "name": "Haxorus",
+    "type": ["dragon"],
+    "evos": {
+      "from": "fraxure"
+    }
+  },
+  "cubchoo": {
+    "id": 613,
+    "name": "Cubchoo",
+    "type": ["ice"],
+    "evos": {
+      "to": ["beartic"]
+    }
+  },
+  "beartic": {
+    "id": 614,
+    "name": "Beartic",
+    "type": ["ice"],
+    "evos": {
+      "from": "cubchoo"
+    }
+  },
+  "cryogonal": {
+    "id": 615,
+    "name": "Cryogonal",
+    "type": ["ice"]
+  },
+  "shelmet": {
+    "id": 616,
+    "name": "Shelmet",
+    "type": ["bug"],
+    "evos": {
+      "to": ["accelgor"]
+    }
+  },
+  "accelgor": {
+    "id": 617,
+    "name": "Accelgor",
+    "type": ["bug"],
+    "evos": {
+      "from": "shelmet"
+    }
+  },
+  "stunfisk": {
+    "id": 618,
+    "name": "Stunfisk",
+    "type": ["ground", "electric"]
+  },
+  "mienfoo": {
+    "id": 619,
+    "name": "Mienfoo",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["mienshao"]
+    }
+  },
+  "mienshao": {
+    "id": 620,
+    "name": "Mienshao",
+    "type": ["fighting"],
+    "evos": {
+      "from": "mienfoo"
+    }
+  },
+  "druddigon": {
+    "id": 621,
+    "name": "Druddigon",
+    "type": ["dragon"]
+  },
+  "golett": {
+    "id": 622,
+    "name": "Golett",
+    "type": ["ground", "ghost"],
+    "evos": {
+      "to": ["golurk"]
+    }
+  },
+  "golurk": {
+    "id": 623,
+    "name": "Golurk",
+    "type": ["ground", "ghost"],
+    "evos": {
+      "from": "golett"
+    }
+  },
+  "pawniard": {
+    "id": 624,
+    "name": "Pawniard",
+    "type": ["dark", "steel"],
+    "evos": {
+      "to": ["bisharp"]
+    }
+  },
+  "bisharp": {
+    "id": 625,
+    "name": "Bisharp",
+    "type": ["dark", "steel"],
+    "evos": {
+      "from": "pawniard",
+      "to": ["kingambit"]
+    }
+  },
+  "bouffalant": {
+    "id": 626,
+    "name": "Bouffalant",
+    "type": ["normal"]
+  },
+  "rufflet": {
+    "id": 627,
+    "name": "Rufflet",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["braviary"]
+    }
+  },
+  "braviary": {
+    "id": 628,
+    "name": "Braviary",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "rufflet"
+    }
+  },
+  "vullaby": {
+    "id": 629,
+    "name": "Vullaby",
+    "type": ["dark", "flying"],
+    "evos": {
+      "to": ["mandibuzz"]
+    }
+  },
+  "mandibuzz": {
+    "id": 630,
+    "name": "Mandibuzz",
+    "type": ["dark", "flying"],
+    "evos": {
+      "from": "vullaby"
+    }
+  },
+  "heatmor": {
+    "id": 631,
+    "name": "Heatmor",
+    "type": ["fire"]
+  },
+  "durant": {
+    "id": 632,
+    "name": "Durant",
+    "type": ["bug", "steel"]
+  },
+  "deino": {
+    "id": 633,
+    "name": "Deino",
+    "type": ["dark", "dragon"],
+    "evos": {
+      "to": ["zweilous"]
+    }
+  },
+  "zweilous": {
+    "id": 634,
+    "name": "Zweilous",
+    "type": ["dark", "dragon"],
+    "evos": {
+      "from": "deino",
+      "to": ["hydreigon"]
+    }
+  },
+  "hydreigon": {
+    "id": 635,
+    "name": "Hydreigon",
+    "type": ["dark", "dragon"],
+    "evos": {
+      "from": "zweilous"
+    }
+  },
+  "larvesta": {
+    "id": 636,
+    "name": "Larvesta",
+    "type": ["bug", "fire"],
+    "evos": {
+      "to": ["volcarona"]
+    }
+  },
+  "volcarona": {
+    "id": 637,
+    "name": "Volcarona",
+    "type": ["bug", "fire"],
+    "evos": {
+      "from": "larvesta"
+    }
+  },
+  "cobalion": {
+    "id": 638,
+    "name": "Cobalion",
+    "type": ["steel", "fighting"]
+  },
+  "terrakion": {
+    "id": 639,
+    "name": "Terrakion",
+    "type": ["rock", "fighting"]
+  },
+  "virizion": {
+    "id": 640,
+    "name": "Virizion",
+    "type": ["grass", "fighting"]
+  },
+  "tornadus": {
+    "id": 641,
+    "name": "Tornadus",
+    "type": ["flying"]
+  },
+  "thundurus": {
+    "id": 642,
+    "name": "Thundurus",
+    "type": ["electric", "flying"]
+  },
+  "reshiram": {
+    "id": 643,
+    "name": "Reshiram",
+    "type": ["dragon", "fire"]
+  },
+  "zekrom": {
+    "id": 644,
+    "name": "Zekrom",
+    "type": ["dragon", "electric"]
+  },
+  "landorus": {
+    "id": 645,
+    "name": "Landorus",
+    "type": ["ground", "flying"]
+  },
+  "kyurem": {
+    "id": 646,
+    "name": "Kyurem",
+    "type": ["dragon", "ice"]
+  },
+  "keldeo": {
+    "id": 647,
+    "name": "Keldeo",
+    "type": ["water", "fighting"]
+  },
+  "meloetta": {
+    "id": 648,
+    "name": "Meloetta",
+    "type": ["normal", "psychic"]
+  },
+  "genesect": {
+    "id": 649,
+    "name": "Genesect",
+    "type": ["bug", "steel"]
+  },
+  "chespin": {
+    "id": 650,
+    "name": "Chespin",
+    "type": ["grass"],
+    "evos": {
+      "to": ["quilladin"]
+    }
+  },
+  "quilladin": {
+    "id": 651,
+    "name": "Quilladin",
+    "type": ["grass"],
+    "evos": {
+      "from": "chespin",
+      "to": ["chesnaught"]
+    }
+  },
+  "chesnaught": {
+    "id": 652,
+    "name": "Chesnaught",
+    "type": ["grass", "fighting"],
+    "evos": {
+      "from": "quilladin"
+    }
+  },
+  "fennekin": {
+    "id": 653,
+    "name": "Fennekin",
+    "type": ["fire"],
+    "evos": {
+      "to": ["braixen"]
+    }
+  },
+  "braixen": {
+    "id": 654,
+    "name": "Braixen",
+    "type": ["fire"],
+    "evos": {
+      "from": "fennekin",
+      "to": ["delphox"]
+    }
+  },
+  "delphox": {
+    "id": 655,
+    "name": "Delphox",
+    "type": ["fire", "psychic"],
+    "evos": {
+      "from": "braixen"
+    }
+  },
+  "froakie": {
+    "id": 656,
+    "name": "Froakie",
+    "type": ["water"],
+    "evos": {
+      "to": ["frogadier"]
+    }
+  },
+  "frogadier": {
+    "id": 657,
+    "name": "Frogadier",
+    "type": ["water"],
+    "evos": {
+      "from": "froakie",
+      "to": ["greninja"]
+    }
+  },
+  "greninja": {
+    "id": 658,
+    "name": "Greninja",
+    "type": ["water", "dark"],
+    "evos": {
+      "from": "frogadier"
+    }
+  },
+  "bunnelby": {
+    "id": 659,
+    "name": "Bunnelby",
+    "type": ["normal"],
+    "evos": {
+      "to": ["diggersby"]
+    }
+  },
+  "diggersby": {
+    "id": 660,
+    "name": "Diggersby",
+    "type": ["normal", "ground"],
+    "evos": {
+      "from": "bunnelby"
+    }
+  },
+  "fletchling": {
+    "id": 661,
+    "name": "Fletchling",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["fletchinder"]
+    }
+  },
+  "fletchinder": {
+    "id": 662,
+    "name": "Fletchinder",
+    "type": ["fire", "flying"],
+    "evos": {
+      "from": "fletchling",
+      "to": ["talonflame"]
+    }
+  },
+  "talonflame": {
+    "id": 663,
+    "name": "Talonflame",
+    "type": ["fire", "flying"],
+    "evos": {
+      "from": "fletchinder"
+    }
+  },
+  "scatterbug": {
+    "id": 664,
+    "name": "Scatterbug",
+    "type": ["bug"],
+    "evos": {
+      "to": ["spewpa"]
+    }
+  },
+  "spewpa": {
+    "id": 665,
+    "name": "Spewpa",
+    "type": ["bug"],
+    "evos": {
+      "from": "scatterbug",
+      "to": ["vivillon"]
+    }
+  },
+  "vivillon": {
+    "id": 666,
+    "name": "Vivillon",
+    "type": ["bug", "flying"],
+    "evos": {
+      "from": "spewpa"
+    }
+  },
+  "litleo": {
+    "id": 667,
+    "name": "Litleo",
+    "type": ["fire", "normal"],
+    "evos": {
+      "to": ["pyroar"]
+    }
+  },
+  "pyroar": {
+    "id": 668,
+    "name": "Pyroar",
+    "type": ["fire", "normal"],
+    "evos": {
+      "from": "litleo"
+    }
+  },
+  "flabebe": {
+    "id": 669,
+    "name": "Flabébé",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["floette"]
+    }
+  },
+  "floette": {
+    "id": 670,
+    "name": "Floette",
+    "type": ["fairy"],
+    "evos": {
+      "from": "flabebe",
+      "to": ["florges"]
+    }
+  },
+  "florges": {
+    "id": 671,
+    "name": "Florges",
+    "type": ["fairy"],
+    "evos": {
+      "from": "floette"
+    }
+  },
+  "skiddo": {
+    "id": 672,
+    "name": "Skiddo",
+    "type": ["grass"],
+    "evos": {
+      "to": ["gogoat"]
+    }
+  },
+  "gogoat": {
+    "id": 673,
+    "name": "Gogoat",
+    "type": ["grass"],
+    "evos": {
+      "from": "skiddo"
+    }
+  },
+  "pancham": {
+    "id": 674,
+    "name": "Pancham",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["pangoro"]
+    }
+  },
+  "pangoro": {
+    "id": 675,
+    "name": "Pangoro",
+    "type": ["fighting", "dark"],
+    "evos": {
+      "from": "pancham"
+    }
+  },
+  "furfrou": {
+    "id": 676,
+    "name": "Furfrou",
+    "type": ["normal"]
+  },
+  "espurr": {
+    "id": 677,
+    "name": "Espurr",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["meowstic"]
+    }
+  },
+  "meowstic": {
+    "id": 678,
+    "name": "Meowstic",
+    "type": ["psychic"],
+    "evos": {
+      "from": "espurr"
+    }
+  },
+  "honedge": {
+    "id": 679,
+    "name": "Honedge",
+    "type": ["steel", "ghost"],
+    "evos": {
+      "to": ["doublade"]
+    }
+  },
+  "doublade": {
+    "id": 680,
+    "name": "Doublade",
+    "type": ["steel", "ghost"],
+    "evos": {
+      "from": "honedge",
+      "to": ["aegislash"]
+    }
+  },
+  "aegislash": {
+    "id": 681,
+    "name": "Aegislash",
+    "type": ["steel", "ghost"],
+    "evos": {
+      "from": "doublade"
+    }
+  },
+  "spritzee": {
+    "id": 682,
+    "name": "Spritzee",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["aromatisse"]
+    }
+  },
+  "aromatisse": {
+    "id": 683,
+    "name": "Aromatisse",
+    "type": ["fairy"],
+    "evos": {
+      "from": "spritzee"
+    }
+  },
+  "swirlix": {
+    "id": 684,
+    "name": "Swirlix",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["slurpuff"]
+    }
+  },
+  "slurpuff": {
+    "id": 685,
+    "name": "Slurpuff",
+    "type": ["fairy"],
+    "evos": {
+      "from": "swirlix"
+    }
+  },
+  "inkay": {
+    "id": 686,
+    "name": "Inkay",
+    "type": ["dark", "psychic"],
+    "evos": {
+      "to": ["malamar"]
+    }
+  },
+  "malamar": {
+    "id": 687,
+    "name": "Malamar",
+    "type": ["dark", "psychic"],
+    "evos": {
+      "from": "inkay"
+    }
+  },
+  "binacle": {
+    "id": 688,
+    "name": "Binacle",
+    "type": ["rock", "water"],
+    "evos": {
+      "to": ["barbaracle"]
+    }
+  },
+  "barbaracle": {
+    "id": 689,
+    "name": "Barbaracle",
+    "type": ["rock", "water"],
+    "evos": {
+      "from": "binacle"
+    }
+  },
+  "skrelp": {
+    "id": 690,
+    "name": "Skrelp",
+    "type": ["poison", "water"],
+    "evos": {
+      "to": ["dragalge"]
+    }
+  },
+  "dragalge": {
+    "id": 691,
+    "name": "Dragalge",
+    "type": ["poison", "dragon"],
+    "evos": {
+      "from": "skrelp"
+    }
+  },
+  "clauncher": {
+    "id": 692,
+    "name": "Clauncher",
+    "type": ["water"],
+    "evos": {
+      "to": ["clawitzer"]
+    }
+  },
+  "clawitzer": {
+    "id": 693,
+    "name": "Clawitzer",
+    "type": ["water"],
+    "evos": {
+      "from": "clauncher"
+    }
+  },
+  "helioptile": {
+    "id": 694,
+    "name": "Helioptile",
+    "type": ["electric", "normal"],
+    "evos": {
+      "to": ["heliolisk"]
+    }
+  },
+  "heliolisk": {
+    "id": 695,
+    "name": "Heliolisk",
+    "type": ["electric", "normal"],
+    "evos": {
+      "from": "helioptile"
+    }
+  },
+  "tyrunt": {
+    "id": 696,
+    "name": "Tyrunt",
+    "type": ["rock", "dragon"],
+    "evos": {
+      "to": ["tyrantrum"]
+    }
+  },
+  "tyrantrum": {
+    "id": 697,
+    "name": "Tyrantrum",
+    "type": ["rock", "dragon"],
+    "evos": {
+      "from": "tyrunt"
+    }
+  },
+  "amaura": {
+    "id": 698,
+    "name": "Amaura",
+    "type": ["rock", "ice"],
+    "evos": {
+      "to": ["aurorus"]
+    }
+  },
+  "aurorus": {
+    "id": 699,
+    "name": "Aurorus",
+    "type": ["rock", "ice"],
+    "evos": {
+      "from": "amaura"
+    }
+  },
+  "sylveon": {
+    "id": 700,
+    "name": "Sylveon",
+    "type": ["fairy"],
+    "evos": {
+      "from": "eevee"
+    }
+  },
+  "hawlucha": {
+    "id": 701,
+    "name": "Hawlucha",
+    "type": ["fighting", "flying"]
+  },
+  "dedenne": {
+    "id": 702,
+    "name": "Dedenne",
+    "type": ["electric", "fairy"]
+  },
+  "carbink": {
+    "id": 703,
+    "name": "Carbink",
+    "type": ["rock", "fairy"]
+  },
+  "goomy": {
+    "id": 704,
+    "name": "Goomy",
+    "type": ["dragon"],
+    "evos": {
+      "to": ["sliggoo"]
+    }
+  },
+  "sliggoo": {
+    "id": 705,
+    "name": "Sliggoo",
+    "type": ["dragon"],
+    "evos": {
+      "from": "goomy",
+      "to": ["goodra"]
+    }
+  },
+  "goodra": {
+    "id": 706,
+    "name": "Goodra",
+    "type": ["dragon"],
+    "evos": {
+      "from": "sliggoo"
+    }
+  },
+  "klefki": {
+    "id": 707,
+    "name": "Klefki",
+    "type": ["steel", "fairy"]
+  },
+  "phantump": {
+    "id": 708,
+    "name": "Phantump",
+    "type": ["ghost", "grass"],
+    "evos": {
+      "to": ["trevenant"]
+    }
+  },
+  "trevenant": {
+    "id": 709,
+    "name": "Trevenant",
+    "type": ["ghost", "grass"],
+    "evos": {
+      "from": "phantump"
+    }
+  },
+  "pumpkaboo": {
+    "id": 710,
+    "name": "Pumpkaboo",
+    "type": ["ghost", "grass"],
+    "evos": {
+      "to": ["gourgeist"]
+    }
+  },
+  "gourgeist": {
+    "id": 711,
+    "name": "Gourgeist",
+    "type": ["ghost", "grass"],
+    "evos": {
+      "from": "pumpkaboo"
+    }
+  },
+  "bergmite": {
+    "id": 712,
+    "name": "Bergmite",
+    "type": ["ice"],
+    "evos": {
+      "to": ["avalugg"]
+    }
+  },
+  "avalugg": {
+    "id": 713,
+    "name": "Avalugg",
+    "type": ["ice"],
+    "evos": {
+      "from": "bergmite"
+    }
+  },
+  "noibat": {
+    "id": 714,
+    "name": "Noibat",
+    "type": ["flying", "dragon"],
+    "evos": {
+      "to": ["noivern"]
+    }
+  },
+  "noivern": {
+    "id": 715,
+    "name": "Noivern",
+    "type": ["flying", "dragon"],
+    "evos": {
+      "from": "noibat"
+    }
+  },
+  "xerneas": {
+    "id": 716,
+    "name": "Xerneas",
+    "type": ["fairy"]
+  },
+  "yveltal": {
+    "id": 717,
+    "name": "Yveltal",
+    "type": ["dark", "flying"]
+  },
+  "zygarde": {
+    "id": 718,
+    "name": "Zygarde",
+    "type": ["dragon", "ground"]
+  },
+  "diancie": {
+    "id": 719,
+    "name": "Diancie",
+    "type": ["rock", "fairy"]
+  },
+  "hoopa": {
+    "id": 720,
+    "name": "Hoopa",
+    "type": ["psychic", "ghost"]
+  },
+  "volcanion": {
+    "id": 721,
+    "name": "Volcanion",
+    "type": ["fire", "water"]
+  },
+  "rowlet": {
+    "id": 722,
+    "name": "Rowlet",
+    "type": ["grass", "flying"],
+    "evos": {
+      "to": ["dartrix"]
+    }
+  },
+  "dartrix": {
+    "id": 723,
+    "name": "Dartrix",
+    "type": ["grass", "flying"],
+    "evos": {
+      "from": "rowlet",
+      "to": ["decidueye"]
+    }
+  },
+  "decidueye": {
+    "id": 724,
+    "name": "Decidueye",
+    "type": ["grass", "ghost"],
+    "evos": {
+      "from": "dartrix"
+    }
+  },
+  "litten": {
+    "id": 725,
+    "name": "Litten",
+    "type": ["fire"],
+    "evos": {
+      "to": ["torracat"]
+    }
+  },
+  "torracat": {
+    "id": 726,
+    "name": "Torracat",
+    "type": ["fire"],
+    "evos": {
+      "from": "litten",
+      "to": ["incineroar"]
+    }
+  },
+  "incineroar": {
+    "id": 727,
+    "name": "Incineroar",
+    "type": ["fire", "dark"],
+    "evos": {
+      "from": "torracat"
+    }
+  },
+  "popplio": {
+    "id": 728,
+    "name": "Popplio",
+    "type": ["water"],
+    "evos": {
+      "to": ["brionne"]
+    }
+  },
+  "brionne": {
+    "id": 729,
+    "name": "Brionne",
+    "type": ["water"],
+    "evos": {
+      "from": "popplio",
+      "to": ["primarina"]
+    }
+  },
+  "primarina": {
+    "id": 730,
+    "name": "Primarina",
+    "type": ["water", "fairy"],
+    "evos": {
+      "from": "brionne"
+    }
+  },
+  "pikipek": {
+    "id": 731,
+    "name": "Pikipek",
+    "type": ["normal", "flying"],
+    "evos": {
+      "to": ["trumbeak"]
+    }
+  },
+  "trumbeak": {
+    "id": 732,
+    "name": "Trumbeak",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "pikipek",
+      "to": ["toucannon"]
+    }
+  },
+  "toucannon": {
+    "id": 733,
+    "name": "Toucannon",
+    "type": ["normal", "flying"],
+    "evos": {
+      "from": "trumbeak"
+    }
+  },
+  "yungoos": {
+    "id": 734,
+    "name": "Yungoos",
+    "type": ["normal"],
+    "evos": {
+      "to": ["gumshoos"]
+    }
+  },
+  "gumshoos": {
+    "id": 735,
+    "name": "Gumshoos",
+    "type": ["normal"],
+    "evos": {
+      "from": "yungoos"
+    }
+  },
+  "grubbin": {
+    "id": 736,
+    "name": "Grubbin",
+    "type": ["bug"],
+    "evos": {
+      "to": ["charjabug"]
+    }
+  },
+  "charjabug": {
+    "id": 737,
+    "name": "Charjabug",
+    "type": ["bug", "electric"],
+    "evos": {
+      "from": "grubbin",
+      "to": ["vikavolt"]
+    }
+  },
+  "vikavolt": {
+    "id": 738,
+    "name": "Vikavolt",
+    "type": ["bug", "electric"],
+    "evos": {
+      "from": "charjabug"
+    }
+  },
+  "crabrawler": {
+    "id": 739,
+    "name": "Crabrawler",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["crabominable"]
+    }
+  },
+  "crabominable": {
+    "id": 740,
+    "name": "Crabominable",
+    "type": ["fighting", "ice"],
+    "evos": {
+      "from": "crabrawler"
+    }
+  },
+  "oricorio": {
+    "id": 741,
+    "name": "Oricorio",
+    "type": ["fire", "flying"]
+  },
+  "cutiefly": {
+    "id": 742,
+    "name": "Cutiefly",
+    "type": ["bug", "fairy"],
+    "evos": {
+      "to": ["ribombee"]
+    }
+  },
+  "ribombee": {
+    "id": 743,
+    "name": "Ribombee",
+    "type": ["bug", "fairy"],
+    "evos": {
+      "from": "cutiefly"
+    }
+  },
+  "rockruff": {
+    "id": 744,
+    "name": "Rockruff",
+    "type": ["rock"],
+    "evos": {
+      "to": ["lycanroc"]
+    }
+  },
+  "lycanroc": {
+    "id": 745,
+    "name": "Lycanroc",
+    "type": ["rock"],
+    "evos": {
+      "from": "rockruff"
+    }
+  },
+  "wishiwashi": {
+    "id": 746,
+    "name": "Wishiwashi",
+    "type": ["water"]
+  },
+  "mareanie": {
+    "id": 747,
+    "name": "Mareanie",
+    "type": ["poison", "water"],
+    "evos": {
+      "to": ["toxapex"]
+    }
+  },
+  "toxapex": {
+    "id": 748,
+    "name": "Toxapex",
+    "type": ["poison", "water"],
+    "evos": {
+      "from": "mareanie"
+    }
+  },
+  "mudbray": {
+    "id": 749,
+    "name": "Mudbray",
+    "type": ["ground"],
+    "evos": {
+      "to": ["mudsdale"]
+    }
+  },
+  "mudsdale": {
+    "id": 750,
+    "name": "Mudsdale",
+    "type": ["ground"],
+    "evos": {
+      "from": "mudbray"
+    }
+  },
+  "dewpider": {
+    "id": 751,
+    "name": "Dewpider",
+    "type": ["water", "bug"],
+    "evos": {
+      "to": ["araquanid"]
+    }
+  },
+  "araquanid": {
+    "id": 752,
+    "name": "Araquanid",
+    "type": ["water", "bug"],
+    "evos": {
+      "from": "dewpider"
+    }
+  },
+  "fomantis": {
+    "id": 753,
+    "name": "Fomantis",
+    "type": ["grass"],
+    "evos": {
+      "to": ["lurantis"]
+    }
+  },
+  "lurantis": {
+    "id": 754,
+    "name": "Lurantis",
+    "type": ["grass"],
+    "evos": {
+      "from": "fomantis"
+    }
+  },
+  "morelull": {
+    "id": 755,
+    "name": "Morelull",
+    "type": ["grass", "fairy"],
+    "evos": {
+      "to": ["shiinotic"]
+    }
+  },
+  "shiinotic": {
+    "id": 756,
+    "name": "Shiinotic",
+    "type": ["grass", "fairy"],
+    "evos": {
+      "from": "morelull"
+    }
+  },
+  "salandit": {
+    "id": 757,
+    "name": "Salandit",
+    "type": ["poison", "fire"],
+    "evos": {
+      "to": ["salazzle"]
+    }
+  },
+  "salazzle": {
+    "id": 758,
+    "name": "Salazzle",
+    "type": ["poison", "fire"],
+    "evos": {
+      "from": "salandit"
+    }
+  },
+  "stufful": {
+    "id": 759,
+    "name": "Stufful",
+    "type": ["normal", "fighting"],
+    "evos": {
+      "to": ["bewear"]
+    }
+  },
+  "bewear": {
+    "id": 760,
+    "name": "Bewear",
+    "type": ["normal", "fighting"],
+    "evos": {
+      "from": "stufful"
+    }
+  },
+  "bounsweet": {
+    "id": 761,
+    "name": "Bounsweet",
+    "type": ["grass"],
+    "evos": {
+      "to": ["steenee"]
+    }
+  },
+  "steenee": {
+    "id": 762,
+    "name": "Steenee",
+    "type": ["grass"],
+    "evos": {
+      "from": "bounsweet",
+      "to": ["tsareena"]
+    }
+  },
+  "tsareena": {
+    "id": 763,
+    "name": "Tsareena",
+    "type": ["grass"],
+    "evos": {
+      "from": "steenee"
+    }
+  },
+  "comfey": {
+    "id": 764,
+    "name": "Comfey",
+    "type": ["fairy"]
+  },
+  "oranguru": {
+    "id": 765,
+    "name": "Oranguru",
+    "type": ["normal", "psychic"]
+  },
+  "passimian": {
+    "id": 766,
+    "name": "Passimian",
+    "type": ["fighting"]
+  },
+  "wimpod": {
+    "id": 767,
+    "name": "Wimpod",
+    "type": ["bug", "water"],
+    "evos": {
+      "to": ["golisopod"]
+    }
+  },
+  "golisopod": {
+    "id": 768,
+    "name": "Golisopod",
+    "type": ["bug", "water"],
+    "evos": {
+      "from": "wimpod"
+    }
+  },
+  "sandygast": {
+    "id": 769,
+    "name": "Sandygast",
+    "type": ["ghost", "ground"],
+    "evos": {
+      "to": ["palossand"]
+    }
+  },
+  "palossand": {
+    "id": 770,
+    "name": "Palossand",
+    "type": ["ghost", "ground"],
+    "evos": {
+      "from": "sandygast"
+    }
+  },
+  "pyukumuku": {
+    "id": 771,
+    "name": "Pyukumuku",
+    "type": ["water"]
+  },
+  "type-null": {
+    "id": 772,
+    "name": "Type: Null",
+    "type": ["normal"],
+    "evos": {
+      "to": ["silvally"]
+    }
+  },
+  "silvally": {
+    "id": 773,
+    "name": "Silvally",
+    "type": ["normal"],
+    "evos": {
+      "from": "type-null"
+    }
+  },
+  "minior": {
+    "id": 774,
+    "name": "Minior",
+    "type": ["rock", "flying"]
+  },
+  "komala": {
+    "id": 775,
+    "name": "Komala",
+    "type": ["normal"]
+  },
+  "turtonator": {
+    "id": 776,
+    "name": "Turtonator",
+    "type": ["fire", "dragon"]
+  },
+  "togedemaru": {
+    "id": 777,
+    "name": "Togedemaru",
+    "type": ["electric", "steel"]
+  },
+  "mimikyu": {
+    "id": 778,
+    "name": "Mimikyu",
+    "type": ["ghost", "fairy"]
+  },
+  "bruxish": {
+    "id": 779,
+    "name": "Bruxish",
+    "type": ["water", "psychic"]
+  },
+  "drampa": {
+    "id": 780,
+    "name": "Drampa",
+    "type": ["normal", "dragon"]
+  },
+  "dhelmise": {
+    "id": 781,
+    "name": "Dhelmise",
+    "type": ["ghost", "grass"]
+  },
+  "jangmo-o": {
+    "id": 782,
+    "name": "Jangmo-o",
+    "type": ["dragon"],
+    "evos": {
+      "to": ["hakamo-o"]
+    }
+  },
+  "hakamo-o": {
+    "id": 783,
+    "name": "Hakamo-o",
+    "type": ["dragon", "fighting"],
+    "evos": {
+      "from": "jangmo-o",
+      "to": ["kommo-o"]
+    }
+  },
+  "kommo-o": {
+    "id": 784,
+    "name": "Kommo-o",
+    "type": ["dragon", "fighting"],
+    "evos": {
+      "from": "hakamo-o"
+    }
+  },
+  "tapu-koko": {
+    "id": 785,
+    "name": "Tapu Koko",
+    "type": ["electric", "fairy"]
+  },
+  "tapu-lele": {
+    "id": 786,
+    "name": "Tapu Lele",
+    "type": ["psychic", "fairy"]
+  },
+  "tapu-bulu": {
+    "id": 787,
+    "name": "Tapu Bulu",
+    "type": ["grass", "fairy"]
+  },
+  "tapu-fini": {
+    "id": 788,
+    "name": "Tapu Fini",
+    "type": ["water", "fairy"]
+  },
+  "cosmog": {
+    "id": 789,
+    "name": "Cosmog",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["cosmoem"]
+    }
+  },
+  "cosmoem": {
+    "id": 790,
+    "name": "Cosmoem",
+    "type": ["psychic"],
+    "evos": {
+      "from": "cosmog",
+      "to": ["solgaleo", "lunala"]
+    }
+  },
+  "solgaleo": {
+    "id": 791,
+    "name": "Solgaleo",
+    "type": ["psychic", "steel"],
+    "evos": {
+      "from": "cosmoem"
+    }
+  },
+  "lunala": {
+    "id": 792,
+    "name": "Lunala",
+    "type": ["psychic", "ghost"],
+    "evos": {
+      "from": "cosmoem"
+    }
+  },
+  "nihilego": {
+    "id": 793,
+    "name": "Nihilego",
+    "type": ["rock", "poison"]
+  },
+  "buzzwole": {
+    "id": 794,
+    "name": "Buzzwole",
+    "type": ["bug", "fighting"]
+  },
+  "pheromosa": {
+    "id": 795,
+    "name": "Pheromosa",
+    "type": ["bug", "fighting"]
+  },
+  "xurkitree": {
+    "id": 796,
+    "name": "Xurkitree",
+    "type": ["electric"]
+  },
+  "celesteela": {
+    "id": 797,
+    "name": "Celesteela",
+    "type": ["steel", "flying"]
+  },
+  "kartana": {
+    "id": 798,
+    "name": "Kartana",
+    "type": ["grass", "steel"]
+  },
+  "guzzlord": {
+    "id": 799,
+    "name": "Guzzlord",
+    "type": ["dark", "dragon"]
+  },
+  "necrozma": {
+    "id": 800,
+    "name": "Necrozma",
+    "type": ["psychic"]
+  },
+  "magearna": {
+    "id": 801,
+    "name": "Magearna",
+    "type": ["steel", "fairy"]
+  },
+  "marshadow": {
+    "id": 802,
+    "name": "Marshadow",
+    "type": ["fighting", "ghost"]
+  },
+  "poipole": {
+    "id": 803,
+    "name": "Poipole",
+    "type": ["poison"],
+    "evos": {
+      "to": ["naganadel"]
+    }
+  },
+  "naganadel": {
+    "id": 804,
+    "name": "Naganadel",
+    "type": ["poison", "dragon"],
+    "evos": {
+      "from": "poipole"
+    }
+  },
+  "stakataka": {
+    "id": 805,
+    "name": "Stakataka",
+    "type": ["rock", "steel"]
+  },
+  "blacephalon": {
+    "id": 806,
+    "name": "Blacephalon",
+    "type": ["fire", "ghost"]
+  },
+  "zeraora": {
+    "id": 807,
+    "name": "Zeraora",
+    "type": ["electric"]
+  },
+  "meltan": {
+    "id": 808,
+    "name": "Meltan",
+    "type": ["steel"]
+  },
+  "melmetal": {
+    "id": 809,
+    "name": "Melmetal",
+    "type": ["steel"],
+    "evos": {
+      "from": "meltan"
+    }
+  },
+  "grookey": {
+    "id": 810,
+    "name": "Grookey",
+    "type": ["grass"],
+    "evos": {
+      "to": ["thwackey"]
+    }
+  },
+  "thwackey": {
+    "id": 811,
+    "name": "Thwackey",
+    "type": ["grass"],
+    "evos": {
+      "from": "grookey",
+      "to": ["rillaboom"]
+    }
+  },
+  "rillaboom": {
+    "id": 812,
+    "name": "Rillaboom",
+    "type": ["grass"],
+    "evos": {
+      "from": "thwackey"
+    }
+  },
+  "scorbunny": {
+    "id": 813,
+    "name": "Scorbunny",
+    "type": ["fire"],
+    "evos": {
+      "to": ["raboot"]
+    }
+  },
+  "raboot": {
+    "id": 814,
+    "name": "Raboot",
+    "type": ["fire"],
+    "evos": {
+      "from": "scorbunny",
+      "to": ["cinderace"]
+    }
+  },
+  "cinderace": {
+    "id": 815,
+    "name": "Cinderace",
+    "type": ["fire"],
+    "evos": {
+      "from": "raboot"
+    }
+  },
+  "sobble": {
+    "id": 816,
+    "name": "Sobble",
+    "type": ["water"],
+    "evos": {
+      "to": ["drizzile"]
+    }
+  },
+  "drizzile": {
+    "id": 817,
+    "name": "Drizzile",
+    "type": ["water"],
+    "evos": {
+      "from": "sobble",
+      "to": ["inteleon"]
+    }
+  },
+  "inteleon": {
+    "id": 818,
+    "name": "Inteleon",
+    "type": ["water"],
+    "evos": {
+      "from": "drizzile"
+    }
+  },
+  "skwovet": {
+    "id": 819,
+    "name": "Skwovet",
+    "type": ["normal"],
+    "evos": {
+      "to": ["greedent"]
+    }
+  },
+  "greedent": {
+    "id": 820,
+    "name": "Greedent",
+    "type": ["normal"],
+    "evos": {
+      "from": "skwovet"
+    }
+  },
+  "rookidee": {
+    "id": 821,
+    "name": "Rookidee",
+    "type": ["flying"],
+    "evos": {
+      "to": ["corvisquire"]
+    }
+  },
+  "corvisquire": {
+    "id": 822,
+    "name": "Corvisquire",
+    "type": ["flying"],
+    "evos": {
+      "from": "rookidee",
+      "to": ["corviknight"]
+    }
+  },
+  "corviknight": {
+    "id": 823,
+    "name": "Corviknight",
+    "type": ["flying", "steel"],
+    "evos": {
+      "from": "corvisquire"
+    }
+  },
+  "blipbug": {
+    "id": 824,
+    "name": "Blipbug",
+    "type": ["bug"],
+    "evos": {
+      "to": ["dottler"]
+    }
+  },
+  "dottler": {
+    "id": 825,
+    "name": "Dottler",
+    "type": ["bug", "psychic"],
+    "evos": {
+      "from": "blipbug",
+      "to": ["orbeetle"]
+    }
+  },
+  "orbeetle": {
+    "id": 826,
+    "name": "Orbeetle",
+    "type": ["bug", "psychic"],
+    "evos": {
+      "from": "dottler"
+    }
+  },
+  "nickit": {
+    "id": 827,
+    "name": "Nickit",
+    "type": ["dark"],
+    "evos": {
+      "to": ["thievul"]
+    }
+  },
+  "thievul": {
+    "id": 828,
+    "name": "Thievul",
+    "type": ["dark"],
+    "evos": {
+      "from": "nickit"
+    }
+  },
+  "gossifleur": {
+    "id": 829,
+    "name": "Gossifleur",
+    "type": ["grass"],
+    "evos": {
+      "to": ["eldegoss"]
+    }
+  },
+  "eldegoss": {
+    "id": 830,
+    "name": "Eldegoss",
+    "type": ["grass"],
+    "evos": {
+      "from": "gossifleur"
+    }
+  },
+  "wooloo": {
+    "id": 831,
+    "name": "Wooloo",
+    "type": ["normal"],
+    "evos": {
+      "to": ["dubwool"]
+    }
+  },
+  "dubwool": {
+    "id": 832,
+    "name": "Dubwool",
+    "type": ["normal"],
+    "evos": {
+      "from": "wooloo"
+    }
+  },
+  "chewtle": {
+    "id": 833,
+    "name": "Chewtle",
+    "type": ["water"],
+    "evos": {
+      "to": ["drednaw"]
+    }
+  },
+  "drednaw": {
+    "id": 834,
+    "name": "Drednaw",
+    "type": ["water", "rock"],
+    "evos": {
+      "from": "chewtle"
+    }
+  },
+  "yamper": {
+    "id": 835,
+    "name": "Yamper",
+    "type": ["electric"],
+    "evos": {
+      "to": ["boltund"]
+    }
+  },
+  "boltund": {
+    "id": 836,
+    "name": "Boltund",
+    "type": ["electric"],
+    "evos": {
+      "from": "yamper"
+    }
+  },
+  "rolycoly": {
+    "id": 837,
+    "name": "Rolycoly",
+    "type": ["rock"],
+    "evos": {
+      "to": ["carkol"]
+    }
+  },
+  "carkol": {
+    "id": 838,
+    "name": "Carkol",
+    "type": ["rock", "fire"],
+    "evos": {
+      "from": "rolycoly",
+      "to": ["coalossal"]
+    }
+  },
+  "coalossal": {
+    "id": 839,
+    "name": "Coalossal",
+    "type": ["rock", "fire"],
+    "evos": {
+      "from": "carkol"
+    }
+  },
+  "applin": {
+    "id": 840,
+    "name": "Applin",
+    "type": ["grass", "dragon"],
+    "evos": {
+      "to": ["flapple", "appletun", "dipplin"]
+    }
+  },
+  "flapple": {
+    "id": 841,
+    "name": "Flapple",
+    "type": ["grass", "dragon"],
+    "evos": {
+      "from": "applin"
+    }
+  },
+  "appletun": {
+    "id": 842,
+    "name": "Appletun",
+    "type": ["grass", "dragon"],
+    "evos": {
+      "from": "applin"
+    }
+  },
+  "silicobra": {
+    "id": 843,
+    "name": "Silicobra",
+    "type": ["ground"],
+    "evos": {
+      "to": ["sandaconda"]
+    }
+  },
+  "sandaconda": {
+    "id": 844,
+    "name": "Sandaconda",
+    "type": ["ground"],
+    "evos": {
+      "from": "silicobra"
+    }
+  },
+  "cramorant": {
+    "id": 845,
+    "name": "Cramorant",
+    "type": ["flying", "water"]
+  },
+  "arrokuda": {
+    "id": 846,
+    "name": "Arrokuda",
+    "type": ["water"],
+    "evos": {
+      "to": ["barraskewda"]
+    }
+  },
+  "barraskewda": {
+    "id": 847,
+    "name": "Barraskewda",
+    "type": ["water"],
+    "evos": {
+      "from": "arrokuda"
+    }
+  },
+  "toxel": {
+    "id": 848,
+    "name": "Toxel",
+    "type": ["electric", "poison"],
+    "evos": {
+      "to": ["toxtricity"]
+    }
+  },
+  "toxtricity": {
+    "id": 849,
+    "name": "Toxtricity",
+    "type": ["electric", "poison"],
+    "evos": {
+      "from": "toxel"
+    }
+  },
+  "sizzlipede": {
+    "id": 850,
+    "name": "Sizzlipede",
+    "type": ["fire", "bug"],
+    "evos": {
+      "to": ["centiskorch"]
+    }
+  },
+  "centiskorch": {
+    "id": 851,
+    "name": "Centiskorch",
+    "type": ["fire", "bug"],
+    "evos": {
+      "from": "sizzlipede"
+    }
+  },
+  "clobbopus": {
+    "id": 852,
+    "name": "Clobbopus",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["grapploct"]
+    }
+  },
+  "grapploct": {
+    "id": 853,
+    "name": "Grapploct",
+    "type": ["fighting"],
+    "evos": {
+      "from": "clobbopus"
+    }
+  },
+  "sinistea": {
+    "id": 854,
+    "name": "Sinistea",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["polteageist"]
+    }
+  },
+  "polteageist": {
+    "id": 855,
+    "name": "Polteageist",
+    "type": ["ghost"],
+    "evos": {
+      "from": "sinistea"
+    }
+  },
+  "hatenna": {
+    "id": 856,
+    "name": "Hatenna",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["hattrem"]
+    }
+  },
+  "hattrem": {
+    "id": 857,
+    "name": "Hattrem",
+    "type": ["psychic"],
+    "evos": {
+      "from": "hatenna",
+      "to": ["hatterene"]
+    }
+  },
+  "hatterene": {
+    "id": 858,
+    "name": "Hatterene",
+    "type": ["psychic", "fairy"],
+    "evos": {
+      "from": "hattrem"
+    }
+  },
+  "impidimp": {
+    "id": 859,
+    "name": "Impidimp",
+    "type": ["dark", "fairy"],
+    "evos": {
+      "to": ["morgrem"]
+    }
+  },
+  "morgrem": {
+    "id": 860,
+    "name": "Morgrem",
+    "type": ["dark", "fairy"],
+    "evos": {
+      "from": "impidimp",
+      "to": ["grimmsnarl"]
+    }
+  },
+  "grimmsnarl": {
+    "id": 861,
+    "name": "Grimmsnarl",
+    "type": ["dark", "fairy"],
+    "evos": {
+      "from": "morgrem"
+    }
+  },
+  "obstagoon": {
+    "id": 862,
+    "name": "Obstagoon",
+    "type": ["dark", "normal"],
+    "evos": {
+      "from": "linoone"
+    }
+  },
+  "perrserker": {
+    "id": 863,
+    "name": "Perrserker",
+    "type": ["steel"],
+    "evos": {
+      "from": "meowth"
+    }
+  },
+  "cursola": {
+    "id": 864,
+    "name": "Cursola",
+    "type": ["ghost"],
+    "evos": {
+      "from": "corsola"
+    }
+  },
+  "sirfetchd": {
+    "id": 865,
+    "name": "Sirfetch’d",
+    "type": ["fighting"],
+    "evos": {
+      "from": "farfetchd"
+    }
+  },
+  "mr-rime": {
+    "id": 866,
+    "name": "Mr. Rime",
+    "type": ["ice", "psychic"],
+    "evos": {
+      "from": "mr-mime"
+    }
+  },
+  "runerigus": {
+    "id": 867,
+    "name": "Runerigus",
+    "type": ["ground", "ghost"],
+    "evos": {
+      "from": "yamask"
+    }
+  },
+  "milcery": {
+    "id": 868,
+    "name": "Milcery",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["alcremie"]
+    }
+  },
+  "alcremie": {
+    "id": 869,
+    "name": "Alcremie",
+    "type": ["fairy"],
+    "evos": {
+      "from": "milcery"
+    }
+  },
+  "falinks": {
+    "id": 870,
+    "name": "Falinks",
+    "type": ["fighting"]
+  },
+  "pincurchin": {
+    "id": 871,
+    "name": "Pincurchin",
+    "type": ["electric"]
+  },
+  "snom": {
+    "id": 872,
+    "name": "Snom",
+    "type": ["ice", "bug"],
+    "evos": {
+      "to": ["frosmoth"]
+    }
+  },
+  "frosmoth": {
+    "id": 873,
+    "name": "Frosmoth",
+    "type": ["ice", "bug"],
+    "evos": {
+      "from": "snom"
+    }
+  },
+  "stonjourner": {
+    "id": 874,
+    "name": "Stonjourner",
+    "type": ["rock"]
+  },
+  "eiscue": {
+    "id": 875,
+    "name": "Eiscue",
+    "type": ["ice"]
+  },
+  "indeedee": {
+    "id": 876,
+    "name": "Indeedee",
+    "type": ["psychic", "normal"]
+  },
+  "morpeko": {
+    "id": 877,
+    "name": "Morpeko",
+    "type": ["electric", "dark"]
+  },
+  "cufant": {
+    "id": 878,
+    "name": "Cufant",
+    "type": ["steel"],
+    "evos": {
+      "to": ["copperajah"]
+    }
+  },
+  "copperajah": {
+    "id": 879,
+    "name": "Copperajah",
+    "type": ["steel"],
+    "evos": {
+      "from": "cufant"
+    }
+  },
+  "dracozolt": {
+    "id": 880,
+    "name": "Dracozolt",
+    "type": ["electric", "dragon"]
+  },
+  "arctozolt": {
+    "id": 881,
+    "name": "Arctozolt",
+    "type": ["electric", "ice"]
+  },
+  "dracovish": {
+    "id": 882,
+    "name": "Dracovish",
+    "type": ["water", "dragon"]
+  },
+  "arctovish": {
+    "id": 883,
+    "name": "Arctovish",
+    "type": ["water", "ice"]
+  },
+  "duraludon": {
+    "id": 884,
+    "name": "Duraludon",
+    "type": ["steel", "dragon"],
+    "evos": {
+      "to": ["archaludon"]
+    }
+  },
+  "dreepy": {
+    "id": 885,
+    "name": "Dreepy",
+    "type": ["dragon", "ghost"],
+    "evos": {
+      "to": ["drakloak"]
+    }
+  },
+  "drakloak": {
+    "id": 886,
+    "name": "Drakloak",
+    "type": ["dragon", "ghost"],
+    "evos": {
+      "from": "dreepy",
+      "to": ["dragapult"]
+    }
+  },
+  "dragapult": {
+    "id": 887,
+    "name": "Dragapult",
+    "type": ["dragon", "ghost"],
+    "evos": {
+      "from": "drakloak"
+    }
+  },
+  "zacian": {
+    "id": 888,
+    "name": "Zacian",
+    "type": ["fairy"]
+  },
+  "zamazenta": {
+    "id": 889,
+    "name": "Zamazenta",
+    "type": ["fighting"]
+  },
+  "eternatus": {
+    "id": 890,
+    "name": "Eternatus",
+    "type": ["poison", "dragon"]
+  },
+  "kubfu": {
+    "id": 891,
+    "name": "Kubfu",
+    "type": ["fighting"],
+    "evos": {
+      "to": ["urshifu"]
+    }
+  },
+  "urshifu": {
+    "id": 892,
+    "name": "Urshifu",
+    "type": ["fighting", "dark"],
+    "evos": {
+      "from": "kubfu"
+    }
+  },
+  "zarude": {
+    "id": 893,
+    "name": "Zarude",
+    "type": ["dark", "grass"]
+  },
+  "regieleki": {
+    "id": 894,
+    "name": "Regieleki",
+    "type": ["electric"]
+  },
+  "regidrago": {
+    "id": 895,
+    "name": "Regidrago",
+    "type": ["dragon"]
+  },
+  "glastrier": {
+    "id": 896,
+    "name": "Glastrier",
+    "type": ["ice"]
+  },
+  "spectrier": {
+    "id": 897,
+    "name": "Spectrier",
+    "type": ["ghost"]
+  },
+  "calyrex": {
+    "id": 898,
+    "name": "Calyrex",
+    "type": ["psychic", "grass"]
+  },
+  "wyrdeer": {
+    "id": 899,
+    "name": "Wyrdeer",
+    "type": ["normal", "psychic"],
+    "evos": {
+      "from": "stantler"
+    }
+  },
+  "kleavor": {
+    "id": 900,
+    "name": "Kleavor",
+    "type": ["bug", "rock"],
+    "evos": {
+      "from": "scyther"
+    }
+  },
+  "ursaluna": {
+    "id": 901,
+    "name": "Ursaluna",
+    "type": ["ground", "normal"],
+    "evos": {
+      "from": "ursaring"
+    }
+  },
+  "basculegion": {
+    "id": 902,
+    "name": "Basculegion",
+    "type": ["water", "ghost"],
+    "evos": {
+      "from": "basculin"
+    }
+  },
+  "sneasler": {
+    "id": 903,
+    "name": "Sneasler",
+    "type": ["fighting", "poison"],
+    "evos": {
+      "from": "sneasel"
+    }
+  },
+  "overqwil": {
+    "id": 904,
+    "name": "Overqwil",
+    "type": ["dark", "poison"],
+    "evos": {
+      "from": "qwilfish"
+    }
+  },
+  "enamorus": {
+    "id": 905,
+    "name": "Enamorus",
+    "type": ["fairy", "flying"]
+  },
+  "sprigatito": {
+    "id": 906,
+    "name": "Sprigatito",
+    "type": ["grass"],
+    "evos": {
+      "to": ["floragato"]
+    }
+  },
+  "floragato": {
+    "id": 907,
+    "name": "Floragato",
+    "type": ["grass"],
+    "evos": {
+      "from": "sprigatito",
+      "to": ["meowscarada"]
+    }
+  },
+  "meowscarada": {
+    "id": 908,
+    "name": "Meowscarada",
+    "type": ["grass", "dark"],
+    "evos": {
+      "from": "floragato"
+    }
+  },
+  "fuecoco": {
+    "id": 909,
+    "name": "Fuecoco",
+    "type": ["fire"],
+    "evos": {
+      "to": ["crocalor"]
+    }
+  },
+  "crocalor": {
+    "id": 910,
+    "name": "Crocalor",
+    "type": ["fire"],
+    "evos": {
+      "from": "fuecoco",
+      "to": ["skeledirge"]
+    }
+  },
+  "skeledirge": {
+    "id": 911,
+    "name": "Skeledirge",
+    "type": ["fire", "ghost"],
+    "evos": {
+      "from": "crocalor"
+    }
+  },
+  "quaxly": {
+    "id": 912,
+    "name": "Quaxly",
+    "type": ["water"],
+    "evos": {
+      "to": ["quaxwell"]
+    }
+  },
+  "quaxwell": {
+    "id": 913,
+    "name": "Quaxwell",
+    "type": ["water"],
+    "evos": {
+      "from": "quaxly",
+      "to": ["quaquaval"]
+    }
+  },
+  "quaquaval": {
+    "id": 914,
+    "name": "Quaquaval",
+    "type": ["water", "fighting"],
+    "evos": {
+      "from": "quaxwell"
+    }
+  },
+  "lechonk": {
+    "id": 915,
+    "name": "Lechonk",
+    "type": ["normal"],
+    "evos": {
+      "to": ["oinkologne"]
+    }
+  },
+  "oinkologne": {
+    "id": 916,
+    "name": "Oinkologne",
+    "type": ["normal"],
+    "evos": {
+      "from": "lechonk"
+    }
+  },
+  "tarountula": {
+    "id": 917,
+    "name": "Tarountula",
+    "type": ["bug"],
+    "evos": {
+      "to": ["spidops"]
+    }
+  },
+  "spidops": {
+    "id": 918,
+    "name": "Spidops",
+    "type": ["bug"],
+    "evos": {
+      "from": "tarountula"
+    }
+  },
+  "nymble": {
+    "id": 919,
+    "name": "Nymble",
+    "type": ["bug"],
+    "evos": {
+      "to": ["lokix"]
+    }
+  },
+  "lokix": {
+    "id": 920,
+    "name": "Lokix",
+    "type": ["bug", "dark"],
+    "evos": {
+      "from": "nymble"
+    }
+  },
+  "pawmi": {
+    "id": 921,
+    "name": "Pawmi",
+    "type": ["electric"],
+    "evos": {
+      "to": ["pawmo"]
+    }
+  },
+  "pawmo": {
+    "id": 922,
+    "name": "Pawmo",
+    "type": ["electric", "fighting"],
+    "evos": {
+      "from": "pawmi",
+      "to": ["pawmot"]
+    }
+  },
+  "pawmot": {
+    "id": 923,
+    "name": "Pawmot",
+    "type": ["electric", "fighting"],
+    "evos": {
+      "from": "pawmo"
+    }
+  },
+  "tandemaus": {
+    "id": 924,
+    "name": "Tandemaus",
+    "type": ["normal"],
+    "evos": {
+      "to": ["maushold"]
+    }
+  },
+  "maushold": {
+    "id": 925,
+    "name": "Maushold",
+    "type": ["normal"],
+    "evos": {
+      "from": "tandemaus"
+    }
+  },
+  "fidough": {
+    "id": 926,
+    "name": "Fidough",
+    "type": ["fairy"],
+    "evos": {
+      "to": ["dachsbun"]
+    }
+  },
+  "dachsbun": {
+    "id": 927,
+    "name": "Dachsbun",
+    "type": ["fairy"],
+    "evos": {
+      "from": "fidough"
+    }
+  },
+  "smoliv": {
+    "id": 928,
+    "name": "Smoliv",
+    "type": ["grass", "normal"],
+    "evos": {
+      "to": ["dolliv"]
+    }
+  },
+  "dolliv": {
+    "id": 929,
+    "name": "Dolliv",
+    "type": ["grass", "normal"],
+    "evos": {
+      "from": "smoliv",
+      "to": ["arboliva"]
+    }
+  },
+  "arboliva": {
+    "id": 930,
+    "name": "Arboliva",
+    "type": ["grass", "normal"],
+    "evos": {
+      "from": "dolliv"
+    }
+  },
+  "squawkabilly": {
+    "id": 931,
+    "name": "Squawkabilly",
+    "type": ["normal", "flying"]
+  },
+  "nacli": {
+    "id": 932,
+    "name": "Nacli",
+    "type": ["rock"],
+    "evos": {
+      "to": ["naclstack"]
+    }
+  },
+  "naclstack": {
+    "id": 933,
+    "name": "Naclstack",
+    "type": ["rock"],
+    "evos": {
+      "from": "nacli",
+      "to": ["garganacl"]
+    }
+  },
+  "garganacl": {
+    "id": 934,
+    "name": "Garganacl",
+    "type": ["rock"],
+    "evos": {
+      "from": "naclstack"
+    }
+  },
+  "charcadet": {
+    "id": 935,
+    "name": "Charcadet",
+    "type": ["fire"],
+    "evos": {
+      "to": ["armarouge", "ceruledge"]
+    }
+  },
+  "armarouge": {
+    "id": 936,
+    "name": "Armarouge",
+    "type": ["fire", "psychic"],
+    "evos": {
+      "from": "charcadet"
+    }
+  },
+  "ceruledge": {
+    "id": 937,
+    "name": "Ceruledge",
+    "type": ["fire", "ghost"],
+    "evos": {
+      "from": "charcadet"
+    }
+  },
+  "tadbulb": {
+    "id": 938,
+    "name": "Tadbulb",
+    "type": ["electric"],
+    "evos": {
+      "to": ["bellibolt"]
+    }
+  },
+  "bellibolt": {
+    "id": 939,
+    "name": "Bellibolt",
+    "type": ["electric"],
+    "evos": {
+      "from": "tadbulb"
+    }
+  },
+  "wattrel": {
+    "id": 940,
+    "name": "Wattrel",
+    "type": ["electric", "flying"],
+    "evos": {
+      "to": ["kilowattrel"]
+    }
+  },
+  "kilowattrel": {
+    "id": 941,
+    "name": "Kilowattrel",
+    "type": ["electric", "flying"],
+    "evos": {
+      "from": "wattrel"
+    }
+  },
+  "maschiff": {
+    "id": 942,
+    "name": "Maschiff",
+    "type": ["dark"],
+    "evos": {
+      "to": ["mabosstiff"]
+    }
+  },
+  "mabosstiff": {
+    "id": 943,
+    "name": "Mabosstiff",
+    "type": ["dark"],
+    "evos": {
+      "from": "maschiff"
+    }
+  },
+  "shroodle": {
+    "id": 944,
+    "name": "Shroodle",
+    "type": ["poison", "normal"],
+    "evos": {
+      "to": ["grafaiai"]
+    }
+  },
+  "grafaiai": {
+    "id": 945,
+    "name": "Grafaiai",
+    "type": ["poison", "normal"],
+    "evos": {
+      "from": "shroodle"
+    }
+  },
+  "bramblin": {
+    "id": 946,
+    "name": "Bramblin",
+    "type": ["grass", "ghost"],
+    "evos": {
+      "to": ["brambleghast"]
+    }
+  },
+  "brambleghast": {
+    "id": 947,
+    "name": "Brambleghast",
+    "type": ["grass", "ghost"],
+    "evos": {
+      "from": "bramblin"
+    }
+  },
+  "toedscool": {
+    "id": 948,
+    "name": "Toedscool",
+    "type": ["ground", "grass"],
+    "evos": {
+      "to": ["toedscruel"]
+    }
+  },
+  "toedscruel": {
+    "id": 949,
+    "name": "Toedscruel",
+    "type": ["ground", "grass"],
+    "evos": {
+      "from": "toedscool"
+    }
+  },
+  "klawf": {
+    "id": 950,
+    "name": "Klawf",
+    "type": ["rock"]
+  },
+  "capsakid": {
+    "id": 951,
+    "name": "Capsakid",
+    "type": ["grass"],
+    "evos": {
+      "to": ["scovillain"]
+    }
+  },
+  "scovillain": {
+    "id": 952,
+    "name": "Scovillain",
+    "type": ["grass", "fire"],
+    "evos": {
+      "from": "capsakid"
+    }
+  },
+  "rellor": {
+    "id": 953,
+    "name": "Rellor",
+    "type": ["bug"],
+    "evos": {
+      "to": ["rabsca"]
+    }
+  },
+  "rabsca": {
+    "id": 954,
+    "name": "Rabsca",
+    "type": ["bug", "psychic"],
+    "evos": {
+      "from": "rellor"
+    }
+  },
+  "flittle": {
+    "id": 955,
+    "name": "Flittle",
+    "type": ["psychic"],
+    "evos": {
+      "to": ["espathra"]
+    }
+  },
+  "espathra": {
+    "id": 956,
+    "name": "Espathra",
+    "type": ["psychic"],
+    "evos": {
+      "from": "flittle"
+    }
+  },
+  "tinkatink": {
+    "id": 957,
+    "name": "Tinkatink",
+    "type": ["fairy", "steel"],
+    "evos": {
+      "to": ["tinkatuff"]
+    }
+  },
+  "tinkatuff": {
+    "id": 958,
+    "name": "Tinkatuff",
+    "type": ["fairy", "steel"],
+    "evos": {
+      "from": "tinkatink",
+      "to": ["tinkaton"]
+    }
+  },
+  "tinkaton": {
+    "id": 959,
+    "name": "Tinkaton",
+    "type": ["fairy", "steel"],
+    "evos": {
+      "from": "tinkatuff"
+    }
+  },
+  "wiglett": {
+    "id": 960,
+    "name": "Wiglett",
+    "type": ["water"],
+    "evos": {
+      "to": ["wugtrio"]
+    }
+  },
+  "wugtrio": {
+    "id": 961,
+    "name": "Wugtrio",
+    "type": ["water"],
+    "evos": {
+      "from": "wiglett"
+    }
+  },
+  "bombirdier": {
+    "id": 962,
+    "name": "Bombirdier",
+    "type": ["flying", "dark"]
+  },
+  "finizen": {
+    "id": 963,
+    "name": "Finizen",
+    "type": ["water"],
+    "evos": {
+      "to": ["palafin"]
+    }
+  },
+  "palafin": {
+    "id": 964,
+    "name": "Palafin",
+    "type": ["water"],
+    "evos": {
+      "from": "finizen"
+    }
+  },
+  "varoom": {
+    "id": 965,
+    "name": "Varoom",
+    "type": ["steel", "poison"],
+    "evos": {
+      "to": ["revavroom"]
+    }
+  },
+  "revavroom": {
+    "id": 966,
+    "name": "Revavroom",
+    "type": ["steel", "poison"],
+    "evos": {
+      "from": "varoom"
+    }
+  },
+  "cyclizar": {
+    "id": 967,
+    "name": "Cyclizar",
+    "type": ["dragon", "normal"]
+  },
+  "orthworm": {
+    "id": 968,
+    "name": "Orthworm",
+    "type": ["steel"]
+  },
+  "glimmet": {
+    "id": 969,
+    "name": "Glimmet",
+    "type": ["rock", "poison"],
+    "evos": {
+      "to": ["glimmora"]
+    }
+  },
+  "glimmora": {
+    "id": 970,
+    "name": "Glimmora",
+    "type": ["rock", "poison"],
+    "evos": {
+      "from": "glimmet"
+    }
+  },
+  "greavard": {
+    "id": 971,
+    "name": "Greavard",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["houndstone"]
+    }
+  },
+  "houndstone": {
+    "id": 972,
+    "name": "Houndstone",
+    "type": ["ghost"],
+    "evos": {
+      "from": "greavard"
+    }
+  },
+  "flamigo": {
+    "id": 973,
+    "name": "Flamigo",
+    "type": ["flying", "fighting"]
+  },
+  "cetoddle": {
+    "id": 974,
+    "name": "Cetoddle",
+    "type": ["ice"],
+    "evos": {
+      "to": ["cetitan"]
+    }
+  },
+  "cetitan": {
+    "id": 975,
+    "name": "Cetitan",
+    "type": ["ice"],
+    "evos": {
+      "from": "cetoddle"
+    }
+  },
+  "veluza": {
+    "id": 976,
+    "name": "Veluza",
+    "type": ["water", "psychic"]
+  },
+  "dondozo": {
+    "id": 977,
+    "name": "Dondozo",
+    "type": ["water"]
+  },
+  "tatsugiri": {
+    "id": 978,
+    "name": "Tatsugiri",
+    "type": ["dragon", "water"]
+  },
+  "annihilape": {
+    "id": 979,
+    "name": "Annihilape",
+    "type": ["fighting", "ghost"],
+    "evos": {
+      "from": "primeape"
+    }
+  },
+  "clodsire": {
+    "id": 980,
+    "name": "Clodsire",
+    "type": ["poison", "ground"],
+    "evos": {
+      "from": "wooper"
+    }
+  },
+  "farigiraf": {
+    "id": 981,
+    "name": "Farigiraf",
+    "type": ["normal", "psychic"],
+    "evos": {
+      "from": "girafarig"
+    }
+  },
+  "dudunsparce": {
+    "id": 982,
+    "name": "Dudunsparce",
+    "type": ["normal"],
+    "evos": {
+      "from": "dunsparce"
+    }
+  },
+  "kingambit": {
+    "id": 983,
+    "name": "Kingambit",
+    "type": ["dark", "steel"],
+    "evos": {
+      "from": "bisharp"
+    }
+  },
+  "great-tusk": {
+    "id": 984,
+    "name": "Great Tusk",
+    "type": ["ground", "fighting"]
+  },
+  "scream-tail": {
+    "id": 985,
+    "name": "Scream Tail",
+    "type": ["fairy", "psychic"]
+  },
+  "brute-bonnet": {
+    "id": 986,
+    "name": "Brute Bonnet",
+    "type": ["grass", "dark"]
+  },
+  "flutter-mane": {
+    "id": 987,
+    "name": "Flutter Mane",
+    "type": ["ghost", "fairy"]
+  },
+  "slither-wing": {
+    "id": 988,
+    "name": "Slither Wing",
+    "type": ["bug", "fighting"]
+  },
+  "sandy-shocks": {
+    "id": 989,
+    "name": "Sandy Shocks",
+    "type": ["electric", "ground"]
+  },
+  "iron-treads": {
+    "id": 990,
+    "name": "Iron Treads",
+    "type": ["ground", "steel"]
+  },
+  "iron-bundle": {
+    "id": 991,
+    "name": "Iron Bundle",
+    "type": ["ice", "water"]
+  },
+  "iron-hands": {
+    "id": 992,
+    "name": "Iron Hands",
+    "type": ["fighting", "electric"]
+  },
+  "iron-jugulis": {
+    "id": 993,
+    "name": "Iron Jugulis",
+    "type": ["dark", "flying"]
+  },
+  "iron-moth": {
+    "id": 994,
+    "name": "Iron Moth",
+    "type": ["fire", "poison"]
+  },
+  "iron-thorns": {
+    "id": 995,
+    "name": "Iron Thorns",
+    "type": ["rock", "electric"]
+  },
+  "frigibax": {
+    "id": 996,
+    "name": "Frigibax",
+    "type": ["dragon", "ice"],
+    "evos": {
+      "to": ["arctibax"]
+    }
+  },
+  "arctibax": {
+    "id": 997,
+    "name": "Arctibax",
+    "type": ["dragon", "ice"],
+    "evos": {
+      "from": "frigibax",
+      "to": ["baxcalibur"]
+    }
+  },
+  "baxcalibur": {
+    "id": 998,
+    "name": "Baxcalibur",
+    "type": ["dragon", "ice"],
+    "evos": {
+      "from": "arctibax"
+    }
+  },
+  "gimmighoul": {
+    "id": 999,
+    "name": "Gimmighoul",
+    "type": ["ghost"],
+    "evos": {
+      "to": ["gholdengo"]
+    }
+  },
+  "gholdengo": {
+    "id": 1000,
+    "name": "Gholdengo",
+    "type": ["steel", "ghost"],
+    "evos": {
+      "from": "gimmighoul"
+    }
+  },
+  "wo-chien": {
+    "id": 1001,
+    "name": "Wo-Chien",
+    "type": ["dark", "grass"]
+  },
+  "chien-pao": {
+    "id": 1002,
+    "name": "Chien-Pao",
+    "type": ["dark", "ice"]
+  },
+  "ting-lu": {
+    "id": 1003,
+    "name": "Ting-Lu",
+    "type": ["dark", "ground"]
+  },
+  "chi-yu": {
+    "id": 1004,
+    "name": "Chi-Yu",
+    "type": ["dark", "fire"]
+  },
+  "roaring-moon": {
+    "id": 1005,
+    "name": "Roaring Moon",
+    "type": ["dragon", "dark"]
+  },
+  "iron-valiant": {
+    "id": 1006,
+    "name": "Iron Valiant",
+    "type": ["fairy", "fighting"]
+  },
+  "koraidon": {
+    "id": 1007,
+    "name": "Koraidon",
+    "type": ["fighting", "dragon"]
+  },
+  "miraidon": {
+    "id": 1008,
+    "name": "Miraidon",
+    "type": ["electric", "dragon"]
+  },
+  "walking-wake": {
+    "id": 1009,
+    "name": "Walking Wake",
+    "type": ["water", "dragon"]
+  },
+  "iron-leaves": {
+    "id": 1010,
+    "name": "Iron Leaves",
+    "type": ["grass", "psychic"]
+  },
+  "dipplin": {
+    "id": 1011,
+    "name": "Dipplin",
+    "type": ["grass", "dragon"],
+    "evos": {
+      "from": "applin",
+      "to": ["hydrapple"]
+    }
+  },
+  "poltchageist": {
+    "id": 1012,
+    "name": "Poltchageist",
+    "type": ["grass", "ghost"],
+    "evos": {
+      "to": ["sinistcha"]
+    }
+  },
+  "sinistcha": {
+    "id": 1013,
+    "name": "Sinistcha",
+    "type": ["grass", "ghost"],
+    "evos": {
+      "from": "poltchageist"
+    }
+  },
+  "okidogi": {
+    "id": 1014,
+    "name": "Okidogi",
+    "type": ["poison", "fighting"]
+  },
+  "munkidori": {
+    "id": 1015,
+    "name": "Munkidori",
+    "type": ["poison", "psychic"]
+  },
+  "fezandipiti": {
+    "id": 1016,
+    "name": "Fezandipiti",
+    "type": ["poison", "fairy"]
+  },
+  "ogerpon": {
+    "id": 1017,
+    "name": "Ogerpon",
+    "type": ["grass"]
+  },
+  "archaludon": {
+    "id": 1018,
+    "name": "Archaludon",
+    "type": ["steel", "dragon"],
+    "evos": {
+      "from": "duraludon"
+    }
+  },
+  "hydrapple": {
+    "id": 1019,
+    "name": "Hydrapple",
+    "type": ["grass", "dragon"],
+    "evos": {
+      "from": "dipplin"
+    }
+  },
+  "gouging-fire": {
+    "id": 1020,
+    "name": "Gouging Fire",
+    "type": ["fire", "dragon"]
+  },
+  "raging-bolt": {
+    "id": 1021,
+    "name": "Raging Bolt",
+    "type": ["electric", "dragon"]
+  },
+  "iron-boulder": {
+    "id": 1022,
+    "name": "Iron Boulder",
+    "type": ["rock", "psychic"]
+  },
+  "iron-crown": {
+    "id": 1023,
+    "name": "Iron Crown",
+    "type": ["steel", "psychic"]
+  },
+  "terapagos": {
+    "id": 1024,
+    "name": "Terapagos",
+    "type": ["normal"]
+  },
+  "pecharunt": {
+    "id": 1025,
+    "name": "Pecharunt",
+    "type": ["poison", "ghost"]
   }
 }
