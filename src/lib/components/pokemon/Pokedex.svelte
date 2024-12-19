@@ -26,6 +26,7 @@
     <li
       title={resolvePokemonName(mon)}
       class="relative inline-flex cursor-pointer justify-center transition hover:-translate-y-1"
+      class:opacity-50={mon.exclude}
       draggable="true"
       onclick={() => {
         editingIdx = i;
