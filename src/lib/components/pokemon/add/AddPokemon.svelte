@@ -100,7 +100,7 @@
   });
 </script>
 
-<div class="mb-4 border-b-[1px] border-b-slate-300 pb-4">
+<div class="mb-8">
   <div class="relative">
     <!-- svelte-ignore a11y_autofocus -->
     <input

@@ -19,7 +19,7 @@
   });
 </script>
 
-<ol class="mb-4 grid grid-cols-4 gap-4 md:grid-cols-6 lg:grid-cols-8">
+<ol class="mb-4 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
   {#each $pokemon as mon, i}
     <!-- TODO-->
     <!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_element_interactions, a11y_click_events_have_key_events -->
