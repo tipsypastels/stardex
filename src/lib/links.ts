@@ -8,6 +8,11 @@ export const PAGE_LINKS = {
     href: `${base}/`,
     icon: "table-columns",
   },
+  files: {
+    name: "Files",
+    href: `${base}/files`,
+    icon: "files",
+  },
   settings: {
     name: "Settings",
     href: `${base}/settings`,
