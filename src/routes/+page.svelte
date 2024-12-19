@@ -10,16 +10,16 @@
 </script>
 
 <Layout title="Editor">
-  <div class="mb-8 border-b-[1px] border-b-slate-300 pb-8">
+  <Section id="editor_pokedex" title="Pokedex">
     <AddPokemon />
     <Pokedex />
-  </div>
+  </Section>
 
-  <Section title="Types">
+  <Section id="editor_types" title="Types">
     <TypePieChart allotment={$pokemonAllotment} />
   </Section>
 
-  <Section title="Recommendations">
+  <Section id="editor_recs" title="Recommendations">
     {#if $regions.size > 0}
       hi
     {:else}
