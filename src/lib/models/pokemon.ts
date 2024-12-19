@@ -1,20 +1,19 @@
 import type { Species } from "./species";
 import { resolveType, type Type } from "./type";
 
-export type PokemonRecommendationBehaviour = "filler" | "exempt" | undefined;
 export type Pokemon = PokemonCustom | PokemonSpecies;
 
 export interface PokemonCustom {
   key: string;
   name: string;
   type: string[];
-  rec?: PokemonRecommendationBehaviour;
+  exclude?: boolean;
 }
 
 export interface PokemonSpecies {
   species: Species;
   type?: string[];
-  rec?: PokemonRecommendationBehaviour;
+  exclude?: boolean;
 }
 
 export function resolvePokemonKey(pokemon: Pokemon) {

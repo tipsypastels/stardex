@@ -1,8 +1,4 @@
-import {
-  resolvePokemonKey,
-  type Pokemon,
-  type PokemonRecommendationBehaviour,
-} from "$lib/models/pokemon";
+import { resolvePokemonKey, type Pokemon } from "$lib/models/pokemon";
 import { derived } from "svelte/store";
 import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
@@ -18,10 +14,10 @@ export const pokemon = createActions(initial, (store) => {
     addBatch(mons: Pokemon[]) {
       store.update(($pokemon) => $pokemon.concat(...mons));
     },
-    setRec(index: number, rec: PokemonRecommendationBehaviour) {
+    setExclude(index: number, exclude: boolean) {
       store.update(($pokemon) => {
         const $newPokemon = [...$pokemon];
-        $newPokemon[index].rec = rec;
+        $newPokemon[index].exclude = exclude;
         return $newPokemon;
       });
     },

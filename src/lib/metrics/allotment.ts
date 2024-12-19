@@ -21,7 +21,7 @@ export function createAllotment(pokemon: Pokemon[]): Allotment {
   let total = 0;
 
   for (const mon of pokemon) {
-    if (mon.rec === "exempt") {
+    if (mon.exclude) {
       continue;
     }
 
