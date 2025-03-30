@@ -11,7 +11,7 @@
     <ImportJson />
   </Section>
 
-  <Section id="import_legacy" title="Legacy Pokédex Format">
+  <Section id="import_legacy" title="Legacy Stardex Data">
     <p class="mb-4">
       You can import your Pokédex from Stardex version 1, which provided a plain text editor to type
       your Pokémon into instead.

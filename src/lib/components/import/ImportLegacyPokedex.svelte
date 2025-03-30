@@ -82,5 +82,5 @@
 <button
   class="rounded-md bg-lime-600 px-4 py-2 font-bold text-white"
   disabled={!text.length}
-  onclick={apply}>Apply Changes</button
+  onclick={apply}>Load Data</button
 >
