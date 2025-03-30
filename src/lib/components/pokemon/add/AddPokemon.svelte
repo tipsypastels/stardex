@@ -63,14 +63,22 @@
     const queryLower = query.toLowerCase();
 
     let closestSpecies = ALL_SPECIES[0];
-    let closestDistance = Infinity;
+    let closestDistance = -Infinity;
+
+    let i = 0;
 
     for (const species of ALL_SPECIES) {
-      const distance = levenshteinDistance(queryLower, species.nameLower);
-      if (distance < closestDistance) {
+      const distance = normalizedLevenshteinDistance(queryLower, species.nameLower);
+      if (distance > closestDistance) {
         closestSpecies = species;
         closestDistance = distance;
       }
+
+      if (i < 151) {
+        console.log(species, distance);
+      }
+
+      i++;
     }
 
     if (closestDistance > DISTANCE_CUTOFF) {
@@ -81,6 +89,12 @@
       species: closestSpecies,
       distance: closestDistance,
     };
+  }
+
+  function normalizedLevenshteinDistance(input: string, search: string) {
+    const distance = levenshteinDistance(input, search);
+    const longerLen = input.length > search.length ? input.length : search.length;
+    return 1 / Math.E ** (distance / (longerLen - distance));
   }
 
   let queryInput: HTMLInputElement;
