@@ -2,11 +2,13 @@
   import { pokemon } from "$lib/state/pokemon";
   import { regions } from "$lib/state/regions";
   import { strictness } from "$lib/state/strictness";
+  import { pokedexFormat } from "$lib/state/pokedex_format";
 
   let saveData = $derived({
     pokemon: $pokemon,
     regions: $regions,
     strictness: $strictness,
+    pokedexFormat: $pokedexFormat,
   });
 
   function save() {

@@ -5,6 +5,7 @@
   import { pokemon } from "$lib/state/pokemon";
   import { regions } from "$lib/state/regions";
   import { strictness } from "$lib/state/strictness";
+  import { pokedexFormat } from "$lib/state/pokedex_format";
 
   async function load(e: { currentTarget: HTMLInputElement }) {
     const files = e.currentTarget.files;
@@ -18,6 +19,9 @@
 
     if (data.strictness) {
       strictness.set(data.strictness);
+    }
+    if (data.pokedexFormat) {
+      pokedexFormat.set(data.pokedexFormat);
     }
     if (data.regions) {
       regions.set(data.regions);
