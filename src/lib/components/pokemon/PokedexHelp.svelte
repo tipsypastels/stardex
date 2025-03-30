@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Icon from "../common/Icon.svelte";
+
   interface Props {
     close?(): void;
   }
@@ -7,7 +9,15 @@
 </script>
 
 <div class="rounded-md border-[1px] border-lime-600 p-4">
-  <h2 class="mb-2 text-xl font-bold text-lime-600">What to Know</h2>
+  <div class="mb-2 flex text-lime-600">
+    <h2 class="grow text-xl font-bold">What to Know</h2>
+
+    {#if close}
+      <button onclick={close}>
+        <Icon name="times" />
+      </button>
+    {/if}
+  </div>
 
   <ul class="ml-4 list-disc">
     <li>
