@@ -12,7 +12,7 @@
 </script>
 
 <Layout title="Editor">
-  <Section id="editor_pokedex" title="Pokedex">
+  <Section id="editor_pokedex" title={`Pokédex (${$pokemon.length})`}>
     <AddPokemon />
     <Pokedex />
   </Section>
