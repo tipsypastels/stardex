@@ -27,7 +27,7 @@
       {#each allotment.types.values() as ty}
         <li>
           <TypeName for={ty.typeKey} />
-          — {(ty.ratio * 100).toFixed(2)}%
+          — {(ty.ratio * 100).toFixed(2)}% ({ty.count})
         </li>
       {/each}
     </ol>
