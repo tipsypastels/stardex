@@ -101,7 +101,7 @@
     <PokedexHelp close={() => (needsHelp = false)} />
   {:else}
     <div class="text-right">
-      <button class=" text-sm text-lime-600 underline" onclick={() => (needsHelp = true)}
+      <button class="text-sm text-lime-600 underline" onclick={() => (needsHelp = true)}
         >Need help?</button
       >
     </div>
