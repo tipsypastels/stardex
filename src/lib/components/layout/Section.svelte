@@ -22,7 +22,7 @@
   });
 </script>
 
-<section class="relative mb-8 border-b-[1px] border-b-slate-300 pb-8 last:border-b-0">
+<section class="relative mb-8 border-b-[1px] border-b-slate-300 pb-8 last:mb-0 last:border-b-0">
   <button class="flex w-full items-center text-left" class:mb-8={open} onclick={toggle}>
     <h2 class="grow text-3xl">
       {title}

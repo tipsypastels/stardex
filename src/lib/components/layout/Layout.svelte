@@ -2,6 +2,7 @@
   import type { Snippet } from "svelte";
   import Nav from "./Nav.svelte";
   import Logo from "./Logo.svelte";
+  import Footer from "./Footer.svelte";
 
   interface Props {
     title: string;
@@ -24,3 +25,5 @@
 <main class="mx-4 md:mx-0">
   {@render children()}
 </main>
+
+<Footer />
