@@ -4,6 +4,7 @@
   import TypeDots from "../common/TypeDots.svelte";
   import { resolvePokemonName, resolvePokemonTypes } from "$lib/models/pokemon";
   import PokemonIcon from "./icon/PokemonIcon.svelte";
+  import PokedexHelp from "./PokedexHelp.svelte";
   import EditPokemonModal from "./edit/EditPokemonModal.svelte";
   import Icon from "../common/Icon.svelte";
 
@@ -12,6 +13,7 @@
 
   let draggedIdx = $state<number | undefined>();
   let hoveredIdx = $state<number | undefined>();
+  let needsHelp = $state(false);
 
   $effect(() => {
     if (draggedIdx != null && hoveredIdx != null && draggedIdx !== hoveredIdx) {
@@ -68,14 +70,28 @@
   {/each}
 {/snippet}
 
-{#if $pokedexFormat === "icons"}
-  <ol class="mb-4 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
-    {@render entries()}
-  </ol>
+{#if $pokemon.length > 0}
+  {#if $pokedexFormat === "icons"}
+    <ol class="mb-4 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
+      {@render entries()}
+    </ol>
+  {:else}
+    <ol class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+      {@render entries()}
+    </ol>
+  {/if}
+
+  {#if needsHelp}
+    <PokedexHelp close={() => (needsHelp = false)} />
+  {:else}
+    <div class="text-right">
+      <button class=" text-sm text-lime-600 underline" onclick={() => (needsHelp = true)}
+        >Need help?</button
+      >
+    </div>
+  {/if}
 {:else}
-  <ol class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-    {@render entries()}
-  </ol>
+  <PokedexHelp />
 {/if}
 
 <EditPokemonModal index={editingIdx} mon={editingMon} close={() => (editingIdx = undefined)} />
