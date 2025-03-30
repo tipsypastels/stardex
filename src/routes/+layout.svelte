@@ -5,6 +5,7 @@
   import { pokemonPersister } from "$lib/state/pokemon";
   import { regionsPersister } from "$lib/state/regions";
   import { strictnessPersister } from "$lib/state/strictness";
+  import { pokedexFormatPersister } from "$lib/state/pokedex_format";
 
   import "drag-drop-touch";
   import "../app.css";
@@ -20,6 +21,7 @@
 <Persister fn={pokemonPersister} />
 <Persister fn={regionsPersister} />
 <Persister fn={strictnessPersister} />
+<Persister fn={pokedexFormatPersister} />
 
 <TypeSuggestions />
 

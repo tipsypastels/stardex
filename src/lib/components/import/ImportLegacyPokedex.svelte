@@ -34,9 +34,8 @@
 
     if (newMons.length && askBeforeOverwritingMons($pokemon)) {
       pokemon.set(newMons);
+      goto(PAGE_LINKS.editor.href);
     }
-
-    goto(PAGE_LINKS.editor.href);
   }
 
   function* parseText() {

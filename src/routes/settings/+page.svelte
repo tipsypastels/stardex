@@ -3,6 +3,7 @@
   import RegionSettings from "$lib/components/settings/RegionSettings.svelte";
   import Section from "$lib/components/layout/Section.svelte";
   import StrictnessSettings from "$lib/components/settings/StrictnessSettings.svelte";
+  import PokedexFormatSettings from "$lib/components/settings/PokedexFormatSettings.svelte";
   import TypeName from "$lib/components/common/TypeName.svelte";
   import { pokemon } from "$lib/state/pokemon";
   import { goto } from "$app/navigation";
@@ -27,6 +28,11 @@
     </p>
 
     <StrictnessSettings />
+  </Section>
+
+  <Section id="settings_pokedex_format" title="Pokédex Format">
+    <p>Controls how Pokémon appear in the Editor page's Pokédex.</p>
+    <PokedexFormatSettings />
   </Section>
 
   <Section id="settings_delete_pokedex" title="Danger Zone">

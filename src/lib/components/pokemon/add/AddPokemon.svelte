@@ -73,6 +73,7 @@
       }
     }
 
+    // TODO: Find new cutoff now that distance is normalized.
     if (closestDistance > DISTANCE_CUTOFF) {
       return;
     }
