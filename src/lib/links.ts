@@ -8,6 +8,11 @@ export const PAGE_LINKS = {
     href: `${base}/`,
     icon: "table-columns",
   },
+  import: {
+    name: "Import",
+    href: `${base}/import`,
+    icon: "upload",
+  },
   export: {
     name: "Export",
     href: `${base}/export`,

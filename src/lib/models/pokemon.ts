@@ -36,3 +36,8 @@ export function resolvePokemonTypes(pokemon: Pokemon): Type[] {
 export function isPokemonCustom(p: Pokemon): p is PokemonCustom {
   return !("species" in p);
 }
+
+export function askBeforeOverwritingMons(mons: Pokemon[]) {
+  return mons.length === 0 ||
+    confirm("Overwrite your existing Pokédex? This cannot be reversed.");
+}

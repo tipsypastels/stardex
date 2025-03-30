@@ -65,20 +65,12 @@
     let closestSpecies = ALL_SPECIES[0];
     let closestDistance = -Infinity;
 
-    let i = 0;
-
     for (const species of ALL_SPECIES) {
       const distance = normalizedLevenshteinDistance(queryLower, species.nameLower);
       if (distance > closestDistance) {
         closestSpecies = species;
         closestDistance = distance;
       }
-
-      if (i < 151) {
-        console.log(species, distance);
-      }
-
-      i++;
     }
 
     if (closestDistance > DISTANCE_CUTOFF) {
