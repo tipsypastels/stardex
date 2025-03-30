@@ -5,7 +5,7 @@
   import Section from "$lib/components/layout/Section.svelte";
 </script>
 
-<Layout title="Files">
+<Layout title="Import">
   <Section id="import_json" title="JSON">
     <p class="mb-4">You can load a Stardex JSON file that you have previously exported.</p>
     <ImportJson />

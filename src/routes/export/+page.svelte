@@ -5,7 +5,7 @@
   import Section from "$lib/components/layout/Section.svelte";
 </script>
 
-<Layout title="Files">
+<Layout title="Export">
   <Section id="export_json" title="JSON">
     <p class="mb-4">You can export your Stardex state as a JSON file to share it with others.</p>
     <ExportJson />
