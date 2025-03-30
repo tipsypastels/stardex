@@ -1,9 +1,9 @@
 import {
   isPokemonCustom,
-  resolvePokemonKey,
-  resolvePokemonTypeKeys,
   type Pokemon,
   type PokemonSpecies,
+  resolvePokemonKey,
+  resolvePokemonTypeKeys,
 } from "$lib/models/pokemon";
 import { derived } from "svelte/store";
 import { createActions } from "./_actions";
@@ -33,9 +33,11 @@ export const pokemon = createActions(initial, (store) => {
           typeKeys.splice(typeIndex, 1);
         }
 
-        const newMon = { ...mon, type: typeKeys };
+        const newMon = { ...mon, type: [...new Set(typeKeys)] };
 
-        if (!isPokemonCustom(mon) && areArraysEqual(typeKeys, mon.species.type)) {
+        if (
+          !isPokemonCustom(mon) && areArraysEqual(typeKeys, mon.species.type)
+        ) {
           delete (newMon as PokemonSpecies).type;
         }
 
