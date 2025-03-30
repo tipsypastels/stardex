@@ -4,10 +4,23 @@
   import { resolveType } from "$lib/models/type";
   import { resolvePokemonTypeKeys } from "$lib/models/pokemon";
 
-  const allAvailableTypeKeys = $derived([...new Set($pokemon.flatMap(resolvePokemonTypeKeys))]);
+  function getAllAvailableTypeKeys() {
+    const map = new Map<string, number>();
+
+    for (const mon of $pokemon) {
+      for (const typeKey of resolvePokemonTypeKeys(mon)) {
+        const currCount = map.get(typeKey) ?? 0;
+        map.set(typeKey, currCount + 1);
+      }
+    }
+
+    return map;
+  }
+
+  const allAvailableTypeKeys = $derived(getAllAvailableTypeKeys());
 
   $effect(() => {
-    if ($pokedexFilterType && !allAvailableTypeKeys.includes($pokedexFilterType)) {
+    if ($pokedexFilterType && !allAvailableTypeKeys.has($pokedexFilterType)) {
       $pokedexFilterType = undefined;
     }
   });
@@ -19,10 +32,10 @@
   <select bind:value={$pokedexFilterType} class="border-0 text-lime-600 underline">
     <option value={undefined}>All Types</option>
 
-    {#each allAvailableTypeKeys as typeKey}
+    {#each allAvailableTypeKeys as [typeKey, typeCount]}
       {@const type = resolveType(typeKey)}
       <option value={typeKey}>
-        {type.name} Type
+        {type.name} Type ({typeCount})
       </option>
     {/each}
   </select>
