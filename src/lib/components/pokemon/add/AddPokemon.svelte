@@ -61,28 +61,28 @@
     const queryLower = query.toLowerCase();
 
     let closestSpecies = ALL_SPECIES[0];
-    let closestDistance = -Infinity;
+    let closestScore = -Infinity;
 
     for (const species of ALL_SPECIES) {
-      // distance is a unitless float from 0-1, where 1 is closest
-      const distance = normalizedLevenshteinDistance(queryLower, species.nameLower);
-      if (distance > closestDistance) {
+      // score is a unitless float from 0-1, where 1 is closest
+      const score = normalizedLevenshteinScore(queryLower, species.nameLower);
+      if (score > closestScore) {
         closestSpecies = species;
-        closestDistance = distance;
+        closestScore = score;
       }
     }
 
-    if (closestDistance < 0.35) {
+    if (closestScore < 0.35) {
       return;
     }
 
     return {
       species: closestSpecies,
-      distance: closestDistance,
+      score: closestScore,
     };
   }
 
-  function normalizedLevenshteinDistance(input: string, search: string) {
+  function normalizedLevenshteinScore(input: string, search: string) {
     const distance = levenshteinDistance(input, search);
     const longerLen = input.length > search.length ? input.length : search.length;
     return 1 / Math.E ** (distance / (longerLen - distance));
@@ -95,7 +95,7 @@
 
   let closest = $derived(findClosest());
   let closestLine = $derived(closest ? resolveEvolutionLine(closest.species) : undefined);
-  let hasExactMatch = $derived(closest?.distance === 0);
+  let hasExactMatch = $derived(closest?.score === 1);
 
   onMount(() => {
     hotkeys("a", (e) => {
