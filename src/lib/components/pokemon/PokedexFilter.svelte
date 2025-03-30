@@ -1,26 +1,9 @@
 <script lang="ts">
-  import { pokemon } from "$lib/state/pokemon";
   import { pokedexFilterType } from "$lib/state/pokedex_filter";
-  import { resolveType } from "$lib/models/type";
-  import { resolvePokemonTypeKeys } from "$lib/models/pokemon";
-
-  function getAllAvailableTypeKeys() {
-    const map = new Map<string, number>();
-
-    for (const mon of $pokemon) {
-      for (const typeKey of resolvePokemonTypeKeys(mon)) {
-        const currCount = map.get(typeKey) ?? 0;
-        map.set(typeKey, currCount + 1);
-      }
-    }
-
-    return map;
-  }
-
-  const allAvailableTypeKeys = $derived(getAllAvailableTypeKeys());
+  import { pokemonAllotment } from "$lib/state/metrics";
 
   $effect(() => {
-    if ($pokedexFilterType && !allAvailableTypeKeys.has($pokedexFilterType)) {
+    if ($pokedexFilterType && !$pokemonAllotment.types.has($pokedexFilterType)) {
       $pokedexFilterType = undefined;
     }
   });
@@ -32,10 +15,9 @@
   <select bind:value={$pokedexFilterType} class="border-0 text-lime-600 underline">
     <option value={undefined}>All Types</option>
 
-    {#each allAvailableTypeKeys as [typeKey, typeCount]}
-      {@const type = resolveType(typeKey)}
+    {#each $pokemonAllotment.types as [typeKey, { type, count }]}
       <option value={typeKey}>
-        {type.name} Type ({typeCount})
+        {type.name} Type ({count})
       </option>
     {/each}
   </select>
