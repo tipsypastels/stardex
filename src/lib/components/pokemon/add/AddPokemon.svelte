@@ -8,8 +8,6 @@
   import { onMount } from "svelte";
   import hotkeys from "hotkeys-js";
 
-  const DISTANCE_CUTOFF = 3; // in characters different
-
   function addMon(species: Species) {
     const included = $pokemonInclusion.has(species.key);
     if (included) {
@@ -66,6 +64,7 @@
     let closestDistance = -Infinity;
 
     for (const species of ALL_SPECIES) {
+      // distance is a unitless float from 0-1, where 1 is closest
       const distance = normalizedLevenshteinDistance(queryLower, species.nameLower);
       if (distance > closestDistance) {
         closestSpecies = species;
@@ -73,8 +72,7 @@
       }
     }
 
-    // TODO: Find new cutoff now that distance is normalized.
-    if (closestDistance > DISTANCE_CUTOFF) {
+    if (closestDistance < 0.35) {
       return;
     }
 
