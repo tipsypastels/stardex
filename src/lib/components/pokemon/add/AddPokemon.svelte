@@ -106,7 +106,7 @@
   });
 </script>
 
-<div class="mb-8">
+<div>
   <div class="relative">
     <!-- svelte-ignore a11y_autofocus -->
     <input
