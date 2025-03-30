@@ -2,6 +2,7 @@
   import { isPokemonCustom, resolvePokemonTypeKeys, type Pokemon } from "$lib/models/pokemon";
   import { pokemon } from "$lib/state/pokemon";
   import { undefinedIfEmpty } from "$lib/utils/strings";
+  import { TYPE_SUGGESTIONS_LIST } from "../util/TypeSuggestions.svelte";
 
   interface Props {
     index: number;
@@ -39,12 +40,14 @@
       class="w-20 border-0 border-b-2 border-b-slate-600"
       bind:value={customType1}
       onblur={() => handleBlur(customType1, 0)}
+      list={TYPE_SUGGESTIONS_LIST}
     />
     and
     <input
       class="w-20 border-0 border-b-2 border-b-slate-600"
       bind:value={customType2}
       onblur={() => handleBlur(customType2, 1)}
+      list={TYPE_SUGGESTIONS_LIST}
     />
   </div>
 
