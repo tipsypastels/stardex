@@ -15,7 +15,7 @@
     {@const region = resolveRegion(regionKey)}
     {@const checked = $regions.has(regionKey)}
     <label
-      class="relative flex cursor-pointer select-none rounded-sm border-[1px] border-slate-300 p-2 transition hover:-translate-y-1"
+      class="relative flex cursor-pointer select-none rounded-xs border-[1px] border-slate-300 p-2 transition hover:-translate-y-1"
     >
       <input
         class="hidden"
