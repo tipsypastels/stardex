@@ -25,6 +25,6 @@
 
 <TypeSuggestions />
 
-<main class="m-auto w-[800px] max-w-full">
+<div class="m-auto w-[800px] max-w-full">
   {@render children()}
-</main>
+</div>
