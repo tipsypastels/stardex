@@ -6,7 +6,7 @@
       target="_blank">tipsypastels</a
     >
   </div>
-  <div>
+  <div class="mb-1">
     Read the <a
       class="font-bold text-lime-600 underline"
       href="https://github.com/tipsypastels/stardex/blob/main/CHANGELOG.md"
