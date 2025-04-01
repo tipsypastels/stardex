@@ -12,18 +12,26 @@
   let { title, children }: Props = $props();
 </script>
 
-<Logo />
-
-<div class="mb-8 flex items-center">
-  <h1 class="grow text-center text-4xl font-bold md:text-left">
-    {title}
-  </h1>
+<div class="sticky top-4 ml-4 hidden lg:block">
+  <Logo />
 </div>
 
-<Nav />
+<div class="m-auto w-[800px] max-w-full pt-8">
+  <div class="mb-4 flex justify-center md:justify-start lg:hidden">
+    <Logo />
+  </div>
 
-<main class="mx-4 md:mx-0">
-  {@render children()}
-</main>
+  <div class="mb-8">
+    <h1 class="grow text-center text-4xl font-bold md:text-left">
+      {title}
+    </h1>
+  </div>
 
-<Footer />
+  <Nav />
+
+  <main class="mx-4 md:mx-0">
+    {@render children()}
+  </main>
+
+  <Footer />
+</div>

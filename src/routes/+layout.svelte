@@ -25,6 +25,4 @@
 
 <TypeSuggestions />
 
-<div class="m-auto w-[800px] max-w-full">
-  {@render children()}
-</div>
+{@render children()}

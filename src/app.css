@@ -1,15 +1,13 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/typography';
 @plugin '@tailwindcss/forms';
 
 @theme {
   --font-*: initial;
-  --font-sans:
-    Itim, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-serif:
-    Itim, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-sans: Itim, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Itim, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /*
@@ -31,5 +29,5 @@
 }
 
 body {
-  @apply overflow-y-scroll pt-8 md:text-lg;
+  @apply overflow-y-scroll md:text-lg;
 }
