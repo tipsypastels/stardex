@@ -7,7 +7,14 @@
     >
   </div>
   <div>
-    Stardex on
+    Read the <a
+      class="font-bold text-lime-600 underline"
+      href="https://github.com/tipsypastels/stardex/blob/main/CHANGELOG.md"
+      target="_blank">changelog</a
+    >
+  </div>
+  <div>
+    View on
     <a
       class="font-bold text-lime-600 underline"
       href="https://github.com/tipsypastels/stardex"
