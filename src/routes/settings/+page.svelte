@@ -5,7 +5,6 @@
   import StrictnessSettings from "$lib/components/settings/StrictnessSettings.svelte";
   import PokedexFormatSettings from "$lib/components/settings/PokedexFormatSettings.svelte";
   import TypeName from "$lib/components/common/TypeName.svelte";
-  import { PAGE_LINKS } from "$lib/links";
 </script>
 
 <Layout title="Settings">
