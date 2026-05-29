@@ -21,6 +21,8 @@ const STRICTNESS_MAP = {
   },
 };
 
+export const DEFAULT_STRICTNESS = "normal";
+
 export type Strictness = keyof typeof STRICTNESS_MAP;
 export const STRICTNESSES = Object.keys(STRICTNESS_MAP) as Strictness[];
 
