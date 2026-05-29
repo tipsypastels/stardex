@@ -9,7 +9,7 @@ export interface Region {
 export type RegionKey = keyof typeof DATA;
 
 export const ALL_REGION_KEYS = Object.keys(DATA) as RegionKey[];
-export const INITIAL_REGION_KEYS = ALL_REGION_KEYS.filter((key) => key !== "kanto");
+export const DEFAULT_REGION_KEYS = ALL_REGION_KEYS.filter((key) => key !== "kanto");
 
 export function resolveRegion(key: keyof typeof DATA): Region {
   return DATA[key];
