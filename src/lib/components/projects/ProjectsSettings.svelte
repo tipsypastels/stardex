@@ -7,7 +7,7 @@
 <div>
   <!-- TODO: Sortable? -->
   {#each $projects as project}
-    <div class="flex items-center px-4 py-2">
+    <div class="flex items-center py-2">
       <label class="flex grow cursor-pointer items-center">
         <input
           class="hidden"
@@ -68,6 +68,7 @@
               }
 
               if (
+                (!project.active && project.modelState.pokemon.length === 0) ||
                 confirm(
                   `Are you sure you want to PERMANENTLY delete project "${project.name}"? All of its data will be lost and CANNOT be recovered.`,
                 )
@@ -87,7 +88,7 @@
     </div>
   {/each}
 
-  <label class="flex cursor-pointer items-center px-4 py-2">
+  <label class="flex cursor-pointer items-center py-2">
     <input
       class="hidden"
       type="radio"

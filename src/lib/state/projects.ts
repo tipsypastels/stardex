@@ -10,7 +10,7 @@ import {
   type Project,
   type ProjectModelState,
 } from "$lib/models/projects";
-import { derived, get } from "svelte/store";
+import { derived, get, writable } from "svelte/store";
 import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
 import { pokemon } from "./pokemon";
@@ -77,5 +77,6 @@ export const projects = createActions(initial, (store) => {
 });
 
 export const activeProject = derived(projects, getActiveProject);
+export const projectsModalOpen = writable(false);
 
 export const projectsPersister = storage.persister(projects);

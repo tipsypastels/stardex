@@ -3,7 +3,8 @@
   import Nav from "./Nav.svelte";
   import Logo from "./Logo.svelte";
   import Footer from "./Footer.svelte";
-  import QuickProjects from "./QuickProjects.svelte";
+  import ProjectsSelect from "../projects/ProjectsSelect.svelte";
+  import ProjectsModal from "../projects/ProjectsModal.svelte";
 
   interface Props {
     title: string;
@@ -15,12 +16,16 @@
 
 <div class="sticky top-4 ml-4 hidden items-center gap-4 lg:flex">
   <Logo />
-  <QuickProjects />
+  <ProjectsSelect />
 </div>
 
 <div class="m-auto w-[800px] max-w-full pt-8">
   <div class="mb-4 flex justify-center md:justify-start lg:hidden">
     <Logo />
+  </div>
+
+  <div class="mb-4 flex justify-center lg:hidden">
+    <ProjectsSelect />
   </div>
 
   <div class="mb-8">
@@ -37,3 +42,5 @@
 
   <Footer />
 </div>
+
+<ProjectsModal />

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import hotkeys from "hotkeys-js";
-  import { onMount, type Snippet } from "svelte";
+  import { type Snippet } from "svelte";
   import Icon from "./Icon.svelte";
 
   type MenuItemButton = {
@@ -39,11 +38,6 @@
     } else {
       document.body.removeEventListener("click", handleClick);
     }
-  });
-
-  onMount(() => {
-    hotkeys("esc", () => (open = false));
-    return () => hotkeys.unbind("esc");
   });
 </script>
 
