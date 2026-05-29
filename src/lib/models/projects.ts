@@ -94,6 +94,36 @@ export function renameProject(oldProjects: Project[], id: string, newName: strin
   return newProjects;
 }
 
+export function duplicateActiveProject(oldProjects: Project[], modelState: ProjectModelState) {
+  const index = oldProjects.findIndex((p) => p.active);
+  const project = oldProjects[index];
+
+  const newProjects = [...oldProjects];
+  newProjects.splice(index + 1, 0, {
+    id: crypto.randomUUID(),
+    name: `Copy of ${project.name}`,
+    active: false,
+    modelState,
+  } satisfies InactiveProject);
+
+  return newProjects;
+}
+
+export function duplicateInactiveProject(oldProjects: Project[], id: string) {
+  const index = oldProjects.findIndex((p) => !p.active && p.id === id);
+  if (index === -1) throw new Error(`Can't duplicate unknown project ID '${id}'.`);
+  const project = oldProjects[index] as InactiveProject;
+
+  const newProjects = [...oldProjects];
+  newProjects.splice(index + 1, 0, {
+    ...project,
+    id: crypto.randomUUID(),
+    name: `Copy of ${project.name}`,
+  } satisfies InactiveProject);
+
+  return newProjects;
+}
+
 export function deleteProject(oldProjects: Project[], id: string) {
   return oldProjects.filter((project) => {
     if (project.id !== id) return true;

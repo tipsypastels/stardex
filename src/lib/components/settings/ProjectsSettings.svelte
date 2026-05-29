@@ -51,7 +51,7 @@
             name: "Duplicate Project",
             icon: "clone",
             onclick: () => {
-              // TODO
+              projects.duplicate(project);
             },
           },
           { type: "divider" },
@@ -79,7 +79,7 @@
         ]}
       >
         {#snippet trigger(toggle)}
-          <button class="cursor-pointer text-lime-600" title="Actions" onclick={toggle}>
+          <button class="cursor-pointer px-4 text-lime-600" title="Actions" onclick={toggle}>
             <Icon name="ellipsis" />
           </button>
         {/snippet}

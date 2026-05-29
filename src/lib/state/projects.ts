@@ -1,6 +1,8 @@
 import {
   DEFAULT_PROJECTS,
   deleteProject,
+  duplicateActiveProject,
+  duplicateInactiveProject,
   getActiveProject,
   pushEmptyProject,
   renameProject,
@@ -20,15 +22,19 @@ const storage = createStorage<Project[]>("stardex_projects");
 const initial = storage.initial ?? DEFAULT_PROJECTS;
 
 export const projects = createActions(initial, (store) => {
+  function getModelState(): ProjectModelState {
+    return {
+      pokemon: get(pokemon),
+      pokedexFormat: get(pokedexFormat),
+      regions: [...get(regions)],
+      strictness: get(strictness),
+    };
+  }
+
   return {
     switchTo(id: string) {
       let newModelState: ProjectModelState | undefined;
-      const oldModelState: ProjectModelState = {
-        pokemon: get(pokemon),
-        pokedexFormat: get(pokedexFormat),
-        regions: [...get(regions)],
-        strictness: get(strictness),
-      };
+      const oldModelState: ProjectModelState = getModelState();
 
       store.update(($oldProjects) => {
         const result = switchProjectsToId($oldProjects, oldModelState, id);
@@ -53,6 +59,15 @@ export const projects = createActions(initial, (store) => {
 
     rename(id: string, newName: string) {
       store.update(($projects) => renameProject($projects, id, newName));
+    },
+
+    duplicate(project: Project) {
+      if (project.active) {
+        const modelState = getModelState();
+        store.update(($projects) => duplicateActiveProject($projects, modelState));
+      } else {
+        store.update(($projects) => duplicateInactiveProject($projects, project.id));
+      }
     },
 
     delete(id: string) {
