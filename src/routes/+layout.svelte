@@ -7,6 +7,7 @@
   import { strictnessPersister } from "$lib/state/strictness";
   import { pokedexFormatPersister } from "$lib/state/pokedex_format";
   import { projectsPersister } from "$lib/state/projects";
+  import { lastDismissedNoticeDatePersister } from "$lib/state/notices";
 
   import "drag-drop-touch";
   import "../app.css";
@@ -24,6 +25,7 @@
 <Persister fn={strictnessPersister} />
 <Persister fn={pokedexFormatPersister} />
 <Persister fn={projectsPersister} />
+<Persister fn={lastDismissedNoticeDatePersister} />
 
 <TypeSuggestions />
 

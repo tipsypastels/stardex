@@ -39,7 +39,7 @@
 
   {#if close}
     <div class="mt-4">
-      <button class="text-lime-600 underline" onclick={close}>Got it!</button>
+      <button class="cursor-pointer text-lime-600 underline" onclick={close}>Got it!</button>
     </div>
   {/if}
 </div>

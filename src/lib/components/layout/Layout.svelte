@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import Nav from "./Nav.svelte";
+  import Notices from "./Notices.svelte";
   import Logo from "./Logo.svelte";
   import Footer from "./Footer.svelte";
   import ProjectsSelect from "../projects/ProjectsSelect.svelte";
@@ -34,6 +35,7 @@
     </h1>
   </div>
 
+  <Notices />
   <Nav />
 
   <main class="mx-4 md:mx-0">
