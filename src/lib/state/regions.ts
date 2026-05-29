@@ -1,10 +1,10 @@
-import { INITIAL_REGION_KEYS, type RegionKey } from "$lib/models/region";
+import { DEFAULT_REGION_KEYS, type RegionKey } from "$lib/models/region";
 import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
 import { Set as ISet } from "immutable";
 
 const storage = createStorage<RegionKey[]>("stardex_regions");
-const initial = ISet(storage.initial ?? INITIAL_REGION_KEYS);
+const initial = ISet(storage.initial ?? DEFAULT_REGION_KEYS);
 
 export const regions = createActions(initial, (store) => {
   return {

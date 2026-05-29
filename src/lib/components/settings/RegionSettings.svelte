@@ -2,7 +2,7 @@
   import Icon from "$lib/components/common/Icon.svelte";
   import {
     ALL_REGION_KEYS,
-    INITIAL_REGION_KEYS,
+    DEFAULT_REGION_KEYS,
     resolveRegion,
     type RegionKey,
   } from "$lib/models/region";
@@ -15,7 +15,7 @@
     {@const region = resolveRegion(regionKey)}
     {@const checked = $regions.has(regionKey)}
     <label
-      class="relative flex cursor-pointer select-none rounded-xs border-[1px] border-slate-300 p-2 transition hover:-translate-y-1"
+      class="relative flex cursor-pointer rounded-xs border-[1px] border-slate-300 p-2 transition select-none hover:-translate-y-1"
     >
       <input
         class="hidden"
@@ -31,7 +31,7 @@
       />
 
       {#if checked}
-        <div class="absolute left-[-0.5rem] top-[-0.5rem] text-lime-600">
+        <div class="absolute top-[-0.5rem] left-[-0.5rem] text-lime-600">
           <Icon name="badge-check" />
         </div>
       {/if}
@@ -53,7 +53,7 @@
   {/snippet}
 
   Select
-  {@render bulkAction("Recommended", INITIAL_REGION_KEYS)}
+  {@render bulkAction("Recommended", DEFAULT_REGION_KEYS)}
   {" / "}
   {@render bulkAction("All", ALL_REGION_KEYS)}
   {" / "}

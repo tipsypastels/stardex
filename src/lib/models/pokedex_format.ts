@@ -10,9 +10,8 @@ const POKEDEX_FORMAT_MAP = {
 };
 
 export type PokedexFormat = keyof typeof POKEDEX_FORMAT_MAP;
-export const POKEDEX_FORMATS = Object.keys(
-  POKEDEX_FORMAT_MAP,
-) as PokedexFormat[];
+export const POKEDEX_FORMATS = Object.keys(POKEDEX_FORMAT_MAP) as PokedexFormat[];
+export const DEFAULT_POKEDEX_FORMAT = "icons";
 
 export function getPokedexFormatName(f: PokedexFormat) {
   return POKEDEX_FORMAT_MAP[f].name;
