@@ -1,3 +1,7 @@
+### May 29, 2026
+
+- Added support for multiple "projects", which can have their own Pokédex and settings.
+
 ### Apr 1, 2025
 
 - Added a link to this changelog in the footer.
