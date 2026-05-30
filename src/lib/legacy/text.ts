@@ -157,14 +157,21 @@ export function legacyTextToPokemonList(text: string) {
   return { pokemon, errors };
 }
 
-function resolveSpeciesByKeyOrName(keyOrName: string) {
-  keyOrName = keyOrName.toLowerCase();
-  // TODO: Add standard replacers like nidoran.
-  const exact = resolveSpecies(keyOrName);
-  if (exact) return exact;
-  const dashed = resolveSpecies(keyOrName.replace(" ", "-"));
-  if (dashed) return dashed;
-  return ALL_SPECIES.find((species) => species.nameLower === keyOrName);
+const KEY_ALIASES: Record<string, string> = {
+  "nidoran male": "nidoran-m",
+  "nidoran female": "nidoran-f",
+  mimejunior: "mime-jr",
+};
+
+function resolveSpeciesByKeyOrName(pat: string) {
+  pat = pat.toLowerCase();
+  pat = pat in KEY_ALIASES ? KEY_ALIASES[pat] : pat;
+  return (
+    resolveSpecies(pat) ||
+    resolveSpecies(pat.replace(" ", "-")) ||
+    ALL_SPECIES.find((s) => s.nameLower === pat) ||
+    ALL_SPECIES.find((s) => s.nameLower.replace(" ", "") === pat)
+  );
 }
 
 export class LegacyTextParseError {
