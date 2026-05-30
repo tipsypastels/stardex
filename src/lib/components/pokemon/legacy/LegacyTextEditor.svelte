@@ -1,12 +1,23 @@
 <script lang="ts">
   import Icon from "$lib/components/common/Icon.svelte";
-  import { legacyTextFromPokemonList, legacyTextToPokemonList } from "$lib/legacy/text";
+  import {
+    legacyTextFromPokemonList,
+    LegacyTextParseError,
+    legacyTextToPokemonList,
+  } from "$lib/legacy/text";
   import { pokemon } from "$lib/state/pokemon";
   import CodeMirrorEditor from "svelte-codemirror-editor";
+  import { linter } from "@codemirror/lint";
 
   const RELOAD_DEBOUNCE_MS = 1000;
+
   let legacyText = $state(legacyTextFromPokemonList($pokemon));
   let needsHelp = $state(false);
+  let errors = $state<LegacyTextParseError[]>([]);
+  let errorLinter = $derived.by(() => {
+    errors;
+    return linter(() => errors);
+  });
 
   let timeout: number | undefined;
 
@@ -17,15 +28,17 @@
 </script>
 
 <div>
-  <!-- FIXME: Cursor jumping back to start. -->
   <!-- Also breaking s[0].toUppercase()? Broken state? What??????? -->
   <CodeMirrorEditor
     bind:value={legacyText}
+    extensions={[errorLinter]}
     onchange={() => {
       clearTimeout(timeout);
       setTimeout(() => {
         // TODO: Handle errors.
-        pokemon.set(legacyTextToPokemonList(legacyText));
+        const result = legacyTextToPokemonList(legacyText);
+        pokemon.set(result.pokemon);
+        errors = result.errors;
       }, RELOAD_DEBOUNCE_MS);
     }}
   />

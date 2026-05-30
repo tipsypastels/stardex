@@ -1,6 +1,6 @@
 import { ALL_SPECIES, resolveSpecies } from "$lib/models/species";
 import { capitalize } from "$lib/utils/strings";
-import { resolvePokemonName, type Pokemon } from "../models/pokemon";
+import { resolvePokemonKey, resolvePokemonName, type Pokemon } from "../models/pokemon";
 
 export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
   const lines: string[] = [];
@@ -36,26 +36,32 @@ export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
 }
 
 export function legacyTextToPokemonList(text: string) {
-  const out: Pokemon[] = [];
-  const lines = text.split("\n");
+  const pokemon: Pokemon[] = [];
+  const pokemonKeysToLineNos = new Map<string, number>();
+  const errors: LegacyTextParseError[] = [];
+  const lines = new SpannedString(text).lines();
+
+  function pushError(token: SpannedString, message: string, severity?: "warning" | "error") {
+    errors.push(new LegacyTextParseError(token, message, severity));
+  }
 
   let commentBeforeNext: string[] = [];
   let newlinesBeforeNext = 0;
 
-  for (const line_ of lines) {
-    const line = line_.trim();
+  eachLine: for (let lineNo = 0; lineNo < lines.length; lineNo++) {
+    const line = lines[lineNo].trim();
 
-    if (line.length === 0) {
+    if (line.value.length === 0) {
       newlinesBeforeNext++;
       continue;
     }
 
-    if (line.startsWith("#")) {
-      commentBeforeNext.push(line.replace(/^#\s*/, ""));
+    if (line.value.startsWith("#")) {
+      commentBeforeNext.push(line.value.replace(/^#\s*/, ""));
       continue;
     }
 
-    const tokens = line.split(/\s+/);
+    const tokens = line.tokens();
 
     let name = "";
     let exclude = false;
@@ -64,37 +70,67 @@ export function legacyTextToPokemonList(text: string) {
     let buildingName = true;
 
     for (const token of tokens) {
-      if (token.startsWith("@") || token.startsWith("(")) {
+      if (token.value.startsWith("@") || token.value.startsWith("(")) {
         buildingName = false;
       }
       if (buildingName) {
         if (name.length > 0) name += " ";
-        name += token;
+        name += token.value;
       } else {
-        if (token === "@exclude" || token === "@ignore") {
-          exclude = true;
-        } else if (token.startsWith("(")) {
-          type = token
+        if (token.value.startsWith("@")) {
+          if (token.value === "@exclude" || token.value === "@ignore") {
+            exclude = true;
+          } else if (token.value === "@alt" || token.value === "@filler") {
+            // TODO: Implement?
+            pushError(
+              token,
+              `The ${token.value} modifier from old Stardex is not currently supported.`,
+              "warning",
+            );
+          } else {
+            pushError(token, "Unknown modifier.", "error");
+            continue eachLine;
+          }
+        } else if (token.value.startsWith("(")) {
+          type = token.value
             .toLowerCase()
             .replaceAll(/[()]/g, "")
-            .split(/\s*\/\s*/);
+            .split(/\s*\/\s*/)
+            .filter((s) => !!s);
+
+          if (type.length === 0) {
+            pushError(token, "Type list may not be empty.");
+            continue eachLine;
+          }
         } else {
-          // TODO
-          throw new Error("invalid token");
+          pushError(token, "Could not parse token.");
+          continue eachLine;
         }
       }
     }
 
     const species = resolveSpeciesByKeyOrName(name);
-    const mon = ((): Pokemon => {
-      if (species) {
-        return { species, type };
-      } else {
-        if (!type) throw new Error("type(s) required");
-        const key = name.toLowerCase().replace(" ", "-");
-        return { key, name, type };
+    let mon: Pokemon;
+
+    if (species) {
+      mon = { species };
+      if (type) mon.type = type;
+    } else {
+      if (!type) {
+        pushError(line, "Custom Pokémon must specify types.");
+        continue eachLine;
       }
-    })();
+      const key = name.toLowerCase().replace(" ", "-");
+      mon = { key, name, type };
+    }
+
+    const key = resolvePokemonKey(mon);
+    const duplicateOfLineNo = pokemonKeysToLineNos.get(key);
+    if (typeof duplicateOfLineNo !== "undefined") {
+      pushError(line, `Duplicate listing, already on line ${lineNo}.`);
+      continue eachLine;
+    }
+    pokemonKeysToLineNos.set(key, lineNo);
 
     if (exclude) {
       mon.exclude = true;
@@ -108,17 +144,17 @@ export function legacyTextToPokemonList(text: string) {
       newlinesBeforeNext = 0;
     }
 
-    out.push(mon);
+    pokemon.push(mon);
   }
 
   if (newlinesBeforeNext > 0) {
-    const lastMon = out.at(-1);
+    const lastMon = pokemon.at(-1);
     if (lastMon) {
       lastMon.newlinesAfterIfLast = newlinesBeforeNext;
     }
   }
 
-  return out;
+  return { pokemon, errors };
 }
 
 function resolveSpeciesByKeyOrName(keyOrName: string) {
@@ -129,4 +165,68 @@ function resolveSpeciesByKeyOrName(keyOrName: string) {
   const dashed = resolveSpecies(keyOrName.replace(" ", "-"));
   if (dashed) return dashed;
   return ALL_SPECIES.find((species) => species.nameLower === keyOrName);
+}
+
+export class LegacyTextParseError {
+  #span: SpannedString;
+  readonly message: string;
+  readonly severity: "warning" | "error";
+
+  constructor(span: SpannedString, message: string, severity: "warning" | "error" = "error") {
+    this.#span = span;
+    this.message = message;
+    this.severity = severity;
+  }
+
+  get from() {
+    return this.#span.offset;
+  }
+
+  get to() {
+    return this.#span.offset + this.#span.value.length;
+  }
+}
+
+class SpannedString {
+  readonly value: string;
+  readonly offset: number;
+
+  constructor(value: string, offset = 0) {
+    this.value = value;
+    this.offset = offset;
+  }
+
+  lines() {
+    return this.#split(/(\n)/);
+  }
+
+  tokens() {
+    return this.#split(/(\s+)/);
+  }
+
+  trim() {
+    const trimmedStart = this.value.trimStart();
+    const offset = this.offset + (this.value.length - trimmedStart.length);
+    return new SpannedString(this.value.trim(), offset);
+  }
+
+  // Must be called with regexes containing the pattern in a capture group, e.g.
+  // /(\s+)/, so that the length of the delimiters can be used in the offset math.
+  #split(pattern: RegExp) {
+    return this.value.split(pattern).reduce(
+      ({ output, offset }, s, i) => {
+        // This is a delimiter.
+        if (i % 2 !== 0) {
+          return { output, offset: offset + s.length };
+        }
+
+        const string = new SpannedString(s, offset);
+        return { output: output.concat(string), offset: offset + s.length };
+      },
+      {
+        output: [] as SpannedString[],
+        offset: this.offset,
+      },
+    ).output;
+  }
 }

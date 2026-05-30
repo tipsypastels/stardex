@@ -1,6 +1,10 @@
 import { describe, test, expect } from "vitest";
-import { legacyTextToPokemonList as parse } from "./text";
+import { legacyTextToPokemonList } from "./text";
 import { resolveSpecies } from "$lib/models/species";
+
+function parse(...s: string[]) {
+  return legacyTextToPokemonList(s.join("\n")).pokemon;
+}
 
 describe(parse, () => {
   test("single", () => {
@@ -9,7 +13,7 @@ describe(parse, () => {
   });
 
   test("multiple", () => {
-    expect(parse("charmander\ncharmeleon\ncharizard")).toEqual([
+    expect(parse("charmander", "charmeleon", "charizard")).toEqual([
       { species: resolveSpecies("charmander") },
       { species: resolveSpecies("charmeleon") },
       { species: resolveSpecies("charizard") },
@@ -17,7 +21,7 @@ describe(parse, () => {
   });
 
   test("comments", () => {
-    expect(parse("# hello\npikachu")).toEqual([
+    expect(parse("# hello", "pikachu")).toEqual([
       { species: resolveSpecies("pikachu"), comment: "hello" },
     ]);
     expect(parse("# hello\n# world\npikachu")).toEqual([
@@ -26,7 +30,7 @@ describe(parse, () => {
   });
 
   test("newlines", () => {
-    expect(parse("pikachu\n\nraichu")).toEqual([
+    expect(parse("pikachu", "", "raichu")).toEqual([
       { species: resolveSpecies("pikachu") },
       { species: resolveSpecies("raichu"), newlinesBefore: 1 },
     ]);
