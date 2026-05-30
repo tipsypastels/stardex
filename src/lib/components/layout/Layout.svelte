@@ -25,7 +25,7 @@
     <Logo />
   </div>
 
-  <div class="mb-4 flex justify-center lg:hidden">
+  <div class="mb-4 flex justify-center md:justify-start lg:hidden">
     <ProjectsSelect />
   </div>
 
