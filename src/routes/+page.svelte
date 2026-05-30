@@ -8,15 +8,19 @@
   import Recommendations from "$lib/components/pokemon/Recommendations.svelte";
   import TypePieChart from "$lib/components/pokemon/util/TypePieChart.svelte";
   import { pokemonAllotment } from "$lib/state/metrics";
+  import { pokedexFormat } from "$lib/state/pokedex_format";
   import { pokemon } from "$lib/state/pokemon";
   import { regions } from "$lib/state/regions";
 </script>
 
 <Layout title="Editor">
   <Section id="editor_pokedex" title={`Pokédex (${$pokemon.length})`}>
-    <LegacyTextEditor />
-    <AddPokemon />
-    <Pokedex />
+    {#if $pokedexFormat === "legacyText"}
+      <LegacyTextEditor />
+    {:else}
+      <AddPokemon />
+      <Pokedex />
+    {/if}
   </Section>
 
   {#if $pokemon.length > 0}

@@ -7,6 +7,10 @@ const POKEDEX_FORMAT_MAP = {
     name: "Names",
     description: "Display your Pokédex as a list of names.",
   },
+  legacyText: {
+    name: "Text Editor",
+    description: "A single textbox to type all Pokémon into. Classic Stardex mode.",
+  },
 };
 
 export type PokedexFormat = keyof typeof POKEDEX_FORMAT_MAP;
