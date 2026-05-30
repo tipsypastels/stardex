@@ -10,9 +10,10 @@
 
   let timeout: number | undefined;
 
-  $effect(() => {
-    legacyText = legacyTextFromPokemonList($pokemon);
-  });
+  // NOTE: Would be needed if $pokemon could be mutated from other components while this is mounted.
+  // $effect(() => {
+  //   legacyText = legacyTextFromPokemonList($pokemon);
+  // });
 </script>
 
 <div>
