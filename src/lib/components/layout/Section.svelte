@@ -23,15 +23,15 @@
 </script>
 
 <section class="relative mb-8 border-b-[1px] border-b-slate-300 pb-8 last:mb-0 last:border-b-0">
-  <button class="flex w-full items-center text-left" class:mb-8={open} onclick={toggle}>
+  <div class="flex w-full items-center text-left" class:mb-8={open}>
     <h2 class="grow text-3xl">
       {title}
     </h2>
 
-    <div class="text-xl text-slate-400">
+    <button class="cursor-pointer text-xl text-slate-400" onclick={toggle}>
       <Icon name="angle-{open ? 'down' : 'up'}" />
-    </div>
-  </button>
+    </button>
+  </div>
 
   {#if open}
     <div>
