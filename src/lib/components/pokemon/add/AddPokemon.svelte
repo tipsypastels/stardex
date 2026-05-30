@@ -1,12 +1,18 @@
 <script lang="ts">
   import { ALL_SPECIES, resolveEvolutionLine, type Species } from "$lib/models/species";
-  import { levenshteinDistance } from "@std/text";
   import SpeciesIcon from "../icon/SpeciesIcon.svelte";
   import { pokemon, pokemonInclusion } from "$lib/state/pokemon";
   import AddCustom from "./AddCustom.svelte";
   import type { Pokemon } from "$lib/models/pokemon";
   import { onMount } from "svelte";
   import hotkeys from "hotkeys-js";
+  import Fuse from "fuse.js";
+
+  const SEARCH = new Fuse(ALL_SPECIES, {
+    keys: ["name"],
+    threshold: 0.1,
+    includeScore: true,
+  });
 
   function addMon(species: Species) {
     const included = $pokemonInclusion.has(species.key);
@@ -58,34 +64,14 @@
 
   function findClosest() {
     if (query === "") return;
-    const queryLower = query.toLowerCase();
 
-    let closestSpecies = ALL_SPECIES[0];
-    let closestScore = -Infinity;
+    const result = SEARCH.search(query, { limit: 1 }).at(0);
+    if (!result) return;
 
-    for (const species of ALL_SPECIES) {
-      // score is a unitless float from 0-1, where 1 is closest
-      const score = normalizedLevenshteinScore(queryLower, species.nameLower);
-      if (score > closestScore) {
-        closestSpecies = species;
-        closestScore = score;
-      }
-    }
-
-    if (closestScore < 0.35) {
-      return;
-    }
-
-    return {
-      species: closestSpecies,
-      score: closestScore,
-    };
-  }
-
-  function normalizedLevenshteinScore(input: string, search: string) {
-    const distance = levenshteinDistance(input, search);
-    const longerLen = input.length > search.length ? input.length : search.length;
-    return 1 / Math.E ** (distance / (longerLen - distance));
+    const species = result.item;
+    // For whatever reason, Fuse returns infinitesimals for exact matches, not zeroes. Bug?
+    const exact = !!result.score && result.score <= 1e-15;
+    return { species, exact };
   }
 
   let queryInput: HTMLInputElement;
@@ -95,7 +81,7 @@
 
   let closest = $derived(findClosest());
   let closestLine = $derived(closest ? resolveEvolutionLine(closest.species) : undefined);
-  let hasExactMatch = $derived(closest?.score === 1);
+  let hasExactMatch = $derived(closest?.exact);
 
   onMount(() => {
     hotkeys("a", (e) => {
@@ -119,7 +105,7 @@
       disabled={editingCustom}
     />
 
-    <div class="absolute right-0 top-0">
+    <div class="absolute top-0 right-0">
       {#if closest}
         <SpeciesIcon for={closest.species} />
       {:else if query}
