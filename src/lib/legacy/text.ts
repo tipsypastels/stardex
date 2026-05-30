@@ -1,4 +1,5 @@
 import { ALL_SPECIES, resolveSpecies } from "$lib/models/species";
+import { capitalize } from "$lib/utils/strings";
 import { resolvePokemonName, type Pokemon } from "../models/pokemon";
 
 export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
@@ -16,7 +17,7 @@ export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
     let line = resolvePokemonName(mon);
 
     if (mon.type) {
-      line += ` (${mon.type.join("/")})`;
+      line += ` (${mon.type.map(capitalize).join("/")})`;
     }
 
     if (mon.exclude) {

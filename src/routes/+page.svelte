@@ -2,7 +2,7 @@
   import IconLink from "$lib/components/common/IconLink.svelte";
   import Layout from "$lib/components/layout/Layout.svelte";
   import Section from "$lib/components/layout/Section.svelte";
-  import LegacyTextEditor from "$lib/components/legacy/LegacyTextEditor.svelte";
+  import LegacyTextEditor from "$lib/components/pokemon/legacy/LegacyTextEditor.svelte";
   import AddPokemon from "$lib/components/pokemon/add/AddPokemon.svelte";
   import Pokedex from "$lib/components/pokemon/Pokedex.svelte";
   import Recommendations from "$lib/components/pokemon/Recommendations.svelte";
