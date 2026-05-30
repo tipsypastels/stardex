@@ -160,6 +160,7 @@ export function legacyTextToPokemonList(text: string) {
 const KEY_ALIASES: Record<string, string> = {
   "nidoran male": "nidoran-m",
   "nidoran female": "nidoran-f",
+  "mime junior": "mime-jr",
   mimejunior: "mime-jr",
 };
 
