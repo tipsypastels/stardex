@@ -2,6 +2,7 @@
   import IconLink from "$lib/components/common/IconLink.svelte";
   import Layout from "$lib/components/layout/Layout.svelte";
   import Section from "$lib/components/layout/Section.svelte";
+  import LegacyTextEditor from "$lib/components/legacy/LegacyTextEditor.svelte";
   import AddPokemon from "$lib/components/pokemon/add/AddPokemon.svelte";
   import Pokedex from "$lib/components/pokemon/Pokedex.svelte";
   import Recommendations from "$lib/components/pokemon/Recommendations.svelte";
@@ -13,6 +14,7 @@
 
 <Layout title="Editor">
   <Section id="editor_pokedex" title={`Pokédex (${$pokemon.length})`}>
+    <LegacyTextEditor />
     <AddPokemon />
     <Pokedex />
   </Section>

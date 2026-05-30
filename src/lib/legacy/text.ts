@@ -6,7 +6,7 @@ export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
 
   for (const mon of pokemon) {
     if (mon.newlinesBefore) {
-      lines.push("\n".repeat(mon.newlinesBefore));
+      lines.push(...new Array(mon.newlinesBefore).fill(""));
     }
 
     if (mon.comment) {
@@ -26,7 +26,7 @@ export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
     lines.push(line);
   }
 
-  return lines;
+  return lines.join("\n");
 }
 
 export function legacyTextToPokemonList(text: string) {
