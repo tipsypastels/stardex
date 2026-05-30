@@ -3,17 +3,21 @@ import { resolveType, type Type } from "./type";
 
 export type Pokemon = PokemonCustom | PokemonSpecies;
 
-export interface PokemonCustom {
+interface PokemonShared {
+  exclude?: boolean;
+  comment?: string;
+  newlinesBefore?: number;
+}
+
+export interface PokemonCustom extends PokemonShared {
   key: string;
   name: string;
   type: string[];
-  exclude?: boolean;
 }
 
-export interface PokemonSpecies {
+export interface PokemonSpecies extends PokemonShared {
   species: Species;
   type?: string[];
-  exclude?: boolean;
 }
 
 export function resolvePokemonKey(pokemon: Pokemon) {
@@ -38,6 +42,5 @@ export function isPokemonCustom(p: Pokemon): p is PokemonCustom {
 }
 
 export function askBeforeOverwritingMons(mons: Pokemon[]) {
-  return mons.length === 0 ||
-    confirm("Overwrite your existing Pokédex? This cannot be reversed.");
+  return mons.length === 0 || confirm("Overwrite your existing Pokédex? This cannot be reversed.");
 }
