@@ -26,6 +26,11 @@ export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
     lines.push(line);
   }
 
+  const lastMon = pokemon.at(-1);
+  if (lastMon && lastMon.newlinesAfterIfLast) {
+    lines.push(...new Array(lastMon.newlinesAfterIfLast).fill(""));
+  }
+
   return lines.join("\n");
 }
 
@@ -103,6 +108,13 @@ export function legacyTextToPokemonList(text: string) {
     }
 
     out.push(mon);
+  }
+
+  if (newlinesBeforeNext > 0) {
+    const lastMon = out.at(-1);
+    if (lastMon) {
+      lastMon.newlinesAfterIfLast = newlinesBeforeNext;
+    }
   }
 
   return out;

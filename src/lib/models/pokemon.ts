@@ -7,6 +7,7 @@ interface PokemonShared {
   exclude?: boolean;
   comment?: string;
   newlinesBefore?: number;
+  newlinesAfterIfLast?: number;
 }
 
 export interface PokemonCustom extends PokemonShared {
