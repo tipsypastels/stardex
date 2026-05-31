@@ -35,9 +35,7 @@ export const pokemon = createActions(initial, (store) => {
 
         const newMon = { ...mon, type: [...new Set(typeKeys)] };
 
-        if (
-          !isPokemonCustom(mon) && areArraysEqual(typeKeys, mon.species.type)
-        ) {
+        if (!isPokemonCustom(mon) && areArraysEqual(typeKeys, mon.species.type)) {
           delete (newMon as PokemonSpecies).type;
         }
 

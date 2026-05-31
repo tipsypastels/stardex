@@ -5,7 +5,11 @@ const POKEDEX_FORMAT_MAP = {
   },
   names: {
     name: "Names",
-    description: "Display your Pokédex as a list of names.",
+    description: "Display your Pokédex as name cards.",
+  },
+  legacyText: {
+    name: "Text Editor",
+    description: "A single textbox to type all Pokémon into. Classic Stardex mode.",
   },
 };
 
