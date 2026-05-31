@@ -1,4 +1,5 @@
 <script lang="ts">
+  // TODO: What to do with this feature? Redundant now?
   import { goto } from "$app/navigation";
   import { PAGE_LINKS } from "$lib/links";
   import { askBeforeOverwritingMons, type Pokemon } from "$lib/models/pokemon";
