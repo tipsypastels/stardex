@@ -7,3 +7,4 @@
 - Dark mode.
 - Fix why removing types without clearing doesn't work?
 - Capitalize all words?
+- Allow changing names of fakemon.
