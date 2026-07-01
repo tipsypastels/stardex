@@ -16,7 +16,7 @@
   import { pokedexFilterType } from "$lib/state/pokedex_filter";
 
   let editingIdx = $state<number | undefined>();
-  let editingMon = $derived(editingIdx != null ? $pokemon[editingIdx] : undefined);
+  let editingMon = $derived(editingIdx != null ? pokemon.get(editingIdx) : undefined);
 
   let draggedIdx = $state<number | undefined>();
   let hoveredIdx = $state<number | undefined>();

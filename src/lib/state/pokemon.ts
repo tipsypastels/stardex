@@ -21,6 +21,21 @@ export const pokemon = createActions(initial, (store) => {
     addBatch(mons: Pokemon[]) {
       store.update(($pokemon) => $pokemon.concat(...mons));
     },
+    setName(monIndex: number, name: string) {
+      store.update(($pokemon) => {
+        const $newPokemon = [...$pokemon];
+        const mon = $newPokemon[monIndex];
+
+        if (isPokemonCustom(mon)) {
+          mon.name = name;
+        } else {
+          throw new Error("Can't call setName on a non-custom mon!");
+        }
+
+        $newPokemon[monIndex] = mon;
+        return $newPokemon;
+      });
+    },
     setType(monIndex: number, typeIndex: number, typeKey: string | undefined) {
       store.update(($pokemon) => {
         const $newPokemon = [...$pokemon];
@@ -79,6 +94,9 @@ export const pokemon = createActions(initial, (store) => {
         $newPokemon.splice(index, 1);
         return $newPokemon;
       });
+    },
+    get(index: number) {
+      return derived(store, ($mons) => $mons[index]);
     },
     set(mons: Pokemon[]) {
       store.set(mons);

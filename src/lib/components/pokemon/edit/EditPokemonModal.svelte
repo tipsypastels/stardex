@@ -2,11 +2,12 @@
   import Modal from "$lib/components/layout/Modal.svelte";
   import { resolvePokemonName, type Pokemon } from "$lib/models/pokemon";
   import { pokemon } from "$lib/state/pokemon";
+  import type { Readable } from "svelte/store";
   import EditPokemon from "./EditPokemon.svelte";
 
   interface Props {
     index: number | undefined;
-    mon: Pokemon | undefined;
+    mon: Readable<Pokemon> | undefined;
     close(): void;
   }
 
@@ -21,7 +22,7 @@
 {#if index != null && mon}
   <Modal {close}>
     {#snippet title()}
-      Edit {mon ? resolvePokemonName(mon) : ""}
+      Edit {mon ? resolvePokemonName($mon!) : ""}
     {/snippet}
     {#snippet footer()}
       <section class="flex justify-end gap-2">
@@ -29,6 +30,6 @@
         <button class="text-lime-600 underline" onclick={close}>Close</button>
       </section>
     {/snippet}
-    <EditPokemon {index} {mon} />
+    <EditPokemon {index} mon={mon!} />
   </Modal>
 {/if}
