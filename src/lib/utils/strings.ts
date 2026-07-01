@@ -2,6 +2,10 @@ export function capitalize(s: string) {
   return s[0].toUpperCase() + s.slice(1).toLowerCase();
 }
 
+export function capitalizeWords(s: string) {
+  return s.split(/\s+/).map(capitalize).join(" ");
+}
+
 export function undefinedIfEmpty(s: string) {
   return s === "" ? undefined : s;
 }

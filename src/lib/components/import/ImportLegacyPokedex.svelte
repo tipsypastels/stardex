@@ -5,7 +5,7 @@
   import { askBeforeOverwritingMons, type Pokemon } from "$lib/models/pokemon";
   import { resolveSpecies } from "$lib/models/species";
   import { pokemon } from "$lib/state/pokemon";
-  import { capitalize } from "$lib/utils/strings";
+  import { capitalize, capitalizeWords } from "$lib/utils/strings";
 
   const LINE_REGEX =
     /^([\w-']+)(?:\s+(\((?:\w+\/)*\w+\)))?(?:\s+\[(.+)\])?(?:\s+(?:(@\w+)\s+)*(@\w+))?$/;
@@ -26,7 +26,7 @@
         }
         newMons.push({
           key,
-          name: capitalize(key),
+          name: capitalizeWords(key),
           type,
           exclude,
         });

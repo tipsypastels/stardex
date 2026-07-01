@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Pokemon } from "$lib/models/pokemon";
-  import { capitalize } from "$lib/utils/strings";
+  import { capitalize, capitalizeWords } from "$lib/utils/strings";
   import { onMount } from "svelte";
   import { TYPE_SUGGESTIONS_LIST } from "../util/TypeSuggestions.svelte";
 
@@ -31,7 +31,7 @@
 
   let { query, submit, cancel }: Props = $props();
   let key = $derived(query.toLowerCase());
-  let name = $derived(capitalize(query));
+  let name = $derived(capitalizeWords(query));
 
   let type1 = $state("");
   let type2 = $state("");
