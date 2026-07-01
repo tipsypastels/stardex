@@ -1,3 +1,8 @@
+### June 30, 2026
+
+- Can now rename fakemon.
+- Fixed some bugfixes around the edit Pokémon popup.
+
 ### May 29, 2026
 
 - Added support for multiple "projects", which can have their own Pokédex and settings.

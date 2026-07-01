@@ -31,7 +31,7 @@
   }
 
   function handleTypeBlur(value: string, typeIndex: number) {
-    if (value === "" && index === 0) {
+    if (value === "" && typeIndex === 0) {
       return;
     }
 
