@@ -94,9 +94,7 @@
 
 <div>
   <div class="relative">
-    <!-- svelte-ignore a11y_autofocus -->
     <input
-      autofocus
       class="mb-4 block h-[80px] w-full disabled:cursor-not-allowed disabled:bg-slate-100"
       placeholder="Add a Pokémon"
       bind:value={query}
