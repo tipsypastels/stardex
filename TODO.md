@@ -1,6 +1,6 @@
-- Legacy text editor.
+- ~~Legacy text editor~~.
 - Better drag and drop.
-- Use fuse for search.
+- ~~Use fuse for search~~.
 - Disable type recs.
 - Reconsider alt forms?
 - Two-pane view?
