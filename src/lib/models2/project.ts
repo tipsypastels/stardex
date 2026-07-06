@@ -1,11 +1,15 @@
+import type { RenameKey } from "$lib/utils/types";
 import { PokedexFormat, type PokedexFormatKey } from "./pokedex_format";
 import { Pokemons, type PokemonData } from "./pokemon";
 import { Regions, type RegionKey } from "./region";
 import { Strictness, type StrictnessKey } from "./strictness";
 import { List as IList } from "immutable";
 
+const V = 1;
+
 export const DEFAULT_PROJECTS: ProjectData[] = [
   {
+    v: V,
     id: "default",
     name: "Untitled Project 1",
     active: true,
@@ -14,28 +18,37 @@ export const DEFAULT_PROJECTS: ProjectData[] = [
 
 export type ProjectData = ActiveProjectData | InactiveProjectData;
 
-export interface ActiveProjectData {
+interface SharedProjectData {
+  v: typeof V;
   id: string;
   name: string;
+}
+
+export interface ActiveProjectData extends SharedProjectData {
   active: true;
 }
 
-export interface InactiveProjectData {
-  id: string;
-  name: string;
+export interface InactiveProjectData extends SharedProjectData {
   active: false;
   modelState: ProjectModelStateData;
 }
 
 export interface ProjectModelStateData {
-  pokemon: PokemonData[];
+  pokemons: PokemonData[];
   regions: RegionKey[];
   strictness: StrictnessKey;
   pokedexFormat: PokedexFormatKey;
 }
 
+export type V0_ProjectModelStateData = RenameKey<ProjectModelStateData, "pokemons", "pokemon">;
+export type V0_ActiveProjectData = Omit<ActiveProjectData, "v">;
+export type V0_InactiveProjectData = Omit<InactiveProjectData, "v" | "modelState"> & {
+  modelState: V0_ProjectModelStateData;
+};
+export type V0_ProjectData = V0_ActiveProjectData | V0_InactiveProjectData;
+
 export class Projects {
-  static from(datas: ProjectData[]) {
+  static from(datas: (ProjectData | V0_ProjectData)[]) {
     return new this(IList(datas.map((data) => Project.from(data))));
   }
 
@@ -63,7 +76,7 @@ export class Projects {
 }
 
 export abstract class Project {
-  static from(data: ProjectData) {
+  static from(data: ProjectData | V0_ProjectData) {
     return data.active ? ActiveProject.from(data) : InactiveProject.from(data);
   }
 
@@ -95,8 +108,9 @@ export abstract class Project {
 }
 
 export class ActiveProject extends Project {
-  static from(data: ActiveProjectData) {
-    return new this(data);
+  static from(data: ActiveProjectData | V0_ActiveProjectData) {
+    if ("v" in data) return new this(data);
+    return new this({ v: V, ...data });
   }
 
   private constructor(data: ActiveProjectData) {
@@ -109,8 +123,10 @@ export class ActiveProject extends Project {
 }
 
 export class InactiveProject extends Project {
-  static from(data: InactiveProjectData) {
-    return new this(data);
+  static from(data: InactiveProjectData | V0_InactiveProjectData) {
+    if ("v" in data) return new this(data);
+    const { pokemon: pokemons, ...modelState } = data.modelState;
+    return new this({ v: V, ...data, modelState: { pokemons, ...modelState } });
   }
 
   readonly modelState: ProjectModelState;
@@ -133,7 +149,7 @@ export class ProjectModelState {
   }
 
   getPokemons() {
-    return Pokemons.from(this.#data.pokemon);
+    return Pokemons.from(this.#data.pokemons);
   }
 
   getRegions() {
