@@ -2,10 +2,13 @@ import { Species, type SpeciesAlt, type SpeciesKey } from "./species";
 import { Type } from "./type";
 import { Map as IMap, List as IList } from "immutable";
 
-let makeBuiltin: (data: BuiltinPokemonData) => BuiltinPokemon;
-let makeCustom: (data: CustomPokemonData) => CustomPokemon;
+let makeBuiltin: (data: BuiltinPokemonData | BuiltinPokemonDataV0) => BuiltinPokemon;
+let makeCustom: (data: CustomPokemonData | CustomPokemonDataV0) => CustomPokemon;
+
+const V = 1;
 
 interface SharedPokemonData {
+  v: typeof V;
   exclude?: boolean;
   comment?: string;
   newlinesBefore?: number;
@@ -24,6 +27,13 @@ export interface CustomPokemonData extends SharedPokemonData {
 }
 
 export type PokemonData = BuiltinPokemonData | CustomPokemonData;
+
+export type BuiltinPokemonDataV0 = Omit<BuiltinPokemonData, "v" | "species"> & {
+  species: { key: SpeciesKey };
+};
+
+export type CustomPokemonDataV0 = Omit<CustomPokemonData, "v">;
+export type PokemonDataV0 = BuiltinPokemonDataV0 | CustomPokemonDataV0;
 
 export abstract class Pokemon {
   static from(data: PokemonData) {
@@ -97,11 +107,14 @@ export abstract class Pokemon {
 
 export class BuiltinPokemon extends Pokemon {
   static of(key: SpeciesKey) {
-    return new this({ species: key });
+    return new this({ v: V, species: key });
   }
 
   static {
-    makeBuiltin = (data) => new this(data);
+    makeBuiltin = (data) => {
+      if ("v" in data) return new this(data);
+      return new this({ v: V, ...data, species: data.species.key });
+    };
   }
 
   #data: BuiltinPokemonData;
@@ -173,11 +186,14 @@ export class BuiltinPokemon extends Pokemon {
 
 export class CustomPokemon extends Pokemon {
   static of(key: string, name: string, type: string[]) {
-    return new this({ key, name, type });
+    return new this({ v: V, key, name, type });
   }
 
   static {
-    makeCustom = (data) => new this(data);
+    makeCustom = (data) => {
+      if ("v" in data) return new this(data);
+      return new this({ v: V, ...data });
+    };
   }
 
   #data: CustomPokemonData;
