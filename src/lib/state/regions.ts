@@ -1,25 +1,21 @@
-import { DEFAULT_REGION_KEYS, type RegionKey } from "$lib/models/region";
-import { createActions } from "./_actions";
-import { createStorage } from "./_storage";
-import { Set as ISet } from "immutable";
+import { Regions, type RegionKey } from "$lib/models/region";
+import { persistedWritable, reducible } from "$lib/utils/stores";
 
-const storage = createStorage<RegionKey[]>("stardex_regions");
-const initial = ISet(storage.initial ?? DEFAULT_REGION_KEYS);
-
-export const regions = createActions(initial, (store) => {
-  return {
+export const regions = reducible(
+  persistedWritable({
+    key: "stardex_regions",
+    default: () => Regions.DEFAULT,
+    load: (data) => Regions.from(data),
+  }),
+  (store) => ({
     set(keys: RegionKey[]) {
-      store.update(() => ISet(keys));
+      store.set(Regions.from(keys));
     },
-
-    enable(key: RegionKey) {
+    add(key: RegionKey) {
       store.update(($regions) => $regions.add(key));
     },
-
-    disable(key: RegionKey) {
-      store.update(($regions) => $regions.remove(key));
+    delete(key: RegionKey) {
+      store.update(($regions) => $regions.delete(key));
     },
-  };
-});
-
-export const regionsPersister = storage.persister(regions);
+  }),
+);

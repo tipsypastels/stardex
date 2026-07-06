@@ -1,4 +1,4 @@
-const STRICTNESS_MAP = {
+const DATA = {
   easygoing: {
     name: "Easygoing",
     description: "If you're just trying out Stardex.",
@@ -21,18 +21,43 @@ const STRICTNESS_MAP = {
   },
 };
 
-export type Strictness = keyof typeof STRICTNESS_MAP;
-export const STRICTNESSES = Object.keys(STRICTNESS_MAP) as Strictness[];
-export const DEFAULT_STRICTNESS = "normal";
+export type StrictnessKey = keyof typeof DATA;
 
-export function getStrictnessName(s: Strictness) {
-  return STRICTNESS_MAP[s].name;
-}
+export class Strictness {
+  static EASYGOING = new this("easygoing");
+  static NORMAL = new this("normal");
+  static STRICT = new this("strict");
+  static BITCHY = new this("bitchy");
+  static ALL = [this.EASYGOING, this.NORMAL, this.STRICT, this.BITCHY];
+  static DEFAULT = this.NORMAL;
 
-export function getStrictnessDescription(s: Strictness) {
-  return STRICTNESS_MAP[s].description;
-}
+  static of(key: StrictnessKey) {
+    return this.ALL.find((s) => s.key === key)!;
+  }
 
-export function getStrictnessMaximumRatioDifference(s: Strictness) {
-  return STRICTNESS_MAP[s].maximumRatioDifference;
+  readonly key: StrictnessKey;
+
+  private constructor(key: StrictnessKey) {
+    this.key = key;
+  }
+
+  get name() {
+    return this.#data.name;
+  }
+
+  get description() {
+    return this.#data.description;
+  }
+
+  get maximumRatioDifference() {
+    return this.#data.maximumRatioDifference;
+  }
+
+  get #data() {
+    return DATA[this.key];
+  }
+
+  toJson() {
+    return this.key;
+  }
 }

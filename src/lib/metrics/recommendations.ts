@@ -1,5 +1,5 @@
-import type { Strictness } from "$lib/models2/strictness";
-import { BuiltinType, Type } from "$lib/models2/type";
+import type { Strictness } from "$lib/models/strictness";
+import { BuiltinType, Type } from "$lib/models/type";
 import { sortStrings } from "$lib/utils/strings";
 import type { AllotedType, Allotment } from "./allotment";
 

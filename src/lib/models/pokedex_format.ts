@@ -1,4 +1,4 @@
-const POKEDEX_FORMAT_MAP = {
+const DATA = {
   icons: {
     name: "Icons",
     description: "Display your Pokédex as party icons.",
@@ -13,14 +13,38 @@ const POKEDEX_FORMAT_MAP = {
   },
 };
 
-export type PokedexFormat = keyof typeof POKEDEX_FORMAT_MAP;
-export const POKEDEX_FORMATS = Object.keys(POKEDEX_FORMAT_MAP) as PokedexFormat[];
-export const DEFAULT_POKEDEX_FORMAT = "icons";
+export type PokedexFormatKey = keyof typeof DATA;
 
-export function getPokedexFormatName(f: PokedexFormat) {
-  return POKEDEX_FORMAT_MAP[f].name;
-}
+export class PokedexFormat {
+  static ICONS = new this("icons");
+  static NAMES = new this("names");
+  static LEGACY_TEXT = new this("legacyText");
+  static ALL = [this.ICONS, this.NAMES, this.LEGACY_TEXT];
+  static DEFAULT = this.ICONS;
 
-export function getPokedexFormatDescription(f: PokedexFormat) {
-  return POKEDEX_FORMAT_MAP[f].description;
+  static of(key: PokedexFormatKey) {
+    return this.ALL.find((f) => f.key === key)!;
+  }
+
+  readonly key: PokedexFormatKey;
+
+  private constructor(key: PokedexFormatKey) {
+    this.key = key;
+  }
+
+  get name() {
+    return this.#data.name;
+  }
+
+  get description() {
+    return this.#data.description;
+  }
+
+  get #data() {
+    return DATA[this.key];
+  }
+
+  toJson() {
+    return this.key;
+  }
 }

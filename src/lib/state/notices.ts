@@ -1,7 +1,7 @@
-import { writable } from "svelte/store";
-import { createStorage } from "./_storage";
+import { persistedWritable } from "$lib/utils/stores";
 
-const storage = createStorage<string>("stardex_last_dismissed_notice");
-
-export const lastDismissedNoticeDate = writable(new Date(storage.initial ?? 0));
-export const lastDismissedNoticeDatePersister = storage.persister(lastDismissedNoticeDate);
+export const lastDismissedNoticeDate = persistedWritable({
+  key: "stardex_last_dismissed_notice",
+  default: () => new Date(0),
+  load: (date) => new Date(date),
+});

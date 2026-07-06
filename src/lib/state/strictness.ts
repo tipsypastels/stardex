@@ -1,9 +1,8 @@
-import { DEFAULT_STRICTNESS, type Strictness } from "$lib/models/strictness";
-import { writable } from "svelte/store";
-import { createStorage } from "./_storage";
+import { Strictness } from "$lib/models/strictness";
+import { persistedWritable } from "$lib/utils/stores";
 
-const storage = createStorage<Strictness>("stardex_strictness");
-const initial = storage.initial ?? DEFAULT_STRICTNESS;
-
-export const strictness = writable(initial);
-export const strictnessPersister = storage.persister(strictness);
+export const strictness = persistedWritable({
+  key: "stardex_strictness",
+  default: () => Strictness.DEFAULT,
+  load: (key) => Strictness.of(key),
+});

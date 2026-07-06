@@ -1,35 +1,94 @@
-import { capitalize } from "$lib/utils/strings";
-import DATA from "../data/types.json" with { type: "json" };
 import randomColor from "randomcolor";
+import { capitalize } from "$lib/utils/strings";
+import * as DATA from "../data/types.json" with { type: "json" };
 
-export interface Type {
-  name: string;
-  color: string;
-  icon: string;
+export abstract class Type {
+  static of(key: string) {
+    return key in DATA ? BuiltinType.of(key) : CustomType.of(key);
+  }
+
+  abstract name: string;
+  abstract color: string;
+  abstract icon: string;
+
+  readonly key: string;
+
+  protected constructor(key: string) {
+    this.key = key;
+  }
+
+  isBuiltin(): this is BuiltinType {
+    return false;
+  }
+
+  isCustom(): this is CustomType {
+    return false;
+  }
 }
 
-export const BUILTIN_TYPE_KEYS = Object.keys(DATA) as (keyof typeof DATA)[];
-export const BUILTIN_TYPES = Object.values(DATA) as Type[];
+export class BuiltinType extends Type {
+  static KEYS = Object.keys(DATA);
+  static ALL = this.KEYS.map((key) => new this(key));
+  static MAP = new Map(this.ALL.map((t) => [t.key, t]));
 
-const CUSTOM_CACHE = new Map<string, Type>();
+  static of(key: string) {
+    const type = this.MAP.get(key);
+    if (type) return type;
+    throw new Error(`Unknown builtin type: ${key}.`);
+  }
 
-export function resolveType(key: string): Type {
-  const builtin = (DATA as Record<string, Type>)[key];
-  if (builtin) return builtin;
+  get name() {
+    return this.#data.name;
+  }
 
-  const cached = CUSTOM_CACHE.get(key);
-  if (cached) return cached;
+  get color() {
+    return this.#data.color;
+  }
 
-  const type: Type = {
-    name: capitalize(key),
-    color: randomColor({ seed: key }),
-    icon: "question-circle",
-  };
+  get icon() {
+    return this.#data.icon;
+  }
 
-  CUSTOM_CACHE.set(key, type);
-  return type;
+  get #data() {
+    return DATA[this.key as keyof typeof DATA];
+  }
+
+  isBuiltin(): this is BuiltinType {
+    return true;
+  }
 }
 
-export function isTypeCustom(typeKey: string) {
-  return !(typeKey in DATA);
+export class CustomType extends Type {
+  static #cache = new Map<string, CustomType>();
+
+  static of(key: string) {
+    const cached = this.#cache.get(key);
+    if (cached) return cached;
+
+    const made = new this(key);
+    this.#cache.set(key, made);
+
+    return made;
+  }
+
+  #name?: string;
+  #color?: string;
+
+  get name() {
+    this.#name ??= capitalize(this.key);
+    return this.#name;
+  }
+
+  get color() {
+    this.#color ??= randomColor({ seed: this.key });
+    return this.#color;
+  }
+
+  get icon() {
+    return "question-circle";
+  }
+
+  isCustom(): this is CustomType {
+    return true;
+  }
 }

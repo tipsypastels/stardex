@@ -1,16 +1,17 @@
 import { derived } from "svelte/store";
-import { pokemon } from "./pokemon";
-import { createAllotment, createRegionAllotment } from "$lib/metrics/allotment";
+import { pokemons } from "./pokemons";
+import { createAllotment } from "$lib/metrics/allotment";
 import { regions } from "./regions";
-import { resolveRegion } from "$lib/models/region";
 import { strictness } from "./strictness";
 import { createRecommendations } from "$lib/metrics/recommendations";
 
-export const pokemonAllotment = derived(pokemon, createAllotment);
-export const regionsAllotment = derived(regions, ($keys) => {
-  const regions = [...$keys].map(resolveRegion);
-  return createRegionAllotment(regions);
-});
+export const pokemonAllotment = derived(pokemons, ($pokemons) =>
+  createAllotment($pokemons.toArray()),
+);
+
+export const regionsAllotment = derived(regions, ($regions) =>
+  createAllotment($regions.toArray().flatMap((region) => region.members)),
+);
 
 export const recommendations = derived(
   [pokemonAllotment, regionsAllotment, strictness],

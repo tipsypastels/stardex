@@ -1,4 +1,4 @@
-import { Type } from "$lib/models2/type";
+import { Type } from "$lib/models/type";
 import { sortStrings } from "$lib/utils/strings";
 
 export interface Allotment {

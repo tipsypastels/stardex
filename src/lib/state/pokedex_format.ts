@@ -1,9 +1,8 @@
-import { DEFAULT_POKEDEX_FORMAT, type PokedexFormat } from "$lib/models/pokedex_format";
-import { writable } from "svelte/store";
-import { createStorage } from "./_storage";
+import { PokedexFormat } from "$lib/models/pokedex_format";
+import { persistedWritable } from "$lib/utils/stores";
 
-const storage = createStorage<PokedexFormat>("stardex_pokedex_format");
-const initial = storage.initial ?? DEFAULT_POKEDEX_FORMAT;
-
-export const pokedexFormat = writable(initial);
-export const pokedexFormatPersister = storage.persister(pokedexFormat);
+export const pokedexFormat = persistedWritable({
+  key: "stardex_pokedex_format",
+  default: () => PokedexFormat.DEFAULT,
+  load: (key) => PokedexFormat.of(key),
+});

@@ -1,82 +1,108 @@
-import DATA_UNPROCESSED from "../data/species.json" with { type: "json" };
+import * as DATA from "../data/species.json" with { type: "json" };
+import { BuiltinType } from "./type";
 
-interface SpeciesUnprocessed {
+interface SpeciesData {
   id: number;
   name: string;
-  type: string[];
-  evos?: SpeciesEvos;
-  alts?: SpeciesAlt[];
+  types: string[];
+  evos?: { from?: string; to?: string[] };
+  alts?: SpeciesAltData[];
 }
 
-export interface Species extends SpeciesUnprocessed {
-  key: string;
-  index: number;
-  nameLower: string;
+interface SpeciesAltData {
+  kind: string;
+  name: string;
+  types: string[];
 }
 
-export interface SpeciesEvos {
-  from?: string;
-  to?: string[];
-}
+DATA satisfies Record<string, SpeciesData>;
 
-export interface SpeciesAlt {
-  whence: string;
-  type: string[];
-}
+export type SpeciesKey = keyof typeof DATA;
 
-DATA_UNPROCESSED satisfies Record<string, SpeciesUnprocessed>;
+export class Species {
+  static ALL = Object.keys(DATA).map((k, i) => new this(k as SpeciesKey, i));
+  static MAP = new Map(this.ALL.map((s) => [s.key as string, s]));
 
-function processEntry([k, v]: [string, SpeciesUnprocessed], i: number): [string, Species] {
-  return [
-    k,
-    {
-      ...v,
-      key: k,
-      index: i,
-      nameLower: v.name.toLowerCase(),
-    } satisfies Species,
-  ];
-}
-
-const DATA_ENTRIES = Object.entries(DATA_UNPROCESSED).map(processEntry);
-const DATA = Object.fromEntries(DATA_ENTRIES) as Record<keyof typeof DATA_UNPROCESSED, Species>;
-
-export const ALL_SPECIES = DATA_ENTRIES.map(([, v]) => v);
-
-export function resolveSpecies(key: keyof typeof DATA): Species;
-export function resolveSpecies(key: string): Species | undefined;
-export function resolveSpecies(key: string): Species | undefined {
-  return (DATA as Record<string, Species>)[key];
-}
-
-export function resolveEvolutionLine(species: Species) {
-  if (!species.evos || (!species.evos.from && !species.evos.to)) {
-    return [species];
+  static isKey(key: string): key is SpeciesKey {
+    return key in DATA;
   }
 
-  const origin = findEvolutionOrigin(species);
-  const out = new Set<Species>([origin]);
-
-  followEvolutionLine(origin, out);
-
-  const outArray = [...out];
-  outArray.sort((a, b) => a.id - b.id);
-  return outArray;
-}
-
-function findEvolutionOrigin(species: Species) {
-  let origin = species;
-  while (origin.evos?.from) {
-    origin = resolveSpecies(origin.evos.from)!;
+  static of(key: SpeciesKey) {
+    return this.MAP.get(key)!;
   }
-  return origin;
+
+  readonly key: SpeciesKey;
+  readonly index: number;
+
+  #nameLower?: string;
+  #types?: BuiltinType[];
+  #alts?: SpeciesAlt[];
+
+  protected constructor(key: SpeciesKey, index: number) {
+    this.key = key;
+    this.index = index;
+  }
+
+  get id() {
+    return this.#data.id;
+  }
+
+  get name() {
+    return this.#data.name;
+  }
+
+  get nameLower() {
+    this.#nameLower ??= this.name.toLowerCase();
+    return this.#nameLower;
+  }
+
+  get types() {
+    this.#types ??= this.typeKeys.map((k) => BuiltinType.of(k));
+    return this.#types;
+  }
+
+  get typeKeys() {
+    return this.#data.types;
+  }
+
+  get alts() {
+    this.#alts ??= this.#data.alts?.map((d) => new SpeciesAlt(d)) ?? [];
+    return this.#alts;
+  }
+
+  alt(kind: string) {
+    const alt = this.alts.find((a) => a.kind === kind);
+    if (!alt) throw new Error(`Unknown alt ${kind} for species ${this.key}.`);
+    return alt;
+  }
+
+  get #data() {
+    return DATA[this.key] as SpeciesData;
+  }
 }
 
-function followEvolutionLine(species: Species, out: Set<Species>) {
-  if (species.evos?.to) {
-    for (const to of species.evos.to.map((to) => resolveSpecies(to)!)) {
-      out.add(to);
-      followEvolutionLine(to, out);
-    }
+export class SpeciesAlt {
+  #data: SpeciesAltData;
+  #types?: BuiltinType[];
+
+  constructor(data: SpeciesAltData) {
+    this.#data = data;
+  }
+
+  get kind() {
+    return this.#data.kind;
+  }
+
+  get name() {
+    return this.#data.name;
+  }
+
+  get types() {
+    this.#types ??= this.typeKeys.map((k) => BuiltinType.of(k));
+    return this.#types;
+  }
+
+  get typeKeys() {
+    return this.#data.types;
   }
 }
