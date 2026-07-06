@@ -1,6 +1,5 @@
 import { describe, test, expect } from "vitest";
 import { legacyTextToPokemonDatas } from "./text";
-import { resolveSpecies } from "$lib/models/species";
 
 function parse(...s: string[]) {
   return legacyTextToPokemonDatas(s.join("\n")).pokemon;
@@ -8,58 +7,50 @@ function parse(...s: string[]) {
 
 describe(parse, () => {
   test("single", () => {
-    expect(parse("charmander")).toEqual([{ species: resolveSpecies("charmander") }]);
-    expect(parse("Charmander")).toEqual([{ species: resolveSpecies("charmander") }]);
+    expect(parse("charmander")).toEqual([{ v: 1, species: "charmander" }]);
+    expect(parse("Charmander")).toEqual([{ v: 1, species: "charmander" }]);
   });
 
   test("multiple", () => {
     expect(parse("charmander", "charmeleon", "charizard")).toEqual([
-      { species: resolveSpecies("charmander") },
-      { species: resolveSpecies("charmeleon") },
-      { species: resolveSpecies("charizard") },
+      { v: 1, species: "charmander" },
+      { v: 1, species: "charmeleon" },
+      { v: 1, species: "charizard" },
     ]);
   });
 
   test("comments", () => {
-    expect(parse("# hello", "pikachu")).toEqual([
-      { species: resolveSpecies("pikachu"), comment: "hello" },
-    ]);
+    expect(parse("# hello", "pikachu")).toEqual([{ v: 1, species: "pikachu", comment: "hello" }]);
     expect(parse("# hello\n# world\npikachu")).toEqual([
-      { species: resolveSpecies("pikachu"), comment: "hello\nworld" },
+      { v: 1, species: "pikachu", comment: "hello\nworld" },
     ]);
   });
 
   test("newlines", () => {
     expect(parse("pikachu", "", "raichu")).toEqual([
-      { species: resolveSpecies("pikachu") },
-      { species: resolveSpecies("raichu"), newlinesBefore: 1 },
+      { v: 1, species: "pikachu" },
+      { v: 1, species: "raichu", newlinesBefore: 1 },
     ]);
   });
 
   test("exclude", () => {
-    expect(parse("pikachu @exclude")).toEqual([
-      { species: resolveSpecies("pikachu"), exclude: true },
-    ]);
-    expect(parse("pikachu @ignore")).toEqual([
-      { species: resolveSpecies("pikachu"), exclude: true },
-    ]);
+    expect(parse("pikachu @exclude")).toEqual([{ v: 1, species: "pikachu", exclude: true }]);
+    expect(parse("pikachu @ignore")).toEqual([{ v: 1, species: "pikachu", exclude: true }]);
   });
 
   test("types", () => {
-    expect(parse("pikachu (fire)")).toEqual([
-      { species: resolveSpecies("pikachu"), type: ["fire"] },
-    ]);
+    expect(parse("pikachu (fire)")).toEqual([{ v: 1, species: "pikachu", types: ["fire"] }]);
     expect(parse("pikachu (fire/fighting)")).toEqual([
-      { species: resolveSpecies("pikachu"), type: ["fire", "fighting"] },
+      { v: 1, species: "pikachu", types: ["fire", "fighting"] },
     ]);
   });
 
   test("types and exclude", () => {
     expect(parse("pikachu (fire) @exclude")).toEqual([
-      { species: resolveSpecies("pikachu"), type: ["fire"], exclude: true },
+      { v: 1, species: "pikachu", types: ["fire"], exclude: true },
     ]);
     expect(parse("pikachu @exclude (fire)")).toEqual([
-      { species: resolveSpecies("pikachu"), type: ["fire"], exclude: true },
+      { v: 1, species: "pikachu", types: ["fire"], exclude: true },
     ]);
   });
 });

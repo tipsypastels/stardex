@@ -81,7 +81,7 @@
 {:else}
   <!-- TODO: Clean this up! -->
   {@const alt = pokemon.alt}
-  {@const regionalFormPositionKey = alt ? `${pokemon.species!.key}${alt.kind}` : undefined}
+  {@const regionalFormPositionKey = alt ? `${pokemon.species.key}${alt.kind}` : undefined}
 
   {#if regionalFormPositionKey && regionalFormPositionKey in REGIONAL_FORM_POSITIONS}
     <SpeciesIcon
@@ -91,6 +91,6 @@
       }}
     />
   {:else}
-    <SpeciesIcon for={pokemon.species!} />
+    <SpeciesIcon for={pokemon.species} />
   {/if}
 {/if}

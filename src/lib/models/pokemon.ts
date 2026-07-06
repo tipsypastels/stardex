@@ -36,11 +36,15 @@ export type V0_BuiltinPokemonData = Omit<BuiltinPokemonData, "v" | "species" | "
 export type V0_CustomPokemonData = Omit<Rekey<CustomPokemonData, "types", "type">, "v">;
 export type V0_PokemonData = V0_BuiltinPokemonData | V0_CustomPokemonData;
 
-export abstract class Pokemon {
-  static from(data: PokemonData | V0_PokemonData) {
+export type Pokemon = BuiltinPokemon | CustomPokemon;
+
+export namespace Pokemon {
+  export function from(data: PokemonData | V0_PokemonData) {
     return "species" in data ? makeBuiltin(data) : makeCustom(data);
   }
+}
 
+export abstract class BasePokemon {
   abstract key: string;
   abstract name: string;
   abstract types: Type[];
@@ -122,7 +126,7 @@ export abstract class Pokemon {
   }
 
   protected with(f: (pokemon: this) => void): this {
-    const clone = this.clone() as this;
+    const clone = this.clone() as unknown as this;
     f(clone);
     return clone;
   }
@@ -136,7 +140,7 @@ export abstract class Pokemon {
   }
 }
 
-export class BuiltinPokemon extends Pokemon {
+export class BuiltinPokemon extends BasePokemon {
   static of(key: SpeciesKey) {
     return new this({ v: V, species: key });
   }
@@ -233,7 +237,7 @@ export class BuiltinPokemon extends Pokemon {
   }
 }
 
-export class CustomPokemon extends Pokemon {
+export class CustomPokemon extends BasePokemon {
   static of(key: string, name: string, types: string[]) {
     return new this({ v: V, key, name, types });
   }

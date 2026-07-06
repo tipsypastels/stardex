@@ -168,11 +168,15 @@ export class Projects {
   }
 }
 
-export abstract class Project {
-  static from(data: ProjectData | V0_ProjectData) {
+export type Project = ActiveProject | InactiveProject;
+
+export namespace Project {
+  export function from(data: ProjectData | V0_ProjectData) {
     return data.active ? ActiveProject.from(data) : InactiveProject.from(data);
   }
+}
 
+export abstract class BaseProject {
   protected abstract shared: SharedProjectData;
   protected abstract clone(): Project;
 
@@ -185,7 +189,7 @@ export abstract class Project {
   }
 
   setName(name: string) {
-    const dup = this.clone() as this;
+    const dup = this.clone() as unknown as this;
     dup.shared.name = name;
     return dup;
   }
@@ -203,7 +207,7 @@ export abstract class Project {
   }
 }
 
-export class ActiveProject extends Project {
+export class ActiveProject extends BaseProject {
   static from(data: ActiveProjectData | V0_ActiveProjectData) {
     if ("v" in data) return new this(data);
     return new this({ v: V, ...data });
@@ -239,7 +243,7 @@ export class ActiveProject extends Project {
   }
 }
 
-export class InactiveProject extends Project {
+export class InactiveProject extends BaseProject {
   static from(data: InactiveProjectData | V0_InactiveProjectData) {
     if ("v" in data) return new this(data);
     const { pokemon: pokemons, ...modelState } = data.modelState;

@@ -93,6 +93,10 @@ export class Species {
   get #data() {
     return DATA[this.key] as SpeciesData;
   }
+
+  toJson() {
+    return this.#data;
+  }
 }
 
 export class SpeciesAlt {
