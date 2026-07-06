@@ -24,8 +24,14 @@ const DATA = {
 export type StrictnessKey = keyof typeof DATA;
 
 export class Strictness {
+  static EASYGOING = new this("easygoing");
+  static NORMAL = new this("normal");
+  static STRICT = new this("strict");
+  static BITCHY = new this("bitchy");
+  static ALL = [this.EASYGOING, this.NORMAL, this.STRICT, this.BITCHY];
+
   static of(key: StrictnessKey) {
-    new this(key);
+    return this.ALL.find((s) => s.key === key)!;
   }
 
   readonly key: StrictnessKey;
