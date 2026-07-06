@@ -27,14 +27,12 @@ export abstract class Pokemon {
   abstract species: Species | undefined;
   abstract alt: SpeciesAlt | undefined;
 
-  abstract withType(typeKeys: string[]): Pokemon;
-  abstract setTypeInPlace(typeKeys: string[]): void;
-  abstract withExclude(exclude: boolean): Pokemon;
-
-  abstract toJSON(): unknown;
+  abstract setType(typeKeys: string[]): void;
 
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
+
+  abstract toJSON(): unknown;
 
   get exclude() {
     return this.shared.exclude;
@@ -52,20 +50,26 @@ export abstract class Pokemon {
     return this.shared.newlinesAfterIfLast;
   }
 
-  setExcludeInPlace(exclude: boolean) {
+  setExclude(exclude: boolean) {
     this.shared.exclude = exclude;
   }
 
-  setCommentInPlace(comment: string) {
+  setComment(comment: string) {
     this.shared.comment = comment;
   }
 
-  setNewlinesBeforeInPlace(newlinesBefore: number) {
+  setNewlinesBefore(newlinesBefore: number) {
     this.shared.newlinesBefore = newlinesBefore;
   }
 
-  setNewlinesAfterIfLastInPlace(newlinesAfterIfLast: number) {
+  setNewlinesAfterIfLast(newlinesAfterIfLast: number) {
     this.shared.newlinesAfterIfLast = newlinesAfterIfLast;
+  }
+
+  with(f: (pokemon: this) => void): this {
+    const clone = this.clone() as this;
+    f(clone);
+    return clone;
   }
 
   isBuiltin(): this is BuiltinPokemon {
@@ -135,21 +139,13 @@ export class BuiltinPokemon extends Pokemon {
     return this.#data;
   }
 
-  withType(typeKeys: string[]) {
-    const dup = new BuiltinPokemon({ ...this.#data });
-    dup.setTypeInPlace(typeKeys);
-    return dup;
+  protected clone() {
+    return new BuiltinPokemon({ ...this.#data });
   }
 
-  setTypeInPlace(typeKeys: string[]) {
+  setType(typeKeys: string[]) {
     this.#data.type = typeKeys;
     this.#types = undefined;
-  }
-
-  withExclude(exclude: boolean) {
-    const dup = new BuiltinPokemon({ ...this.#data });
-    dup.setExcludeInPlace(exclude);
-    return dup;
   }
 
   isBuiltin(): this is BuiltinPokemon {
@@ -182,10 +178,6 @@ export class CustomPokemon extends Pokemon {
     return this.#data.name;
   }
 
-  withName(name: string) {
-    return new CustomPokemon({ ...this.#data, name });
-  }
-
   get types() {
     this.#types ??= this.#data.type.map((t) => Type.of(t));
     return this.#types;
@@ -207,21 +199,17 @@ export class CustomPokemon extends Pokemon {
     return this.#data;
   }
 
-  withType(typeKeys: string[]) {
-    const dup = new CustomPokemon({ ...this.#data });
-    dup.setTypeInPlace(typeKeys);
-    return dup;
+  protected clone() {
+    return new CustomPokemon({ ...this.#data });
   }
 
-  setTypeInPlace(typeKeys: string[]) {
+  setType(typeKeys: string[]) {
     this.#data.type = typeKeys;
     this.#types = undefined;
   }
 
-  withExclude(exclude: boolean) {
-    const dup = new CustomPokemon({ ...this.#data });
-    dup.setExcludeInPlace(exclude);
-    return dup;
+  setName(name: string) {
+    this.#data.name = name;
   }
 
   isCustom(): this is CustomPokemon {
