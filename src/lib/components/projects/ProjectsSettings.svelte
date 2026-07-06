@@ -13,14 +13,14 @@
           class="hidden"
           type="radio"
           name="project"
-          checked={project.active}
+          checked={project.isActive()}
           onclick={(e) => {
             e.preventDefault();
-            if (!project.active) projects.switchTo(project.id);
+            if (!project.isActive()) projects.setActive(project.id);
           }}
         />
 
-        <div class="mr-4 text-lime-600" class:opacity-0={!project.active}>
+        <div class="mr-4 text-lime-600" class:opacity-0={!project.isActive()}>
           <Icon name="badge-check" />
         </div>
 
@@ -42,7 +42,7 @@
               );
 
               if (name && name !== project.name) {
-                projects.rename(project.id, name);
+                projects.setName(project.id, name);
               }
             },
           },
@@ -51,7 +51,7 @@
             name: "Duplicate Project",
             icon: "clone",
             onclick: () => {
-              projects.duplicate(project);
+              projects.pushDuplicate(project.id);
             },
           },
           { type: "divider" },
@@ -61,14 +61,14 @@
             icon: "times",
             class: "text-red-600",
             onclick: () => {
-              if (project.active) {
+              if (project.isActive()) {
                 return alert(
                   "Can't delete the current project! Make a new project and switch to it first.",
                 );
               }
 
               if (
-                (!project.active && project.modelState.pokemon.length === 0) ||
+                project.modelState.hasPokemons ||
                 confirm(
                   `Are you sure you want to PERMANENTLY delete project "${project.name}"? All of its data will be lost and CANNOT be recovered.`,
                 )

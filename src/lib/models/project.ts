@@ -38,7 +38,7 @@ export type V0_InactiveProjectData = Omit<InactiveProjectData, "v" | "modelState
 };
 export type V0_ProjectData = V0_ActiveProjectData | V0_InactiveProjectData;
 
-export class Projects {
+export class Projects implements Iterable<Project> {
   static from(datas: (ProjectData | V0_ProjectData)[]) {
     return new this(IList(datas.map((data) => Project.from(data))));
   }
@@ -161,6 +161,10 @@ export class Projects {
 
   #dup(list: IList<Project>) {
     return new Projects(list);
+  }
+
+  [Symbol.iterator]() {
+    return this.#list[Symbol.iterator]();
   }
 
   toJson() {
@@ -287,6 +291,10 @@ export class ProjectModelState {
 
   constructor(data: ProjectModelStateData) {
     this.#data = data;
+  }
+
+  get hasPokemons() {
+    return this.#data.pokemons.length > 0;
   }
 
   getPokemons() {

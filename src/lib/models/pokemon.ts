@@ -313,7 +313,7 @@ export class CustomPokemon extends BasePokemon {
   }
 }
 
-export class Pokemons {
+export class Pokemons implements Iterable<Pokemon> {
   static from(datas: (PokemonData | V0_PokemonData)[]) {
     return new this(IList(datas.map((d) => Pokemon.from(d))));
   }
@@ -408,6 +408,10 @@ export class Pokemons {
 
   #dup(list: IList<Pokemon>) {
     return new Pokemons(list);
+  }
+
+  [Symbol.iterator]() {
+    return this.#list[Symbol.iterator]();
   }
 
   toArray() {

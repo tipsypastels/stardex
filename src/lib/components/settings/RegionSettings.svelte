@@ -6,7 +6,7 @@
 </script>
 
 <div class="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">
-  {#each Regions.ALL.toArray() as region}
+  {#each Regions.ALL as region}
     {@const checked = $regions.has(region.key)}
     <label
       class="relative flex cursor-pointer rounded-xs border-[1px] border-slate-300 p-2 transition select-none hover:-translate-y-1"

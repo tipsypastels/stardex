@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { pokemon } from "$lib/state/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import { regions } from "$lib/state/regions";
   import { strictness } from "$lib/state/strictness";
   import { pokedexFormat } from "$lib/state/pokedex_format";
 
   let saveData = $derived({
-    pokemon: $pokemon,
+    pokemons: $pokemons,
     regions: $regions,
     strictness: $strictness,
     pokedexFormat: $pokedexFormat,

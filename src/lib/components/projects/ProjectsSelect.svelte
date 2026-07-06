@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { projects, activeProject, projectsModalOpen } from "$lib/state/projects";
+  import { projects, projectsModalOpen } from "$lib/state/projects";
+  const activeProject = projects.active;
 </script>
 
 <div class="w-max">
@@ -19,7 +20,7 @@
     onchange={(e) => {
       e.preventDefault();
       const id = (e.target as HTMLOptionElement).value;
-      projects.switchTo(id);
+      projects.setActive(id);
     }}
   >
     {#each $projects as project}

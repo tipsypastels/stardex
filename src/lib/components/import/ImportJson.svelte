@@ -1,8 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { PAGE_LINKS } from "$lib/links";
-  import { askBeforeOverwritingMons } from "$lib/models/pokemon";
-  import { pokemon } from "$lib/state/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import { regions } from "$lib/state/regions";
   import { strictness } from "$lib/state/strictness";
   import { pokedexFormat } from "$lib/state/pokedex_format";
@@ -26,8 +25,8 @@
     if (data.regions) {
       regions.set(data.regions);
     }
-    if (data.pokemon && askBeforeOverwritingMons($pokemon)) {
-      pokemon.set(data.pokemon);
+    if (data.pokemon ) {
+      pokemons.set(data.pokemons || data.pokemon);
     }
 
     goto(PAGE_LINKS.editor.href);

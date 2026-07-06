@@ -46,7 +46,7 @@
 {/snippet}
 
 {#snippet entries()}
-  {#each $pokemons.toArray() as pokemon, i}
+  {#each $pokemons as pokemon, i}
     {#if !$pokedexFilterType || pokemon.typeKeys.includes($pokedexFilterType)}
       <!-- TODO-->
       <!-- svelte-ignore a11y_no_static_element_interactions, a11y_no_noninteractive_element_interactions, a11y_click_events_have_key_events -->

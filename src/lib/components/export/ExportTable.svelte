@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { isPokemonCustom, resolvePokemonName, resolvePokemonTypes } from "$lib/models/pokemon";
-  import { pokemon } from "$lib/state/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import Icon from "../common/Icon.svelte";
 
   function makeHtml() {
@@ -10,11 +9,9 @@
       return `<td style="overflow: hidden; padding: 2px 3px 2px 3px; vertical-align: bottom; ${color ? `background-color: ${color}; color: white;` : ""}">${text}</td>`;
     }
 
-    for (const mon of $pokemon) {
-      const id = isPokemonCustom(mon) ? "" : `${mon.species.id}`;
-      const name = resolvePokemonName(mon);
-      const types = resolvePokemonTypes(mon);
-      out.push([makeCell(id), makeCell(name), ...types.map((t) => makeCell(t.name, t.color))]);
+    for (const pokemon of $pokemons) {
+      const id = pokemon.isCustom() ? "" : `${pokemon.species.id}`;
+      out.push([makeCell(id), makeCell(pokemon.name), ...pokemon.types.map((t) => makeCell(t.name, t.color))]);
     }
 
     return `
@@ -63,7 +60,7 @@
   </div>
 
   {#if justCopied}
-    <div class="absolute right-4 top-4 rounded-lg bg-lime-600 px-4 py-2 font-bold text-white">
+    <div class="absolute top-4 right-4 rounded-lg bg-lime-600 px-4 py-2 font-bold text-white">
       <Icon name="check" />
       Copied
     </div>

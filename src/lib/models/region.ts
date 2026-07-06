@@ -81,7 +81,7 @@ export class RegionMember {
   }
 }
 
-export class Regions {
+export class Regions implements Iterable<Region> {
   static #KEYS = Object.keys(DATA) as RegionKey[];
 
   static ALL = new this(ISet(this.#KEYS));
@@ -116,6 +116,10 @@ export class Regions {
 
   keys() {
     return [...this.#set];
+  }
+
+  *[Symbol.iterator]() {
+    for (const key of this.#set) yield Region.of(key);
   }
 
   toArray() {
