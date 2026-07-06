@@ -3,8 +3,8 @@ import { capitalize } from "$lib/utils/strings";
 import * as DATA from "../data/types.json" with { type: "json" };
 
 export abstract class Type {
-  static get(key: string) {
-    return key in DATA ? BuiltinType.get(key) : CustomType.get(key);
+  static of(key: string) {
+    return key in DATA ? BuiltinType.of(key) : CustomType.of(key);
   }
 
   abstract name: string;
@@ -34,7 +34,7 @@ export class BuiltinType extends Type {
   static ALL = Object.keys(DATA).map((key) => new this(key));
   static MAP = new Map(this.ALL.map((t) => [t.key, t]));
 
-  static get(key: string) {
+  static of(key: string) {
     const type = this.MAP.get(key);
     if (type) return type;
     throw new Error(`Unknown builtin type: ${key}.`);
@@ -64,7 +64,7 @@ export class BuiltinType extends Type {
 export class CustomType extends Type {
   static #cache = new Map<string, CustomType>();
 
-  static get(key: string) {
+  static of(key: string) {
     const cached = this.#cache.get(key);
     if (cached) return cached;
 

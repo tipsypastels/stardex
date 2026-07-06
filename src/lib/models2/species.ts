@@ -26,7 +26,7 @@ export class Species {
     return key in DATA;
   }
 
-  static get(key: SpeciesKey) {
+  static of(key: SpeciesKey) {
     return this.MAP.get(key)!;
   }
 
@@ -37,7 +37,7 @@ export class Species {
   #types?: BuiltinType[];
   #alts?: SpeciesAlt[];
 
-  private constructor(key: SpeciesKey, index: number) {
+  protected constructor(key: SpeciesKey, index: number) {
     this.key = key;
     this.index = index;
   }
@@ -56,7 +56,7 @@ export class Species {
   }
 
   get types() {
-    this.#types ??= this.typeKeys.map((k) => BuiltinType.get(k));
+    this.#types ??= this.typeKeys.map((k) => BuiltinType.of(k));
     return this.#types;
   }
 
@@ -91,7 +91,7 @@ export class SpeciesAlt {
   }
 
   get types() {
-    this.#types ??= this.typeKeys.map((k) => BuiltinType.get(k));
+    this.#types ??= this.typeKeys.map((k) => BuiltinType.of(k));
     return this.#types;
   }
 
