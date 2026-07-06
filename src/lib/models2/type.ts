@@ -24,10 +24,6 @@ export abstract class Type {
   isCustom(): this is CustomType {
     return false;
   }
-
-  toJSON() {
-    return this.key;
-  }
 }
 
 export class BuiltinType extends Type {

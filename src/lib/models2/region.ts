@@ -1,6 +1,7 @@
 import DATA from "../data/regions.json" with { type: "json" };
 import { Species, type SpeciesKey } from "./species";
 import type { Type } from "./type";
+import { Set as ISet } from "immutable";
 
 let makeMember: (speciesKey: string, altKey?: string) => RegionMember;
 
@@ -73,5 +74,34 @@ export class RegionMember {
     const species = Species.of(this.#speciesKey);
     const form = this.#altKey ? species.alt(this.#altKey) : species;
     return form.types;
+  }
+}
+
+export class Regions {
+  static #KEYS = Object.keys(DATA) as RegionKey[];
+
+  static ALL = new this(ISet(this.#KEYS));
+  static DEFAULT = new this(ISet(this.#KEYS.filter((k) => k !== "kanto")));
+
+  static from(keys: RegionKey[]) {
+    return new this(ISet(keys));
+  }
+
+  #set: ISet<RegionKey>;
+
+  private constructor(set: ISet<RegionKey>) {
+    this.#set = set;
+  }
+
+  has(key: RegionKey) {
+    return this.#set.has(key);
+  }
+
+  add(key: RegionKey) {
+    return new Regions(this.#set.add(key));
+  }
+
+  delete(key: RegionKey) {
+    return new Regions(this.#set.delete(key));
   }
 }

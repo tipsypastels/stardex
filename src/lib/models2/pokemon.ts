@@ -11,25 +11,22 @@ interface SharedPokemonData {
   newlinesAfterIfLast?: number;
 }
 
-interface BuiltinPokemonData extends SharedPokemonData {
+export interface BuiltinPokemonData extends SharedPokemonData {
   species: SpeciesKey;
   type?: string[];
 }
 
-interface CustomPokemonData extends SharedPokemonData {
+export interface CustomPokemonData extends SharedPokemonData {
   key: string;
   name: string;
   type: string[];
 }
 
+export type PokemonData = BuiltinPokemonData | CustomPokemonData;
+
 export abstract class Pokemon {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  static fromJson(data: any) {
-    if ("species" in data) {
-      const species: { key: SpeciesKey } | SpeciesKey = data.species;
-      return makeBuiltin({ ...data, species: typeof species === "string" ? species : species.key });
-    }
-    return makeCustom(data);
+  static from(data: PokemonData) {
+    return "species" in data ? makeBuiltin(data) : makeCustom(data);
   }
 
   abstract key: string;
@@ -43,8 +40,6 @@ export abstract class Pokemon {
 
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
-
-  abstract toJSON(): unknown;
 
   get exclude() {
     return this.shared.exclude;
@@ -173,10 +168,6 @@ export class BuiltinPokemon extends Pokemon {
   isBuiltin(): this is BuiltinPokemon {
     return true;
   }
-
-  toJSON() {
-    return this.#data;
-  }
 }
 
 export class CustomPokemon extends Pokemon {
@@ -240,9 +231,5 @@ export class CustomPokemon extends Pokemon {
 
   isCustom(): this is CustomPokemon {
     return true;
-  }
-
-  toJSON() {
-    return this.#data;
   }
 }
