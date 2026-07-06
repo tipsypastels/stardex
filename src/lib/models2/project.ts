@@ -1,4 +1,4 @@
-import type { RenameKey } from "$lib/utils/types";
+import type { Rekey } from "$lib/utils/types";
 import { PokedexFormat, type PokedexFormatKey } from "./pokedex_format";
 import { Pokemons, type PokemonData } from "./pokemon";
 import { Regions, type RegionKey } from "./region";
@@ -40,7 +40,7 @@ export interface ProjectModelStateData {
   pokedexFormat: PokedexFormatKey;
 }
 
-export type V0_ProjectModelStateData = RenameKey<ProjectModelStateData, "pokemons", "pokemon">;
+export type V0_ProjectModelStateData = Rekey<ProjectModelStateData, "pokemons", "pokemon">;
 export type V0_ActiveProjectData = Omit<ActiveProjectData, "v">;
 export type V0_InactiveProjectData = Omit<InactiveProjectData, "v" | "modelState"> & {
   modelState: V0_ProjectModelStateData;

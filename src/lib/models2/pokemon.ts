@@ -1,3 +1,4 @@
+import type { Rekey } from "$lib/utils/types";
 import { Species, type SpeciesAlt, type SpeciesKey } from "./species";
 import { Type } from "./type";
 import { Map as IMap, List as IList } from "immutable";
@@ -17,22 +18,22 @@ interface SharedPokemonData {
 
 export interface BuiltinPokemonData extends SharedPokemonData {
   species: SpeciesKey;
-  // TODO: Rename these too.
-  type?: string[];
+  types?: string[];
 }
 
 export interface CustomPokemonData extends SharedPokemonData {
   key: string;
   name: string;
-  type: string[];
+  types: string[];
 }
 
 export type PokemonData = BuiltinPokemonData | CustomPokemonData;
 
-export type V0_BuiltinPokemonData = Omit<BuiltinPokemonData, "v" | "species"> & {
+export type V0_BuiltinPokemonData = Omit<BuiltinPokemonData, "v" | "species" | "types"> & {
   species: { key: SpeciesKey };
+  type?: string[];
 };
-export type V0_CustomPokemonData = Omit<CustomPokemonData, "v">;
+export type V0_CustomPokemonData = Omit<Rekey<CustomPokemonData, "types", "type">, "v">;
 export type V0_PokemonData = V0_BuiltinPokemonData | V0_CustomPokemonData;
 
 export abstract class Pokemon {
@@ -143,7 +144,8 @@ export class BuiltinPokemon extends Pokemon {
   static {
     makeBuiltin = (data) => {
       if ("v" in data) return new this(data);
-      return new this({ v: V, ...data, species: data.species.key });
+      const { type: types, species, ...rest } = data;
+      return new this({ v: V, ...rest, species: species.key, types });
     };
   }
 
@@ -170,11 +172,11 @@ export class BuiltinPokemon extends Pokemon {
   }
 
   get typeKeys() {
-    return this.#data.type ?? this.species.typeKeys;
+    return this.#data.types ?? this.species.typeKeys;
   }
 
   #resolveTypes() {
-    return this.#data.type?.map((t) => Type.of(t)) ?? false;
+    return this.#data.types?.map((t) => Type.of(t)) ?? false;
   }
 
   get species(): Species {
@@ -187,12 +189,12 @@ export class BuiltinPokemon extends Pokemon {
   }
 
   #resolveAlt() {
-    if (!this.#data.type || this.species.alts.length === 0) {
+    if (!this.#data.types || this.species.alts.length === 0) {
       return false;
     }
 
     const s = (types: string[]) => types.sort().join();
-    const own = s(this.#data.type);
+    const own = s(this.#data.types);
     return this.species.alts.find((a) => s(a.typeKeys) === own);
   }
 
@@ -205,12 +207,12 @@ export class BuiltinPokemon extends Pokemon {
   }
 
   setTypes(typeKeys: string[]) {
-    this.#data.type = typeKeys;
+    this.#data.types = typeKeys;
     this.#types = undefined;
   }
 
   unsetTypes() {
-    delete this.#data.type;
+    delete this.#data.types;
     this.#types = undefined;
   }
 
@@ -228,14 +230,15 @@ export class BuiltinPokemon extends Pokemon {
 }
 
 export class CustomPokemon extends Pokemon {
-  static of(key: string, name: string, type: string[]) {
-    return new this({ v: V, key, name, type });
+  static of(key: string, name: string, types: string[]) {
+    return new this({ v: V, key, name, types });
   }
 
   static {
     makeCustom = (data) => {
       if ("v" in data) return new this(data);
-      return new this({ v: V, ...data });
+      const { type: types, ...rest } = data;
+      return new this({ v: V, ...rest, types });
     };
   }
 
@@ -256,12 +259,12 @@ export class CustomPokemon extends Pokemon {
   }
 
   get types() {
-    this.#types ??= this.#data.type.map((t) => Type.of(t));
+    this.#types ??= this.#data.types.map((t) => Type.of(t));
     return this.#types;
   }
 
   get typeKeys() {
-    return this.#data.type;
+    return this.#data.types;
   }
 
   get species(): undefined {
@@ -281,7 +284,7 @@ export class CustomPokemon extends Pokemon {
   }
 
   setTypes(typeKeys: string[]) {
-    this.#data.type = typeKeys;
+    this.#data.types = typeKeys;
     this.#types = undefined;
   }
 
