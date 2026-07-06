@@ -2,8 +2,8 @@ import { Species, type SpeciesAlt, type SpeciesKey } from "./species";
 import { Type } from "./type";
 import { Map as IMap, List as IList } from "immutable";
 
-let makeBuiltin: (data: BuiltinPokemonData | BuiltinPokemonDataV0) => BuiltinPokemon;
-let makeCustom: (data: CustomPokemonData | CustomPokemonDataV0) => CustomPokemon;
+let makeBuiltin: (data: BuiltinPokemonData | V0_BuiltinPokemonData) => BuiltinPokemon;
+let makeCustom: (data: CustomPokemonData | V0_CustomPokemonData) => CustomPokemon;
 
 const V = 1;
 
@@ -28,15 +28,14 @@ export interface CustomPokemonData extends SharedPokemonData {
 
 export type PokemonData = BuiltinPokemonData | CustomPokemonData;
 
-export type BuiltinPokemonDataV0 = Omit<BuiltinPokemonData, "v" | "species"> & {
+export type V0_BuiltinPokemonData = Omit<BuiltinPokemonData, "v" | "species"> & {
   species: { key: SpeciesKey };
 };
-
-export type CustomPokemonDataV0 = Omit<CustomPokemonData, "v">;
-export type PokemonDataV0 = BuiltinPokemonDataV0 | CustomPokemonDataV0;
+export type V0_CustomPokemonData = Omit<CustomPokemonData, "v">;
+export type V0_PokemonData = V0_BuiltinPokemonData | V0_CustomPokemonData;
 
 export abstract class Pokemon {
-  static from(data: PokemonData) {
+  static from(data: PokemonData | V0_PokemonData) {
     return "species" in data ? makeBuiltin(data) : makeCustom(data);
   }
 
@@ -51,6 +50,8 @@ export abstract class Pokemon {
 
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
+
+  abstract toJson(): unknown;
 
   get exclude() {
     return this.shared.exclude;
@@ -182,6 +183,10 @@ export class BuiltinPokemon extends Pokemon {
   isBuiltin(): this is BuiltinPokemon {
     return true;
   }
+
+  toJson() {
+    return this.#data;
+  }
 }
 
 export class CustomPokemon extends Pokemon {
@@ -249,10 +254,14 @@ export class CustomPokemon extends Pokemon {
   isCustom(): this is CustomPokemon {
     return true;
   }
+
+  toJson() {
+    return this.#data;
+  }
 }
 
 export class Pokemons {
-  static from(datas: PokemonData[]) {
+  static from(datas: (PokemonData | V0_PokemonData)[]) {
     return new this(IList(datas.map((d) => Pokemon.from(d))));
   }
 
@@ -267,5 +276,9 @@ export class Pokemons {
   #withAt(index: number, f: (pokemon: Pokemon) => Pokemon) {
     const list = this.#list.update(index, (p) => (p ? f(p) : undefined));
     return new Pokemons(list);
+  }
+
+  toJson() {
+    return this.#list.map((p) => p.toJson()).toArray();
   }
 }

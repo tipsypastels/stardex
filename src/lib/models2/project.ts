@@ -2,80 +2,149 @@ import { PokedexFormat, type PokedexFormatKey } from "./pokedex_format";
 import { Pokemons, type PokemonData } from "./pokemon";
 import { Regions, type RegionKey } from "./region";
 import { Strictness, type StrictnessKey } from "./strictness";
+import { List as IList } from "immutable";
 
-export interface ProjectsData {
-  all: ProjectData[];
-  active: number;
-}
+export const DEFAULT_PROJECTS: ProjectData[] = [
+  {
+    id: "default",
+    name: "Untitled Project 1",
+    active: true,
+  },
+];
 
-export interface ProjectData {
+export type ProjectData = ActiveProjectData | InactiveProjectData;
+
+export interface ActiveProjectData {
   id: string;
   name: string;
-  pokemons: PokemonData[];
+  active: true;
+}
+
+export interface InactiveProjectData {
+  id: string;
+  name: string;
+  active: false;
+  modelState: ProjectModelStateData;
+}
+
+export interface ProjectModelStateData {
+  pokemon: PokemonData[];
   regions: RegionKey[];
   strictness: StrictnessKey;
   pokedexFormat: PokedexFormatKey;
 }
 
 export class Projects {
-  static DEFAULT = new this({
-    all: [
-      {
-        id: "default",
-        name: "Untitled Project 1",
-        pokemons: [],
-        regions: Regions.DEFAULT.toArray(),
-        strictness: Strictness.DEFAULT.key,
-        pokedexFormat: PokedexFormat.DEFAULT.key,
-      },
-    ],
-    active: 0,
-  });
-
-  static from(data: ProjectsData) {
-    return new this(data);
+  static from(datas: ProjectData[]) {
+    return new this(IList(datas.map((data) => Project.from(data))));
   }
 
-  #data: ProjectsData;
+  #list: IList<Project>;
+  #activeIndex: number;
+  #active?: ActiveProject;
 
-  private constructor(data: ProjectsData) {
-    this.#data = data;
+  private constructor(list: IList<Project>) {
+    this.#list = list;
+    this.#activeIndex = list.findIndex((p) => p.isActive());
+  }
+
+  get active() {
+    this.#active ??= this.#resolveActive();
+    return this.#active;
+  }
+
+  #resolveActive() {
+    const project = this.#list.get(this.#activeIndex);
+    if (!project || !project.isActive()) {
+      throw new Error("Invalid active project index.");
+    }
+    return project;
   }
 }
 
-export class Project {
-  #data: ProjectData;
-  readonly index: number;
-  readonly active: boolean;
+export abstract class Project {
+  static from(data: ProjectData) {
+    return data.active ? ActiveProject.from(data) : InactiveProject.from(data);
+  }
 
-  #pokemons?: Pokemons;
-  #regions?: Regions;
-  #strictness?: Strictness;
-  #pokedexFormat?: PokedexFormat;
+  #data: { id: string; name: string };
 
-  constructor(data: ProjectData, index: number, active: boolean) {
+  protected constructor(data: { id: string; name: string }) {
     this.#data = data;
-    this.index = index;
-    this.active = active;
   }
 
-  get pokemons() {
-    this.#pokemons ??= Pokemons.from(this.#data.pokemons);
-    return this.#pokemons;
+  get id() {
+    return this.#data.id;
   }
 
-  get regions() {
-    this.#regions ??= Regions.from(this.#data.regions);
-    return this.#regions;
+  get name() {
+    return this.#data.name;
   }
 
-  get strictness() {
-    this.#strictness ??= Strictness.of(this.#data.strictness);
-    return this.#strictness;
+  isActive(): this is ActiveProject {
+    return false;
   }
 
-  get pokedexFormat() {
-    this.#pokedexFormat ??= PokedexFormat.of(this.#data.pokedexFormat);
-    return this.#pokedexFormat;
+  isInactive(): this is InactiveProject {
+    return false;
+  }
+
+  toJson() {
+    return this.#data;
+  }
+}
+
+export class ActiveProject extends Project {
+  static from(data: ActiveProjectData) {
+    return new this(data);
+  }
+
+  private constructor(data: ActiveProjectData) {
+    super(data);
+  }
+
+  isActive(): this is ActiveProject {
+    return true;
+  }
+}
+
+export class InactiveProject extends Project {
+  static from(data: InactiveProjectData) {
+    return new this(data);
+  }
+
+  readonly modelState: ProjectModelState;
+
+  private constructor(data: InactiveProjectData) {
+    super(data);
+    this.modelState = new ProjectModelState(data.modelState);
+  }
+
+  isInactive(): this is InactiveProject {
+    return true;
+  }
+}
+
+export class ProjectModelState {
+  #data: ProjectModelStateData;
+
+  constructor(data: ProjectModelStateData) {
+    this.#data = data;
+  }
+
+  getPokemons() {
+    return Pokemons.from(this.#data.pokemon);
+  }
+
+  getRegions() {
+    return Regions.from(this.#data.regions);
+  }
+
+  getStrictness() {
+    return Strictness.of(this.#data.strictness);
+  }
+
+  getPokedexFormat() {
+    return PokedexFormat.of(this.#data.pokedexFormat);
   }
 }

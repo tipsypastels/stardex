@@ -108,4 +108,8 @@ export class Regions {
   toArray() {
     return [...this.#set];
   }
+
+  toJson() {
+    return this.toArray();
+  }
 }
