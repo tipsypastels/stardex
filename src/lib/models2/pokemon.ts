@@ -37,7 +37,7 @@ export abstract class Pokemon {
   abstract species: Species | undefined;
   abstract alt: SpeciesAlt | undefined;
 
-  abstract setType(typeKeys: string[]): void;
+  abstract setTypes(typeKeys: string[]): void;
 
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
@@ -61,7 +61,7 @@ export abstract class Pokemon {
   setTypeAt(index: number, typeKey: string) {
     const clone = [...this.typeKeys];
     clone[index] = typeKey;
-    this.setType(clone);
+    this.setTypes(clone);
   }
 
   setExclude(exclude: boolean) {
@@ -161,7 +161,7 @@ export class BuiltinPokemon extends Pokemon {
     return new BuiltinPokemon({ ...this.#data });
   }
 
-  setType(typeKeys: string[]) {
+  setTypes(typeKeys: string[]) {
     this.#data.type = typeKeys;
     this.#types = undefined;
   }
@@ -221,7 +221,7 @@ export class CustomPokemon extends Pokemon {
     return new CustomPokemon({ ...this.#data });
   }
 
-  setType(typeKeys: string[]) {
+  setTypes(typeKeys: string[]) {
     this.#data.type = typeKeys;
     this.#types = undefined;
   }

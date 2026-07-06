@@ -35,7 +35,7 @@
  *  id: number,
  *  key: string,
  *  name: string,
- *  type: string[],
+ *  types: string[],
  *  evos?: { from?: string, to?: string[] }
  * }} ResolvedMon
  */
@@ -85,7 +85,7 @@ function fillSegment(promises, segment) {
   async function resolve(url) {
     const species = await fetchPokemonSpecies(url);
     const form = await fetchPokemonDefaultForm(species);
-    const type = form.types.map((t) => t.type.name);
+    const types = form.types.map((t) => t.type.name);
 
     const { id } = species;
     const key = species.name;
@@ -110,7 +110,7 @@ function fillSegment(promises, segment) {
       }
     }
 
-    return { id, key, name, type, evos };
+    return { id, key, name, types, evos };
   }
 
   for (const { url } of segment.results) {

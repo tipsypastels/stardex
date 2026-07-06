@@ -2,7 +2,7 @@
   "bulbasaur": {
     "id": 1,
     "name": "Bulbasaur",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "to": ["ivysaur"]
     }
@@ -10,7 +10,7 @@
   "ivysaur": {
     "id": 2,
     "name": "Ivysaur",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "bulbasaur",
       "to": ["venusaur"]
@@ -19,7 +19,7 @@
   "venusaur": {
     "id": 3,
     "name": "Venusaur",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "ivysaur"
     }
@@ -27,7 +27,7 @@
   "charmander": {
     "id": 4,
     "name": "Charmander",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["charmeleon"]
     }
@@ -35,7 +35,7 @@
   "charmeleon": {
     "id": 5,
     "name": "Charmeleon",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "charmander",
       "to": ["charizard"]
@@ -44,7 +44,7 @@
   "charizard": {
     "id": 6,
     "name": "Charizard",
-    "type": ["fire", "flying"],
+    "types": ["fire", "flying"],
     "evos": {
       "from": "charmeleon"
     }
@@ -52,7 +52,7 @@
   "squirtle": {
     "id": 7,
     "name": "Squirtle",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["wartortle"]
     }
@@ -60,7 +60,7 @@
   "wartortle": {
     "id": 8,
     "name": "Wartortle",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "squirtle",
       "to": ["blastoise"]
@@ -69,7 +69,7 @@
   "blastoise": {
     "id": 9,
     "name": "Blastoise",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "wartortle"
     }
@@ -77,7 +77,7 @@
   "caterpie": {
     "id": 10,
     "name": "Caterpie",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["metapod"]
     }
@@ -85,7 +85,7 @@
   "metapod": {
     "id": 11,
     "name": "Metapod",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "caterpie",
       "to": ["butterfree"]
@@ -94,7 +94,7 @@
   "butterfree": {
     "id": 12,
     "name": "Butterfree",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "metapod"
     }
@@ -102,7 +102,7 @@
   "weedle": {
     "id": 13,
     "name": "Weedle",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "to": ["kakuna"]
     }
@@ -110,7 +110,7 @@
   "kakuna": {
     "id": 14,
     "name": "Kakuna",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "weedle",
       "to": ["beedrill"]
@@ -119,7 +119,7 @@
   "beedrill": {
     "id": 15,
     "name": "Beedrill",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "kakuna"
     }
@@ -127,7 +127,7 @@
   "pidgey": {
     "id": 16,
     "name": "Pidgey",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["pidgeotto"]
     }
@@ -135,7 +135,7 @@
   "pidgeotto": {
     "id": 17,
     "name": "Pidgeotto",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "pidgey",
       "to": ["pidgeot"]
@@ -144,7 +144,7 @@
   "pidgeot": {
     "id": 18,
     "name": "Pidgeot",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "pidgeotto"
     }
@@ -152,7 +152,7 @@
   "rattata": {
     "id": 19,
     "name": "Rattata",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["raticate"]
     }
@@ -160,7 +160,7 @@
   "raticate": {
     "id": 20,
     "name": "Raticate",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "rattata"
     }
@@ -168,7 +168,7 @@
   "spearow": {
     "id": 21,
     "name": "Spearow",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["fearow"]
     }
@@ -176,7 +176,7 @@
   "fearow": {
     "id": 22,
     "name": "Fearow",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "spearow"
     }
@@ -184,7 +184,7 @@
   "ekans": {
     "id": 23,
     "name": "Ekans",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["arbok"]
     }
@@ -192,7 +192,7 @@
   "arbok": {
     "id": 24,
     "name": "Arbok",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "ekans"
     }
@@ -200,7 +200,7 @@
   "pikachu": {
     "id": 25,
     "name": "Pikachu",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "pichu",
       "to": ["raichu"]
@@ -209,7 +209,7 @@
   "raichu": {
     "id": 26,
     "name": "Raichu",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "pikachu"
     }
@@ -217,7 +217,7 @@
   "sandshrew": {
     "id": 27,
     "name": "Sandshrew",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["sandslash"]
     }
@@ -225,7 +225,7 @@
   "sandslash": {
     "id": 28,
     "name": "Sandslash",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "sandshrew"
     }
@@ -233,7 +233,7 @@
   "nidoran-f": {
     "id": 29,
     "name": "Nidoran♀",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["nidorina"]
     }
@@ -241,7 +241,7 @@
   "nidorina": {
     "id": 30,
     "name": "Nidorina",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "nidoran-f",
       "to": ["nidoqueen"]
@@ -250,7 +250,7 @@
   "nidoqueen": {
     "id": 31,
     "name": "Nidoqueen",
-    "type": ["poison", "ground"],
+    "types": ["poison", "ground"],
     "evos": {
       "from": "nidorina"
     }
@@ -258,7 +258,7 @@
   "nidoran-m": {
     "id": 32,
     "name": "Nidoran♂",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["nidorino"]
     }
@@ -266,7 +266,7 @@
   "nidorino": {
     "id": 33,
     "name": "Nidorino",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "nidoran-m",
       "to": ["nidoking"]
@@ -275,7 +275,7 @@
   "nidoking": {
     "id": 34,
     "name": "Nidoking",
-    "type": ["poison", "ground"],
+    "types": ["poison", "ground"],
     "evos": {
       "from": "nidorino"
     }
@@ -283,7 +283,7 @@
   "clefairy": {
     "id": 35,
     "name": "Clefairy",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "cleffa",
       "to": ["clefable"]
@@ -292,7 +292,7 @@
   "clefable": {
     "id": 36,
     "name": "Clefable",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "clefairy"
     }
@@ -300,7 +300,7 @@
   "vulpix": {
     "id": 37,
     "name": "Vulpix",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["ninetales"]
     },
@@ -308,14 +308,14 @@
       {
         "kind": "alola",
         "name": "alolan",
-        "type": ["ice"]
+        "types": ["ice"]
       }
     ]
   },
   "ninetales": {
     "id": 38,
     "name": "Ninetales",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "vulpix"
     }
@@ -323,7 +323,7 @@
   "jigglypuff": {
     "id": 39,
     "name": "Jigglypuff",
-    "type": ["normal", "fairy"],
+    "types": ["normal", "fairy"],
     "evos": {
       "from": "igglybuff",
       "to": ["wigglytuff"]
@@ -332,7 +332,7 @@
   "wigglytuff": {
     "id": 40,
     "name": "Wigglytuff",
-    "type": ["normal", "fairy"],
+    "types": ["normal", "fairy"],
     "evos": {
       "from": "jigglypuff"
     }
@@ -340,7 +340,7 @@
   "zubat": {
     "id": 41,
     "name": "Zubat",
-    "type": ["poison", "flying"],
+    "types": ["poison", "flying"],
     "evos": {
       "to": ["golbat"]
     }
@@ -348,7 +348,7 @@
   "golbat": {
     "id": 42,
     "name": "Golbat",
-    "type": ["poison", "flying"],
+    "types": ["poison", "flying"],
     "evos": {
       "from": "zubat",
       "to": ["crobat"]
@@ -357,7 +357,7 @@
   "oddish": {
     "id": 43,
     "name": "Oddish",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "to": ["gloom"]
     }
@@ -365,7 +365,7 @@
   "gloom": {
     "id": 44,
     "name": "Gloom",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "oddish",
       "to": ["vileplume", "bellossom"]
@@ -374,7 +374,7 @@
   "vileplume": {
     "id": 45,
     "name": "Vileplume",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "gloom"
     }
@@ -382,7 +382,7 @@
   "paras": {
     "id": 46,
     "name": "Paras",
-    "type": ["bug", "grass"],
+    "types": ["bug", "grass"],
     "evos": {
       "to": ["parasect"]
     }
@@ -390,7 +390,7 @@
   "parasect": {
     "id": 47,
     "name": "Parasect",
-    "type": ["bug", "grass"],
+    "types": ["bug", "grass"],
     "evos": {
       "from": "paras"
     }
@@ -398,7 +398,7 @@
   "venonat": {
     "id": 48,
     "name": "Venonat",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "to": ["venomoth"]
     }
@@ -406,7 +406,7 @@
   "venomoth": {
     "id": 49,
     "name": "Venomoth",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "venonat"
     }
@@ -414,7 +414,7 @@
   "diglett": {
     "id": 50,
     "name": "Diglett",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["dugtrio"]
     }
@@ -422,7 +422,7 @@
   "dugtrio": {
     "id": 51,
     "name": "Dugtrio",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "diglett"
     }
@@ -430,7 +430,7 @@
   "meowth": {
     "id": 52,
     "name": "Meowth",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["persian", "perrserker"]
     }
@@ -438,7 +438,7 @@
   "persian": {
     "id": 53,
     "name": "Persian",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "meowth"
     }
@@ -446,7 +446,7 @@
   "psyduck": {
     "id": 54,
     "name": "Psyduck",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["golduck"]
     }
@@ -454,7 +454,7 @@
   "golduck": {
     "id": 55,
     "name": "Golduck",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "psyduck"
     }
@@ -462,7 +462,7 @@
   "mankey": {
     "id": 56,
     "name": "Mankey",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["primeape"]
     }
@@ -470,7 +470,7 @@
   "primeape": {
     "id": 57,
     "name": "Primeape",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "mankey",
       "to": ["annihilape"]
@@ -479,7 +479,7 @@
   "growlithe": {
     "id": 58,
     "name": "Growlithe",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["arcanine"]
     }
@@ -487,7 +487,7 @@
   "arcanine": {
     "id": 59,
     "name": "Arcanine",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "growlithe"
     }
@@ -495,7 +495,7 @@
   "poliwag": {
     "id": 60,
     "name": "Poliwag",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["poliwhirl"]
     }
@@ -503,7 +503,7 @@
   "poliwhirl": {
     "id": 61,
     "name": "Poliwhirl",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "poliwag",
       "to": ["poliwrath", "politoed"]
@@ -512,7 +512,7 @@
   "poliwrath": {
     "id": 62,
     "name": "Poliwrath",
-    "type": ["water", "fighting"],
+    "types": ["water", "fighting"],
     "evos": {
       "from": "poliwhirl"
     }
@@ -520,7 +520,7 @@
   "abra": {
     "id": 63,
     "name": "Abra",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["kadabra"]
     }
@@ -528,7 +528,7 @@
   "kadabra": {
     "id": 64,
     "name": "Kadabra",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "abra",
       "to": ["alakazam"]
@@ -537,7 +537,7 @@
   "alakazam": {
     "id": 65,
     "name": "Alakazam",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "kadabra"
     }
@@ -545,7 +545,7 @@
   "machop": {
     "id": 66,
     "name": "Machop",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["machoke"]
     }
@@ -553,7 +553,7 @@
   "machoke": {
     "id": 67,
     "name": "Machoke",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "machop",
       "to": ["machamp"]
@@ -562,7 +562,7 @@
   "machamp": {
     "id": 68,
     "name": "Machamp",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "machoke"
     }
@@ -570,7 +570,7 @@
   "bellsprout": {
     "id": 69,
     "name": "Bellsprout",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "to": ["weepinbell"]
     }
@@ -578,7 +578,7 @@
   "weepinbell": {
     "id": 70,
     "name": "Weepinbell",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "bellsprout",
       "to": ["victreebel"]
@@ -587,7 +587,7 @@
   "victreebel": {
     "id": 71,
     "name": "Victreebel",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "weepinbell"
     }
@@ -595,7 +595,7 @@
   "tentacool": {
     "id": 72,
     "name": "Tentacool",
-    "type": ["water", "poison"],
+    "types": ["water", "poison"],
     "evos": {
       "to": ["tentacruel"]
     }
@@ -603,7 +603,7 @@
   "tentacruel": {
     "id": 73,
     "name": "Tentacruel",
-    "type": ["water", "poison"],
+    "types": ["water", "poison"],
     "evos": {
       "from": "tentacool"
     }
@@ -611,7 +611,7 @@
   "geodude": {
     "id": 74,
     "name": "Geodude",
-    "type": ["rock", "ground"],
+    "types": ["rock", "ground"],
     "evos": {
       "to": ["graveler"]
     }
@@ -619,7 +619,7 @@
   "graveler": {
     "id": 75,
     "name": "Graveler",
-    "type": ["rock", "ground"],
+    "types": ["rock", "ground"],
     "evos": {
       "from": "geodude",
       "to": ["golem"]
@@ -628,7 +628,7 @@
   "golem": {
     "id": 76,
     "name": "Golem",
-    "type": ["rock", "ground"],
+    "types": ["rock", "ground"],
     "evos": {
       "from": "graveler"
     }
@@ -636,7 +636,7 @@
   "ponyta": {
     "id": 77,
     "name": "Ponyta",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["rapidash"]
     }
@@ -644,7 +644,7 @@
   "rapidash": {
     "id": 78,
     "name": "Rapidash",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "ponyta"
     }
@@ -652,7 +652,7 @@
   "slowpoke": {
     "id": 79,
     "name": "Slowpoke",
-    "type": ["water", "psychic"],
+    "types": ["water", "psychic"],
     "evos": {
       "to": ["slowbro", "slowking"]
     }
@@ -660,7 +660,7 @@
   "slowbro": {
     "id": 80,
     "name": "Slowbro",
-    "type": ["water", "psychic"],
+    "types": ["water", "psychic"],
     "evos": {
       "from": "slowpoke"
     }
@@ -668,7 +668,7 @@
   "magnemite": {
     "id": 81,
     "name": "Magnemite",
-    "type": ["electric", "steel"],
+    "types": ["electric", "steel"],
     "evos": {
       "to": ["magneton"]
     }
@@ -676,7 +676,7 @@
   "magneton": {
     "id": 82,
     "name": "Magneton",
-    "type": ["electric", "steel"],
+    "types": ["electric", "steel"],
     "evos": {
       "from": "magnemite",
       "to": ["magnezone"]
@@ -685,7 +685,7 @@
   "farfetchd": {
     "id": 83,
     "name": "Farfetch’d",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["sirfetchd"]
     }
@@ -693,7 +693,7 @@
   "doduo": {
     "id": 84,
     "name": "Doduo",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["dodrio"]
     }
@@ -701,7 +701,7 @@
   "dodrio": {
     "id": 85,
     "name": "Dodrio",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "doduo"
     }
@@ -709,7 +709,7 @@
   "seel": {
     "id": 86,
     "name": "Seel",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["dewgong"]
     }
@@ -717,7 +717,7 @@
   "dewgong": {
     "id": 87,
     "name": "Dewgong",
-    "type": ["water", "ice"],
+    "types": ["water", "ice"],
     "evos": {
       "from": "seel"
     }
@@ -725,7 +725,7 @@
   "grimer": {
     "id": 88,
     "name": "Grimer",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["muk"]
     }
@@ -733,7 +733,7 @@
   "muk": {
     "id": 89,
     "name": "Muk",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "grimer"
     }
@@ -741,7 +741,7 @@
   "shellder": {
     "id": 90,
     "name": "Shellder",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["cloyster"]
     }
@@ -749,7 +749,7 @@
   "cloyster": {
     "id": 91,
     "name": "Cloyster",
-    "type": ["water", "ice"],
+    "types": ["water", "ice"],
     "evos": {
       "from": "shellder"
     }
@@ -757,7 +757,7 @@
   "gastly": {
     "id": 92,
     "name": "Gastly",
-    "type": ["ghost", "poison"],
+    "types": ["ghost", "poison"],
     "evos": {
       "to": ["haunter"]
     }
@@ -765,7 +765,7 @@
   "haunter": {
     "id": 93,
     "name": "Haunter",
-    "type": ["ghost", "poison"],
+    "types": ["ghost", "poison"],
     "evos": {
       "from": "gastly",
       "to": ["gengar"]
@@ -774,7 +774,7 @@
   "gengar": {
     "id": 94,
     "name": "Gengar",
-    "type": ["ghost", "poison"],
+    "types": ["ghost", "poison"],
     "evos": {
       "from": "haunter"
     }
@@ -782,7 +782,7 @@
   "onix": {
     "id": 95,
     "name": "Onix",
-    "type": ["rock", "ground"],
+    "types": ["rock", "ground"],
     "evos": {
       "to": ["steelix"]
     }
@@ -790,7 +790,7 @@
   "drowzee": {
     "id": 96,
     "name": "Drowzee",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["hypno"]
     }
@@ -798,7 +798,7 @@
   "hypno": {
     "id": 97,
     "name": "Hypno",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "drowzee"
     }
@@ -806,7 +806,7 @@
   "krabby": {
     "id": 98,
     "name": "Krabby",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["kingler"]
     }
@@ -814,7 +814,7 @@
   "kingler": {
     "id": 99,
     "name": "Kingler",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "krabby"
     }
@@ -822,7 +822,7 @@
   "voltorb": {
     "id": 100,
     "name": "Voltorb",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["electrode"]
     }
@@ -830,7 +830,7 @@
   "electrode": {
     "id": 101,
     "name": "Electrode",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "voltorb"
     }
@@ -838,7 +838,7 @@
   "exeggcute": {
     "id": 102,
     "name": "Exeggcute",
-    "type": ["grass", "psychic"],
+    "types": ["grass", "psychic"],
     "evos": {
       "to": ["exeggutor"]
     }
@@ -846,7 +846,7 @@
   "exeggutor": {
     "id": 103,
     "name": "Exeggutor",
-    "type": ["grass", "psychic"],
+    "types": ["grass", "psychic"],
     "evos": {
       "from": "exeggcute"
     }
@@ -854,7 +854,7 @@
   "cubone": {
     "id": 104,
     "name": "Cubone",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["marowak"]
     }
@@ -862,7 +862,7 @@
   "marowak": {
     "id": 105,
     "name": "Marowak",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "cubone"
     }
@@ -870,7 +870,7 @@
   "hitmonlee": {
     "id": 106,
     "name": "Hitmonlee",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "tyrogue"
     }
@@ -878,7 +878,7 @@
   "hitmonchan": {
     "id": 107,
     "name": "Hitmonchan",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "tyrogue"
     }
@@ -886,7 +886,7 @@
   "lickitung": {
     "id": 108,
     "name": "Lickitung",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["lickilicky"]
     }
@@ -894,7 +894,7 @@
   "koffing": {
     "id": 109,
     "name": "Koffing",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["weezing"]
     }
@@ -902,7 +902,7 @@
   "weezing": {
     "id": 110,
     "name": "Weezing",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "koffing"
     }
@@ -910,7 +910,7 @@
   "rhyhorn": {
     "id": 111,
     "name": "Rhyhorn",
-    "type": ["ground", "rock"],
+    "types": ["ground", "rock"],
     "evos": {
       "to": ["rhydon"]
     }
@@ -918,7 +918,7 @@
   "rhydon": {
     "id": 112,
     "name": "Rhydon",
-    "type": ["ground", "rock"],
+    "types": ["ground", "rock"],
     "evos": {
       "from": "rhyhorn",
       "to": ["rhyperior"]
@@ -927,7 +927,7 @@
   "chansey": {
     "id": 113,
     "name": "Chansey",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "happiny",
       "to": ["blissey"]
@@ -936,7 +936,7 @@
   "tangela": {
     "id": 114,
     "name": "Tangela",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["tangrowth"]
     }
@@ -944,12 +944,12 @@
   "kangaskhan": {
     "id": 115,
     "name": "Kangaskhan",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "horsea": {
     "id": 116,
     "name": "Horsea",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["seadra"]
     }
@@ -957,7 +957,7 @@
   "seadra": {
     "id": 117,
     "name": "Seadra",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "horsea",
       "to": ["kingdra"]
@@ -966,7 +966,7 @@
   "goldeen": {
     "id": 118,
     "name": "Goldeen",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["seaking"]
     }
@@ -974,7 +974,7 @@
   "seaking": {
     "id": 119,
     "name": "Seaking",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "goldeen"
     }
@@ -982,7 +982,7 @@
   "staryu": {
     "id": 120,
     "name": "Staryu",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["starmie"]
     }
@@ -990,7 +990,7 @@
   "starmie": {
     "id": 121,
     "name": "Starmie",
-    "type": ["water", "psychic"],
+    "types": ["water", "psychic"],
     "evos": {
       "from": "staryu"
     }
@@ -998,7 +998,7 @@
   "mr-mime": {
     "id": 122,
     "name": "Mr. Mime",
-    "type": ["psychic", "fairy"],
+    "types": ["psychic", "fairy"],
     "evos": {
       "from": "mime-jr",
       "to": ["mr-rime"]
@@ -1007,7 +1007,7 @@
   "scyther": {
     "id": 123,
     "name": "Scyther",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "to": ["scizor", "kleavor"]
     }
@@ -1015,7 +1015,7 @@
   "jynx": {
     "id": 124,
     "name": "Jynx",
-    "type": ["ice", "psychic"],
+    "types": ["ice", "psychic"],
     "evos": {
       "from": "smoochum"
     }
@@ -1023,7 +1023,7 @@
   "electabuzz": {
     "id": 125,
     "name": "Electabuzz",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "elekid",
       "to": ["electivire"]
@@ -1032,7 +1032,7 @@
   "magmar": {
     "id": 126,
     "name": "Magmar",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "magby",
       "to": ["magmortar"]
@@ -1041,17 +1041,17 @@
   "pinsir": {
     "id": 127,
     "name": "Pinsir",
-    "type": ["bug"]
+    "types": ["bug"]
   },
   "tauros": {
     "id": 128,
     "name": "Tauros",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "magikarp": {
     "id": 129,
     "name": "Magikarp",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["gyarados"]
     }
@@ -1059,7 +1059,7 @@
   "gyarados": {
     "id": 130,
     "name": "Gyarados",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "from": "magikarp"
     }
@@ -1067,17 +1067,17 @@
   "lapras": {
     "id": 131,
     "name": "Lapras",
-    "type": ["water", "ice"]
+    "types": ["water", "ice"]
   },
   "ditto": {
     "id": 132,
     "name": "Ditto",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "eevee": {
     "id": 133,
     "name": "Eevee",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["vaporeon", "jolteon", "flareon", "espeon", "umbreon", "leafeon", "glaceon", "sylveon"]
     }
@@ -1085,7 +1085,7 @@
   "vaporeon": {
     "id": 134,
     "name": "Vaporeon",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "eevee"
     }
@@ -1093,7 +1093,7 @@
   "jolteon": {
     "id": 135,
     "name": "Jolteon",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "eevee"
     }
@@ -1101,7 +1101,7 @@
   "flareon": {
     "id": 136,
     "name": "Flareon",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "eevee"
     }
@@ -1109,7 +1109,7 @@
   "porygon": {
     "id": 137,
     "name": "Porygon",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["porygon2"]
     }
@@ -1117,7 +1117,7 @@
   "omanyte": {
     "id": 138,
     "name": "Omanyte",
-    "type": ["rock", "water"],
+    "types": ["rock", "water"],
     "evos": {
       "to": ["omastar"]
     }
@@ -1125,7 +1125,7 @@
   "omastar": {
     "id": 139,
     "name": "Omastar",
-    "type": ["rock", "water"],
+    "types": ["rock", "water"],
     "evos": {
       "from": "omanyte"
     }
@@ -1133,7 +1133,7 @@
   "kabuto": {
     "id": 140,
     "name": "Kabuto",
-    "type": ["rock", "water"],
+    "types": ["rock", "water"],
     "evos": {
       "to": ["kabutops"]
     }
@@ -1141,7 +1141,7 @@
   "kabutops": {
     "id": 141,
     "name": "Kabutops",
-    "type": ["rock", "water"],
+    "types": ["rock", "water"],
     "evos": {
       "from": "kabuto"
     }
@@ -1149,12 +1149,12 @@
   "aerodactyl": {
     "id": 142,
     "name": "Aerodactyl",
-    "type": ["rock", "flying"]
+    "types": ["rock", "flying"]
   },
   "snorlax": {
     "id": 143,
     "name": "Snorlax",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "munchlax"
     }
@@ -1162,22 +1162,22 @@
   "articuno": {
     "id": 144,
     "name": "Articuno",
-    "type": ["ice", "flying"]
+    "types": ["ice", "flying"]
   },
   "zapdos": {
     "id": 145,
     "name": "Zapdos",
-    "type": ["electric", "flying"]
+    "types": ["electric", "flying"]
   },
   "moltres": {
     "id": 146,
     "name": "Moltres",
-    "type": ["fire", "flying"]
+    "types": ["fire", "flying"]
   },
   "dratini": {
     "id": 147,
     "name": "Dratini",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "to": ["dragonair"]
     }
@@ -1185,7 +1185,7 @@
   "dragonair": {
     "id": 148,
     "name": "Dragonair",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "from": "dratini",
       "to": ["dragonite"]
@@ -1194,7 +1194,7 @@
   "dragonite": {
     "id": 149,
     "name": "Dragonite",
-    "type": ["dragon", "flying"],
+    "types": ["dragon", "flying"],
     "evos": {
       "from": "dragonair"
     }
@@ -1202,17 +1202,17 @@
   "mewtwo": {
     "id": 150,
     "name": "Mewtwo",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "mew": {
     "id": 151,
     "name": "Mew",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "chikorita": {
     "id": 152,
     "name": "Chikorita",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["bayleef"]
     }
@@ -1220,7 +1220,7 @@
   "bayleef": {
     "id": 153,
     "name": "Bayleef",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "chikorita",
       "to": ["meganium"]
@@ -1229,7 +1229,7 @@
   "meganium": {
     "id": 154,
     "name": "Meganium",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "bayleef"
     }
@@ -1237,7 +1237,7 @@
   "cyndaquil": {
     "id": 155,
     "name": "Cyndaquil",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["quilava"]
     }
@@ -1245,7 +1245,7 @@
   "quilava": {
     "id": 156,
     "name": "Quilava",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "cyndaquil",
       "to": ["typhlosion"]
@@ -1254,7 +1254,7 @@
   "typhlosion": {
     "id": 157,
     "name": "Typhlosion",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "quilava"
     }
@@ -1262,7 +1262,7 @@
   "totodile": {
     "id": 158,
     "name": "Totodile",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["croconaw"]
     }
@@ -1270,7 +1270,7 @@
   "croconaw": {
     "id": 159,
     "name": "Croconaw",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "totodile",
       "to": ["feraligatr"]
@@ -1279,7 +1279,7 @@
   "feraligatr": {
     "id": 160,
     "name": "Feraligatr",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "croconaw"
     }
@@ -1287,7 +1287,7 @@
   "sentret": {
     "id": 161,
     "name": "Sentret",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["furret"]
     }
@@ -1295,7 +1295,7 @@
   "furret": {
     "id": 162,
     "name": "Furret",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "sentret"
     }
@@ -1303,7 +1303,7 @@
   "hoothoot": {
     "id": 163,
     "name": "Hoothoot",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["noctowl"]
     }
@@ -1311,7 +1311,7 @@
   "noctowl": {
     "id": 164,
     "name": "Noctowl",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "hoothoot"
     }
@@ -1319,7 +1319,7 @@
   "ledyba": {
     "id": 165,
     "name": "Ledyba",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "to": ["ledian"]
     }
@@ -1327,7 +1327,7 @@
   "ledian": {
     "id": 166,
     "name": "Ledian",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "ledyba"
     }
@@ -1335,7 +1335,7 @@
   "spinarak": {
     "id": 167,
     "name": "Spinarak",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "to": ["ariados"]
     }
@@ -1343,7 +1343,7 @@
   "ariados": {
     "id": 168,
     "name": "Ariados",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "spinarak"
     }
@@ -1351,7 +1351,7 @@
   "crobat": {
     "id": 169,
     "name": "Crobat",
-    "type": ["poison", "flying"],
+    "types": ["poison", "flying"],
     "evos": {
       "from": "golbat"
     }
@@ -1359,7 +1359,7 @@
   "chinchou": {
     "id": 170,
     "name": "Chinchou",
-    "type": ["water", "electric"],
+    "types": ["water", "electric"],
     "evos": {
       "to": ["lanturn"]
     }
@@ -1367,7 +1367,7 @@
   "lanturn": {
     "id": 171,
     "name": "Lanturn",
-    "type": ["water", "electric"],
+    "types": ["water", "electric"],
     "evos": {
       "from": "chinchou"
     }
@@ -1375,7 +1375,7 @@
   "pichu": {
     "id": 172,
     "name": "Pichu",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["pikachu"]
     }
@@ -1383,7 +1383,7 @@
   "cleffa": {
     "id": 173,
     "name": "Cleffa",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["clefairy"]
     }
@@ -1391,7 +1391,7 @@
   "igglybuff": {
     "id": 174,
     "name": "Igglybuff",
-    "type": ["normal", "fairy"],
+    "types": ["normal", "fairy"],
     "evos": {
       "to": ["jigglypuff"]
     }
@@ -1399,7 +1399,7 @@
   "togepi": {
     "id": 175,
     "name": "Togepi",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["togetic"]
     }
@@ -1407,7 +1407,7 @@
   "togetic": {
     "id": 176,
     "name": "Togetic",
-    "type": ["fairy", "flying"],
+    "types": ["fairy", "flying"],
     "evos": {
       "from": "togepi",
       "to": ["togekiss"]
@@ -1416,7 +1416,7 @@
   "natu": {
     "id": 177,
     "name": "Natu",
-    "type": ["psychic", "flying"],
+    "types": ["psychic", "flying"],
     "evos": {
       "to": ["xatu"]
     }
@@ -1424,7 +1424,7 @@
   "xatu": {
     "id": 178,
     "name": "Xatu",
-    "type": ["psychic", "flying"],
+    "types": ["psychic", "flying"],
     "evos": {
       "from": "natu"
     }
@@ -1432,7 +1432,7 @@
   "mareep": {
     "id": 179,
     "name": "Mareep",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["flaaffy"]
     }
@@ -1440,7 +1440,7 @@
   "flaaffy": {
     "id": 180,
     "name": "Flaaffy",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "mareep",
       "to": ["ampharos"]
@@ -1449,7 +1449,7 @@
   "ampharos": {
     "id": 181,
     "name": "Ampharos",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "flaaffy"
     }
@@ -1457,7 +1457,7 @@
   "bellossom": {
     "id": 182,
     "name": "Bellossom",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "gloom"
     }
@@ -1465,7 +1465,7 @@
   "marill": {
     "id": 183,
     "name": "Marill",
-    "type": ["water", "fairy"],
+    "types": ["water", "fairy"],
     "evos": {
       "from": "azurill",
       "to": ["azumarill"]
@@ -1474,7 +1474,7 @@
   "azumarill": {
     "id": 184,
     "name": "Azumarill",
-    "type": ["water", "fairy"],
+    "types": ["water", "fairy"],
     "evos": {
       "from": "marill"
     }
@@ -1482,7 +1482,7 @@
   "sudowoodo": {
     "id": 185,
     "name": "Sudowoodo",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "bonsly"
     }
@@ -1490,7 +1490,7 @@
   "politoed": {
     "id": 186,
     "name": "Politoed",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "poliwhirl"
     }
@@ -1498,7 +1498,7 @@
   "hoppip": {
     "id": 187,
     "name": "Hoppip",
-    "type": ["grass", "flying"],
+    "types": ["grass", "flying"],
     "evos": {
       "to": ["skiploom"]
     }
@@ -1506,7 +1506,7 @@
   "skiploom": {
     "id": 188,
     "name": "Skiploom",
-    "type": ["grass", "flying"],
+    "types": ["grass", "flying"],
     "evos": {
       "from": "hoppip",
       "to": ["jumpluff"]
@@ -1515,7 +1515,7 @@
   "jumpluff": {
     "id": 189,
     "name": "Jumpluff",
-    "type": ["grass", "flying"],
+    "types": ["grass", "flying"],
     "evos": {
       "from": "skiploom"
     }
@@ -1523,7 +1523,7 @@
   "aipom": {
     "id": 190,
     "name": "Aipom",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["ambipom"]
     }
@@ -1531,7 +1531,7 @@
   "sunkern": {
     "id": 191,
     "name": "Sunkern",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["sunflora"]
     }
@@ -1539,7 +1539,7 @@
   "sunflora": {
     "id": 192,
     "name": "Sunflora",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "sunkern"
     }
@@ -1547,7 +1547,7 @@
   "yanma": {
     "id": 193,
     "name": "Yanma",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "to": ["yanmega"]
     }
@@ -1555,7 +1555,7 @@
   "wooper": {
     "id": 194,
     "name": "Wooper",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "to": ["quagsire", "clodsire"]
     }
@@ -1563,7 +1563,7 @@
   "quagsire": {
     "id": 195,
     "name": "Quagsire",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "wooper"
     }
@@ -1571,7 +1571,7 @@
   "espeon": {
     "id": 196,
     "name": "Espeon",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "eevee"
     }
@@ -1579,7 +1579,7 @@
   "umbreon": {
     "id": 197,
     "name": "Umbreon",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "from": "eevee"
     }
@@ -1587,7 +1587,7 @@
   "murkrow": {
     "id": 198,
     "name": "Murkrow",
-    "type": ["dark", "flying"],
+    "types": ["dark", "flying"],
     "evos": {
       "to": ["honchkrow"]
     }
@@ -1595,7 +1595,7 @@
   "slowking": {
     "id": 199,
     "name": "Slowking",
-    "type": ["water", "psychic"],
+    "types": ["water", "psychic"],
     "evos": {
       "from": "slowpoke"
     }
@@ -1603,7 +1603,7 @@
   "misdreavus": {
     "id": 200,
     "name": "Misdreavus",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["mismagius"]
     }
@@ -1611,12 +1611,12 @@
   "unown": {
     "id": 201,
     "name": "Unown",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "wobbuffet": {
     "id": 202,
     "name": "Wobbuffet",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "wynaut"
     }
@@ -1624,7 +1624,7 @@
   "girafarig": {
     "id": 203,
     "name": "Girafarig",
-    "type": ["normal", "psychic"],
+    "types": ["normal", "psychic"],
     "evos": {
       "to": ["farigiraf"]
     }
@@ -1632,7 +1632,7 @@
   "pineco": {
     "id": 204,
     "name": "Pineco",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["forretress"]
     }
@@ -1640,7 +1640,7 @@
   "forretress": {
     "id": 205,
     "name": "Forretress",
-    "type": ["bug", "steel"],
+    "types": ["bug", "steel"],
     "evos": {
       "from": "pineco"
     }
@@ -1648,7 +1648,7 @@
   "dunsparce": {
     "id": 206,
     "name": "Dunsparce",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["dudunsparce"]
     }
@@ -1656,7 +1656,7 @@
   "gligar": {
     "id": 207,
     "name": "Gligar",
-    "type": ["ground", "flying"],
+    "types": ["ground", "flying"],
     "evos": {
       "to": ["gliscor"]
     }
@@ -1664,7 +1664,7 @@
   "steelix": {
     "id": 208,
     "name": "Steelix",
-    "type": ["steel", "ground"],
+    "types": ["steel", "ground"],
     "evos": {
       "from": "onix"
     }
@@ -1672,7 +1672,7 @@
   "snubbull": {
     "id": 209,
     "name": "Snubbull",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["granbull"]
     }
@@ -1680,7 +1680,7 @@
   "granbull": {
     "id": 210,
     "name": "Granbull",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "snubbull"
     }
@@ -1688,7 +1688,7 @@
   "qwilfish": {
     "id": 211,
     "name": "Qwilfish",
-    "type": ["water", "poison"],
+    "types": ["water", "poison"],
     "evos": {
       "to": ["overqwil"]
     }
@@ -1696,7 +1696,7 @@
   "scizor": {
     "id": 212,
     "name": "Scizor",
-    "type": ["bug", "steel"],
+    "types": ["bug", "steel"],
     "evos": {
       "from": "scyther"
     }
@@ -1704,17 +1704,17 @@
   "shuckle": {
     "id": 213,
     "name": "Shuckle",
-    "type": ["bug", "rock"]
+    "types": ["bug", "rock"]
   },
   "heracross": {
     "id": 214,
     "name": "Heracross",
-    "type": ["bug", "fighting"]
+    "types": ["bug", "fighting"]
   },
   "sneasel": {
     "id": 215,
     "name": "Sneasel",
-    "type": ["dark", "ice"],
+    "types": ["dark", "ice"],
     "evos": {
       "to": ["weavile", "sneasler"]
     }
@@ -1722,7 +1722,7 @@
   "teddiursa": {
     "id": 216,
     "name": "Teddiursa",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["ursaring"]
     }
@@ -1730,7 +1730,7 @@
   "ursaring": {
     "id": 217,
     "name": "Ursaring",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "teddiursa",
       "to": ["ursaluna"]
@@ -1739,7 +1739,7 @@
   "slugma": {
     "id": 218,
     "name": "Slugma",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["magcargo"]
     }
@@ -1747,7 +1747,7 @@
   "magcargo": {
     "id": 219,
     "name": "Magcargo",
-    "type": ["fire", "rock"],
+    "types": ["fire", "rock"],
     "evos": {
       "from": "slugma"
     }
@@ -1755,7 +1755,7 @@
   "swinub": {
     "id": 220,
     "name": "Swinub",
-    "type": ["ice", "ground"],
+    "types": ["ice", "ground"],
     "evos": {
       "to": ["piloswine"]
     }
@@ -1763,7 +1763,7 @@
   "piloswine": {
     "id": 221,
     "name": "Piloswine",
-    "type": ["ice", "ground"],
+    "types": ["ice", "ground"],
     "evos": {
       "from": "swinub",
       "to": ["mamoswine"]
@@ -1772,7 +1772,7 @@
   "corsola": {
     "id": 222,
     "name": "Corsola",
-    "type": ["water", "rock"],
+    "types": ["water", "rock"],
     "evos": {
       "to": ["cursola"]
     }
@@ -1780,7 +1780,7 @@
   "remoraid": {
     "id": 223,
     "name": "Remoraid",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["octillery"]
     }
@@ -1788,7 +1788,7 @@
   "octillery": {
     "id": 224,
     "name": "Octillery",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "remoraid"
     }
@@ -1796,12 +1796,12 @@
   "delibird": {
     "id": 225,
     "name": "Delibird",
-    "type": ["ice", "flying"]
+    "types": ["ice", "flying"]
   },
   "mantine": {
     "id": 226,
     "name": "Mantine",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "from": "mantyke"
     }
@@ -1809,12 +1809,12 @@
   "skarmory": {
     "id": 227,
     "name": "Skarmory",
-    "type": ["steel", "flying"]
+    "types": ["steel", "flying"]
   },
   "houndour": {
     "id": 228,
     "name": "Houndour",
-    "type": ["dark", "fire"],
+    "types": ["dark", "fire"],
     "evos": {
       "to": ["houndoom"]
     }
@@ -1822,7 +1822,7 @@
   "houndoom": {
     "id": 229,
     "name": "Houndoom",
-    "type": ["dark", "fire"],
+    "types": ["dark", "fire"],
     "evos": {
       "from": "houndour"
     }
@@ -1830,7 +1830,7 @@
   "kingdra": {
     "id": 230,
     "name": "Kingdra",
-    "type": ["water", "dragon"],
+    "types": ["water", "dragon"],
     "evos": {
       "from": "seadra"
     }
@@ -1838,7 +1838,7 @@
   "phanpy": {
     "id": 231,
     "name": "Phanpy",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["donphan"]
     }
@@ -1846,7 +1846,7 @@
   "donphan": {
     "id": 232,
     "name": "Donphan",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "phanpy"
     }
@@ -1854,7 +1854,7 @@
   "porygon2": {
     "id": 233,
     "name": "Porygon2",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "porygon",
       "to": ["porygon-z"]
@@ -1863,7 +1863,7 @@
   "stantler": {
     "id": 234,
     "name": "Stantler",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["wyrdeer"]
     }
@@ -1871,12 +1871,12 @@
   "smeargle": {
     "id": 235,
     "name": "Smeargle",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "tyrogue": {
     "id": 236,
     "name": "Tyrogue",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["hitmonlee", "hitmonchan", "hitmontop"]
     }
@@ -1884,7 +1884,7 @@
   "hitmontop": {
     "id": 237,
     "name": "Hitmontop",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "tyrogue"
     }
@@ -1892,7 +1892,7 @@
   "smoochum": {
     "id": 238,
     "name": "Smoochum",
-    "type": ["ice", "psychic"],
+    "types": ["ice", "psychic"],
     "evos": {
       "to": ["jynx"]
     }
@@ -1900,7 +1900,7 @@
   "elekid": {
     "id": 239,
     "name": "Elekid",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["electabuzz"]
     }
@@ -1908,7 +1908,7 @@
   "magby": {
     "id": 240,
     "name": "Magby",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["magmar"]
     }
@@ -1916,12 +1916,12 @@
   "miltank": {
     "id": 241,
     "name": "Miltank",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "blissey": {
     "id": 242,
     "name": "Blissey",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "chansey"
     }
@@ -1929,22 +1929,22 @@
   "raikou": {
     "id": 243,
     "name": "Raikou",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "entei": {
     "id": 244,
     "name": "Entei",
-    "type": ["fire"]
+    "types": ["fire"]
   },
   "suicune": {
     "id": 245,
     "name": "Suicune",
-    "type": ["water"]
+    "types": ["water"]
   },
   "larvitar": {
     "id": 246,
     "name": "Larvitar",
-    "type": ["rock", "ground"],
+    "types": ["rock", "ground"],
     "evos": {
       "to": ["pupitar"]
     }
@@ -1952,7 +1952,7 @@
   "pupitar": {
     "id": 247,
     "name": "Pupitar",
-    "type": ["rock", "ground"],
+    "types": ["rock", "ground"],
     "evos": {
       "from": "larvitar",
       "to": ["tyranitar"]
@@ -1961,7 +1961,7 @@
   "tyranitar": {
     "id": 248,
     "name": "Tyranitar",
-    "type": ["rock", "dark"],
+    "types": ["rock", "dark"],
     "evos": {
       "from": "pupitar"
     }
@@ -1969,22 +1969,22 @@
   "lugia": {
     "id": 249,
     "name": "Lugia",
-    "type": ["psychic", "flying"]
+    "types": ["psychic", "flying"]
   },
   "ho-oh": {
     "id": 250,
     "name": "Ho-Oh",
-    "type": ["fire", "flying"]
+    "types": ["fire", "flying"]
   },
   "celebi": {
     "id": 251,
     "name": "Celebi",
-    "type": ["psychic", "grass"]
+    "types": ["psychic", "grass"]
   },
   "treecko": {
     "id": 252,
     "name": "Treecko",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["grovyle"]
     }
@@ -1992,7 +1992,7 @@
   "grovyle": {
     "id": 253,
     "name": "Grovyle",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "treecko",
       "to": ["sceptile"]
@@ -2001,7 +2001,7 @@
   "sceptile": {
     "id": 254,
     "name": "Sceptile",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "grovyle"
     }
@@ -2009,7 +2009,7 @@
   "torchic": {
     "id": 255,
     "name": "Torchic",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["combusken"]
     }
@@ -2017,7 +2017,7 @@
   "combusken": {
     "id": 256,
     "name": "Combusken",
-    "type": ["fire", "fighting"],
+    "types": ["fire", "fighting"],
     "evos": {
       "from": "torchic",
       "to": ["blaziken"]
@@ -2026,7 +2026,7 @@
   "blaziken": {
     "id": 257,
     "name": "Blaziken",
-    "type": ["fire", "fighting"],
+    "types": ["fire", "fighting"],
     "evos": {
       "from": "combusken"
     }
@@ -2034,7 +2034,7 @@
   "mudkip": {
     "id": 258,
     "name": "Mudkip",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["marshtomp"]
     }
@@ -2042,7 +2042,7 @@
   "marshtomp": {
     "id": 259,
     "name": "Marshtomp",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "mudkip",
       "to": ["swampert"]
@@ -2051,7 +2051,7 @@
   "swampert": {
     "id": 260,
     "name": "Swampert",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "marshtomp"
     }
@@ -2059,7 +2059,7 @@
   "poochyena": {
     "id": 261,
     "name": "Poochyena",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "to": ["mightyena"]
     }
@@ -2067,7 +2067,7 @@
   "mightyena": {
     "id": 262,
     "name": "Mightyena",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "from": "poochyena"
     }
@@ -2075,7 +2075,7 @@
   "zigzagoon": {
     "id": 263,
     "name": "Zigzagoon",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["linoone"]
     }
@@ -2083,7 +2083,7 @@
   "linoone": {
     "id": 264,
     "name": "Linoone",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "zigzagoon",
       "to": ["obstagoon"]
@@ -2092,7 +2092,7 @@
   "wurmple": {
     "id": 265,
     "name": "Wurmple",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["silcoon", "cascoon"]
     }
@@ -2100,7 +2100,7 @@
   "silcoon": {
     "id": 266,
     "name": "Silcoon",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "wurmple",
       "to": ["beautifly"]
@@ -2109,7 +2109,7 @@
   "beautifly": {
     "id": 267,
     "name": "Beautifly",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "silcoon"
     }
@@ -2117,7 +2117,7 @@
   "cascoon": {
     "id": 268,
     "name": "Cascoon",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "wurmple",
       "to": ["dustox"]
@@ -2126,7 +2126,7 @@
   "dustox": {
     "id": 269,
     "name": "Dustox",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "cascoon"
     }
@@ -2134,7 +2134,7 @@
   "lotad": {
     "id": 270,
     "name": "Lotad",
-    "type": ["water", "grass"],
+    "types": ["water", "grass"],
     "evos": {
       "to": ["lombre"]
     }
@@ -2142,7 +2142,7 @@
   "lombre": {
     "id": 271,
     "name": "Lombre",
-    "type": ["water", "grass"],
+    "types": ["water", "grass"],
     "evos": {
       "from": "lotad",
       "to": ["ludicolo"]
@@ -2151,7 +2151,7 @@
   "ludicolo": {
     "id": 272,
     "name": "Ludicolo",
-    "type": ["water", "grass"],
+    "types": ["water", "grass"],
     "evos": {
       "from": "lombre"
     }
@@ -2159,7 +2159,7 @@
   "seedot": {
     "id": 273,
     "name": "Seedot",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["nuzleaf"]
     }
@@ -2167,7 +2167,7 @@
   "nuzleaf": {
     "id": 274,
     "name": "Nuzleaf",
-    "type": ["grass", "dark"],
+    "types": ["grass", "dark"],
     "evos": {
       "from": "seedot",
       "to": ["shiftry"]
@@ -2176,7 +2176,7 @@
   "shiftry": {
     "id": 275,
     "name": "Shiftry",
-    "type": ["grass", "dark"],
+    "types": ["grass", "dark"],
     "evos": {
       "from": "nuzleaf"
     }
@@ -2184,7 +2184,7 @@
   "taillow": {
     "id": 276,
     "name": "Taillow",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["swellow"]
     }
@@ -2192,7 +2192,7 @@
   "swellow": {
     "id": 277,
     "name": "Swellow",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "taillow"
     }
@@ -2200,7 +2200,7 @@
   "wingull": {
     "id": 278,
     "name": "Wingull",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "to": ["pelipper"]
     }
@@ -2208,7 +2208,7 @@
   "pelipper": {
     "id": 279,
     "name": "Pelipper",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "from": "wingull"
     }
@@ -2216,7 +2216,7 @@
   "ralts": {
     "id": 280,
     "name": "Ralts",
-    "type": ["psychic", "fairy"],
+    "types": ["psychic", "fairy"],
     "evos": {
       "to": ["kirlia"]
     }
@@ -2224,7 +2224,7 @@
   "kirlia": {
     "id": 281,
     "name": "Kirlia",
-    "type": ["psychic", "fairy"],
+    "types": ["psychic", "fairy"],
     "evos": {
       "from": "ralts",
       "to": ["gardevoir", "gallade"]
@@ -2233,7 +2233,7 @@
   "gardevoir": {
     "id": 282,
     "name": "Gardevoir",
-    "type": ["psychic", "fairy"],
+    "types": ["psychic", "fairy"],
     "evos": {
       "from": "kirlia"
     }
@@ -2241,7 +2241,7 @@
   "surskit": {
     "id": 283,
     "name": "Surskit",
-    "type": ["bug", "water"],
+    "types": ["bug", "water"],
     "evos": {
       "to": ["masquerain"]
     }
@@ -2249,7 +2249,7 @@
   "masquerain": {
     "id": 284,
     "name": "Masquerain",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "surskit"
     }
@@ -2257,7 +2257,7 @@
   "shroomish": {
     "id": 285,
     "name": "Shroomish",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["breloom"]
     }
@@ -2265,7 +2265,7 @@
   "breloom": {
     "id": 286,
     "name": "Breloom",
-    "type": ["grass", "fighting"],
+    "types": ["grass", "fighting"],
     "evos": {
       "from": "shroomish"
     }
@@ -2273,7 +2273,7 @@
   "slakoth": {
     "id": 287,
     "name": "Slakoth",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["vigoroth"]
     }
@@ -2281,7 +2281,7 @@
   "vigoroth": {
     "id": 288,
     "name": "Vigoroth",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "slakoth",
       "to": ["slaking"]
@@ -2290,7 +2290,7 @@
   "slaking": {
     "id": 289,
     "name": "Slaking",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "vigoroth"
     }
@@ -2298,7 +2298,7 @@
   "nincada": {
     "id": 290,
     "name": "Nincada",
-    "type": ["bug", "ground"],
+    "types": ["bug", "ground"],
     "evos": {
       "to": ["ninjask", "shedinja"]
     }
@@ -2306,7 +2306,7 @@
   "ninjask": {
     "id": 291,
     "name": "Ninjask",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "nincada"
     }
@@ -2314,7 +2314,7 @@
   "shedinja": {
     "id": 292,
     "name": "Shedinja",
-    "type": ["bug", "ghost"],
+    "types": ["bug", "ghost"],
     "evos": {
       "from": "nincada"
     }
@@ -2322,7 +2322,7 @@
   "whismur": {
     "id": 293,
     "name": "Whismur",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["loudred"]
     }
@@ -2330,7 +2330,7 @@
   "loudred": {
     "id": 294,
     "name": "Loudred",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "whismur",
       "to": ["exploud"]
@@ -2339,7 +2339,7 @@
   "exploud": {
     "id": 295,
     "name": "Exploud",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "loudred"
     }
@@ -2347,7 +2347,7 @@
   "makuhita": {
     "id": 296,
     "name": "Makuhita",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["hariyama"]
     }
@@ -2355,7 +2355,7 @@
   "hariyama": {
     "id": 297,
     "name": "Hariyama",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "makuhita"
     }
@@ -2363,7 +2363,7 @@
   "azurill": {
     "id": 298,
     "name": "Azurill",
-    "type": ["normal", "fairy"],
+    "types": ["normal", "fairy"],
     "evos": {
       "to": ["marill"]
     }
@@ -2371,7 +2371,7 @@
   "nosepass": {
     "id": 299,
     "name": "Nosepass",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["probopass"]
     }
@@ -2379,7 +2379,7 @@
   "skitty": {
     "id": 300,
     "name": "Skitty",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["delcatty"]
     }
@@ -2387,7 +2387,7 @@
   "delcatty": {
     "id": 301,
     "name": "Delcatty",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "skitty"
     }
@@ -2395,17 +2395,17 @@
   "sableye": {
     "id": 302,
     "name": "Sableye",
-    "type": ["dark", "ghost"]
+    "types": ["dark", "ghost"]
   },
   "mawile": {
     "id": 303,
     "name": "Mawile",
-    "type": ["steel", "fairy"]
+    "types": ["steel", "fairy"]
   },
   "aron": {
     "id": 304,
     "name": "Aron",
-    "type": ["steel", "rock"],
+    "types": ["steel", "rock"],
     "evos": {
       "to": ["lairon"]
     }
@@ -2413,7 +2413,7 @@
   "lairon": {
     "id": 305,
     "name": "Lairon",
-    "type": ["steel", "rock"],
+    "types": ["steel", "rock"],
     "evos": {
       "from": "aron",
       "to": ["aggron"]
@@ -2422,7 +2422,7 @@
   "aggron": {
     "id": 306,
     "name": "Aggron",
-    "type": ["steel", "rock"],
+    "types": ["steel", "rock"],
     "evos": {
       "from": "lairon"
     }
@@ -2430,7 +2430,7 @@
   "meditite": {
     "id": 307,
     "name": "Meditite",
-    "type": ["fighting", "psychic"],
+    "types": ["fighting", "psychic"],
     "evos": {
       "to": ["medicham"]
     }
@@ -2438,7 +2438,7 @@
   "medicham": {
     "id": 308,
     "name": "Medicham",
-    "type": ["fighting", "psychic"],
+    "types": ["fighting", "psychic"],
     "evos": {
       "from": "meditite"
     }
@@ -2446,7 +2446,7 @@
   "electrike": {
     "id": 309,
     "name": "Electrike",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["manectric"]
     }
@@ -2454,7 +2454,7 @@
   "manectric": {
     "id": 310,
     "name": "Manectric",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "electrike"
     }
@@ -2462,27 +2462,27 @@
   "plusle": {
     "id": 311,
     "name": "Plusle",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "minun": {
     "id": 312,
     "name": "Minun",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "volbeat": {
     "id": 313,
     "name": "Volbeat",
-    "type": ["bug"]
+    "types": ["bug"]
   },
   "illumise": {
     "id": 314,
     "name": "Illumise",
-    "type": ["bug"]
+    "types": ["bug"]
   },
   "roselia": {
     "id": 315,
     "name": "Roselia",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "budew",
       "to": ["roserade"]
@@ -2491,7 +2491,7 @@
   "gulpin": {
     "id": 316,
     "name": "Gulpin",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["swalot"]
     }
@@ -2499,7 +2499,7 @@
   "swalot": {
     "id": 317,
     "name": "Swalot",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "gulpin"
     }
@@ -2507,7 +2507,7 @@
   "carvanha": {
     "id": 318,
     "name": "Carvanha",
-    "type": ["water", "dark"],
+    "types": ["water", "dark"],
     "evos": {
       "to": ["sharpedo"]
     }
@@ -2515,7 +2515,7 @@
   "sharpedo": {
     "id": 319,
     "name": "Sharpedo",
-    "type": ["water", "dark"],
+    "types": ["water", "dark"],
     "evos": {
       "from": "carvanha"
     }
@@ -2523,7 +2523,7 @@
   "wailmer": {
     "id": 320,
     "name": "Wailmer",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["wailord"]
     }
@@ -2531,7 +2531,7 @@
   "wailord": {
     "id": 321,
     "name": "Wailord",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "wailmer"
     }
@@ -2539,7 +2539,7 @@
   "numel": {
     "id": 322,
     "name": "Numel",
-    "type": ["fire", "ground"],
+    "types": ["fire", "ground"],
     "evos": {
       "to": ["camerupt"]
     }
@@ -2547,7 +2547,7 @@
   "camerupt": {
     "id": 323,
     "name": "Camerupt",
-    "type": ["fire", "ground"],
+    "types": ["fire", "ground"],
     "evos": {
       "from": "numel"
     }
@@ -2555,12 +2555,12 @@
   "torkoal": {
     "id": 324,
     "name": "Torkoal",
-    "type": ["fire"]
+    "types": ["fire"]
   },
   "spoink": {
     "id": 325,
     "name": "Spoink",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["grumpig"]
     }
@@ -2568,7 +2568,7 @@
   "grumpig": {
     "id": 326,
     "name": "Grumpig",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "spoink"
     }
@@ -2576,12 +2576,12 @@
   "spinda": {
     "id": 327,
     "name": "Spinda",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "trapinch": {
     "id": 328,
     "name": "Trapinch",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["vibrava"]
     }
@@ -2589,7 +2589,7 @@
   "vibrava": {
     "id": 329,
     "name": "Vibrava",
-    "type": ["ground", "dragon"],
+    "types": ["ground", "dragon"],
     "evos": {
       "from": "trapinch",
       "to": ["flygon"]
@@ -2598,7 +2598,7 @@
   "flygon": {
     "id": 330,
     "name": "Flygon",
-    "type": ["ground", "dragon"],
+    "types": ["ground", "dragon"],
     "evos": {
       "from": "vibrava"
     }
@@ -2606,7 +2606,7 @@
   "cacnea": {
     "id": 331,
     "name": "Cacnea",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["cacturne"]
     }
@@ -2614,7 +2614,7 @@
   "cacturne": {
     "id": 332,
     "name": "Cacturne",
-    "type": ["grass", "dark"],
+    "types": ["grass", "dark"],
     "evos": {
       "from": "cacnea"
     }
@@ -2622,7 +2622,7 @@
   "swablu": {
     "id": 333,
     "name": "Swablu",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["altaria"]
     }
@@ -2630,7 +2630,7 @@
   "altaria": {
     "id": 334,
     "name": "Altaria",
-    "type": ["dragon", "flying"],
+    "types": ["dragon", "flying"],
     "evos": {
       "from": "swablu"
     }
@@ -2638,27 +2638,27 @@
   "zangoose": {
     "id": 335,
     "name": "Zangoose",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "seviper": {
     "id": 336,
     "name": "Seviper",
-    "type": ["poison"]
+    "types": ["poison"]
   },
   "lunatone": {
     "id": 337,
     "name": "Lunatone",
-    "type": ["rock", "psychic"]
+    "types": ["rock", "psychic"]
   },
   "solrock": {
     "id": 338,
     "name": "Solrock",
-    "type": ["rock", "psychic"]
+    "types": ["rock", "psychic"]
   },
   "barboach": {
     "id": 339,
     "name": "Barboach",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "to": ["whiscash"]
     }
@@ -2666,7 +2666,7 @@
   "whiscash": {
     "id": 340,
     "name": "Whiscash",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "barboach"
     }
@@ -2674,7 +2674,7 @@
   "corphish": {
     "id": 341,
     "name": "Corphish",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["crawdaunt"]
     }
@@ -2682,7 +2682,7 @@
   "crawdaunt": {
     "id": 342,
     "name": "Crawdaunt",
-    "type": ["water", "dark"],
+    "types": ["water", "dark"],
     "evos": {
       "from": "corphish"
     }
@@ -2690,7 +2690,7 @@
   "baltoy": {
     "id": 343,
     "name": "Baltoy",
-    "type": ["ground", "psychic"],
+    "types": ["ground", "psychic"],
     "evos": {
       "to": ["claydol"]
     }
@@ -2698,7 +2698,7 @@
   "claydol": {
     "id": 344,
     "name": "Claydol",
-    "type": ["ground", "psychic"],
+    "types": ["ground", "psychic"],
     "evos": {
       "from": "baltoy"
     }
@@ -2706,7 +2706,7 @@
   "lileep": {
     "id": 345,
     "name": "Lileep",
-    "type": ["rock", "grass"],
+    "types": ["rock", "grass"],
     "evos": {
       "to": ["cradily"]
     }
@@ -2714,7 +2714,7 @@
   "cradily": {
     "id": 346,
     "name": "Cradily",
-    "type": ["rock", "grass"],
+    "types": ["rock", "grass"],
     "evos": {
       "from": "lileep"
     }
@@ -2722,7 +2722,7 @@
   "anorith": {
     "id": 347,
     "name": "Anorith",
-    "type": ["rock", "bug"],
+    "types": ["rock", "bug"],
     "evos": {
       "to": ["armaldo"]
     }
@@ -2730,7 +2730,7 @@
   "armaldo": {
     "id": 348,
     "name": "Armaldo",
-    "type": ["rock", "bug"],
+    "types": ["rock", "bug"],
     "evos": {
       "from": "anorith"
     }
@@ -2738,7 +2738,7 @@
   "feebas": {
     "id": 349,
     "name": "Feebas",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["milotic"]
     }
@@ -2746,7 +2746,7 @@
   "milotic": {
     "id": 350,
     "name": "Milotic",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "feebas"
     }
@@ -2754,17 +2754,17 @@
   "castform": {
     "id": 351,
     "name": "Castform",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "kecleon": {
     "id": 352,
     "name": "Kecleon",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "shuppet": {
     "id": 353,
     "name": "Shuppet",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["banette"]
     }
@@ -2772,7 +2772,7 @@
   "banette": {
     "id": 354,
     "name": "Banette",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "shuppet"
     }
@@ -2780,7 +2780,7 @@
   "duskull": {
     "id": 355,
     "name": "Duskull",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["dusclops"]
     }
@@ -2788,7 +2788,7 @@
   "dusclops": {
     "id": 356,
     "name": "Dusclops",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "duskull",
       "to": ["dusknoir"]
@@ -2797,12 +2797,12 @@
   "tropius": {
     "id": 357,
     "name": "Tropius",
-    "type": ["grass", "flying"]
+    "types": ["grass", "flying"]
   },
   "chimecho": {
     "id": 358,
     "name": "Chimecho",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "chingling"
     }
@@ -2810,12 +2810,12 @@
   "absol": {
     "id": 359,
     "name": "Absol",
-    "type": ["dark"]
+    "types": ["dark"]
   },
   "wynaut": {
     "id": 360,
     "name": "Wynaut",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["wobbuffet"]
     }
@@ -2823,7 +2823,7 @@
   "snorunt": {
     "id": 361,
     "name": "Snorunt",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "to": ["glalie", "froslass"]
     }
@@ -2831,7 +2831,7 @@
   "glalie": {
     "id": 362,
     "name": "Glalie",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "snorunt"
     }
@@ -2839,7 +2839,7 @@
   "spheal": {
     "id": 363,
     "name": "Spheal",
-    "type": ["ice", "water"],
+    "types": ["ice", "water"],
     "evos": {
       "to": ["sealeo"]
     }
@@ -2847,7 +2847,7 @@
   "sealeo": {
     "id": 364,
     "name": "Sealeo",
-    "type": ["ice", "water"],
+    "types": ["ice", "water"],
     "evos": {
       "from": "spheal",
       "to": ["walrein"]
@@ -2856,7 +2856,7 @@
   "walrein": {
     "id": 365,
     "name": "Walrein",
-    "type": ["ice", "water"],
+    "types": ["ice", "water"],
     "evos": {
       "from": "sealeo"
     }
@@ -2864,7 +2864,7 @@
   "clamperl": {
     "id": 366,
     "name": "Clamperl",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["huntail", "gorebyss"]
     }
@@ -2872,7 +2872,7 @@
   "huntail": {
     "id": 367,
     "name": "Huntail",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "clamperl"
     }
@@ -2880,7 +2880,7 @@
   "gorebyss": {
     "id": 368,
     "name": "Gorebyss",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "clamperl"
     }
@@ -2888,17 +2888,17 @@
   "relicanth": {
     "id": 369,
     "name": "Relicanth",
-    "type": ["water", "rock"]
+    "types": ["water", "rock"]
   },
   "luvdisc": {
     "id": 370,
     "name": "Luvdisc",
-    "type": ["water"]
+    "types": ["water"]
   },
   "bagon": {
     "id": 371,
     "name": "Bagon",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "to": ["shelgon"]
     }
@@ -2906,7 +2906,7 @@
   "shelgon": {
     "id": 372,
     "name": "Shelgon",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "from": "bagon",
       "to": ["salamence"]
@@ -2915,7 +2915,7 @@
   "salamence": {
     "id": 373,
     "name": "Salamence",
-    "type": ["dragon", "flying"],
+    "types": ["dragon", "flying"],
     "evos": {
       "from": "shelgon"
     }
@@ -2923,7 +2923,7 @@
   "beldum": {
     "id": 374,
     "name": "Beldum",
-    "type": ["steel", "psychic"],
+    "types": ["steel", "psychic"],
     "evos": {
       "to": ["metang"]
     }
@@ -2931,7 +2931,7 @@
   "metang": {
     "id": 375,
     "name": "Metang",
-    "type": ["steel", "psychic"],
+    "types": ["steel", "psychic"],
     "evos": {
       "from": "beldum",
       "to": ["metagross"]
@@ -2940,7 +2940,7 @@
   "metagross": {
     "id": 376,
     "name": "Metagross",
-    "type": ["steel", "psychic"],
+    "types": ["steel", "psychic"],
     "evos": {
       "from": "metang"
     }
@@ -2948,57 +2948,57 @@
   "regirock": {
     "id": 377,
     "name": "Regirock",
-    "type": ["rock"]
+    "types": ["rock"]
   },
   "regice": {
     "id": 378,
     "name": "Regice",
-    "type": ["ice"]
+    "types": ["ice"]
   },
   "registeel": {
     "id": 379,
     "name": "Registeel",
-    "type": ["steel"]
+    "types": ["steel"]
   },
   "latias": {
     "id": 380,
     "name": "Latias",
-    "type": ["dragon", "psychic"]
+    "types": ["dragon", "psychic"]
   },
   "latios": {
     "id": 381,
     "name": "Latios",
-    "type": ["dragon", "psychic"]
+    "types": ["dragon", "psychic"]
   },
   "kyogre": {
     "id": 382,
     "name": "Kyogre",
-    "type": ["water"]
+    "types": ["water"]
   },
   "groudon": {
     "id": 383,
     "name": "Groudon",
-    "type": ["ground"]
+    "types": ["ground"]
   },
   "rayquaza": {
     "id": 384,
     "name": "Rayquaza",
-    "type": ["dragon", "flying"]
+    "types": ["dragon", "flying"]
   },
   "jirachi": {
     "id": 385,
     "name": "Jirachi",
-    "type": ["steel", "psychic"]
+    "types": ["steel", "psychic"]
   },
   "deoxys": {
     "id": 386,
     "name": "Deoxys",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "turtwig": {
     "id": 387,
     "name": "Turtwig",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["grotle"]
     }
@@ -3006,7 +3006,7 @@
   "grotle": {
     "id": 388,
     "name": "Grotle",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "turtwig",
       "to": ["torterra"]
@@ -3015,7 +3015,7 @@
   "torterra": {
     "id": 389,
     "name": "Torterra",
-    "type": ["grass", "ground"],
+    "types": ["grass", "ground"],
     "evos": {
       "from": "grotle"
     }
@@ -3023,7 +3023,7 @@
   "chimchar": {
     "id": 390,
     "name": "Chimchar",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["monferno"]
     }
@@ -3031,7 +3031,7 @@
   "monferno": {
     "id": 391,
     "name": "Monferno",
-    "type": ["fire", "fighting"],
+    "types": ["fire", "fighting"],
     "evos": {
       "from": "chimchar",
       "to": ["infernape"]
@@ -3040,7 +3040,7 @@
   "infernape": {
     "id": 392,
     "name": "Infernape",
-    "type": ["fire", "fighting"],
+    "types": ["fire", "fighting"],
     "evos": {
       "from": "monferno"
     }
@@ -3048,7 +3048,7 @@
   "piplup": {
     "id": 393,
     "name": "Piplup",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["prinplup"]
     }
@@ -3056,7 +3056,7 @@
   "prinplup": {
     "id": 394,
     "name": "Prinplup",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "piplup",
       "to": ["empoleon"]
@@ -3065,7 +3065,7 @@
   "empoleon": {
     "id": 395,
     "name": "Empoleon",
-    "type": ["water", "steel"],
+    "types": ["water", "steel"],
     "evos": {
       "from": "prinplup"
     }
@@ -3073,7 +3073,7 @@
   "starly": {
     "id": 396,
     "name": "Starly",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["staravia"]
     }
@@ -3081,7 +3081,7 @@
   "staravia": {
     "id": 397,
     "name": "Staravia",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "starly",
       "to": ["staraptor"]
@@ -3090,7 +3090,7 @@
   "staraptor": {
     "id": 398,
     "name": "Staraptor",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "staravia"
     }
@@ -3098,7 +3098,7 @@
   "bidoof": {
     "id": 399,
     "name": "Bidoof",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["bibarel"]
     }
@@ -3106,7 +3106,7 @@
   "bibarel": {
     "id": 400,
     "name": "Bibarel",
-    "type": ["normal", "water"],
+    "types": ["normal", "water"],
     "evos": {
       "from": "bidoof"
     }
@@ -3114,7 +3114,7 @@
   "kricketot": {
     "id": 401,
     "name": "Kricketot",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["kricketune"]
     }
@@ -3122,7 +3122,7 @@
   "kricketune": {
     "id": 402,
     "name": "Kricketune",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "kricketot"
     }
@@ -3130,7 +3130,7 @@
   "shinx": {
     "id": 403,
     "name": "Shinx",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["luxio"]
     }
@@ -3138,7 +3138,7 @@
   "luxio": {
     "id": 404,
     "name": "Luxio",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "shinx",
       "to": ["luxray"]
@@ -3147,7 +3147,7 @@
   "luxray": {
     "id": 405,
     "name": "Luxray",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "luxio"
     }
@@ -3155,7 +3155,7 @@
   "budew": {
     "id": 406,
     "name": "Budew",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "to": ["roselia"]
     }
@@ -3163,7 +3163,7 @@
   "roserade": {
     "id": 407,
     "name": "Roserade",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "roselia"
     }
@@ -3171,7 +3171,7 @@
   "cranidos": {
     "id": 408,
     "name": "Cranidos",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["rampardos"]
     }
@@ -3179,7 +3179,7 @@
   "rampardos": {
     "id": 409,
     "name": "Rampardos",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "cranidos"
     }
@@ -3187,7 +3187,7 @@
   "shieldon": {
     "id": 410,
     "name": "Shieldon",
-    "type": ["rock", "steel"],
+    "types": ["rock", "steel"],
     "evos": {
       "to": ["bastiodon"]
     }
@@ -3195,7 +3195,7 @@
   "bastiodon": {
     "id": 411,
     "name": "Bastiodon",
-    "type": ["rock", "steel"],
+    "types": ["rock", "steel"],
     "evos": {
       "from": "shieldon"
     }
@@ -3203,7 +3203,7 @@
   "burmy": {
     "id": 412,
     "name": "Burmy",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["wormadam", "mothim"]
     }
@@ -3211,7 +3211,7 @@
   "wormadam": {
     "id": 413,
     "name": "Wormadam",
-    "type": ["bug", "grass"],
+    "types": ["bug", "grass"],
     "evos": {
       "from": "burmy"
     }
@@ -3219,7 +3219,7 @@
   "mothim": {
     "id": 414,
     "name": "Mothim",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "burmy"
     }
@@ -3227,7 +3227,7 @@
   "combee": {
     "id": 415,
     "name": "Combee",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "to": ["vespiquen"]
     }
@@ -3235,7 +3235,7 @@
   "vespiquen": {
     "id": 416,
     "name": "Vespiquen",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "combee"
     }
@@ -3243,12 +3243,12 @@
   "pachirisu": {
     "id": 417,
     "name": "Pachirisu",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "buizel": {
     "id": 418,
     "name": "Buizel",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["floatzel"]
     }
@@ -3256,7 +3256,7 @@
   "floatzel": {
     "id": 419,
     "name": "Floatzel",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "buizel"
     }
@@ -3264,7 +3264,7 @@
   "cherubi": {
     "id": 420,
     "name": "Cherubi",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["cherrim"]
     }
@@ -3272,7 +3272,7 @@
   "cherrim": {
     "id": 421,
     "name": "Cherrim",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "cherubi"
     }
@@ -3280,7 +3280,7 @@
   "shellos": {
     "id": 422,
     "name": "Shellos",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["gastrodon"]
     }
@@ -3288,7 +3288,7 @@
   "gastrodon": {
     "id": 423,
     "name": "Gastrodon",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "shellos"
     }
@@ -3296,7 +3296,7 @@
   "ambipom": {
     "id": 424,
     "name": "Ambipom",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "aipom"
     }
@@ -3304,7 +3304,7 @@
   "drifloon": {
     "id": 425,
     "name": "Drifloon",
-    "type": ["ghost", "flying"],
+    "types": ["ghost", "flying"],
     "evos": {
       "to": ["drifblim"]
     }
@@ -3312,7 +3312,7 @@
   "drifblim": {
     "id": 426,
     "name": "Drifblim",
-    "type": ["ghost", "flying"],
+    "types": ["ghost", "flying"],
     "evos": {
       "from": "drifloon"
     }
@@ -3320,7 +3320,7 @@
   "buneary": {
     "id": 427,
     "name": "Buneary",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["lopunny"]
     }
@@ -3328,7 +3328,7 @@
   "lopunny": {
     "id": 428,
     "name": "Lopunny",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "buneary"
     }
@@ -3336,7 +3336,7 @@
   "mismagius": {
     "id": 429,
     "name": "Mismagius",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "misdreavus"
     }
@@ -3344,7 +3344,7 @@
   "honchkrow": {
     "id": 430,
     "name": "Honchkrow",
-    "type": ["dark", "flying"],
+    "types": ["dark", "flying"],
     "evos": {
       "from": "murkrow"
     }
@@ -3352,7 +3352,7 @@
   "glameow": {
     "id": 431,
     "name": "Glameow",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["purugly"]
     }
@@ -3360,7 +3360,7 @@
   "purugly": {
     "id": 432,
     "name": "Purugly",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "glameow"
     }
@@ -3368,7 +3368,7 @@
   "chingling": {
     "id": 433,
     "name": "Chingling",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["chimecho"]
     }
@@ -3376,7 +3376,7 @@
   "stunky": {
     "id": 434,
     "name": "Stunky",
-    "type": ["poison", "dark"],
+    "types": ["poison", "dark"],
     "evos": {
       "to": ["skuntank"]
     }
@@ -3384,7 +3384,7 @@
   "skuntank": {
     "id": 435,
     "name": "Skuntank",
-    "type": ["poison", "dark"],
+    "types": ["poison", "dark"],
     "evos": {
       "from": "stunky"
     }
@@ -3392,7 +3392,7 @@
   "bronzor": {
     "id": 436,
     "name": "Bronzor",
-    "type": ["steel", "psychic"],
+    "types": ["steel", "psychic"],
     "evos": {
       "to": ["bronzong"]
     }
@@ -3400,7 +3400,7 @@
   "bronzong": {
     "id": 437,
     "name": "Bronzong",
-    "type": ["steel", "psychic"],
+    "types": ["steel", "psychic"],
     "evos": {
       "from": "bronzor"
     }
@@ -3408,7 +3408,7 @@
   "bonsly": {
     "id": 438,
     "name": "Bonsly",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["sudowoodo"]
     }
@@ -3416,7 +3416,7 @@
   "mime-jr": {
     "id": 439,
     "name": "Mime Jr.",
-    "type": ["psychic", "fairy"],
+    "types": ["psychic", "fairy"],
     "evos": {
       "to": ["mr-mime"]
     }
@@ -3424,7 +3424,7 @@
   "happiny": {
     "id": 440,
     "name": "Happiny",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["chansey"]
     }
@@ -3432,17 +3432,17 @@
   "chatot": {
     "id": 441,
     "name": "Chatot",
-    "type": ["normal", "flying"]
+    "types": ["normal", "flying"]
   },
   "spiritomb": {
     "id": 442,
     "name": "Spiritomb",
-    "type": ["ghost", "dark"]
+    "types": ["ghost", "dark"]
   },
   "gible": {
     "id": 443,
     "name": "Gible",
-    "type": ["dragon", "ground"],
+    "types": ["dragon", "ground"],
     "evos": {
       "to": ["gabite"]
     }
@@ -3450,7 +3450,7 @@
   "gabite": {
     "id": 444,
     "name": "Gabite",
-    "type": ["dragon", "ground"],
+    "types": ["dragon", "ground"],
     "evos": {
       "from": "gible",
       "to": ["garchomp"]
@@ -3459,7 +3459,7 @@
   "garchomp": {
     "id": 445,
     "name": "Garchomp",
-    "type": ["dragon", "ground"],
+    "types": ["dragon", "ground"],
     "evos": {
       "from": "gabite"
     }
@@ -3467,7 +3467,7 @@
   "munchlax": {
     "id": 446,
     "name": "Munchlax",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["snorlax"]
     }
@@ -3475,7 +3475,7 @@
   "riolu": {
     "id": 447,
     "name": "Riolu",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["lucario"]
     }
@@ -3483,7 +3483,7 @@
   "lucario": {
     "id": 448,
     "name": "Lucario",
-    "type": ["fighting", "steel"],
+    "types": ["fighting", "steel"],
     "evos": {
       "from": "riolu"
     }
@@ -3491,7 +3491,7 @@
   "hippopotas": {
     "id": 449,
     "name": "Hippopotas",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["hippowdon"]
     }
@@ -3499,7 +3499,7 @@
   "hippowdon": {
     "id": 450,
     "name": "Hippowdon",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "hippopotas"
     }
@@ -3507,7 +3507,7 @@
   "skorupi": {
     "id": 451,
     "name": "Skorupi",
-    "type": ["poison", "bug"],
+    "types": ["poison", "bug"],
     "evos": {
       "to": ["drapion"]
     }
@@ -3515,7 +3515,7 @@
   "drapion": {
     "id": 452,
     "name": "Drapion",
-    "type": ["poison", "dark"],
+    "types": ["poison", "dark"],
     "evos": {
       "from": "skorupi"
     }
@@ -3523,7 +3523,7 @@
   "croagunk": {
     "id": 453,
     "name": "Croagunk",
-    "type": ["poison", "fighting"],
+    "types": ["poison", "fighting"],
     "evos": {
       "to": ["toxicroak"]
     }
@@ -3531,7 +3531,7 @@
   "toxicroak": {
     "id": 454,
     "name": "Toxicroak",
-    "type": ["poison", "fighting"],
+    "types": ["poison", "fighting"],
     "evos": {
       "from": "croagunk"
     }
@@ -3539,12 +3539,12 @@
   "carnivine": {
     "id": 455,
     "name": "Carnivine",
-    "type": ["grass"]
+    "types": ["grass"]
   },
   "finneon": {
     "id": 456,
     "name": "Finneon",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["lumineon"]
     }
@@ -3552,7 +3552,7 @@
   "lumineon": {
     "id": 457,
     "name": "Lumineon",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "finneon"
     }
@@ -3560,7 +3560,7 @@
   "mantyke": {
     "id": 458,
     "name": "Mantyke",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "to": ["mantine"]
     }
@@ -3568,7 +3568,7 @@
   "snover": {
     "id": 459,
     "name": "Snover",
-    "type": ["grass", "ice"],
+    "types": ["grass", "ice"],
     "evos": {
       "to": ["abomasnow"]
     }
@@ -3576,7 +3576,7 @@
   "abomasnow": {
     "id": 460,
     "name": "Abomasnow",
-    "type": ["grass", "ice"],
+    "types": ["grass", "ice"],
     "evos": {
       "from": "snover"
     }
@@ -3584,7 +3584,7 @@
   "weavile": {
     "id": 461,
     "name": "Weavile",
-    "type": ["dark", "ice"],
+    "types": ["dark", "ice"],
     "evos": {
       "from": "sneasel"
     }
@@ -3592,7 +3592,7 @@
   "magnezone": {
     "id": 462,
     "name": "Magnezone",
-    "type": ["electric", "steel"],
+    "types": ["electric", "steel"],
     "evos": {
       "from": "magneton"
     }
@@ -3600,7 +3600,7 @@
   "lickilicky": {
     "id": 463,
     "name": "Lickilicky",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "lickitung"
     }
@@ -3608,7 +3608,7 @@
   "rhyperior": {
     "id": 464,
     "name": "Rhyperior",
-    "type": ["ground", "rock"],
+    "types": ["ground", "rock"],
     "evos": {
       "from": "rhydon"
     }
@@ -3616,7 +3616,7 @@
   "tangrowth": {
     "id": 465,
     "name": "Tangrowth",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "tangela"
     }
@@ -3624,7 +3624,7 @@
   "electivire": {
     "id": 466,
     "name": "Electivire",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "electabuzz"
     }
@@ -3632,7 +3632,7 @@
   "magmortar": {
     "id": 467,
     "name": "Magmortar",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "magmar"
     }
@@ -3640,7 +3640,7 @@
   "togekiss": {
     "id": 468,
     "name": "Togekiss",
-    "type": ["fairy", "flying"],
+    "types": ["fairy", "flying"],
     "evos": {
       "from": "togetic"
     }
@@ -3648,7 +3648,7 @@
   "yanmega": {
     "id": 469,
     "name": "Yanmega",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "yanma"
     }
@@ -3656,7 +3656,7 @@
   "leafeon": {
     "id": 470,
     "name": "Leafeon",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "eevee"
     }
@@ -3664,7 +3664,7 @@
   "glaceon": {
     "id": 471,
     "name": "Glaceon",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "eevee"
     }
@@ -3672,7 +3672,7 @@
   "gliscor": {
     "id": 472,
     "name": "Gliscor",
-    "type": ["ground", "flying"],
+    "types": ["ground", "flying"],
     "evos": {
       "from": "gligar"
     }
@@ -3680,7 +3680,7 @@
   "mamoswine": {
     "id": 473,
     "name": "Mamoswine",
-    "type": ["ice", "ground"],
+    "types": ["ice", "ground"],
     "evos": {
       "from": "piloswine"
     }
@@ -3688,7 +3688,7 @@
   "porygon-z": {
     "id": 474,
     "name": "Porygon-Z",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "porygon2"
     }
@@ -3696,7 +3696,7 @@
   "gallade": {
     "id": 475,
     "name": "Gallade",
-    "type": ["psychic", "fighting"],
+    "types": ["psychic", "fighting"],
     "evos": {
       "from": "kirlia"
     }
@@ -3704,7 +3704,7 @@
   "probopass": {
     "id": 476,
     "name": "Probopass",
-    "type": ["rock", "steel"],
+    "types": ["rock", "steel"],
     "evos": {
       "from": "nosepass"
     }
@@ -3712,7 +3712,7 @@
   "dusknoir": {
     "id": 477,
     "name": "Dusknoir",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "dusclops"
     }
@@ -3720,7 +3720,7 @@
   "froslass": {
     "id": 478,
     "name": "Froslass",
-    "type": ["ice", "ghost"],
+    "types": ["ice", "ghost"],
     "evos": {
       "from": "snorunt"
     }
@@ -3728,57 +3728,57 @@
   "rotom": {
     "id": 479,
     "name": "Rotom",
-    "type": ["electric", "ghost"]
+    "types": ["electric", "ghost"]
   },
   "uxie": {
     "id": 480,
     "name": "Uxie",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "mesprit": {
     "id": 481,
     "name": "Mesprit",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "azelf": {
     "id": 482,
     "name": "Azelf",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "dialga": {
     "id": 483,
     "name": "Dialga",
-    "type": ["steel", "dragon"]
+    "types": ["steel", "dragon"]
   },
   "palkia": {
     "id": 484,
     "name": "Palkia",
-    "type": ["water", "dragon"]
+    "types": ["water", "dragon"]
   },
   "heatran": {
     "id": 485,
     "name": "Heatran",
-    "type": ["fire", "steel"]
+    "types": ["fire", "steel"]
   },
   "regigigas": {
     "id": 486,
     "name": "Regigigas",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "giratina": {
     "id": 487,
     "name": "Giratina",
-    "type": ["ghost", "dragon"]
+    "types": ["ghost", "dragon"]
   },
   "cresselia": {
     "id": 488,
     "name": "Cresselia",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "phione": {
     "id": 489,
     "name": "Phione",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["manaphy"]
     }
@@ -3786,32 +3786,32 @@
   "manaphy": {
     "id": 490,
     "name": "Manaphy",
-    "type": ["water"]
+    "types": ["water"]
   },
   "darkrai": {
     "id": 491,
     "name": "Darkrai",
-    "type": ["dark"]
+    "types": ["dark"]
   },
   "shaymin": {
     "id": 492,
     "name": "Shaymin",
-    "type": ["grass"]
+    "types": ["grass"]
   },
   "arceus": {
     "id": 493,
     "name": "Arceus",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "victini": {
     "id": 494,
     "name": "Victini",
-    "type": ["psychic", "fire"]
+    "types": ["psychic", "fire"]
   },
   "snivy": {
     "id": 495,
     "name": "Snivy",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["servine"]
     }
@@ -3819,7 +3819,7 @@
   "servine": {
     "id": 496,
     "name": "Servine",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "snivy",
       "to": ["serperior"]
@@ -3828,7 +3828,7 @@
   "serperior": {
     "id": 497,
     "name": "Serperior",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "servine"
     }
@@ -3836,7 +3836,7 @@
   "tepig": {
     "id": 498,
     "name": "Tepig",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["pignite"]
     }
@@ -3844,7 +3844,7 @@
   "pignite": {
     "id": 499,
     "name": "Pignite",
-    "type": ["fire", "fighting"],
+    "types": ["fire", "fighting"],
     "evos": {
       "from": "tepig",
       "to": ["emboar"]
@@ -3853,7 +3853,7 @@
   "emboar": {
     "id": 500,
     "name": "Emboar",
-    "type": ["fire", "fighting"],
+    "types": ["fire", "fighting"],
     "evos": {
       "from": "pignite"
     }
@@ -3861,7 +3861,7 @@
   "oshawott": {
     "id": 501,
     "name": "Oshawott",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["dewott"]
     }
@@ -3869,7 +3869,7 @@
   "dewott": {
     "id": 502,
     "name": "Dewott",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "oshawott",
       "to": ["samurott"]
@@ -3878,7 +3878,7 @@
   "samurott": {
     "id": 503,
     "name": "Samurott",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "dewott"
     }
@@ -3886,7 +3886,7 @@
   "patrat": {
     "id": 504,
     "name": "Patrat",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["watchog"]
     }
@@ -3894,7 +3894,7 @@
   "watchog": {
     "id": 505,
     "name": "Watchog",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "patrat"
     }
@@ -3902,7 +3902,7 @@
   "lillipup": {
     "id": 506,
     "name": "Lillipup",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["herdier"]
     }
@@ -3910,7 +3910,7 @@
   "herdier": {
     "id": 507,
     "name": "Herdier",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "lillipup",
       "to": ["stoutland"]
@@ -3919,7 +3919,7 @@
   "stoutland": {
     "id": 508,
     "name": "Stoutland",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "herdier"
     }
@@ -3927,7 +3927,7 @@
   "purrloin": {
     "id": 509,
     "name": "Purrloin",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "to": ["liepard"]
     }
@@ -3935,7 +3935,7 @@
   "liepard": {
     "id": 510,
     "name": "Liepard",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "from": "purrloin"
     }
@@ -3943,7 +3943,7 @@
   "pansage": {
     "id": 511,
     "name": "Pansage",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["simisage"]
     }
@@ -3951,7 +3951,7 @@
   "simisage": {
     "id": 512,
     "name": "Simisage",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "pansage"
     }
@@ -3959,7 +3959,7 @@
   "pansear": {
     "id": 513,
     "name": "Pansear",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["simisear"]
     }
@@ -3967,7 +3967,7 @@
   "simisear": {
     "id": 514,
     "name": "Simisear",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "pansear"
     }
@@ -3975,7 +3975,7 @@
   "panpour": {
     "id": 515,
     "name": "Panpour",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["simipour"]
     }
@@ -3983,7 +3983,7 @@
   "simipour": {
     "id": 516,
     "name": "Simipour",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "panpour"
     }
@@ -3991,7 +3991,7 @@
   "munna": {
     "id": 517,
     "name": "Munna",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["musharna"]
     }
@@ -3999,7 +3999,7 @@
   "musharna": {
     "id": 518,
     "name": "Musharna",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "munna"
     }
@@ -4007,7 +4007,7 @@
   "pidove": {
     "id": 519,
     "name": "Pidove",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["tranquill"]
     }
@@ -4015,7 +4015,7 @@
   "tranquill": {
     "id": 520,
     "name": "Tranquill",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "pidove",
       "to": ["unfezant"]
@@ -4024,7 +4024,7 @@
   "unfezant": {
     "id": 521,
     "name": "Unfezant",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "tranquill"
     }
@@ -4032,7 +4032,7 @@
   "blitzle": {
     "id": 522,
     "name": "Blitzle",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["zebstrika"]
     }
@@ -4040,7 +4040,7 @@
   "zebstrika": {
     "id": 523,
     "name": "Zebstrika",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "blitzle"
     }
@@ -4048,7 +4048,7 @@
   "roggenrola": {
     "id": 524,
     "name": "Roggenrola",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["boldore"]
     }
@@ -4056,7 +4056,7 @@
   "boldore": {
     "id": 525,
     "name": "Boldore",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "roggenrola",
       "to": ["gigalith"]
@@ -4065,7 +4065,7 @@
   "gigalith": {
     "id": 526,
     "name": "Gigalith",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "boldore"
     }
@@ -4073,7 +4073,7 @@
   "woobat": {
     "id": 527,
     "name": "Woobat",
-    "type": ["psychic", "flying"],
+    "types": ["psychic", "flying"],
     "evos": {
       "to": ["swoobat"]
     }
@@ -4081,7 +4081,7 @@
   "swoobat": {
     "id": 528,
     "name": "Swoobat",
-    "type": ["psychic", "flying"],
+    "types": ["psychic", "flying"],
     "evos": {
       "from": "woobat"
     }
@@ -4089,7 +4089,7 @@
   "drilbur": {
     "id": 529,
     "name": "Drilbur",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["excadrill"]
     }
@@ -4097,7 +4097,7 @@
   "excadrill": {
     "id": 530,
     "name": "Excadrill",
-    "type": ["ground", "steel"],
+    "types": ["ground", "steel"],
     "evos": {
       "from": "drilbur"
     }
@@ -4105,12 +4105,12 @@
   "audino": {
     "id": 531,
     "name": "Audino",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "timburr": {
     "id": 532,
     "name": "Timburr",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["gurdurr"]
     }
@@ -4118,7 +4118,7 @@
   "gurdurr": {
     "id": 533,
     "name": "Gurdurr",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "timburr",
       "to": ["conkeldurr"]
@@ -4127,7 +4127,7 @@
   "conkeldurr": {
     "id": 534,
     "name": "Conkeldurr",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "gurdurr"
     }
@@ -4135,7 +4135,7 @@
   "tympole": {
     "id": 535,
     "name": "Tympole",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["palpitoad"]
     }
@@ -4143,7 +4143,7 @@
   "palpitoad": {
     "id": 536,
     "name": "Palpitoad",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "tympole",
       "to": ["seismitoad"]
@@ -4152,7 +4152,7 @@
   "seismitoad": {
     "id": 537,
     "name": "Seismitoad",
-    "type": ["water", "ground"],
+    "types": ["water", "ground"],
     "evos": {
       "from": "palpitoad"
     }
@@ -4160,17 +4160,17 @@
   "throh": {
     "id": 538,
     "name": "Throh",
-    "type": ["fighting"]
+    "types": ["fighting"]
   },
   "sawk": {
     "id": 539,
     "name": "Sawk",
-    "type": ["fighting"]
+    "types": ["fighting"]
   },
   "sewaddle": {
     "id": 540,
     "name": "Sewaddle",
-    "type": ["bug", "grass"],
+    "types": ["bug", "grass"],
     "evos": {
       "to": ["swadloon"]
     }
@@ -4178,7 +4178,7 @@
   "swadloon": {
     "id": 541,
     "name": "Swadloon",
-    "type": ["bug", "grass"],
+    "types": ["bug", "grass"],
     "evos": {
       "from": "sewaddle",
       "to": ["leavanny"]
@@ -4187,7 +4187,7 @@
   "leavanny": {
     "id": 542,
     "name": "Leavanny",
-    "type": ["bug", "grass"],
+    "types": ["bug", "grass"],
     "evos": {
       "from": "swadloon"
     }
@@ -4195,7 +4195,7 @@
   "venipede": {
     "id": 543,
     "name": "Venipede",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "to": ["whirlipede"]
     }
@@ -4203,7 +4203,7 @@
   "whirlipede": {
     "id": 544,
     "name": "Whirlipede",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "venipede",
       "to": ["scolipede"]
@@ -4212,7 +4212,7 @@
   "scolipede": {
     "id": 545,
     "name": "Scolipede",
-    "type": ["bug", "poison"],
+    "types": ["bug", "poison"],
     "evos": {
       "from": "whirlipede"
     }
@@ -4220,7 +4220,7 @@
   "cottonee": {
     "id": 546,
     "name": "Cottonee",
-    "type": ["grass", "fairy"],
+    "types": ["grass", "fairy"],
     "evos": {
       "to": ["whimsicott"]
     }
@@ -4228,7 +4228,7 @@
   "whimsicott": {
     "id": 547,
     "name": "Whimsicott",
-    "type": ["grass", "fairy"],
+    "types": ["grass", "fairy"],
     "evos": {
       "from": "cottonee"
     }
@@ -4236,7 +4236,7 @@
   "petilil": {
     "id": 548,
     "name": "Petilil",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["lilligant"]
     }
@@ -4244,7 +4244,7 @@
   "lilligant": {
     "id": 549,
     "name": "Lilligant",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "petilil"
     }
@@ -4252,7 +4252,7 @@
   "basculin": {
     "id": 550,
     "name": "Basculin",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["basculegion"]
     }
@@ -4260,7 +4260,7 @@
   "sandile": {
     "id": 551,
     "name": "Sandile",
-    "type": ["ground", "dark"],
+    "types": ["ground", "dark"],
     "evos": {
       "to": ["krokorok"]
     }
@@ -4268,7 +4268,7 @@
   "krokorok": {
     "id": 552,
     "name": "Krokorok",
-    "type": ["ground", "dark"],
+    "types": ["ground", "dark"],
     "evos": {
       "from": "sandile",
       "to": ["krookodile"]
@@ -4277,7 +4277,7 @@
   "krookodile": {
     "id": 553,
     "name": "Krookodile",
-    "type": ["ground", "dark"],
+    "types": ["ground", "dark"],
     "evos": {
       "from": "krokorok"
     }
@@ -4285,7 +4285,7 @@
   "darumaka": {
     "id": 554,
     "name": "Darumaka",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["darmanitan"]
     }
@@ -4293,7 +4293,7 @@
   "darmanitan": {
     "id": 555,
     "name": "Darmanitan",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "darumaka"
     }
@@ -4301,12 +4301,12 @@
   "maractus": {
     "id": 556,
     "name": "Maractus",
-    "type": ["grass"]
+    "types": ["grass"]
   },
   "dwebble": {
     "id": 557,
     "name": "Dwebble",
-    "type": ["bug", "rock"],
+    "types": ["bug", "rock"],
     "evos": {
       "to": ["crustle"]
     }
@@ -4314,7 +4314,7 @@
   "crustle": {
     "id": 558,
     "name": "Crustle",
-    "type": ["bug", "rock"],
+    "types": ["bug", "rock"],
     "evos": {
       "from": "dwebble"
     }
@@ -4322,7 +4322,7 @@
   "scraggy": {
     "id": 559,
     "name": "Scraggy",
-    "type": ["dark", "fighting"],
+    "types": ["dark", "fighting"],
     "evos": {
       "to": ["scrafty"]
     }
@@ -4330,7 +4330,7 @@
   "scrafty": {
     "id": 560,
     "name": "Scrafty",
-    "type": ["dark", "fighting"],
+    "types": ["dark", "fighting"],
     "evos": {
       "from": "scraggy"
     }
@@ -4338,12 +4338,12 @@
   "sigilyph": {
     "id": 561,
     "name": "Sigilyph",
-    "type": ["psychic", "flying"]
+    "types": ["psychic", "flying"]
   },
   "yamask": {
     "id": 562,
     "name": "Yamask",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["cofagrigus", "runerigus"]
     }
@@ -4351,7 +4351,7 @@
   "cofagrigus": {
     "id": 563,
     "name": "Cofagrigus",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "yamask"
     }
@@ -4359,7 +4359,7 @@
   "tirtouga": {
     "id": 564,
     "name": "Tirtouga",
-    "type": ["water", "rock"],
+    "types": ["water", "rock"],
     "evos": {
       "to": ["carracosta"]
     }
@@ -4367,7 +4367,7 @@
   "carracosta": {
     "id": 565,
     "name": "Carracosta",
-    "type": ["water", "rock"],
+    "types": ["water", "rock"],
     "evos": {
       "from": "tirtouga"
     }
@@ -4375,7 +4375,7 @@
   "archen": {
     "id": 566,
     "name": "Archen",
-    "type": ["rock", "flying"],
+    "types": ["rock", "flying"],
     "evos": {
       "to": ["archeops"]
     }
@@ -4383,7 +4383,7 @@
   "archeops": {
     "id": 567,
     "name": "Archeops",
-    "type": ["rock", "flying"],
+    "types": ["rock", "flying"],
     "evos": {
       "from": "archen"
     }
@@ -4391,7 +4391,7 @@
   "trubbish": {
     "id": 568,
     "name": "Trubbish",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["garbodor"]
     }
@@ -4399,7 +4399,7 @@
   "garbodor": {
     "id": 569,
     "name": "Garbodor",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "from": "trubbish"
     }
@@ -4407,7 +4407,7 @@
   "zorua": {
     "id": 570,
     "name": "Zorua",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "to": ["zoroark"]
     }
@@ -4415,7 +4415,7 @@
   "zoroark": {
     "id": 571,
     "name": "Zoroark",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "from": "zorua"
     }
@@ -4423,7 +4423,7 @@
   "minccino": {
     "id": 572,
     "name": "Minccino",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["cinccino"]
     }
@@ -4431,7 +4431,7 @@
   "cinccino": {
     "id": 573,
     "name": "Cinccino",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "minccino"
     }
@@ -4439,7 +4439,7 @@
   "gothita": {
     "id": 574,
     "name": "Gothita",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["gothorita"]
     }
@@ -4447,7 +4447,7 @@
   "gothorita": {
     "id": 575,
     "name": "Gothorita",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "gothita",
       "to": ["gothitelle"]
@@ -4456,7 +4456,7 @@
   "gothitelle": {
     "id": 576,
     "name": "Gothitelle",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "gothorita"
     }
@@ -4464,7 +4464,7 @@
   "solosis": {
     "id": 577,
     "name": "Solosis",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["duosion"]
     }
@@ -4472,7 +4472,7 @@
   "duosion": {
     "id": 578,
     "name": "Duosion",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "solosis",
       "to": ["reuniclus"]
@@ -4481,7 +4481,7 @@
   "reuniclus": {
     "id": 579,
     "name": "Reuniclus",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "duosion"
     }
@@ -4489,7 +4489,7 @@
   "ducklett": {
     "id": 580,
     "name": "Ducklett",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "to": ["swanna"]
     }
@@ -4497,7 +4497,7 @@
   "swanna": {
     "id": 581,
     "name": "Swanna",
-    "type": ["water", "flying"],
+    "types": ["water", "flying"],
     "evos": {
       "from": "ducklett"
     }
@@ -4505,7 +4505,7 @@
   "vanillite": {
     "id": 582,
     "name": "Vanillite",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "to": ["vanillish"]
     }
@@ -4513,7 +4513,7 @@
   "vanillish": {
     "id": 583,
     "name": "Vanillish",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "vanillite",
       "to": ["vanilluxe"]
@@ -4522,7 +4522,7 @@
   "vanilluxe": {
     "id": 584,
     "name": "Vanilluxe",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "vanillish"
     }
@@ -4530,7 +4530,7 @@
   "deerling": {
     "id": 585,
     "name": "Deerling",
-    "type": ["normal", "grass"],
+    "types": ["normal", "grass"],
     "evos": {
       "to": ["sawsbuck"]
     }
@@ -4538,7 +4538,7 @@
   "sawsbuck": {
     "id": 586,
     "name": "Sawsbuck",
-    "type": ["normal", "grass"],
+    "types": ["normal", "grass"],
     "evos": {
       "from": "deerling"
     }
@@ -4546,12 +4546,12 @@
   "emolga": {
     "id": 587,
     "name": "Emolga",
-    "type": ["electric", "flying"]
+    "types": ["electric", "flying"]
   },
   "karrablast": {
     "id": 588,
     "name": "Karrablast",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["escavalier"]
     }
@@ -4559,7 +4559,7 @@
   "escavalier": {
     "id": 589,
     "name": "Escavalier",
-    "type": ["bug", "steel"],
+    "types": ["bug", "steel"],
     "evos": {
       "from": "karrablast"
     }
@@ -4567,7 +4567,7 @@
   "foongus": {
     "id": 590,
     "name": "Foongus",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "to": ["amoonguss"]
     }
@@ -4575,7 +4575,7 @@
   "amoonguss": {
     "id": 591,
     "name": "Amoonguss",
-    "type": ["grass", "poison"],
+    "types": ["grass", "poison"],
     "evos": {
       "from": "foongus"
     }
@@ -4583,7 +4583,7 @@
   "frillish": {
     "id": 592,
     "name": "Frillish",
-    "type": ["water", "ghost"],
+    "types": ["water", "ghost"],
     "evos": {
       "to": ["jellicent"]
     }
@@ -4591,7 +4591,7 @@
   "jellicent": {
     "id": 593,
     "name": "Jellicent",
-    "type": ["water", "ghost"],
+    "types": ["water", "ghost"],
     "evos": {
       "from": "frillish"
     }
@@ -4599,12 +4599,12 @@
   "alomomola": {
     "id": 594,
     "name": "Alomomola",
-    "type": ["water"]
+    "types": ["water"]
   },
   "joltik": {
     "id": 595,
     "name": "Joltik",
-    "type": ["bug", "electric"],
+    "types": ["bug", "electric"],
     "evos": {
       "to": ["galvantula"]
     }
@@ -4612,7 +4612,7 @@
   "galvantula": {
     "id": 596,
     "name": "Galvantula",
-    "type": ["bug", "electric"],
+    "types": ["bug", "electric"],
     "evos": {
       "from": "joltik"
     }
@@ -4620,7 +4620,7 @@
   "ferroseed": {
     "id": 597,
     "name": "Ferroseed",
-    "type": ["grass", "steel"],
+    "types": ["grass", "steel"],
     "evos": {
       "to": ["ferrothorn"]
     }
@@ -4628,7 +4628,7 @@
   "ferrothorn": {
     "id": 598,
     "name": "Ferrothorn",
-    "type": ["grass", "steel"],
+    "types": ["grass", "steel"],
     "evos": {
       "from": "ferroseed"
     }
@@ -4636,7 +4636,7 @@
   "klink": {
     "id": 599,
     "name": "Klink",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "to": ["klang"]
     }
@@ -4644,7 +4644,7 @@
   "klang": {
     "id": 600,
     "name": "Klang",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "from": "klink",
       "to": ["klinklang"]
@@ -4653,7 +4653,7 @@
   "klinklang": {
     "id": 601,
     "name": "Klinklang",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "from": "klang"
     }
@@ -4661,7 +4661,7 @@
   "tynamo": {
     "id": 602,
     "name": "Tynamo",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["eelektrik"]
     }
@@ -4669,7 +4669,7 @@
   "eelektrik": {
     "id": 603,
     "name": "Eelektrik",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "tynamo",
       "to": ["eelektross"]
@@ -4678,7 +4678,7 @@
   "eelektross": {
     "id": 604,
     "name": "Eelektross",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "eelektrik"
     }
@@ -4686,7 +4686,7 @@
   "elgyem": {
     "id": 605,
     "name": "Elgyem",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["beheeyem"]
     }
@@ -4694,7 +4694,7 @@
   "beheeyem": {
     "id": 606,
     "name": "Beheeyem",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "elgyem"
     }
@@ -4702,7 +4702,7 @@
   "litwick": {
     "id": 607,
     "name": "Litwick",
-    "type": ["ghost", "fire"],
+    "types": ["ghost", "fire"],
     "evos": {
       "to": ["lampent"]
     }
@@ -4710,7 +4710,7 @@
   "lampent": {
     "id": 608,
     "name": "Lampent",
-    "type": ["ghost", "fire"],
+    "types": ["ghost", "fire"],
     "evos": {
       "from": "litwick",
       "to": ["chandelure"]
@@ -4719,7 +4719,7 @@
   "chandelure": {
     "id": 609,
     "name": "Chandelure",
-    "type": ["ghost", "fire"],
+    "types": ["ghost", "fire"],
     "evos": {
       "from": "lampent"
     }
@@ -4727,7 +4727,7 @@
   "axew": {
     "id": 610,
     "name": "Axew",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "to": ["fraxure"]
     }
@@ -4735,7 +4735,7 @@
   "fraxure": {
     "id": 611,
     "name": "Fraxure",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "from": "axew",
       "to": ["haxorus"]
@@ -4744,7 +4744,7 @@
   "haxorus": {
     "id": 612,
     "name": "Haxorus",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "from": "fraxure"
     }
@@ -4752,7 +4752,7 @@
   "cubchoo": {
     "id": 613,
     "name": "Cubchoo",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "to": ["beartic"]
     }
@@ -4760,7 +4760,7 @@
   "beartic": {
     "id": 614,
     "name": "Beartic",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "cubchoo"
     }
@@ -4768,12 +4768,12 @@
   "cryogonal": {
     "id": 615,
     "name": "Cryogonal",
-    "type": ["ice"]
+    "types": ["ice"]
   },
   "shelmet": {
     "id": 616,
     "name": "Shelmet",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["accelgor"]
     }
@@ -4781,7 +4781,7 @@
   "accelgor": {
     "id": 617,
     "name": "Accelgor",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "shelmet"
     }
@@ -4789,12 +4789,12 @@
   "stunfisk": {
     "id": 618,
     "name": "Stunfisk",
-    "type": ["ground", "electric"]
+    "types": ["ground", "electric"]
   },
   "mienfoo": {
     "id": 619,
     "name": "Mienfoo",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["mienshao"]
     }
@@ -4802,7 +4802,7 @@
   "mienshao": {
     "id": 620,
     "name": "Mienshao",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "mienfoo"
     }
@@ -4810,12 +4810,12 @@
   "druddigon": {
     "id": 621,
     "name": "Druddigon",
-    "type": ["dragon"]
+    "types": ["dragon"]
   },
   "golett": {
     "id": 622,
     "name": "Golett",
-    "type": ["ground", "ghost"],
+    "types": ["ground", "ghost"],
     "evos": {
       "to": ["golurk"]
     }
@@ -4823,7 +4823,7 @@
   "golurk": {
     "id": 623,
     "name": "Golurk",
-    "type": ["ground", "ghost"],
+    "types": ["ground", "ghost"],
     "evos": {
       "from": "golett"
     }
@@ -4831,7 +4831,7 @@
   "pawniard": {
     "id": 624,
     "name": "Pawniard",
-    "type": ["dark", "steel"],
+    "types": ["dark", "steel"],
     "evos": {
       "to": ["bisharp"]
     }
@@ -4839,7 +4839,7 @@
   "bisharp": {
     "id": 625,
     "name": "Bisharp",
-    "type": ["dark", "steel"],
+    "types": ["dark", "steel"],
     "evos": {
       "from": "pawniard",
       "to": ["kingambit"]
@@ -4848,12 +4848,12 @@
   "bouffalant": {
     "id": 626,
     "name": "Bouffalant",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "rufflet": {
     "id": 627,
     "name": "Rufflet",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["braviary"]
     }
@@ -4861,7 +4861,7 @@
   "braviary": {
     "id": 628,
     "name": "Braviary",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "rufflet"
     }
@@ -4869,7 +4869,7 @@
   "vullaby": {
     "id": 629,
     "name": "Vullaby",
-    "type": ["dark", "flying"],
+    "types": ["dark", "flying"],
     "evos": {
       "to": ["mandibuzz"]
     }
@@ -4877,7 +4877,7 @@
   "mandibuzz": {
     "id": 630,
     "name": "Mandibuzz",
-    "type": ["dark", "flying"],
+    "types": ["dark", "flying"],
     "evos": {
       "from": "vullaby"
     }
@@ -4885,17 +4885,17 @@
   "heatmor": {
     "id": 631,
     "name": "Heatmor",
-    "type": ["fire"]
+    "types": ["fire"]
   },
   "durant": {
     "id": 632,
     "name": "Durant",
-    "type": ["bug", "steel"]
+    "types": ["bug", "steel"]
   },
   "deino": {
     "id": 633,
     "name": "Deino",
-    "type": ["dark", "dragon"],
+    "types": ["dark", "dragon"],
     "evos": {
       "to": ["zweilous"]
     }
@@ -4903,7 +4903,7 @@
   "zweilous": {
     "id": 634,
     "name": "Zweilous",
-    "type": ["dark", "dragon"],
+    "types": ["dark", "dragon"],
     "evos": {
       "from": "deino",
       "to": ["hydreigon"]
@@ -4912,7 +4912,7 @@
   "hydreigon": {
     "id": 635,
     "name": "Hydreigon",
-    "type": ["dark", "dragon"],
+    "types": ["dark", "dragon"],
     "evos": {
       "from": "zweilous"
     }
@@ -4920,7 +4920,7 @@
   "larvesta": {
     "id": 636,
     "name": "Larvesta",
-    "type": ["bug", "fire"],
+    "types": ["bug", "fire"],
     "evos": {
       "to": ["volcarona"]
     }
@@ -4928,7 +4928,7 @@
   "volcarona": {
     "id": 637,
     "name": "Volcarona",
-    "type": ["bug", "fire"],
+    "types": ["bug", "fire"],
     "evos": {
       "from": "larvesta"
     }
@@ -4936,67 +4936,67 @@
   "cobalion": {
     "id": 638,
     "name": "Cobalion",
-    "type": ["steel", "fighting"]
+    "types": ["steel", "fighting"]
   },
   "terrakion": {
     "id": 639,
     "name": "Terrakion",
-    "type": ["rock", "fighting"]
+    "types": ["rock", "fighting"]
   },
   "virizion": {
     "id": 640,
     "name": "Virizion",
-    "type": ["grass", "fighting"]
+    "types": ["grass", "fighting"]
   },
   "tornadus": {
     "id": 641,
     "name": "Tornadus",
-    "type": ["flying"]
+    "types": ["flying"]
   },
   "thundurus": {
     "id": 642,
     "name": "Thundurus",
-    "type": ["electric", "flying"]
+    "types": ["electric", "flying"]
   },
   "reshiram": {
     "id": 643,
     "name": "Reshiram",
-    "type": ["dragon", "fire"]
+    "types": ["dragon", "fire"]
   },
   "zekrom": {
     "id": 644,
     "name": "Zekrom",
-    "type": ["dragon", "electric"]
+    "types": ["dragon", "electric"]
   },
   "landorus": {
     "id": 645,
     "name": "Landorus",
-    "type": ["ground", "flying"]
+    "types": ["ground", "flying"]
   },
   "kyurem": {
     "id": 646,
     "name": "Kyurem",
-    "type": ["dragon", "ice"]
+    "types": ["dragon", "ice"]
   },
   "keldeo": {
     "id": 647,
     "name": "Keldeo",
-    "type": ["water", "fighting"]
+    "types": ["water", "fighting"]
   },
   "meloetta": {
     "id": 648,
     "name": "Meloetta",
-    "type": ["normal", "psychic"]
+    "types": ["normal", "psychic"]
   },
   "genesect": {
     "id": 649,
     "name": "Genesect",
-    "type": ["bug", "steel"]
+    "types": ["bug", "steel"]
   },
   "chespin": {
     "id": 650,
     "name": "Chespin",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["quilladin"]
     }
@@ -5004,7 +5004,7 @@
   "quilladin": {
     "id": 651,
     "name": "Quilladin",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "chespin",
       "to": ["chesnaught"]
@@ -5013,7 +5013,7 @@
   "chesnaught": {
     "id": 652,
     "name": "Chesnaught",
-    "type": ["grass", "fighting"],
+    "types": ["grass", "fighting"],
     "evos": {
       "from": "quilladin"
     }
@@ -5021,7 +5021,7 @@
   "fennekin": {
     "id": 653,
     "name": "Fennekin",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["braixen"]
     }
@@ -5029,7 +5029,7 @@
   "braixen": {
     "id": 654,
     "name": "Braixen",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "fennekin",
       "to": ["delphox"]
@@ -5038,7 +5038,7 @@
   "delphox": {
     "id": 655,
     "name": "Delphox",
-    "type": ["fire", "psychic"],
+    "types": ["fire", "psychic"],
     "evos": {
       "from": "braixen"
     }
@@ -5046,7 +5046,7 @@
   "froakie": {
     "id": 656,
     "name": "Froakie",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["frogadier"]
     }
@@ -5054,7 +5054,7 @@
   "frogadier": {
     "id": 657,
     "name": "Frogadier",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "froakie",
       "to": ["greninja"]
@@ -5063,7 +5063,7 @@
   "greninja": {
     "id": 658,
     "name": "Greninja",
-    "type": ["water", "dark"],
+    "types": ["water", "dark"],
     "evos": {
       "from": "frogadier"
     }
@@ -5071,7 +5071,7 @@
   "bunnelby": {
     "id": 659,
     "name": "Bunnelby",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["diggersby"]
     }
@@ -5079,7 +5079,7 @@
   "diggersby": {
     "id": 660,
     "name": "Diggersby",
-    "type": ["normal", "ground"],
+    "types": ["normal", "ground"],
     "evos": {
       "from": "bunnelby"
     }
@@ -5087,7 +5087,7 @@
   "fletchling": {
     "id": 661,
     "name": "Fletchling",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["fletchinder"]
     }
@@ -5095,7 +5095,7 @@
   "fletchinder": {
     "id": 662,
     "name": "Fletchinder",
-    "type": ["fire", "flying"],
+    "types": ["fire", "flying"],
     "evos": {
       "from": "fletchling",
       "to": ["talonflame"]
@@ -5104,7 +5104,7 @@
   "talonflame": {
     "id": 663,
     "name": "Talonflame",
-    "type": ["fire", "flying"],
+    "types": ["fire", "flying"],
     "evos": {
       "from": "fletchinder"
     }
@@ -5112,7 +5112,7 @@
   "scatterbug": {
     "id": 664,
     "name": "Scatterbug",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["spewpa"]
     }
@@ -5120,7 +5120,7 @@
   "spewpa": {
     "id": 665,
     "name": "Spewpa",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "scatterbug",
       "to": ["vivillon"]
@@ -5129,7 +5129,7 @@
   "vivillon": {
     "id": 666,
     "name": "Vivillon",
-    "type": ["bug", "flying"],
+    "types": ["bug", "flying"],
     "evos": {
       "from": "spewpa"
     }
@@ -5137,7 +5137,7 @@
   "litleo": {
     "id": 667,
     "name": "Litleo",
-    "type": ["fire", "normal"],
+    "types": ["fire", "normal"],
     "evos": {
       "to": ["pyroar"]
     }
@@ -5145,7 +5145,7 @@
   "pyroar": {
     "id": 668,
     "name": "Pyroar",
-    "type": ["fire", "normal"],
+    "types": ["fire", "normal"],
     "evos": {
       "from": "litleo"
     }
@@ -5153,7 +5153,7 @@
   "flabebe": {
     "id": 669,
     "name": "Flabébé",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["floette"]
     }
@@ -5161,7 +5161,7 @@
   "floette": {
     "id": 670,
     "name": "Floette",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "flabebe",
       "to": ["florges"]
@@ -5170,7 +5170,7 @@
   "florges": {
     "id": 671,
     "name": "Florges",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "floette"
     }
@@ -5178,7 +5178,7 @@
   "skiddo": {
     "id": 672,
     "name": "Skiddo",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["gogoat"]
     }
@@ -5186,7 +5186,7 @@
   "gogoat": {
     "id": 673,
     "name": "Gogoat",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "skiddo"
     }
@@ -5194,7 +5194,7 @@
   "pancham": {
     "id": 674,
     "name": "Pancham",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["pangoro"]
     }
@@ -5202,7 +5202,7 @@
   "pangoro": {
     "id": 675,
     "name": "Pangoro",
-    "type": ["fighting", "dark"],
+    "types": ["fighting", "dark"],
     "evos": {
       "from": "pancham"
     }
@@ -5210,12 +5210,12 @@
   "furfrou": {
     "id": 676,
     "name": "Furfrou",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "espurr": {
     "id": 677,
     "name": "Espurr",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["meowstic"]
     }
@@ -5223,7 +5223,7 @@
   "meowstic": {
     "id": 678,
     "name": "Meowstic",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "espurr"
     }
@@ -5231,7 +5231,7 @@
   "honedge": {
     "id": 679,
     "name": "Honedge",
-    "type": ["steel", "ghost"],
+    "types": ["steel", "ghost"],
     "evos": {
       "to": ["doublade"]
     }
@@ -5239,7 +5239,7 @@
   "doublade": {
     "id": 680,
     "name": "Doublade",
-    "type": ["steel", "ghost"],
+    "types": ["steel", "ghost"],
     "evos": {
       "from": "honedge",
       "to": ["aegislash"]
@@ -5248,7 +5248,7 @@
   "aegislash": {
     "id": 681,
     "name": "Aegislash",
-    "type": ["steel", "ghost"],
+    "types": ["steel", "ghost"],
     "evos": {
       "from": "doublade"
     }
@@ -5256,7 +5256,7 @@
   "spritzee": {
     "id": 682,
     "name": "Spritzee",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["aromatisse"]
     }
@@ -5264,7 +5264,7 @@
   "aromatisse": {
     "id": 683,
     "name": "Aromatisse",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "spritzee"
     }
@@ -5272,7 +5272,7 @@
   "swirlix": {
     "id": 684,
     "name": "Swirlix",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["slurpuff"]
     }
@@ -5280,7 +5280,7 @@
   "slurpuff": {
     "id": 685,
     "name": "Slurpuff",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "swirlix"
     }
@@ -5288,7 +5288,7 @@
   "inkay": {
     "id": 686,
     "name": "Inkay",
-    "type": ["dark", "psychic"],
+    "types": ["dark", "psychic"],
     "evos": {
       "to": ["malamar"]
     }
@@ -5296,7 +5296,7 @@
   "malamar": {
     "id": 687,
     "name": "Malamar",
-    "type": ["dark", "psychic"],
+    "types": ["dark", "psychic"],
     "evos": {
       "from": "inkay"
     }
@@ -5304,7 +5304,7 @@
   "binacle": {
     "id": 688,
     "name": "Binacle",
-    "type": ["rock", "water"],
+    "types": ["rock", "water"],
     "evos": {
       "to": ["barbaracle"]
     }
@@ -5312,7 +5312,7 @@
   "barbaracle": {
     "id": 689,
     "name": "Barbaracle",
-    "type": ["rock", "water"],
+    "types": ["rock", "water"],
     "evos": {
       "from": "binacle"
     }
@@ -5320,7 +5320,7 @@
   "skrelp": {
     "id": 690,
     "name": "Skrelp",
-    "type": ["poison", "water"],
+    "types": ["poison", "water"],
     "evos": {
       "to": ["dragalge"]
     }
@@ -5328,7 +5328,7 @@
   "dragalge": {
     "id": 691,
     "name": "Dragalge",
-    "type": ["poison", "dragon"],
+    "types": ["poison", "dragon"],
     "evos": {
       "from": "skrelp"
     }
@@ -5336,7 +5336,7 @@
   "clauncher": {
     "id": 692,
     "name": "Clauncher",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["clawitzer"]
     }
@@ -5344,7 +5344,7 @@
   "clawitzer": {
     "id": 693,
     "name": "Clawitzer",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "clauncher"
     }
@@ -5352,7 +5352,7 @@
   "helioptile": {
     "id": 694,
     "name": "Helioptile",
-    "type": ["electric", "normal"],
+    "types": ["electric", "normal"],
     "evos": {
       "to": ["heliolisk"]
     }
@@ -5360,7 +5360,7 @@
   "heliolisk": {
     "id": 695,
     "name": "Heliolisk",
-    "type": ["electric", "normal"],
+    "types": ["electric", "normal"],
     "evos": {
       "from": "helioptile"
     }
@@ -5368,7 +5368,7 @@
   "tyrunt": {
     "id": 696,
     "name": "Tyrunt",
-    "type": ["rock", "dragon"],
+    "types": ["rock", "dragon"],
     "evos": {
       "to": ["tyrantrum"]
     }
@@ -5376,7 +5376,7 @@
   "tyrantrum": {
     "id": 697,
     "name": "Tyrantrum",
-    "type": ["rock", "dragon"],
+    "types": ["rock", "dragon"],
     "evos": {
       "from": "tyrunt"
     }
@@ -5384,7 +5384,7 @@
   "amaura": {
     "id": 698,
     "name": "Amaura",
-    "type": ["rock", "ice"],
+    "types": ["rock", "ice"],
     "evos": {
       "to": ["aurorus"]
     }
@@ -5392,7 +5392,7 @@
   "aurorus": {
     "id": 699,
     "name": "Aurorus",
-    "type": ["rock", "ice"],
+    "types": ["rock", "ice"],
     "evos": {
       "from": "amaura"
     }
@@ -5400,7 +5400,7 @@
   "sylveon": {
     "id": 700,
     "name": "Sylveon",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "eevee"
     }
@@ -5408,22 +5408,22 @@
   "hawlucha": {
     "id": 701,
     "name": "Hawlucha",
-    "type": ["fighting", "flying"]
+    "types": ["fighting", "flying"]
   },
   "dedenne": {
     "id": 702,
     "name": "Dedenne",
-    "type": ["electric", "fairy"]
+    "types": ["electric", "fairy"]
   },
   "carbink": {
     "id": 703,
     "name": "Carbink",
-    "type": ["rock", "fairy"]
+    "types": ["rock", "fairy"]
   },
   "goomy": {
     "id": 704,
     "name": "Goomy",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "to": ["sliggoo"]
     }
@@ -5431,7 +5431,7 @@
   "sliggoo": {
     "id": 705,
     "name": "Sliggoo",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "from": "goomy",
       "to": ["goodra"]
@@ -5440,7 +5440,7 @@
   "goodra": {
     "id": 706,
     "name": "Goodra",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "from": "sliggoo"
     }
@@ -5448,12 +5448,12 @@
   "klefki": {
     "id": 707,
     "name": "Klefki",
-    "type": ["steel", "fairy"]
+    "types": ["steel", "fairy"]
   },
   "phantump": {
     "id": 708,
     "name": "Phantump",
-    "type": ["ghost", "grass"],
+    "types": ["ghost", "grass"],
     "evos": {
       "to": ["trevenant"]
     }
@@ -5461,7 +5461,7 @@
   "trevenant": {
     "id": 709,
     "name": "Trevenant",
-    "type": ["ghost", "grass"],
+    "types": ["ghost", "grass"],
     "evos": {
       "from": "phantump"
     }
@@ -5469,7 +5469,7 @@
   "pumpkaboo": {
     "id": 710,
     "name": "Pumpkaboo",
-    "type": ["ghost", "grass"],
+    "types": ["ghost", "grass"],
     "evos": {
       "to": ["gourgeist"]
     }
@@ -5477,7 +5477,7 @@
   "gourgeist": {
     "id": 711,
     "name": "Gourgeist",
-    "type": ["ghost", "grass"],
+    "types": ["ghost", "grass"],
     "evos": {
       "from": "pumpkaboo"
     }
@@ -5485,7 +5485,7 @@
   "bergmite": {
     "id": 712,
     "name": "Bergmite",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "to": ["avalugg"]
     }
@@ -5493,7 +5493,7 @@
   "avalugg": {
     "id": 713,
     "name": "Avalugg",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "bergmite"
     }
@@ -5501,7 +5501,7 @@
   "noibat": {
     "id": 714,
     "name": "Noibat",
-    "type": ["flying", "dragon"],
+    "types": ["flying", "dragon"],
     "evos": {
       "to": ["noivern"]
     }
@@ -5509,7 +5509,7 @@
   "noivern": {
     "id": 715,
     "name": "Noivern",
-    "type": ["flying", "dragon"],
+    "types": ["flying", "dragon"],
     "evos": {
       "from": "noibat"
     }
@@ -5517,37 +5517,37 @@
   "xerneas": {
     "id": 716,
     "name": "Xerneas",
-    "type": ["fairy"]
+    "types": ["fairy"]
   },
   "yveltal": {
     "id": 717,
     "name": "Yveltal",
-    "type": ["dark", "flying"]
+    "types": ["dark", "flying"]
   },
   "zygarde": {
     "id": 718,
     "name": "Zygarde",
-    "type": ["dragon", "ground"]
+    "types": ["dragon", "ground"]
   },
   "diancie": {
     "id": 719,
     "name": "Diancie",
-    "type": ["rock", "fairy"]
+    "types": ["rock", "fairy"]
   },
   "hoopa": {
     "id": 720,
     "name": "Hoopa",
-    "type": ["psychic", "ghost"]
+    "types": ["psychic", "ghost"]
   },
   "volcanion": {
     "id": 721,
     "name": "Volcanion",
-    "type": ["fire", "water"]
+    "types": ["fire", "water"]
   },
   "rowlet": {
     "id": 722,
     "name": "Rowlet",
-    "type": ["grass", "flying"],
+    "types": ["grass", "flying"],
     "evos": {
       "to": ["dartrix"]
     }
@@ -5555,7 +5555,7 @@
   "dartrix": {
     "id": 723,
     "name": "Dartrix",
-    "type": ["grass", "flying"],
+    "types": ["grass", "flying"],
     "evos": {
       "from": "rowlet",
       "to": ["decidueye"]
@@ -5564,7 +5564,7 @@
   "decidueye": {
     "id": 724,
     "name": "Decidueye",
-    "type": ["grass", "ghost"],
+    "types": ["grass", "ghost"],
     "evos": {
       "from": "dartrix"
     }
@@ -5572,7 +5572,7 @@
   "litten": {
     "id": 725,
     "name": "Litten",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["torracat"]
     }
@@ -5580,7 +5580,7 @@
   "torracat": {
     "id": 726,
     "name": "Torracat",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "litten",
       "to": ["incineroar"]
@@ -5589,7 +5589,7 @@
   "incineroar": {
     "id": 727,
     "name": "Incineroar",
-    "type": ["fire", "dark"],
+    "types": ["fire", "dark"],
     "evos": {
       "from": "torracat"
     }
@@ -5597,7 +5597,7 @@
   "popplio": {
     "id": 728,
     "name": "Popplio",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["brionne"]
     }
@@ -5605,7 +5605,7 @@
   "brionne": {
     "id": 729,
     "name": "Brionne",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "popplio",
       "to": ["primarina"]
@@ -5614,7 +5614,7 @@
   "primarina": {
     "id": 730,
     "name": "Primarina",
-    "type": ["water", "fairy"],
+    "types": ["water", "fairy"],
     "evos": {
       "from": "brionne"
     }
@@ -5622,7 +5622,7 @@
   "pikipek": {
     "id": 731,
     "name": "Pikipek",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "to": ["trumbeak"]
     }
@@ -5630,7 +5630,7 @@
   "trumbeak": {
     "id": 732,
     "name": "Trumbeak",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "pikipek",
       "to": ["toucannon"]
@@ -5639,7 +5639,7 @@
   "toucannon": {
     "id": 733,
     "name": "Toucannon",
-    "type": ["normal", "flying"],
+    "types": ["normal", "flying"],
     "evos": {
       "from": "trumbeak"
     }
@@ -5647,7 +5647,7 @@
   "yungoos": {
     "id": 734,
     "name": "Yungoos",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["gumshoos"]
     }
@@ -5655,7 +5655,7 @@
   "gumshoos": {
     "id": 735,
     "name": "Gumshoos",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "yungoos"
     }
@@ -5663,7 +5663,7 @@
   "grubbin": {
     "id": 736,
     "name": "Grubbin",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["charjabug"]
     }
@@ -5671,7 +5671,7 @@
   "charjabug": {
     "id": 737,
     "name": "Charjabug",
-    "type": ["bug", "electric"],
+    "types": ["bug", "electric"],
     "evos": {
       "from": "grubbin",
       "to": ["vikavolt"]
@@ -5680,7 +5680,7 @@
   "vikavolt": {
     "id": 738,
     "name": "Vikavolt",
-    "type": ["bug", "electric"],
+    "types": ["bug", "electric"],
     "evos": {
       "from": "charjabug"
     }
@@ -5688,7 +5688,7 @@
   "crabrawler": {
     "id": 739,
     "name": "Crabrawler",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["crabominable"]
     }
@@ -5696,7 +5696,7 @@
   "crabominable": {
     "id": 740,
     "name": "Crabominable",
-    "type": ["fighting", "ice"],
+    "types": ["fighting", "ice"],
     "evos": {
       "from": "crabrawler"
     }
@@ -5704,12 +5704,12 @@
   "oricorio": {
     "id": 741,
     "name": "Oricorio",
-    "type": ["fire", "flying"]
+    "types": ["fire", "flying"]
   },
   "cutiefly": {
     "id": 742,
     "name": "Cutiefly",
-    "type": ["bug", "fairy"],
+    "types": ["bug", "fairy"],
     "evos": {
       "to": ["ribombee"]
     }
@@ -5717,7 +5717,7 @@
   "ribombee": {
     "id": 743,
     "name": "Ribombee",
-    "type": ["bug", "fairy"],
+    "types": ["bug", "fairy"],
     "evos": {
       "from": "cutiefly"
     }
@@ -5725,7 +5725,7 @@
   "rockruff": {
     "id": 744,
     "name": "Rockruff",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["lycanroc"]
     }
@@ -5733,7 +5733,7 @@
   "lycanroc": {
     "id": 745,
     "name": "Lycanroc",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "rockruff"
     }
@@ -5741,12 +5741,12 @@
   "wishiwashi": {
     "id": 746,
     "name": "Wishiwashi",
-    "type": ["water"]
+    "types": ["water"]
   },
   "mareanie": {
     "id": 747,
     "name": "Mareanie",
-    "type": ["poison", "water"],
+    "types": ["poison", "water"],
     "evos": {
       "to": ["toxapex"]
     }
@@ -5754,7 +5754,7 @@
   "toxapex": {
     "id": 748,
     "name": "Toxapex",
-    "type": ["poison", "water"],
+    "types": ["poison", "water"],
     "evos": {
       "from": "mareanie"
     }
@@ -5762,7 +5762,7 @@
   "mudbray": {
     "id": 749,
     "name": "Mudbray",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["mudsdale"]
     }
@@ -5770,7 +5770,7 @@
   "mudsdale": {
     "id": 750,
     "name": "Mudsdale",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "mudbray"
     }
@@ -5778,7 +5778,7 @@
   "dewpider": {
     "id": 751,
     "name": "Dewpider",
-    "type": ["water", "bug"],
+    "types": ["water", "bug"],
     "evos": {
       "to": ["araquanid"]
     }
@@ -5786,7 +5786,7 @@
   "araquanid": {
     "id": 752,
     "name": "Araquanid",
-    "type": ["water", "bug"],
+    "types": ["water", "bug"],
     "evos": {
       "from": "dewpider"
     }
@@ -5794,7 +5794,7 @@
   "fomantis": {
     "id": 753,
     "name": "Fomantis",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["lurantis"]
     }
@@ -5802,7 +5802,7 @@
   "lurantis": {
     "id": 754,
     "name": "Lurantis",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "fomantis"
     }
@@ -5810,7 +5810,7 @@
   "morelull": {
     "id": 755,
     "name": "Morelull",
-    "type": ["grass", "fairy"],
+    "types": ["grass", "fairy"],
     "evos": {
       "to": ["shiinotic"]
     }
@@ -5818,7 +5818,7 @@
   "shiinotic": {
     "id": 756,
     "name": "Shiinotic",
-    "type": ["grass", "fairy"],
+    "types": ["grass", "fairy"],
     "evos": {
       "from": "morelull"
     }
@@ -5826,7 +5826,7 @@
   "salandit": {
     "id": 757,
     "name": "Salandit",
-    "type": ["poison", "fire"],
+    "types": ["poison", "fire"],
     "evos": {
       "to": ["salazzle"]
     }
@@ -5834,7 +5834,7 @@
   "salazzle": {
     "id": 758,
     "name": "Salazzle",
-    "type": ["poison", "fire"],
+    "types": ["poison", "fire"],
     "evos": {
       "from": "salandit"
     }
@@ -5842,7 +5842,7 @@
   "stufful": {
     "id": 759,
     "name": "Stufful",
-    "type": ["normal", "fighting"],
+    "types": ["normal", "fighting"],
     "evos": {
       "to": ["bewear"]
     }
@@ -5850,7 +5850,7 @@
   "bewear": {
     "id": 760,
     "name": "Bewear",
-    "type": ["normal", "fighting"],
+    "types": ["normal", "fighting"],
     "evos": {
       "from": "stufful"
     }
@@ -5858,7 +5858,7 @@
   "bounsweet": {
     "id": 761,
     "name": "Bounsweet",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["steenee"]
     }
@@ -5866,7 +5866,7 @@
   "steenee": {
     "id": 762,
     "name": "Steenee",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "bounsweet",
       "to": ["tsareena"]
@@ -5875,7 +5875,7 @@
   "tsareena": {
     "id": 763,
     "name": "Tsareena",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "steenee"
     }
@@ -5883,22 +5883,22 @@
   "comfey": {
     "id": 764,
     "name": "Comfey",
-    "type": ["fairy"]
+    "types": ["fairy"]
   },
   "oranguru": {
     "id": 765,
     "name": "Oranguru",
-    "type": ["normal", "psychic"]
+    "types": ["normal", "psychic"]
   },
   "passimian": {
     "id": 766,
     "name": "Passimian",
-    "type": ["fighting"]
+    "types": ["fighting"]
   },
   "wimpod": {
     "id": 767,
     "name": "Wimpod",
-    "type": ["bug", "water"],
+    "types": ["bug", "water"],
     "evos": {
       "to": ["golisopod"]
     }
@@ -5906,7 +5906,7 @@
   "golisopod": {
     "id": 768,
     "name": "Golisopod",
-    "type": ["bug", "water"],
+    "types": ["bug", "water"],
     "evos": {
       "from": "wimpod"
     }
@@ -5914,7 +5914,7 @@
   "sandygast": {
     "id": 769,
     "name": "Sandygast",
-    "type": ["ghost", "ground"],
+    "types": ["ghost", "ground"],
     "evos": {
       "to": ["palossand"]
     }
@@ -5922,7 +5922,7 @@
   "palossand": {
     "id": 770,
     "name": "Palossand",
-    "type": ["ghost", "ground"],
+    "types": ["ghost", "ground"],
     "evos": {
       "from": "sandygast"
     }
@@ -5930,12 +5930,12 @@
   "pyukumuku": {
     "id": 771,
     "name": "Pyukumuku",
-    "type": ["water"]
+    "types": ["water"]
   },
   "type-null": {
     "id": 772,
     "name": "Type: Null",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["silvally"]
     }
@@ -5943,7 +5943,7 @@
   "silvally": {
     "id": 773,
     "name": "Silvally",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "type-null"
     }
@@ -5951,47 +5951,47 @@
   "minior": {
     "id": 774,
     "name": "Minior",
-    "type": ["rock", "flying"]
+    "types": ["rock", "flying"]
   },
   "komala": {
     "id": 775,
     "name": "Komala",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "turtonator": {
     "id": 776,
     "name": "Turtonator",
-    "type": ["fire", "dragon"]
+    "types": ["fire", "dragon"]
   },
   "togedemaru": {
     "id": 777,
     "name": "Togedemaru",
-    "type": ["electric", "steel"]
+    "types": ["electric", "steel"]
   },
   "mimikyu": {
     "id": 778,
     "name": "Mimikyu",
-    "type": ["ghost", "fairy"]
+    "types": ["ghost", "fairy"]
   },
   "bruxish": {
     "id": 779,
     "name": "Bruxish",
-    "type": ["water", "psychic"]
+    "types": ["water", "psychic"]
   },
   "drampa": {
     "id": 780,
     "name": "Drampa",
-    "type": ["normal", "dragon"]
+    "types": ["normal", "dragon"]
   },
   "dhelmise": {
     "id": 781,
     "name": "Dhelmise",
-    "type": ["ghost", "grass"]
+    "types": ["ghost", "grass"]
   },
   "jangmo-o": {
     "id": 782,
     "name": "Jangmo-o",
-    "type": ["dragon"],
+    "types": ["dragon"],
     "evos": {
       "to": ["hakamo-o"]
     }
@@ -5999,7 +5999,7 @@
   "hakamo-o": {
     "id": 783,
     "name": "Hakamo-o",
-    "type": ["dragon", "fighting"],
+    "types": ["dragon", "fighting"],
     "evos": {
       "from": "jangmo-o",
       "to": ["kommo-o"]
@@ -6008,7 +6008,7 @@
   "kommo-o": {
     "id": 784,
     "name": "Kommo-o",
-    "type": ["dragon", "fighting"],
+    "types": ["dragon", "fighting"],
     "evos": {
       "from": "hakamo-o"
     }
@@ -6016,27 +6016,27 @@
   "tapu-koko": {
     "id": 785,
     "name": "Tapu Koko",
-    "type": ["electric", "fairy"]
+    "types": ["electric", "fairy"]
   },
   "tapu-lele": {
     "id": 786,
     "name": "Tapu Lele",
-    "type": ["psychic", "fairy"]
+    "types": ["psychic", "fairy"]
   },
   "tapu-bulu": {
     "id": 787,
     "name": "Tapu Bulu",
-    "type": ["grass", "fairy"]
+    "types": ["grass", "fairy"]
   },
   "tapu-fini": {
     "id": 788,
     "name": "Tapu Fini",
-    "type": ["water", "fairy"]
+    "types": ["water", "fairy"]
   },
   "cosmog": {
     "id": 789,
     "name": "Cosmog",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["cosmoem"]
     }
@@ -6044,7 +6044,7 @@
   "cosmoem": {
     "id": 790,
     "name": "Cosmoem",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "cosmog",
       "to": ["solgaleo", "lunala"]
@@ -6053,7 +6053,7 @@
   "solgaleo": {
     "id": 791,
     "name": "Solgaleo",
-    "type": ["psychic", "steel"],
+    "types": ["psychic", "steel"],
     "evos": {
       "from": "cosmoem"
     }
@@ -6061,7 +6061,7 @@
   "lunala": {
     "id": 792,
     "name": "Lunala",
-    "type": ["psychic", "ghost"],
+    "types": ["psychic", "ghost"],
     "evos": {
       "from": "cosmoem"
     }
@@ -6069,57 +6069,57 @@
   "nihilego": {
     "id": 793,
     "name": "Nihilego",
-    "type": ["rock", "poison"]
+    "types": ["rock", "poison"]
   },
   "buzzwole": {
     "id": 794,
     "name": "Buzzwole",
-    "type": ["bug", "fighting"]
+    "types": ["bug", "fighting"]
   },
   "pheromosa": {
     "id": 795,
     "name": "Pheromosa",
-    "type": ["bug", "fighting"]
+    "types": ["bug", "fighting"]
   },
   "xurkitree": {
     "id": 796,
     "name": "Xurkitree",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "celesteela": {
     "id": 797,
     "name": "Celesteela",
-    "type": ["steel", "flying"]
+    "types": ["steel", "flying"]
   },
   "kartana": {
     "id": 798,
     "name": "Kartana",
-    "type": ["grass", "steel"]
+    "types": ["grass", "steel"]
   },
   "guzzlord": {
     "id": 799,
     "name": "Guzzlord",
-    "type": ["dark", "dragon"]
+    "types": ["dark", "dragon"]
   },
   "necrozma": {
     "id": 800,
     "name": "Necrozma",
-    "type": ["psychic"]
+    "types": ["psychic"]
   },
   "magearna": {
     "id": 801,
     "name": "Magearna",
-    "type": ["steel", "fairy"]
+    "types": ["steel", "fairy"]
   },
   "marshadow": {
     "id": 802,
     "name": "Marshadow",
-    "type": ["fighting", "ghost"]
+    "types": ["fighting", "ghost"]
   },
   "poipole": {
     "id": 803,
     "name": "Poipole",
-    "type": ["poison"],
+    "types": ["poison"],
     "evos": {
       "to": ["naganadel"]
     }
@@ -6127,7 +6127,7 @@
   "naganadel": {
     "id": 804,
     "name": "Naganadel",
-    "type": ["poison", "dragon"],
+    "types": ["poison", "dragon"],
     "evos": {
       "from": "poipole"
     }
@@ -6135,27 +6135,27 @@
   "stakataka": {
     "id": 805,
     "name": "Stakataka",
-    "type": ["rock", "steel"]
+    "types": ["rock", "steel"]
   },
   "blacephalon": {
     "id": 806,
     "name": "Blacephalon",
-    "type": ["fire", "ghost"]
+    "types": ["fire", "ghost"]
   },
   "zeraora": {
     "id": 807,
     "name": "Zeraora",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "meltan": {
     "id": 808,
     "name": "Meltan",
-    "type": ["steel"]
+    "types": ["steel"]
   },
   "melmetal": {
     "id": 809,
     "name": "Melmetal",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "from": "meltan"
     }
@@ -6163,7 +6163,7 @@
   "grookey": {
     "id": 810,
     "name": "Grookey",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["thwackey"]
     }
@@ -6171,7 +6171,7 @@
   "thwackey": {
     "id": 811,
     "name": "Thwackey",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "grookey",
       "to": ["rillaboom"]
@@ -6180,7 +6180,7 @@
   "rillaboom": {
     "id": 812,
     "name": "Rillaboom",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "thwackey"
     }
@@ -6188,7 +6188,7 @@
   "scorbunny": {
     "id": 813,
     "name": "Scorbunny",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["raboot"]
     }
@@ -6196,7 +6196,7 @@
   "raboot": {
     "id": 814,
     "name": "Raboot",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "scorbunny",
       "to": ["cinderace"]
@@ -6205,7 +6205,7 @@
   "cinderace": {
     "id": 815,
     "name": "Cinderace",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "raboot"
     }
@@ -6213,7 +6213,7 @@
   "sobble": {
     "id": 816,
     "name": "Sobble",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["drizzile"]
     }
@@ -6221,7 +6221,7 @@
   "drizzile": {
     "id": 817,
     "name": "Drizzile",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "sobble",
       "to": ["inteleon"]
@@ -6230,7 +6230,7 @@
   "inteleon": {
     "id": 818,
     "name": "Inteleon",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "drizzile"
     }
@@ -6238,7 +6238,7 @@
   "skwovet": {
     "id": 819,
     "name": "Skwovet",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["greedent"]
     }
@@ -6246,7 +6246,7 @@
   "greedent": {
     "id": 820,
     "name": "Greedent",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "skwovet"
     }
@@ -6254,7 +6254,7 @@
   "rookidee": {
     "id": 821,
     "name": "Rookidee",
-    "type": ["flying"],
+    "types": ["flying"],
     "evos": {
       "to": ["corvisquire"]
     }
@@ -6262,7 +6262,7 @@
   "corvisquire": {
     "id": 822,
     "name": "Corvisquire",
-    "type": ["flying"],
+    "types": ["flying"],
     "evos": {
       "from": "rookidee",
       "to": ["corviknight"]
@@ -6271,7 +6271,7 @@
   "corviknight": {
     "id": 823,
     "name": "Corviknight",
-    "type": ["flying", "steel"],
+    "types": ["flying", "steel"],
     "evos": {
       "from": "corvisquire"
     }
@@ -6279,7 +6279,7 @@
   "blipbug": {
     "id": 824,
     "name": "Blipbug",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["dottler"]
     }
@@ -6287,7 +6287,7 @@
   "dottler": {
     "id": 825,
     "name": "Dottler",
-    "type": ["bug", "psychic"],
+    "types": ["bug", "psychic"],
     "evos": {
       "from": "blipbug",
       "to": ["orbeetle"]
@@ -6296,7 +6296,7 @@
   "orbeetle": {
     "id": 826,
     "name": "Orbeetle",
-    "type": ["bug", "psychic"],
+    "types": ["bug", "psychic"],
     "evos": {
       "from": "dottler"
     }
@@ -6304,7 +6304,7 @@
   "nickit": {
     "id": 827,
     "name": "Nickit",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "to": ["thievul"]
     }
@@ -6312,7 +6312,7 @@
   "thievul": {
     "id": 828,
     "name": "Thievul",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "from": "nickit"
     }
@@ -6320,7 +6320,7 @@
   "gossifleur": {
     "id": 829,
     "name": "Gossifleur",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["eldegoss"]
     }
@@ -6328,7 +6328,7 @@
   "eldegoss": {
     "id": 830,
     "name": "Eldegoss",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "gossifleur"
     }
@@ -6336,7 +6336,7 @@
   "wooloo": {
     "id": 831,
     "name": "Wooloo",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["dubwool"]
     }
@@ -6344,7 +6344,7 @@
   "dubwool": {
     "id": 832,
     "name": "Dubwool",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "wooloo"
     }
@@ -6352,7 +6352,7 @@
   "chewtle": {
     "id": 833,
     "name": "Chewtle",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["drednaw"]
     }
@@ -6360,7 +6360,7 @@
   "drednaw": {
     "id": 834,
     "name": "Drednaw",
-    "type": ["water", "rock"],
+    "types": ["water", "rock"],
     "evos": {
       "from": "chewtle"
     }
@@ -6368,7 +6368,7 @@
   "yamper": {
     "id": 835,
     "name": "Yamper",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["boltund"]
     }
@@ -6376,7 +6376,7 @@
   "boltund": {
     "id": 836,
     "name": "Boltund",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "yamper"
     }
@@ -6384,7 +6384,7 @@
   "rolycoly": {
     "id": 837,
     "name": "Rolycoly",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["carkol"]
     }
@@ -6392,7 +6392,7 @@
   "carkol": {
     "id": 838,
     "name": "Carkol",
-    "type": ["rock", "fire"],
+    "types": ["rock", "fire"],
     "evos": {
       "from": "rolycoly",
       "to": ["coalossal"]
@@ -6401,7 +6401,7 @@
   "coalossal": {
     "id": 839,
     "name": "Coalossal",
-    "type": ["rock", "fire"],
+    "types": ["rock", "fire"],
     "evos": {
       "from": "carkol"
     }
@@ -6409,7 +6409,7 @@
   "applin": {
     "id": 840,
     "name": "Applin",
-    "type": ["grass", "dragon"],
+    "types": ["grass", "dragon"],
     "evos": {
       "to": ["flapple", "appletun", "dipplin"]
     }
@@ -6417,7 +6417,7 @@
   "flapple": {
     "id": 841,
     "name": "Flapple",
-    "type": ["grass", "dragon"],
+    "types": ["grass", "dragon"],
     "evos": {
       "from": "applin"
     }
@@ -6425,7 +6425,7 @@
   "appletun": {
     "id": 842,
     "name": "Appletun",
-    "type": ["grass", "dragon"],
+    "types": ["grass", "dragon"],
     "evos": {
       "from": "applin"
     }
@@ -6433,7 +6433,7 @@
   "silicobra": {
     "id": 843,
     "name": "Silicobra",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "to": ["sandaconda"]
     }
@@ -6441,7 +6441,7 @@
   "sandaconda": {
     "id": 844,
     "name": "Sandaconda",
-    "type": ["ground"],
+    "types": ["ground"],
     "evos": {
       "from": "silicobra"
     }
@@ -6449,12 +6449,12 @@
   "cramorant": {
     "id": 845,
     "name": "Cramorant",
-    "type": ["flying", "water"]
+    "types": ["flying", "water"]
   },
   "arrokuda": {
     "id": 846,
     "name": "Arrokuda",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["barraskewda"]
     }
@@ -6462,7 +6462,7 @@
   "barraskewda": {
     "id": 847,
     "name": "Barraskewda",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "arrokuda"
     }
@@ -6470,7 +6470,7 @@
   "toxel": {
     "id": 848,
     "name": "Toxel",
-    "type": ["electric", "poison"],
+    "types": ["electric", "poison"],
     "evos": {
       "to": ["toxtricity"]
     }
@@ -6478,7 +6478,7 @@
   "toxtricity": {
     "id": 849,
     "name": "Toxtricity",
-    "type": ["electric", "poison"],
+    "types": ["electric", "poison"],
     "evos": {
       "from": "toxel"
     }
@@ -6486,7 +6486,7 @@
   "sizzlipede": {
     "id": 850,
     "name": "Sizzlipede",
-    "type": ["fire", "bug"],
+    "types": ["fire", "bug"],
     "evos": {
       "to": ["centiskorch"]
     }
@@ -6494,7 +6494,7 @@
   "centiskorch": {
     "id": 851,
     "name": "Centiskorch",
-    "type": ["fire", "bug"],
+    "types": ["fire", "bug"],
     "evos": {
       "from": "sizzlipede"
     }
@@ -6502,7 +6502,7 @@
   "clobbopus": {
     "id": 852,
     "name": "Clobbopus",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["grapploct"]
     }
@@ -6510,7 +6510,7 @@
   "grapploct": {
     "id": 853,
     "name": "Grapploct",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "clobbopus"
     }
@@ -6518,7 +6518,7 @@
   "sinistea": {
     "id": 854,
     "name": "Sinistea",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["polteageist"]
     }
@@ -6526,7 +6526,7 @@
   "polteageist": {
     "id": 855,
     "name": "Polteageist",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "sinistea"
     }
@@ -6534,7 +6534,7 @@
   "hatenna": {
     "id": 856,
     "name": "Hatenna",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["hattrem"]
     }
@@ -6542,7 +6542,7 @@
   "hattrem": {
     "id": 857,
     "name": "Hattrem",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "hatenna",
       "to": ["hatterene"]
@@ -6551,7 +6551,7 @@
   "hatterene": {
     "id": 858,
     "name": "Hatterene",
-    "type": ["psychic", "fairy"],
+    "types": ["psychic", "fairy"],
     "evos": {
       "from": "hattrem"
     }
@@ -6559,7 +6559,7 @@
   "impidimp": {
     "id": 859,
     "name": "Impidimp",
-    "type": ["dark", "fairy"],
+    "types": ["dark", "fairy"],
     "evos": {
       "to": ["morgrem"]
     }
@@ -6567,7 +6567,7 @@
   "morgrem": {
     "id": 860,
     "name": "Morgrem",
-    "type": ["dark", "fairy"],
+    "types": ["dark", "fairy"],
     "evos": {
       "from": "impidimp",
       "to": ["grimmsnarl"]
@@ -6576,7 +6576,7 @@
   "grimmsnarl": {
     "id": 861,
     "name": "Grimmsnarl",
-    "type": ["dark", "fairy"],
+    "types": ["dark", "fairy"],
     "evos": {
       "from": "morgrem"
     }
@@ -6584,7 +6584,7 @@
   "obstagoon": {
     "id": 862,
     "name": "Obstagoon",
-    "type": ["dark", "normal"],
+    "types": ["dark", "normal"],
     "evos": {
       "from": "linoone"
     }
@@ -6592,7 +6592,7 @@
   "perrserker": {
     "id": 863,
     "name": "Perrserker",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "from": "meowth"
     }
@@ -6600,7 +6600,7 @@
   "cursola": {
     "id": 864,
     "name": "Cursola",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "corsola"
     }
@@ -6608,7 +6608,7 @@
   "sirfetchd": {
     "id": 865,
     "name": "Sirfetch’d",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "from": "farfetchd"
     }
@@ -6616,7 +6616,7 @@
   "mr-rime": {
     "id": 866,
     "name": "Mr. Rime",
-    "type": ["ice", "psychic"],
+    "types": ["ice", "psychic"],
     "evos": {
       "from": "mr-mime"
     }
@@ -6624,7 +6624,7 @@
   "runerigus": {
     "id": 867,
     "name": "Runerigus",
-    "type": ["ground", "ghost"],
+    "types": ["ground", "ghost"],
     "evos": {
       "from": "yamask"
     }
@@ -6632,7 +6632,7 @@
   "milcery": {
     "id": 868,
     "name": "Milcery",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["alcremie"]
     }
@@ -6640,7 +6640,7 @@
   "alcremie": {
     "id": 869,
     "name": "Alcremie",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "milcery"
     }
@@ -6648,17 +6648,17 @@
   "falinks": {
     "id": 870,
     "name": "Falinks",
-    "type": ["fighting"]
+    "types": ["fighting"]
   },
   "pincurchin": {
     "id": 871,
     "name": "Pincurchin",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "snom": {
     "id": 872,
     "name": "Snom",
-    "type": ["ice", "bug"],
+    "types": ["ice", "bug"],
     "evos": {
       "to": ["frosmoth"]
     }
@@ -6666,7 +6666,7 @@
   "frosmoth": {
     "id": 873,
     "name": "Frosmoth",
-    "type": ["ice", "bug"],
+    "types": ["ice", "bug"],
     "evos": {
       "from": "snom"
     }
@@ -6674,27 +6674,27 @@
   "stonjourner": {
     "id": 874,
     "name": "Stonjourner",
-    "type": ["rock"]
+    "types": ["rock"]
   },
   "eiscue": {
     "id": 875,
     "name": "Eiscue",
-    "type": ["ice"]
+    "types": ["ice"]
   },
   "indeedee": {
     "id": 876,
     "name": "Indeedee",
-    "type": ["psychic", "normal"]
+    "types": ["psychic", "normal"]
   },
   "morpeko": {
     "id": 877,
     "name": "Morpeko",
-    "type": ["electric", "dark"]
+    "types": ["electric", "dark"]
   },
   "cufant": {
     "id": 878,
     "name": "Cufant",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "to": ["copperajah"]
     }
@@ -6702,7 +6702,7 @@
   "copperajah": {
     "id": 879,
     "name": "Copperajah",
-    "type": ["steel"],
+    "types": ["steel"],
     "evos": {
       "from": "cufant"
     }
@@ -6710,27 +6710,27 @@
   "dracozolt": {
     "id": 880,
     "name": "Dracozolt",
-    "type": ["electric", "dragon"]
+    "types": ["electric", "dragon"]
   },
   "arctozolt": {
     "id": 881,
     "name": "Arctozolt",
-    "type": ["electric", "ice"]
+    "types": ["electric", "ice"]
   },
   "dracovish": {
     "id": 882,
     "name": "Dracovish",
-    "type": ["water", "dragon"]
+    "types": ["water", "dragon"]
   },
   "arctovish": {
     "id": 883,
     "name": "Arctovish",
-    "type": ["water", "ice"]
+    "types": ["water", "ice"]
   },
   "duraludon": {
     "id": 884,
     "name": "Duraludon",
-    "type": ["steel", "dragon"],
+    "types": ["steel", "dragon"],
     "evos": {
       "to": ["archaludon"]
     }
@@ -6738,7 +6738,7 @@
   "dreepy": {
     "id": 885,
     "name": "Dreepy",
-    "type": ["dragon", "ghost"],
+    "types": ["dragon", "ghost"],
     "evos": {
       "to": ["drakloak"]
     }
@@ -6746,7 +6746,7 @@
   "drakloak": {
     "id": 886,
     "name": "Drakloak",
-    "type": ["dragon", "ghost"],
+    "types": ["dragon", "ghost"],
     "evos": {
       "from": "dreepy",
       "to": ["dragapult"]
@@ -6755,7 +6755,7 @@
   "dragapult": {
     "id": 887,
     "name": "Dragapult",
-    "type": ["dragon", "ghost"],
+    "types": ["dragon", "ghost"],
     "evos": {
       "from": "drakloak"
     }
@@ -6763,22 +6763,22 @@
   "zacian": {
     "id": 888,
     "name": "Zacian",
-    "type": ["fairy"]
+    "types": ["fairy"]
   },
   "zamazenta": {
     "id": 889,
     "name": "Zamazenta",
-    "type": ["fighting"]
+    "types": ["fighting"]
   },
   "eternatus": {
     "id": 890,
     "name": "Eternatus",
-    "type": ["poison", "dragon"]
+    "types": ["poison", "dragon"]
   },
   "kubfu": {
     "id": 891,
     "name": "Kubfu",
-    "type": ["fighting"],
+    "types": ["fighting"],
     "evos": {
       "to": ["urshifu"]
     }
@@ -6786,7 +6786,7 @@
   "urshifu": {
     "id": 892,
     "name": "Urshifu",
-    "type": ["fighting", "dark"],
+    "types": ["fighting", "dark"],
     "evos": {
       "from": "kubfu"
     }
@@ -6794,37 +6794,37 @@
   "zarude": {
     "id": 893,
     "name": "Zarude",
-    "type": ["dark", "grass"]
+    "types": ["dark", "grass"]
   },
   "regieleki": {
     "id": 894,
     "name": "Regieleki",
-    "type": ["electric"]
+    "types": ["electric"]
   },
   "regidrago": {
     "id": 895,
     "name": "Regidrago",
-    "type": ["dragon"]
+    "types": ["dragon"]
   },
   "glastrier": {
     "id": 896,
     "name": "Glastrier",
-    "type": ["ice"]
+    "types": ["ice"]
   },
   "spectrier": {
     "id": 897,
     "name": "Spectrier",
-    "type": ["ghost"]
+    "types": ["ghost"]
   },
   "calyrex": {
     "id": 898,
     "name": "Calyrex",
-    "type": ["psychic", "grass"]
+    "types": ["psychic", "grass"]
   },
   "wyrdeer": {
     "id": 899,
     "name": "Wyrdeer",
-    "type": ["normal", "psychic"],
+    "types": ["normal", "psychic"],
     "evos": {
       "from": "stantler"
     }
@@ -6832,7 +6832,7 @@
   "kleavor": {
     "id": 900,
     "name": "Kleavor",
-    "type": ["bug", "rock"],
+    "types": ["bug", "rock"],
     "evos": {
       "from": "scyther"
     }
@@ -6840,7 +6840,7 @@
   "ursaluna": {
     "id": 901,
     "name": "Ursaluna",
-    "type": ["ground", "normal"],
+    "types": ["ground", "normal"],
     "evos": {
       "from": "ursaring"
     }
@@ -6848,7 +6848,7 @@
   "basculegion": {
     "id": 902,
     "name": "Basculegion",
-    "type": ["water", "ghost"],
+    "types": ["water", "ghost"],
     "evos": {
       "from": "basculin"
     }
@@ -6856,7 +6856,7 @@
   "sneasler": {
     "id": 903,
     "name": "Sneasler",
-    "type": ["fighting", "poison"],
+    "types": ["fighting", "poison"],
     "evos": {
       "from": "sneasel"
     }
@@ -6864,7 +6864,7 @@
   "overqwil": {
     "id": 904,
     "name": "Overqwil",
-    "type": ["dark", "poison"],
+    "types": ["dark", "poison"],
     "evos": {
       "from": "qwilfish"
     }
@@ -6872,12 +6872,12 @@
   "enamorus": {
     "id": 905,
     "name": "Enamorus",
-    "type": ["fairy", "flying"]
+    "types": ["fairy", "flying"]
   },
   "sprigatito": {
     "id": 906,
     "name": "Sprigatito",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["floragato"]
     }
@@ -6885,7 +6885,7 @@
   "floragato": {
     "id": 907,
     "name": "Floragato",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "from": "sprigatito",
       "to": ["meowscarada"]
@@ -6894,7 +6894,7 @@
   "meowscarada": {
     "id": 908,
     "name": "Meowscarada",
-    "type": ["grass", "dark"],
+    "types": ["grass", "dark"],
     "evos": {
       "from": "floragato"
     }
@@ -6902,7 +6902,7 @@
   "fuecoco": {
     "id": 909,
     "name": "Fuecoco",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["crocalor"]
     }
@@ -6910,7 +6910,7 @@
   "crocalor": {
     "id": 910,
     "name": "Crocalor",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "from": "fuecoco",
       "to": ["skeledirge"]
@@ -6919,7 +6919,7 @@
   "skeledirge": {
     "id": 911,
     "name": "Skeledirge",
-    "type": ["fire", "ghost"],
+    "types": ["fire", "ghost"],
     "evos": {
       "from": "crocalor"
     }
@@ -6927,7 +6927,7 @@
   "quaxly": {
     "id": 912,
     "name": "Quaxly",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["quaxwell"]
     }
@@ -6935,7 +6935,7 @@
   "quaxwell": {
     "id": 913,
     "name": "Quaxwell",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "quaxly",
       "to": ["quaquaval"]
@@ -6944,7 +6944,7 @@
   "quaquaval": {
     "id": 914,
     "name": "Quaquaval",
-    "type": ["water", "fighting"],
+    "types": ["water", "fighting"],
     "evos": {
       "from": "quaxwell"
     }
@@ -6952,7 +6952,7 @@
   "lechonk": {
     "id": 915,
     "name": "Lechonk",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["oinkologne"]
     }
@@ -6960,7 +6960,7 @@
   "oinkologne": {
     "id": 916,
     "name": "Oinkologne",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "lechonk"
     }
@@ -6968,7 +6968,7 @@
   "tarountula": {
     "id": 917,
     "name": "Tarountula",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["spidops"]
     }
@@ -6976,7 +6976,7 @@
   "spidops": {
     "id": 918,
     "name": "Spidops",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "from": "tarountula"
     }
@@ -6984,7 +6984,7 @@
   "nymble": {
     "id": 919,
     "name": "Nymble",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["lokix"]
     }
@@ -6992,7 +6992,7 @@
   "lokix": {
     "id": 920,
     "name": "Lokix",
-    "type": ["bug", "dark"],
+    "types": ["bug", "dark"],
     "evos": {
       "from": "nymble"
     }
@@ -7000,7 +7000,7 @@
   "pawmi": {
     "id": 921,
     "name": "Pawmi",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["pawmo"]
     }
@@ -7008,7 +7008,7 @@
   "pawmo": {
     "id": 922,
     "name": "Pawmo",
-    "type": ["electric", "fighting"],
+    "types": ["electric", "fighting"],
     "evos": {
       "from": "pawmi",
       "to": ["pawmot"]
@@ -7017,7 +7017,7 @@
   "pawmot": {
     "id": 923,
     "name": "Pawmot",
-    "type": ["electric", "fighting"],
+    "types": ["electric", "fighting"],
     "evos": {
       "from": "pawmo"
     }
@@ -7025,7 +7025,7 @@
   "tandemaus": {
     "id": 924,
     "name": "Tandemaus",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "to": ["maushold"]
     }
@@ -7033,7 +7033,7 @@
   "maushold": {
     "id": 925,
     "name": "Maushold",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "tandemaus"
     }
@@ -7041,7 +7041,7 @@
   "fidough": {
     "id": 926,
     "name": "Fidough",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "to": ["dachsbun"]
     }
@@ -7049,7 +7049,7 @@
   "dachsbun": {
     "id": 927,
     "name": "Dachsbun",
-    "type": ["fairy"],
+    "types": ["fairy"],
     "evos": {
       "from": "fidough"
     }
@@ -7057,7 +7057,7 @@
   "smoliv": {
     "id": 928,
     "name": "Smoliv",
-    "type": ["grass", "normal"],
+    "types": ["grass", "normal"],
     "evos": {
       "to": ["dolliv"]
     }
@@ -7065,7 +7065,7 @@
   "dolliv": {
     "id": 929,
     "name": "Dolliv",
-    "type": ["grass", "normal"],
+    "types": ["grass", "normal"],
     "evos": {
       "from": "smoliv",
       "to": ["arboliva"]
@@ -7074,7 +7074,7 @@
   "arboliva": {
     "id": 930,
     "name": "Arboliva",
-    "type": ["grass", "normal"],
+    "types": ["grass", "normal"],
     "evos": {
       "from": "dolliv"
     }
@@ -7082,12 +7082,12 @@
   "squawkabilly": {
     "id": 931,
     "name": "Squawkabilly",
-    "type": ["normal", "flying"]
+    "types": ["normal", "flying"]
   },
   "nacli": {
     "id": 932,
     "name": "Nacli",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "to": ["naclstack"]
     }
@@ -7095,7 +7095,7 @@
   "naclstack": {
     "id": 933,
     "name": "Naclstack",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "nacli",
       "to": ["garganacl"]
@@ -7104,7 +7104,7 @@
   "garganacl": {
     "id": 934,
     "name": "Garganacl",
-    "type": ["rock"],
+    "types": ["rock"],
     "evos": {
       "from": "naclstack"
     }
@@ -7112,7 +7112,7 @@
   "charcadet": {
     "id": 935,
     "name": "Charcadet",
-    "type": ["fire"],
+    "types": ["fire"],
     "evos": {
       "to": ["armarouge", "ceruledge"]
     }
@@ -7120,7 +7120,7 @@
   "armarouge": {
     "id": 936,
     "name": "Armarouge",
-    "type": ["fire", "psychic"],
+    "types": ["fire", "psychic"],
     "evos": {
       "from": "charcadet"
     }
@@ -7128,7 +7128,7 @@
   "ceruledge": {
     "id": 937,
     "name": "Ceruledge",
-    "type": ["fire", "ghost"],
+    "types": ["fire", "ghost"],
     "evos": {
       "from": "charcadet"
     }
@@ -7136,7 +7136,7 @@
   "tadbulb": {
     "id": 938,
     "name": "Tadbulb",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "to": ["bellibolt"]
     }
@@ -7144,7 +7144,7 @@
   "bellibolt": {
     "id": 939,
     "name": "Bellibolt",
-    "type": ["electric"],
+    "types": ["electric"],
     "evos": {
       "from": "tadbulb"
     }
@@ -7152,7 +7152,7 @@
   "wattrel": {
     "id": 940,
     "name": "Wattrel",
-    "type": ["electric", "flying"],
+    "types": ["electric", "flying"],
     "evos": {
       "to": ["kilowattrel"]
     }
@@ -7160,7 +7160,7 @@
   "kilowattrel": {
     "id": 941,
     "name": "Kilowattrel",
-    "type": ["electric", "flying"],
+    "types": ["electric", "flying"],
     "evos": {
       "from": "wattrel"
     }
@@ -7168,7 +7168,7 @@
   "maschiff": {
     "id": 942,
     "name": "Maschiff",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "to": ["mabosstiff"]
     }
@@ -7176,7 +7176,7 @@
   "mabosstiff": {
     "id": 943,
     "name": "Mabosstiff",
-    "type": ["dark"],
+    "types": ["dark"],
     "evos": {
       "from": "maschiff"
     }
@@ -7184,7 +7184,7 @@
   "shroodle": {
     "id": 944,
     "name": "Shroodle",
-    "type": ["poison", "normal"],
+    "types": ["poison", "normal"],
     "evos": {
       "to": ["grafaiai"]
     }
@@ -7192,7 +7192,7 @@
   "grafaiai": {
     "id": 945,
     "name": "Grafaiai",
-    "type": ["poison", "normal"],
+    "types": ["poison", "normal"],
     "evos": {
       "from": "shroodle"
     }
@@ -7200,7 +7200,7 @@
   "bramblin": {
     "id": 946,
     "name": "Bramblin",
-    "type": ["grass", "ghost"],
+    "types": ["grass", "ghost"],
     "evos": {
       "to": ["brambleghast"]
     }
@@ -7208,7 +7208,7 @@
   "brambleghast": {
     "id": 947,
     "name": "Brambleghast",
-    "type": ["grass", "ghost"],
+    "types": ["grass", "ghost"],
     "evos": {
       "from": "bramblin"
     }
@@ -7216,7 +7216,7 @@
   "toedscool": {
     "id": 948,
     "name": "Toedscool",
-    "type": ["ground", "grass"],
+    "types": ["ground", "grass"],
     "evos": {
       "to": ["toedscruel"]
     }
@@ -7224,7 +7224,7 @@
   "toedscruel": {
     "id": 949,
     "name": "Toedscruel",
-    "type": ["ground", "grass"],
+    "types": ["ground", "grass"],
     "evos": {
       "from": "toedscool"
     }
@@ -7232,12 +7232,12 @@
   "klawf": {
     "id": 950,
     "name": "Klawf",
-    "type": ["rock"]
+    "types": ["rock"]
   },
   "capsakid": {
     "id": 951,
     "name": "Capsakid",
-    "type": ["grass"],
+    "types": ["grass"],
     "evos": {
       "to": ["scovillain"]
     }
@@ -7245,7 +7245,7 @@
   "scovillain": {
     "id": 952,
     "name": "Scovillain",
-    "type": ["grass", "fire"],
+    "types": ["grass", "fire"],
     "evos": {
       "from": "capsakid"
     }
@@ -7253,7 +7253,7 @@
   "rellor": {
     "id": 953,
     "name": "Rellor",
-    "type": ["bug"],
+    "types": ["bug"],
     "evos": {
       "to": ["rabsca"]
     }
@@ -7261,7 +7261,7 @@
   "rabsca": {
     "id": 954,
     "name": "Rabsca",
-    "type": ["bug", "psychic"],
+    "types": ["bug", "psychic"],
     "evos": {
       "from": "rellor"
     }
@@ -7269,7 +7269,7 @@
   "flittle": {
     "id": 955,
     "name": "Flittle",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "to": ["espathra"]
     }
@@ -7277,7 +7277,7 @@
   "espathra": {
     "id": 956,
     "name": "Espathra",
-    "type": ["psychic"],
+    "types": ["psychic"],
     "evos": {
       "from": "flittle"
     }
@@ -7285,7 +7285,7 @@
   "tinkatink": {
     "id": 957,
     "name": "Tinkatink",
-    "type": ["fairy", "steel"],
+    "types": ["fairy", "steel"],
     "evos": {
       "to": ["tinkatuff"]
     }
@@ -7293,7 +7293,7 @@
   "tinkatuff": {
     "id": 958,
     "name": "Tinkatuff",
-    "type": ["fairy", "steel"],
+    "types": ["fairy", "steel"],
     "evos": {
       "from": "tinkatink",
       "to": ["tinkaton"]
@@ -7302,7 +7302,7 @@
   "tinkaton": {
     "id": 959,
     "name": "Tinkaton",
-    "type": ["fairy", "steel"],
+    "types": ["fairy", "steel"],
     "evos": {
       "from": "tinkatuff"
     }
@@ -7310,7 +7310,7 @@
   "wiglett": {
     "id": 960,
     "name": "Wiglett",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["wugtrio"]
     }
@@ -7318,7 +7318,7 @@
   "wugtrio": {
     "id": 961,
     "name": "Wugtrio",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "wiglett"
     }
@@ -7326,12 +7326,12 @@
   "bombirdier": {
     "id": 962,
     "name": "Bombirdier",
-    "type": ["flying", "dark"]
+    "types": ["flying", "dark"]
   },
   "finizen": {
     "id": 963,
     "name": "Finizen",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "to": ["palafin"]
     }
@@ -7339,7 +7339,7 @@
   "palafin": {
     "id": 964,
     "name": "Palafin",
-    "type": ["water"],
+    "types": ["water"],
     "evos": {
       "from": "finizen"
     }
@@ -7347,7 +7347,7 @@
   "varoom": {
     "id": 965,
     "name": "Varoom",
-    "type": ["steel", "poison"],
+    "types": ["steel", "poison"],
     "evos": {
       "to": ["revavroom"]
     }
@@ -7355,7 +7355,7 @@
   "revavroom": {
     "id": 966,
     "name": "Revavroom",
-    "type": ["steel", "poison"],
+    "types": ["steel", "poison"],
     "evos": {
       "from": "varoom"
     }
@@ -7363,17 +7363,17 @@
   "cyclizar": {
     "id": 967,
     "name": "Cyclizar",
-    "type": ["dragon", "normal"]
+    "types": ["dragon", "normal"]
   },
   "orthworm": {
     "id": 968,
     "name": "Orthworm",
-    "type": ["steel"]
+    "types": ["steel"]
   },
   "glimmet": {
     "id": 969,
     "name": "Glimmet",
-    "type": ["rock", "poison"],
+    "types": ["rock", "poison"],
     "evos": {
       "to": ["glimmora"]
     }
@@ -7381,7 +7381,7 @@
   "glimmora": {
     "id": 970,
     "name": "Glimmora",
-    "type": ["rock", "poison"],
+    "types": ["rock", "poison"],
     "evos": {
       "from": "glimmet"
     }
@@ -7389,7 +7389,7 @@
   "greavard": {
     "id": 971,
     "name": "Greavard",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["houndstone"]
     }
@@ -7397,7 +7397,7 @@
   "houndstone": {
     "id": 972,
     "name": "Houndstone",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "from": "greavard"
     }
@@ -7405,12 +7405,12 @@
   "flamigo": {
     "id": 973,
     "name": "Flamigo",
-    "type": ["flying", "fighting"]
+    "types": ["flying", "fighting"]
   },
   "cetoddle": {
     "id": 974,
     "name": "Cetoddle",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "to": ["cetitan"]
     }
@@ -7418,7 +7418,7 @@
   "cetitan": {
     "id": 975,
     "name": "Cetitan",
-    "type": ["ice"],
+    "types": ["ice"],
     "evos": {
       "from": "cetoddle"
     }
@@ -7426,22 +7426,22 @@
   "veluza": {
     "id": 976,
     "name": "Veluza",
-    "type": ["water", "psychic"]
+    "types": ["water", "psychic"]
   },
   "dondozo": {
     "id": 977,
     "name": "Dondozo",
-    "type": ["water"]
+    "types": ["water"]
   },
   "tatsugiri": {
     "id": 978,
     "name": "Tatsugiri",
-    "type": ["dragon", "water"]
+    "types": ["dragon", "water"]
   },
   "annihilape": {
     "id": 979,
     "name": "Annihilape",
-    "type": ["fighting", "ghost"],
+    "types": ["fighting", "ghost"],
     "evos": {
       "from": "primeape"
     }
@@ -7449,7 +7449,7 @@
   "clodsire": {
     "id": 980,
     "name": "Clodsire",
-    "type": ["poison", "ground"],
+    "types": ["poison", "ground"],
     "evos": {
       "from": "wooper"
     }
@@ -7457,7 +7457,7 @@
   "farigiraf": {
     "id": 981,
     "name": "Farigiraf",
-    "type": ["normal", "psychic"],
+    "types": ["normal", "psychic"],
     "evos": {
       "from": "girafarig"
     }
@@ -7465,7 +7465,7 @@
   "dudunsparce": {
     "id": 982,
     "name": "Dudunsparce",
-    "type": ["normal"],
+    "types": ["normal"],
     "evos": {
       "from": "dunsparce"
     }
@@ -7473,7 +7473,7 @@
   "kingambit": {
     "id": 983,
     "name": "Kingambit",
-    "type": ["dark", "steel"],
+    "types": ["dark", "steel"],
     "evos": {
       "from": "bisharp"
     }
@@ -7481,67 +7481,67 @@
   "great-tusk": {
     "id": 984,
     "name": "Great Tusk",
-    "type": ["ground", "fighting"]
+    "types": ["ground", "fighting"]
   },
   "scream-tail": {
     "id": 985,
     "name": "Scream Tail",
-    "type": ["fairy", "psychic"]
+    "types": ["fairy", "psychic"]
   },
   "brute-bonnet": {
     "id": 986,
     "name": "Brute Bonnet",
-    "type": ["grass", "dark"]
+    "types": ["grass", "dark"]
   },
   "flutter-mane": {
     "id": 987,
     "name": "Flutter Mane",
-    "type": ["ghost", "fairy"]
+    "types": ["ghost", "fairy"]
   },
   "slither-wing": {
     "id": 988,
     "name": "Slither Wing",
-    "type": ["bug", "fighting"]
+    "types": ["bug", "fighting"]
   },
   "sandy-shocks": {
     "id": 989,
     "name": "Sandy Shocks",
-    "type": ["electric", "ground"]
+    "types": ["electric", "ground"]
   },
   "iron-treads": {
     "id": 990,
     "name": "Iron Treads",
-    "type": ["ground", "steel"]
+    "types": ["ground", "steel"]
   },
   "iron-bundle": {
     "id": 991,
     "name": "Iron Bundle",
-    "type": ["ice", "water"]
+    "types": ["ice", "water"]
   },
   "iron-hands": {
     "id": 992,
     "name": "Iron Hands",
-    "type": ["fighting", "electric"]
+    "types": ["fighting", "electric"]
   },
   "iron-jugulis": {
     "id": 993,
     "name": "Iron Jugulis",
-    "type": ["dark", "flying"]
+    "types": ["dark", "flying"]
   },
   "iron-moth": {
     "id": 994,
     "name": "Iron Moth",
-    "type": ["fire", "poison"]
+    "types": ["fire", "poison"]
   },
   "iron-thorns": {
     "id": 995,
     "name": "Iron Thorns",
-    "type": ["rock", "electric"]
+    "types": ["rock", "electric"]
   },
   "frigibax": {
     "id": 996,
     "name": "Frigibax",
-    "type": ["dragon", "ice"],
+    "types": ["dragon", "ice"],
     "evos": {
       "to": ["arctibax"]
     }
@@ -7549,7 +7549,7 @@
   "arctibax": {
     "id": 997,
     "name": "Arctibax",
-    "type": ["dragon", "ice"],
+    "types": ["dragon", "ice"],
     "evos": {
       "from": "frigibax",
       "to": ["baxcalibur"]
@@ -7558,7 +7558,7 @@
   "baxcalibur": {
     "id": 998,
     "name": "Baxcalibur",
-    "type": ["dragon", "ice"],
+    "types": ["dragon", "ice"],
     "evos": {
       "from": "arctibax"
     }
@@ -7566,7 +7566,7 @@
   "gimmighoul": {
     "id": 999,
     "name": "Gimmighoul",
-    "type": ["ghost"],
+    "types": ["ghost"],
     "evos": {
       "to": ["gholdengo"]
     }
@@ -7574,7 +7574,7 @@
   "gholdengo": {
     "id": 1000,
     "name": "Gholdengo",
-    "type": ["steel", "ghost"],
+    "types": ["steel", "ghost"],
     "evos": {
       "from": "gimmighoul"
     }
@@ -7582,57 +7582,57 @@
   "wo-chien": {
     "id": 1001,
     "name": "Wo-Chien",
-    "type": ["dark", "grass"]
+    "types": ["dark", "grass"]
   },
   "chien-pao": {
     "id": 1002,
     "name": "Chien-Pao",
-    "type": ["dark", "ice"]
+    "types": ["dark", "ice"]
   },
   "ting-lu": {
     "id": 1003,
     "name": "Ting-Lu",
-    "type": ["dark", "ground"]
+    "types": ["dark", "ground"]
   },
   "chi-yu": {
     "id": 1004,
     "name": "Chi-Yu",
-    "type": ["dark", "fire"]
+    "types": ["dark", "fire"]
   },
   "roaring-moon": {
     "id": 1005,
     "name": "Roaring Moon",
-    "type": ["dragon", "dark"]
+    "types": ["dragon", "dark"]
   },
   "iron-valiant": {
     "id": 1006,
     "name": "Iron Valiant",
-    "type": ["fairy", "fighting"]
+    "types": ["fairy", "fighting"]
   },
   "koraidon": {
     "id": 1007,
     "name": "Koraidon",
-    "type": ["fighting", "dragon"]
+    "types": ["fighting", "dragon"]
   },
   "miraidon": {
     "id": 1008,
     "name": "Miraidon",
-    "type": ["electric", "dragon"]
+    "types": ["electric", "dragon"]
   },
   "walking-wake": {
     "id": 1009,
     "name": "Walking Wake",
-    "type": ["water", "dragon"]
+    "types": ["water", "dragon"]
   },
   "iron-leaves": {
     "id": 1010,
     "name": "Iron Leaves",
-    "type": ["grass", "psychic"]
+    "types": ["grass", "psychic"]
   },
   "dipplin": {
     "id": 1011,
     "name": "Dipplin",
-    "type": ["grass", "dragon"],
+    "types": ["grass", "dragon"],
     "evos": {
       "from": "applin",
       "to": ["hydrapple"]
@@ -7641,7 +7641,7 @@
   "poltchageist": {
     "id": 1012,
     "name": "Poltchageist",
-    "type": ["grass", "ghost"],
+    "types": ["grass", "ghost"],
     "evos": {
       "to": ["sinistcha"]
     }
@@ -7649,7 +7649,7 @@
   "sinistcha": {
     "id": 1013,
     "name": "Sinistcha",
-    "type": ["grass", "ghost"],
+    "types": ["grass", "ghost"],
     "evos": {
       "from": "poltchageist"
     }
@@ -7657,27 +7657,27 @@
   "okidogi": {
     "id": 1014,
     "name": "Okidogi",
-    "type": ["poison", "fighting"]
+    "types": ["poison", "fighting"]
   },
   "munkidori": {
     "id": 1015,
     "name": "Munkidori",
-    "type": ["poison", "psychic"]
+    "types": ["poison", "psychic"]
   },
   "fezandipiti": {
     "id": 1016,
     "name": "Fezandipiti",
-    "type": ["poison", "fairy"]
+    "types": ["poison", "fairy"]
   },
   "ogerpon": {
     "id": 1017,
     "name": "Ogerpon",
-    "type": ["grass"]
+    "types": ["grass"]
   },
   "archaludon": {
     "id": 1018,
     "name": "Archaludon",
-    "type": ["steel", "dragon"],
+    "types": ["steel", "dragon"],
     "evos": {
       "from": "duraludon"
     }
@@ -7685,7 +7685,7 @@
   "hydrapple": {
     "id": 1019,
     "name": "Hydrapple",
-    "type": ["grass", "dragon"],
+    "types": ["grass", "dragon"],
     "evos": {
       "from": "dipplin"
     }
@@ -7693,31 +7693,31 @@
   "gouging-fire": {
     "id": 1020,
     "name": "Gouging Fire",
-    "type": ["fire", "dragon"]
+    "types": ["fire", "dragon"]
   },
   "raging-bolt": {
     "id": 1021,
     "name": "Raging Bolt",
-    "type": ["electric", "dragon"]
+    "types": ["electric", "dragon"]
   },
   "iron-boulder": {
     "id": 1022,
     "name": "Iron Boulder",
-    "type": ["rock", "psychic"]
+    "types": ["rock", "psychic"]
   },
   "iron-crown": {
     "id": 1023,
     "name": "Iron Crown",
-    "type": ["steel", "psychic"]
+    "types": ["steel", "psychic"]
   },
   "terapagos": {
     "id": 1024,
     "name": "Terapagos",
-    "type": ["normal"]
+    "types": ["normal"]
   },
   "pecharunt": {
     "id": 1025,
     "name": "Pecharunt",
-    "type": ["poison", "ghost"]
+    "types": ["poison", "ghost"]
   }
 }

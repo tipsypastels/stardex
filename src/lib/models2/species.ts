@@ -4,7 +4,7 @@ import { BuiltinType } from "./type";
 interface SpeciesData {
   id: number;
   name: string;
-  type: string[];
+  types: string[];
   evos?: { from?: string; to?: string[] };
   alts?: SpeciesAltData[];
 }
@@ -12,7 +12,7 @@ interface SpeciesData {
 interface SpeciesAltData {
   kind: string;
   name: string;
-  type: string[];
+  types: string[];
 }
 
 DATA satisfies Record<string, SpeciesData>;
@@ -62,7 +62,7 @@ export class Species {
   }
 
   get typeKeys() {
-    return this.#data.type;
+    return this.#data.types;
   }
 
   get alts() {
@@ -103,6 +103,6 @@ export class SpeciesAlt {
   }
 
   get typeKeys() {
-    return this.#data.type;
+    return this.#data.types;
   }
 }
