@@ -17,6 +17,7 @@ interface SharedPokemonData {
 
 export interface BuiltinPokemonData extends SharedPokemonData {
   species: SpeciesKey;
+  // TODO: Rename these too.
   type?: string[];
 }
 
@@ -69,9 +70,13 @@ export abstract class Pokemon {
     return this.shared.newlinesAfterIfLast;
   }
 
-  setTypeAt(index: number, typeKey: string) {
+  setTypeAt(index: number, typeKey: string | undefined) {
     const clone = [...this.typeKeys];
-    clone[index] = typeKey;
+    if (typeKey) {
+      clone[index] = typeKey;
+    } else {
+      clone.splice(index, 1);
+    }
     this.setTypes(clone);
   }
 
@@ -91,7 +96,31 @@ export abstract class Pokemon {
     this.shared.newlinesAfterIfLast = newlinesAfterIfLast;
   }
 
-  with(f: (pokemon: this) => void): this {
+  withTypes(typeKeys: string[]) {
+    return this.with((pokemon) => pokemon.setTypes(typeKeys));
+  }
+
+  withTypeAt(index: number, typeKey: string | undefined) {
+    return this.with((pokemon) => pokemon.setTypeAt(index, typeKey));
+  }
+
+  withExclude(exclude: boolean) {
+    return this.with((pokemon) => pokemon.setExclude(exclude));
+  }
+
+  withComment(comment: string) {
+    return this.with((pokemon) => pokemon.setComment(comment));
+  }
+
+  withNewlinesBefore(newlinesBefore: number) {
+    return this.with((pokemon) => pokemon.setNewlinesBefore(newlinesBefore));
+  }
+
+  withNewlinesAfterIfLast(newlinesAfterIfLast: number) {
+    return this.with((pokemon) => pokemon.setNewlinesAfterIfLast(newlinesAfterIfLast));
+  }
+
+  protected with(f: (pokemon: this) => void): this {
     const clone = this.clone() as this;
     f(clone);
     return clone;
@@ -180,6 +209,15 @@ export class BuiltinPokemon extends Pokemon {
     this.#types = undefined;
   }
 
+  unsetTypes() {
+    delete this.#data.type;
+    this.#types = undefined;
+  }
+
+  withoutTypes() {
+    return this.with((pokemon) => pokemon.unsetTypes());
+  }
+
   isBuiltin(): this is BuiltinPokemon {
     return true;
   }
@@ -251,6 +289,10 @@ export class CustomPokemon extends Pokemon {
     this.#data.name = name;
   }
 
+  withName(name: string) {
+    return this.with((pokemon) => pokemon.setName(name));
+  }
+
   isCustom(): this is CustomPokemon {
     return true;
   }
@@ -277,8 +319,79 @@ export class Pokemons {
     this.#indices = IMap(this.#list.map((p, i) => [p.key, i]));
   }
 
+  has(pokemon: Pokemon) {
+    return this.hasKey(pokemon.key);
+  }
+
+  hasKey(key: string) {
+    return this.#indices.has(key);
+  }
+
+  get(index: number) {
+    const pokemon = this.#list.get(index);
+    if (!pokemon) {
+      throw new Error(`Can't get pokemon at overflow index ${index}.`);
+    }
+    return pokemon;
+  }
+
+  withPushed(...pokemons: Pokemon[]) {
+    return new Pokemons(this.#list.push(...pokemons.filter((p) => !this.has(p))));
+  }
+
+  withName(index: number, name: string) {
+    return this.#withAt(index, (pokemon) => {
+      if (!pokemon.isCustom()) {
+        throw new Error(`Can't change the name of a builtin pokemon.`);
+      }
+      return pokemon.withName(name);
+    });
+  }
+
+  withTypes(index: number, typeKeys: string[]) {
+    return this.#withAt(index, (pokemon) => pokemon.withTypes(typeKeys));
+  }
+
+  withTypeAt(index: number, typeIndex: number, typeKey: string | undefined) {
+    return this.#withAt(index, (pokemon) => pokemon.withTypeAt(typeIndex, typeKey));
+  }
+
+  withoutTypes(index: number) {
+    return this.#withAt(index, (pokemon) => {
+      if (!pokemon.isBuiltin()) {
+        throw new Error("Can't unset the type of a custom pokemon.");
+      }
+      return pokemon.withoutTypes();
+    });
+  }
+
+  withExclude(index: number, exclude: boolean) {
+    return this.#withAt(index, (pokemon) => pokemon.withExclude(exclude));
+  }
+
+  withSwapped(index: number, jndex: number) {
+    return this.#dup(
+      this.#list.withMutations((list) => {
+        const a = list.get(index);
+        const b = list.get(jndex);
+        if (!a || !b) {
+          throw new Error("Can't swap past pokemons list bounds.");
+        }
+        return list.set(index, b).set(jndex, a);
+      }),
+    );
+  }
+
+  without(index: number) {
+    return this.#dup(this.#list.remove(index));
+  }
+
   #withAt(index: number, f: (pokemon: Pokemon) => Pokemon) {
     const list = this.#list.update(index, (p) => (p ? f(p) : undefined));
+    return this.#dup(list);
+  }
+
+  #dup(list: IList<Pokemon>) {
     return new Pokemons(list);
   }
 
