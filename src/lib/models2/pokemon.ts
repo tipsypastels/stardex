@@ -26,9 +26,15 @@ export abstract class Pokemon {
   abstract typeKeys: string[];
   abstract species: Species | undefined;
   abstract alt: SpeciesAlt | undefined;
+
+  abstract withType(typeKeys: string[]): Pokemon;
+  abstract setTypeInPlace(typeKeys: string[]): void;
+  abstract withExclude(exclude: boolean): Pokemon;
+
   abstract toJSON(): unknown;
 
   protected abstract shared: SharedPokemonData;
+  protected abstract clone(): Pokemon;
 
   get exclude() {
     return this.shared.exclude;
@@ -44,6 +50,22 @@ export abstract class Pokemon {
 
   get newlinesAfterIfLast() {
     return this.shared.newlinesAfterIfLast;
+  }
+
+  setExcludeInPlace(exclude: boolean) {
+    this.shared.exclude = exclude;
+  }
+
+  setCommentInPlace(comment: string) {
+    this.shared.comment = comment;
+  }
+
+  setNewlinesBeforeInPlace(newlinesBefore: number) {
+    this.shared.newlinesBefore = newlinesBefore;
+  }
+
+  setNewlinesAfterIfLastInPlace(newlinesAfterIfLast: number) {
+    this.shared.newlinesAfterIfLast = newlinesAfterIfLast;
   }
 
   isBuiltin(): this is BuiltinPokemon {
@@ -113,6 +135,23 @@ export class BuiltinPokemon extends Pokemon {
     return this.#data;
   }
 
+  withType(typeKeys: string[]) {
+    const dup = new BuiltinPokemon({ ...this.#data });
+    dup.setTypeInPlace(typeKeys);
+    return dup;
+  }
+
+  setTypeInPlace(typeKeys: string[]) {
+    this.#data.type = typeKeys;
+    this.#types = undefined;
+  }
+
+  withExclude(exclude: boolean) {
+    const dup = new BuiltinPokemon({ ...this.#data });
+    dup.setExcludeInPlace(exclude);
+    return dup;
+  }
+
   isBuiltin(): this is BuiltinPokemon {
     return true;
   }
@@ -166,6 +205,23 @@ export class CustomPokemon extends Pokemon {
 
   protected get shared() {
     return this.#data;
+  }
+
+  withType(typeKeys: string[]) {
+    const dup = new CustomPokemon({ ...this.#data });
+    dup.setTypeInPlace(typeKeys);
+    return dup;
+  }
+
+  setTypeInPlace(typeKeys: string[]) {
+    this.#data.type = typeKeys;
+    this.#types = undefined;
+  }
+
+  withExclude(exclude: boolean) {
+    const dup = new CustomPokemon({ ...this.#data });
+    dup.setExcludeInPlace(exclude);
+    return dup;
   }
 
   isCustom(): this is CustomPokemon {
