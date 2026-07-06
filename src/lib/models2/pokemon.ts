@@ -1,4 +1,4 @@
-import type { Species, SpeciesAlt } from "./species";
+import { Species, type SpeciesAlt, type SpeciesKey } from "./species";
 import { Type } from "./type";
 
 interface SharedPokemonData {
@@ -9,7 +9,7 @@ interface SharedPokemonData {
 }
 
 interface BuiltinPokemonData extends SharedPokemonData {
-  species: Species;
+  species: SpeciesKey;
   type?: string[];
 }
 
@@ -78,8 +78,8 @@ export abstract class Pokemon {
 }
 
 export class BuiltinPokemon extends Pokemon {
-  static of(species: Species) {
-    return new this({ species });
+  static of(key: SpeciesKey) {
+    return new this({ species: key });
   }
 
   #data: BuiltinPokemonData;
@@ -113,7 +113,7 @@ export class BuiltinPokemon extends Pokemon {
   }
 
   get species(): Species {
-    return this.#data.species;
+    return Species.of(this.#data.species);
   }
 
   get alt() {
