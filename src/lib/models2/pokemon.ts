@@ -53,7 +53,7 @@ export abstract class Pokemon {
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
 
-  abstract toJson(): unknown;
+  abstract toJson(): PokemonData;
 
   get exclude() {
     return this.shared.exclude;

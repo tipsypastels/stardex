@@ -76,6 +76,93 @@ export class Projects {
     return project;
   }
 
+  setActive(id: string, modelStateData: ProjectModelStateData) {
+    if (id === this.active.id) {
+      return {
+        projects: this,
+        modelStateData,
+      };
+    }
+
+    const index = this.#findIndex(id);
+    const active = this.#list.get(index) as InactiveProject;
+
+    if (!active || active.isActive()) {
+      throw new Error("Multiple active projects, broken switch state.");
+    }
+
+    const newModelStateData = active.modelState.toJson();
+    const list = this.#list.withMutations((list) => {
+      list
+        .set(this.#activeIndex, this.active.intoInactive(modelStateData))
+        .set(index, active.intoActive());
+    });
+
+    return {
+      projects: this.#dup(list),
+      modelStateData: newModelStateData,
+    };
+  }
+
+  setName(id: string, name: string) {
+    const index = this.#findIndex(id);
+    const list = this.#list.update(index, (project) =>
+      project ? project.setName(name) : undefined,
+    );
+    return this.#dup(list);
+  }
+
+  pushEmpty() {
+    return this.#dup(
+      this.#list.push(
+        InactiveProject.from({
+          v: V,
+          id: crypto.randomUUID(),
+          name: `Untitled Project ${this.#list.size}`,
+          active: false,
+          modelState: {
+            pokemons: [],
+            regions: Regions.DEFAULT.toArray(),
+            strictness: Strictness.DEFAULT.key,
+            pokedexFormat: PokedexFormat.DEFAULT.key,
+          },
+        }),
+      ),
+    );
+  }
+
+  pushDuplicate(id: string, getModelStateData: () => ProjectModelStateData) {
+    const index = this.#findIndex(id);
+    const project = this.#list.get(index)!;
+    const modelStateData = project.isInactive() ? project.modelState.toJson() : getModelStateData();
+    const duplicate = InactiveProject.from({
+      v: V,
+      id: crypto.randomUUID(),
+      name: `Copy of ${project.name}`,
+      active: false,
+      modelState: modelStateData,
+    });
+    const list = this.#list.insert(index + 1, duplicate);
+    return this.#dup(list);
+  }
+
+  delete(id: string) {
+    const index = this.#findIndex(id);
+    return this.#dup(this.#list.delete(index));
+  }
+
+  #findIndex(id: string) {
+    const index = this.#list.findIndex((project) => project.id === id);
+    if (index === -1) {
+      throw new Error(`Can't find project with ID '${id}'.`);
+    }
+    return index;
+  }
+
+  #dup(list: IList<Project>) {
+    return new Projects(list);
+  }
+
   toJson() {
     return this.#list.map((p) => p.toJson()).toArray();
   }
@@ -86,18 +173,21 @@ export abstract class Project {
     return data.active ? ActiveProject.from(data) : InactiveProject.from(data);
   }
 
-  #data: { id: string; name: string };
-
-  protected constructor(data: { id: string; name: string }) {
-    this.#data = data;
-  }
+  protected abstract shared: SharedProjectData;
+  protected abstract clone(): Project;
 
   get id() {
-    return this.#data.id;
+    return this.shared.id;
   }
 
   get name() {
-    return this.#data.name;
+    return this.shared.name;
+  }
+
+  setName(name: string) {
+    const dup = this.clone() as this;
+    dup.shared.name = name;
+    return dup;
   }
 
   isActive(): this is ActiveProject {
@@ -109,7 +199,7 @@ export abstract class Project {
   }
 
   toJson() {
-    return this.#data;
+    return this.shared;
   }
 }
 
@@ -119,12 +209,33 @@ export class ActiveProject extends Project {
     return new this({ v: V, ...data });
   }
 
+  #data: ActiveProjectData;
+
   private constructor(data: ActiveProjectData) {
-    super(data);
+    super();
+    this.#data = data;
+  }
+
+  protected get shared() {
+    return this.#data;
+  }
+
+  protected clone() {
+    return new ActiveProject({ ...this.#data });
   }
 
   isActive(): this is ActiveProject {
     return true;
+  }
+
+  intoInactive(modelStateData: ProjectModelStateData) {
+    return InactiveProject.from({
+      v: V,
+      id: this.id,
+      name: this.name,
+      active: false,
+      modelState: modelStateData,
+    });
   }
 }
 
@@ -135,18 +246,38 @@ export class InactiveProject extends Project {
     return new this({ v: V, ...data, modelState: { pokemons, ...modelState } });
   }
 
+  #data: InactiveProjectData;
   readonly modelState: ProjectModelState;
 
   private constructor(data: InactiveProjectData) {
-    super(data);
+    super();
+    this.#data = data;
     this.modelState = new ProjectModelState(data.modelState);
+  }
+
+  protected get shared() {
+    return this.#data;
+  }
+
+  protected clone() {
+    return new InactiveProject({ ...this.#data });
   }
 
   isInactive(): this is InactiveProject {
     return true;
   }
+
+  intoActive() {
+    return ActiveProject.from({
+      v: V,
+      id: this.id,
+      name: this.name,
+      active: true,
+    });
+  }
 }
 
+// TODO: Is this type even useful.
 export class ProjectModelState {
   #data: ProjectModelStateData;
 
@@ -168,5 +299,9 @@ export class ProjectModelState {
 
   getPokedexFormat() {
     return PokedexFormat.of(this.#data.pokedexFormat);
+  }
+
+  toJson() {
+    return this.#data;
   }
 }

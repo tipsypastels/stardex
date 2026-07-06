@@ -1,4 +1,4 @@
-import { Pokemon, Pokemons } from "$lib/models2/pokemon";
+import { Pokemon, Pokemons, type PokemonData } from "$lib/models2/pokemon";
 import { persistedWritable, reducible } from "$lib/utils/stores";
 import { derived } from "svelte/store";
 
@@ -38,6 +38,9 @@ export const pokemons = reducible(
     },
     delete(index: number) {
       store.update(($pokemons) => $pokemons.delete(index));
+    },
+    set(datas: PokemonData[]) {
+      store.set(Pokemons.from(datas));
     },
     clear() {
       store.set(Pokemons.default());
