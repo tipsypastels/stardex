@@ -3,13 +3,12 @@
 </script>
 
 <script lang="ts">
-  import { BUILTIN_TYPE_KEYS, resolveType } from "$lib/models/type";
+  import { BuiltinType } from "$lib/models/type";
 </script>
 
 <datalist id={TYPE_SUGGESTIONS_LIST}>
-  {#each BUILTIN_TYPE_KEYS as typeKey}
-    {@const type = resolveType(typeKey)}
-    <option value={typeKey}>
+  {#each BuiltinType.ALL as type}
+    <option value={type.key}>
       {type.name}
     </option>
   {/each}

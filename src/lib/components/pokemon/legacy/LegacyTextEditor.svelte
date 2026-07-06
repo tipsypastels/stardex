@@ -1,17 +1,17 @@
 <script lang="ts">
   import Icon from "$lib/components/common/Icon.svelte";
   import {
-    legacyTextFromPokemonList,
+    legacyTextFromPokemonDatas,
     LegacyTextParseError,
-    legacyTextToPokemonList,
+    legacyTextToPokemonDatas,
   } from "$lib/legacy/text";
-  import { pokemon } from "$lib/state/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import CodeMirrorEditor from "svelte-codemirror-editor";
   import { linter } from "@codemirror/lint";
 
   const RELOAD_DEBOUNCE_MS = 1000;
 
-  let legacyText = $state(legacyTextFromPokemonList($pokemon));
+  let legacyText = $state(legacyTextFromPokemonDatas($pokemons.toJson()));
   let needsHelp = $state(false);
   let errors = $state<LegacyTextParseError[]>([]);
   let errorLinter = $derived.by(() => {
@@ -28,16 +28,14 @@
 </script>
 
 <div>
-  <!-- Also breaking s[0].toUppercase()? Broken state? What??????? -->
   <CodeMirrorEditor
     bind:value={legacyText}
     extensions={[errorLinter]}
     onchange={() => {
       clearTimeout(timeout);
       setTimeout(() => {
-        // TODO: Handle errors.
-        const result = legacyTextToPokemonList(legacyText);
-        pokemon.set(result.pokemon);
+        const result = legacyTextToPokemonDatas(legacyText);
+        pokemons.set(result.pokemon);
         errors = result.errors;
       }, RELOAD_DEBOUNCE_MS);
     }}

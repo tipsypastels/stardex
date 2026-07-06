@@ -31,6 +31,10 @@ export class Species {
     return this.MAP.get(key)!;
   }
 
+  static tryOf(key: string) {
+    return this.MAP.get(key);
+  }
+
   readonly key: SpeciesKey;
   readonly index: number;
 
@@ -76,6 +80,16 @@ export class Species {
     return alt;
   }
 
+  getEvolutionLine() {
+    if (!this.#data.evos || (!this.#data.evos.from && !this.#data.evos.to)) {
+      return [this];
+    }
+
+    const finder = new EvolutionFinder((s) => s.#data);
+    const origin = finder.findOrigin(this);
+    return finder.followLine(origin);
+  }
+
   get #data() {
     return DATA[this.key] as SpeciesData;
   }
@@ -104,5 +118,41 @@ export class SpeciesAlt {
 
   get typeKeys() {
     return this.#data.types;
+  }
+}
+
+class EvolutionFinder {
+  #friend: (species: Species) => SpeciesData;
+
+  constructor(friend: (species: Species) => SpeciesData) {
+    this.#friend = friend;
+  }
+
+  findOrigin(initial: Species) {
+    let origin = initial;
+    while (this.#friend(origin).evos?.from) {
+      origin = Species.tryOf(this.#friend(origin).evos!.from!)!;
+    }
+    return origin;
+  }
+
+  followLine(origin: Species) {
+    const set = new Set<Species>();
+    this.#followLine(origin, set);
+
+    const out = [...set];
+    out.sort((a, b) => a.id - b.id);
+    return out;
+  }
+
+  #followLine(species: Species, out: Set<Species>) {
+    const evosTo = this.#friend(species).evos?.to;
+    if (evosTo) {
+      for (const evoToKey of evosTo) {
+        const evoTo = Species.tryOf(evoToKey)!;
+        out.add(evoTo);
+        this.#followLine(evoTo, out);
+      }
+    }
   }
 }

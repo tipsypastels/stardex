@@ -179,6 +179,10 @@ export class BuiltinPokemon extends Pokemon {
     return this.#data.types?.map((t) => Type.of(t)) ?? false;
   }
 
+  get isTypeChanged() {
+    return !!this.#data.types;
+  }
+
   get species(): Species {
     return Species.of(this.#data.species);
   }
@@ -320,6 +324,10 @@ export class Pokemons {
   private constructor(pokemons: IList<Pokemon>) {
     this.#list = pokemons;
     this.#indices = IMap(this.#list.map((p, i) => [p.key, i]));
+  }
+
+  get size() {
+    return this.#list.size;
   }
 
   has(pokemon: Pokemon) {

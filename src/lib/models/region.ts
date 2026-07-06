@@ -98,6 +98,10 @@ export class Regions {
     this.#set = set;
   }
 
+  get size() {
+    return this.#set.size;
+  }
+
   has(key: RegionKey) {
     return this.#set.has(key);
   }

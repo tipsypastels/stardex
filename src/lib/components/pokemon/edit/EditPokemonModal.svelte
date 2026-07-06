@@ -1,35 +1,35 @@
 <script lang="ts">
   import Modal from "$lib/components/layout/Modal.svelte";
-  import { resolvePokemonName, type Pokemon } from "$lib/models/pokemon";
-  import { pokemon } from "$lib/state/pokemon";
+  import type { Pokemon } from "$lib/models/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import type { Readable } from "svelte/store";
   import EditPokemon from "./EditPokemon.svelte";
 
   interface Props {
     index: number | undefined;
-    mon: Readable<Pokemon> | undefined;
+    pokemon: Readable<Pokemon> | undefined;
     close(): void;
   }
 
-  let { index, mon, close }: Props = $props();
+  let { index, pokemon, close }: Props = $props();
 
-  function removeMon() {
-    if (index != null) pokemon.remove(index);
+  function deletePokemon() {
+    if (index != null) pokemons.delete(index);
     close();
   }
 </script>
 
-{#if index != null && mon}
+{#if index != null && pokemon}
   <Modal {close}>
     {#snippet title()}
-      Edit {mon ? resolvePokemonName($mon!) : ""}
+      Edit {pokemon ? $pokemon!.name : ""}
     {/snippet}
     {#snippet footer()}
       <section class="flex justify-end gap-2">
-        <button class="text-red-500 underline" onclick={removeMon}>Remove</button>
+        <button class="text-red-500 underline" onclick={deletePokemon}>Remove</button>
         <button class="text-lime-600 underline" onclick={close}>Close</button>
       </section>
     {/snippet}
-    <EditPokemon {index} mon={mon!} />
+    <EditPokemon {index} {pokemon} />
   </Modal>
 {/if}

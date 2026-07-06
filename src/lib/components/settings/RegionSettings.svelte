@@ -1,19 +1,13 @@
 <script lang="ts">
   import Icon from "$lib/components/common/Icon.svelte";
-  import {
-    ALL_REGION_KEYS,
-    DEFAULT_REGION_KEYS,
-    resolveRegion,
-    type RegionKey,
-  } from "$lib/models/region";
+  import { Region, Regions, type RegionKey } from "$lib/models/region";
   import { regions } from "$lib/state/regions";
   import TypeName from "../common/TypeName.svelte";
 </script>
 
 <div class="mb-4 grid grid-cols-2 gap-4 md:grid-cols-4">
-  {#each ALL_REGION_KEYS as regionKey}
-    {@const region = resolveRegion(regionKey)}
-    {@const checked = $regions.has(regionKey)}
+  {#each Regions.ALL.toArray() as region}
+    {@const checked = $regions.has(region.key)}
     <label
       class="relative flex cursor-pointer rounded-xs border-[1px] border-slate-300 p-2 transition select-none hover:-translate-y-1"
     >
@@ -23,9 +17,9 @@
         {checked}
         onclick={(e) => {
           if (e.currentTarget.checked) {
-            regions.enable(regionKey);
+            regions.add(region.key);
           } else {
-            regions.disable(regionKey);
+            regions.delete(region.key);
           }
         }}
       />
@@ -53,9 +47,9 @@
   {/snippet}
 
   Select
-  {@render bulkAction("Recommended", DEFAULT_REGION_KEYS)}
+  {@render bulkAction("Recommended", Regions.DEFAULT.keys())}
   {" / "}
-  {@render bulkAction("All", ALL_REGION_KEYS)}
+  {@render bulkAction("All", Regions.ALL.keys())}
   {" / "}
   {@render bulkAction("None", [])}
 </div>
@@ -65,7 +59,7 @@
     Kanto has a skewed type balance by the standards of later regions - for example, too many
     <TypeName for="poison" />
     types. You may find that you get better results if you
-    <button class="underline" onclick={() => regions.disable("kanto")}>exclude it</button>
+    <button class="underline" onclick={() => regions.delete("kanto")}>exclude it</button>
     .
   </p>
 {/if}

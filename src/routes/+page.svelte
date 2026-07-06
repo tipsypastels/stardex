@@ -9,13 +9,14 @@
   import TypePieChart from "$lib/components/pokemon/util/TypePieChart.svelte";
   import { pokemonAllotment } from "$lib/state/metrics";
   import { pokedexFormat } from "$lib/state/pokedex_format";
-  import { pokemon } from "$lib/state/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import { regions } from "$lib/state/regions";
+  import { PokedexFormat } from "$lib/models/pokedex_format";
 </script>
 
 <Layout title="Editor">
-  <Section id="editor_pokedex" title={`Pokédex (${$pokemon.length})`}>
-    {#if $pokedexFormat === "legacyText"}
+  <Section id="editor_pokedex" title={`Pokédex (${$pokemons.size})`}>
+    {#if $pokedexFormat === PokedexFormat.LEGACY_TEXT}
       <LegacyTextEditor />
     {:else}
       <AddPokemon />
@@ -23,7 +24,7 @@
     {/if}
   </Section>
 
-  {#if $pokemon.length > 0}
+  {#if $pokemons.size > 0}
     <Section id="editor_types" title="Types">
       <TypePieChart allotment={$pokemonAllotment} />
     </Section>

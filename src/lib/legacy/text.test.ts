@@ -1,9 +1,9 @@
 import { describe, test, expect } from "vitest";
-import { legacyTextToPokemonList } from "./text";
+import { legacyTextToPokemonDatas } from "./text";
 import { resolveSpecies } from "$lib/models/species";
 
 function parse(...s: string[]) {
-  return legacyTextToPokemonList(s.join("\n")).pokemon;
+  return legacyTextToPokemonDatas(s.join("\n")).pokemon;
 }
 
 describe(parse, () => {

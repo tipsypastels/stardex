@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Pokemon } from "$lib/models/pokemon";
-  import { capitalize, capitalizeWords } from "$lib/utils/strings";
+  import { CustomPokemon, type Pokemon } from "$lib/models/pokemon";
+  import { capitalizeWords } from "$lib/utils/strings";
   import { onMount } from "svelte";
   import { TYPE_SUGGESTIONS_LIST } from "../util/TypeSuggestions.svelte";
 
@@ -17,10 +17,10 @@
       return;
     }
 
-    const type = hasSignificantType2
+    const types = hasSignificantType2
       ? [type1.toLowerCase(), type2.toLowerCase()]
       : [type1.toLowerCase()];
-    submit({ key, name, type });
+    submit(CustomPokemon.of(key, name, types));
   }
 
   function handleKeyUp(e: KeyboardEvent) {

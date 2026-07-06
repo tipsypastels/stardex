@@ -1,15 +1,11 @@
 <script lang="ts">
-  import {
-    getStrictnessDescription,
-    getStrictnessName,
-    STRICTNESSES,
-  } from "$lib/models/strictness";
+  import { Strictness } from "$lib/models/strictness";
   import { strictness } from "$lib/state/strictness";
   import Icon from "../common/Icon.svelte";
 </script>
 
 <div>
-  {#each STRICTNESSES as s}
+  {#each Strictness.ALL as s}
     {@const checked = $strictness === s}
     <label
       class="flex cursor-pointer items-center border-t-[1px] border-t-slate-300 p-4 first:border-t-0"
@@ -22,11 +18,11 @@
 
       <div>
         <div>
-          {getStrictnessName(s)}
+          {s.name}
         </div>
 
         <div class="text-base">
-          {getStrictnessDescription(s)}
+          {s.description}
         </div>
       </div>
     </label>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { resolveType, type Type } from "$lib/models/type";
+  import { Type } from "$lib/models/type";
   import Icon from "./Icon.svelte";
 
   interface Props {
@@ -7,7 +7,7 @@
   }
 
   let props: Props = $props();
-  let type = $derived(typeof props.for === "string" ? resolveType(props.for) : props.for);
+  let type = $derived(typeof props.for === "string" ? Type.of(props.for) : props.for);
 </script>
 
 <span class="whitespace-nowrap" style="color: {type.color}">

@@ -1,27 +1,21 @@
 <script lang="ts">
-  import {
-    isPokemonCustom,
-    resolvePokemonAlts,
-    resolvePokemonName,
-    resolvePokemonTypeKeys,
-    type Pokemon,
-  } from "$lib/models/pokemon";
-  import { pokemon } from "$lib/state/pokemon";
+  import { BuiltinPokemon, Pokemon } from "$lib/models/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import { undefinedIfEmpty } from "$lib/utils/strings";
   import type { Readable } from "svelte/store";
   import { TYPE_SUGGESTIONS_LIST } from "../util/TypeSuggestions.svelte";
 
   interface Props {
     index: number;
-    mon: Readable<Pokemon>;
+    pokemon: Readable<Pokemon>;
   }
 
-  let { index, mon }: Props = $props();
-  let isCustom = $derived(isPokemonCustom($mon));
-  let alts = $derived(resolvePokemonAlts($mon));
+  let { index, pokemon }: Props = $props();
+  let isCustom = $derived($pokemon.isCustom());
+  let alts = $derived($pokemon.species?.alts ?? []);
 
-  const initialName = resolvePokemonName($mon);
-  const initialTypeKeys = resolvePokemonTypeKeys($mon);
+  const initialName = $pokemon.name;
+  const initialTypeKeys = $pokemon.typeKeys;
 
   let name = $state(initialName);
   let customType1 = $state(initialTypeKeys[0] ?? "");
@@ -31,7 +25,7 @@
     if (name === "") {
       return;
     }
-    pokemon.setName(index, name);
+    pokemons.setName(index, name);
   }
 
   function handleTypeBlur(value: string, typeIndex: number) {
@@ -40,20 +34,19 @@
     }
 
     const typeKey = undefinedIfEmpty(value.trim().toLowerCase());
-    pokemon.setType(index, typeIndex, typeKey);
+    pokemons.setTypeAt(index, typeIndex, typeKey);
   }
 
   function setTypes(types: string[]) {
-    pokemon.setTypes(index, types);
+    pokemons.setTypes(index, types);
     customType1 = types[0];
     customType2 = types[1];
   }
 
-  function resetType() {
-    pokemon.resetType(index);
-    const typeKeys = resolvePokemonTypeKeys($mon);
-    customType1 = typeKeys[0] ?? "";
-    customType2 = typeKeys[1] ?? "";
+  function unsetTypes() {
+    pokemons.unsetTypes(index);
+    customType1 = $pokemon.typeKeys[0] ?? "";
+    customType2 = $pokemon.typeKeys[1] ?? "";
   }
 </script>
 
@@ -95,7 +88,7 @@
       <h3 class="text-sm">presets:</h3>
       <ul class="list-inside list-disc">
         <li>
-          <button class="cursor-pointer text-base text-lime-600 underline" onclick={resetType}
+          <button class="cursor-pointer text-base text-lime-600 underline" onclick={unsetTypes}
             >normal form</button
           >
         </li>
@@ -104,17 +97,17 @@
           <li>
             <button
               class="cursor-pointer text-base text-lime-600 underline"
-              onclick={() => setTypes(alt.type)}
+              onclick={() => setTypes(alt.typeKeys)}
             >
-              {alt.whence} form
+              {alt.name} form
             </button>
           </li>
         {/each}
       </ul>
     </div>
-  {:else if !isCustom && $mon.type}
+  {:else if !isCustom && ($pokemon as BuiltinPokemon).isTypeChanged}
     <div class="mt-2">
-      <button class="cursor-pointer text-base text-lime-600 underline" onclick={resetType}
+      <button class="cursor-pointer text-base text-lime-600 underline" onclick={unsetTypes}
         >Reset Customized Type</button
       >
     </div>
@@ -128,8 +121,8 @@
     <input
       type="checkbox"
       class="mr-2"
-      checked={$mon.exclude}
-      onchange={(e) => pokemon.setExclude(index, e.currentTarget.checked)}
+      checked={$pokemon.exclude}
+      onchange={(e) => pokemons.setExclude(index, e.currentTarget.checked)}
     />
     <div>Exclude this Pokémon from recommendations.</div>
   </label>

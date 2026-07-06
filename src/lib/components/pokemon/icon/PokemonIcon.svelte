@@ -66,31 +66,31 @@
 </script>
 
 <script lang="ts">
-  import { isPokemonCustom, resolvePokemonCurrentAlt, type Pokemon } from "$lib/models/pokemon";
+  import type { Pokemon } from "$lib/models/pokemon";
   import SpeciesIcon from "./SpeciesIcon.svelte";
 
   interface Props {
     for: Pokemon;
   }
 
-  let { for: mon }: Props = $props();
+  let { for: pokemon }: Props = $props();
 </script>
 
-{#if isPokemonCustom(mon)}
-  <SpeciesIcon for={{ id: 0, name: mon.name }} />
+{#if pokemon.isCustom()}
+  <SpeciesIcon for={{ id: 0, name: pokemon.name }} />
 {:else}
   <!-- TODO: Clean this up! -->
-  {@const alt = resolvePokemonCurrentAlt(mon)}
-  {@const regionalFormPositionKey = alt ? `${mon.species.key}${alt.whence}` : undefined}
+  {@const alt = pokemon.alt}
+  {@const regionalFormPositionKey = alt ? `${pokemon.species!.key}${alt.kind}` : undefined}
 
   {#if regionalFormPositionKey && regionalFormPositionKey in REGIONAL_FORM_POSITIONS}
     <SpeciesIcon
       for={{
         id: REGIONAL_FORM_POSITIONS[regionalFormPositionKey],
-        name: mon.species.name,
+        name: pokemon.species!.name,
       }}
     />
   {:else}
-    <SpeciesIcon for={mon.species} />
+    <SpeciesIcon for={pokemon.species!} />
   {/if}
 {/if}

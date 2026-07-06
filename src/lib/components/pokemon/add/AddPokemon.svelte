@@ -1,41 +1,41 @@
 <script lang="ts">
-  import { ALL_SPECIES, resolveEvolutionLine, type Species } from "$lib/models/species";
+  import { Species } from "$lib/models/species";
   import SpeciesIcon from "../icon/SpeciesIcon.svelte";
-  import { pokemon, pokemonInclusion } from "$lib/state/pokemon";
+  import { pokemons } from "$lib/state/pokemons";
   import AddCustom from "./AddCustom.svelte";
-  import type { Pokemon } from "$lib/models/pokemon";
+  import { BuiltinPokemon, type Pokemon } from "$lib/models/pokemon";
   import { onMount } from "svelte";
   import hotkeys from "hotkeys-js";
   import Fuse from "fuse.js";
 
-  const SEARCH = new Fuse(ALL_SPECIES, {
+  const SEARCH = new Fuse(Species.ALL, {
     keys: ["name"],
     threshold: 0.1,
     includeScore: true,
   });
 
-  function addMon(species: Species) {
-    const included = $pokemonInclusion.has(species.key);
+  function addPokemon(species: Species) {
+    const included = $pokemons.hasKey(species.key);
     if (included) {
       alert(`${species.name} is already in your Pokédex!`);
     } else {
-      pokemon.add({ species });
+      pokemons.push(BuiltinPokemon.of(species.key));
     }
     query = "";
   }
 
   function addFamily(line: Species[]) {
-    const lineNotIncluded = line.filter((sp) => !$pokemonInclusion.has(sp.key));
+    const lineNotIncluded = line.filter((species) => !$pokemons.hasKey(species.key));
     if (lineNotIncluded.length === 0) {
       alert(`The ${line[0].name} family is already in your Pokédex!`);
     } else {
-      pokemon.addBatch(lineNotIncluded.map((species) => ({ species })));
+      pokemons.push(...lineNotIncluded.map((species) => BuiltinPokemon.of(species.key)));
     }
     query = "";
   }
 
-  function addCustom(mon: Pokemon) {
-    pokemon.add(mon);
+  function addCustom(pokemon: Pokemon) {
+    pokemons.push(pokemon);
     query = "";
     closeCustomEditor();
   }
@@ -56,7 +56,7 @@
     if (e.shiftKey && closestLine && closestLine.length > 1) {
       addFamily(closestLine);
     } else if (closest) {
-      addMon(closest.species);
+      addPokemon(closest.species);
     } else {
       openCustomEditor();
     }
@@ -80,7 +80,7 @@
   let editingCustom = $state(false);
 
   let closest = $derived(findClosest());
-  let closestLine = $derived(closest ? resolveEvolutionLine(closest.species) : undefined);
+  let closestLine = $derived(closest ? closest.species.getEvolutionLine() : undefined);
   let hasExactMatch = $derived(closest?.exact);
 
   onMount(() => {
@@ -119,7 +119,7 @@
       {#if closest}
         <button
           class="cursor-pointer rounded-md bg-lime-600 px-4 py-2 text-white transition hover:-translate-y-1"
-          onclick={() => addMon(closest.species)}
+          onclick={() => addPokemon(closest.species)}
         >
           Add {closest.species.name}
         </button>

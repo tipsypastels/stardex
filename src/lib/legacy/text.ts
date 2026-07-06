@@ -1,33 +1,33 @@
-import { ALL_SPECIES, resolveSpecies } from "$lib/models/species";
+import { Species } from "$lib/models/species";
 import { capitalize } from "$lib/utils/strings";
-import { resolvePokemonKey, resolvePokemonName, type Pokemon } from "../models/pokemon";
+import type { PokemonData } from "../models/pokemon";
 
-export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
+export function legacyTextFromPokemonDatas(pokemons: PokemonData[]) {
   const lines: string[] = [];
 
-  for (const mon of pokemon) {
-    if (mon.newlinesBefore) {
-      lines.push(...new Array(mon.newlinesBefore).fill(""));
+  for (const pokemon of pokemons) {
+    if (pokemon.newlinesBefore) {
+      lines.push(...new Array(pokemon.newlinesBefore).fill(""));
     }
 
-    if (mon.comment) {
-      lines.push(...mon.comment.split("\n").map((c) => `# ${c}`));
+    if (pokemon.comment) {
+      lines.push(...pokemon.comment.split("\n").map((c) => `# ${c}`));
     }
 
-    let line = resolvePokemonName(mon);
+    let line = "species" in pokemon ? Species.of(pokemon.species).name : pokemon.name;
 
-    if (mon.type) {
-      line += ` (${mon.type.map(capitalize).join("/")})`;
+    if (pokemon.types) {
+      line += ` (${pokemon.types.map(capitalize).join("/")})`;
     }
 
-    if (mon.exclude) {
+    if (pokemon.exclude) {
       line += ` @exclude`;
     }
 
     lines.push(line);
   }
 
-  const lastMon = pokemon.at(-1);
+  const lastMon = pokemons.at(-1);
   if (lastMon && lastMon.newlinesAfterIfLast) {
     lines.push(...new Array(lastMon.newlinesAfterIfLast).fill(""));
   }
@@ -35,8 +35,8 @@ export function legacyTextFromPokemonList(pokemon: Pokemon[]) {
   return lines.join("\n");
 }
 
-export function legacyTextToPokemonList(text: string) {
-  const pokemon: Pokemon[] = [];
+export function legacyTextToPokemonDatas(text: string) {
+  const pokemons: PokemonData[] = [];
   const pokemonKeysToLineNos = new Map<string, number>();
   const errors: LegacyTextParseError[] = [];
   const lines = new SpannedString(text).lines();
@@ -65,7 +65,7 @@ export function legacyTextToPokemonList(text: string) {
 
     let name = "";
     let exclude = false;
-    let type: string[] | undefined;
+    let types: string[] | undefined;
 
     let buildingName = true;
 
@@ -92,13 +92,13 @@ export function legacyTextToPokemonList(text: string) {
             continue eachLine;
           }
         } else if (token.value.startsWith("(")) {
-          type = token.value
+          types = token.value
             .toLowerCase()
             .replaceAll(/[()]/g, "")
             .split(/\s*\/\s*/)
             .filter((s) => !!s);
 
-          if (type.length === 0) {
+          if (types.length === 0) {
             pushError(token, "Type list may not be empty.");
             continue eachLine;
           }
@@ -110,21 +110,21 @@ export function legacyTextToPokemonList(text: string) {
     }
 
     const species = resolveSpeciesByKeyOrName(name);
-    let mon: Pokemon;
+    let pokemon: PokemonData;
 
     if (species) {
-      mon = { species };
-      if (type) mon.type = type;
+      pokemon = { v: 1, species: species.key };
+      if (types) pokemon.types = types;
     } else {
-      if (!type) {
+      if (!types) {
         pushError(line, "Custom Pokémon must specify types.");
         continue eachLine;
       }
       const key = name.toLowerCase().replace(" ", "-");
-      mon = { key, name, type };
+      pokemon = { v: 1, key, name, types };
     }
 
-    const key = resolvePokemonKey(mon);
+    const key = species?.key ?? (pokemon as { key: string }).key;
     const duplicateOfLineNo = pokemonKeysToLineNos.get(key);
     if (typeof duplicateOfLineNo !== "undefined") {
       pushError(line, `Duplicate listing, already on line ${lineNo}.`);
@@ -133,28 +133,28 @@ export function legacyTextToPokemonList(text: string) {
     pokemonKeysToLineNos.set(key, lineNo);
 
     if (exclude) {
-      mon.exclude = true;
+      pokemon.exclude = true;
     }
     if (commentBeforeNext.length > 0) {
-      mon.comment = commentBeforeNext.join("\n");
+      pokemon.comment = commentBeforeNext.join("\n");
       commentBeforeNext = [];
     }
     if (newlinesBeforeNext > 0) {
-      mon.newlinesBefore = newlinesBeforeNext;
+      pokemon.newlinesBefore = newlinesBeforeNext;
       newlinesBeforeNext = 0;
     }
 
-    pokemon.push(mon);
+    pokemons.push(pokemon);
   }
 
   if (newlinesBeforeNext > 0) {
-    const lastMon = pokemon.at(-1);
+    const lastMon = pokemons.at(-1);
     if (lastMon) {
       lastMon.newlinesAfterIfLast = newlinesBeforeNext;
     }
   }
 
-  return { pokemon, errors };
+  return { pokemon: pokemons, errors };
 }
 
 const KEY_ALIASES: Record<string, string> = {
@@ -168,10 +168,10 @@ function resolveSpeciesByKeyOrName(pat: string) {
   pat = pat.toLowerCase();
   pat = pat in KEY_ALIASES ? KEY_ALIASES[pat] : pat;
   return (
-    resolveSpecies(pat) ||
-    resolveSpecies(pat.replace(" ", "-")) ||
-    ALL_SPECIES.find((s) => s.nameLower === pat) ||
-    ALL_SPECIES.find((s) => s.nameLower.replace(" ", "") === pat)
+    Species.tryOf(pat) ||
+    Species.tryOf(pat.replace(" ", "-")) ||
+    Species.ALL.find((s) => s.nameLower === pat) ||
+    Species.ALL.find((s) => s.nameLower.replace(" ", "") === pat)
   );
 }
 
