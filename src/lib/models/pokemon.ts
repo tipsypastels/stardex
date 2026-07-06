@@ -38,19 +38,19 @@ export function resolvePokemonTypes(pokemon: Pokemon): Type[] {
   return resolvePokemonTypeKeys(pokemon).map(resolveType);
 }
 
-export function resolvePokemonAltTypingPresets(pokemon: Pokemon) {
+export function resolvePokemonAlts(pokemon: Pokemon) {
   if (isPokemonCustom(pokemon)) return [];
-  return pokemon.species.altTypingPresets ?? [];
+  return pokemon.species.alts ?? [];
 }
 
-export function resolvePokemonCurrentAltTypingPreset(pokemon: Pokemon) {
-  if (isPokemonCustom(pokemon) || !pokemon.type || !pokemon.species.altTypingPresets?.length) {
+export function resolvePokemonCurrentAlt(pokemon: Pokemon) {
+  if (isPokemonCustom(pokemon) || !pokemon.type || !pokemon.species.alts?.length) {
     return;
   }
 
   const toString = (types: string[]) => types.sort().join();
   const ownTypes = toString(pokemon.type);
-  return pokemon.species.altTypingPresets.find((preset) => toString(preset.type) === ownTypes);
+  return pokemon.species.alts.find((alt) => toString(alt.type) === ownTypes);
 }
 
 export function isPokemonCustom(p: Pokemon): p is PokemonCustom {

@@ -66,11 +66,7 @@
 </script>
 
 <script lang="ts">
-  import {
-    isPokemonCustom,
-    resolvePokemonCurrentAltTypingPreset,
-    type Pokemon,
-  } from "$lib/models/pokemon";
+  import { isPokemonCustom, resolvePokemonCurrentAlt, type Pokemon } from "$lib/models/pokemon";
   import SpeciesIcon from "./SpeciesIcon.svelte";
 
   interface Props {
@@ -84,10 +80,8 @@
   <SpeciesIcon for={{ id: 0, name: mon.name }} />
 {:else}
   <!-- TODO: Clean this up! -->
-  {@const altTypingPreset = resolvePokemonCurrentAltTypingPreset(mon)}
-  {@const regionalFormPositionKey = altTypingPreset
-    ? `${mon.species.key}${altTypingPreset.name}`
-    : undefined}
+  {@const alt = resolvePokemonCurrentAlt(mon)}
+  {@const regionalFormPositionKey = alt ? `${mon.species.key}${alt.whence}` : undefined}
 
   {#if regionalFormPositionKey && regionalFormPositionKey in REGIONAL_FORM_POSITIONS}
     <SpeciesIcon

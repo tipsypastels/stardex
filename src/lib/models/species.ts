@@ -5,8 +5,7 @@ interface SpeciesUnprocessed {
   name: string;
   type: string[];
   evos?: SpeciesEvos;
-  /** @deprecated */
-  altTypingPresets?: SpeciesAltTypingPreset[];
+  alts?: SpeciesAlt[];
 }
 
 export interface Species extends SpeciesUnprocessed {
@@ -20,8 +19,8 @@ export interface SpeciesEvos {
   to?: string[];
 }
 
-export interface SpeciesAltTypingPreset {
-  name: string;
+export interface SpeciesAlt {
+  whence: string;
   type: string[];
 }
 
