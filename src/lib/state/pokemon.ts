@@ -9,13 +9,9 @@ import { derived } from "svelte/store";
 import { createActions } from "./_actions";
 import { createStorage } from "./_storage";
 import { areArraysEqual } from "$lib/utils/arrays";
-import { Pokemon as Pokemon2 } from "$lib/models2/pokemon";
 
 const storage = createStorage<Pokemon[]>("stardex_pokemon");
 const initial: Pokemon[] = storage.initial ?? [];
-
-// TODO: Remove this.
-console.log(storage.initial?.map((x) => Pokemon2.fromJson(x as any)));
 
 export const pokemon = createActions(initial, (store) => {
   return {

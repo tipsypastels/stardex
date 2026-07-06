@@ -10,7 +10,8 @@ interface SpeciesData {
 }
 
 interface SpeciesAltData {
-  whence: string;
+  kind: string;
+  name: string;
   type: string[];
 }
 
@@ -69,6 +70,12 @@ export class Species {
     return this.#alts;
   }
 
+  alt(kind: string) {
+    const alt = this.alts.find((a) => a.kind === kind);
+    if (!alt) throw new Error(`Unknown alt ${kind} for species ${this.key}.`);
+    return alt;
+  }
+
   get #data() {
     return DATA[this.key] as SpeciesData;
   }
@@ -86,8 +93,12 @@ export class SpeciesAlt {
     this.#data = data;
   }
 
-  get whence() {
-    return this.#data.whence;
+  get kind() {
+    return this.#data.kind;
+  }
+
+  get name() {
+    return this.#data.name;
   }
 
   get types() {

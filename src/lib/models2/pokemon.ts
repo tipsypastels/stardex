@@ -22,12 +22,9 @@ interface CustomPokemonData extends SharedPokemonData {
   type: string[];
 }
 
-export type PokemonDataJson =
-  | (BuiltinPokemonData & { species: SpeciesKey | { key: string } })
-  | CustomPokemonData;
-
 export abstract class Pokemon {
-  static fromJson(data: PokemonDataJson) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static fromJson(data: any) {
     if ("species" in data) {
       const species: { key: SpeciesKey } | SpeciesKey = data.species;
       return makeBuiltin({ ...data, species: typeof species === "string" ? species : species.key });

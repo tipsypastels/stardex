@@ -306,7 +306,8 @@
     },
     "alts": [
       {
-        "whence": "alola",
+        "kind": "alola",
+        "name": "alolan",
         "type": ["ice"]
       }
     ]
