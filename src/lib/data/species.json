@@ -304,9 +304,9 @@
     "evos": {
       "to": ["ninetales"]
     },
-    "altTypingPresets": [
+    "alts": [
       {
-        "name": "alola",
+        "whence": "alola",
         "type": ["ice"]
       }
     ]

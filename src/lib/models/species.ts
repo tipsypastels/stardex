@@ -5,6 +5,7 @@ interface SpeciesUnprocessed {
   name: string;
   type: string[];
   evos?: SpeciesEvos;
+  /** @deprecated */
   altTypingPresets?: SpeciesAltTypingPreset[];
 }
 
