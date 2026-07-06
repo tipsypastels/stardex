@@ -1,7 +1,7 @@
 import { PokedexFormat, type PokedexFormatKey } from "./pokedex_format";
 import { Pokemon, type PokemonData } from "./pokemon";
 import { Regions, type RegionKey } from "./region";
-import type { Strictness, StrictnessKey } from "./strictness";
+import { Strictness, type StrictnessKey } from "./strictness";
 
 export interface ProjectsData {
   all: ProjectData[];
@@ -9,6 +9,8 @@ export interface ProjectsData {
 }
 
 export interface ProjectData {
+  id: string;
+  name: string;
   pokemon: PokemonData[];
   pokedexFormat: PokedexFormatKey;
   regions: RegionKey[];
@@ -16,6 +18,20 @@ export interface ProjectData {
 }
 
 export class Projects {
+  static DEFAULT = new this({
+    all: [
+      {
+        id: "default",
+        name: "Untitled Project 1",
+        pokemon: [],
+        pokedexFormat: PokedexFormat.DEFAULT.key,
+        regions: Regions.DEFAULT.toArray(),
+        strictness: Strictness.DEFAULT.key,
+      },
+    ],
+    active: 0,
+  });
+
   static from(data: ProjectsData) {
     return new this(data);
   }

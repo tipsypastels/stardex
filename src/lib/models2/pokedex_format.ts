@@ -20,6 +20,7 @@ export class PokedexFormat {
   static NAMES = new this("names");
   static LEGACY_TEXT = new this("legacyText");
   static ALL = [this.ICONS, this.NAMES, this.LEGACY_TEXT];
+  static DEFAULT = this.ICONS;
 
   static of(key: PokedexFormatKey) {
     return this.ALL.find((f) => f.key === key)!;

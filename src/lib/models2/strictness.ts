@@ -29,6 +29,7 @@ export class Strictness {
   static STRICT = new this("strict");
   static BITCHY = new this("bitchy");
   static ALL = [this.EASYGOING, this.NORMAL, this.STRICT, this.BITCHY];
+  static DEFAULT = this.NORMAL;
 
   static of(key: StrictnessKey) {
     return this.ALL.find((s) => s.key === key)!;

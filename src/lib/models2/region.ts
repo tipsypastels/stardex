@@ -104,4 +104,8 @@ export class Regions {
   delete(key: RegionKey) {
     return new Regions(this.#set.delete(key));
   }
+
+  toArray() {
+    return [...this.#set];
+  }
 }
