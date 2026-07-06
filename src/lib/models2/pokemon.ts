@@ -1,5 +1,6 @@
 import { Species, type SpeciesAlt, type SpeciesKey } from "./species";
 import { Type } from "./type";
+import { Map as IMap, List as IList } from "immutable";
 
 let makeBuiltin: (data: BuiltinPokemonData) => BuiltinPokemon;
 let makeCustom: (data: CustomPokemonData) => CustomPokemon;
@@ -236,14 +237,19 @@ export class CustomPokemon extends Pokemon {
 
 export class Pokemons {
   static from(datas: PokemonData[]) {
-    return new this(datas);
+    return new this(IList(datas.map((d) => Pokemon.from(d))));
   }
 
-  #pokemons: Pokemon[];
-  #pokemonsMap: Map<string, number>;
+  #list: IList<Pokemon>;
+  #indices: IMap<string, number>;
 
-  private constructor(datas: PokemonData[]) {
-    this.#pokemons = datas.map((d) => Pokemon.from(d));
-    this.#pokemonsMap = new Map(this.#pokemons.map((p, i) => [p.key, i]));
+  private constructor(pokemons: IList<Pokemon>) {
+    this.#list = pokemons;
+    this.#indices = IMap(this.#list.map((p, i) => [p.key, i]));
+  }
+
+  #withAt(index: number, f: (pokemon: Pokemon) => Pokemon) {
+    const list = this.#list.update(index, (p) => (p ? f(p) : undefined));
+    return new Pokemons(list);
   }
 }
