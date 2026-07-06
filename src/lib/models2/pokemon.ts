@@ -28,6 +28,24 @@ export abstract class Pokemon {
   abstract alt: SpeciesAlt | undefined;
   abstract toJSON(): unknown;
 
+  protected abstract shared: SharedPokemonData;
+
+  get exclude() {
+    return this.shared.exclude;
+  }
+
+  get comment() {
+    return this.shared.comment;
+  }
+
+  get newlinesBefore() {
+    return this.shared.newlinesBefore;
+  }
+
+  get newlinesAfterIfLast() {
+    return this.shared.newlinesAfterIfLast;
+  }
+
   isBuiltin(): this is BuiltinPokemon {
     return false;
   }
@@ -91,6 +109,10 @@ export class BuiltinPokemon extends Pokemon {
     return this.species.alts.find((a) => s(a.typeKeys) === own);
   }
 
+  protected get shared() {
+    return this.#data;
+  }
+
   isBuiltin(): this is BuiltinPokemon {
     return true;
   }
@@ -140,6 +162,10 @@ export class CustomPokemon extends Pokemon {
 
   get alt(): undefined {
     return;
+  }
+
+  protected get shared() {
+    return this.#data;
   }
 
   isCustom(): this is CustomPokemon {
