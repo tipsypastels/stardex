@@ -1,6 +1,9 @@
 import { Species, type SpeciesAlt, type SpeciesKey } from "./species";
 import { Type } from "./type";
 
+let makeBuiltin: (data: BuiltinPokemonData) => BuiltinPokemon;
+let makeCustom: (data: CustomPokemonData) => CustomPokemon;
+
 interface SharedPokemonData {
   exclude?: boolean;
   comment?: string;
@@ -19,7 +22,19 @@ interface CustomPokemonData extends SharedPokemonData {
   type: string[];
 }
 
+export type PokemonDataJson =
+  | (BuiltinPokemonData & { species: SpeciesKey | { key: string } })
+  | CustomPokemonData;
+
 export abstract class Pokemon {
+  static fromJson(data: PokemonDataJson) {
+    if ("species" in data) {
+      const species: { key: SpeciesKey } | SpeciesKey = data.species;
+      return makeBuiltin({ ...data, species: typeof species === "string" ? species : species.key });
+    }
+    return makeCustom(data);
+  }
+
   abstract key: string;
   abstract name: string;
   abstract types: Type[];
@@ -90,6 +105,10 @@ export abstract class Pokemon {
 export class BuiltinPokemon extends Pokemon {
   static of(key: SpeciesKey) {
     return new this({ species: key });
+  }
+
+  static {
+    makeBuiltin = (data) => new this(data);
   }
 
   #data: BuiltinPokemonData;
@@ -166,6 +185,10 @@ export class BuiltinPokemon extends Pokemon {
 export class CustomPokemon extends Pokemon {
   static of(key: string, name: string, type: string[]) {
     return new this({ key, name, type });
+  }
+
+  static {
+    makeCustom = (data) => new this(data);
   }
 
   #data: CustomPokemonData;
