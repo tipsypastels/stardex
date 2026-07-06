@@ -265,6 +265,10 @@ export class Pokemons {
     return new this(IList(datas.map((d) => Pokemon.from(d))));
   }
 
+  static default() {
+    return new this(IList());
+  }
+
   #list: IList<Pokemon>;
   #indices: IMap<string, number>;
 
