@@ -50,6 +50,12 @@ export abstract class Pokemon {
     return this.shared.newlinesAfterIfLast;
   }
 
+  setTypeAt(index: number, typeKey: string) {
+    const clone = [...this.typeKeys];
+    clone[index] = typeKey;
+    this.setType(clone);
+  }
+
   setExclude(exclude: boolean) {
     this.shared.exclude = exclude;
   }
