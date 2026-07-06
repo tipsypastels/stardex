@@ -5,7 +5,13 @@
     "type": ["grass", "poison"],
     "evos": {
       "to": ["ivysaur"]
-    }
+    },
+    "altTypingPresets": [
+      {
+        "name": "livnan",
+        "type": ["fire"]
+      }
+    ]
   },
   "ivysaur": {
     "id": 2,

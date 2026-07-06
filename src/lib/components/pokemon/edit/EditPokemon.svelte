@@ -1,6 +1,7 @@
 <script lang="ts">
   import {
     isPokemonCustom,
+    resolvePokemonAltTypingPresets,
     resolvePokemonName,
     resolvePokemonTypeKeys,
     type Pokemon,
@@ -16,6 +17,9 @@
   }
 
   let { index, mon }: Props = $props();
+  let isCustom = $derived(isPokemonCustom($mon));
+  let altTypingPresets = $derived(resolvePokemonAltTypingPresets($mon));
+
   const initialName = resolvePokemonName($mon);
   const initialTypeKeys = resolvePokemonTypeKeys($mon);
 
@@ -39,6 +43,12 @@
     pokemon.setType(index, typeIndex, typeKey);
   }
 
+  function setTypes(types: string[]) {
+    pokemon.setTypes(index, types);
+    customType1 = types[0];
+    customType2 = types[1];
+  }
+
   function resetType() {
     pokemon.resetType(index);
     const typeKeys = resolvePokemonTypeKeys($mon);
@@ -47,7 +57,7 @@
   }
 </script>
 
-{#if isPokemonCustom($mon)}
+{#if isCustom}
   <div class="mb-4">
     <h2 class="font-bold">Name</h2>
 
@@ -80,9 +90,31 @@
     />
   </div>
 
-  {#if !isPokemonCustom($mon) && $mon.type}
+  {#if altTypingPresets.length > 0}
     <div class="mt-2">
-      <button class="text-base text-lime-600 underline" onclick={resetType}
+      <h3 class="text-sm text-gray-600">(presets)</h3>
+      <ul class="list-inside list-disc">
+        <li>
+          <button class="cursor-pointer text-base text-lime-600 underline" onclick={resetType}
+            >normal form</button
+          >
+        </li>
+
+        {#each altTypingPresets as altTypingPreset}
+          <li>
+            <button
+              class="cursor-pointer text-base text-lime-600 underline"
+              onclick={() => setTypes(altTypingPreset.type)}
+            >
+              {altTypingPreset.name} form
+            </button>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  {:else if !isCustom && $mon.type}
+    <div class="mt-2">
+      <button class="cursor-pointer text-base text-lime-600 underline" onclick={resetType}
         >Reset Customized Type</button
       >
     </div>

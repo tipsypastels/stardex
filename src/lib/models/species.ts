@@ -5,6 +5,7 @@ interface SpeciesUnprocessed {
   name: string;
   type: string[];
   evos?: SpeciesEvos;
+  altTypingPresets?: SpeciesAltTypingPreset[];
 }
 
 export interface Species extends SpeciesUnprocessed {
@@ -16,6 +17,11 @@ export interface Species extends SpeciesUnprocessed {
 export interface SpeciesEvos {
   from?: string;
   to?: string[];
+}
+
+export interface SpeciesAltTypingPreset {
+  name: string;
+  type: string[];
 }
 
 DATA_UNPROCESSED satisfies Record<string, SpeciesUnprocessed>;

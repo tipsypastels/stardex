@@ -58,6 +58,15 @@ export const pokemon = createActions(initial, (store) => {
         return $newPokemon;
       });
     },
+    setTypes(index: number, types: string[]) {
+      store.update(($pokemon) => {
+        const $newPokemon = [...$pokemon];
+        const mon = $newPokemon[index];
+
+        $newPokemon[index] = { ...mon, type: types };
+        return $newPokemon;
+      });
+    },
     resetType(index: number) {
       store.update(($pokemon) => {
         const $newPokemon = [...$pokemon];

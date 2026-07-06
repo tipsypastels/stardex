@@ -38,6 +38,11 @@ export function resolvePokemonTypes(pokemon: Pokemon): Type[] {
   return resolvePokemonTypeKeys(pokemon).map(resolveType);
 }
 
+export function resolvePokemonAltTypingPresets(pokemon: Pokemon) {
+  if (isPokemonCustom(pokemon)) return [];
+  return pokemon.species.altTypingPresets ?? [];
+}
+
 export function isPokemonCustom(p: Pokemon): p is PokemonCustom {
   return !("species" in p);
 }
