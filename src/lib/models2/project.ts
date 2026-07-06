@@ -122,7 +122,7 @@ export class Projects {
           active: false,
           modelState: {
             pokemons: [],
-            regions: Regions.DEFAULT.toArray(),
+            regions: Regions.DEFAULT.keys(),
             strictness: Strictness.DEFAULT.key,
             pokedexFormat: PokedexFormat.DEFAULT.key,
           },

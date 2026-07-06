@@ -398,6 +398,10 @@ export class Pokemons {
     return new Pokemons(list);
   }
 
+  toArray() {
+    return this.#list.toArray();
+  }
+
   toJson() {
     return this.#list.map((p) => p.toJson()).toArray();
   }

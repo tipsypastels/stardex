@@ -1,5 +1,5 @@
-import { getStrictnessMaximumRatioDifference, type Strictness } from "$lib/models/strictness";
-import { BUILTIN_TYPE_KEYS, isTypeCustom, resolveType, type Type } from "$lib/models/type";
+import type { Strictness } from "$lib/models2/strictness";
+import { BuiltinType, Type } from "$lib/models2/type";
 import { sortStrings } from "$lib/utils/strings";
 import type { AllotedType, Allotment } from "./allotment";
 
@@ -18,7 +18,7 @@ export function createRecommendations(
   strictness: Strictness,
 ) {
   const recs: Recommendation[] = [];
-  const maxDiff = getStrictnessMaximumRatioDifference(strictness);
+  const maxDiff = strictness.maximumRatioDifference;
 
   const own = withEmptiesAndSortedByTypeName(ownAllot);
   const against = withEmptiesAndSortedByTypeName(againstAllot);
@@ -41,20 +41,20 @@ export function createRecommendations(
 
 function withEmptiesAndSortedByTypeName(allot: Allotment): AllotedType[] {
   const out: AllotedType[] = [];
-  const unusedTypeKeys = new Set<string>(BUILTIN_TYPE_KEYS);
+  const unusedTypeKeys = new Set<string>(BuiltinType.KEYS);
 
   for (const allotedType of allot.types.values()) {
-    if (isTypeCustom(allotedType.typeKey)) {
+    if (allotedType.type.isCustom()) {
       continue;
     }
 
-    unusedTypeKeys.delete(allotedType.typeKey);
+    unusedTypeKeys.delete(allotedType.type.key);
     out.push(allotedType);
   }
 
   for (const typeKey of unusedTypeKeys) {
-    const type = resolveType(typeKey);
-    out.push({ typeKey, type, count: 0, ratio: 0 });
+    const type = Type.of(typeKey);
+    out.push({ type, count: 0, ratio: 0 });
   }
 
   out.sort((a, b) => sortStrings(a.type.name, b.type.name));

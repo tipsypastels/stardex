@@ -1,7 +1,4 @@
-import { resolvePokemonTypeKeys, type Pokemon } from "$lib/models/pokemon";
-import type { Region } from "$lib/models/region";
-import { resolveSpecies } from "$lib/models/species";
-import { resolveType, type Type } from "$lib/models/type";
+import { Type } from "$lib/models2/type";
 import { sortStrings } from "$lib/utils/strings";
 
 export interface Allotment {
@@ -10,24 +7,28 @@ export interface Allotment {
 }
 
 export interface AllotedType {
-  typeKey: string;
   type: Type;
   count: number;
   ratio: number;
 }
 
-export function createAllotment(pokemon: Pokemon[]): Allotment {
+export interface Allotable {
+  types: Type[];
+  exclude?: boolean;
+}
+
+export function createAllotment(allotables: Allotable[]): Allotment {
   const counts = new Map<string, number>();
   let total = 0;
 
-  for (const mon of pokemon) {
-    if (mon.exclude) {
+  for (const allotable of allotables) {
+    if (allotable.exclude) {
       continue;
     }
 
-    for (const typeKey of resolvePokemonTypeKeys(mon)) {
-      const currCount = counts.get(typeKey) ?? 0;
-      counts.set(typeKey, currCount + 1);
+    for (const type of allotable.types) {
+      const currCount = counts.get(type.key) ?? 0;
+      counts.set(type.key, currCount + 1);
       total += 1;
     }
   }
@@ -37,25 +38,13 @@ export function createAllotment(pokemon: Pokemon[]): Allotment {
 
   const types = new Map(
     countEntries.map(([typeKey, count]) => {
-      const type = resolveType(typeKey);
+      const type = Type.of(typeKey);
       const ratio = count / total;
-      return [typeKey, { typeKey, type, count, ratio } satisfies AllotedType];
+      return [typeKey, { type, count, ratio } satisfies AllotedType];
     }),
   );
 
   return { total, types };
-}
-
-export function createRegionAllotment(regions: Region[]): Allotment {
-  return createAllotment(
-    regions.flatMap((region) =>
-      region.pokemon.map((speciesKey) => {
-        const species = resolveSpecies(speciesKey);
-        if (!species) throw new Error(`Region ${region.name} has unknown species ${speciesKey}`);
-        return { species };
-      }),
-    ),
-  );
 }
 
 function sortCountEntries([aName, aCnt]: [string, number], [bName, bCnt]: [string, number]) {

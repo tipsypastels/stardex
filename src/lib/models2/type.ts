@@ -27,7 +27,8 @@ export abstract class Type {
 }
 
 export class BuiltinType extends Type {
-  static ALL = Object.keys(DATA).map((key) => new this(key));
+  static KEYS = Object.keys(DATA);
+  static ALL = this.KEYS.map((key) => new this(key));
   static MAP = new Map(this.ALL.map((t) => [t.key, t]));
 
   static of(key: string) {

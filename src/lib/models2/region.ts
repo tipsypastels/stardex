@@ -16,6 +16,10 @@ DATA satisfies Record<string, RegionData>;
 export type RegionKey = keyof typeof DATA;
 
 export class Region {
+  static of(key: RegionKey) {
+    return new this(key);
+  }
+
   readonly key: RegionKey;
   #members?: RegionMember[];
 
@@ -88,6 +92,7 @@ export class Regions {
   }
 
   #set: ISet<RegionKey>;
+  #regions?: Region[];
 
   private constructor(set: ISet<RegionKey>) {
     this.#set = set;
@@ -105,11 +110,16 @@ export class Regions {
     return new Regions(this.#set.delete(key));
   }
 
-  toArray() {
+  keys() {
     return [...this.#set];
   }
 
+  toArray() {
+    this.#regions ??= this.keys().map((key) => Region.of(key));
+    return this.#regions;
+  }
+
   toJson() {
-    return this.toArray();
+    return this.keys();
   }
 }
