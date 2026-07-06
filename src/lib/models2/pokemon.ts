@@ -48,7 +48,7 @@ export abstract class Pokemon {
   abstract species: Species | undefined;
   abstract alt: SpeciesAlt | undefined;
 
-  abstract setTypes(typeKeys: string[]): void;
+  abstract setTypesMut(typeKeys: string[]): void;
 
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
@@ -71,54 +71,54 @@ export abstract class Pokemon {
     return this.shared.newlinesAfterIfLast;
   }
 
-  setTypeAt(index: number, typeKey: string | undefined) {
+  setTypeAtMut(index: number, typeKey: string | undefined) {
     const clone = [...this.typeKeys];
     if (typeKey) {
       clone[index] = typeKey;
     } else {
       clone.splice(index, 1);
     }
-    this.setTypes(clone);
+    this.setTypesMut(clone);
   }
 
-  setExclude(exclude: boolean) {
+  setExcludeMut(exclude: boolean) {
     this.shared.exclude = exclude;
   }
 
-  setComment(comment: string) {
+  setCommentMut(comment: string) {
     this.shared.comment = comment;
   }
 
-  setNewlinesBefore(newlinesBefore: number) {
+  setNewlinesBeforeMut(newlinesBefore: number) {
     this.shared.newlinesBefore = newlinesBefore;
   }
 
-  setNewlinesAfterIfLast(newlinesAfterIfLast: number) {
+  setNewlinesAfterIfLastMut(newlinesAfterIfLast: number) {
     this.shared.newlinesAfterIfLast = newlinesAfterIfLast;
   }
 
-  withTypes(typeKeys: string[]) {
-    return this.with((pokemon) => pokemon.setTypes(typeKeys));
+  setTypes(typeKeys: string[]) {
+    return this.with((pokemon) => pokemon.setTypesMut(typeKeys));
   }
 
-  withTypeAt(index: number, typeKey: string | undefined) {
-    return this.with((pokemon) => pokemon.setTypeAt(index, typeKey));
+  setTypeAt(index: number, typeKey: string | undefined) {
+    return this.with((pokemon) => pokemon.setTypeAtMut(index, typeKey));
   }
 
-  withExclude(exclude: boolean) {
-    return this.with((pokemon) => pokemon.setExclude(exclude));
+  setExclude(exclude: boolean) {
+    return this.with((pokemon) => pokemon.setExcludeMut(exclude));
   }
 
-  withComment(comment: string) {
-    return this.with((pokemon) => pokemon.setComment(comment));
+  setComment(comment: string) {
+    return this.with((pokemon) => pokemon.setCommentMut(comment));
   }
 
-  withNewlinesBefore(newlinesBefore: number) {
-    return this.with((pokemon) => pokemon.setNewlinesBefore(newlinesBefore));
+  setNewlinesBefore(newlinesBefore: number) {
+    return this.with((pokemon) => pokemon.setNewlinesBeforeMut(newlinesBefore));
   }
 
-  withNewlinesAfterIfLast(newlinesAfterIfLast: number) {
-    return this.with((pokemon) => pokemon.setNewlinesAfterIfLast(newlinesAfterIfLast));
+  setNewlinesAfterIfLast(newlinesAfterIfLast: number) {
+    return this.with((pokemon) => pokemon.setNewlinesAfterIfLastMut(newlinesAfterIfLast));
   }
 
   protected with(f: (pokemon: this) => void): this {
@@ -206,18 +206,18 @@ export class BuiltinPokemon extends Pokemon {
     return new BuiltinPokemon({ ...this.#data });
   }
 
-  setTypes(typeKeys: string[]) {
+  setTypesMut(typeKeys: string[]) {
     this.#data.types = typeKeys;
     this.#types = undefined;
   }
 
-  unsetTypes() {
+  unsetTypesMut() {
     delete this.#data.types;
     this.#types = undefined;
   }
 
-  withoutTypes() {
-    return this.with((pokemon) => pokemon.unsetTypes());
+  unsetTypes() {
+    return this.with((pokemon) => pokemon.unsetTypesMut());
   }
 
   isBuiltin(): this is BuiltinPokemon {
@@ -283,17 +283,17 @@ export class CustomPokemon extends Pokemon {
     return new CustomPokemon({ ...this.#data });
   }
 
-  setTypes(typeKeys: string[]) {
+  setTypesMut(typeKeys: string[]) {
     this.#data.types = typeKeys;
     this.#types = undefined;
   }
 
-  setName(name: string) {
+  setNameMut(name: string) {
     this.#data.name = name;
   }
 
-  withName(name: string) {
-    return this.with((pokemon) => pokemon.setName(name));
+  setName(name: string) {
+    return this.with((pokemon) => pokemon.setNameMut(name));
   }
 
   isCustom(): this is CustomPokemon {
@@ -338,41 +338,41 @@ export class Pokemons {
     return pokemon;
   }
 
-  withPushed(...pokemons: Pokemon[]) {
+  push(...pokemons: Pokemon[]) {
     return new Pokemons(this.#list.push(...pokemons.filter((p) => !this.has(p))));
   }
 
-  withName(index: number, name: string) {
-    return this.#withAt(index, (pokemon) => {
+  setName(index: number, name: string) {
+    return this.#setAt(index, (pokemon) => {
       if (!pokemon.isCustom()) {
         throw new Error(`Can't change the name of a builtin pokemon.`);
       }
-      return pokemon.withName(name);
+      return pokemon.setName(name);
     });
   }
 
-  withTypes(index: number, typeKeys: string[]) {
-    return this.#withAt(index, (pokemon) => pokemon.withTypes(typeKeys));
+  setTypes(index: number, typeKeys: string[]) {
+    return this.#setAt(index, (pokemon) => pokemon.setTypes(typeKeys));
   }
 
-  withTypeAt(index: number, typeIndex: number, typeKey: string | undefined) {
-    return this.#withAt(index, (pokemon) => pokemon.withTypeAt(typeIndex, typeKey));
+  setTypeAt(index: number, typeIndex: number, typeKey: string | undefined) {
+    return this.#setAt(index, (pokemon) => pokemon.setTypeAt(typeIndex, typeKey));
   }
 
-  withoutTypes(index: number) {
-    return this.#withAt(index, (pokemon) => {
+  unsetTypes(index: number) {
+    return this.#setAt(index, (pokemon) => {
       if (!pokemon.isBuiltin()) {
         throw new Error("Can't unset the type of a custom pokemon.");
       }
-      return pokemon.withoutTypes();
+      return pokemon.unsetTypes();
     });
   }
 
-  withExclude(index: number, exclude: boolean) {
-    return this.#withAt(index, (pokemon) => pokemon.withExclude(exclude));
+  setExclude(index: number, exclude: boolean) {
+    return this.#setAt(index, (pokemon) => pokemon.setExclude(exclude));
   }
 
-  withSwapped(index: number, jndex: number) {
+  swap(index: number, jndex: number) {
     return this.#dup(
       this.#list.withMutations((list) => {
         const a = list.get(index);
@@ -385,11 +385,11 @@ export class Pokemons {
     );
   }
 
-  without(index: number) {
-    return this.#dup(this.#list.remove(index));
+  delete(index: number) {
+    return this.#dup(this.#list.delete(index));
   }
 
-  #withAt(index: number, f: (pokemon: Pokemon) => Pokemon) {
+  #setAt(index: number, f: (pokemon: Pokemon) => Pokemon) {
     const list = this.#list.update(index, (p) => (p ? f(p) : undefined));
     return this.#dup(list);
   }

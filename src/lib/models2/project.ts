@@ -7,15 +7,6 @@ import { List as IList } from "immutable";
 
 const V = 1;
 
-export const DEFAULT_PROJECTS: ProjectData[] = [
-  {
-    v: V,
-    id: "default",
-    name: "Untitled Project 1",
-    active: true,
-  },
-];
-
 export type ProjectData = ActiveProjectData | InactiveProjectData;
 
 interface SharedProjectData {
@@ -52,6 +43,17 @@ export class Projects {
     return new this(IList(datas.map((data) => Project.from(data))));
   }
 
+  static default() {
+    return this.from([
+      {
+        v: V,
+        id: "default",
+        name: "Untitled Project 1",
+        active: true,
+      },
+    ]);
+  }
+
   #list: IList<Project>;
   #activeIndex: number;
   #active?: ActiveProject;
@@ -72,6 +74,10 @@ export class Projects {
       throw new Error("Invalid active project index.");
     }
     return project;
+  }
+
+  toJson() {
+    return this.#list.map((p) => p.toJson()).toArray();
   }
 }
 

@@ -16,28 +16,28 @@ export const pokemons = reducible(
       return derived(store, ($pokemons) => $pokemons.get(index));
     },
     push(...pokemons: Pokemon[]) {
-      store.update(($pokemons) => $pokemons.withPushed(...pokemons));
+      store.update(($pokemons) => $pokemons.push(...pokemons));
     },
     setName(index: number, name: string) {
-      store.update(($pokemons) => $pokemons.withName(index, name));
+      store.update(($pokemons) => $pokemons.setName(index, name));
     },
     setTypes(index: number, typeKeys: string[]) {
-      store.update(($pokemons) => $pokemons.withTypes(index, typeKeys));
+      store.update(($pokemons) => $pokemons.setTypes(index, typeKeys));
     },
     setTypeAt(index: number, typeIndex: number, typeKey: string | undefined) {
-      store.update(($pokemons) => $pokemons.withTypeAt(index, typeIndex, typeKey));
+      store.update(($pokemons) => $pokemons.setTypeAt(index, typeIndex, typeKey));
     },
-    resetTypes(index: number) {
-      store.update(($pokemons) => $pokemons.withoutTypes(index));
+    unsetTypes(index: number) {
+      store.update(($pokemons) => $pokemons.unsetTypes(index));
     },
     setExclude(index: number, exclude: boolean) {
-      store.update(($pokemons) => $pokemons.withExclude(index, exclude));
+      store.update(($pokemons) => $pokemons.setExclude(index, exclude));
     },
     swap(index: number, jndex: number) {
-      store.update(($pokemons) => $pokemons.withSwapped(index, jndex));
+      store.update(($pokemons) => $pokemons.swap(index, jndex));
     },
     delete(index: number) {
-      store.update(($pokemons) => $pokemons.without(index));
+      store.update(($pokemons) => $pokemons.delete(index));
     },
     clear() {
       store.set(Pokemons.default());
