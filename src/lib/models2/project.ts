@@ -1,5 +1,5 @@
 import { PokedexFormat, type PokedexFormatKey } from "./pokedex_format";
-import { Pokemon, type PokemonData } from "./pokemon";
+import { Pokemons, type PokemonData } from "./pokemon";
 import { Regions, type RegionKey } from "./region";
 import { Strictness, type StrictnessKey } from "./strictness";
 
@@ -11,10 +11,10 @@ export interface ProjectsData {
 export interface ProjectData {
   id: string;
   name: string;
-  pokemon: PokemonData[];
-  pokedexFormat: PokedexFormatKey;
+  pokemons: PokemonData[];
   regions: RegionKey[];
   strictness: StrictnessKey;
+  pokedexFormat: PokedexFormatKey;
 }
 
 export class Projects {
@@ -23,10 +23,10 @@ export class Projects {
       {
         id: "default",
         name: "Untitled Project 1",
-        pokemon: [],
-        pokedexFormat: PokedexFormat.DEFAULT.key,
+        pokemons: [],
         regions: Regions.DEFAULT.toArray(),
         strictness: Strictness.DEFAULT.key,
+        pokedexFormat: PokedexFormat.DEFAULT.key,
       },
     ],
     active: 0,
@@ -48,10 +48,10 @@ export class Project {
   readonly index: number;
   readonly active: boolean;
 
-  #pokemon?: Pokemon[];
-  #pokedexFormat?: PokedexFormat;
+  #pokemons?: Pokemons;
   #regions?: Regions;
   #strictness?: Strictness;
+  #pokedexFormat?: PokedexFormat;
 
   constructor(data: ProjectData, index: number, active: boolean) {
     this.#data = data;
@@ -59,14 +59,9 @@ export class Project {
     this.active = active;
   }
 
-  get pokemon() {
-    this.#pokemon ??= this.#data.pokemon.map((p) => Pokemon.from(p));
-    return this.#pokemon;
-  }
-
-  get pokedexFormat() {
-    this.#pokedexFormat ??= PokedexFormat.of(this.#data.pokedexFormat);
-    return this.#pokedexFormat;
+  get pokemons() {
+    this.#pokemons ??= Pokemons.from(this.#data.pokemons);
+    return this.#pokemons;
   }
 
   get regions() {
@@ -77,5 +72,10 @@ export class Project {
   get strictness() {
     this.#strictness ??= Strictness.of(this.#data.strictness);
     return this.#strictness;
+  }
+
+  get pokedexFormat() {
+    this.#pokedexFormat ??= PokedexFormat.of(this.#data.pokedexFormat);
+    return this.#pokedexFormat;
   }
 }

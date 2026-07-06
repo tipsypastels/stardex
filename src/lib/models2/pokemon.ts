@@ -233,3 +233,17 @@ export class CustomPokemon extends Pokemon {
     return true;
   }
 }
+
+export class Pokemons {
+  static from(datas: PokemonData[]) {
+    return new this(datas);
+  }
+
+  #pokemons: Pokemon[];
+  #pokemonsMap: Map<string, number>;
+
+  private constructor(datas: PokemonData[]) {
+    this.#pokemons = datas.map((d) => Pokemon.from(d));
+    this.#pokemonsMap = new Map(this.#pokemons.map((p, i) => [p.key, i]));
+  }
+}
