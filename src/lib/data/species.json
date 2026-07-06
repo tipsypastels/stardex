@@ -5,13 +5,7 @@
     "type": ["grass", "poison"],
     "evos": {
       "to": ["ivysaur"]
-    },
-    "altTypingPresets": [
-      {
-        "name": "livnan",
-        "type": ["fire"]
-      }
-    ]
+    }
   },
   "ivysaur": {
     "id": 2,
@@ -309,7 +303,13 @@
     "type": ["fire"],
     "evos": {
       "to": ["ninetales"]
-    }
+    },
+    "altTypingPresets": [
+      {
+        "name": "alola",
+        "type": ["ice"]
+      }
+    ]
   },
   "ninetales": {
     "id": 38,

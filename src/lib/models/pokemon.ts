@@ -43,6 +43,16 @@ export function resolvePokemonAltTypingPresets(pokemon: Pokemon) {
   return pokemon.species.altTypingPresets ?? [];
 }
 
+export function resolvePokemonCurrentAltTypingPreset(pokemon: Pokemon) {
+  if (isPokemonCustom(pokemon) || !pokemon.type || !pokemon.species.altTypingPresets?.length) {
+    return;
+  }
+
+  const toString = (types: string[]) => types.sort().join();
+  const ownTypes = toString(pokemon.type);
+  return pokemon.species.altTypingPresets.find((preset) => toString(preset.type) === ownTypes);
+}
+
 export function isPokemonCustom(p: Pokemon): p is PokemonCustom {
   return !("species" in p);
 }

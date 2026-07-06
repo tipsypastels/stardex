@@ -4,7 +4,7 @@
   // Based on https://github.com/smogon/pokemon-showdown-client/blob/f4baa241257350654aa441b1963e3b0761bbc51d/play.pokemonshowdown.com/src/panel-teambuilder-team.tsx#L170.
   // We double everything in size compared to that image.
 
-  const SHEET = "https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png?v17";
+  const SHEET = "https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png?v22";
   const SHEET_WIDTH = 480;
   const SCALE_2 = 2;
 
