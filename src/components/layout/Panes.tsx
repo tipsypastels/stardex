@@ -7,9 +7,13 @@ export interface PanesProps {
 
 export function Panes(props: PanesProps) {
   return (
-    <div class="Panes">
-      <div class="Panes__pane">{props.left}</div>
-      <div class="Panes__pane">{props.right}</div>
+    <div class="lg:flex">
+      <Pane>{props.left}</Pane>
+      <Pane>{props.right}</Pane>
     </div>
   );
+}
+
+function Pane(props: { children: ComponentChildren }) {
+  return <div class="lg:grow lg:p-4">{props.children}</div>;
 }

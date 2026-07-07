@@ -3,7 +3,7 @@ import { Panes } from "./Panes";
 
 export function Layout() {
   return (
-    <div class="Layout">
+    <div class="flex min-h-screen flex-col">
       <Header />
       <Panes left={<div>hi</div>} right={<div>bye</div>} />
     </div>

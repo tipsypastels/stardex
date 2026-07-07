@@ -10,16 +10,20 @@
   },
   "dependencies": {
     "@preact/signals": "^2.9.2",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.2",
     "immutable": "^5.1.9",
     "preact": "^10.26.5",
-    "randomcolor": "^0.6.2"
+    "randomcolor": "^0.6.2",
+    "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.1",
     "@types/randomcolor": "^0.5.9",
     "prettier": "^3.9.4",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "sass-embedded": "^1.83.4",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
   }

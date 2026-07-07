@@ -1,4 +1,4 @@
-import "./app.scss";
+import "./app.css";
 
 import { render } from "preact";
 import { Layout } from "./components/layout/Layout";

@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+
+  --font-*: initial;
+  --font-sans:
+    Itim, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Itim, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+:root {
+  --background: white;
+  --primary: var(--color-lime-600);
+}
+
+@layer base {
+  body {
+    @apply bg-background md:text-lg;
+  }
+}

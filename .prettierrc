@@ -1,5 +1,5 @@
 {
   "printWidth": 100,
   "quoteProps": "consistent",
-  "plugins": ["prettier-plugin-organize-imports"]
+  "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"]
 }
