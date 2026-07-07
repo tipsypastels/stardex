@@ -11,3 +11,8 @@ export const Strictness = createModel(($key: StrictnessKey) => {
   const maximumRatioDifference = computed(() => RAW_DATA[key.value].maximumRatioDifference);
   return { key, name, description, maximumRatioDifference };
 });
+
+export const STRICTNESSES = (() => {
+  const defaultKey: StrictnessKey = "normal";
+  return { defaultKey };
+})();

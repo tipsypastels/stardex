@@ -10,3 +10,8 @@ export const PokedexFormat = createModel(($key: PokedexFormatKey) => {
   const description = computed(() => RAW_DATA[key.value].description);
   return { key, name, description };
 });
+
+export const POKEDEX_FORMATS = (() => {
+  const defaultKey: PokedexFormatKey = "icons";
+  return { defaultKey };
+})();

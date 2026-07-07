@@ -73,17 +73,17 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
     types,
     alt,
     exclude,
+    isBuiltin(): true {
+      return true;
+    },
+    isCustom(): false {
+      return false;
+    },
     setTypeKeys(newTypeKeys: string[] | undefined) {
       typeKeys.value = newTypeKeys ?? species.value.typeKeys;
     },
     setTypeKeyAt(index: number, typeKey: string | undefined) {
       setTypeKeyAt(typeKeys, index, typeKey);
-    },
-    isBuiltin(): this is BuiltinPokemon {
-      return true;
-    },
-    isCustom(): this is CustomPokemon {
-      return false;
     },
     toRaw(): RawBuiltinPokemon {
       return {
@@ -137,17 +137,17 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
     types,
     alt,
     exclude,
+    isBuiltin(): false {
+      return false;
+    },
+    isCustom(): true {
+      return true;
+    },
     setTypeKeys(newTypeKeys: string[]) {
       typeKeys.value = newTypeKeys;
     },
     setTypeKeyAt(index: number, typeKey: string | undefined) {
       setTypeKeyAt(typeKeys, index, typeKey);
-    },
-    isBuiltin(): this is BuiltinPokemon {
-      return false;
-    },
-    isCustom(): this is CustomPokemon {
-      return true;
     },
     toRaw(): RawCustomPokemon {
       return {

@@ -1,5 +1,9 @@
-import { POKEMON_VERSION } from ".";
-import type { RawBuiltinPokemon, RawCustomPokemon } from "../pokemon";
+import { POKEMON_VERSION, PROJECT_VERSION } from ".";
+import type { PokedexFormatKey } from "../pokedex_format";
+import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
+import type { RawActiveProject, RawInactiveProject } from "../project";
+import type { RegionKey } from "../region";
+import type { StrictnessKey } from "../strictness";
 
 /* -------------------------------------------------------------------------- */
 /*                                   Pokemon                                  */
@@ -45,4 +49,58 @@ export function V0_upgradeRawBuiltinPokemon(raw: V0_RawBuiltinPokemon): RawBuilt
 export function V0_upgradeRawCustomPokemon(raw: V0_RawCustomPokemon): RawCustomPokemon {
   const { type, ...rest } = raw;
   return { v: POKEMON_VERSION, types: type, ...rest };
+}
+
+export function V0_upgradeRawPokemon(raw: V0_RawPokemon): RawPokemon {
+  return "species" in raw ? V0_upgradeRawBuiltinPokemon(raw) : V0_upgradeRawCustomPokemon(raw);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Project                                  */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Project V0:
+ *  - No explicit version.
+ *  - Pokemons is called pokemon.
+ *  - Models is called modelState.
+ */
+
+export interface V0_RawProjectModels {
+  pokemon: V0_RawPokemon[];
+  regions: RegionKey[];
+  strictness: StrictnessKey;
+  pokeedexFormat: PokedexFormatKey;
+}
+
+export interface V0_RawSharedProject {
+  id: string;
+  name: string;
+}
+
+export interface V0_RawActiveProject extends V0_RawSharedProject {
+  active: true;
+}
+
+export interface V0_RawInactiveProject extends V0_RawSharedProject {
+  active: false;
+  modelState: V0_RawProjectModels;
+}
+
+export type V0_RawProject = V0_RawActiveProject | V0_RawInactiveProject;
+
+export function V0_upgradeRawActiveProject(raw: V0_RawActiveProject): RawActiveProject {
+  return {
+    v: PROJECT_VERSION,
+    ...raw,
+  };
+}
+
+export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawInactiveProject {
+  const { modelState, ...rest } = raw;
+  return {
+    v: PROJECT_VERSION,
+    models: { ...modelState, pokemons: modelState.pokemon.map(V0_upgradeRawPokemon) },
+    ...rest,
+  };
 }
