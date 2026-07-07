@@ -8,6 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-primary: var(--primary);
+  --color-divider-light: var(--color-slate-300);
 
   --font-*: initial;
   --font-sans:
