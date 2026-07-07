@@ -1,5 +1,6 @@
 import { useModel } from "@preact/signals";
 import { createContext, type ComponentChildren } from "preact";
+import { Metrics } from "../models/metrics";
 import { POKEDEX_FORMATS, PokedexFormat } from "../models/pokedex_format";
 import { POKEMON_LISTS, PokemonList } from "../models/pokemon_list";
 import { REGION_SETS, RegionSet } from "../models/region_set";
@@ -9,6 +10,7 @@ export const PokemonsContext = createContext({} as PokemonList);
 export const RegionsContext = createContext({} as RegionSet);
 export const StrictnessContext = createContext({} as Strictness);
 export const PokedexFormatContext = createContext({} as PokedexFormat);
+export const MetricsContext = createContext({} as Metrics);
 
 export interface ModelsProps {
   children: ComponentChildren;
@@ -20,12 +22,14 @@ export function Models({ children }: ModelsProps) {
   const strictness = useModel(() => STRICTNESSES.initial());
   const pokedexFormat = useModel(() => POKEDEX_FORMATS.initial());
 
+  const metrics = useModel(() => new Metrics(pokemons, regions, strictness));
+
   return (
     <PokemonsContext.Provider value={pokemons}>
       <RegionsContext.Provider value={regions}>
         <StrictnessContext.Provider value={strictness}>
           <PokedexFormatContext.Provider value={pokedexFormat}>
-            {children}
+            <MetricsContext.Provider value={metrics}>{children}</MetricsContext.Provider>
           </PokedexFormatContext.Provider>
         </StrictnessContext.Provider>
       </RegionsContext.Provider>

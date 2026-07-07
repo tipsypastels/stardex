@@ -3,5 +3,5 @@ export interface IconProps {
 }
 
 export function Icon(props: IconProps) {
-  return <i class={`far fa-${props.name}`}></i>;
+  return <i class={`fas fa-${props.name}`}></i>;
 }
