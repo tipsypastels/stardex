@@ -1,0 +1,92 @@
+{
+  "normal": {
+    "name": "Normal",
+    "color": "rgb(168, 168, 120)",
+    "icon": "balance-scale"
+  },
+  "fire": {
+    "name": "Fire",
+    "color": "rgb(240, 128, 48)",
+    "icon": "fire"
+  },
+  "fighting": {
+    "name": "Fighting",
+    "color": "rgb(192, 48, 40)",
+    "icon": "fist-raised"
+  },
+  "water": {
+    "name": "Water",
+    "color": "rgb(104, 144, 240)",
+    "icon": "water"
+  },
+  "flying": {
+    "name": "Flying",
+    "color": "rgb(168, 144, 240)",
+    "icon": "feather-alt"
+  },
+  "grass": {
+    "name": "Grass",
+    "color": "rgb(120, 200, 80)",
+    "icon": "leaf"
+  },
+  "poison": {
+    "name": "Poison",
+    "color": "rgb(160, 64, 160)",
+    "icon": "flask"
+  },
+  "electric": {
+    "name": "Electric",
+    "color": "rgb(248, 208, 48)",
+    "icon": "bolt"
+  },
+  "ground": {
+    "name": "Ground",
+    "color": "rgb(224, 192, 104)",
+    "icon": "globe"
+  },
+  "psychic": {
+    "name": "Psychic",
+    "color": "rgb(248, 88, 136)",
+    "icon": "eye"
+  },
+  "rock": {
+    "name": "Rock",
+    "color": "rgb(184, 160, 56)",
+    "icon": "gem"
+  },
+  "ice": {
+    "name": "Ice",
+    "color": "rgb(152, 216, 216)",
+    "icon": "icicles"
+  },
+  "bug": {
+    "name": "Bug",
+    "color": "rgb(168, 184, 32)",
+    "icon": "bug"
+  },
+  "dragon": {
+    "name": "Dragon",
+    "color": "rgb(112, 56, 248)",
+    "icon": "dragon"
+  },
+  "ghost": {
+    "name": "Ghost",
+    "color": "rgb(112, 88, 152)",
+    "icon": "ghost"
+  },
+  "dark": {
+    "name": "Dark",
+    "color": "rgb(112, 88, 72)",
+    "icon": "moon"
+  },
+  "steel": {
+    "name": "Steel",
+    "color": "rgb(184, 184, 208)",
+    "icon": "robot"
+  },
+  "fairy": {
+    "name": "Fairy",
+    "color": "rgb(238, 153, 172)",
+    "icon": "sparkles"
+  }
+}

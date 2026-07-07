@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.1",
+    "@types/randomcolor": "^0.5.9",
     "prettier": "^3.9.4",
     "prettier-plugin-organize-imports": "^4.3.0",
     "typescript": "~5.8.3",
