@@ -57,7 +57,7 @@ export class Strictness {
     return DATA[this.key];
   }
 
-  toJson() {
+  toJSON() {
     return this.key;
   }
 }

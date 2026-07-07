@@ -57,7 +57,7 @@ export abstract class BasePokemon {
   protected abstract shared: SharedPokemonData;
   protected abstract clone(): Pokemon;
 
-  abstract toJson(): PokemonData;
+  abstract toJSON(): PokemonData;
 
   get exclude() {
     return this.shared.exclude;
@@ -163,7 +163,12 @@ export class BuiltinPokemon extends BasePokemon {
   }
 
   get key() {
-    return this.species.key;
+    try {
+      return this.species.key;
+    } catch (e) {
+      console.warn(this.#data);
+      throw e;
+    }
   }
 
   get name() {
@@ -232,7 +237,7 @@ export class BuiltinPokemon extends BasePokemon {
     return true;
   }
 
-  toJson() {
+  toJSON() {
     return this.#data;
   }
 }
@@ -308,13 +313,14 @@ export class CustomPokemon extends BasePokemon {
     return true;
   }
 
-  toJson() {
+  toJSON() {
     return this.#data;
   }
 }
 
 export class Pokemons implements Iterable<Pokemon> {
   static from(datas: (PokemonData | V0_PokemonData)[]) {
+    console.log(datas);
     return new this(IList(datas.map((d) => Pokemon.from(d))));
   }
 
@@ -418,7 +424,7 @@ export class Pokemons implements Iterable<Pokemon> {
     return this.#list.toArray();
   }
 
-  toJson() {
-    return this.#list.map((p) => p.toJson()).toArray();
+  toJSON() {
+    return this.#list.map((p) => p.toJSON()).toArray();
   }
 }

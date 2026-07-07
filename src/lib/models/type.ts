@@ -1,6 +1,6 @@
 import randomColor from "randomcolor";
 import { capitalize } from "$lib/utils/strings";
-import * as DATA from "../data/types.json" with { type: "json" };
+import DATA from "../data/types.json" with { type: "json" };
 
 export abstract class Type {
   static of(key: string) {

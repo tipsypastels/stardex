@@ -17,10 +17,10 @@ export const projects = reducible(
   (store) => {
     function getModelStateData(): ProjectModelStateData {
       return {
-        pokemons: get(pokemons).toJson(),
-        regions: get(regions).toJson(),
-        strictness: get(strictness).toJson(),
-        pokedexFormat: get(pokedexFormat).toJson(),
+        pokemons: get(pokemons).toJSON(),
+        regions: get(regions).toJSON(),
+        strictness: get(strictness).toJSON(),
+        pokedexFormat: get(pokedexFormat).toJSON(),
       };
     }
     return {

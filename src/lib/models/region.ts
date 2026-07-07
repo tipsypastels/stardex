@@ -127,7 +127,7 @@ export class Regions implements Iterable<Region> {
     return this.#regions;
   }
 
-  toJson() {
+  toJSON() {
     return this.keys();
   }
 }

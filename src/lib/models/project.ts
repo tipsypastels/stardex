@@ -91,7 +91,7 @@ export class Projects implements Iterable<Project> {
       throw new Error("Multiple active projects, broken switch state.");
     }
 
-    const newModelStateData = active.modelState.toJson();
+    const newModelStateData = active.modelState.toJSON();
     const list = this.#list.withMutations((list) => {
       list
         .set(this.#activeIndex, this.active.intoInactive(modelStateData))
@@ -134,7 +134,7 @@ export class Projects implements Iterable<Project> {
   pushDuplicate(id: string, getModelStateData: () => ProjectModelStateData) {
     const index = this.#findIndex(id);
     const project = this.#list.get(index)!;
-    const modelStateData = project.isInactive() ? project.modelState.toJson() : getModelStateData();
+    const modelStateData = project.isInactive() ? project.modelState.toJSON() : getModelStateData();
     const duplicate = InactiveProject.from({
       v: V,
       id: crypto.randomUUID(),
@@ -167,8 +167,8 @@ export class Projects implements Iterable<Project> {
     return this.#list[Symbol.iterator]();
   }
 
-  toJson() {
-    return this.#list.map((p) => p.toJson()).toArray();
+  toJSON() {
+    return this.#list.map((p) => p.toJSON()).toArray();
   }
 }
 
@@ -206,7 +206,7 @@ export abstract class BaseProject {
     return false;
   }
 
-  toJson() {
+  toJSON() {
     return this.shared;
   }
 }
@@ -313,7 +313,7 @@ export class ProjectModelState {
     return PokedexFormat.of(this.#data.pokedexFormat);
   }
 
-  toJson() {
+  toJSON() {
     return this.#data;
   }
 }

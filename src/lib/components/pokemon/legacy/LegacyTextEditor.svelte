@@ -11,7 +11,7 @@
 
   const RELOAD_DEBOUNCE_MS = 1000;
 
-  let legacyText = $state(legacyTextFromPokemonDatas($pokemons.toJson()));
+  let legacyText = $state(legacyTextFromPokemonDatas($pokemons.toJSON()));
   let needsHelp = $state(false);
   let errors = $state<LegacyTextParseError[]>([]);
   let errorLinter = $derived.by(() => {

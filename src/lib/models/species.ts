@@ -1,4 +1,4 @@
-import * as DATA from "../data/species.json" with { type: "json" };
+import DATA from "../data/species.json" with { type: "json" };
 import { BuiltinType } from "./type";
 
 interface SpeciesData {
@@ -94,7 +94,7 @@ export class Species {
     return DATA[this.key] as SpeciesData;
   }
 
-  toJson() {
+  toJSON() {
     return this.#data;
   }
 }
@@ -141,7 +141,7 @@ class EvolutionFinder {
   }
 
   followLine(origin: Species) {
-    const set = new Set<Species>();
+    const set = new Set([origin]);
     this.#followLine(origin, set);
 
     const out = [...set];

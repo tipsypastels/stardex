@@ -44,7 +44,7 @@ export class PokedexFormat {
     return DATA[this.key];
   }
 
-  toJson() {
+  toJSON() {
     return this.key;
   }
 }
