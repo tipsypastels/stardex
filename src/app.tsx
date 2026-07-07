@@ -1,12 +1,15 @@
 import "./app.scss";
 
 import { render } from "preact";
+import { Layout } from "./components/layout/Layout";
 import { Models } from "./state/context";
 
 export function App() {
   return (
     <>
-      <Models>hiii</Models>
+      <Models>
+        <Layout />
+      </Models>
     </>
   );
 }

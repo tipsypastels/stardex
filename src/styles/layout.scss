@@ -1,0 +1,43 @@
+@use "./colors";
+@use "./media";
+@use "./space";
+
+.Layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Header {
+  &__logo {
+    background-color: colors.$primary-light;
+    box-shadow: space.of(8) space.of(8) - space.of(4) colors.$glow-light;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: space.of(2);
+    width: space.of(16);
+    height: space.of(16);
+
+    font-size: space.of(8);
+    font-weight: bold;
+    color: white;
+  }
+}
+
+.Panes {
+  flex-grow: 1;
+
+  @include media.min(lg) {
+    display: flex;
+  }
+
+  &__pane {
+    @include media.min(lg) {
+      padding: space.of(4);
+      flex-grow: 1;
+    }
+  }
+}

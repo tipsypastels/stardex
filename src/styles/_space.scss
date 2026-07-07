@@ -1,0 +1,5 @@
+$spacing: 0.25rem;
+
+@function of($scalar) {
+  @return calc($spacing * $scalar);
+}
