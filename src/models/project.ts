@@ -5,7 +5,7 @@ import type { RawPokemon } from "./pokemon";
 import type { RegionKey } from "./region";
 import type { StrictnessKey } from "./strictness";
 import { PROJECT_VERSION, upgradeRawActiveProject, upgradeRawInactiveProject } from "./versioned";
-import type { V0_RawActiveProject, V0_RawInactiveProject } from "./versioned/v0";
+import type { V0_RawActiveProject, V0_RawInactiveProject, V0_RawProject } from "./versioned/v0";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
@@ -40,6 +40,13 @@ export type RawProject = RawActiveProject | RawInactiveProject;
 /* -------------------------------------------------------------------------- */
 
 export type Project = ActiveProject | InactiveProject;
+
+export const PROJECTS = (() => {
+  function from(raw: RawProject | V0_RawProject) {
+    return raw.active ? ACTIVE_PROJECTS.from(raw) : INACTIVE_PROJECTS.from(raw);
+  }
+  return { from };
+})();
 
 /* -------------------------------------------------------------------------- */
 /*                               Active Project                               */

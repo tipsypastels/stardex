@@ -1,11 +1,21 @@
-import { computed, createModel, signal } from "@preact/signals";
+import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList } from "immutable";
 import { assert } from "../utils/assert";
+import { stored } from "../utils/storage";
 import { POKEDEX_FORMATS } from "./pokedex_format";
-import { ActiveProject, InactiveProject, type Project, type RawProjectModels } from "./project";
+import {
+  ActiveProject,
+  InactiveProject,
+  PROJECTS,
+  type Project,
+  type RawProject,
+  type RawProjectModels,
+} from "./project";
 import { REGIONS } from "./region";
 import { STRICTNESSES } from "./strictness";
 import { PROJECT_VERSION } from "./versioned";
+
+export const store = stored<RawProject[], IList<Project>>("stardex_projects");
 
 export type ProjectList = InstanceType<typeof ProjectList>;
 
@@ -18,6 +28,10 @@ export const ProjectList = createModel(
     const all = signal(IList($all));
     const activeIndex = computed(() => all.value.findIndex((p) => p.isActive()));
     const active = computed(() => all.value.get(activeIndex.value) as ActiveProject);
+
+    effect(() => {
+      store.dump(all.value);
+    });
 
     function findIndex(id: string) {
       const index = all.value.findIndex((p) => p.id.value === id);
@@ -74,9 +88,26 @@ export const ProjectList = createModel(
       toRaw() {
         return all.value.map((p) => p.toRaw()).toArray();
       },
-      toJSON(): unknown {
-        return this.toRaw();
-      },
     };
   },
 );
+
+export const PROJECT_LISTS = () => {
+  const defaults: RawProject[] = [
+    {
+      v: PROJECT_VERSION,
+      id: "default",
+      name: "Untitled Project 1",
+      active: true,
+    },
+  ];
+
+  function initial(
+    getModels: () => RawProjectModels,
+    setModels: (models: RawProjectModels) => void,
+  ) {
+    const projects = (store.load() ?? defaults).map(PROJECTS.from);
+    return new ProjectList(projects, getModels, setModels);
+  }
+  return { initial };
+};

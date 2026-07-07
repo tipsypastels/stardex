@@ -3,7 +3,11 @@ import { readonly } from "../utils/signal";
 import { SPECIES } from "./species";
 import { TYPES } from "./type";
 import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "./versioned";
-import { type V0_RawBuiltinPokemon, type V0_RawCustomPokemon } from "./versioned/v0";
+import {
+  type V0_RawBuiltinPokemon,
+  type V0_RawCustomPokemon,
+  type V0_RawPokemon,
+} from "./versioned/v0";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
@@ -35,6 +39,13 @@ export type RawPokemon = RawBuiltinPokemon | RawCustomPokemon;
 /* -------------------------------------------------------------------------- */
 
 export type Pokemon = BuiltinPokemon | CustomPokemon;
+
+export const POKEMONS = (() => {
+  function from(raw: RawPokemon | V0_RawPokemon) {
+    return "species" in raw ? BUILTIN_POKEMONS.from(raw) : CUSTOM_POKEMONS.from(raw);
+  }
+  return { from };
+})();
 
 /* -------------------------------------------------------------------------- */
 /*                               Builtin Pokemon                              */

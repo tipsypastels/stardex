@@ -1,11 +1,20 @@
-import { computed, createModel, signal } from "@preact/signals";
+import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList, Map as IMap } from "immutable";
 import { readonly } from "../utils/signal";
-import type { Pokemon } from "./pokemon";
+import { stored } from "../utils/storage";
+import { POKEMONS, type Pokemon, type RawPokemon } from "./pokemon";
+
+const store = stored<RawPokemon[], IList<Pokemon>>("stardex_pokemon");
+
+export type PokemonList = InstanceType<typeof PokemonList>;
 
 export const PokemonList = createModel(($all: Pokemon[]) => {
   const all = signal(IList($all));
   const indices = computed(() => IMap(all.value.map((p, i) => [p.key.value, i])));
+
+  effect(() => {
+    store.dump(all.value);
+  });
 
   return {
     all: readonly(all),
@@ -35,8 +44,12 @@ export const PokemonList = createModel(($all: Pokemon[]) => {
     toRaw() {
       return all.value.map((p) => p.toRaw());
     },
-    toJSON(): unknown {
-      return this.toRaw();
-    },
   };
 });
+
+export const POKEMON_LISTS = (() => {
+  function initial() {
+    return new PokemonList(store.load()?.map(POKEMONS.from) ?? []);
+  }
+  return { initial };
+})();
