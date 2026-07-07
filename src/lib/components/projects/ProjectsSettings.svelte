@@ -68,7 +68,7 @@
               }
 
               if (
-                project.modelState.hasPokemons ||
+                !project.modelState.hasPokemons ||
                 confirm(
                   `Are you sure you want to PERMANENTLY delete project "${project.name}"? All of its data will be lost and CANNOT be recovered.`,
                 )

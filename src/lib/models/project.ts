@@ -118,7 +118,7 @@ export class Projects implements Iterable<Project> {
         InactiveProject.from({
           v: V,
           id: crypto.randomUUID(),
-          name: `Untitled Project ${this.#list.size}`,
+          name: `Untitled Project ${this.#list.size + 1}`,
           active: false,
           modelState: {
             pokemons: [],
@@ -148,6 +148,10 @@ export class Projects implements Iterable<Project> {
 
   delete(id: string) {
     const index = this.#findIndex(id);
+    const project = this.#list.get(index)!;
+    if (project.isActive()) {
+      throw new Error("Can't delete the active project.");
+    }
     return this.#dup(this.#list.delete(index));
   }
 

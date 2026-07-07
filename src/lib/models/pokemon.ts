@@ -320,7 +320,6 @@ export class CustomPokemon extends BasePokemon {
 
 export class Pokemons implements Iterable<Pokemon> {
   static from(datas: (PokemonData | V0_PokemonData)[]) {
-    console.log(datas);
     return new this(IList(datas.map((d) => Pokemon.from(d))));
   }
 
