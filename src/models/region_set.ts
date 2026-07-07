@@ -18,7 +18,7 @@ export const RegionSet = createModel(($keys: RegionKey[]) => {
     delete(key: RegionKey) {
       keys.value = keys.value.delete(key);
     },
-    toJSON() {
+    toJSON(): unknown {
       return keys.value.toArray();
     },
   };
