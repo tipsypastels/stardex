@@ -2,7 +2,8 @@ import { computed, createModel, Signal, signal } from "@preact/signals";
 import { readonly } from "../utils/signal";
 import { SPECIES } from "./species";
 import { TYPES } from "./type";
-import type { POKEMON_VERSION } from "./versioned";
+import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "./versioned";
+import { type V0_RawBuiltinPokemon, type V0_RawCustomPokemon } from "./versioned/v0";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
@@ -98,6 +99,18 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
   };
 });
 
+export const BUILTIN_POKEMONS = (() => {
+  function of(key: string) {
+    return new BuiltinPokemon({ v: POKEMON_VERSION, species: key });
+  }
+
+  function from(raw: RawBuiltinPokemon | V0_RawBuiltinPokemon) {
+    return new BuiltinPokemon(upgradeRawBuiltinPokemon(raw));
+  }
+
+  return { of, from };
+})();
+
 /* -------------------------------------------------------------------------- */
 /*                               Custom Pokemon                               */
 /* -------------------------------------------------------------------------- */
@@ -150,6 +163,18 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
     },
   };
 });
+
+export const CUSTOM_POKEMONS = (() => {
+  function of(key: string, name: string, typeKeys: string[]) {
+    return new CustomPokemon({ v: POKEMON_VERSION, key, name, types: typeKeys });
+  }
+
+  function from(raw: RawCustomPokemon | V0_RawCustomPokemon) {
+    return new CustomPokemon(upgradeRawCustomPokemon(raw));
+  }
+
+  return { of, from };
+})();
 
 /* -------------------------------------------------------------------------- */
 /*                                   Helpers                                  */
