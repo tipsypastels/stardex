@@ -14,13 +14,14 @@
  *  names?: { name: string, language: { name: string } }[]
  *  evolution_chain?:  { url: string }
  *  evolves_from_species?: { name: string }
+ *  varieties: { is_default: boolean, pokemon: { name: string, url: string }}[]
  * }} PokemonSpecies
  *
  * @typedef {{
  *  id: number,
  *  is_default: boolean,
  *  types: { type: { name: string } }[]
- * }} PokemonForm
+ * }} Pokemon
  *
  * @typedef {{
  *  chain: PokemonEvosEntry
@@ -37,8 +38,48 @@
  *  name: string,
  *  types: string[],
  *  evos?: { from?: string, to?: string[] }
+ *  alts?: { kind: string, name: string, types: string[] }[]
  * }} ResolvedMon
  */
+
+const ALT_KIND_METAS = [
+  {
+    kind: "alola",
+    name: "Alolan",
+  },
+  {
+    kind: "galar",
+    name: "Galarian",
+  },
+  {
+    kind: "hisui",
+    name: "Hisuian",
+  },
+  {
+    kind: "paldea",
+    name: "Paldean",
+  },
+  // Tauros
+  {
+    kind: "paldea-combat-breed",
+    name: "Paldean Combat Breed",
+  },
+  {
+    kind: "paldea-blaze-breed",
+    name: "Paldean Blaze Breed",
+  },
+  {
+    kind: "paldea-aqua-breed",
+    name: "Paldean Aqua Breed",
+  },
+  // Darmanitan
+  {
+    kind: "galar-standard",
+    name: "Galarian",
+  },
+];
+
+const BANNED_ALT_KIND_PATTERNS = ["-totem-"];
 
 async function main() {
   /** @type {Promise<ResolvedMon | null>[]} */
@@ -84,8 +125,8 @@ function fillSegment(promises, segment) {
    */
   async function resolve(url) {
     const species = await fetchPokemonSpecies(url);
-    const form = await fetchPokemonDefaultForm(species);
-    const types = form.types.map((t) => t.type.name);
+    const [pokemon, alts] = await Promise.all([resolveDefault(species), resolveAlts(species)]);
+    const types = pokemon.types.map((t) => t.type.name);
 
     const { id } = species;
     const key = species.name;
@@ -110,12 +151,55 @@ function fillSegment(promises, segment) {
       }
     }
 
-    return { id, key, name, types, evos };
+    return { id, key, name, types, evos, alts };
   }
 
   for (const { url } of segment.results) {
     promises.push(resolve(url));
   }
+}
+
+/**
+ * @param {PokemonSpecies} species
+ */
+async function resolveDefault(species) {
+  const url = /** @type {string} */ (species.varieties.find((v) => v.is_default)?.pokemon.url);
+  return await fetchPokemon(url);
+}
+
+/**
+ *
+ * @param {PokemonSpecies} species
+ */
+async function resolveAlts(species) {
+  if (species.varieties.length < 2) return undefined;
+
+  /** @type {{ kind: string, name: string, promise: Promise<Pokemon>}[]} */
+  const queue = [];
+
+  for (const variety of species.varieties) {
+    if (variety.is_default) continue;
+
+    const kind = variety.pokemon.name.replace(`${species.name}-`, "");
+    const kindMeta = ALT_KIND_METAS.find((meta) => meta.kind === kind);
+    if (!kindMeta) continue;
+
+    queue.push({
+      kind,
+      name: kindMeta.name,
+      promise: fetchPokemon(variety.pokemon.url),
+    });
+  }
+
+  const alts = await Promise.all(
+    queue.map(async ({ kind, name, promise }) => {
+      const pokemon = await promise;
+      const types = pokemon.types.map((t) => t.type.name);
+      return { kind, name, types };
+    }),
+  );
+
+  return alts.length > 0 ? alts : undefined;
 }
 
 /**
@@ -135,11 +219,11 @@ async function fetchPokemonSpecies(url) {
 }
 
 /**
- * @param {PokemonSpecies} species
- * @returns {Promise<PokemonForm>}
+ * @param {string} url
+ * @returns {Promise<Pokemon>}
  */
-async function fetchPokemonDefaultForm({ id }) {
-  return await fetchJson(`https://pokeapi.co/api/v2/pokemon-form/${id}`);
+async function fetchPokemon(url) {
+  return await fetchJson(url);
 }
 
 /**

@@ -230,7 +230,17 @@
       "to": [
         "raticate"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "dark",
+          "normal"
+        ]
+      }
+    ]
   },
   "raticate": {
     "id": 20,
@@ -240,7 +250,17 @@
     ],
     "evos": {
       "from": "rattata"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "dark",
+          "normal"
+        ]
+      }
+    ]
   },
   "spearow": {
     "id": 21,
@@ -309,7 +329,17 @@
     ],
     "evos": {
       "from": "pikachu"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "electric",
+          "psychic"
+        ]
+      }
+    ]
   },
   "sandshrew": {
     "id": 27,
@@ -321,7 +351,17 @@
       "to": [
         "sandslash"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "ice",
+          "steel"
+        ]
+      }
+    ]
   },
   "sandslash": {
     "id": 28,
@@ -331,7 +371,17 @@
     ],
     "evos": {
       "from": "sandshrew"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "ice",
+          "steel"
+        ]
+      }
+    ]
   },
   "nidoran-f": {
     "id": 29,
@@ -438,7 +488,16 @@
       "to": [
         "ninetales"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "ice"
+        ]
+      }
+    ]
   },
   "ninetales": {
     "id": 38,
@@ -448,7 +507,17 @@
     ],
     "evos": {
       "from": "vulpix"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "ice",
+          "fairy"
+        ]
+      }
+    ]
   },
   "jigglypuff": {
     "id": 39,
@@ -599,7 +668,17 @@
       "to": [
         "dugtrio"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "ground",
+          "steel"
+        ]
+      }
+    ]
   },
   "dugtrio": {
     "id": 51,
@@ -609,7 +688,17 @@
     ],
     "evos": {
       "from": "diglett"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "ground",
+          "steel"
+        ]
+      }
+    ]
   },
   "meowth": {
     "id": 52,
@@ -622,7 +711,23 @@
         "persian",
         "perrserker"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "dark"
+        ]
+      },
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "steel"
+        ]
+      }
+    ]
   },
   "persian": {
     "id": 53,
@@ -632,7 +737,16 @@
     ],
     "evos": {
       "from": "meowth"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "dark"
+        ]
+      }
+    ]
   },
   "psyduck": {
     "id": 54,
@@ -691,7 +805,17 @@
       "to": [
         "arcanine"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "fire",
+          "rock"
+        ]
+      }
+    ]
   },
   "arcanine": {
     "id": 59,
@@ -701,7 +825,17 @@
     ],
     "evos": {
       "from": "growlithe"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "fire",
+          "rock"
+        ]
+      }
+    ]
   },
   "poliwag": {
     "id": 60,
@@ -883,7 +1017,17 @@
       "to": [
         "graveler"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "rock",
+          "electric"
+        ]
+      }
+    ]
   },
   "graveler": {
     "id": 75,
@@ -897,7 +1041,17 @@
       "to": [
         "golem"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "rock",
+          "electric"
+        ]
+      }
+    ]
   },
   "golem": {
     "id": 76,
@@ -908,7 +1062,17 @@
     ],
     "evos": {
       "from": "graveler"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "rock",
+          "electric"
+        ]
+      }
+    ]
   },
   "ponyta": {
     "id": 77,
@@ -920,7 +1084,16 @@
       "to": [
         "rapidash"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "psychic"
+        ]
+      }
+    ]
   },
   "rapidash": {
     "id": 78,
@@ -930,7 +1103,17 @@
     ],
     "evos": {
       "from": "ponyta"
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "psychic",
+          "fairy"
+        ]
+      }
+    ]
   },
   "slowpoke": {
     "id": 79,
@@ -944,7 +1127,16 @@
         "slowbro",
         "slowking"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "psychic"
+        ]
+      }
+    ]
   },
   "slowbro": {
     "id": 80,
@@ -955,7 +1147,17 @@
     ],
     "evos": {
       "from": "slowpoke"
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "poison",
+          "psychic"
+        ]
+      }
+    ]
   },
   "magnemite": {
     "id": 81,
@@ -995,7 +1197,16 @@
       "to": [
         "sirfetchd"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "fighting"
+        ]
+      }
+    ]
   },
   "doduo": {
     "id": 84,
@@ -1054,7 +1265,17 @@
       "to": [
         "muk"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "poison",
+          "dark"
+        ]
+      }
+    ]
   },
   "muk": {
     "id": 89,
@@ -1064,7 +1285,17 @@
     ],
     "evos": {
       "from": "grimer"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "poison",
+          "dark"
+        ]
+      }
+    ]
   },
   "shellder": {
     "id": 90,
@@ -1194,7 +1425,17 @@
       "to": [
         "electrode"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "electric",
+          "grass"
+        ]
+      }
+    ]
   },
   "electrode": {
     "id": 101,
@@ -1204,7 +1445,17 @@
     ],
     "evos": {
       "from": "voltorb"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "electric",
+          "grass"
+        ]
+      }
+    ]
   },
   "exeggcute": {
     "id": 102,
@@ -1228,7 +1479,17 @@
     ],
     "evos": {
       "from": "exeggcute"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "grass",
+          "dragon"
+        ]
+      }
+    ]
   },
   "cubone": {
     "id": 104,
@@ -1250,7 +1511,17 @@
     ],
     "evos": {
       "from": "cubone"
-    }
+    },
+    "alts": [
+      {
+        "kind": "alola",
+        "name": "Alolan",
+        "types": [
+          "fire",
+          "ghost"
+        ]
+      }
+    ]
   },
   "hitmonlee": {
     "id": 106,
@@ -1304,7 +1575,17 @@
     ],
     "evos": {
       "from": "koffing"
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "poison",
+          "fairy"
+        ]
+      }
+    ]
   },
   "rhyhorn": {
     "id": 111,
@@ -1447,7 +1728,17 @@
       "to": [
         "mr-rime"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "ice",
+          "psychic"
+        ]
+      }
+    ]
   },
   "scyther": {
     "id": 123,
@@ -1512,6 +1803,31 @@
     "name": "Tauros",
     "types": [
       "normal"
+    ],
+    "alts": [
+      {
+        "kind": "paldea-combat-breed",
+        "name": "Paldean Combat Breed",
+        "types": [
+          "fighting"
+        ]
+      },
+      {
+        "kind": "paldea-blaze-breed",
+        "name": "Paldean Blaze Breed",
+        "types": [
+          "fighting",
+          "fire"
+        ]
+      },
+      {
+        "kind": "paldea-aqua-breed",
+        "name": "Paldean Aqua Breed",
+        "types": [
+          "fighting",
+          "water"
+        ]
+      }
     ]
   },
   "magikarp": {
@@ -1685,6 +2001,16 @@
     "types": [
       "ice",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "psychic",
+          "flying"
+        ]
+      }
     ]
   },
   "zapdos": {
@@ -1693,6 +2019,16 @@
     "types": [
       "electric",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "fighting",
+          "flying"
+        ]
+      }
     ]
   },
   "moltres": {
@@ -1701,6 +2037,16 @@
     "types": [
       "fire",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "dark",
+          "flying"
+        ]
+      }
     ]
   },
   "dratini": {
@@ -1821,7 +2167,17 @@
     ],
     "evos": {
       "from": "quilava"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "fire",
+          "ghost"
+        ]
+      }
+    ]
   },
   "totodile": {
     "id": 158,
@@ -2261,7 +2617,17 @@
         "quagsire",
         "clodsire"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "paldea",
+        "name": "Paldean",
+        "types": [
+          "poison",
+          "ground"
+        ]
+      }
+    ]
   },
   "quagsire": {
     "id": 195,
@@ -2316,7 +2682,17 @@
     ],
     "evos": {
       "from": "slowpoke"
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "poison",
+          "psychic"
+        ]
+      }
+    ]
   },
   "misdreavus": {
     "id": 200,
@@ -2452,7 +2828,17 @@
       "to": [
         "overqwil"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "dark",
+          "poison"
+        ]
+      }
+    ]
   },
   "scizor": {
     "id": 212,
@@ -2493,7 +2879,17 @@
         "weavile",
         "sneasler"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "fighting",
+          "poison"
+        ]
+      }
+    ]
   },
   "teddiursa": {
     "id": 216,
@@ -2581,7 +2977,16 @@
       "to": [
         "cursola"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "ghost"
+        ]
+      }
+    ]
   },
   "remoraid": {
     "id": 223,
@@ -3023,7 +3428,17 @@
       "to": [
         "linoone"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "dark",
+          "normal"
+        ]
+      }
+    ]
   },
   "linoone": {
     "id": 264,
@@ -3036,7 +3451,17 @@
       "to": [
         "obstagoon"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "dark",
+          "normal"
+        ]
+      }
+    ]
   },
   "wurmple": {
     "id": 265,
@@ -5632,7 +6057,17 @@
     ],
     "evos": {
       "from": "dewott"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "water",
+          "dark"
+        ]
+      }
+    ]
   },
   "patrat": {
     "id": 504,
@@ -6156,7 +6591,17 @@
     ],
     "evos": {
       "from": "petilil"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "grass",
+          "fighting"
+        ]
+      }
+    ]
   },
   "basculin": {
     "id": 550,
@@ -6218,7 +6663,16 @@
       "to": [
         "darmanitan"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "ice"
+        ]
+      }
+    ]
   },
   "darmanitan": {
     "id": 555,
@@ -6228,7 +6682,16 @@
     ],
     "evos": {
       "from": "darumaka"
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar-standard",
+        "name": "Galarian",
+        "types": [
+          "ice"
+        ]
+      }
+    ]
   },
   "maractus": {
     "id": 556,
@@ -6304,7 +6767,17 @@
         "cofagrigus",
         "runerigus"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "ground",
+          "ghost"
+        ]
+      }
+    ]
   },
   "cofagrigus": {
     "id": 563,
@@ -6396,7 +6869,17 @@
       "to": [
         "zoroark"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "normal",
+          "ghost"
+        ]
+      }
+    ]
   },
   "zoroark": {
     "id": 571,
@@ -6406,7 +6889,17 @@
     ],
     "evos": {
       "from": "zorua"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "normal",
+          "ghost"
+        ]
+      }
+    ]
   },
   "minccino": {
     "id": 572,
@@ -6939,6 +7432,16 @@
     "types": [
       "ground",
       "electric"
+    ],
+    "alts": [
+      {
+        "kind": "galar",
+        "name": "Galarian",
+        "types": [
+          "ground",
+          "steel"
+        ]
+      }
     ]
   },
   "mienfoo": {
@@ -7050,7 +7553,17 @@
     ],
     "evos": {
       "from": "rufflet"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "psychic",
+          "flying"
+        ]
+      }
+    ]
   },
   "vullaby": {
     "id": 629,
@@ -7891,7 +8404,17 @@
       "to": [
         "goodra"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "steel",
+          "dragon"
+        ]
+      }
+    ]
   },
   "goodra": {
     "id": 706,
@@ -7901,7 +8424,17 @@
     ],
     "evos": {
       "from": "sliggoo"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "steel",
+          "dragon"
+        ]
+      }
+    ]
   },
   "klefki": {
     "id": 707,
@@ -7979,7 +8512,17 @@
     ],
     "evos": {
       "from": "bergmite"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "ice",
+          "rock"
+        ]
+      }
+    ]
   },
   "noibat": {
     "id": 714,
@@ -8088,7 +8631,17 @@
     ],
     "evos": {
       "from": "dartrix"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hisui",
+        "name": "Hisuian",
+        "types": [
+          "grass",
+          "fighting"
+        ]
+      }
+    ]
   },
   "litten": {
     "id": 725,
