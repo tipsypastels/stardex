@@ -10,6 +10,9 @@
   --color-primary: var(--primary);
   --color-divider-light: var(--color-slate-300);
 
+  --color-foreground: var(--foreground);
+  --color-foreground-lesser: var(--foreground-lesser);
+
   --font-*: initial;
   --font-sans:
     Itim, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -20,10 +23,13 @@
 :root {
   --background: white;
   --primary: var(--color-lime-600);
+
+  --foreground: black;
+  --foreground-lesser: var(--color-slate-600);
 }
 
 @layer base {
   body {
-    @apply bg-background md:text-lg;
+    @apply bg-background text-foreground md:text-lg;
   }
 }

@@ -2,9 +2,10 @@ import "./app.css";
 
 import { render } from "preact";
 import { useContext } from "preact/hooks";
-import { Layout } from "./components/layout/layout";
-import { SectionHeading } from "./components/layout/section_heading";
-import { TypePieChart } from "./components/pokemon/util/type_pie_chart";
+import { Layout } from "./components/layout";
+import { Section } from "./components/layout/section";
+import { Recommendations } from "./components/pokemon/recommendations";
+import { TypePieChart } from "./components/pokemon/type_pie_chart";
 import { MetricsContext, Models } from "./state/context";
 
 export function App() {
@@ -20,9 +21,9 @@ export function App() {
 function Left() {
   return (
     <>
-      <section>
-        <SectionHeading title="Pokédex" />
-      </section>
+      <Section title="Pokédex" left>
+        hi
+      </Section>
     </>
   );
 }
@@ -32,13 +33,12 @@ function Right() {
 
   return (
     <>
-      <section>
-        <SectionHeading title="Types" />
+      <Section title="Types">
         <TypePieChart allotment={metrics.pokemonsAllotment.value} />
-      </section>
-      <section>
-        <SectionHeading title="Recommendations" />
-      </section>
+      </Section>
+      <Section title="Recommendations">
+        <Recommendations />
+      </Section>
     </>
   );
 }

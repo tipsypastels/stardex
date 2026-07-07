@@ -1,6 +1,6 @@
-import type { Allotment } from "../../../metrics/allotment";
-import { PieChart } from "../../graphs/pie_chart";
-import { TypeName } from "./type_name";
+import type { Allotment } from "../../metrics/allotment";
+import { PieChart } from "../graphs/pie_chart";
+import { TypeName } from "./util/type_name";
 
 export interface TypePieChartProps {
   allotment: Allotment;
@@ -15,7 +15,7 @@ export function TypePieChart(props: TypePieChartProps) {
   }));
 
   return (
-    <div class="mx-auto flex w-fit flex-col items-center gap-4 lg:mx-0 lg:flex-row">
+    <div class="mx-auto flex w-fit flex-col items-center gap-4 lg:flex-row">
       <div>
         <PieChart slices={slices} />
       </div>
@@ -24,7 +24,11 @@ export function TypePieChart(props: TypePieChartProps) {
         <ol>
           {types.map(({ type, ratio, count }) => (
             <li>
-              <TypeName type={type} /> — {(ratio * 100).toFixed(2)}% ({count})
+              <TypeName type={type} />
+              <span class="text-foreground-lesser">
+                {" "}
+                — {(ratio * 100).toFixed(2)}% ({count})
+              </span>
             </li>
           ))}
         </ol>
