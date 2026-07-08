@@ -3784,10 +3784,12 @@
         "species": "gumshoos"
       },
       {
-        "species": "rattata"
+        "species": "rattata",
+        "alt": "alola"
       },
       {
-        "species": "raticate"
+        "species": "raticate",
+        "alt": "alola"
       },
       {
         "species": "caterpie"
@@ -3838,7 +3840,8 @@
         "species": "pikachu"
       },
       {
-        "species": "raichu"
+        "species": "raichu",
+        "alt": "alola"
       },
       {
         "species": "grubbin"
@@ -3895,10 +3898,12 @@
         "species": "alakazam"
       },
       {
-        "species": "meowth"
+        "species": "meowth",
+        "alt": "alola"
       },
       {
-        "species": "persian"
+        "species": "persian",
+        "alt": "alola"
       },
       {
         "species": "magnemite"
@@ -3910,10 +3915,12 @@
         "species": "magnezone"
       },
       {
-        "species": "grimer"
+        "species": "grimer",
+        "alt": "alola"
       },
       {
-        "species": "muk"
+        "species": "muk",
+        "alt": "alola"
       },
       {
         "species": "mime-jr"
@@ -3994,10 +4001,12 @@
         "species": "noivern"
       },
       {
-        "species": "diglett"
+        "species": "diglett",
+        "alt": "alola"
       },
       {
-        "species": "dugtrio"
+        "species": "dugtrio",
+        "alt": "alola"
       },
       {
         "species": "spearow"
@@ -4333,7 +4342,8 @@
         "species": "cubone"
       },
       {
-        "species": "marowak"
+        "species": "marowak",
+        "alt": "alola"
       },
       {
         "species": "kangaskhan"
@@ -4633,13 +4643,16 @@
         "species": "electivire"
       },
       {
-        "species": "geodude"
+        "species": "geodude",
+        "alt": "alola"
       },
       {
-        "species": "graveler"
+        "species": "graveler",
+        "alt": "alola"
       },
       {
-        "species": "golem"
+        "species": "golem",
+        "alt": "alola"
       },
       {
         "species": "sandile"
@@ -4723,16 +4736,20 @@
         "species": "weavile"
       },
       {
-        "species": "sandshrew"
+        "species": "sandshrew",
+        "alt": "alola"
       },
       {
-        "species": "sandslash"
+        "species": "sandslash",
+        "alt": "alola"
       },
       {
-        "species": "vulpix"
+        "species": "vulpix",
+        "alt": "alola"
       },
       {
-        "species": "ninetales"
+        "species": "ninetales",
+        "alt": "alola"
       },
       {
         "species": "vanillite"
@@ -4807,7 +4824,8 @@
         "species": "exeggcute"
       },
       {
-        "species": "exeggutor"
+        "species": "exeggutor",
+        "alt": "alola"
       },
       {
         "species": "corphish"
@@ -5047,10 +5065,12 @@
         "species": "thievul"
       },
       {
-        "species": "zigzagoon"
+        "species": "zigzagoon",
+        "alt": "galar"
       },
       {
-        "species": "linoone"
+        "species": "linoone",
+        "alt": "galar"
       },
       {
         "species": "obstagoon"
@@ -5500,7 +5520,8 @@
         "species": "barraskewda"
       },
       {
-        "species": "meowth"
+        "species": "meowth",
+        "alt": "galar"
       },
       {
         "species": "perrserker"
@@ -5608,7 +5629,8 @@
         "species": "wobbuffet"
       },
       {
-        "species": "farfetchd"
+        "species": "farfetchd",
+        "alt": "galar"
       },
       {
         "species": "sirfetchd"
@@ -5632,7 +5654,8 @@
         "species": "scrafty"
       },
       {
-        "species": "stunfisk"
+        "species": "stunfisk",
+        "alt": "galar"
       },
       {
         "species": "shuckle"
@@ -5662,7 +5685,8 @@
         "species": "barbaracle"
       },
       {
-        "species": "corsola"
+        "species": "corsola",
+        "alt": "galar"
       },
       {
         "species": "cursola"
@@ -5707,7 +5731,8 @@
         "species": "koffing"
       },
       {
-        "species": "weezing"
+        "species": "weezing",
+        "alt": "galar"
       },
       {
         "species": "bonsly"
@@ -5935,7 +5960,8 @@
         "species": "haxorus"
       },
       {
-        "species": "yamask"
+        "species": "yamask",
+        "alt": "galar"
       },
       {
         "species": "runerigus"
@@ -5953,10 +5979,12 @@
         "species": "aegislash"
       },
       {
-        "species": "ponyta"
+        "species": "ponyta",
+        "alt": "galar"
       },
       {
-        "species": "rapidash"
+        "species": "rapidash",
+        "alt": "galar"
       },
       {
         "species": "sinistea"
@@ -6049,16 +6077,19 @@
         "species": "mime-jr"
       },
       {
-        "species": "mr-mime"
+        "species": "mr-mime",
+        "alt": "galar"
       },
       {
         "species": "mr-rime"
       },
       {
-        "species": "darumaka"
+        "species": "darumaka",
+        "alt": "galar"
       },
       {
-        "species": "darmanitan"
+        "species": "darmanitan",
+        "alt": "galar-standard"
       },
       {
         "species": "stonjourner"
@@ -6319,7 +6350,8 @@
         "species": "floatzel"
       },
       {
-        "species": "wooper"
+        "species": "wooper",
+        "alt": "paldea"
       },
       {
         "species": "clodsire"
@@ -6829,7 +6861,16 @@
         "species": "gogoat"
       },
       {
-        "species": "tauros"
+        "species": "tauros",
+        "alt": "paldea-combat-breed"
+      },
+      {
+        "species": "tauros",
+        "alt": "paldea-blaze-breed"
+      },
+      {
+        "species": "tauros",
+        "alt": "paldea-aqua-breed"
       },
       {
         "species": "litleo"

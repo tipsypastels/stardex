@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // @ts-check
 
+import RAW_SPECIES_DATA from "../src/data/species.json" with { type: "json" };
+
 /**
  * @typedef {{
  *  pokemon_entries: { pokemon_species: { name: string }}[]
@@ -61,7 +63,28 @@ async function resolve(key, { icon, dexId }) {
   /** @type {Region} */
   const region = await regionReq.json();
   const name = key[0].toUpperCase() + key.slice(1);
-  const members = region.pokemon_entries.map((e) => ({ species: e.pokemon_species.name }));
+  const members = region.pokemon_entries.flatMap((entry) => {
+    const species = entry.pokemon_species.name;
+
+    /**
+     * In the app logic, alt forms aren't actually tied to regions at all, and I'd rather keep
+     * it that way to prepare for whatever bizarre variation they add next. This part however
+     * treats alts as regional forms. It must account for inexact kinds, e.g. Darmanitan's galar-standard,
+     * and having multiple alts in the same region, e.g. Tauros.
+     */
+    const matchingAlts = /** @type {{ alts?: { kind: string }[] } | undefined} */ (
+      RAW_SPECIES_DATA[species]
+    )?.alts?.filter((alt) => alt.kind.includes(key));
+
+    if (matchingAlts?.length) {
+      return matchingAlts.map((alt) => ({
+        species,
+        alt: alt.kind,
+      }));
+    }
+
+    return { species };
+  });
 
   return { key, name, icon, members };
 }
