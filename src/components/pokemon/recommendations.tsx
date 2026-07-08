@@ -8,6 +8,8 @@ import { STRICTNESSES } from "../../models/strictness";
 import { TYPES } from "../../models/type";
 import { MetricsContext, RegionsContext, StrictnessContext } from "../../state/context";
 import { stored } from "../../utils/storage";
+import { Actions } from "../common/actions";
+import { Empty } from "../common/empty";
 import { Icon } from "../common/icon";
 import { ButtonLink } from "../common/link";
 import { ModePicker } from "../common/mode_picker";
@@ -28,34 +30,55 @@ export function Recommendations() {
     store.dump(showJustRight.value);
   });
 
+  function regionsIcon() {
+    if (regions.isAll.value) return "asterisk";
+    if (regions.isRecommended.value) return "check";
+
+    const count = regions.size.value;
+    if (count === 0) return "times";
+    if (count === 1) return regions.all.value[0].icon;
+    return `${count}`;
+  }
+
   return (
     <>
-      <ul class="mb-6 ml-4 list-inside list-disc">
-        <ModalButton
-          label="Regions"
-          valueLabel={
-            regions.isAll.value ? "All" : regions.isRecommended.value ? "Recommended" : "Customized"
-          }
-          onClick={() => (modal.value = "regions")}
-        />
+      <Actions
+        actions={[
+          {
+            name: "Regions",
+            icon: regionsIcon(),
+            onClick: () => (modal.value = "regions"),
+          },
+          {
+            name: "Strictness",
+            icon: strictness.icon.value,
+            onClick: () => (modal.value = "strictness"),
+          },
+        ]}
+      />
 
-        <ModalButton
-          label="Strictness"
-          valueLabel={strictness.name.value}
-          onClick={() => (modal.value = "strictness")}
-        />
-      </ul>
+      <Show when={() => regions.size.value > 0}>
+        <RecommendedChangeGroup change="remove" title="Too Many" />
+        <RecommendedChangeGroup change="add" title="Too Few" />
 
-      <RecommendedChangeGroup change="remove" title="Too Many" />
-      <RecommendedChangeGroup change="add" title="Too Few" />
+        <Show when={showJustRight}>
+          <RecommendedChangeGroup change="none" title="Just Right" />
+        </Show>
 
-      <Show when={showJustRight}>
-        <RecommendedChangeGroup change="none" title="Just Right" />
+        <ButtonLink onClick={() => (showJustRight.value = !showJustRight.value)} small>
+          {showJustRight.value ? "Hide" : "Show"} just right
+        </ButtonLink>
       </Show>
 
-      <ButtonLink onClick={() => (showJustRight.value = !showJustRight.value)} small>
-        {showJustRight.value ? "Hide" : "Show"} just right
-      </ButtonLink>
+      <Show when={() => regions.size.value === 0}>
+        <Empty>
+          <strong>No regions are selected!</strong>{" "}
+          <ButtonLink onClick={() => (modal.value = "regions")} look="none" bold>
+            Select some
+          </ButtonLink>{" "}
+          to get recommendations.
+        </Empty>
+      </Show>
 
       {modal.value === "regions" ? (
         <Modal title="Regions" onClose={() => (modal.value = undefined)}>
@@ -77,28 +100,6 @@ export function Recommendations() {
         </Modal>
       ) : null}
     </>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*                                Modal Button                                */
-/* -------------------------------------------------------------------------- */
-
-interface ModalButtonProps {
-  label: string;
-  valueLabel: string;
-  onClick(): void;
-}
-
-function ModalButton(props: ModalButtonProps) {
-  return (
-    <li>
-      <strong>
-        {props.label}
-        {": "}
-      </strong>
-      <ButtonLink onClick={props.onClick}>{props.valueLabel}</ButtonLink>
-    </li>
   );
 }
 
@@ -156,12 +157,12 @@ interface RegionsPickerProps {
   regions: RegionSet;
 }
 
-function RegionsPicker(props: RegionsPickerProps) {
+function RegionsPicker({ regions }: RegionsPickerProps) {
   return (
     <>
       <div class="mb-4 grid grid-cols-2 gap-4">
         {REGIONS.all.map((region) => {
-          const checked = props.regions.has(region);
+          const checked = regions.has(region);
           return (
             <label class="border-divider-light relative flex cursor-pointer rounded-xs border p-2 transition select-none hover:-translate-y-1">
               <input
@@ -170,9 +171,9 @@ function RegionsPicker(props: RegionsPickerProps) {
                 checked={checked}
                 onClick={(e) => {
                   if (e.currentTarget.checked) {
-                    props.regions.add(region.key);
+                    regions.add(region.key);
                   } else {
-                    props.regions.delete(region.key);
+                    regions.delete(region.key);
                   }
                 }}
               />
@@ -193,11 +194,29 @@ function RegionsPicker(props: RegionsPickerProps) {
         })}
       </div>
 
+      <div class="mb-4">
+        <strong>Select: </strong>
+        <ButtonLink onClick={() => regions.setRecommended()}>Recommended</ButtonLink>
+        {" / "}
+        <ButtonLink onClick={() => regions.setAll()}>All</ButtonLink>
+        {" / "}
+        <ButtonLink onClick={() => regions.setNone()}>None</ButtonLink>
+      </div>
+
       <div class="text-sm">
         <strong>Tip:</strong> Selected regions will be used as the basis of the recommendations
         list. The average distribution of types (for example, what percentage of Pokémon are{" "}
         <TypeName type={TYPES.of("fire")} /> type) will be used to inform recommendations.
       </div>
+
+      <Show when={() => regions.hasKey("kanto")}>
+        <div class="mt-2 text-sm">
+          <strong class="text-warning">Warning:</strong> Kanto has a skewed type balance by the
+          standards of later regions - for example, too many <TypeName type={TYPES.of("poison")} />{" "}
+          types. You may find that you get better results if you{" "}
+          <ButtonLink onClick={() => regions.delete("kanto")}>exclude it</ButtonLink>.
+        </div>
+      </Show>
     </>
   );
 }

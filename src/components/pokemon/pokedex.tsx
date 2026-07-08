@@ -1,11 +1,35 @@
 import { useContext } from "preact/hooks";
 import type { Pokemon } from "../../models/pokemon";
 import { PokemonsContext } from "../../state/context";
+import { Actions } from "../common/actions";
 import { PokemonIcon } from "./util/pokemon_icon";
 import { TypeDots } from "./util/type_dots";
 
 export function Pokedex() {
-  return <GridIcons />;
+  return (
+    <>
+      <Actions
+        actions={[
+          {
+            icon: "asterisk",
+            name: "Filter",
+            onClick: () => {},
+          },
+          {
+            icon: "asterisk",
+            name: "Filter",
+            onClick: () => {},
+          },
+          {
+            icon: "asterisk",
+            name: "Filter",
+            onClick: () => {},
+          },
+        ]}
+      />
+      <GridIcons />
+    </>
+  );
 }
 
 function GridIcons() {

@@ -25,13 +25,13 @@ function AppInner() {
   const metrics = useContext(MetricsContext);
   return (
     <>
-      <Section id="pokedex" title="Pokédex" left>
+      <Section id="pokedex" title="Pokédex" hasActions>
         <Pokedex />
       </Section>
       <Section id="types" title="Types">
         <TypePieChart allotment={metrics.pokemonsAllotment.value} />
       </Section>
-      <Section id="recommendations" title="Recommendations">
+      <Section id="recommendations" title="Recommendations" hasActions>
         <Recommendations />
       </Section>
     </>

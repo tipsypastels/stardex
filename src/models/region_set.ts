@@ -11,6 +11,7 @@ export type RegionSet = InstanceType<typeof RegionSet>;
 export const RegionSet = createModel(($keys: RegionKey[]) => {
   const keys = signal(ISet($keys));
   const all = computed(() => keys.value.toArray().map(REGIONS.of));
+  const size = computed(() => keys.value.size);
 
   const isAll = computed(() => keys.value.size === REGIONS.allKeys.length);
   const isRecommended = computed(
@@ -24,6 +25,7 @@ export const RegionSet = createModel(($keys: RegionKey[]) => {
   return {
     keys: readonly(keys),
     all,
+    size,
     isAll,
     isRecommended,
     has(region: Region) {
@@ -34,6 +36,15 @@ export const RegionSet = createModel(($keys: RegionKey[]) => {
     },
     add(key: RegionKey) {
       keys.value = keys.value.add(key);
+    },
+    setAll() {
+      keys.value = ISet(REGIONS.allKeys);
+    },
+    setRecommended() {
+      keys.value = ISet(REGIONS.recommendedKeys);
+    },
+    setNone() {
+      keys.value = ISet();
     },
     delete(key: RegionKey) {
       keys.value = keys.value.delete(key);

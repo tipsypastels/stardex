@@ -4,17 +4,14 @@ export interface SectionProps {
   id: string;
   title: string;
   children: ComponentChildren;
-  left?: boolean;
+  hasActions?: boolean;
 }
 
-export function Section(props: SectionProps) {
+export function Section({ id, title, children, hasActions }: SectionProps) {
   return (
-    <section
-      id={props.id}
-      class={`border-b-divider-light relative mb-8 border-b pb-8 ${props.left ? `xl:last:mb-0 xl:last:border-b-0` : `last:mb-0 last:border-b-0`}`}
-    >
-      <h2 class="mb-8 grow text-3xl">{props.title}</h2>
-      <div>{props.children}</div>
+    <section id={id} class="border-b-divider-light relative mb-8 border-b pb-8">
+      <h2 class={`grow text-3xl ${hasActions ? "mb-2" : "mb-8"}`}>{title}</h2>
+      <div>{children}</div>
     </section>
   );
 }

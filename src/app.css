@@ -11,6 +11,7 @@
   --color-foreground-lesser: var(--foreground-lesser);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-warning: var(--warning);
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
 
@@ -26,6 +27,7 @@
   --background: white;
   --primary: var(--color-lime-600);
   --secondary: var(--color-mauve-500);
+  --warning: var(--color-amber-400);
 
   --divider-light: var(--color-slate-300);
   --divider-heavy: var(--color-slate-700);
