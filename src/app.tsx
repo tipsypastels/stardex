@@ -3,6 +3,7 @@ import "./app.css";
 import { Show } from "@preact/signals/utils";
 import { render } from "preact";
 import { useContext } from "preact/hooks";
+import { Empty } from "./components/common/empty";
 import { Layout } from "./components/layout";
 import { Section } from "./components/layout/section";
 import { Pokedex } from "./components/pokemon/pokedex";
@@ -29,14 +30,17 @@ function AppInner() {
       <Section id="pokedex" title="Pokédex" hasActions>
         <Pokedex />
       </Section>
-      <Show when={() => metrics.pokemonsAllotment.value.total > 0}>
-        <Section id="types" title="Types">
+      <Section id="types" title="Types">
+        <Show
+          when={() => metrics.pokemonsAllotment.value.total > 0}
+          fallback={<Empty>You have no Pokémon yet.</Empty>}
+        >
           <TypePieChart allotment={metrics.pokemonsAllotment.value} />
-        </Section>
-        <Section id="recommendations" title="Recommendations" hasActions>
-          <Recommendations />
-        </Section>
-      </Show>
+        </Show>
+      </Section>
+      <Section id="recommendations" title="Recommendations" hasActions>
+        <Recommendations />
+      </Section>
     </>
   );
 }

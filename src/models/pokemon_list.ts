@@ -12,6 +12,7 @@ export type PokemonList = InstanceType<typeof PokemonList>;
 export const PokemonList = createModel(($all: Pokemon[]) => {
   const all = signal(IList($all));
   const indices = computed(() => IMap(all.value.map((p, i) => [p.key.value, i])));
+  const size = computed(() => all.value.size);
 
   effect(() => {
     store.dump(all.value);
@@ -20,6 +21,7 @@ export const PokemonList = createModel(($all: Pokemon[]) => {
   return {
     all: readonly(all),
     indices: readonly(indices),
+    size,
     has(pokemon: Pokemon) {
       return this.hasKey(pokemon.key.value);
     },

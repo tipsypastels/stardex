@@ -6,7 +6,12 @@ import { REGIONS } from "../../models/region";
 import type { RegionSet } from "../../models/region_set";
 import { STRICTNESSES } from "../../models/strictness";
 import { TYPES } from "../../models/type";
-import { MetricsContext, RegionsContext, StrictnessContext } from "../../state/context";
+import {
+  MetricsContext,
+  PokemonsContext,
+  RegionsContext,
+  StrictnessContext,
+} from "../../state/context";
 import { stored } from "../../utils/storage";
 import { Actions } from "../common/actions";
 import { Empty } from "../common/empty";
@@ -20,6 +25,7 @@ import { TypeName } from "./util/type_name";
 const store = stored<boolean>("stardex_recommendations_show_just_right");
 
 export function Recommendations() {
+  const pokemons = useContext(PokemonsContext);
   const regions = useContext(RegionsContext);
   const strictness = useContext(StrictnessContext);
   const showJustRight = useSignal(store.load() ?? false);
@@ -40,6 +46,25 @@ export function Recommendations() {
     return `${count}`;
   }
 
+  function emptyFallbacks() {
+    return (
+      <Show
+        when={() => pokemons.size.value === 0}
+        fallback={
+          <Empty>
+            <strong>No regions are selected!</strong>{" "}
+            <ButtonLink onClick={() => (modal.value = "regions")} look="none" bold>
+              Select some
+            </ButtonLink>{" "}
+            to get recommendations.
+          </Empty>
+        }
+      >
+        <Empty>You still have no Pokémon yet.</Empty>
+      </Show>
+    );
+  }
+
   return (
     <>
       <Actions
@@ -57,7 +82,10 @@ export function Recommendations() {
         ]}
       />
 
-      <Show when={() => regions.size.value > 0}>
+      <Show
+        when={() => pokemons.size.value > 0 && regions.size.value > 0}
+        fallback={emptyFallbacks()}
+      >
         <RecommendedChangeGroup change="remove" title="Too Many" />
         <RecommendedChangeGroup change="add" title="Too Few" />
 
@@ -68,16 +96,6 @@ export function Recommendations() {
         <ButtonLink onClick={() => (showJustRight.value = !showJustRight.value)} small>
           {showJustRight.value ? "Hide" : "Show"} just right
         </ButtonLink>
-      </Show>
-
-      <Show when={() => regions.size.value === 0}>
-        <Empty>
-          <strong>No regions are selected!</strong>{" "}
-          <ButtonLink onClick={() => (modal.value = "regions")} look="none" bold>
-            Select some
-          </ButtonLink>{" "}
-          to get recommendations.
-        </Empty>
       </Show>
 
       {modal.value === "regions" ? (
