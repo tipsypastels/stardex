@@ -25,6 +25,11 @@ export function Modal(props: ModalProps) {
     return () => hotkeys.unbind("esc");
   }, [props.onClose]);
 
+  useEffect(() => {
+    document.body.classList.add("has-modal");
+    return () => document.body.classList.remove("has-modal");
+  });
+
   return createPortal(
     <div
       class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center bg-black/(--backdrop-opacity) lg:items-center"
