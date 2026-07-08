@@ -61,10 +61,10 @@ export const ActiveProject = createModel((raw: RawActiveProject) => {
   return {
     id: readonly(id),
     name,
-    isActive(): true {
+    isActive(): this is ActiveProject {
       return true;
     },
-    isInactive(): false {
+    isInactive(): this is InactiveProject {
       return false;
     },
     createInactiveDuplicate(getActiveModels: () => RawProjectModels) {
@@ -109,10 +109,10 @@ export const InactiveProject = createModel((raw: RawInactiveProject) => {
   return {
     id: readonly(id),
     name,
-    isActive(): false {
+    isActive(): this is ActiveProject {
       return false;
     },
-    isInactive(): true {
+    isInactive(): this is InactiveProject {
       return true;
     },
     createInactiveDuplicate() {

@@ -84,10 +84,10 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
     types,
     alt,
     exclude,
-    isBuiltin(): true {
+    isBuiltin(): this is BuiltinPokemon {
       return true;
     },
-    isCustom(): false {
+    isCustom(): this is CustomPokemon {
       return false;
     },
     setTypeKeys(newTypeKeys: string[] | undefined) {
@@ -148,10 +148,10 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
     types,
     alt,
     exclude,
-    isBuiltin(): false {
+    isBuiltin(): this is BuiltinPokemon {
       return false;
     },
-    isCustom(): true {
+    isCustom(): this is CustomPokemon {
       return true;
     },
     setTypeKeys(newTypeKeys: string[]) {

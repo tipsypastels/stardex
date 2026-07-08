@@ -41,6 +41,9 @@ export const PokemonList = createModel(($all: Pokemon[]) => {
     delete(index: number) {
       all.value = all.value.delete(index);
     },
+    map<T>(f: (value: Pokemon, index: number) => T) {
+      return all.value.map(f).toArray();
+    },
     toRaw() {
       return all.value.map((p) => p.toRaw());
     },

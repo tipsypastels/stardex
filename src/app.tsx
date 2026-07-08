@@ -4,6 +4,7 @@ import { render } from "preact";
 import { useContext } from "preact/hooks";
 import { Layout } from "./components/layout";
 import { Section } from "./components/layout/section";
+import { Pokedex } from "./components/pokemon/pokedex";
 import { Recommendations } from "./components/pokemon/recommendations";
 import { TypePieChart } from "./components/pokemon/type_pie_chart";
 import { MetricsContext, Models } from "./state/context";
@@ -25,7 +26,7 @@ function AppInner() {
   return (
     <>
       <Section id="pokedex" title="Pokédex" left>
-        hi
+        <Pokedex />
       </Section>
       <Section id="types" title="Types">
         <TypePieChart allotment={metrics.pokemonsAllotment.value} />
