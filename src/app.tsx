@@ -12,31 +12,25 @@ export function App() {
   return (
     <>
       <Models>
-        <Layout left={<Left />} right={<Right />} />
+        <Layout>
+          <AppInner />
+        </Layout>
       </Models>
     </>
   );
 }
 
-function Left() {
+function AppInner() {
+  const metrics = useContext(MetricsContext);
   return (
     <>
-      <Section title="Pokédex" left>
+      <Section id="pokedex" title="Pokédex" left>
         hi
       </Section>
-    </>
-  );
-}
-
-function Right() {
-  const metrics = useContext(MetricsContext);
-
-  return (
-    <>
-      <Section title="Types">
+      <Section id="types" title="Types">
         <TypePieChart allotment={metrics.pokemonsAllotment.value} />
       </Section>
-      <Section title="Recommendations">
+      <Section id="recommendations" title="Recommendations">
         <Recommendations />
       </Section>
     </>

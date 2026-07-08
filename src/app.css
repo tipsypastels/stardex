@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --color-foreground-lesser: var(--foreground-lesser);
   --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
 
@@ -18,11 +19,13 @@
     Itim, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: Itim, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: monospace;
 }
 
 :root {
   --background: white;
   --primary: var(--color-lime-600);
+  --secondary: var(--color-mauve-500);
 
   --divider-light: var(--color-slate-300);
   --divider-heavy: var(--color-slate-700);
