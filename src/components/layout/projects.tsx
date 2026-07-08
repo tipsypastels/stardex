@@ -47,110 +47,118 @@ export function ProjectsModal() {
   return (
     <Show when={modalOpen}>
       <Modal title="Projects" onClose={() => (modalOpen.value = false)}>
-        {/* TODO: Sortable? */}
-        {projects.all.value
-          .map((project) => (
-            <div class="flex items-center py-2">
-              <label class="flex grow cursor-pointer items-center">
-                <input
-                  class="hidden"
-                  type="radio"
-                  name="project"
-                  checked={project.isActive()}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    projects.setActive(project.id.value);
-                  }}
-                />
+        <div class="mb-4">
+          {/* TODO: Sortable? */}
+          {projects.all.value
+            .map((project) => (
+              <div class="flex items-center py-2">
+                <label class="flex grow cursor-pointer items-center">
+                  <input
+                    class="hidden"
+                    type="radio"
+                    name="project"
+                    checked={project.isActive()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      projects.setActive(project.id.value);
+                    }}
+                  />
 
-                <div class={`mr-4 text-lime-600 ${project.isActive() ? "" : "opacity-0"}`}>
-                  <Icon name="badge-check" />
-                </div>
+                  <div class={`mr-4 text-lime-600 ${project.isActive() ? "" : "opacity-0"}`}>
+                    <Icon name="badge-check" />
+                  </div>
 
-                <div class="grow">{project.name}</div>
-              </label>
+                  <div class="grow">{project.name}</div>
+                </label>
 
-              <Menu
-                items={[
-                  {
-                    type: "button",
-                    name: "Rename Project",
-                    icon: "pen-to-square",
-                    onClick: () => {
-                      const name = prompt(
-                        `Enter a new name for project "${project.name}"...`,
-                        project.name.value,
-                      );
-
-                      if (name && name !== project.name.value) {
-                        project.name.value = name;
-                      }
-                    },
-                  },
-                  {
-                    type: "button",
-                    name: "Duplicate Project",
-                    icon: "clone",
-                    onClick: () => {
-                      projects.pushDuplicate(project.id.value);
-                    },
-                  },
-                  { type: "divider" },
-                  {
-                    type: "button",
-                    name: "Delete Project",
-                    icon: "times",
-                    class: "text-red-600",
-                    onClick: () => {
-                      if (project.isActive()) {
-                        return alert(
-                          "Can't delete the current project! Make a new project and switch to it first.",
+                <Menu
+                  items={[
+                    {
+                      type: "button",
+                      name: "Rename Project",
+                      icon: "pen-to-square",
+                      onClick: () => {
+                        const name = prompt(
+                          `Enter a new name for project "${project.name}"...`,
+                          project.name.value,
                         );
-                      }
 
-                      if (
-                        confirm(
-                          `Are you sure you want to PERMANENTLY delete project "${project.name}"? All of its data will be lost and CANNOT be recovered.`,
-                        )
-                      ) {
-                        projects.delete(project.id.value);
-                      }
+                        if (name && name !== project.name.value) {
+                          project.name.value = name;
+                        }
+                      },
                     },
-                  },
-                ]}
-                trigger={(toggle) => (
-                  <button
-                    class="cursor-pointer px-4 text-lime-600"
-                    title="Actions"
-                    onClick={toggle}
-                  >
-                    <Icon name="ellipsis" />
-                  </button>
-                )}
-              ></Menu>
+                    {
+                      type: "button",
+                      name: "Duplicate Project",
+                      icon: "clone",
+                      onClick: () => {
+                        projects.pushDuplicate(project.id.value);
+                      },
+                    },
+                    { type: "divider" },
+                    {
+                      type: "button",
+                      name: "Delete Project",
+                      icon: "times",
+                      class: "text-red-600",
+                      onClick: () => {
+                        if (project.isActive()) {
+                          return alert(
+                            "Can't delete the current project! Make a new project and switch to it first.",
+                          );
+                        }
+
+                        if (
+                          confirm(
+                            `Are you sure you want to PERMANENTLY delete project "${project.name}"? All of its data will be lost and CANNOT be recovered.`,
+                          )
+                        ) {
+                          projects.delete(project.id.value);
+                        }
+                      },
+                    },
+                  ]}
+                  trigger={(toggle) => (
+                    <button
+                      class="cursor-pointer px-4 text-lime-600"
+                      title="Actions"
+                      onClick={toggle}
+                    >
+                      <Icon name="ellipsis" />
+                    </button>
+                  )}
+                ></Menu>
+              </div>
+            ))
+            .toArray()}
+
+          <label class="flex cursor-pointer items-center py-2">
+            <input
+              class="hidden"
+              type="radio"
+              name="new-project"
+              onClick={(e) => {
+                e.preventDefault();
+                projects.pushEmpty();
+              }}
+            />
+
+            <div class="mr-4 text-lime-600">
+              <Icon name="plus" />
             </div>
-          ))
-          .toArray()}
 
-        <label class="flex cursor-pointer items-center py-2">
-          <input
-            class="hidden"
-            type="radio"
-            name="new-project"
-            onClick={(e) => {
-              e.preventDefault();
-              projects.pushEmpty();
-            }}
-          />
+            <div>
+              <div>New Project...</div>
+            </div>
+          </label>
+        </div>
 
-          <div class="mr-4 text-lime-600">
-            <Icon name="plus" />
-          </div>
-
-          <div>
-            <div>New Project...</div>
-          </div>
-        </label>
+        <div class="text-sm">
+          <strong>Tip:</strong> Every project is an independent "instance" of{" "}
+          <span class="text-primary">Stardex</span>, with its own Pokédex, regions, imports/exports,
+          and settings. Use them for different regions or games!
+        </div>
       </Modal>
     </Show>
   );
