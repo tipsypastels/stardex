@@ -3,8 +3,6 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
-@import "./vendor/shimmer.css";
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -18,7 +16,6 @@
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
   --color-shadow: var(--shadow);
-  --color-shimmer: var(--shimmer);
 
   --font-*: initial;
   --font-sans:
@@ -44,7 +41,6 @@
   --foreground-lesser: var(--color-slate-600);
 
   --shadow: var(--color-slate-400);
-  --shimmer: unset; /* Leave at the default. */
 
   --backdrop-opacity: 30%;
 }
@@ -63,7 +59,6 @@
   --foreground-lesser: var(--color-slate-600);
 
   --shadow: var(--color-black);
-  --shimmer: var(--secondary);
 
   --backdrop-opacity: 60%;
 }

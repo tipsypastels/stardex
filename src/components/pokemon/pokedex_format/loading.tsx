@@ -2,6 +2,7 @@ import type { RefObject } from "preact";
 import { useSyncExternalStore } from "preact/compat";
 import { useEffect } from "preact/hooks";
 import { stored } from "../../../utils/storage";
+import { Loading } from "../../common/loading";
 
 const DEFAULT_HEIGHT = 144;
 
@@ -29,10 +30,5 @@ export function PokedexFormatLoading() {
     () => store.load() ?? DEFAULT_HEIGHT,
   );
 
-  return (
-    <div
-      class="shimmer shimmer-bg shimmer-color-shimmer rounded-sm"
-      style={`height: ${height}px`}
-    ></div>
-  );
+  return <Loading height={height} />;
 }

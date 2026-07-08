@@ -40,7 +40,6 @@ export function PokedexFormat({ actions }: PokedexFormatProps) {
         <Suspense fallback={<PokedexFormatLoading />}>
           <Component />
         </Suspense>
-        {/* <PokedexFormatLoading /> */}
       </div>
     </>
   );
