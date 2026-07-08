@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: tipsypastels/stardex
           path: ./this
 
       - name: Checkout beta
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: tipsypastels/stardex-beta-preview
           path: ./beta
@@ -25,15 +25,13 @@ jobs:
       - name: Copy files
         run: cp -a ./this/. ./beta
 
-      - name: Switch to beta
-        run: cd beta
-
       - name: Commit to beta
         run: |
-          git init
+          cd beta
+
           git add -A .
           git config user.name github-actions
           git config user.email github-actions@github.com
           git commit -am "Push to beta."
-          git remote set-url origin https://${{ secrets.COPY_TO_BETA_PAT }}@github.com/tipsypastels/stardex-beta-preview.git
+          git remote set-url origin "https://${{ secrets.COPY_TO_BETA_PAT }}@github.com/tipsypastels/stardex-beta-preview.git"
           git push origin main
