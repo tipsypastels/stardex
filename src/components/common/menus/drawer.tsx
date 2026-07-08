@@ -1,4 +1,4 @@
-import { batch, signal, useComputed, useSignal, type ReadonlySignal } from "@preact/signals";
+import { batch, signal, useSignal, type ReadonlySignal } from "@preact/signals";
 import hotkeys from "hotkeys-js";
 import type { ComponentChildren } from "preact";
 import { createPortal, useEffect } from "preact/compat";
@@ -12,10 +12,10 @@ export interface DrawerProps {
 }
 
 export function Drawer({ children, onClose }: DrawerProps) {
-  const rect = useComputed(() => ({
-    left: viewportRect.value.left + document.documentElement.scrollLeft,
-    top: viewportRect.value.top + document.documentElement.scrollTop,
-  }));
+  // const rect = useComputed(() => ({
+  //   left: viewportRect.value.left + document.documentElement.scrollLeft,
+  //   top: viewportRect.value.top + document.documentElement.scrollTop,
+  // }));
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
