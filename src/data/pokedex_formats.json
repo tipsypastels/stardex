@@ -11,7 +11,7 @@
   },
   "text": {
     "icon": "pen-line",
-    "name": "Text Editor",
-    "description": "A single textbox to type all Pokémon into. Classic Stardex mode."
+    "name": "Textarea",
+    "description": "Type all your Pokémon into a giant textbox."
   }
 }

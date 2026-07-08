@@ -1,16 +1,20 @@
 import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
+import type { PokedexFilter } from "../../../models/pokedex_filter";
 import { POKEDEX_FORMATS, type PokedexFormat } from "../../../models/pokedex_format";
-import { PokedexFormatContext } from "../../../state/context";
+import { MetricsContext, PokedexFormatContext } from "../../../state/context";
 import { Actions } from "../../common/actions";
 import { ModePicker } from "../../common/mode_picker";
 import { Modal } from "../../layout/modal";
 
-export function PokedexActions() {
-  const format = useContext(PokedexFormatContext);
+export interface PokedexActionsProps {
+  filter: PokedexFilter;
+}
 
-  const modal = useSignal<"format">();
+export function PokedexActions({ filter }: PokedexActionsProps) {
+  const format = useContext(PokedexFormatContext);
+  const modal = useSignal<"format" | "filter">();
 
   return (
     <>
@@ -22,15 +26,19 @@ export function PokedexActions() {
             onClick: () => (modal.value = "format"),
           },
           {
-            icon: "asterisk",
+            icon: filter.icon.value,
             name: "Filter",
-            onClick: () => {},
+            onClick: () => (modal.value = "filter"),
           },
         ]}
       />
 
       <Show when={() => modal.value === "format"}>
         <FormatModal format={format} onClose={() => (modal.value = undefined)} />
+      </Show>
+
+      <Show when={() => modal.value === "filter"}>
+        <FilterModal filter={filter} onClose={() => (modal.value = undefined)} />
       </Show>
     </>
   );
@@ -49,6 +57,38 @@ function FormatModal({ format, onClose }: FormatModalProps) {
         activeIndex={format.index.value}
         setActiveIndex={(index) => (format.key.value = POKEDEX_FORMATS.keys[index])}
       />
+    </Modal>
+  );
+}
+
+interface FilterModalProps {
+  filter: PokedexFilter;
+  onClose(): void;
+}
+
+function FilterModal({ filter, onClose }: FilterModalProps) {
+  const metrics = useContext(MetricsContext);
+  return (
+    <Modal title="Pokédex Filter" onClose={onClose}>
+      <div class="flex items-center">
+        <div class="font-bold">Type:</div>
+        <select
+          class="text-primary mx-1 grow border-0 px-1 py-0 underline"
+          value={filter.ofKind.value("type")}
+          onChange={(e) => {
+            e.preventDefault();
+            filter.raw.value = (e.target as HTMLSelectElement).value;
+          }}
+        >
+          <option value={undefined}>Any</option>
+
+          {[...metrics.pokemonsAllotment.value.types.values()].map(({ type, count }) => (
+            <option value={`type:${type.key}`}>
+              {type.name} ({count})
+            </option>
+          ))}
+        </select>
+      </div>
     </Modal>
   );
 }
