@@ -6,20 +6,20 @@ const LOOKS = {
 
 export interface ButtonIconProps {
   icon: string;
-  look: keyof typeof LOOKS;
+  look?: keyof typeof LOOKS;
   label: string;
   onClick(): void;
 }
 
-export function ButtonIcon(props: ButtonIconProps) {
+export function ButtonIcon({ icon, look = "lesser", label, onClick }: ButtonIconProps) {
   return (
     <button
-      class={`cursor-pointer ${LOOKS[props.look]}`}
-      title={props.label}
-      aria-label={props.label}
-      onClick={props.onClick}
+      class={`cursor-pointer ${LOOKS[look]}`}
+      title={label}
+      aria-label={label}
+      onClick={onClick}
     >
-      <Icon name={props.icon} />
+      <Icon name={icon} />
     </button>
   );
 }

@@ -13,35 +13,39 @@ export interface LayoutProps {
 export function Layout(props: LayoutProps) {
   return (
     <>
-      <div class="sticky top-4 ml-4 hidden items-center gap-4 lg:flex">
-        <ProjectsSelect />
-      </div>
-
-      <div class="m-auto w-200 max-w-full pt-8">
-        <div class="mb-4 flex flex-col items-center gap-2 lg:mb-12 lg:flex-row">
-          <div
-            title="Stardex"
-            class="bg-primary flex h-13.75 w-13.75 items-center justify-center rounded-md text-3xl font-bold text-white shadow-xl shadow-slate-400 select-none"
-          >
-            <div>Sd</div>
+      <div class="flex min-h-screen flex-col">
+        <div class="grow">
+          <div class="sticky top-4 ml-4 hidden items-center gap-4 lg:flex">
+            <ProjectsSelect />
           </div>
-          <h1 class="text-primary grow text-4xl font-bold">Stardex</h1>
-        </div>
 
-        <div class="mb-4 flex justify-center lg:hidden">
-          <ProjectsSelect />
-        </div>
+          <div class="m-auto w-200 max-w-full grow pt-8">
+            <div class="mb-4 flex flex-col items-center gap-2 lg:mb-12 lg:flex-row">
+              <div
+                title="Stardex"
+                class="bg-primary flex h-13.75 w-13.75 items-center justify-center rounded-md text-3xl font-bold text-white shadow-xl shadow-slate-400 select-none"
+              >
+                <div>Sd</div>
+              </div>
+              <h1 class="text-primary grow text-4xl font-bold">Stardex</h1>
+            </div>
 
-        <ProjectsModal />
+            <div class="mb-4 flex justify-center lg:hidden">
+              <ProjectsSelect />
+            </div>
 
-        {/* TODO: <Notices />
+            <ProjectsModal />
+
+            {/* TODO: <Notices />
         <Nav /> */}
-        <Toc />
+            <Toc />
 
-        <main class="mx-4 md:mx-0">{props.children}</main>
+            <main class="mx-4 md:mx-0">{props.children}</main>
+          </div>
+        </div>
+
+        <Footer />
       </div>
-
-      <Footer />
     </>
   );
 }
