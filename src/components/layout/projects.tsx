@@ -16,7 +16,7 @@ export function ProjectsSelect() {
       <div class="flex text-sm">
         <div class="grow font-bold">Projects</div>
         <button
-          class="cursor-pointer text-lime-600 underline"
+          class="text-primary cursor-pointer underline"
           title="Manage all your Stardex projects"
           onClick={() => {
             modalOpen.value = true;
@@ -26,7 +26,7 @@ export function ProjectsSelect() {
         </button>
       </div>
       <select
-        class="w-75 max-w-full rounded-md border-2 border-slate-300"
+        class="border-diivder-light w-75 max-w-full rounded-md border-2"
         value={projects.active.value.id}
         onChange={(e) => {
           e.preventDefault();
@@ -64,7 +64,7 @@ export function ProjectsModal() {
                     }}
                   />
 
-                  <div class={`mr-4 text-lime-600 ${project.isActive() ? "" : "opacity-0"}`}>
+                  <div class={`text-primary mr-4 ${project.isActive() ? "" : "opacity-0"}`}>
                     <Icon name="badge-check" />
                   </div>
 
@@ -121,7 +121,7 @@ export function ProjectsModal() {
                   ]}
                   trigger={(toggle) => (
                     <button
-                      class="cursor-pointer px-4 text-lime-600"
+                      class="text-primary cursor-pointer px-4"
                       title="Actions"
                       onClick={toggle}
                     >
@@ -144,7 +144,7 @@ export function ProjectsModal() {
               }}
             />
 
-            <div class="mr-4 text-lime-600">
+            <div class="text-primary mr-4">
               <Icon name="plus" />
             </div>
 

@@ -197,7 +197,7 @@ function RegionsPicker({ regions }: RegionsPickerProps) {
               />
 
               {checked ? (
-                <div class="absolute -top-2 -left-2 text-lime-600">
+                <div class="text-primary absolute -top-2 -left-2">
                   <Icon name="badge-check" />
                 </div>
               ) : null}

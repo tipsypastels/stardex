@@ -22,7 +22,7 @@ export function Section({ id, title, children, hasActions }: SectionProps) {
   return (
     <section id={id} class="border-b-divider-light relative mb-8 border-b pb-8">
       <div class={`flex ${!open.value ? "" : hasActions ? "mb-4" : "mb-8"}`}>
-        <h2 class="grow text-3xl">{title}</h2>
+        <h2 class="grow text-3xl select-none">{title}</h2>
         <div class="text-xl">
           <ButtonIcon
             icon={`angle-${open.value ? "down" : "up"}`}
