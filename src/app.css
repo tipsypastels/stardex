@@ -65,7 +65,7 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground md:text-lg;
+    @apply text-foreground bg-red-500 md:text-lg;
   }
 }
 
