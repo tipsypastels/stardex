@@ -2,6 +2,7 @@ import hotkeys from "hotkeys-js";
 import type { ComponentChildren } from "preact";
 import { useEffect } from "preact/hooks";
 import { HotkeyHint } from "../common/hotkey_hint";
+import { Link } from "../common/link";
 
 export interface LayoutProps {
   children: ComponentChildren;
@@ -36,9 +37,9 @@ export function Layout(props: LayoutProps) {
         <Toc />
 
         <main class="mx-4 md:mx-0">{props.children}</main>
-
-        <Footer />
       </div>
+
+      <Footer />
 
       {/* <ProjectsModal /> */}
     </>
@@ -107,36 +108,22 @@ function Toc() {
 
 function Footer() {
   return (
-    <footer class="border-t-divider-light mb-8 border-t pt-8 text-center">
+    <footer class="bg-secondary mt-8 py-8 text-center text-white">
       <div class="mb-1">
         Created by{" "}
-        <a
-          class="text-primary font-bold underline"
-          href="https://github.com/tipsypastels"
-          target="_blank"
-        >
+        <Link blank to="https://github.com/tipsypastels" look="none" bold>
           tipsypastels
-        </a>
+        </Link>
+        .
       </div>
-      <div class="mb-1">
-        Read the{" "}
-        <a
-          class="text-primary font-bold underline"
-          href="https://github.com/tipsypastels/stardex/blob/main/CHANGELOG.md"
-          target="_blank"
-        >
-          changelog
-        </a>
-      </div>
-      <div>
-        View on
-        <a
-          class="primary font-bold underline"
-          href="https://github.com/tipsypastels/stardex"
-          target="_blank"
-        >
+      <div class="text-sm">
+        <Link blank to="https://github.com/tipsypastels/stardex/blob/main/CHANGELOG.md" look="none">
+          Changelog
+        </Link>{" "}
+        •{" "}
+        <Link blank to="https://github.com/tipsypastels/stardex" look="none">
           GitHub
-        </a>
+        </Link>
       </div>
     </footer>
   );
