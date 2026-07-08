@@ -30,7 +30,7 @@ export function Modal(props: ModalProps) {
       class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center bg-black/(--backdrop-opacity) lg:items-center"
       onClick={handleClick}
     >
-      <div class="bg-background flex h-[60vh] w-125 max-w-full flex-col overflow-y-scroll rounded-md p-8 lg:h-[unset] lg:overflow-y-auto">
+      <div class="bg-background flex h-[80vh] w-125 max-w-full flex-col overflow-y-scroll rounded-md p-8 lg:h-[unset] lg:overflow-y-auto">
         <div class="border-b-divider-heavy mb-4 flex border-b-2 pb-4">
           <h1 class="grow text-xl font-bold">{props.title}</h1>
           <ButtonIcon icon="times" label="Close" onClick={props.onClose} />

@@ -1,10 +1,11 @@
+import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import type { PokedexFilter } from "../../../models/pokedex_filter";
 import { POKEDEX_FORMATS, type PokedexFormat } from "../../../models/pokedex_format";
 import { MetricsContext, PokedexFormatContext } from "../../../state/context";
 import { Actions } from "../../common/menus/actions";
-import { Drawer, useCabinetState } from "../../common/menus/drawer";
+import { Modal } from "../../common/menus/modal";
 import { ModePicker } from "../../common/menus/mode_picker";
 
 export interface PokedexActionsProps {
@@ -13,7 +14,7 @@ export interface PokedexActionsProps {
 
 export function PokedexActions({ filter }: PokedexActionsProps) {
   const format = useContext(PokedexFormatContext);
-  const dropdown = useCabinetState<"format" | "filter">();
+  const modal = useSignal<"format" | "filter">();
 
   return (
     <>
@@ -22,22 +23,22 @@ export function PokedexActions({ filter }: PokedexActionsProps) {
           {
             icon: format.icon.value,
             name: "Format",
-            onClick: (e) => dropdown.open("format", e.currentTarget),
+            onClick: () => (modal.value = "format"),
           },
           {
             icon: filter.icon.value,
             name: "Filter",
-            onClick: (e) => dropdown.open("filter", e.currentTarget),
+            onClick: () => (modal.value = "filter"),
           },
         ]}
       />
 
-      <Show when={() => dropdown.current.value === "format"}>
-        <FormatModal format={format} onClose={() => dropdown.close()} />
+      <Show when={() => modal.value === "format"}>
+        <FormatModal format={format} onClose={() => (modal.value = undefined)} />
       </Show>
 
-      <Show when={() => dropdown.current.value === "filter"}>
-        <FilterModal filter={filter} onClose={() => dropdown.close()} />
+      <Show when={() => modal.value === "filter"}>
+        <FilterModal filter={filter} onClose={() => (modal.value = undefined)} />
       </Show>
     </>
   );
@@ -50,13 +51,13 @@ interface FormatModalProps {
 
 function FormatModal({ format, onClose }: FormatModalProps) {
   return (
-    <Drawer onClose={onClose}>
+    <Modal title="Format Pokédex" onClose={onClose}>
       <ModePicker
         modes={POKEDEX_FORMATS.options}
         activeIndex={format.index.value}
         setActiveIndex={(index) => (format.key.value = POKEDEX_FORMATS.keys[index])}
       />
-    </Drawer>
+    </Modal>
   );
 }
 
@@ -68,7 +69,7 @@ interface FilterModalProps {
 function FilterModal({ filter, onClose }: FilterModalProps) {
   const metrics = useContext(MetricsContext);
   return (
-    <Drawer onClose={onClose}>
+    <Modal title="Filter Pokédex" onClose={onClose}>
       <div class="flex items-center">
         <div class="font-bold">Type:</div>
         <select
@@ -88,6 +89,6 @@ function FilterModal({ filter, onClose }: FilterModalProps) {
           ))}
         </select>
       </div>
-    </Drawer>
+    </Modal>
   );
 }

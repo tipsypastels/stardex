@@ -4,7 +4,7 @@ interface Action {
   name: string;
   icon: string;
   iconColor?: string;
-  onClick(e: MouseEvent & { currentTarget: HTMLButtonElement }): void;
+  onClick(): void;
 }
 
 export interface ActionsProps {
