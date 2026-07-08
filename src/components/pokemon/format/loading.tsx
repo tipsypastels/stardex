@@ -8,6 +8,7 @@ const DEFAULT_HEIGHT = 144;
 
 const store = stored<number>("stardex_pokedex_format_client_height");
 
+// TODO: Reconsider this approach, it means the size will always be wrong when changing formats.
 export function usePokedexFormatClientHeightSaving(ref: RefObject<HTMLDivElement>) {
   useEffect(() => {
     const interval = setInterval(() => {

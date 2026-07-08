@@ -14,7 +14,7 @@ const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
     load: lazy(async () => (await import("./icons")).PokedexIconsView),
   },
   names: {
-    load: () => null,
+    load: lazy(async () => (await import("./names")).PokedexNamesView),
   },
   text: {
     load: () => null,
