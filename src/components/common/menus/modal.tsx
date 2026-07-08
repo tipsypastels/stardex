@@ -2,7 +2,7 @@ import hotkeys from "hotkeys-js";
 import type { ComponentChildren } from "preact";
 import { createPortal } from "preact/compat";
 import { useEffect } from "preact/hooks";
-import { ButtonIcon } from "../common/button_icon";
+import { ButtonIcon } from "../button_icon";
 
 const root = document.getElementById("app-modal")!;
 

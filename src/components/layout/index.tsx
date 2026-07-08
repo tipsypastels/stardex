@@ -1,10 +1,10 @@
 import hotkeys from "hotkeys-js";
 import type { ComponentChildren } from "preact";
 import { useEffect } from "preact/hooks";
-import { HotkeyHint } from "../common/hotkey_hint";
 import { Icon } from "../common/icon";
 import { Link } from "../common/link";
-import { ProjectsModal, ProjectsSelect } from "./projects";
+import { HotkeyHint } from "../hotkey_hint";
+import { ProjectsModal, ProjectsSelect } from "../projects";
 
 export interface LayoutProps {
   children: ComponentChildren;

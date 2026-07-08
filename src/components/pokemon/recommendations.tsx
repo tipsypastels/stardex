@@ -13,13 +13,13 @@ import {
   StrictnessContext,
 } from "../../state/context";
 import { stored } from "../../utils/storage";
-import { Actions } from "../common/actions";
 import { Empty } from "../common/empty";
 import { Icon } from "../common/icon";
 import { ButtonLink } from "../common/link";
-import { ModePicker } from "../common/mode_picker";
+import { Actions } from "../common/menus/actions";
+import { Modal } from "../common/menus/modal";
+import { ModePicker } from "../common/menus/mode_picker";
 import { LinedSubheading } from "../layout/lined_subheading";
-import { Modal } from "../layout/modal";
 import { TypeName } from "./util/type_name";
 
 const store = stored<boolean>("stardex_recommendations_show_just_right");

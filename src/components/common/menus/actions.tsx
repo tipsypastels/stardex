@@ -1,10 +1,10 @@
-import { Icon } from "./icon";
+import { Icon } from "../icon";
 
 interface Action {
   name: string;
   icon: string;
   iconColor?: string;
-  onClick(): void;
+  onClick(e: MouseEvent & { currentTarget: HTMLButtonElement }): void;
 }
 
 export interface ActionsProps {

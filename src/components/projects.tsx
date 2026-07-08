@@ -1,10 +1,10 @@
 import { signal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import { ProjectsContext } from "../../state/context";
-import { Icon } from "../common/icon";
-import { Menu } from "../common/menu";
-import { Modal } from "./modal";
+import { ProjectsContext } from "../state/context";
+import { Icon } from "./common/icon";
+import { Menu } from "./common/menus/menu";
+import { Modal } from "./common/menus/modal";
 
 const modalOpen = signal(false);
 

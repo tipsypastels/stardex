@@ -1,7 +1,7 @@
 import { useSignal, useSignalEffect } from "@preact/signals";
 import type { ComponentChildren } from "preact";
 import { useRef } from "preact/hooks";
-import { Icon } from "./icon";
+import { Icon } from "../icon";
 
 interface ButtonItem {
   type: "button";

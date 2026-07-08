@@ -1,4 +1,4 @@
-import { Icon } from "./icon";
+import { Icon } from "../icon";
 
 interface Mode {
   name: string;
