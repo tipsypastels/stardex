@@ -196,11 +196,11 @@ function RegionsPicker({ regions }: RegionsPickerProps) {
 
       <div class="mb-4">
         <strong>Select: </strong>
-        <ButtonLink onClick={() => regions.setRecommended()}>Recommended</ButtonLink>
+        <ButtonLink onClick={() => regions.set(REGIONS.recommendedKeys)}>Recommended</ButtonLink>
         {" / "}
-        <ButtonLink onClick={() => regions.setAll()}>All</ButtonLink>
+        <ButtonLink onClick={() => regions.set(REGIONS.allKeys)}>All</ButtonLink>
         {" / "}
-        <ButtonLink onClick={() => regions.setNone()}>None</ButtonLink>
+        <ButtonLink onClick={() => regions.set([])}>None</ButtonLink>
       </div>
 
       <div class="text-sm">

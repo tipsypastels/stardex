@@ -1,5 +1,6 @@
 import "./app.css";
 
+import { Show } from "@preact/signals/utils";
 import { render } from "preact";
 import { useContext } from "preact/hooks";
 import { Layout } from "./components/layout";
@@ -28,12 +29,14 @@ function AppInner() {
       <Section id="pokedex" title="Pokédex" hasActions>
         <Pokedex />
       </Section>
-      <Section id="types" title="Types">
-        <TypePieChart allotment={metrics.pokemonsAllotment.value} />
-      </Section>
-      <Section id="recommendations" title="Recommendations" hasActions>
-        <Recommendations />
-      </Section>
+      <Show when={() => metrics.pokemonsAllotment.value.total > 0}>
+        <Section id="types" title="Types">
+          <TypePieChart allotment={metrics.pokemonsAllotment.value} />
+        </Section>
+        <Section id="recommendations" title="Recommendations" hasActions>
+          <Recommendations />
+        </Section>
+      </Show>
     </>
   );
 }

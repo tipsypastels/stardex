@@ -15,7 +15,7 @@ export interface RawProjectModels {
   pokemons: RawPokemon[];
   regions: RegionKey[];
   strictness: StrictnessKey;
-  pokeedexFormat: PokedexFormatKey;
+  pokedexFormat: PokedexFormatKey;
 }
 
 export interface RawSharedProject {

@@ -36,9 +36,11 @@ function GridIcons() {
   const pokemons = useContext(PokemonsContext);
   return (
     <ol class="mb-4 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
-      {pokemons.map((pokemon) => {
-        return <ItemIcons pokemon={pokemon} />;
-      })}
+      {pokemons.all.value
+        .map((pokemon) => {
+          return <ItemIcons pokemon={pokemon} />;
+        })
+        .toArray()}
     </ol>
   );
 }

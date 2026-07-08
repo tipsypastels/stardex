@@ -70,7 +70,7 @@ export const ProjectList = createModel(
               pokemons: [],
               regions: REGIONS.recommendedKeys,
               strictness: STRICTNESSES.defaultKey,
-              pokeedexFormat: POKEDEX_FORMATS.defaultKey,
+              pokedexFormat: POKEDEX_FORMATS.defaultKey,
             },
           }),
         );
@@ -92,7 +92,7 @@ export const ProjectList = createModel(
   },
 );
 
-export const PROJECT_LISTS = () => {
+export const PROJECT_LISTS = (() => {
   const defaults: RawProject[] = [
     {
       v: PROJECT_VERSION,
@@ -110,4 +110,4 @@ export const PROJECT_LISTS = () => {
     return new ProjectList(projects, getModels, setModels);
   }
   return { initial };
-};
+})();

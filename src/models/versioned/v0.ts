@@ -70,7 +70,7 @@ export interface V0_RawProjectModels {
   pokemon: V0_RawPokemon[];
   regions: RegionKey[];
   strictness: StrictnessKey;
-  pokeedexFormat: PokedexFormatKey;
+  pokedexFormat: PokedexFormatKey;
 }
 
 export interface V0_RawSharedProject {

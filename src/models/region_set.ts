@@ -37,17 +37,14 @@ export const RegionSet = createModel(($keys: RegionKey[]) => {
     add(key: RegionKey) {
       keys.value = keys.value.add(key);
     },
-    setAll() {
-      keys.value = ISet(REGIONS.allKeys);
-    },
-    setRecommended() {
-      keys.value = ISet(REGIONS.recommendedKeys);
-    },
-    setNone() {
-      keys.value = ISet();
+    set(newKeys: RegionKey[]) {
+      keys.value = ISet(newKeys);
     },
     delete(key: RegionKey) {
       keys.value = keys.value.delete(key);
+    },
+    toRaw() {
+      return keys.value.toArray();
     },
   };
 });

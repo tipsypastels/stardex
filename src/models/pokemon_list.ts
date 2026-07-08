@@ -3,6 +3,7 @@ import { List as IList, Map as IMap } from "immutable";
 import { readonly } from "../utils/signal";
 import { stored } from "../utils/storage";
 import { POKEMONS, type Pokemon, type RawPokemon } from "./pokemon";
+import type { V0_RawPokemon } from "./versioned/v0";
 
 const store = stored<RawPokemon[], IList<Pokemon>>("stardex_pokemon");
 
@@ -41,11 +42,11 @@ export const PokemonList = createModel(($all: Pokemon[]) => {
     delete(index: number) {
       all.value = all.value.delete(index);
     },
-    map<T>(f: (value: Pokemon, index: number) => T) {
-      return all.value.map(f).toArray();
+    setFromRaw(raws: (RawPokemon | V0_RawPokemon)[]) {
+      all.value = IList(raws.map(POKEMONS.from));
     },
     toRaw() {
-      return all.value.map((p) => p.toRaw());
+      return all.value.map((p) => p.toRaw()).toArray();
     },
   };
 });

@@ -4,6 +4,7 @@ import { useEffect } from "preact/hooks";
 import { HotkeyHint } from "../common/hotkey_hint";
 import { Icon } from "../common/icon";
 import { Link } from "../common/link";
+import { ProjectsModal, ProjectsSelect } from "./projects";
 
 export interface LayoutProps {
   children: ComponentChildren;
@@ -13,12 +14,11 @@ export function Layout(props: LayoutProps) {
   return (
     <>
       <div class="sticky top-4 ml-4 hidden items-center gap-4 lg:flex">
-        {/* <ProjectsSelect /> */}
-        projects (big)
+        <ProjectsSelect />
       </div>
 
       <div class="m-auto w-200 max-w-full pt-8">
-        <div class="mb-12 flex flex-col items-center gap-2 md:flex-row">
+        <div class="mb-4 flex flex-col items-center gap-2 lg:mb-12 lg:flex-row">
           <div
             title="Stardex"
             class="bg-primary flex h-13.75 w-13.75 items-center justify-center rounded-md text-3xl font-bold text-white shadow-xl shadow-slate-400 select-none"
@@ -29,11 +29,12 @@ export function Layout(props: LayoutProps) {
         </div>
 
         <div class="mb-4 flex justify-center lg:hidden">
-          {/* <ProjectsSelect /> */}
-          projects (small)
+          <ProjectsSelect />
         </div>
 
-        {/* <Notices />
+        <ProjectsModal />
+
+        {/* TODO: <Notices />
         <Nav /> */}
         <Toc />
 
@@ -41,8 +42,6 @@ export function Layout(props: LayoutProps) {
       </div>
 
       <Footer />
-
-      {/* <ProjectsModal /> */}
     </>
   );
 }
