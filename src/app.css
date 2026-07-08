@@ -7,11 +7,11 @@
 
 @theme inline {
   --color-background: var(--background);
-  --color-primary: var(--primary);
-  --color-divider-light: var(--color-slate-300);
-
   --color-foreground: var(--foreground);
   --color-foreground-lesser: var(--foreground-lesser);
+  --color-primary: var(--primary);
+  --color-divider-light: var(--divider-light);
+  --color-divider-heavy: var(--divider-heavy);
 
   --font-*: initial;
   --font-sans:
@@ -23,6 +23,9 @@
 :root {
   --background: white;
   --primary: var(--color-lime-600);
+
+  --divider-light: var(--color-slate-300);
+  --divider-heavy: var(--color-slate-700);
 
   --foreground: black;
   --foreground-lesser: var(--color-slate-600);

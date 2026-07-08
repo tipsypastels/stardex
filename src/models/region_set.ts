@@ -2,7 +2,7 @@ import { computed, createModel, effect, signal } from "@preact/signals";
 import { Set as ISet } from "immutable";
 import { readonly } from "../utils/signal";
 import { stored } from "../utils/storage";
-import { REGIONS, type RegionKey } from "./region";
+import { Region, REGIONS, type RegionKey } from "./region";
 
 const store = stored<RegionKey[], ISet<RegionKey>>("stardex_regions");
 
@@ -12,6 +12,11 @@ export const RegionSet = createModel(($keys: RegionKey[]) => {
   const keys = signal(ISet($keys));
   const all = computed(() => keys.value.toArray().map(REGIONS.of));
 
+  const isAll = computed(() => keys.value.size === REGIONS.allKeys.length);
+  const isRecommended = computed(
+    () => keys.value.size === REGIONS.recommendedKeys.length && !keys.value.has("kanto"),
+  );
+
   effect(() => {
     store.dump(keys.value);
   });
@@ -19,6 +24,14 @@ export const RegionSet = createModel(($keys: RegionKey[]) => {
   return {
     keys: readonly(keys),
     all,
+    isAll,
+    isRecommended,
+    has(region: Region) {
+      return this.hasKey(region.key);
+    },
+    hasKey(key: RegionKey) {
+      return keys.value.has(key);
+    },
     add(key: RegionKey) {
       keys.value = keys.value.add(key);
     },

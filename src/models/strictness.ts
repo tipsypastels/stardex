@@ -12,21 +12,24 @@ export const Strictness = createModel(($key: StrictnessKey) => {
   const name = computed(() => RAW_DATA[key.value].name);
   const description = computed(() => RAW_DATA[key.value].description);
   const maximumRatioDifference = computed(() => RAW_DATA[key.value].maximumRatioDifference);
+  const index = computed(() => STRICTNESSES.keys.indexOf(key.value));
 
   effect(() => {
     store.dump(key.value);
   });
 
-  return { key, name, description, maximumRatioDifference };
+  return { key, name, description, maximumRatioDifference, index };
 });
 
 export const STRICTNESSES = (() => {
   const keys = Object.keys(RAW_DATA) as StrictnessKey[];
   const defaultKey: StrictnessKey = "normal";
 
+  const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
+
   function initial() {
     return new Strictness(store.load() ?? defaultKey);
   }
 
-  return { keys, defaultKey, initial };
+  return { keys, defaultKey, options, initial };
 })();
