@@ -25,6 +25,9 @@ jobs:
       - name: Copy files
         run: cp -a ./this/. ./beta
 
+      - name: Switch to beta
+        run: cd beta
+
       - name: Commit to beta
         run: |
           git add -A .
