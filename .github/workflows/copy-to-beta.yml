@@ -1,0 +1,34 @@
+name: Mirror to Beta Preview
+
+on:
+  push:
+    branches: "rewrite"
+  workflow_dispatch:
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: ./this
+
+      - name: Checkout beta
+        uses: actions/checkout@v4
+        with:
+          repository: tipsypastels/stardex-beta-preview
+          path: ./beta
+          token: ${{ secrets.COPY_TO_BETA_PAT }}
+
+      - name: Copy files
+        run: cp -r ./this/* ./beta/*
+
+      - name: Commit to beta
+        run: |
+          git add -A .
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -am "Push to beta."
+          git remote set-url origin https://${{ secrets.COPY_TO_BETA_PAT }}@github.com/tipsypastels/stardex-beta-preview.git
+          git push origin main
