@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://tipsypastels.github.io/stardex/" />
     <meta property="og:image" content="https://tipsypastels.github.io/stardex/thumbnail.png" />
 
-    <link rel="icon" href="favicon.png" />
+    <link id="favicon" rel="icon" href="favicon.png" />
 
     <link href="fonts/fa/css/fontawesome.min.css" rel="stylesheet" />
     <link href="fonts/fa/css/solid.min.css" rel="stylesheet" />
@@ -25,8 +25,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
 
     <script>
-      if (localStorage.stardex_dark) {
+      if (localStorage.stardex_dark === "true") {
         document.documentElement.classList.add("dark");
+        document.getElementById("favicon").href = "favicon_dark.png";
       }
     </script>
   </head>
