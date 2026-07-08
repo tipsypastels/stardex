@@ -4,7 +4,7 @@ import type { PokedexFilter } from "../../../models/pokedex_filter";
 import { POKEDEX_FORMATS, type PokedexFormat } from "../../../models/pokedex_format";
 import { MetricsContext, PokedexFormatContext } from "../../../state/context";
 import { Actions } from "../../common/menus/actions";
-import { Dropdown, useMultiDropdownState } from "../../common/menus/dropdown";
+import { Drawer, useCabinetState } from "../../common/menus/drawer";
 import { ModePicker } from "../../common/menus/mode_picker";
 
 export interface PokedexActionsProps {
@@ -13,7 +13,7 @@ export interface PokedexActionsProps {
 
 export function PokedexActions({ filter }: PokedexActionsProps) {
   const format = useContext(PokedexFormatContext);
-  const dropdown = useMultiDropdownState<"format" | "filter">();
+  const dropdown = useCabinetState<"format" | "filter">();
 
   return (
     <>
@@ -50,13 +50,13 @@ interface FormatModalProps {
 
 function FormatModal({ format, onClose }: FormatModalProps) {
   return (
-    <Dropdown onClose={onClose}>
+    <Drawer onClose={onClose}>
       <ModePicker
         modes={POKEDEX_FORMATS.options}
         activeIndex={format.index.value}
         setActiveIndex={(index) => (format.key.value = POKEDEX_FORMATS.keys[index])}
       />
-    </Dropdown>
+    </Drawer>
   );
 }
 
@@ -68,7 +68,7 @@ interface FilterModalProps {
 function FilterModal({ filter, onClose }: FilterModalProps) {
   const metrics = useContext(MetricsContext);
   return (
-    <Dropdown onClose={onClose}>
+    <Drawer onClose={onClose}>
       <div class="flex items-center">
         <div class="font-bold">Type:</div>
         <select
@@ -88,6 +88,6 @@ function FilterModal({ filter, onClose }: FilterModalProps) {
           ))}
         </select>
       </div>
-    </Dropdown>
+    </Drawer>
   );
 }
