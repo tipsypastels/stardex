@@ -2,6 +2,7 @@ import hotkeys from "hotkeys-js";
 import type { ComponentChildren } from "preact";
 import { useEffect } from "preact/hooks";
 import { HotkeyHint } from "../common/hotkey_hint";
+import { Icon } from "../common/icon";
 import { Link } from "../common/link";
 
 export interface LayoutProps {
@@ -110,7 +111,7 @@ function Footer() {
   return (
     <footer class="bg-secondary mt-8 py-8 text-center text-white">
       <div class="mb-1">
-        Created by{" "}
+        Created by <Icon name="duck" />{" "}
         <Link blank to="https://github.com/tipsypastels" look="none" bold>
           tipsypastels
         </Link>
