@@ -7,5 +7,8 @@ export function stored<T, U = T>(key: string) {
     dump(value: U) {
       localStorage.setItem(key, JSON.stringify(value));
     },
+    clear() {
+      localStorage.removeItem(key);
+    },
   };
 }
