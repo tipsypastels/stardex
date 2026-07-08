@@ -37,7 +37,7 @@ function Item({ pokemon }: ItemProps) {
         <div class="grow">{pokemon.name}</div>
 
         {pokemon.types.value.map((type) => (
-          <div title={type.name} style={`color: ${type.color}`}>
+          <div title={type.name} class="dim" style={`color: ${type.color}`}>
             <Icon name={type.icon} />
           </div>
         ))}
