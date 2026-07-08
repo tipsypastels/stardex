@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.COPY_TO_BETA_PAT }}
 
       - name: Copy files
-        run: cp -r ./this/* ./beta/*
+        run: cp -a ./this/. ./beta
 
       - name: Commit to beta
         run: |
