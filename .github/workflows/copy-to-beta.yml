@@ -30,4 +30,4 @@ jobs:
           git config user.email github-actions@github.com
           git commit -am "Push to beta."
           git remote add origin https://${{ secrets.COPY_TO_BETA_PAT }}@github.com/tipsypastels/stardex-beta-preview.git
-          git push -u origin main
+          git push -u origin main --force
