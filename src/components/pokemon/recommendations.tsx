@@ -145,12 +145,12 @@ function RecommendedChangeGroup({ change, title }: RecommendedChangeGroupProps) 
       <LinedSubheading>{title}</LinedSubheading>
       {recommendations.value.map(({ type, ownRatio, againstRatio }) => (
         <li class="flex items-center p-2">
-          <div class="mr-4 hidden w-11.25 text-4xl md:block" style={`color: ${type.color}`}>
+          <div class="dim mr-4 hidden w-11.25 text-4xl md:block" style={`color: ${type.color}`}>
             <Icon name={type.icon} />
           </div>
 
           <div class="grow">
-            <h2 style={`color: ${type.color}`}>
+            <h2 class="dim" style={`color: ${type.color}`}>
               <span class="md:hidden">
                 <Icon name={type.icon} />
               </span>

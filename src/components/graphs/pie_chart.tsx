@@ -15,16 +15,17 @@ export interface PieChartProps {
   slices: PieSlice[];
   donut?: boolean;
   diameter?: number;
+  classes?: string;
 }
 
-export function PieChart({ slices, donut = true, diameter = 250 }: PieChartProps) {
+export function PieChart({ slices, donut = true, diameter = 250, classes }: PieChartProps) {
   const slicesWithMeta = useMemo(
     () => slices.reduce<PieSliceWithMeta[]>(reduceSlice, []),
     [slices],
   );
 
   return (
-    <svg class="-rotate-90" viewBox="-1 -1 2 2" style={`height: ${diameter}px`}>
+    <svg class={`-rotate-90 ${classes}`} viewBox="-1 -1 2 2" style={`height: ${diameter}px`}>
       {slicesWithMeta.map((slice) => (
         <path data-name={slice.name} d={slice.d} style={`fill: ${slice.color}`} />
       ))}

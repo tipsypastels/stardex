@@ -17,7 +17,7 @@ export function TypePieChart(props: TypePieChartProps) {
   return (
     <div class="mx-auto flex w-fit flex-col items-center gap-4 lg:flex-row">
       <div>
-        <PieChart slices={slices} />
+        <PieChart slices={slices} classes="dim" />
       </div>
 
       <div>

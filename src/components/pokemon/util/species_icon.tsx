@@ -18,7 +18,7 @@ export function SpeciesIcon(props: SpeciesIconProps) {
     <div
       role="img"
       aria-label={props.species.name}
-      class="block h-15 w-20"
+      class="dim block h-15 w-20"
       style={`background: transparent url('${SHEET}') no-repeat scroll -${left}px -${top}px / ${
         SHEET_WIDTH * SCALE_2
       }px; image-rendering: pixelated;`}

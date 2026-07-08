@@ -7,7 +7,7 @@ export interface TypeNameProps {
 
 export function TypeName(props: TypeNameProps) {
   return (
-    <span class="whitespace-nowrap" style={`color: ${props.type.color}`}>
+    <span class="dim whitespace-nowrap" style={`color: ${props.type.color}`}>
       <span class="pr-1">
         <Icon name={props.type.icon} />
       </span>

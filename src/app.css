@@ -41,7 +41,7 @@
 
 .dark {
   --background: var(--color-slate-950);
-  --primary: var(--color-sky-300);
+  --primary: var(--color-blue-300);
   --secondary: var(--color-slate-500);
   --warning: var(--color-amber-400);
 
@@ -57,5 +57,11 @@
 @layer base {
   body {
     @apply bg-background text-foreground md:text-lg;
+  }
+}
+
+@utility dim {
+  @variant dark {
+    filter: brightness(0.75);
   }
 }
