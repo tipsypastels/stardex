@@ -47,7 +47,7 @@
 
 .dark {
   --background: var(--color-slate-950);
-  --primary: var(--color-blue-300);
+  --primary: var(--color-indigo-300);
   --secondary: var(--color-slate-500);
   --warning: var(--color-amber-400);
   --footer: var(--color-slate-900);

@@ -1,5 +1,5 @@
 import { Actions } from "../common/actions";
-import { PokedexFormat } from "./pokedex_format";
+import { PokedexFormat } from "./format";
 
 export function Pokedex() {
   return (
