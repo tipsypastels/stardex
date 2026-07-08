@@ -24,8 +24,9 @@ jobs:
 
       - name: Copy repository
         run: |
-          mkdir -p beta/x
-          cp -a this beta/x
+          mkdir -p ./beta/x
+          cp -a ./this/. ./beta/x
+          rm -rf ./beta/x/.git
 
       - name: Commit to beta
         run: |
@@ -34,5 +35,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git commit -am "Push to beta."
-          git remote add origin https://${{ secrets.COPY_TO_BETA_PAT }}@github.com/tipsypastels/stardex-beta-preview.git
+          git remote set-url origin https://${{ secrets.COPY_TO_BETA_PAT }}@github.com/tipsypastels/stardex-beta-preview.git
           git push -u origin main
