@@ -76,5 +76,5 @@
 }
 
 .has-modal {
-  @apply max-md:overflow-y-hidden;
+  @apply max-md:fixed max-md:overflow-y-hidden;
 }
