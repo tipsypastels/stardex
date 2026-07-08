@@ -1,13 +1,16 @@
 {
   "icons": {
+    "icon": "icons",
     "name": "Icons",
     "description": "Display your Pokédex as party icons."
   },
   "names": {
+    "icon": "diagram-cells",
     "name": "Names",
     "description": "Display your Pokédex as name cards."
   },
-  "legacyText": {
+  "text": {
+    "icon": "pen-line",
     "name": "Text Editor",
     "description": "A single textbox to type all Pokémon into. Classic Stardex mode."
   }

@@ -15,7 +15,7 @@ const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
   names: {
     load: () => null,
   },
-  legacyText: {
+  text: {
     load: () => null,
   },
 };

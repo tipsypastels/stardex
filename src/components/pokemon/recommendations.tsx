@@ -98,13 +98,13 @@ export function Recommendations() {
         </ButtonLink>
       </Show>
 
-      {modal.value === "regions" ? (
+      <Show when={() => modal.value === "regions"}>
         <Modal title="Regions" onClose={() => (modal.value = undefined)}>
           <RegionsPicker regions={regions} />
         </Modal>
-      ) : null}
+      </Show>
 
-      {modal.value === "strictness" ? (
+      <Show when={() => modal.value === "strictness"}>
         <Modal title="Strictness" onClose={() => (modal.value = undefined)}>
           <ModePicker
             modes={STRICTNESSES.options}
@@ -116,7 +116,7 @@ export function Recommendations() {
             type distributions in the regions you've chosen to compare against.
           </div>
         </Modal>
-      ) : null}
+      </Show>
     </>
   );
 }

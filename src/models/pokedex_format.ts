@@ -10,22 +10,33 @@ export type PokedexFormat = InstanceType<typeof PokedexFormat>;
 export const PokedexFormat = createModel(($key: PokedexFormatKey) => {
   const key = signal($key);
   const name = computed(() => RAW_DATA[key.value].name);
+  const icon = computed(() => RAW_DATA[key.value].icon);
   const description = computed(() => RAW_DATA[key.value].description);
+  const index = computed(() => POKEDEX_FORMATS.keys.indexOf(key.value));
 
   effect(() => {
     store.dump(key.value);
   });
 
-  return { key, name, description };
+  return { key, name, icon, description, index };
 });
 
 export const POKEDEX_FORMATS = (() => {
   const keys = Object.keys(RAW_DATA) as PokedexFormatKey[];
   const defaultKey: PokedexFormatKey = "icons";
 
+  const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
+
   function initial() {
-    return new PokedexFormat(store.load() ?? defaultKey);
+    let key = store.load();
+
+    // Not deserving of a whole v0 thing.
+    if ((key as string) === "legacyText") {
+      key = "text";
+    }
+
+    return new PokedexFormat(key ?? defaultKey);
   }
 
-  return { keys, defaultKey, initial };
+  return { keys, defaultKey, options, initial };
 })();

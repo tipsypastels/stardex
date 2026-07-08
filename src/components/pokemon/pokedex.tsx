@@ -1,32 +1,10 @@
-import { Actions } from "../common/actions";
+import { PokedexActions } from "./actions";
 import { PokedexFormat } from "./format";
 
 export function Pokedex() {
   return (
     <>
-      <PokedexFormat
-        actions={() => (
-          <Actions
-            actions={[
-              {
-                icon: "asterisk",
-                name: "Filter",
-                onClick: () => {},
-              },
-              {
-                icon: "asterisk",
-                name: "Filter",
-                onClick: () => {},
-              },
-              {
-                icon: "asterisk",
-                name: "Filter",
-                onClick: () => {},
-              },
-            ]}
-          />
-        )}
-      />
+      <PokedexFormat actions={() => <PokedexActions />} />
     </>
   );
 }
