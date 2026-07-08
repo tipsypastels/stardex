@@ -14,21 +14,17 @@ jobs:
         with:
           repository: tipsypastels/stardex
           path: ./this
+          ref: rewrite
 
-      - name: Checkout beta
-        uses: actions/checkout@v5
-        with:
-          repository: tipsypastels/stardex-beta-preview
-          path: ./beta
-          token: ${{ secrets.COPY_TO_BETA_PAT }}
-
-      - name: Copy files
-        run: cp -a ./this/. ./beta
+      - name: Copy repository
+        run: cp -a this beta
 
       - name: Commit to beta
         run: |
           cd beta
+          rm -rf .git
 
+          git init
           git add -A .
           git config user.name github-actions
           git config user.email github-actions@github.com
