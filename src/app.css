@@ -12,6 +12,7 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-warning: var(--warning);
+  --color-footer: var(--footer);
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
   --color-shadow: var(--shadow);
@@ -22,6 +23,8 @@
     "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: Itim, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: monospace;
+
+  --backdrop-opacity: var(--backdrop-opacity);
 }
 
 :root {
@@ -29,6 +32,7 @@
   --primary: var(--color-lime-600);
   --secondary: var(--color-mauve-500);
   --warning: var(--color-amber-400);
+  --footer: var(--secondary);
 
   --divider-light: var(--color-slate-300);
   --divider-heavy: var(--color-slate-700);
@@ -37,6 +41,7 @@
   --foreground-lesser: var(--color-slate-600);
 
   --shadow: var(--color-slate-400);
+  --backdrop-opacity: 30%;
 }
 
 .dark {
@@ -44,6 +49,7 @@
   --primary: var(--color-blue-300);
   --secondary: var(--color-slate-500);
   --warning: var(--color-amber-400);
+  --footer: var(--color-slate-900);
 
   --divider-light: var(--color-slate-800);
   --divider-heavy: var(--color-slate-700);
@@ -52,6 +58,7 @@
   --foreground-lesser: var(--color-slate-600);
 
   --shadow: var(--color-black);
+  --backdrop-opacity: 60%;
 }
 
 @layer base {

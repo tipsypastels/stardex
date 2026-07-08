@@ -112,7 +112,7 @@ function Toc() {
 
 function Footer() {
   return (
-    <footer class="bg-secondary mt-8 py-8 text-center text-white">
+    <footer class="bg-footer mt-8 py-8 text-center text-white">
       <div class="mb-1">
         Created by <Icon name="duck" />{" "}
         <Link blank to="https://github.com/tipsypastels" look="none" bold>

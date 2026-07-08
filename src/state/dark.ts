@@ -10,9 +10,9 @@ export function useDarkClass() {
     store.dump(dark.value);
 
     if (dark.value) {
-      document.body.classList.add("dark");
+      document.documentElement.classList.add("dark");
     } else {
-      document.body.classList.remove("dark");
+      document.documentElement.classList.remove("dark");
     }
   });
 }
