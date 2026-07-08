@@ -20,10 +20,10 @@ export function Layout(props: LayoutProps) {
           </div>
 
           <div class="m-auto w-200 max-w-full grow pt-8">
-            <div class="mb-4 flex flex-col items-center gap-2 lg:mb-12 lg:flex-row">
+            <div class="mb-4 flex flex-col items-center gap-2 lg:mb-12 lg:flex-row lg:gap-3">
               <div
                 title="Stardex"
-                class="bg-primary flex h-13.75 w-13.75 items-center justify-center rounded-md text-3xl font-bold text-white shadow-xl shadow-slate-400 select-none"
+                class="bg-primary shadow-shadow flex h-13.75 w-13.75 items-center justify-center rounded-md text-3xl font-bold text-white shadow-xl select-none"
               >
                 <div>Sd</div>
               </div>

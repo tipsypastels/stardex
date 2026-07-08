@@ -14,6 +14,7 @@
   --color-warning: var(--warning);
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
+  --color-shadow: var(--shadow);
 
   --font-*: initial;
   --font-sans:
@@ -34,6 +35,23 @@
 
   --foreground: black;
   --foreground-lesser: var(--color-slate-600);
+
+  --shadow: var(--color-slate-400);
+}
+
+.dark {
+  --background: var(--color-slate-950);
+  --primary: var(--color-sky-300);
+  --secondary: var(--color-slate-500);
+  --warning: var(--color-amber-400);
+
+  --divider-light: var(--color-slate-800);
+  --divider-heavy: var(--color-slate-700);
+
+  --foreground: var(--color-slate-400);
+  --foreground-lesser: var(--color-slate-600);
+
+  --shadow: var(--color-black);
 }
 
 @layer base {

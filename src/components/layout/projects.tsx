@@ -13,7 +13,7 @@ export function ProjectsSelect() {
 
   return (
     <div class="w-max">
-      <div class="flex text-sm">
+      <div class="mb-1 flex text-sm">
         <div class="grow font-bold">Projects</div>
         <button
           class="text-primary cursor-pointer underline"
@@ -26,7 +26,7 @@ export function ProjectsSelect() {
         </button>
       </div>
       <select
-        class="border-diivder-light w-75 max-w-full rounded-md border-2"
+        class="border-divider-light bg-background w-75 max-w-full border-x-0 border-y-2"
         value={projects.active.value.id}
         onChange={(e) => {
           e.preventDefault();

@@ -10,8 +10,11 @@ import { Pokedex } from "./components/pokemon/pokedex";
 import { Recommendations } from "./components/pokemon/recommendations";
 import { TypePieChart } from "./components/pokemon/type_pie_chart";
 import { MetricsContext, Models } from "./state/context";
+import { dark, useDarkClass } from "./state/dark";
 
 export function App() {
+  useDarkClass();
+
   return (
     <>
       <Models>
@@ -25,6 +28,7 @@ export function App() {
 
 function AppInner() {
   const metrics = useContext(MetricsContext);
+
   return (
     <>
       <Section id="pokedex" title="Pokédex" hasActions>
@@ -40,6 +44,11 @@ function AppInner() {
       </Section>
       <Section id="recommendations" title="Recommendations" hasActions>
         <Recommendations />
+      </Section>
+      <Section id="dark" title="dark">
+        <button class="dark:text-red-500" onClick={() => (dark.value = !dark.value)}>
+          toggle
+        </button>
       </Section>
     </>
   );
