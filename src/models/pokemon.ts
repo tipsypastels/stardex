@@ -60,7 +60,9 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
   const key = computed(() => species.value.key);
   const name = computed(() => species.value.name);
 
-  const typeKeyPair = new TypeKeyPair(raw.types ?? species.value.typeKeys, { reset: "initial" });
+  const typeKeyPair = new TypeKeyPair(raw.types ?? species.value.typeKeys, {
+    fallback: species.value.typeKeys,
+  });
 
   const alt = computed(() => {
     if (!typeKeyPair.changed.value || species.value.alts.length === 0) {
@@ -135,7 +137,7 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
   const key = signal(raw.key);
   const name = signal(raw.name);
 
-  const typeKeyPair = new TypeKeyPair(raw.types, { reset: "ignore" });
+  const typeKeyPair = new TypeKeyPair(raw.types);
 
   const species = signal(undefined);
   const alt = signal(undefined);
