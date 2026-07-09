@@ -26,8 +26,8 @@ export function Modal(props: ModalProps) {
   }, [props.onClose]);
 
   useEffect(() => {
-    document.body.classList.add("has-modal");
-    return () => document.body.classList.remove("has-modal");
+    document.documentElement.classList.add("has-modal");
+    return () => document.documentElement.classList.remove("has-modal");
   });
 
   return createPortal(

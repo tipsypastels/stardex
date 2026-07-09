@@ -65,7 +65,7 @@
 
 @layer base {
   body {
-    @apply text-foreground bg-background md:text-lg;
+    @apply text-foreground bg-background w-full md:text-lg;
   }
 }
 
@@ -75,11 +75,10 @@
   }
 }
 
-html,
-body {
-  overscroll-behavior: none;
+html.has-modal {
+  @apply overscroll-none;
 }
 
-.has-modal {
-  @apply max-md:fixed max-md:overflow-y-hidden;
+html.has-modal body {
+  @apply overscroll-none max-md:fixed max-md:overflow-y-hidden;
 }

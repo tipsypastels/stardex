@@ -15,7 +15,7 @@ export function Layout(props: LayoutProps) {
     <>
       <div class="flex min-h-screen flex-col">
         <div class="grow">
-          <div class="sticky top-4 ml-4 hidden items-center gap-4 lg:flex">
+          <div class="sticky mt-4 ml-4 hidden items-center gap-4 lg:flex">
             <ProjectsSelect />
           </div>
 
