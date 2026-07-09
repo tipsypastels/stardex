@@ -100,13 +100,13 @@ export function Recommendations() {
       </Show>
 
       <Show when={() => modal.value === "regions"}>
-        <Modal title="Regions" onClose={() => (modal.value = undefined)}>
+        <Modal title="Regions" onClose={() => (modal.value = undefined)} large>
           <RegionsPicker regions={regions} />
         </Modal>
       </Show>
 
       <Show when={() => modal.value === "strictness"}>
-        <Modal title="Strictness" onClose={() => (modal.value = undefined)}>
+        <Modal title="Strictness" onClose={() => (modal.value = undefined)} large>
           <ModePicker
             modes={STRICTNESSES.options}
             activeIndex={strictness.index.value}
