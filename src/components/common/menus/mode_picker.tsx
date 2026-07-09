@@ -2,6 +2,7 @@ import { Icon } from "../icon";
 
 interface Mode {
   name: string;
+  icon: string;
   description?: string;
 }
 
@@ -13,29 +14,31 @@ export interface ModePickerProps {
 
 export function ModePicker(props: ModePickerProps) {
   return (
-    <div>
+    <ul class="mb-4 last:mb-0">
       {props.modes.map((mode, index) => {
         const active = index === props.activeIndex;
         return (
-          <label class="border-t-divider-light flex cursor-pointer items-center border-t p-4 first:border-t-0">
-            <input
-              class="hidden"
-              type="radio"
-              name="strictness"
-              onClick={() => props.setActiveIndex(index)}
-            />
+          <li class="border-b-divider-light border-b py-2 first:pt-0 last:border-b-0 last:pb-0">
+            <label class="border-t-divider-light flex cursor-pointer items-center border-t first:border-t-0">
+              <input
+                class="hidden"
+                type="radio"
+                name="strictness"
+                onClick={() => props.setActiveIndex(index)}
+              />
 
-            <div class={`text-primary mr-4 ${active ? "" : "opacity-0"}`}>
-              <Icon name="badge-check" />
-            </div>
+              <div class={`mr-4 ${active ? "text-primary" : "opacity-20"}`}>
+                <Icon name={mode.icon} />
+              </div>
 
-            <div>
-              <div>{mode.name}</div>
-              {mode.description ? <div class="text-base">{mode.description}</div> : null}
-            </div>
-          </label>
+              <div>
+                <div>{mode.name}</div>
+                {mode.description ? <div class="text-base">{mode.description}</div> : null}
+              </div>
+            </label>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 }
