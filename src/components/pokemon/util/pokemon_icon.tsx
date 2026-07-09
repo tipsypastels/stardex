@@ -70,13 +70,12 @@ export interface PokemonIconProps {
 }
 
 export function PokemonIcon({ pokemon }: PokemonIconProps) {
-  if (pokemon.isCustom()) {
+  const species = pokemon.species.value;
+  if (!species) {
     return <SpeciesIcon species={{ id: 0, name: pokemon.name.value }} />;
   }
 
-  const species = pokemon.species.value;
   const alt = pokemon.alt.value;
-
   if (alt) {
     const id = ALT_POSITIONS[`${species.key}-${alt.kind}`];
     return <SpeciesIcon species={{ id, name: species.name }} />;

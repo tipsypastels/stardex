@@ -41,7 +41,7 @@ export function Modal({ title, children, footer, onClose }: ModalProps) {
           <ButtonIcon icon="times" label="Close" onClick={onClose} />
         </div>
         <div class="grow">{children}</div>
-        {footer ? <div>{footer}</div> : null}
+        {footer ? <div class="mt-4">{footer}</div> : null}
       </div>
     </div>,
     root,

@@ -1,16 +1,12 @@
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import type { PokedexFilter } from "../../../models/pokedex_filter";
+import type { PokedexFormatViewProps } from ".";
 import type { Pokemon } from "../../../models/pokemon";
 import { PokemonsContext } from "../../../state/context";
 import { Icon } from "../../common/icon";
 import { EmptyFilteredPokedex, EmptyPokedex } from "./empty";
 
-export interface PokedexNamesViewProps {
-  filter: PokedexFilter;
-}
-
-export function PokedexNamesView({ filter }: PokedexNamesViewProps) {
+export function PokedexNamesView({ filter }: PokedexFormatViewProps) {
   const pokemons = useContext(PokemonsContext);
   const filtered = filter.iterator.value(pokemons.all.value);
 

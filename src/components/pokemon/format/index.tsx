@@ -6,7 +6,7 @@ import { PokedexFormatContext } from "../../../state/context";
 import { PokedexFormatLoading, usePokedexFormatClientHeightSaving } from "./loading";
 
 interface FormatRenderingInfo {
-  load: FunctionComponent<{ filter: PokedexFilter }>;
+  load: FunctionComponent<PokedexFormatViewProps>;
 }
 
 const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
@@ -21,12 +21,16 @@ const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
   },
 };
 
-export interface PokedexFormatProps {
+export interface PokedexFormatViewProps {
   filter: PokedexFilter;
+  setEditingIndex(index: number): void;
+}
+
+export interface PokedexFormatProps extends PokedexFormatViewProps {
   actions(): ComponentChildren;
 }
 
-export function PokedexFormat({ filter, actions }: PokedexFormatProps) {
+export function PokedexFormat({ actions, ...rest }: PokedexFormatProps) {
   const format = useContext(PokedexFormatContext);
   const formatInfo = FORMAT_INFOS[format.key.value];
   const Component = formatInfo.load;
@@ -40,7 +44,7 @@ export function PokedexFormat({ filter, actions }: PokedexFormatProps) {
       {actions()}
       <div class="mb-4" ref={ref}>
         <Suspense fallback={<PokedexFormatLoading />}>
-          <Component filter={filter} />
+          <Component {...rest} />
         </Suspense>
       </div>
     </>

@@ -104,7 +104,7 @@ export function AddPokemon() {
       <div class="border-secondary relative mb-2 rounded-b-md border-2 border-t-0">
         <input
           ref={inputRef}
-          class="bg-background block h-20 w-full border-0"
+          class="block h-20 w-full border-0"
           placeholder="Enter a Pokémon..."
           value={input}
           onChange={(e) => (input.value = e.currentTarget.value)}

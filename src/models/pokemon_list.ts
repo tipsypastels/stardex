@@ -14,9 +14,11 @@ export const PokemonList = createModel(($all: Pokemon[]) => {
   const indices = computed(() => IMap(all.value.map((p, i) => [p.key.value, i])));
   const size = computed(() => all.value.size);
 
-  effect(() => {
+  function onChange() {
     store.dump(all.value);
-  });
+  }
+
+  effect(onChange);
 
   return {
     all: readonly(all),
@@ -29,7 +31,9 @@ export const PokemonList = createModel(($all: Pokemon[]) => {
       return indices.value.has(key);
     },
     get(index: number) {
-      return computed(() => all.value.get(index));
+      const pokemon = all.value.get(index);
+      pokemon?.onChange(onChange);
+      return pokemon;
     },
     push(...pokemons: Pokemon[]) {
       all.value = all.value.push(...pokemons.filter((p) => !this.has(p)));

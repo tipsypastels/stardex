@@ -1,6 +1,6 @@
-import { useComputed, useSignal } from "@preact/signals";
-import type { RefObject } from "preact";
+import { useSignal } from "@preact/signals";
 import { useEffect, useRef } from "preact/hooks";
+import { Input } from "../../common/input";
 import { ButtonLink } from "../../common/link";
 import { TYPE_SUGGESTIONS_LIST } from "../../types/util/suggestions";
 
@@ -9,6 +9,8 @@ export interface AddCustomProps {
   onCancel(): void;
 }
 
+// TODO: This never checks that a Pokemon with that key isn't in the dex.
+// It's a no-op but it still lets you specify types.
 export function AddCustom({ onSubmit, onCancel }: AddCustomProps) {
   const type1 = useSignal("");
   const type2 = useSignal("");
@@ -16,17 +18,14 @@ export function AddCustom({ onSubmit, onCancel }: AddCustomProps) {
   const type1Ref = useRef<HTMLInputElement>(null);
   const type2Ref = useRef<HTMLInputElement>(null);
 
-  const canSubmit = useComputed(() => !!type1.value);
-
   function submit() {
-    if (!canSubmit.value) {
-      alert("Enter a type!");
+    const typeKeys = [type1.value, type2.value]
+      .map((k) => k.trim().toLowerCase())
+      .filter((k) => !!k);
+
+    if (typeKeys.length === 0) {
       type1Ref.current?.focus();
     }
-
-    const typeKeys = (
-      !type2.value || type2.value === type1.value ? [type1.value] : [type1.value, type2.value]
-    ).map((s) => s.toLowerCase());
 
     onSubmit(typeKeys);
   }
@@ -38,6 +37,7 @@ export function AddCustom({ onSubmit, onCancel }: AddCustomProps) {
   }
 
   useEffect(() => {
+    console.log(type1Ref.current);
     type1Ref.current?.focus();
   }, []);
 
@@ -45,49 +45,29 @@ export function AddCustom({ onSubmit, onCancel }: AddCustomProps) {
     <div class="flex flex-col justify-center gap-4">
       <div class="grow text-center">
         ...with type{" "}
-        <TypeInput
-          input={type1.value}
-          inputRef={type1Ref}
+        <Input
+          value={type1.value}
+          ref={type1Ref}
           onChange={(e) => (type1.value = e.currentTarget.value)}
           onKeyUp={handleKeyUp}
+          list={TYPE_SUGGESTIONS_LIST}
         />
         {" and "}
-        <TypeInput
-          input={type2.value}
-          inputRef={type2Ref}
+        <Input
+          value={type2.value}
+          ref={type2Ref}
           onChange={(e) => (type2.value = e.currentTarget.value)}
           onKeyUp={handleKeyUp}
+          list={TYPE_SUGGESTIONS_LIST}
         />
       </div>
 
       <div class="flex justify-center gap-2 text-center">
-        <ButtonLink onClick={submit} disabled={!canSubmit.value}>
-          Add
-        </ButtonLink>
+        <ButtonLink onClick={submit}>Add</ButtonLink>
         <ButtonLink look="secondary" onClick={onCancel}>
           Cancel
         </ButtonLink>
       </div>
     </div>
-  );
-}
-
-interface TypeInputProps {
-  input: string;
-  inputRef: RefObject<HTMLInputElement>;
-  onChange(e: { currentTarget: HTMLInputElement }): void;
-  onKeyUp(e: KeyboardEvent): void;
-}
-
-function TypeInput({ input, inputRef, onChange, onKeyUp }: TypeInputProps) {
-  return (
-    <input
-      class="border-b-primary bg-background w-20 border-0 border-b-2"
-      value={input}
-      ref={inputRef}
-      onChange={onChange}
-      onKeyUp={onKeyUp}
-      list={TYPE_SUGGESTIONS_LIST}
-    />
   );
 }
