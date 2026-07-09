@@ -1,7 +1,7 @@
 import type { ComponentChildren } from "preact";
 import { useContext, useRef, type FunctionComponent } from "preact/compat";
-import type { PokedexFilter } from "../../../models/pokedex_filter";
-import type { PokedexFormatKey } from "../../../models/pokedex_format";
+import type { PokedexFilter } from "../../../models/pokedex/filter";
+import type { PokedexFormatKey } from "../../../models/pokedex/format";
 import { PokedexFormatContext } from "../../../state/context";
 import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";

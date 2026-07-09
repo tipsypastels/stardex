@@ -6,11 +6,11 @@ import { SpeciesIcon } from "./species_icon";
  * but renamed and filtered to be ONLY actual immutable regional forms, not form(e) changes or cosmetics.
  */
 const ALT_POSITIONS: { [id: string]: number } = {
-  "rattata--alola": 1032 + 119,
-  "raticate--alola": 1032 + 120,
-  "raichu--alola": 1032 + 121,
-  "sandshrew--alola": 1032 + 122,
-  "sandslash--alola": 1032 + 123,
+  "rattata-alola": 1032 + 119,
+  "raticate-alola": 1032 + 120,
+  "raichu-alola": 1032 + 121,
+  "sandshrew-alola": 1032 + 122,
+  "sandslash-alola": 1032 + 123,
   "vulpix-alola": 1032 + 124,
   "ninetales-alola": 1032 + 125,
   "diglett-alola": 1032 + 126,

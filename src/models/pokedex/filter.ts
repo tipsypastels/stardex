@@ -1,6 +1,6 @@
 import { computed, createModel, signal } from "@preact/signals";
-import type { Pokemon } from "./pokemon";
-import { TYPES } from "./type";
+import type { Pokemon } from "../pokemon";
+import { TYPES } from "../type";
 
 type Parsed = { kind: "type"; typeKey: string };
 

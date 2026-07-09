@@ -1,6 +1,6 @@
 import { computed, createModel, signal } from "@preact/signals";
-import { readonly } from "../utils/signal";
-import { TYPES } from "./type";
+import { TYPES } from ".";
+import { readonly } from "../../utils/signal";
 
 export type TypeKeyPair = InstanceType<typeof TypeKeyPair>;
 

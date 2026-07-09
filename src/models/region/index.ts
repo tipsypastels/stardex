@@ -1,6 +1,6 @@
-import RAW_DATA from "../data/regions.json";
-import { SPECIES } from "./species";
-import type { BuiltinType } from "./type";
+import RAW_DATA from "../../data/regions.json";
+import { SPECIES } from "../pokemon/species";
+import type { BuiltinType } from "../type";
 
 export interface RawRegion {
   name: string;

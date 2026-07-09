@@ -1,8 +1,8 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList } from "immutable";
-import { assert } from "../utils/assert";
-import { stored } from "../utils/storage";
-import { POKEDEX_FORMATS } from "./pokedex_format";
+import { assert } from "../../utils/assert";
+import { stored } from "../../utils/storage";
+import { POKEDEX_FORMATS } from "../pokedex/format";
 import {
   ActiveProject,
   InactiveProject,
@@ -10,10 +10,10 @@ import {
   type Project,
   type RawProject,
   type RawProjectModels,
-} from "./project";
-import { REGIONS } from "./region";
-import { STRICTNESSES } from "./strictness";
-import { PROJECT_VERSION } from "./versioned";
+} from "../project";
+import { REGIONS } from "../region";
+import { STRICTNESSES } from "../strictness";
+import { PROJECT_VERSION } from "../versioned";
 
 export const store = stored<RawProject[], IList<Project>>("stardex_projects");
 

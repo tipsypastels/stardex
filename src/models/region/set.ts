@@ -1,8 +1,8 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { Set as ISet } from "immutable";
-import { readonly } from "../utils/signal";
-import { stored } from "../utils/storage";
-import { Region, REGIONS, type RegionKey } from "./region";
+import { Region, REGIONS, type RegionKey } from ".";
+import { readonly } from "../../utils/signal";
+import { stored } from "../../utils/storage";
 
 const store = stored<RegionKey[], ISet<RegionKey>>("stardex_regions");
 

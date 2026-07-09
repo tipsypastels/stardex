@@ -1,10 +1,10 @@
 import { useModel } from "@preact/signals";
 import { createContext, type ComponentChildren } from "preact";
 import { Metrics } from "../models/metrics";
-import { POKEDEX_FORMATS, PokedexFormat } from "../models/pokedex_format";
-import { POKEMON_LISTS, PokemonList } from "../models/pokemon_list";
-import { PROJECT_LISTS, ProjectList } from "../models/project_list";
-import { REGION_SETS, RegionSet } from "../models/region_set";
+import { POKEDEX_FORMATS, PokedexFormat } from "../models/pokedex/format";
+import { POKEMON_LISTS, PokemonList } from "../models/pokemon/list";
+import { PROJECT_LISTS, ProjectList } from "../models/project/list";
+import { REGION_SETS, RegionSet } from "../models/region/set";
 import { Strictness, STRICTNESSES } from "../models/strictness";
 
 export const PokemonsContext = createContext({} as PokemonList);

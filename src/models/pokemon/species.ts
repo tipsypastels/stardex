@@ -1,6 +1,6 @@
-import RAW_DATA from "../data/species.json" with { type: "json" };
-import { unwrap } from "../utils/assert";
-import { BUILTIN_TYPES, type BuiltinType } from "./type";
+import RAW_DATA from "../../data/species.json" with { type: "json" };
+import { unwrap } from "../../utils/assert";
+import { BUILTIN_TYPES, type BuiltinType } from "../type";
 
 export interface RawSpecies {
   id: number;

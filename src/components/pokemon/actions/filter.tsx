@@ -1,5 +1,5 @@
 import { useContext } from "preact/hooks";
-import type { PokedexFilter } from "../../../models/pokedex_filter";
+import type { PokedexFilter } from "../../../models/pokedex/filter";
 import { MetricsContext } from "../../../state/context";
 import { Modal } from "../../common/menus/modal";
 

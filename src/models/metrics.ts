@@ -2,7 +2,7 @@ import { computed, createModel } from "@preact/signals";
 import { createAllotment, type Allotable } from "../metrics/allotment";
 import { createRecommendations } from "../metrics/recommendations";
 import type { ReadonlySignalled } from "../utils/signal";
-import type { PokemonList } from "./pokemon_list";
+import type { PokemonList } from "./pokemon/list";
 import type { RegionSet } from "./region_set";
 import type { Strictness } from "./strictness";
 

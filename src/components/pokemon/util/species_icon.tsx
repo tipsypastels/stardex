@@ -1,4 +1,4 @@
-import type { Species } from "../../../models/species";
+import type { Species } from "../../../models/pokemon/species";
 
 // Based on https://github.com/smogon/pokemon-showdown-client/blob/f4baa241257350654aa441b1963e3b0761bbc51d/play.pokemonshowdown.com/src/panel-teambuilder-team.tsx#L170.
 // We double everything in size compared to that image.

@@ -1,6 +1,6 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
-import RAW_DATA from "../data/pokedex_formats.json" with { type: "json" };
-import { stored } from "../utils/storage";
+import RAW_DATA from "../../data/pokedex_formats.json" with { type: "json" };
+import { stored } from "../../utils/storage";
 
 const store = stored<PokedexFormatKey>("stardex_pokedex_format");
 

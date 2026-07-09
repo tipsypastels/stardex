@@ -1,9 +1,9 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList, Map as IMap } from "immutable";
-import { readonly } from "../utils/signal";
-import { stored } from "../utils/storage";
-import { POKEMONS, type Pokemon, type RawPokemon } from "./pokemon";
-import type { V0_RawPokemon } from "./versioned/v0";
+import { POKEMONS, type Pokemon, type RawPokemon } from ".";
+import { readonly } from "../../utils/signal";
+import { stored } from "../../utils/storage";
+import type { V0_RawPokemon } from "../versioned/v0";
 
 const store = stored<RawPokemon[], IList<Pokemon>>("stardex_pokemon");
 

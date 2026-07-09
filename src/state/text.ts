@@ -1,5 +1,5 @@
 import type { RawPokemon } from "../models/pokemon";
-import { SPECIES } from "../models/species";
+import { SPECIES } from "../models/pokemon/species";
 import { POKEMON_VERSION } from "../models/versioned";
 import { capitalize } from "../utils/string";
 

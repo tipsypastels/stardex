@@ -1,6 +1,6 @@
 import { Show } from "@preact/signals/utils";
 import { REGIONS } from "../../models/region";
-import type { RegionSet } from "../../models/region_set";
+import type { RegionSet } from "../../models/region/set";
 import { TYPES } from "../../models/type";
 import { Icon } from "../common/icon";
 import { ButtonLink } from "../common/link";

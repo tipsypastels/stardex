@@ -1,13 +1,13 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
-import { readonly } from "../utils/signal";
-import { SPECIES } from "./species";
-import { matchTypeKeysUnorderedInArray, TypeKeyPair } from "./type_key_pair";
-import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "./versioned";
+import { readonly } from "../../utils/signal";
+import { matchTypeKeysUnorderedInArray, TypeKeyPair } from "../type/key_pair";
+import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "../versioned";
 import {
   type V0_RawBuiltinPokemon,
   type V0_RawCustomPokemon,
   type V0_RawPokemon,
-} from "./versioned/v0";
+} from "../versioned/v0";
+import { SPECIES } from "./species";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */

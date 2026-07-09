@@ -1,5 +1,5 @@
 import { useModel, useSignal } from "@preact/signals";
-import { PokedexFilter } from "../../models/pokedex_filter";
+import { PokedexFilter } from "../../models/pokedex/filter";
 import { Section } from "../layout/section";
 import { PokedexActions } from "./actions";
 import { EditPokemonModal } from "./edit";

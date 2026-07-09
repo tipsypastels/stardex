@@ -1,11 +1,11 @@
 import { createModel, signal } from "@preact/signals";
-import { readonly } from "../utils/signal";
-import type { PokedexFormatKey } from "./pokedex_format";
-import type { RawPokemon } from "./pokemon";
-import type { RegionKey } from "./region";
-import type { StrictnessKey } from "./strictness";
-import { PROJECT_VERSION, upgradeRawActiveProject, upgradeRawInactiveProject } from "./versioned";
-import type { V0_RawActiveProject, V0_RawInactiveProject, V0_RawProject } from "./versioned/v0";
+import { readonly } from "../../utils/signal";
+import type { PokedexFormatKey } from "../pokedex_format";
+import type { RawPokemon } from "../pokemon";
+import type { RegionKey } from "../region/set";
+import type { StrictnessKey } from "../strictness";
+import { PROJECT_VERSION, upgradeRawActiveProject, upgradeRawInactiveProject } from "../versioned";
+import type { V0_RawActiveProject, V0_RawInactiveProject, V0_RawProject } from "../versioned/v0";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */

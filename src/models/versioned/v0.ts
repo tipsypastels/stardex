@@ -2,7 +2,7 @@ import { POKEMON_VERSION, PROJECT_VERSION } from ".";
 import type { PokedexFormatKey } from "../pokedex_format";
 import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
 import type { RawActiveProject, RawInactiveProject } from "../project";
-import type { RegionKey } from "../region";
+import type { RegionKey } from "../region/set";
 import type { StrictnessKey } from "../strictness";
 
 /* -------------------------------------------------------------------------- */

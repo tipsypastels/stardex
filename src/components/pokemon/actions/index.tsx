@@ -1,7 +1,7 @@
 import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import type { PokedexFilter } from "../../../models/pokedex_filter";
+import type { PokedexFilter } from "../../../models/pokedex/filter";
 import { PokedexFormatContext } from "../../../state/context";
 import { Actions } from "../../common/menus/actions";
 import { AddPokemon } from "../add";

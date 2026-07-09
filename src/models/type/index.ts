@@ -1,7 +1,7 @@
 import randomColor from "randomcolor";
-import DATA from "../data/types.json" with { type: "json" };
-import { unwrap } from "../utils/assert";
-import { capitalize } from "../utils/string";
+import DATA from "../../data/types.json" with { type: "json" };
+import { unwrap } from "../../utils/assert";
+import { capitalize } from "../../utils/string";
 
 export interface Type {
   key: string;

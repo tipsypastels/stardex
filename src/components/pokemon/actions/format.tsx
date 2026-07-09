@@ -1,4 +1,4 @@
-import { POKEDEX_FORMATS, type PokedexFormat } from "../../../models/pokedex_format";
+import { POKEDEX_FORMATS, type PokedexFormat } from "../../../models/pokedex/format";
 import { Modal } from "../../common/menus/modal";
 import { ModePicker } from "../../common/menus/mode_picker";
 

@@ -1,7 +1,7 @@
 import { linter } from "@codemirror/lint";
 import { EditorView } from "codemirror";
 import { useContext, useEffect, useMemo, useRef, useState } from "preact/hooks";
-import type { PokemonList } from "../../../models/pokemon_list";
+import type { PokemonList } from "../../../models/pokemon/list";
 import { PokemonsContext } from "../../../state/context";
 import {
   textPokedexFromRawPokemons,
