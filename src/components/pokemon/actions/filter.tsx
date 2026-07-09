@@ -11,7 +11,7 @@ export interface FilterPokedexModalProps {
 export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps) {
   const metrics = useContext(MetricsContext);
   return (
-    <Modal title="Filter Pokédex" onClose={onClose}>
+    <Modal title="Pokédex Filters" onClose={onClose}>
       <div class="flex items-center">
         <div class="font-bold">Type:</div>
         <select

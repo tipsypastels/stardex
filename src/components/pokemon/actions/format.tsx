@@ -9,7 +9,7 @@ export interface FormatPokedexModalProps {
 
 export function FormatPokedexModal({ format, onClose }: FormatPokedexModalProps) {
   return (
-    <Modal title="Format Pokédex" onClose={onClose}>
+    <Modal title="PokédexFormat" onClose={onClose}>
       <ModePicker
         modes={POKEDEX_FORMATS.options}
         activeIndex={format.index.value}
