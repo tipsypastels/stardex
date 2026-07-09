@@ -1,23 +1,24 @@
 import type { ComponentChildren } from "preact";
-import { lazy, Suspense, useContext, useRef, type FunctionComponent } from "preact/compat";
+import { useContext, useRef, type FunctionComponent } from "preact/compat";
 import type { PokedexFilter } from "../../../models/pokedex_filter";
 import type { PokedexFormatKey } from "../../../models/pokedex_format";
 import { PokedexFormatContext } from "../../../state/context";
-import { PokedexFormatLoading, usePokedexFormatClientHeightSaving } from "./loading";
+import { PokedexIconsView } from "./icons";
+import { PokedexNamesView } from "./names";
 
 interface FormatRenderingInfo {
-  load: FunctionComponent<PokedexFormatViewProps>;
+  component: FunctionComponent<PokedexFormatViewProps>;
 }
 
 const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
   icons: {
-    load: lazy(async () => (await import("./icons")).PokedexIconsView),
+    component: PokedexIconsView,
   },
   names: {
-    load: lazy(async () => (await import("./names")).PokedexNamesView),
+    component: PokedexNamesView,
   },
   text: {
-    load: () => null,
+    component: () => null,
   },
 };
 
@@ -33,19 +34,15 @@ export interface PokedexFormatProps extends PokedexFormatViewProps {
 export function PokedexFormat({ actions, ...rest }: PokedexFormatProps) {
   const format = useContext(PokedexFormatContext);
   const formatInfo = FORMAT_INFOS[format.key.value];
-  const Component = formatInfo.load;
+  const Component = formatInfo.component;
 
   const ref = useRef<HTMLDivElement>(null);
-
-  usePokedexFormatClientHeightSaving(ref);
 
   return (
     <>
       {actions()}
       <div class="mb-4" ref={ref}>
-        <Suspense fallback={<PokedexFormatLoading />}>
-          <Component {...rest} />
-        </Suspense>
+        <Component {...rest} />
       </div>
     </>
   );
