@@ -42,30 +42,52 @@ export const PokedexFilter = createModel(() => {
     return (kind: Parsed["kind"]) => (parsed.value?.kind === kind ? raw.value : undefined);
   });
 
-  const renderPermitted = computed(() => {
+  const iterator = computed(() => {
     parsed.value;
-
-    function permitted(pokemon: Pokemon) {
-      if (!parsed.value) {
-        return true;
-      }
-      switch (parsed.value.kind) {
-        case "type": {
-          return pokemon.typeKeys.value.includes(parsed.value.typeKey);
-        }
-      }
-    }
-
-    return <T>(pokemons: Iterable<Pokemon>, f: (pokemon: Pokemon) => T, fallback: () => T) => {
-      const out: T[] = [];
-      for (const pokemon of pokemons) {
-        if (permitted(pokemon)) {
-          out.push(f(pokemon));
-        }
-      }
-      return out.length > 0 ? out : [fallback()];
-    };
+    return (pokemons: Iterable<Pokemon>) => new FilteredPokemonList(parsed.value, pokemons);
   });
 
-  return { raw, supressed, icon, ofKind, renderPermitted };
+  return { raw, supressed, icon, ofKind, iterator };
 });
+
+class FilteredPokemonList {
+  static permitted(parsed: Parsed | undefined, pokemon: Pokemon) {
+    if (!parsed) {
+      return true;
+    }
+    switch (parsed.kind) {
+      case "type": {
+        return pokemon.typeKeys.value.includes(parsed.typeKey);
+      }
+    }
+  }
+
+  #first: IteratorResult<Pokemon>;
+  #rest: Generator<Pokemon>;
+
+  constructor(parsed: Parsed | undefined, pokemons: Iterable<Pokemon>) {
+    this.#rest = (function* () {
+      for (const pokemon of pokemons) {
+        if (FilteredPokemonList.permitted(parsed, pokemon)) {
+          yield pokemon;
+        }
+      }
+    })();
+    this.#first = this.#rest.next();
+  }
+
+  get isEmpty() {
+    return this.#first.done;
+  }
+
+  *[Symbol.iterator]() {
+    if (!this.#first.done) {
+      yield this.#first.value;
+      yield* this.#rest;
+    }
+  }
+
+  toArray() {
+    return [...this];
+  }
+}

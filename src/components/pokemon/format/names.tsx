@@ -1,8 +1,10 @@
+import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import type { PokedexFilter } from "../../../models/pokedex_filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { PokemonsContext } from "../../../state/context";
 import { Icon } from "../../common/icon";
+import { EmptyFilteredPokedex, EmptyPokedex } from "./empty";
 
 export interface PokedexNamesViewProps {
   filter: PokedexFilter;
@@ -10,19 +12,18 @@ export interface PokedexNamesViewProps {
 
 export function PokedexNamesView({ filter }: PokedexNamesViewProps) {
   const pokemons = useContext(PokemonsContext);
+  const filtered = filter.iterator.value(pokemons.all.value);
+
   return (
-    <ol class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-      {filter.renderPermitted.value(
-        pokemons.all.value,
-        (pokemon) => (
-          <Item pokemon={pokemon} />
-        ),
-        () => (
-          // TODO
-          <>none</>
-        ),
-      )}
-    </ol>
+    <Show when={() => pokemons.size.value > 0} fallback={<EmptyPokedex />}>
+      <Show when={() => !filtered.isEmpty} fallback={<EmptyFilteredPokedex />}>
+        <ol class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {filtered.toArray().map((pokemon) => (
+            <Item pokemon={pokemon} />
+          ))}
+        </ol>
+      </Show>
+    </Show>
   );
 }
 
