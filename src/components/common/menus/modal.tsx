@@ -32,7 +32,7 @@ export function Modal(props: ModalProps) {
 
   return createPortal(
     <div
-      class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center bg-black/(--backdrop-opacity) lg:items-center"
+      class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center overscroll-contain bg-black/(--backdrop-opacity) lg:items-center"
       onClick={handleClick}
     >
       <div class="bg-background flex h-[80vh] w-125 max-w-full flex-col overflow-y-scroll rounded-md p-8 lg:h-[unset] lg:overflow-y-auto">

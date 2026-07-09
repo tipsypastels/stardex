@@ -75,15 +75,6 @@
   }
 }
 
-html,
-body {
-  @apply overscroll-none;
-}
-
-html.has-modal {
-  @apply overscroll-none;
-}
-
 html.has-modal body {
-  @apply overscroll-none max-md:fixed max-md:overflow-y-hidden;
+  @apply max-md:overflow-y-hidden;
 }
