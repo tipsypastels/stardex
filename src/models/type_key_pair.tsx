@@ -12,9 +12,7 @@ export const TypeKeyPair = createModel(
   (current: string[], { fallback }: TypeKeyPairOptions = {}) => {
     const keys = signal(current);
     const types = computed(() => keys.value.map(TYPES.of));
-    const changed = computed(() => {
-      return !!fallback && fallback.sort().join() !== keys.value.sort().join();
-    });
+    const changed = computed(() => !!fallback && fallback.join() !== keys.value.join());
 
     return {
       keys: readonly(keys),
@@ -40,3 +38,19 @@ export const TypeKeyPair = createModel(
     };
   },
 );
+
+export function compareTypeKeysUnordered(left: string[], right: string[]) {
+  return comparable(left) === comparable(right);
+}
+
+export function matchTypeKeysUnorderedInArray<T extends { typeKeys: string[] }>(
+  needle: string[],
+  haystack: T[],
+) {
+  const aComparable = comparable(needle);
+  return haystack.find((item) => comparable(item.typeKeys) === aComparable);
+}
+
+function comparable(typeKeys: string[]) {
+  return [...typeKeys].sort().join();
+}

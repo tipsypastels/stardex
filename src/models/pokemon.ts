@@ -1,7 +1,7 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { readonly } from "../utils/signal";
 import { SPECIES } from "./species";
-import { TypeKeyPair } from "./type_key_pair";
+import { matchTypeKeysUnorderedInArray, TypeKeyPair } from "./type_key_pair";
 import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "./versioned";
 import {
   type V0_RawBuiltinPokemon,
@@ -54,8 +54,6 @@ export const POKEMONS = (() => {
 export type BuiltinPokemon = InstanceType<typeof BuiltinPokemon>;
 
 export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
-  const cmpTypes = (typeKeys: string[]) => typeKeys.sort().join();
-
   const species = signal(SPECIES.of(raw.species));
   const key = computed(() => species.value.key);
   const name = computed(() => species.value.name);
@@ -65,12 +63,9 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
   });
 
   const alt = computed(() => {
-    if (!typeKeyPair.changed.value || species.value.alts.length === 0) {
-      return;
+    if (typeKeyPair.changed.value && species.value.alts.length > 0) {
+      return matchTypeKeysUnorderedInArray(typeKeyPair.keys.value, species.value.alts);
     }
-
-    const own = cmpTypes(typeKeyPair.keys.value);
-    return species.value.alts.find((alt) => cmpTypes(alt.typeKeys) === own);
   });
 
   const exclude = signal(raw.exclude);

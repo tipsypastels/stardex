@@ -29,7 +29,7 @@ export const EVOLUTION_LINES = (() => {
     }
 
     const origin = findOrigin(species);
-    const set = new Set([species]);
+    const set = new Set([origin]);
 
     followLine(origin, set);
 
