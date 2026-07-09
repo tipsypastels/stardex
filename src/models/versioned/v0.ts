@@ -1,6 +1,8 @@
-import { POKEMON_VERSION, PROJECT_VERSION } from ".";
+import { POKEMON_LIST_VERSION, POKEMON_VERSION, PROJECT_VERSION } from ".";
 import type { PokedexFormatKey } from "../pokedex/format";
 import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
+import type { RawPokemonList } from "../pokemon/list";
+import { PokemonListTextDiffBuilder } from "../pokemon/text/diff";
 import type { RawActiveProject, RawInactiveProject } from "../project";
 import type { RegionKey } from "../region";
 import type { StrictnessKey } from "../strictness";
@@ -53,6 +55,43 @@ export function V0_upgradeRawCustomPokemon(raw: V0_RawCustomPokemon): RawCustomP
 
 export function V0_upgradeRawPokemon(raw: V0_RawPokemon): RawPokemon {
   return "species" in raw ? V0_upgradeRawBuiltinPokemon(raw) : V0_upgradeRawCustomPokemon(raw);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Pokemon List                                */
+/* -------------------------------------------------------------------------- */
+
+export type V0_RawPokemonList = V0_RawPokemon[];
+
+export function V0_upgradeRawPokemonList(raws: V0_RawPokemonList): RawPokemonList {
+  const all: RawPokemon[] = [];
+  const textDiffBuilder = new PokemonListTextDiffBuilder();
+
+  for (const raw of raws) {
+    all.push(V0_upgradeRawPokemon(raw));
+
+    if (raw.newlinesBefore) {
+      textDiffBuilder.blank(raw.newlinesBefore);
+    }
+    if (raw.comment) {
+      textDiffBuilder.verbatim(...raw.comment.split("\n").map((c) => `# ${c}`));
+    }
+    textDiffBuilder.entry();
+  }
+
+  const lastRaw = raws.at(-1);
+  if (lastRaw?.newlinesAfterIfLast) {
+    textDiffBuilder.blank(lastRaw.newlinesAfterIfLast);
+  }
+
+  const textDiffLines = textDiffBuilder.finish();
+  const textDiff = textDiffLines.length > 1 ? textDiffLines.join() : undefined;
+
+  return {
+    v: POKEMON_LIST_VERSION,
+    all,
+    textDiff,
+  };
 }
 
 /* -------------------------------------------------------------------------- */
