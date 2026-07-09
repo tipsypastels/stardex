@@ -82,7 +82,7 @@ interface TypeInputProps {
 function TypeInput({ input, inputRef, onChange, onKeyUp }: TypeInputProps) {
   return (
     <input
-      class="border-b-primary w-20 border-0 border-b-2"
+      class="border-b-primary bg-background w-20 border-0 border-b-2"
       value={input}
       ref={inputRef}
       onChange={onChange}
