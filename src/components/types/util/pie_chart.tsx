@@ -1,6 +1,6 @@
 import type { Allotment } from "../../../metrics/allotment";
 import { PieChart } from "../../graphs/pie_chart";
-import { TypeName } from "../../types/util/type_name";
+import { TypeName } from "./name";
 
 export interface TypePieChartProps {
   allotment: Allotment;

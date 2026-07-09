@@ -13,17 +13,17 @@ export interface ModalProps {
   onClose(): void;
 }
 
-export function Modal(props: ModalProps) {
+export function Modal({ title, children, footer, onClose }: ModalProps) {
   function handleClick(e: MouseEvent) {
     if ((e.target as HTMLElement)?.parentNode === root) {
-      props.onClose();
+      onClose();
     }
   }
 
   useEffect(() => {
-    hotkeys("esc", props.onClose);
+    hotkeys("esc", onClose);
     return () => hotkeys.unbind("esc");
-  }, [props.onClose]);
+  }, [onClose]);
 
   useEffect(() => {
     document.documentElement.classList.add("has-modal");
@@ -37,11 +37,11 @@ export function Modal(props: ModalProps) {
     >
       <div class="bg-background flex h-[80vh] w-125 max-w-full flex-col overflow-y-scroll rounded-md p-8 lg:h-[unset] lg:overflow-y-auto">
         <div class="border-b-divider-heavy mb-4 flex border-b-2 pb-4">
-          <h1 class="grow text-xl font-bold">{props.title}</h1>
-          <ButtonIcon icon="times" label="Close" onClick={props.onClose} />
+          <h1 class="grow text-xl font-bold">{title}</h1>
+          <ButtonIcon icon="times" label="Close" onClick={onClose} />
         </div>
-        <div class="grow">{props.children}</div>
-        {props.footer ? <div>{props.footer}</div> : null}
+        <div class="grow">{children}</div>
+        {footer ? <div>{footer}</div> : null}
       </div>
     </div>,
     root,

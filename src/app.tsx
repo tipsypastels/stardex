@@ -6,6 +6,7 @@ import { Section } from "./components/layout/section";
 import { Pokedex } from "./components/pokemon/pokedex";
 import { Recommendations } from "./components/recommendations";
 import { Types } from "./components/types";
+import { TypeSuggestions } from "./components/types/util/suggestions";
 import { Models } from "./state/context";
 import { dark, useDarkClass } from "./state/dark";
 
@@ -14,6 +15,7 @@ export function App() {
 
   return (
     <>
+      <TypeSuggestions />
       <Models>
         <Layout>
           <Pokedex />

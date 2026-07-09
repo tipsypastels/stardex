@@ -7,7 +7,7 @@ import { PokedexFormat } from "./format";
 export function Pokedex() {
   const filter = useModel(PokedexFilter);
   return (
-    <Section id="pokedex" title="Pokedex">
+    <Section id="pokedex" title="Pokedex" hasActions>
       <PokedexFormat filter={filter} actions={() => <PokedexActions filter={filter} />} />
     </Section>
   );

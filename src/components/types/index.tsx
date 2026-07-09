@@ -3,7 +3,7 @@ import { useContext } from "preact/hooks";
 import { MetricsContext } from "../../state/context";
 import { Empty } from "../common/empty";
 import { Section } from "../layout/section";
-import { TypePieChart } from "./util/type_pie_chart";
+import { TypePieChart } from "./util/pie_chart";
 
 export function Types() {
   const metrics = useContext(MetricsContext);

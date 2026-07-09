@@ -9,11 +9,14 @@ interface Action {
 
 export interface ActionsProps {
   actions: Action[];
+  isUpperHalf?: boolean;
 }
 
-export function Actions({ actions }: ActionsProps) {
+export function Actions({ actions, isUpperHalf = false }: ActionsProps) {
   return (
-    <ul class="border-secondary text-secondary mb-8 flex rounded-md border-2 p-2 pl-0">
+    <ul
+      class={`"border-secondary text-secondary flex border-2 p-2 pl-0 ${isUpperHalf ? "rounded-t-md" : "mb-8 rounded-md"}`}
+    >
       {actions.map((action) => (
         <li class="border-r-secondary border-r">
           <button

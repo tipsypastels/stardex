@@ -27,12 +27,13 @@ export function Link(props: LinkProps) {
 }
 
 export interface ButtonLinkProps extends SharedProps {
+  disabled?: boolean;
   onClick(): void;
 }
 
 export function ButtonLink(props: ButtonLinkProps) {
   return (
-    <button class={toClassList(props)} onClick={props.onClick}>
+    <button class={toClassList(props)} onClick={props.onClick} disabled={props.disabled}>
       {props.children}
     </button>
   );

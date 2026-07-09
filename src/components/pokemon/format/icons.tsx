@@ -3,7 +3,7 @@ import { useContext } from "preact/hooks";
 import type { PokedexFilter } from "../../../models/pokedex_filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { PokemonsContext } from "../../../state/context";
-import { TypeDots } from "../../types/util/type_dots";
+import { TypeDots } from "../../types/util/dots";
 import { PokemonIcon } from "../util/pokemon_icon";
 import { EmptyFilteredPokedex, EmptyPokedex } from "./empty";
 

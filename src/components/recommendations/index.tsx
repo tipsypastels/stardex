@@ -21,7 +21,7 @@ import { Modal } from "../common/menus/modal";
 import { ModePicker } from "../common/menus/mode_picker";
 import { LinedSubheading } from "../layout/lined_subheading";
 import { Section } from "../layout/section";
-import { TypeName } from "../types/util/type_name";
+import { TypeName } from "../types/util/name";
 
 const store = stored<boolean>("stardex_recommendations_show_just_right");
 
@@ -67,7 +67,7 @@ export function Recommendations() {
   }
 
   return (
-    <Section id="recommendations" title="Recommendations">
+    <Section id="recommendations" title="Recommendations" hasActions>
       <Actions
         actions={[
           {

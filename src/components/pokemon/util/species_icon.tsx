@@ -17,6 +17,7 @@ export function SpeciesIcon(props: SpeciesIconProps) {
   return (
     <div
       role="img"
+      title={props.species.name}
       aria-label={props.species.name}
       class="dim block h-15 w-20"
       style={`background: transparent url('${SHEET}') no-repeat scroll -${left}px -${top}px / ${
