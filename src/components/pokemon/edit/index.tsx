@@ -4,6 +4,7 @@ import { PokemonsContext } from "../../../state/context";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { EditPokemonBehavior } from "./behavior";
+import { EditPokemonName } from "./name";
 import { EditPokemonTypes } from "./types";
 
 export interface EditPokemonModalProps {
@@ -32,6 +33,7 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
         </div>
       }
     >
+      {!pokemon.species.value ? <EditPokemonName pokemon={pokemon} /> : null}
       <EditPokemonTypes pokemon={pokemon} />
       <EditPokemonBehavior pokemon={pokemon} />
     </Modal>
