@@ -107,7 +107,7 @@ export function V0_upgradeRawPokemonList(raws: V0_RawPokemonList): RawPokemonLis
  */
 
 export interface V0_RawProjectModels {
-  pokemon: V0_RawPokemon[];
+  pokemon: V0_RawPokemonList;
   regions: RegionKey[];
   strictness: StrictnessKey;
   pokedexFormat: PokedexFormatKey;
@@ -137,10 +137,13 @@ export function V0_upgradeRawActiveProject(raw: V0_RawActiveProject): RawActiveP
 }
 
 export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawInactiveProject {
-  const { modelState, ...rest } = raw;
+  const {
+    modelState: { pokemon, ...models },
+    ...rest
+  } = raw;
   return {
     v: PROJECT_VERSION,
-    models: { ...modelState, pokemons: modelState.pokemon.map(V0_upgradeRawPokemon) },
+    models: { ...models, pokemons: V0_upgradeRawPokemonList(pokemon) },
     ...rest,
   };
 }

@@ -11,6 +11,7 @@ describe(PokemonListTextDiffBuilder, () => {
   test("trivial", () => {
     expect(b().entry().finish()).toEqual(undefined);
     expect(b().entry().entry().entry().finish()).toEqual(undefined);
+    expect(b().blank(1).finish()).toEqual(undefined);
   });
 
   test("verbatim", () => {
@@ -20,7 +21,6 @@ describe(PokemonListTextDiffBuilder, () => {
   });
 
   test("blanks", () => {
-    expect(b().blank(1).finish()).toEqual(["\0b1"]);
     expect(b().blank(50).finish()).toEqual(["\0b50"]);
   });
 

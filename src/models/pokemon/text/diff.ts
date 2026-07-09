@@ -1,4 +1,5 @@
 import { createModel, signal } from "@preact/signals";
+import { readonly } from "../../../utils/signal";
 
 /**
  * The format is:
@@ -13,7 +14,15 @@ export const PokemonListTextDiff = createModel(($raw: string[] | undefined) => {
   }
 
   const raw = signal($raw);
-  return { raw };
+  return {
+    raw: readonly(raw),
+    set(newRaw: string[] | undefined) {
+      if (newRaw && pokemonListTextDiffIsTrivial(newRaw)) {
+        newRaw = undefined;
+      }
+      raw.value = newRaw;
+    },
+  };
 });
 
 type DiffState =
@@ -83,5 +92,8 @@ export function* readPokemonListTextDiff(textDiff: string[]): Generator<DiffStat
 }
 
 export function pokemonListTextDiffIsTrivial(textDiff: string[]) {
-  return textDiff.length === 0 || (textDiff.length === 1 && textDiff[0].startsWith("\0e"));
+  return (
+    textDiff.length === 0 ||
+    (textDiff.length === 1 && (textDiff[0].startsWith("\0e") || textDiff[0] === "\0b1"))
+  );
 }

@@ -4,7 +4,7 @@ import { POKEMONS, type Pokemon, type RawPokemon } from ".";
 import { readonly } from "../../utils/signal";
 import { stored } from "../../utils/storage";
 import { POKEMON_LIST_VERSION, upgradeRawPokemonList } from "../versioned";
-import type { V0_RawPokemon } from "../versioned/v0";
+import type { V0_RawPokemonList } from "../versioned/v0";
 import { PokemonListTextDiff } from "./text/diff";
 
 const store = stored<RawPokemonList, DumpedPokemonList>("stardex_pokemon");
@@ -68,11 +68,17 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
     delete(index: number) {
       all.value = all.value.delete(index);
     },
-    setFromRaw(raws: (RawPokemon | V0_RawPokemon)[]) {
-      all.value = IList(raws.map(POKEMONS.from));
+    setFromRaw($raw: RawPokemonList | V0_RawPokemonList) {
+      const raw = upgradeRawPokemonList($raw);
+      all.value = IList(raw.all.map(POKEMONS.from));
+      textDiff.set(raw.textDiff);
     },
-    toRaw() {
-      return all.value.map((p) => p.toRaw()).toArray();
+    toRaw(): RawPokemonList {
+      return {
+        v: POKEMON_LIST_VERSION,
+        all: all.value.map((p) => p.toRaw()).toArray(),
+        textDiff: textDiff.raw.value,
+      };
     },
   };
 });

@@ -136,5 +136,19 @@ export const SPECIES = (() => {
     return unwrap(tryOf(key), `Unknown species ${key}`);
   }
 
-  return { all, map, has, tryOf, of };
+  function search(pattern: string) {
+    pattern = pattern.toLowerCase();
+    return (
+      tryOf(pattern) ||
+      tryOf(pattern.replace(" ", "-")) ||
+      all.find((s) => s.nameLower === pattern || s.hiddenName?.toLowerCase() === pattern) ||
+      all.find(
+        (s) =>
+          s.nameLower.replace(" ", "") === pattern ||
+          s.hiddenName?.toLowerCase().replace(" ", "") === pattern,
+      )
+    );
+  }
+
+  return { all, map, has, tryOf, of, search };
 })();
