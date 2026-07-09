@@ -44,6 +44,7 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
     all: readonly(all),
     indices: readonly(indices),
     size,
+    textDiff,
     has(pokemon: Pokemon) {
       return this.hasKey(pokemon.key.value);
     },

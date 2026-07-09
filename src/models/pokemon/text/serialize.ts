@@ -19,8 +19,6 @@ export function serializePokemonListToText({
   if (textDiff && !pokemonListTextDiffIsTrivial(textDiff)) {
     const pokemonsIter = pokemons[Symbol.iterator]();
     for (const entry of readPokemonListTextDiff(textDiff)) {
-      console.log(entry);
-
       switch (entry.type) {
         case "blanks": {
           lines.push(...new Array(entry.count).map(() => ""));

@@ -3,20 +3,27 @@ import { EditorView } from "codemirror";
 import { useContext, useEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { PokemonList } from "../../../models/pokemon/list";
 import { PokemonsContext } from "../../../state/context";
+
 import {
-  textPokedexFromRawPokemons,
-  TextPokedexParseError,
-  textPokedexToRawPokemons,
-} from "../../../state/text";
+  parsePokemonListText,
+  type PokemonListTextParseError,
+} from "../../../models/pokemon/text/parse";
+import { serializePokemonListToText } from "../../../models/pokemon/text/serialize";
+import { POKEMON_LIST_VERSION } from "../../../models/versioned";
 import { useDebouncedEffect } from "../../../utils/hooks";
 
 const RELOAD_DEBOUNCE_MS = 1000;
 
 export function PokedexTextView() {
   const pokemons = useContext(PokemonsContext);
-  const [text, setText] = useState(() => textPokedexFromRawPokemons(initialFromList(pokemons)));
+  const [text, setText] = useState(() =>
+    serializePokemonListToText({
+      pokemons: initialFromList(pokemons),
+      textDiff: pokemons.textDiff.raw.peek(),
+    }),
+  );
 
-  const [errors, setErrors] = useState<TextPokedexParseError[]>([]);
+  const [errors, setErrors] = useState<PokemonListTextParseError[]>([]);
   const errorLinter = useMemo(() => linter(() => errors), [errors]);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -24,8 +31,12 @@ export function PokedexTextView() {
 
   useDebouncedEffect(
     () => {
-      const result = textPokedexToRawPokemons(text);
-      pokemons.setFromRaw(result.pokemons);
+      const result = parsePokemonListText(text);
+      pokemons.setFromRaw({
+        v: POKEMON_LIST_VERSION,
+        all: result.pokemons,
+        textDiff: result.textDiff,
+      });
       setErrors(result.errors);
     },
     RELOAD_DEBOUNCE_MS,

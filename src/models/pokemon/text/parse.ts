@@ -135,6 +135,18 @@ export abstract class PokemonListTextParseError {
     this.token = token;
   }
 
+  get from() {
+    return this.span.offset;
+  }
+
+  get to() {
+    return this.span.offset + this.span.value.length;
+  }
+
+  protected get span() {
+    return this.token ?? this.line;
+  }
+
   get severity(): "warning" | "error" {
     return "error";
   }
