@@ -75,6 +75,11 @@
   }
 }
 
+html,
+body {
+  @apply overscroll-none;
+}
+
 html.has-modal {
   @apply overscroll-none;
 }
