@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { textPokedexToRawPokemons } from "./text";
 
 function parse(...s: string[]) {
-  return textPokedexToRawPokemons(s.join("\n")).pokemon;
+  return textPokedexToRawPokemons(s.join("\n")).pokemons;
 }
 
 describe(parse, () => {
