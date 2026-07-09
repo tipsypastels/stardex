@@ -386,6 +386,7 @@
   "nidoran-f": {
     "id": 29,
     "name": "Nidoran♀",
+    "hiddenName": "Nidoran Female",
     "types": [
       "poison"
     ],
@@ -422,6 +423,7 @@
   "nidoran-m": {
     "id": 32,
     "name": "Nidoran♂",
+    "hiddenName": "Nidoran Male",
     "types": [
       "poison"
     ],
@@ -1719,6 +1721,7 @@
   "mr-mime": {
     "id": 122,
     "name": "Mr. Mime",
+    "hiddenName": "Mr Mime",
     "types": [
       "psychic",
       "fairy"
@@ -5392,6 +5395,7 @@
   "mime-jr": {
     "id": 439,
     "name": "Mime Jr.",
+    "hiddenName": "Mime Junior",
     "types": [
       "psychic",
       "fairy"

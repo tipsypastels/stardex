@@ -5,6 +5,7 @@ import { BUILTIN_TYPES, type BuiltinType } from "../type";
 export interface RawSpecies {
   id: number;
   name: string;
+  hiddenName?: string;
   types: string[];
   evos?: { from?: string; to?: string[] };
   alts?: RawSpeciesAlt[];
@@ -47,6 +48,10 @@ export class Species {
   get nameLower() {
     this.#nameLower ??= this.name.toLowerCase();
     return this.#nameLower;
+  }
+
+  get hiddenName() {
+    return this.#raw.hiddenName;
   }
 
   get types() {

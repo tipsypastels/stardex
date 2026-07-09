@@ -13,7 +13,7 @@ import { SpeciesIcon } from "../util/species_icon";
 import { AddCustom } from "./custom";
 
 const FUSE = new Fuse(SPECIES.all, {
-  keys: ["name"],
+  keys: ["name", "hiddenName"],
   threshold: 0.1,
   includeScore: true,
 });

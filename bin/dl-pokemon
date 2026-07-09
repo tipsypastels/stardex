@@ -36,6 +36,7 @@
  *  id: number,
  *  key: string,
  *  name: string,
+ *  hiddenName?: string;
  *  types: string[],
  *  evos?: { from?: string, to?: string[] }
  *  alts?: { kind: string, name: string, types: string[] }[]
@@ -80,6 +81,13 @@ const ALT_KIND_METAS = [
 ];
 
 const BANNED_ALT_KIND_PATTERNS = ["-totem-"];
+
+const HIDDEN_NAMES = {
+  "nidoran-m": "Nidoran Male",
+  "nidoran-f": "Nidoran Female",
+  "mr-mime": "Mr Mime",
+  "mime-jr": "Mime Junior",
+};
 
 async function main() {
   /** @type {Promise<ResolvedMon | null>[]} */
@@ -132,6 +140,7 @@ function fillSegment(promises, segment) {
     const key = species.name;
     const name =
       species.names?.find((n) => n.language.name === "en")?.name ?? capitalize(species.name);
+    const hiddenName = HIDDEN_NAMES[key];
     /** @type {ResolvedMon['evos']} */
     let evos;
 
@@ -151,7 +160,7 @@ function fillSegment(promises, segment) {
       }
     }
 
-    return { id, key, name, types, evos, alts };
+    return { id, key, name, hiddenName, types, evos, alts };
   }
 
   for (const { url } of segment.results) {
