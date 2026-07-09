@@ -12,18 +12,18 @@ const store = stored<RawPokemonList, DumpedPokemonList>("stardex_pokemon");
 export interface RawPokemonList {
   v: typeof POKEMON_LIST_VERSION;
   all: RawPokemon[];
-  textDiff?: string;
+  textDiff?: string[];
 }
 
 interface DumpedPokemonList {
   v: typeof POKEMON_LIST_VERSION;
   all: IList<Pokemon>;
-  textDiff?: string;
+  textDiff?: string[];
 }
 
 export type PokemonList = InstanceType<typeof PokemonList>;
 
-export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string) => {
+export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) => {
   const all = signal(IList($all));
   const indices = computed(() => IMap(all.value.map((p, i) => [p.key.value, i])));
   const size = computed(() => all.value.size);

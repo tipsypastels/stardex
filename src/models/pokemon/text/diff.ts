@@ -7,14 +7,23 @@ import { createModel, signal } from "@preact/signals";
  *  - All other lines are verbatim.
  */
 
-export const PokemonListTextDiff = createModel(($raw: string | undefined) => {
+export const PokemonListTextDiff = createModel(($raw: string[] | undefined) => {
+  if ($raw && pokemonListTextDiffIsTrivial($raw)) {
+    $raw = undefined;
+  }
+
   const raw = signal($raw);
   return { raw };
 });
 
+type DiffState =
+  | { type: "entries"; count: number }
+  | { type: "blanks"; count: number }
+  | { type: "verbatim"; line: string };
+
 export class PokemonListTextDiffBuilder {
   #lines: string[] = [];
-  #state?: { type: "entries"; count: number } | { type: "blanks"; count: number };
+  #state?: Exclude<DiffState, { type: "verbatim" }>;
 
   entry() {
     if (this.#state?.type === "entries") {
@@ -45,7 +54,9 @@ export class PokemonListTextDiffBuilder {
 
   finish() {
     this.#flush();
-    return this.#lines;
+    if (!pokemonListTextDiffIsTrivial(this.#lines)) {
+      return this.#lines;
+    }
   }
 
   #flush() {
@@ -55,4 +66,22 @@ export class PokemonListTextDiffBuilder {
       this.#lines.push(`\0b${this.#state.count}`);
     }
   }
+}
+
+export function* readPokemonListTextDiff(textDiff: string[]): Generator<DiffState> {
+  for (const line of textDiff) {
+    if (line.startsWith("\0e")) {
+      const count = +line.slice(2);
+      yield { type: "entries", count };
+    } else if (line.startsWith("\0b")) {
+      const count = +line.slice(2);
+      yield { type: "blanks", count };
+    } else {
+      yield { type: "verbatim", line };
+    }
+  }
+}
+
+export function pokemonListTextDiffIsTrivial(textDiff: string[]) {
+  return textDiff.length === 0 || (textDiff.length === 1 && textDiff[0].startsWith("\0e"));
 }

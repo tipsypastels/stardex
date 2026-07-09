@@ -1,22 +1,22 @@
 import { describe, expect, test } from "vitest";
-import { PokemonListTextDiffBuilder } from "./diff";
+import { PokemonListTextDiffBuilder, readPokemonListTextDiff } from "./diff";
 
 describe(PokemonListTextDiffBuilder, () => {
   const b = () => new PokemonListTextDiffBuilder();
 
   test("empty", () => {
-    expect(b().finish()).toEqual([]);
+    expect(b().finish()).toEqual(undefined);
+  });
+
+  test("trivial", () => {
+    expect(b().entry().finish()).toEqual(undefined);
+    expect(b().entry().entry().entry().finish()).toEqual(undefined);
   });
 
   test("verbatim", () => {
     expect(b().verbatim("foo").finish()).toEqual(["foo"]);
     expect(b().verbatim("foo", "bar").finish()).toEqual(["foo", "bar"]);
     expect(b().verbatim("foo").verbatim("bar").finish()).toEqual(["foo", "bar"]);
-  });
-
-  test("entries", () => {
-    expect(b().entry().finish()).toEqual(["\0e1"]);
-    expect(b().entry().entry().finish()).toEqual(["\0e2"]);
   });
 
   test("blanks", () => {
@@ -47,5 +47,21 @@ describe(PokemonListTextDiffBuilder, () => {
         .entry()
         .finish(),
     ).toEqual(["\0b2", "foo", "\0e2", "bar", "\0b4", "baz", "\0e1"]);
+  });
+});
+
+describe(readPokemonListTextDiff, () => {
+  test("it", () => {
+    expect([
+      ...readPokemonListTextDiff(["\0e1", "foo", "\0b2", "bar", "baz", "\0e4", "quux"]),
+    ]).toEqual([
+      { type: "entries", count: 1 },
+      { type: "verbatim", line: "foo" },
+      { type: "blanks", count: 2 },
+      { type: "verbatim", line: "bar" },
+      { type: "verbatim", line: "baz" },
+      { type: "entries", count: 4 },
+      { type: "verbatim", line: "quux" },
+    ]);
   });
 });

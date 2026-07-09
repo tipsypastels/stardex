@@ -61,6 +61,13 @@ export function V0_upgradeRawPokemon(raw: V0_RawPokemon): RawPokemon {
 /*                                Pokemon List                                */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Pokemon List V0:
+ *  - No explicit version.
+ *  - Was an array.
+ *  - No notion of textDiff.
+ */
+
 export type V0_RawPokemonList = V0_RawPokemon[];
 
 export function V0_upgradeRawPokemonList(raws: V0_RawPokemonList): RawPokemonList {
@@ -84,14 +91,8 @@ export function V0_upgradeRawPokemonList(raws: V0_RawPokemonList): RawPokemonLis
     textDiffBuilder.blank(lastRaw.newlinesAfterIfLast);
   }
 
-  const textDiffLines = textDiffBuilder.finish();
-  const textDiff = textDiffLines.length > 1 ? textDiffLines.join() : undefined;
-
-  return {
-    v: POKEMON_LIST_VERSION,
-    all,
-    textDiff,
-  };
+  const textDiff = textDiffBuilder.finish();
+  return { v: POKEMON_LIST_VERSION, all, textDiff };
 }
 
 /* -------------------------------------------------------------------------- */
