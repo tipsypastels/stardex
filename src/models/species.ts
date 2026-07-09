@@ -85,6 +85,7 @@ export class SpeciesAlt {
   }
 
   #raw: RawSpeciesAlt;
+  #nameLower?: string;
   #types?: BuiltinType[];
 
   private constructor(raw: RawSpeciesAlt) {
@@ -97,6 +98,11 @@ export class SpeciesAlt {
 
   get name() {
     return this.#raw.name;
+  }
+
+  get nameLower() {
+    this.#nameLower ??= this.name.toLowerCase();
+    return this.#nameLower;
   }
 
   get types() {

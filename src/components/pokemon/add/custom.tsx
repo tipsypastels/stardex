@@ -37,7 +37,6 @@ export function AddCustom({ onSubmit, onCancel }: AddCustomProps) {
   }
 
   useEffect(() => {
-    console.log(type1Ref.current);
     type1Ref.current?.focus();
   }, []);
 

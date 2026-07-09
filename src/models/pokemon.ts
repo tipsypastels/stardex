@@ -1,7 +1,7 @@
-import { computed, createModel, effect, Signal, signal } from "@preact/signals";
+import { computed, createModel, effect, signal } from "@preact/signals";
 import { readonly } from "../utils/signal";
 import { SPECIES } from "./species";
-import { TYPES } from "./type";
+import { TypeKeyPair } from "./type_key_pair";
 import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "./versioned";
 import {
   type V0_RawBuiltinPokemon,
@@ -60,16 +60,14 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
   const key = computed(() => species.value.key);
   const name = computed(() => species.value.name);
 
-  const typeKeys = signal(raw.types ?? species.value.typeKeys);
-  const typeChanged = computed(() => cmpTypes(typeKeys.value) !== cmpTypes(species.value.typeKeys));
-  const types = computed(() => typeKeys.value.map(TYPES.of));
+  const typeKeyPair = new TypeKeyPair(raw.types ?? species.value.typeKeys, { reset: "initial" });
 
   const alt = computed(() => {
-    if (!typeChanged.value || species.value.alts.length === 0) {
+    if (!typeKeyPair.changed.value || species.value.alts.length === 0) {
       return;
     }
 
-    const own = cmpTypes(typeKeys.value);
+    const own = cmpTypes(typeKeyPair.keys.value);
     return species.value.alts.find((alt) => cmpTypes(alt.typeKeys) === own);
   });
 
@@ -78,7 +76,7 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
   let onChange: (() => void) | undefined;
 
   effect(() => {
-    typeKeys.value;
+    typeKeyPair.keys.value;
     exclude.value;
     onChange?.();
   });
@@ -87,22 +85,22 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon) => {
     species: readonly(species),
     key,
     name,
-    typeKeys: readonly(typeKeys),
-    typeChanged,
-    types,
+    typeKeys: typeKeyPair.keys,
+    typeChanged: typeKeyPair.changed,
+    types: typeKeyPair.types,
     alt,
     exclude,
     setTypeKeys(newTypeKeys: string[] | undefined) {
-      setTypeKeys(typeKeys, newTypeKeys);
+      typeKeyPair.set(newTypeKeys);
     },
     setTypeKeyAt(index: number, typeKey: string | undefined) {
-      setTypeKeyAt(typeKeys, index, typeKey);
+      typeKeyPair.setAt(index, typeKey);
     },
     toRaw(): RawBuiltinPokemon {
       return {
         ...raw,
         species: species.value.key,
-        types: typeChanged.value ? typeKeys.value : undefined,
+        types: typeKeyPair.changed.value ? typeKeyPair.keys.value : undefined,
         exclude: exclude.value,
       };
     },
@@ -137,8 +135,7 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
   const key = signal(raw.key);
   const name = signal(raw.name);
 
-  const typeKeys = signal(raw.types);
-  const types = computed(() => typeKeys.value.map(TYPES.of));
+  const typeKeyPair = new TypeKeyPair(raw.types, { reset: "ignore" });
 
   const species = signal(undefined);
   const alt = signal(undefined);
@@ -149,7 +146,7 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
 
   effect(() => {
     name.value;
-    typeKeys.value;
+    typeKeyPair.keys.value;
     exclude.value;
     onChange?.();
   });
@@ -158,22 +155,23 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon) => {
     species,
     key,
     name,
-    typeKeys,
-    types,
+    typeKeys: typeKeyPair.keys,
+    typeChanged: typeKeyPair.changed,
+    types: typeKeyPair.types,
     alt,
     exclude,
-    setTypeKeys(newTypeKeys: string[]) {
-      setTypeKeys(typeKeys, newTypeKeys);
+    setTypeKeys(newTypeKeys: string[] | undefined) {
+      typeKeyPair.set(newTypeKeys);
     },
     setTypeKeyAt(index: number, typeKey: string | undefined) {
-      setTypeKeyAt(typeKeys, index, typeKey);
+      typeKeyPair.setAt(index, typeKey);
     },
     toRaw(): RawCustomPokemon {
       return {
         ...raw,
         key: key.value,
         name: name.value,
-        types: typeKeys.value,
+        types: typeKeyPair.keys.value,
         exclude: exclude.value,
       };
     },
@@ -197,30 +195,3 @@ export const CUSTOM_POKEMONS = (() => {
 
   return { of, from };
 })();
-
-/* -------------------------------------------------------------------------- */
-/*                                   Helpers                                  */
-/* -------------------------------------------------------------------------- */
-
-function setTypeKeys(
-  signal: Signal<string[]>,
-  typeKeys: string[] | undefined,
-  fallbackTypeKeys?: string[],
-) {
-  typeKeys = typeKeys?.filter((s) => !!s);
-  if (typeKeys?.length) {
-    signal.value = typeKeys;
-  } else if (fallbackTypeKeys) {
-    signal.value = fallbackTypeKeys;
-  }
-}
-
-function setTypeKeyAt(signal: Signal<string[]>, index: number, typeKey: string | undefined) {
-  const newValue = [...signal.value];
-  if (typeKey) {
-    newValue[index] = typeKey;
-  } else {
-    newValue.splice(index, 1);
-  }
-  signal.value = newValue;
-}
