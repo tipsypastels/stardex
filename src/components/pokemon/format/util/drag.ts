@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "preact/hooks";
 import Sortable from "sortablejs";
-import type { PokemonList } from "../../../models/pokemon/list";
+import type { PokemonList } from "../../../../models/pokemon/list";
 
 /**
  * NOTE: Moving items to index zero causes a desync
@@ -11,7 +11,7 @@ import type { PokemonList } from "../../../models/pokemon/list";
  * a hidden dummy element at the start that offsets
  * everything. Shrug.
  */
-export function useReordering(pokemons: PokemonList) {
+export function useDraggable(pokemons: PokemonList) {
   const ref = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
