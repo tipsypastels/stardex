@@ -5,6 +5,7 @@ import { readonly } from "../../utils/signal";
 import { stored } from "../../utils/storage";
 import { POKEMON_LIST_VERSION, upgradeRawPokemonList } from "../versioned";
 import type { V0_RawPokemonList } from "../versioned/v0";
+import { runAutosort, type AutosortOptions } from "./autosort";
 import { PokemonListTextDiff } from "./text/diff";
 
 const store = stored<RawPokemonList, DumpedPokemonList>("stardex_pokemon");
@@ -66,6 +67,9 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
     },
     delete(index: number) {
       all.value = all.value.delete(index);
+    },
+    autosort(options: AutosortOptions) {
+      all.value = runAutosort(all.value, options);
     },
     setFromRaw($raw: RawPokemonList | V0_RawPokemonList) {
       const raw = upgradeRawPokemonList($raw);

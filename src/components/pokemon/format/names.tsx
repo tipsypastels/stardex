@@ -17,7 +17,7 @@ export function PokedexNamesView({ filter, setEditingIndex }: PokedexFormatViewP
   return (
     <Show when={() => pokemons.size.value > 0} fallback={<EmptyPokedex />}>
       <Show when={() => !filtered.isEmpty} fallback={<EmptyFilteredPokedex />}>
-        <ol class="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3" ref={gridRef}>
+        <ol class="grid grid-cols-1 gap-4 md:grid-cols-3" ref={gridRef}>
           {/* Dummy, see useDraggable. */}
           <li class="hidden"></li>
           {filtered.toArray().map((pokemon, index) => (
@@ -38,6 +38,8 @@ function Item({ pokemon, onClick }: ItemProps) {
   return (
     <li
       class={`relative inline-flex cursor-pointer justify-center ${pokemon.exclude.value ? "opacity-50" : ""}`}
+      key={pokemon.key}
+      data-id={pokemon.key}
     >
       <button
         class="flex w-full cursor-pointer gap-2 border border-divider-light px-4 py-2"

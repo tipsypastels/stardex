@@ -62,6 +62,10 @@ export class RegionMember {
     this.#raw = raw;
   }
 
+  get speciesKey() {
+    return this.#raw.species;
+  }
+
   get types() {
     this.#types ??= this.#resolveTypes();
     return this.#types;
