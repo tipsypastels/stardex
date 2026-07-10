@@ -37,7 +37,7 @@ interface ItemProps {
 function Item({ pokemon, edit }: ItemProps) {
   return (
     <li
-      class={`relative inline-flex justify-center ${pokemon.exclude.value ? "opacity-50" : ""}`}
+      class={`relative inline-flex justify-center hover:wiggle ${pokemon.exclude.value ? "opacity-50" : ""}`}
       key={pokemon.key}
       data-id={pokemon.key}
     >
