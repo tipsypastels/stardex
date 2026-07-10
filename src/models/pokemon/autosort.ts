@@ -12,19 +12,19 @@ export interface AutosortOptions {
 
 export function runAutosort(all: IList<Pokemon>, { mode, mismatchPlacement }: AutosortOptions) {
   const toRemove = new Set<Pokemon>();
-  const newAll = all.sortBy((pokemon) => {
-    const index =
+  const newAll = all.sortBy((pokemon, index) => {
+    const position =
       mode === "national"
         ? nationalDexPosition(pokemon)
         : regionalDexPosition(REGIONS.of(mode), pokemon);
 
-    if (index === "mismatch") {
+    if (position === "mismatch") {
       switch (mismatchPlacement) {
         case "start": {
-          return -Infinity;
+          return -(10000 + index);
         }
         case "end": {
-          return Infinity;
+          return 10000 + index;
         }
         case "remove": {
           toRemove.add(pokemon);
@@ -33,7 +33,7 @@ export function runAutosort(all: IList<Pokemon>, { mode, mismatchPlacement }: Au
       }
     }
 
-    return index;
+    return position;
   });
 
   if (toRemove.size > 0) {
