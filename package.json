@@ -23,12 +23,14 @@
     "immutable": "^5.1.9",
     "preact": "^10.26.5",
     "randomcolor": "^0.6.2",
+    "sortablejs": "^1.15.7",
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@preact/preset-vite": "^2.10.1",
     "@types/randomcolor": "^0.5.9",
+    "@types/sortablejs": "^1.15.9",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
     "prettier": "^3.9.4",

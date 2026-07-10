@@ -59,12 +59,13 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
     push(...pokemons: Pokemon[]) {
       all.value = all.value.push(...pokemons.filter((p) => !this.has(p)));
     },
-    swap(index: number, jndex: number) {
-      all.value = all.value.withMutations((list) => {
-        const a = list.get(index)!;
-        const b = list.get(jndex)!;
-        list.set(index, b).set(jndex, a);
-      });
+    move(index: number, jndex: number) {
+      console.log(">", index, jndex);
+      const value = all.value.get(index);
+      console.log(value?.name.peek());
+      // These methods don't support withMutations.
+      if (value) all.value = all.value.delete(index).insert(jndex, value);
+      console.log(all.value.toArray().map((p) => p.name.peek()));
     },
     delete(index: number) {
       all.value = all.value.delete(index);
