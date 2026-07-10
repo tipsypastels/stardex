@@ -76,9 +76,6 @@ async function resolve(key, { icon, apiIds }) {
     }
   }
 
-  // const regionReq = await fetch(`https://pokeapi.co/api/v2/pokedex/${dexId}`);
-  // /** @type {Region} */
-  // const region = await regionReq.json();
   const name = key[0].toUpperCase() + key.slice(1);
   const members = region.pokemon_entries.flatMap((entry) => {
     const species = entry.pokemon_species.name;
