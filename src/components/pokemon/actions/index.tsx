@@ -33,6 +33,7 @@ export function PokedexActions({ filter }: PokedexActionsProps) {
         ]}
         isUpperHalf
       />
+
       <AddPokemon />
 
       <Show when={() => modal.value === "format"}>

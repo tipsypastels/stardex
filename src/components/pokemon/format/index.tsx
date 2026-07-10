@@ -1,8 +1,9 @@
-import type { ComponentChildren } from "preact";
+import { useModel } from "@preact/signals";
 import { useContext, useRef, type FunctionComponent } from "preact/compat";
-import type { PokedexFilter } from "../../../models/pokedex/filter";
+import { PokedexFilter } from "../../../models/pokedex/filter";
 import type { PokedexFormatKey } from "../../../models/pokedex/format";
 import { PokedexFormatContext } from "../../../state/context";
+import { PokedexActions } from "../actions";
 import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";
 import { PokedexTextView } from "./text";
@@ -28,12 +29,14 @@ export interface PokedexFormatViewProps {
   setEditingIndex(index: number): void;
 }
 
-export interface PokedexFormatProps extends PokedexFormatViewProps {
-  actions(): ComponentChildren;
+export interface PokedexFormatProps {
+  setEditingIndex(index: number): void;
 }
 
-export function PokedexFormat({ actions, ...rest }: PokedexFormatProps) {
+export function PokedexFormat({ setEditingIndex }: PokedexFormatProps) {
   const format = useContext(PokedexFormatContext);
+  const filter = useModel(PokedexFilter);
+
   const formatInfo = FORMAT_INFOS[format.key.value];
   const Component = formatInfo.component;
 
@@ -41,9 +44,9 @@ export function PokedexFormat({ actions, ...rest }: PokedexFormatProps) {
 
   return (
     <>
-      {actions()}
+      <PokedexActions filter={filter} />
       <div class="mb-4" ref={ref}>
-        <Component {...rest} />
+        <Component filter={filter} setEditingIndex={setEditingIndex} />
       </div>
     </>
   );

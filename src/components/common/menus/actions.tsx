@@ -3,7 +3,7 @@ import { Icon } from "../icon";
 interface Action {
   name: string;
   icon: string;
-  iconColor?: string;
+  active?: boolean;
   onClick(): void;
 }
 
@@ -20,10 +20,10 @@ export function Actions({ actions, isUpperHalf = false }: ActionsProps) {
       {actions.map((action) => (
         <li class="border-r-secondary border-r">
           <button
-            class="flex cursor-pointer items-center gap-1 px-4 text-sm font-bold"
+            class={`flex cursor-pointer items-center gap-1 px-4 text-sm font-bold ${action.active ? "text-primary" : ""}`}
             onClick={action.onClick}
           >
-            <div class="text-xs" style={action.iconColor ? `color: ${action.iconColor}` : ""}>
+            <div class="text-xs">
               <Icon name={action.icon} />
             </div>
             <div>{action.name}</div>

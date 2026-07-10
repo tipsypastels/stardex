@@ -7,9 +7,9 @@ export interface LinedSubheadingProps {
 export function LinedSubheading(props: LinedSubheadingProps) {
   return (
     <h3 class="mb-4 flex items-center">
-      <div class="border-b-divider-light w-4 border-b"></div>
+      <div class="w-4 border-b border-b-divider-light"></div>
       <div class="px-2 text-xl">{props.children}</div>
-      <div class="border-b-divider-light grow border-b"></div>
+      <div class="grow border-b border-b-divider-light"></div>
     </h3>
   );
 }

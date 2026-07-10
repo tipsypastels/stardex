@@ -73,7 +73,7 @@
 
 @layer base {
   body {
-    @apply text-foreground bg-background w-full md:text-lg;
+    @apply w-full bg-background text-foreground md:text-lg;
   }
 
   input:not([type]),
@@ -86,6 +86,28 @@
 @utility dim {
   @variant dark {
     filter: brightness(0.75);
+  }
+}
+
+@utility wiggle {
+  animation: wiggle 1s infinite;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(5deg);
+  }
+  95% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
