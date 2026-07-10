@@ -1,3 +1,4 @@
+import "drag-drop-touch";
 import "./app.css";
 
 import { render } from "preact";
