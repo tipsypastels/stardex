@@ -11,44 +11,33 @@ export interface AutosortPokedexModalProps {
   onClose(): void;
 }
 
-type SorterId = "id" | `region-${RegionKey}` | "types";
-
-const SORTERS: { id: SorterId; name: string }[] = [
-  {
-    id: "id",
-    name: "By National Dex Number",
-  },
-  ...REGIONS.all.map((region) => ({
-    id: `region-${region.key}` as SorterId,
-    name: `By ${region.name} Dex Number`,
-  })),
-  {
-    id: "types",
-    name: "By Types",
-  },
+const KINDS: { key: AutosortRequest["kind"]; name: string }[] = [
+  { key: "id", name: "By National Dex" },
+  { key: "region", name: "By Regional Dex" },
+  { key: "types", name: "By Types" },
 ];
 
-const FAILURE_MODES: { id: AutosortFailureMode; name: string }[] = [
-  { id: "end", name: "Moved to the end" },
-  { id: "start", name: "Moved to the start" },
-  { id: "remove", name: "Removed from the dex" },
+const FAILURE_MODES: { key: AutosortFailureMode; name: string }[] = [
+  { key: "end", name: "Moved to the end" },
+  { key: "start", name: "Moved to the start" },
+  { key: "remove", name: "Removed from the dex" },
 ];
 
 export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexModalProps) {
-  const sorter = useSignal<SorterId>("id");
+  const kind = useSignal<AutosortRequest["kind"]>("id");
+  const region = useSignal<RegionKey>("kanto");
   const failure = useSignal<AutosortFailureMode>("end");
 
   const request = useComputed((): AutosortRequest => {
-    switch (sorter.value) {
+    switch (kind.value) {
       case "id": {
         return { kind: "id", failure: failure.value };
       }
+      case "region": {
+        return { kind: "region", failure: failure.value, region: region.value };
+      }
       case "types": {
         return { kind: "types" };
-      }
-      default: {
-        const region = sorter.value.split("-")[1] as RegionKey;
-        return { kind: "region", region, failure: failure.value };
       }
     }
   });
@@ -63,22 +52,26 @@ export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexMod
         </div>
       }
     >
-      <Select active={sorter} options={() => SORTERS} onChange={(v) => (sorter.value = v)} />
-      <Show when={() => sorter.value !== "types"}>
-        <div class="py-2 text-center text-sm">
-          <Show
-            when={() => request.value.kind.startsWith("region")}
-            fallback={"Custom Pokémon should be..."}
-          >
-            {() => (
-              <>
-                Non-{REGIONS.of((request.value as { region: RegionKey }).region).name} Pokémon
-                should be...
-              </>
-            )}
-          </Show>
-        </div>
+      <Select active={kind} options={() => KINDS} onChange={(v) => (kind.value = v)} />
 
+      <Show when={() => kind.value === "id"}>
+        <div class="py-2 text-center text-sm">Custom Pokémon should be...</div>
+      </Show>
+
+      <Show when={() => kind.value === "region"}>
+        <div class="mt-2">
+          <Select
+            active={region}
+            options={() => REGIONS.all}
+            onChange={(v) => (region.value = v)}
+          />
+        </div>
+        <div class="py-2 text-center text-sm">
+          Non-{REGIONS.of(region.value).name} Pokémon should be...
+        </div>
+      </Show>
+
+      <Show when={() => kind.value !== "types"}>
         <Select
           active={failure}
           options={() => FAILURE_MODES}
