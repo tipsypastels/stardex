@@ -4,15 +4,11 @@ import type { PokedexFormatViewProps } from ".";
 import type { Pokemon } from "../../../models/pokemon";
 import { PokemonsContext } from "../../../state/context";
 import { Icon } from "../../common/icon";
-import { useDraggable } from "./util/drag";
 import { EmptyFilteredPokedex, EmptyPokedex } from "./util/empty";
 
-export function PokedexNamesView({ filter, setEditingIndex }: PokedexFormatViewProps) {
+export function PokedexNamesView({ gridRef, filter, setEditingIndex }: PokedexFormatViewProps) {
   const pokemons = useContext(PokemonsContext);
   const filtered = filter.iterator.value(pokemons.all.value);
-
-  // TODO: This is broken :( but only for names.
-  const gridRef = useDraggable(pokemons);
 
   return (
     <Show when={() => pokemons.size.value > 0} fallback={<EmptyPokedex />}>

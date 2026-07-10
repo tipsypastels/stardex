@@ -2,7 +2,8 @@ import { batch, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import type { PokedexFilter } from "../../../models/pokedex/filter";
-import { PokedexFormatContext, PokemonsContext } from "../../../state/context";
+import type { AutosortOptions } from "../../../models/pokemon/autosort";
+import { PokedexFormatContext } from "../../../state/context";
 import { Actions, type ActionsAction } from "../../common/menus/actions";
 import { AddPokemon } from "../add";
 import { AutosortPokedexModal } from "./autosort";
@@ -12,10 +13,10 @@ import { FormatPokedexModal } from "./format";
 export interface PokedexActionsProps {
   filter: PokedexFilter;
   inTextView: boolean;
+  onAutosort(options: AutosortOptions): void;
 }
 
-export function PokedexActions({ filter, inTextView }: PokedexActionsProps) {
-  const pokemons = useContext(PokemonsContext);
+export function PokedexActions({ filter, inTextView, onAutosort }: PokedexActionsProps) {
   const format = useContext(PokedexFormatContext);
   const modal = useSignal<"format" | "filter" | "autosort">();
 
@@ -59,9 +60,10 @@ export function PokedexActions({ filter, inTextView }: PokedexActionsProps) {
         <AutosortPokedexModal
           onAutosort={(options) => {
             batch(() => {
-              modal.value = undefined;
-              filter.raw.value = undefined;
-              pokemons.autosort(options);
+              batch(() => {
+                modal.value = undefined;
+                onAutosort(options);
+              });
             });
           }}
           onClose={() => (modal.value = undefined)}

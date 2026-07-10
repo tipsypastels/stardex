@@ -5,14 +5,11 @@ import type { Pokemon } from "../../../models/pokemon";
 import { PokemonsContext } from "../../../state/context";
 import { TypeDots } from "../../types/util/dots";
 import { PokemonIcon } from "../util/pokemon_icon";
-import { useDraggable } from "./util/drag";
 import { EmptyFilteredPokedex, EmptyPokedex } from "./util/empty";
 
-export function PokedexIconsView({ filter, setEditingIndex }: PokedexFormatViewProps) {
+export function PokedexIconsView({ gridRef, filter, setEditingIndex }: PokedexFormatViewProps) {
   const pokemons = useContext(PokemonsContext);
   const filtered = filter.iterator.value(pokemons.all.value);
-
-  const gridRef = useDraggable(pokemons);
 
   return (
     <Show when={() => pokemons.size.value > 0} fallback={<EmptyPokedex />}>

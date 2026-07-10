@@ -68,8 +68,12 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
     delete(index: number) {
       all.value = all.value.delete(index);
     },
-    autosort(options: AutosortOptions) {
-      all.value = runAutosort(all.value, options);
+    autosorter(options: AutosortOptions) {
+      const newList = runAutosort(all.value, options);
+      return {
+        keys: newList.map((p) => p.key.value).toArray(),
+        apply: () => (all.value = newList),
+      };
     },
     setFromRaw($raw: RawPokemonList | V0_RawPokemonList) {
       const raw = upgradeRawPokemonList($raw);
