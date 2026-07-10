@@ -13,9 +13,9 @@ export default defineConfig([
   tseslint.configs.recommended,
   {
     rules: {
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       // Sometimes you need to explicitly access signals in effects just to subscribe to them.
       "@typescript-eslint/no-unused-expressions": "off",
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },
   },
 ]);
