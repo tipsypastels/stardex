@@ -2512,160 +2512,79 @@
     "icon": "city",
     "members": [
       {
-        "species": "chikorita"
+        "species": "victini"
       },
       {
-        "species": "bayleef"
+        "species": "snivy"
       },
       {
-        "species": "meganium"
+        "species": "servine"
       },
       {
-        "species": "cyndaquil"
+        "species": "serperior"
       },
       {
-        "species": "quilava"
+        "species": "tepig"
       },
       {
-        "species": "typhlosion"
+        "species": "pignite"
       },
       {
-        "species": "totodile"
+        "species": "emboar"
       },
       {
-        "species": "croconaw"
+        "species": "oshawott"
       },
       {
-        "species": "feraligatr"
+        "species": "dewott"
       },
       {
-        "species": "pidgey"
+        "species": "samurott"
       },
       {
-        "species": "pidgeotto"
+        "species": "patrat"
       },
       {
-        "species": "pidgeot"
+        "species": "watchog"
       },
       {
-        "species": "spearow"
+        "species": "purrloin"
       },
       {
-        "species": "fearow"
+        "species": "liepard"
       },
       {
-        "species": "hoothoot"
+        "species": "pidove"
       },
       {
-        "species": "noctowl"
+        "species": "tranquill"
       },
       {
-        "species": "rattata"
+        "species": "unfezant"
       },
       {
-        "species": "raticate"
+        "species": "sewaddle"
       },
       {
-        "species": "sentret"
+        "species": "swadloon"
       },
       {
-        "species": "furret"
+        "species": "leavanny"
       },
       {
-        "species": "pichu"
+        "species": "sunkern"
       },
       {
-        "species": "pikachu"
+        "species": "sunflora"
       },
       {
-        "species": "raichu"
+        "species": "lillipup"
       },
       {
-        "species": "caterpie"
+        "species": "herdier"
       },
       {
-        "species": "metapod"
-      },
-      {
-        "species": "butterfree"
-      },
-      {
-        "species": "weedle"
-      },
-      {
-        "species": "kakuna"
-      },
-      {
-        "species": "beedrill"
-      },
-      {
-        "species": "ledyba"
-      },
-      {
-        "species": "ledian"
-      },
-      {
-        "species": "spinarak"
-      },
-      {
-        "species": "ariados"
-      },
-      {
-        "species": "geodude"
-      },
-      {
-        "species": "graveler"
-      },
-      {
-        "species": "golem"
-      },
-      {
-        "species": "zubat"
-      },
-      {
-        "species": "golbat"
-      },
-      {
-        "species": "crobat"
-      },
-      {
-        "species": "cleffa"
-      },
-      {
-        "species": "clefairy"
-      },
-      {
-        "species": "clefable"
-      },
-      {
-        "species": "igglybuff"
-      },
-      {
-        "species": "jigglypuff"
-      },
-      {
-        "species": "wigglytuff"
-      },
-      {
-        "species": "togepi"
-      },
-      {
-        "species": "togetic"
-      },
-      {
-        "species": "sandshrew"
-      },
-      {
-        "species": "sandslash"
-      },
-      {
-        "species": "ekans"
-      },
-      {
-        "species": "arbok"
-      },
-      {
-        "species": "dunsparce"
+        "species": "stoutland"
       },
       {
         "species": "mareep"
@@ -2677,232 +2596,13 @@
         "species": "ampharos"
       },
       {
-        "species": "wooper"
+        "species": "psyduck"
       },
       {
-        "species": "quagsire"
+        "species": "golduck"
       },
       {
-        "species": "gastly"
-      },
-      {
-        "species": "haunter"
-      },
-      {
-        "species": "gengar"
-      },
-      {
-        "species": "unown"
-      },
-      {
-        "species": "onix"
-      },
-      {
-        "species": "steelix"
-      },
-      {
-        "species": "bellsprout"
-      },
-      {
-        "species": "weepinbell"
-      },
-      {
-        "species": "victreebel"
-      },
-      {
-        "species": "hoppip"
-      },
-      {
-        "species": "skiploom"
-      },
-      {
-        "species": "jumpluff"
-      },
-      {
-        "species": "paras"
-      },
-      {
-        "species": "parasect"
-      },
-      {
-        "species": "poliwag"
-      },
-      {
-        "species": "poliwhirl"
-      },
-      {
-        "species": "poliwrath"
-      },
-      {
-        "species": "politoed"
-      },
-      {
-        "species": "magikarp"
-      },
-      {
-        "species": "gyarados"
-      },
-      {
-        "species": "goldeen"
-      },
-      {
-        "species": "seaking"
-      },
-      {
-        "species": "slowpoke"
-      },
-      {
-        "species": "slowbro"
-      },
-      {
-        "species": "slowking"
-      },
-      {
-        "species": "oddish"
-      },
-      {
-        "species": "gloom"
-      },
-      {
-        "species": "vileplume"
-      },
-      {
-        "species": "bellossom"
-      },
-      {
-        "species": "drowzee"
-      },
-      {
-        "species": "hypno"
-      },
-      {
-        "species": "abra"
-      },
-      {
-        "species": "kadabra"
-      },
-      {
-        "species": "alakazam"
-      },
-      {
-        "species": "ditto"
-      },
-      {
-        "species": "pineco"
-      },
-      {
-        "species": "forretress"
-      },
-      {
-        "species": "nidoran-f"
-      },
-      {
-        "species": "nidorina"
-      },
-      {
-        "species": "nidoqueen"
-      },
-      {
-        "species": "nidoran-m"
-      },
-      {
-        "species": "nidorino"
-      },
-      {
-        "species": "nidoking"
-      },
-      {
-        "species": "yanma"
-      },
-      {
-        "species": "yanmega"
-      },
-      {
-        "species": "sunkern"
-      },
-      {
-        "species": "sunflora"
-      },
-      {
-        "species": "exeggcute"
-      },
-      {
-        "species": "exeggutor"
-      },
-      {
-        "species": "sudowoodo"
-      },
-      {
-        "species": "wobbuffet"
-      },
-      {
-        "species": "venonat"
-      },
-      {
-        "species": "venomoth"
-      },
-      {
-        "species": "scyther"
-      },
-      {
-        "species": "scizor"
-      },
-      {
-        "species": "pinsir"
-      },
-      {
-        "species": "heracross"
-      },
-      {
-        "species": "koffing"
-      },
-      {
-        "species": "weezing"
-      },
-      {
-        "species": "grimer"
-      },
-      {
-        "species": "muk"
-      },
-      {
-        "species": "magnemite"
-      },
-      {
-        "species": "magneton"
-      },
-      {
-        "species": "voltorb"
-      },
-      {
-        "species": "electrode"
-      },
-      {
-        "species": "aipom"
-      },
-      {
-        "species": "ambipom"
-      },
-      {
-        "species": "snubbull"
-      },
-      {
-        "species": "granbull"
-      },
-      {
-        "species": "vulpix"
-      },
-      {
-        "species": "ninetales"
-      },
-      {
-        "species": "growlithe"
-      },
-      {
-        "species": "arcanine"
-      },
-      {
-        "species": "stantler"
+        "species": "azurill"
       },
       {
         "species": "marill"
@@ -2911,58 +2611,64 @@
         "species": "azumarill"
       },
       {
-        "species": "diglett"
+        "species": "riolu"
       },
       {
-        "species": "dugtrio"
+        "species": "lucario"
       },
       {
-        "species": "mankey"
+        "species": "dunsparce"
       },
       {
-        "species": "primeape"
+        "species": "audino"
       },
       {
-        "species": "meowth"
+        "species": "pansage"
       },
       {
-        "species": "persian"
+        "species": "simisage"
       },
       {
-        "species": "psyduck"
+        "species": "pansear"
       },
       {
-        "species": "golduck"
+        "species": "simisear"
       },
       {
-        "species": "machop"
+        "species": "panpour"
       },
       {
-        "species": "machoke"
+        "species": "simipour"
       },
       {
-        "species": "machamp"
+        "species": "venipede"
       },
       {
-        "species": "tyrogue"
+        "species": "whirlipede"
       },
       {
-        "species": "hitmonlee"
+        "species": "scolipede"
       },
       {
-        "species": "hitmonchan"
+        "species": "koffing"
       },
       {
-        "species": "hitmontop"
+        "species": "weezing"
       },
       {
-        "species": "girafarig"
+        "species": "magnemite"
       },
       {
-        "species": "tauros"
+        "species": "magneton"
       },
       {
-        "species": "miltank"
+        "species": "magnezone"
+      },
+      {
+        "species": "growlithe"
+      },
+      {
+        "species": "arcanine"
       },
       {
         "species": "magby"
@@ -2971,10 +2677,7 @@
         "species": "magmar"
       },
       {
-        "species": "smoochum"
-      },
-      {
-        "species": "jynx"
+        "species": "magmortar"
       },
       {
         "species": "elekid"
@@ -2983,82 +2686,103 @@
         "species": "electabuzz"
       },
       {
-        "species": "mr-mime"
+        "species": "electivire"
       },
       {
-        "species": "smeargle"
+        "species": "rattata"
       },
       {
-        "species": "farfetchd"
+        "species": "raticate"
       },
       {
-        "species": "natu"
+        "species": "zubat"
       },
       {
-        "species": "xatu"
+        "species": "golbat"
       },
       {
-        "species": "qwilfish"
+        "species": "crobat"
       },
       {
-        "species": "tentacool"
+        "species": "grimer"
       },
       {
-        "species": "tentacruel"
+        "species": "muk"
       },
       {
-        "species": "krabby"
+        "species": "woobat"
       },
       {
-        "species": "kingler"
+        "species": "swoobat"
       },
       {
-        "species": "shuckle"
+        "species": "roggenrola"
       },
       {
-        "species": "staryu"
+        "species": "boldore"
       },
       {
-        "species": "starmie"
+        "species": "gigalith"
       },
       {
-        "species": "shellder"
+        "species": "onix"
       },
       {
-        "species": "cloyster"
+        "species": "steelix"
       },
       {
-        "species": "corsola"
+        "species": "timburr"
       },
       {
-        "species": "remoraid"
+        "species": "gurdurr"
       },
       {
-        "species": "octillery"
+        "species": "conkeldurr"
       },
       {
-        "species": "chinchou"
+        "species": "drilbur"
       },
       {
-        "species": "lanturn"
+        "species": "excadrill"
       },
       {
-        "species": "seel"
+        "species": "skitty"
       },
       {
-        "species": "dewgong"
+        "species": "delcatty"
       },
       {
-        "species": "lickitung"
+        "species": "buneary"
       },
       {
-        "species": "lickilicky"
+        "species": "lopunny"
       },
       {
-        "species": "tangela"
+        "species": "cottonee"
       },
       {
-        "species": "tangrowth"
+        "species": "whimsicott"
+      },
+      {
+        "species": "petilil"
+      },
+      {
+        "species": "lilligant"
+      },
+      {
+        "species": "munna"
+      },
+      {
+        "species": "musharna"
+      },
+      {
+        "species": "cleffa"
+      },
+      {
+        "species": "clefairy"
+      },
+      {
+        "species": "clefable"
       },
       {
         "species": "eevee"
@@ -3079,19 +2803,487 @@
         "species": "umbreon"
       },
       {
-        "species": "horsea"
+        "species": "leafeon"
       },
       {
-        "species": "seadra"
+        "species": "glaceon"
       },
       {
-        "species": "kingdra"
+        "species": "sandile"
+      },
+      {
+        "species": "krokorok"
+      },
+      {
+        "species": "krookodile"
+      },
+      {
+        "species": "darumaka"
+      },
+      {
+        "species": "darmanitan"
+      },
+      {
+        "species": "basculin"
+      },
+      {
+        "species": "trubbish"
+      },
+      {
+        "species": "garbodor"
+      },
+      {
+        "species": "minccino"
+      },
+      {
+        "species": "cinccino"
+      },
+      {
+        "species": "rufflet"
+      },
+      {
+        "species": "braviary"
+      },
+      {
+        "species": "vullaby"
+      },
+      {
+        "species": "mandibuzz"
+      },
+      {
+        "species": "sandshrew"
+      },
+      {
+        "species": "sandslash"
+      },
+      {
+        "species": "dwebble"
+      },
+      {
+        "species": "crustle"
+      },
+      {
+        "species": "scraggy"
+      },
+      {
+        "species": "scrafty"
+      },
+      {
+        "species": "maractus"
+      },
+      {
+        "species": "sigilyph"
+      },
+      {
+        "species": "trapinch"
+      },
+      {
+        "species": "vibrava"
+      },
+      {
+        "species": "flygon"
+      },
+      {
+        "species": "yamask"
+      },
+      {
+        "species": "cofagrigus"
+      },
+      {
+        "species": "tirtouga"
+      },
+      {
+        "species": "carracosta"
+      },
+      {
+        "species": "archen"
+      },
+      {
+        "species": "archeops"
+      },
+      {
+        "species": "klink"
+      },
+      {
+        "species": "klang"
+      },
+      {
+        "species": "klinklang"
+      },
+      {
+        "species": "budew"
+      },
+      {
+        "species": "roselia"
+      },
+      {
+        "species": "roserade"
+      },
+      {
+        "species": "gothita"
+      },
+      {
+        "species": "gothorita"
+      },
+      {
+        "species": "gothitelle"
+      },
+      {
+        "species": "solosis"
+      },
+      {
+        "species": "duosion"
+      },
+      {
+        "species": "reuniclus"
+      },
+      {
+        "species": "combee"
+      },
+      {
+        "species": "vespiquen"
+      },
+      {
+        "species": "emolga"
+      },
+      {
+        "species": "heracross"
+      },
+      {
+        "species": "pinsir"
+      },
+      {
+        "species": "blitzle"
+      },
+      {
+        "species": "zebstrika"
+      },
+      {
+        "species": "buizel"
+      },
+      {
+        "species": "floatzel"
+      },
+      {
+        "species": "zorua"
+      },
+      {
+        "species": "zoroark"
+      },
+      {
+        "species": "ducklett"
+      },
+      {
+        "species": "swanna"
+      },
+      {
+        "species": "karrablast"
+      },
+      {
+        "species": "escavalier"
+      },
+      {
+        "species": "shelmet"
+      },
+      {
+        "species": "accelgor"
+      },
+      {
+        "species": "deerling"
+      },
+      {
+        "species": "sawsbuck"
+      },
+      {
+        "species": "foongus"
+      },
+      {
+        "species": "amoonguss"
+      },
+      {
+        "species": "castform"
+      },
+      {
+        "species": "nosepass"
+      },
+      {
+        "species": "probopass"
+      },
+      {
+        "species": "aron"
+      },
+      {
+        "species": "lairon"
+      },
+      {
+        "species": "aggron"
+      },
+      {
+        "species": "baltoy"
+      },
+      {
+        "species": "claydol"
+      },
+      {
+        "species": "larvesta"
+      },
+      {
+        "species": "volcarona"
+      },
+      {
+        "species": "joltik"
+      },
+      {
+        "species": "galvantula"
+      },
+      {
+        "species": "ferroseed"
+      },
+      {
+        "species": "ferrothorn"
+      },
+      {
+        "species": "tynamo"
+      },
+      {
+        "species": "eelektrik"
+      },
+      {
+        "species": "eelektross"
+      },
+      {
+        "species": "frillish"
+      },
+      {
+        "species": "jellicent"
+      },
+      {
+        "species": "alomomola"
+      },
+      {
+        "species": "axew"
+      },
+      {
+        "species": "fraxure"
+      },
+      {
+        "species": "haxorus"
+      },
+      {
+        "species": "zangoose"
+      },
+      {
+        "species": "seviper"
+      },
+      {
+        "species": "elgyem"
+      },
+      {
+        "species": "beheeyem"
+      },
+      {
+        "species": "litwick"
+      },
+      {
+        "species": "lampent"
+      },
+      {
+        "species": "chandelure"
+      },
+      {
+        "species": "heatmor"
+      },
+      {
+        "species": "durant"
+      },
+      {
+        "species": "cubchoo"
+      },
+      {
+        "species": "beartic"
+      },
+      {
+        "species": "cryogonal"
+      },
+      {
+        "species": "tornadus"
+      },
+      {
+        "species": "thundurus"
+      },
+      {
+        "species": "landorus"
+      },
+      {
+        "species": "skorupi"
+      },
+      {
+        "species": "drapion"
+      },
+      {
+        "species": "skarmory"
+      },
+      {
+        "species": "numel"
+      },
+      {
+        "species": "camerupt"
+      },
+      {
+        "species": "spoink"
+      },
+      {
+        "species": "grumpig"
+      },
+      {
+        "species": "drifloon"
+      },
+      {
+        "species": "drifblim"
+      },
+      {
+        "species": "shuppet"
+      },
+      {
+        "species": "banette"
+      },
+      {
+        "species": "wingull"
+      },
+      {
+        "species": "pelipper"
+      },
+      {
+        "species": "lunatone"
+      },
+      {
+        "species": "solrock"
+      },
+      {
+        "species": "absol"
+      },
+      {
+        "species": "tangela"
+      },
+      {
+        "species": "tangrowth"
+      },
+      {
+        "species": "mienfoo"
+      },
+      {
+        "species": "mienshao"
       },
       {
         "species": "gligar"
       },
       {
+        "species": "gliscor"
+      },
+      {
+        "species": "pawniard"
+      },
+      {
+        "species": "bisharp"
+      },
+      {
+        "species": "cobalion"
+      },
+      {
+        "species": "terrakion"
+      },
+      {
+        "species": "virizion"
+      },
+      {
+        "species": "tympole"
+      },
+      {
+        "species": "palpitoad"
+      },
+      {
+        "species": "seismitoad"
+      },
+      {
+        "species": "stunfisk"
+      },
+      {
+        "species": "shuckle"
+      },
+      {
+        "species": "mantyke"
+      },
+      {
+        "species": "mantine"
+      },
+      {
+        "species": "remoraid"
+      },
+      {
+        "species": "octillery"
+      },
+      {
+        "species": "corsola"
+      },
+      {
+        "species": "staryu"
+      },
+      {
+        "species": "starmie"
+      },
+      {
+        "species": "wailmer"
+      },
+      {
+        "species": "wailord"
+      },
+      {
+        "species": "lapras"
+      },
+      {
+        "species": "spheal"
+      },
+      {
+        "species": "sealeo"
+      },
+      {
+        "species": "walrein"
+      },
+      {
+        "species": "swablu"
+      },
+      {
+        "species": "altaria"
+      },
+      {
+        "species": "vulpix"
+      },
+      {
+        "species": "ninetales"
+      },
+      {
+        "species": "bronzor"
+      },
+      {
+        "species": "bronzong"
+      },
+      {
+        "species": "sneasel"
+      },
+      {
+        "species": "weavile"
+      },
+      {
         "species": "delibird"
+      },
+      {
+        "species": "vanillite"
+      },
+      {
+        "species": "vanillish"
+      },
+      {
+        "species": "vanilluxe"
       },
       {
         "species": "swinub"
@@ -3103,157 +3295,97 @@
         "species": "mamoswine"
       },
       {
-        "species": "teddiursa"
+        "species": "ditto"
       },
       {
-        "species": "ursaring"
+        "species": "beldum"
       },
       {
-        "species": "phanpy"
+        "species": "metang"
       },
       {
-        "species": "donphan"
+        "species": "metagross"
       },
       {
-        "species": "mantine"
+        "species": "seel"
       },
       {
-        "species": "skarmory"
+        "species": "dewgong"
       },
       {
-        "species": "doduo"
+        "species": "throh"
       },
       {
-        "species": "dodrio"
+        "species": "sawk"
       },
       {
-        "species": "ponyta"
+        "species": "bouffalant"
       },
       {
-        "species": "rapidash"
+        "species": "druddigon"
       },
       {
-        "species": "cubone"
+        "species": "golett"
       },
       {
-        "species": "marowak"
+        "species": "golurk"
       },
       {
-        "species": "kangaskhan"
+        "species": "deino"
       },
       {
-        "species": "rhyhorn"
+        "species": "zweilous"
       },
       {
-        "species": "rhydon"
+        "species": "hydreigon"
       },
       {
-        "species": "murkrow"
+        "species": "slakoth"
       },
       {
-        "species": "houndour"
+        "species": "vigoroth"
       },
       {
-        "species": "houndoom"
+        "species": "slaking"
       },
       {
-        "species": "slugma"
+        "species": "corphish"
       },
       {
-        "species": "magcargo"
+        "species": "crawdaunt"
       },
       {
-        "species": "sneasel"
+        "species": "igglybuff"
       },
       {
-        "species": "misdreavus"
+        "species": "jigglypuff"
       },
       {
-        "species": "porygon"
+        "species": "wigglytuff"
       },
       {
-        "species": "porygon2"
+        "species": "lickitung"
       },
       {
-        "species": "chansey"
+        "species": "lickilicky"
       },
       {
-        "species": "blissey"
+        "species": "yanma"
       },
       {
-        "species": "lapras"
+        "species": "yanmega"
       },
       {
-        "species": "omanyte"
+        "species": "tropius"
       },
       {
-        "species": "omastar"
+        "species": "carnivine"
       },
       {
-        "species": "kabuto"
+        "species": "croagunk"
       },
       {
-        "species": "kabutops"
-      },
-      {
-        "species": "aerodactyl"
-      },
-      {
-        "species": "snorlax"
-      },
-      {
-        "species": "bulbasaur"
-      },
-      {
-        "species": "ivysaur"
-      },
-      {
-        "species": "venusaur"
-      },
-      {
-        "species": "charmander"
-      },
-      {
-        "species": "charmeleon"
-      },
-      {
-        "species": "charizard"
-      },
-      {
-        "species": "squirtle"
-      },
-      {
-        "species": "wartortle"
-      },
-      {
-        "species": "blastoise"
-      },
-      {
-        "species": "articuno"
-      },
-      {
-        "species": "zapdos"
-      },
-      {
-        "species": "moltres"
-      },
-      {
-        "species": "raikou"
-      },
-      {
-        "species": "entei"
-      },
-      {
-        "species": "suicune"
-      },
-      {
-        "species": "dratini"
-      },
-      {
-        "species": "dragonair"
-      },
-      {
-        "species": "dragonite"
+        "species": "toxicroak"
       },
       {
         "species": "larvitar"
@@ -3265,19 +3397,22 @@
         "species": "tyranitar"
       },
       {
-        "species": "lugia"
+        "species": "reshiram"
       },
       {
-        "species": "ho-oh"
+        "species": "zekrom"
       },
       {
-        "species": "mewtwo"
+        "species": "kyurem"
       },
       {
-        "species": "mew"
+        "species": "keldeo"
       },
       {
-        "species": "celebi"
+        "species": "meloetta"
+      },
+      {
+        "species": "genesect"
       }
     ]
   },
@@ -3734,6 +3869,918 @@
       },
       {
         "species": "haxorus"
+      },
+      {
+        "species": "drifloon"
+      },
+      {
+        "species": "drifblim"
+      },
+      {
+        "species": "mienfoo"
+      },
+      {
+        "species": "mienshao"
+      },
+      {
+        "species": "zangoose"
+      },
+      {
+        "species": "seviper"
+      },
+      {
+        "species": "spoink"
+      },
+      {
+        "species": "grumpig"
+      },
+      {
+        "species": "absol"
+      },
+      {
+        "species": "inkay"
+      },
+      {
+        "species": "malamar"
+      },
+      {
+        "species": "lunatone"
+      },
+      {
+        "species": "solrock"
+      },
+      {
+        "species": "bagon"
+      },
+      {
+        "species": "shelgon"
+      },
+      {
+        "species": "salamence"
+      },
+      {
+        "species": "wingull"
+      },
+      {
+        "species": "pelipper"
+      },
+      {
+        "species": "taillow"
+      },
+      {
+        "species": "swellow"
+      },
+      {
+        "species": "binacle"
+      },
+      {
+        "species": "barbaracle"
+      },
+      {
+        "species": "dwebble"
+      },
+      {
+        "species": "crustle"
+      },
+      {
+        "species": "tentacool"
+      },
+      {
+        "species": "tentacruel"
+      },
+      {
+        "species": "wailmer"
+      },
+      {
+        "species": "wailord"
+      },
+      {
+        "species": "luvdisc"
+      },
+      {
+        "species": "skrelp"
+      },
+      {
+        "species": "dragalge"
+      },
+      {
+        "species": "clauncher"
+      },
+      {
+        "species": "clawitzer"
+      },
+      {
+        "species": "staryu"
+      },
+      {
+        "species": "starmie"
+      },
+      {
+        "species": "shellder"
+      },
+      {
+        "species": "cloyster"
+      },
+      {
+        "species": "qwilfish"
+      },
+      {
+        "species": "horsea"
+      },
+      {
+        "species": "seadra"
+      },
+      {
+        "species": "kingdra"
+      },
+      {
+        "species": "relicanth"
+      },
+      {
+        "species": "sandile"
+      },
+      {
+        "species": "krokorok"
+      },
+      {
+        "species": "krookodile"
+      },
+      {
+        "species": "helioptile"
+      },
+      {
+        "species": "heliolisk"
+      },
+      {
+        "species": "hippopotas"
+      },
+      {
+        "species": "hippowdon"
+      },
+      {
+        "species": "rhyhorn"
+      },
+      {
+        "species": "rhydon"
+      },
+      {
+        "species": "rhyperior"
+      },
+      {
+        "species": "onix"
+      },
+      {
+        "species": "steelix"
+      },
+      {
+        "species": "woobat"
+      },
+      {
+        "species": "swoobat"
+      },
+      {
+        "species": "machop"
+      },
+      {
+        "species": "machoke"
+      },
+      {
+        "species": "machamp"
+      },
+      {
+        "species": "cubone"
+      },
+      {
+        "species": "marowak"
+      },
+      {
+        "species": "kangaskhan"
+      },
+      {
+        "species": "mawile"
+      },
+      {
+        "species": "tyrunt"
+      },
+      {
+        "species": "tyrantrum"
+      },
+      {
+        "species": "amaura"
+      },
+      {
+        "species": "aurorus"
+      },
+      {
+        "species": "aerodactyl"
+      },
+      {
+        "species": "ferroseed"
+      },
+      {
+        "species": "ferrothorn"
+      },
+      {
+        "species": "snubbull"
+      },
+      {
+        "species": "granbull"
+      },
+      {
+        "species": "electrike"
+      },
+      {
+        "species": "manectric"
+      },
+      {
+        "species": "houndour"
+      },
+      {
+        "species": "houndoom"
+      },
+      {
+        "species": "eevee"
+      },
+      {
+        "species": "vaporeon"
+      },
+      {
+        "species": "jolteon"
+      },
+      {
+        "species": "flareon"
+      },
+      {
+        "species": "espeon"
+      },
+      {
+        "species": "umbreon"
+      },
+      {
+        "species": "leafeon"
+      },
+      {
+        "species": "glaceon"
+      },
+      {
+        "species": "sylveon"
+      },
+      {
+        "species": "emolga"
+      },
+      {
+        "species": "yanma"
+      },
+      {
+        "species": "yanmega"
+      },
+      {
+        "species": "hawlucha"
+      },
+      {
+        "species": "sigilyph"
+      },
+      {
+        "species": "golett"
+      },
+      {
+        "species": "golurk"
+      },
+      {
+        "species": "nosepass"
+      },
+      {
+        "species": "probopass"
+      },
+      {
+        "species": "makuhita"
+      },
+      {
+        "species": "hariyama"
+      },
+      {
+        "species": "throh"
+      },
+      {
+        "species": "sawk"
+      },
+      {
+        "species": "starly"
+      },
+      {
+        "species": "staravia"
+      },
+      {
+        "species": "staraptor"
+      },
+      {
+        "species": "stunky"
+      },
+      {
+        "species": "skuntank"
+      },
+      {
+        "species": "nidoran-f"
+      },
+      {
+        "species": "nidorina"
+      },
+      {
+        "species": "nidoqueen"
+      },
+      {
+        "species": "nidoran-m"
+      },
+      {
+        "species": "nidorino"
+      },
+      {
+        "species": "nidoking"
+      },
+      {
+        "species": "dedenne"
+      },
+      {
+        "species": "chingling"
+      },
+      {
+        "species": "chimecho"
+      },
+      {
+        "species": "mime-jr"
+      },
+      {
+        "species": "mr-mime"
+      },
+      {
+        "species": "solosis"
+      },
+      {
+        "species": "duosion"
+      },
+      {
+        "species": "reuniclus"
+      },
+      {
+        "species": "wynaut"
+      },
+      {
+        "species": "wobbuffet"
+      },
+      {
+        "species": "roggenrola"
+      },
+      {
+        "species": "boldore"
+      },
+      {
+        "species": "gigalith"
+      },
+      {
+        "species": "sableye"
+      },
+      {
+        "species": "carbink"
+      },
+      {
+        "species": "tauros"
+      },
+      {
+        "species": "miltank"
+      },
+      {
+        "species": "mareep"
+      },
+      {
+        "species": "flaaffy"
+      },
+      {
+        "species": "ampharos"
+      },
+      {
+        "species": "pinsir"
+      },
+      {
+        "species": "heracross"
+      },
+      {
+        "species": "pachirisu"
+      },
+      {
+        "species": "slowpoke"
+      },
+      {
+        "species": "slowbro"
+      },
+      {
+        "species": "slowking"
+      },
+      {
+        "species": "exeggcute"
+      },
+      {
+        "species": "exeggutor"
+      },
+      {
+        "species": "chatot"
+      },
+      {
+        "species": "mantyke"
+      },
+      {
+        "species": "mantine"
+      },
+      {
+        "species": "clamperl"
+      },
+      {
+        "species": "huntail"
+      },
+      {
+        "species": "gorebyss"
+      },
+      {
+        "species": "remoraid"
+      },
+      {
+        "species": "octillery"
+      },
+      {
+        "species": "corsola"
+      },
+      {
+        "species": "chinchou"
+      },
+      {
+        "species": "lanturn"
+      },
+      {
+        "species": "alomomola"
+      },
+      {
+        "species": "lapras"
+      },
+      {
+        "species": "articuno"
+      },
+      {
+        "species": "zapdos"
+      },
+      {
+        "species": "moltres"
+      },
+      {
+        "species": "diglett"
+      },
+      {
+        "species": "dugtrio"
+      },
+      {
+        "species": "trapinch"
+      },
+      {
+        "species": "vibrava"
+      },
+      {
+        "species": "flygon"
+      },
+      {
+        "species": "gible"
+      },
+      {
+        "species": "gabite"
+      },
+      {
+        "species": "garchomp"
+      },
+      {
+        "species": "geodude"
+      },
+      {
+        "species": "graveler"
+      },
+      {
+        "species": "golem"
+      },
+      {
+        "species": "slugma"
+      },
+      {
+        "species": "magcargo"
+      },
+      {
+        "species": "shuckle"
+      },
+      {
+        "species": "skorupi"
+      },
+      {
+        "species": "drapion"
+      },
+      {
+        "species": "wooper"
+      },
+      {
+        "species": "quagsire"
+      },
+      {
+        "species": "goomy"
+      },
+      {
+        "species": "sliggoo"
+      },
+      {
+        "species": "goodra"
+      },
+      {
+        "species": "karrablast"
+      },
+      {
+        "species": "escavalier"
+      },
+      {
+        "species": "shelmet"
+      },
+      {
+        "species": "accelgor"
+      },
+      {
+        "species": "bellsprout"
+      },
+      {
+        "species": "weepinbell"
+      },
+      {
+        "species": "victreebel"
+      },
+      {
+        "species": "carnivine"
+      },
+      {
+        "species": "gastly"
+      },
+      {
+        "species": "haunter"
+      },
+      {
+        "species": "gengar"
+      },
+      {
+        "species": "poliwag"
+      },
+      {
+        "species": "poliwhirl"
+      },
+      {
+        "species": "poliwrath"
+      },
+      {
+        "species": "politoed"
+      },
+      {
+        "species": "ekans"
+      },
+      {
+        "species": "arbok"
+      },
+      {
+        "species": "stunfisk"
+      },
+      {
+        "species": "barboach"
+      },
+      {
+        "species": "whiscash"
+      },
+      {
+        "species": "purrloin"
+      },
+      {
+        "species": "liepard"
+      },
+      {
+        "species": "poochyena"
+      },
+      {
+        "species": "mightyena"
+      },
+      {
+        "species": "patrat"
+      },
+      {
+        "species": "watchog"
+      },
+      {
+        "species": "pawniard"
+      },
+      {
+        "species": "bisharp"
+      },
+      {
+        "species": "klefki"
+      },
+      {
+        "species": "murkrow"
+      },
+      {
+        "species": "honchkrow"
+      },
+      {
+        "species": "foongus"
+      },
+      {
+        "species": "amoonguss"
+      },
+      {
+        "species": "lotad"
+      },
+      {
+        "species": "lombre"
+      },
+      {
+        "species": "ludicolo"
+      },
+      {
+        "species": "buizel"
+      },
+      {
+        "species": "floatzel"
+      },
+      {
+        "species": "basculin"
+      },
+      {
+        "species": "phantump"
+      },
+      {
+        "species": "trevenant"
+      },
+      {
+        "species": "pumpkaboo"
+      },
+      {
+        "species": "gourgeist"
+      },
+      {
+        "species": "litwick"
+      },
+      {
+        "species": "lampent"
+      },
+      {
+        "species": "chandelure"
+      },
+      {
+        "species": "rotom"
+      },
+      {
+        "species": "magnemite"
+      },
+      {
+        "species": "magneton"
+      },
+      {
+        "species": "magnezone"
+      },
+      {
+        "species": "voltorb"
+      },
+      {
+        "species": "electrode"
+      },
+      {
+        "species": "trubbish"
+      },
+      {
+        "species": "garbodor"
+      },
+      {
+        "species": "swinub"
+      },
+      {
+        "species": "piloswine"
+      },
+      {
+        "species": "mamoswine"
+      },
+      {
+        "species": "bergmite"
+      },
+      {
+        "species": "avalugg"
+      },
+      {
+        "species": "cubchoo"
+      },
+      {
+        "species": "beartic"
+      },
+      {
+        "species": "smoochum"
+      },
+      {
+        "species": "jynx"
+      },
+      {
+        "species": "vanillite"
+      },
+      {
+        "species": "vanillish"
+      },
+      {
+        "species": "vanilluxe"
+      },
+      {
+        "species": "snover"
+      },
+      {
+        "species": "abomasnow"
+      },
+      {
+        "species": "delibird"
+      },
+      {
+        "species": "sneasel"
+      },
+      {
+        "species": "weavile"
+      },
+      {
+        "species": "timburr"
+      },
+      {
+        "species": "gurdurr"
+      },
+      {
+        "species": "conkeldurr"
+      },
+      {
+        "species": "torkoal"
+      },
+      {
+        "species": "sandshrew"
+      },
+      {
+        "species": "sandslash"
+      },
+      {
+        "species": "aron"
+      },
+      {
+        "species": "lairon"
+      },
+      {
+        "species": "aggron"
+      },
+      {
+        "species": "larvitar"
+      },
+      {
+        "species": "pupitar"
+      },
+      {
+        "species": "tyranitar"
+      },
+      {
+        "species": "heatmor"
+      },
+      {
+        "species": "durant"
+      },
+      {
+        "species": "spinarak"
+      },
+      {
+        "species": "ariados"
+      },
+      {
+        "species": "spearow"
+      },
+      {
+        "species": "fearow"
+      },
+      {
+        "species": "cryogonal"
+      },
+      {
+        "species": "skarmory"
+      },
+      {
+        "species": "noibat"
+      },
+      {
+        "species": "noivern"
+      },
+      {
+        "species": "gligar"
+      },
+      {
+        "species": "gliscor"
+      },
+      {
+        "species": "hoothoot"
+      },
+      {
+        "species": "noctowl"
+      },
+      {
+        "species": "igglybuff"
+      },
+      {
+        "species": "jigglypuff"
+      },
+      {
+        "species": "wigglytuff"
+      },
+      {
+        "species": "shuppet"
+      },
+      {
+        "species": "banette"
+      },
+      {
+        "species": "zorua"
+      },
+      {
+        "species": "zoroark"
+      },
+      {
+        "species": "gothita"
+      },
+      {
+        "species": "gothorita"
+      },
+      {
+        "species": "gothitelle"
+      },
+      {
+        "species": "bonsly"
+      },
+      {
+        "species": "sudowoodo"
+      },
+      {
+        "species": "spinda"
+      },
+      {
+        "species": "teddiursa"
+      },
+      {
+        "species": "ursaring"
+      },
+      {
+        "species": "lickitung"
+      },
+      {
+        "species": "lickilicky"
+      },
+      {
+        "species": "scyther"
+      },
+      {
+        "species": "scizor"
+      },
+      {
+        "species": "ditto"
+      },
+      {
+        "species": "swablu"
+      },
+      {
+        "species": "altaria"
+      },
+      {
+        "species": "druddigon"
+      },
+      {
+        "species": "deino"
+      },
+      {
+        "species": "zweilous"
+      },
+      {
+        "species": "hydreigon"
+      },
+      {
+        "species": "dratini"
+      },
+      {
+        "species": "dragonair"
+      },
+      {
+        "species": "dragonite"
+      },
+      {
+        "species": "xerneas"
+      },
+      {
+        "species": "yveltal"
+      },
+      {
+        "species": "zygarde"
+      },
+      {
+        "species": "mewtwo"
       }
     ]
   },
@@ -6186,6 +7233,564 @@
       },
       {
         "species": "eternatus"
+      },
+      {
+        "species": "slowpoke",
+        "alt": "galar"
+      },
+      {
+        "species": "slowbro",
+        "alt": "galar"
+      },
+      {
+        "species": "slowking",
+        "alt": "galar"
+      },
+      {
+        "species": "buneary"
+      },
+      {
+        "species": "lopunny"
+      },
+      {
+        "species": "happiny"
+      },
+      {
+        "species": "chansey"
+      },
+      {
+        "species": "blissey"
+      },
+      {
+        "species": "igglybuff"
+      },
+      {
+        "species": "jigglypuff"
+      },
+      {
+        "species": "wigglytuff"
+      },
+      {
+        "species": "fomantis"
+      },
+      {
+        "species": "lurantis"
+      },
+      {
+        "species": "fletchling"
+      },
+      {
+        "species": "fletchinder"
+      },
+      {
+        "species": "talonflame"
+      },
+      {
+        "species": "shinx"
+      },
+      {
+        "species": "luxio"
+      },
+      {
+        "species": "luxray"
+      },
+      {
+        "species": "klefki"
+      },
+      {
+        "species": "abra"
+      },
+      {
+        "species": "kadabra"
+      },
+      {
+        "species": "alakazam"
+      },
+      {
+        "species": "tentacool"
+      },
+      {
+        "species": "tentacruel"
+      },
+      {
+        "species": "dunsparce"
+      },
+      {
+        "species": "bouffalant"
+      },
+      {
+        "species": "lickitung"
+      },
+      {
+        "species": "lickilicky"
+      },
+      {
+        "species": "druddigon"
+      },
+      {
+        "species": "bulbasaur"
+      },
+      {
+        "species": "ivysaur"
+      },
+      {
+        "species": "venusaur"
+      },
+      {
+        "species": "squirtle"
+      },
+      {
+        "species": "wartortle"
+      },
+      {
+        "species": "blastoise"
+      },
+      {
+        "species": "venipede"
+      },
+      {
+        "species": "whirlipede"
+      },
+      {
+        "species": "scolipede"
+      },
+      {
+        "species": "foongus"
+      },
+      {
+        "species": "amoonguss"
+      },
+      {
+        "species": "comfey"
+      },
+      {
+        "species": "tangela"
+      },
+      {
+        "species": "tangrowth"
+      },
+      {
+        "species": "zorua"
+      },
+      {
+        "species": "zoroark"
+      },
+      {
+        "species": "staryu"
+      },
+      {
+        "species": "starmie"
+      },
+      {
+        "species": "kubfu"
+      },
+      {
+        "species": "urshifu"
+      },
+      {
+        "species": "emolga"
+      },
+      {
+        "species": "dedenne"
+      },
+      {
+        "species": "magnemite"
+      },
+      {
+        "species": "magneton"
+      },
+      {
+        "species": "magnezone"
+      },
+      {
+        "species": "carvanha"
+      },
+      {
+        "species": "sharpedo"
+      },
+      {
+        "species": "lillipup"
+      },
+      {
+        "species": "herdier"
+      },
+      {
+        "species": "stoutland"
+      },
+      {
+        "species": "tauros"
+      },
+      {
+        "species": "miltank"
+      },
+      {
+        "species": "scyther"
+      },
+      {
+        "species": "scizor"
+      },
+      {
+        "species": "pinsir"
+      },
+      {
+        "species": "heracross"
+      },
+      {
+        "species": "sandygast"
+      },
+      {
+        "species": "palossand"
+      },
+      {
+        "species": "azurill"
+      },
+      {
+        "species": "marill"
+      },
+      {
+        "species": "azumarill"
+      },
+      {
+        "species": "poliwag"
+      },
+      {
+        "species": "poliwhirl"
+      },
+      {
+        "species": "poliwrath"
+      },
+      {
+        "species": "politoed"
+      },
+      {
+        "species": "psyduck"
+      },
+      {
+        "species": "golduck"
+      },
+      {
+        "species": "whismur"
+      },
+      {
+        "species": "loudred"
+      },
+      {
+        "species": "exploud"
+      },
+      {
+        "species": "skarmory"
+      },
+      {
+        "species": "rockruff"
+      },
+      {
+        "species": "lycanroc"
+      },
+      {
+        "species": "mienfoo"
+      },
+      {
+        "species": "mienshao"
+      },
+      {
+        "species": "sandshrew"
+      },
+      {
+        "species": "sandslash"
+      },
+      {
+        "species": "cubone"
+      },
+      {
+        "species": "marowak"
+      },
+      {
+        "species": "kangaskhan"
+      },
+      {
+        "species": "sandile"
+      },
+      {
+        "species": "krokorok"
+      },
+      {
+        "species": "krookodile"
+      },
+      {
+        "species": "larvesta"
+      },
+      {
+        "species": "volcarona"
+      },
+      {
+        "species": "skrelp"
+      },
+      {
+        "species": "dragalge"
+      },
+      {
+        "species": "clauncher"
+      },
+      {
+        "species": "clawitzer"
+      },
+      {
+        "species": "horsea"
+      },
+      {
+        "species": "seadra"
+      },
+      {
+        "species": "kingdra"
+      },
+      {
+        "species": "petilil"
+      },
+      {
+        "species": "lilligant"
+      },
+      {
+        "species": "exeggcute"
+      },
+      {
+        "species": "exeggutor"
+      },
+      {
+        "species": "porygon"
+      },
+      {
+        "species": "porygon2"
+      },
+      {
+        "species": "porygon-z"
+      },
+      {
+        "species": "zarude"
+      },
+      {
+        "species": "smoochum"
+      },
+      {
+        "species": "jynx"
+      },
+      {
+        "species": "elekid"
+      },
+      {
+        "species": "electabuzz"
+      },
+      {
+        "species": "electivire"
+      },
+      {
+        "species": "magby"
+      },
+      {
+        "species": "magmar"
+      },
+      {
+        "species": "magmortar"
+      },
+      {
+        "species": "audino"
+      },
+      {
+        "species": "cryogonal"
+      },
+      {
+        "species": "swablu"
+      },
+      {
+        "species": "altaria"
+      },
+      {
+        "species": "spiritomb"
+      },
+      {
+        "species": "nidoran-f"
+      },
+      {
+        "species": "nidorina"
+      },
+      {
+        "species": "nidoqueen"
+      },
+      {
+        "species": "nidoran-m"
+      },
+      {
+        "species": "nidorino"
+      },
+      {
+        "species": "nidoking"
+      },
+      {
+        "species": "tyrunt"
+      },
+      {
+        "species": "tyrantrum"
+      },
+      {
+        "species": "amaura"
+      },
+      {
+        "species": "aurorus"
+      },
+      {
+        "species": "absol"
+      },
+      {
+        "species": "bagon"
+      },
+      {
+        "species": "shelgon"
+      },
+      {
+        "species": "salamence"
+      },
+      {
+        "species": "gible"
+      },
+      {
+        "species": "gabite"
+      },
+      {
+        "species": "garchomp"
+      },
+      {
+        "species": "omanyte"
+      },
+      {
+        "species": "omastar"
+      },
+      {
+        "species": "kabuto"
+      },
+      {
+        "species": "kabutops"
+      },
+      {
+        "species": "aerodactyl"
+      },
+      {
+        "species": "carbink"
+      },
+      {
+        "species": "beldum"
+      },
+      {
+        "species": "metang"
+      },
+      {
+        "species": "metagross"
+      },
+      {
+        "species": "zubat"
+      },
+      {
+        "species": "golbat"
+      },
+      {
+        "species": "crobat"
+      },
+      {
+        "species": "tirtouga"
+      },
+      {
+        "species": "carracosta"
+      },
+      {
+        "species": "archen"
+      },
+      {
+        "species": "archeops"
+      },
+      {
+        "species": "spheal"
+      },
+      {
+        "species": "sealeo"
+      },
+      {
+        "species": "walrein"
+      },
+      {
+        "species": "lileep"
+      },
+      {
+        "species": "cradily"
+      },
+      {
+        "species": "anorith"
+      },
+      {
+        "species": "armaldo"
+      },
+      {
+        "species": "relicanth"
+      },
+      {
+        "species": "aron"
+      },
+      {
+        "species": "lairon"
+      },
+      {
+        "species": "aggron"
+      },
+      {
+        "species": "dratini"
+      },
+      {
+        "species": "dragonair"
+      },
+      {
+        "species": "dragonite"
+      },
+      {
+        "species": "regirock"
+      },
+      {
+        "species": "regice"
+      },
+      {
+        "species": "registeel"
+      },
+      {
+        "species": "regieleki"
+      },
+      {
+        "species": "regidrago"
+      },
+      {
+        "species": "articuno",
+        "alt": "galar"
+      },
+      {
+        "species": "zapdos",
+        "alt": "galar"
+      },
+      {
+        "species": "moltres",
+        "alt": "galar"
+      },
+      {
+        "species": "cobalion"
+      },
+      {
+        "species": "terrakion"
+      },
+      {
+        "species": "virizion"
+      },
+      {
+        "species": "glastrier"
+      },
+      {
+        "species": "spectrier"
+      },
+      {
+        "species": "calyrex"
       }
     ]
   },
@@ -7402,6 +9007,798 @@
       },
       {
         "species": "miraidon"
+      },
+      {
+        "species": "spinarak"
+      },
+      {
+        "species": "ariados"
+      },
+      {
+        "species": "yanma"
+      },
+      {
+        "species": "yanmega"
+      },
+      {
+        "species": "quagsire"
+      },
+      {
+        "species": "poochyena"
+      },
+      {
+        "species": "mightyena"
+      },
+      {
+        "species": "volbeat"
+      },
+      {
+        "species": "illumise"
+      },
+      {
+        "species": "corphish"
+      },
+      {
+        "species": "crawdaunt"
+      },
+      {
+        "species": "sewaddle"
+      },
+      {
+        "species": "swadloon"
+      },
+      {
+        "species": "leavanny"
+      },
+      {
+        "species": "cutiefly"
+      },
+      {
+        "species": "ribombee"
+      },
+      {
+        "species": "ekans"
+      },
+      {
+        "species": "arbok"
+      },
+      {
+        "species": "bellsprout"
+      },
+      {
+        "species": "weepinbell"
+      },
+      {
+        "species": "victreebel"
+      },
+      {
+        "species": "sentret"
+      },
+      {
+        "species": "furret"
+      },
+      {
+        "species": "dipplin"
+      },
+      {
+        "species": "vulpix"
+      },
+      {
+        "species": "ninetales"
+      },
+      {
+        "species": "poliwag"
+      },
+      {
+        "species": "poliwhirl"
+      },
+      {
+        "species": "poliwrath"
+      },
+      {
+        "species": "politoed"
+      },
+      {
+        "species": "hoothoot"
+      },
+      {
+        "species": "noctowl"
+      },
+      {
+        "species": "aipom"
+      },
+      {
+        "species": "ambipom"
+      },
+      {
+        "species": "swinub"
+      },
+      {
+        "species": "piloswine"
+      },
+      {
+        "species": "mamoswine"
+      },
+      {
+        "species": "seedot"
+      },
+      {
+        "species": "nuzleaf"
+      },
+      {
+        "species": "shiftry"
+      },
+      {
+        "species": "phantump"
+      },
+      {
+        "species": "trevenant"
+      },
+      {
+        "species": "poltchageist"
+      },
+      {
+        "species": "sinistcha"
+      },
+      {
+        "species": "geodude"
+      },
+      {
+        "species": "graveler"
+      },
+      {
+        "species": "golem"
+      },
+      {
+        "species": "timburr"
+      },
+      {
+        "species": "gurdurr"
+      },
+      {
+        "species": "conkeldurr"
+      },
+      {
+        "species": "morpeko"
+      },
+      {
+        "species": "munchlax"
+      },
+      {
+        "species": "snorlax"
+      },
+      {
+        "species": "lotad"
+      },
+      {
+        "species": "lombre"
+      },
+      {
+        "species": "ludicolo"
+      },
+      {
+        "species": "nosepass"
+      },
+      {
+        "species": "probopass"
+      },
+      {
+        "species": "grubbin"
+      },
+      {
+        "species": "charjabug"
+      },
+      {
+        "species": "vikavolt"
+      },
+      {
+        "species": "sandshrew"
+      },
+      {
+        "species": "sandslash"
+      },
+      {
+        "species": "gligar"
+      },
+      {
+        "species": "gliscor"
+      },
+      {
+        "species": "vullaby"
+      },
+      {
+        "species": "mandibuzz"
+      },
+      {
+        "species": "jangmo-o"
+      },
+      {
+        "species": "hakamo-o"
+      },
+      {
+        "species": "kommo-o"
+      },
+      {
+        "species": "koffing"
+      },
+      {
+        "species": "weezing"
+      },
+      {
+        "species": "mienfoo"
+      },
+      {
+        "species": "mienshao"
+      },
+      {
+        "species": "duskull"
+      },
+      {
+        "species": "dusclops"
+      },
+      {
+        "species": "dusknoir"
+      },
+      {
+        "species": "chingling"
+      },
+      {
+        "species": "chimecho"
+      },
+      {
+        "species": "slugma"
+      },
+      {
+        "species": "magcargo"
+      },
+      {
+        "species": "litwick"
+      },
+      {
+        "species": "lampent"
+      },
+      {
+        "species": "chandelure"
+      },
+      {
+        "species": "cleffa"
+      },
+      {
+        "species": "clefairy"
+      },
+      {
+        "species": "clefable"
+      },
+      {
+        "species": "feebas"
+      },
+      {
+        "species": "milotic"
+      },
+      {
+        "species": "carbink"
+      },
+      {
+        "species": "ducklett"
+      },
+      {
+        "species": "swanna"
+      },
+      {
+        "species": "cramorant"
+      },
+      {
+        "species": "basculegion"
+      },
+      {
+        "species": "ursaluna"
+      },
+      {
+        "species": "okidogi"
+      },
+      {
+        "species": "munkidori"
+      },
+      {
+        "species": "fezandipiti"
+      },
+      {
+        "species": "ogerpon"
+      },
+      {
+        "species": "doduo"
+      },
+      {
+        "species": "dodrio"
+      },
+      {
+        "species": "exeggcute"
+      },
+      {
+        "species": "exeggutor"
+      },
+      {
+        "species": "rhyhorn"
+      },
+      {
+        "species": "rhydon"
+      },
+      {
+        "species": "rhyperior"
+      },
+      {
+        "species": "elekid"
+      },
+      {
+        "species": "electabuzz"
+      },
+      {
+        "species": "electivire"
+      },
+      {
+        "species": "magby"
+      },
+      {
+        "species": "magmar"
+      },
+      {
+        "species": "magmortar"
+      },
+      {
+        "species": "kleavor"
+      },
+      {
+        "species": "blitzle"
+      },
+      {
+        "species": "zebstrika"
+      },
+      {
+        "species": "smeargle"
+      },
+      {
+        "species": "milcery"
+      },
+      {
+        "species": "alcremie"
+      },
+      {
+        "species": "trapinch"
+      },
+      {
+        "species": "vibrava"
+      },
+      {
+        "species": "flygon"
+      },
+      {
+        "species": "pikipek"
+      },
+      {
+        "species": "trumbeak"
+      },
+      {
+        "species": "toucannon"
+      },
+      {
+        "species": "tentacool"
+      },
+      {
+        "species": "tentacruel"
+      },
+      {
+        "species": "horsea"
+      },
+      {
+        "species": "seadra"
+      },
+      {
+        "species": "kingdra"
+      },
+      {
+        "species": "cottonee"
+      },
+      {
+        "species": "whimsicott"
+      },
+      {
+        "species": "comfey"
+      },
+      {
+        "species": "oddish"
+      },
+      {
+        "species": "gloom"
+      },
+      {
+        "species": "vileplume"
+      },
+      {
+        "species": "bellossom"
+      },
+      {
+        "species": "chinchou"
+      },
+      {
+        "species": "lanturn"
+      },
+      {
+        "species": "inkay"
+      },
+      {
+        "species": "malamar"
+      },
+      {
+        "species": "dewpider"
+      },
+      {
+        "species": "araquanid"
+      },
+      {
+        "species": "tyrogue"
+      },
+      {
+        "species": "hitmonlee"
+      },
+      {
+        "species": "hitmonchan"
+      },
+      {
+        "species": "hitmontop"
+      },
+      {
+        "species": "drilbur"
+      },
+      {
+        "species": "excadrill"
+      },
+      {
+        "species": "espurr"
+      },
+      {
+        "species": "meowstic"
+      },
+      {
+        "species": "minior"
+      },
+      {
+        "species": "cranidos"
+      },
+      {
+        "species": "rampardos"
+      },
+      {
+        "species": "shieldon"
+      },
+      {
+        "species": "bastiodon"
+      },
+      {
+        "species": "minccino"
+      },
+      {
+        "species": "cinccino"
+      },
+      {
+        "species": "skarmory"
+      },
+      {
+        "species": "plusle"
+      },
+      {
+        "species": "minun"
+      },
+      {
+        "species": "scraggy"
+      },
+      {
+        "species": "scrafty"
+      },
+      {
+        "species": "golett"
+      },
+      {
+        "species": "golurk"
+      },
+      {
+        "species": "porygon"
+      },
+      {
+        "species": "porygon2"
+      },
+      {
+        "species": "porygon-z"
+      },
+      {
+        "species": "joltik"
+      },
+      {
+        "species": "galvantula"
+      },
+      {
+        "species": "beldum"
+      },
+      {
+        "species": "metang"
+      },
+      {
+        "species": "metagross"
+      },
+      {
+        "species": "seel"
+      },
+      {
+        "species": "dewgong"
+      },
+      {
+        "species": "lapras"
+      },
+      {
+        "species": "overqwil"
+      },
+      {
+        "species": "solosis"
+      },
+      {
+        "species": "duosion"
+      },
+      {
+        "species": "reuniclus"
+      },
+      {
+        "species": "snubbull"
+      },
+      {
+        "species": "granbull"
+      },
+      {
+        "species": "duraludon"
+      },
+      {
+        "species": "archaludon"
+      },
+      {
+        "species": "hydrapple"
+      },
+      {
+        "species": "bulbasaur"
+      },
+      {
+        "species": "ivysaur"
+      },
+      {
+        "species": "venusaur"
+      },
+      {
+        "species": "charmander"
+      },
+      {
+        "species": "charmeleon"
+      },
+      {
+        "species": "charizard"
+      },
+      {
+        "species": "squirtle"
+      },
+      {
+        "species": "wartortle"
+      },
+      {
+        "species": "blastoise"
+      },
+      {
+        "species": "chikorita"
+      },
+      {
+        "species": "bayleef"
+      },
+      {
+        "species": "meganium"
+      },
+      {
+        "species": "cyndaquil"
+      },
+      {
+        "species": "quilava"
+      },
+      {
+        "species": "typhlosion"
+      },
+      {
+        "species": "totodile"
+      },
+      {
+        "species": "croconaw"
+      },
+      {
+        "species": "feraligatr"
+      },
+      {
+        "species": "treecko"
+      },
+      {
+        "species": "grovyle"
+      },
+      {
+        "species": "sceptile"
+      },
+      {
+        "species": "torchic"
+      },
+      {
+        "species": "combusken"
+      },
+      {
+        "species": "blaziken"
+      },
+      {
+        "species": "mudkip"
+      },
+      {
+        "species": "marshtomp"
+      },
+      {
+        "species": "swampert"
+      },
+      {
+        "species": "turtwig"
+      },
+      {
+        "species": "grotle"
+      },
+      {
+        "species": "torterra"
+      },
+      {
+        "species": "chimchar"
+      },
+      {
+        "species": "monferno"
+      },
+      {
+        "species": "infernape"
+      },
+      {
+        "species": "piplup"
+      },
+      {
+        "species": "prinplup"
+      },
+      {
+        "species": "empoleon"
+      },
+      {
+        "species": "snivy"
+      },
+      {
+        "species": "servine"
+      },
+      {
+        "species": "serperior"
+      },
+      {
+        "species": "tepig"
+      },
+      {
+        "species": "pignite"
+      },
+      {
+        "species": "emboar"
+      },
+      {
+        "species": "oshawott"
+      },
+      {
+        "species": "dewott"
+      },
+      {
+        "species": "samurott"
+      },
+      {
+        "species": "chespin"
+      },
+      {
+        "species": "quilladin"
+      },
+      {
+        "species": "chesnaught"
+      },
+      {
+        "species": "fennekin"
+      },
+      {
+        "species": "braixen"
+      },
+      {
+        "species": "delphox"
+      },
+      {
+        "species": "froakie"
+      },
+      {
+        "species": "frogadier"
+      },
+      {
+        "species": "greninja"
+      },
+      {
+        "species": "rowlet"
+      },
+      {
+        "species": "dartrix"
+      },
+      {
+        "species": "decidueye"
+      },
+      {
+        "species": "litten"
+      },
+      {
+        "species": "torracat"
+      },
+      {
+        "species": "incineroar"
+      },
+      {
+        "species": "popplio"
+      },
+      {
+        "species": "brionne"
+      },
+      {
+        "species": "primarina"
+      },
+      {
+        "species": "grookey"
+      },
+      {
+        "species": "thwackey"
+      },
+      {
+        "species": "rillaboom"
+      },
+      {
+        "species": "scorbunny"
+      },
+      {
+        "species": "raboot"
+      },
+      {
+        "species": "cinderace"
+      },
+      {
+        "species": "sobble"
+      },
+      {
+        "species": "drizzile"
+      },
+      {
+        "species": "inteleon"
+      },
+      {
+        "species": "gouging-fire"
+      },
+      {
+        "species": "raging-bolt"
+      },
+      {
+        "species": "iron-crown"
+      },
+      {
+        "species": "iron-boulder"
+      },
+      {
+        "species": "terapagos"
+      },
+      {
+        "species": "walking-wake"
+      },
+      {
+        "species": "iron-leaves"
+      },
+      {
+        "species": "pecharunt"
       }
     ]
   }

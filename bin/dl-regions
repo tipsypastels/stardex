@@ -21,16 +21,15 @@ import RAW_SPECIES_DATA from "../src/data/species.json" with { type: "json" };
  */
 
 const REGIONS_MAP = {
-  kanto: { dexId: 2, icon: "trees" },
-  johto: { dexId: 7, icon: "vihara" },
-  hoenn: { dexId: 15, icon: "wave" },
-  sinnoh: { dexId: 6, icon: "mountains" },
-  unova: { dexId: 7, icon: "city" },
-  // kalos-central
-  kalos: { dexId: 12, icon: "baguette" },
-  alola: { dexId: 21, icon: "island-tropical" },
-  galar: { dexId: 27, icon: "fort" },
-  paldea: { dexId: 31, icon: "lighthouse" },
+  kanto: { apiIds: [2], icon: "trees" },
+  johto: { apiIds: [7], icon: "vihara" },
+  hoenn: { apiIds: [15], icon: "wave" },
+  sinnoh: { apiIds: [6], icon: "mountains" },
+  unova: { apiIds: [9], icon: "city" },
+  kalos: { apiIds: [12, 13, 14], icon: "baguette" },
+  alola: { apiIds: [21], icon: "island-tropical" },
+  galar: { apiIds: [27, 28, 29], icon: "fort" },
+  paldea: { apiIds: [31, 32, 33], icon: "lighthouse" },
 };
 
 async function main() {
@@ -58,10 +57,28 @@ async function main() {
  * @param {typeof REGIONS_MAP[keyof typeof REGIONS_MAP]} data
  * @returns {Promise<ResolvedRegion>}
  */
-async function resolve(key, { icon, dexId }) {
-  const regionReq = await fetch(`https://pokeapi.co/api/v2/pokedex/${dexId}`);
+async function resolve(key, { icon, apiIds }) {
+  /** @type {Region[]} */
+  const subRegions = await Promise.all(
+    apiIds.map(async (apiId) => (await fetch(`https://pokeapi.co/api/v2/pokedex/${apiId}`)).json()),
+  );
+
   /** @type {Region} */
-  const region = await regionReq.json();
+  const region = { pokemon_entries: [] };
+  const foundSpeciesKeys = new Set();
+
+  for (const subRegion of subRegions) {
+    for (const entry of subRegion.pokemon_entries) {
+      if (!foundSpeciesKeys.has(entry.pokemon_species.name)) {
+        region.pokemon_entries.push(entry);
+        foundSpeciesKeys.add(entry.pokemon_species.name);
+      }
+    }
+  }
+
+  // const regionReq = await fetch(`https://pokeapi.co/api/v2/pokedex/${dexId}`);
+  // /** @type {Region} */
+  // const region = await regionReq.json();
   const name = key[0].toUpperCase() + key.slice(1);
   const members = region.pokemon_entries.flatMap((entry) => {
     const species = entry.pokemon_species.name;
