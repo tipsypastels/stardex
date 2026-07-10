@@ -18,6 +18,7 @@ export function useReordering(pokemons: PokemonList) {
     if (ref.current) {
       const sortable = Sortable.create(ref.current, {
         animation: 150,
+        ghostClass: "opacity-0",
         onEnd: (event) => pokemons.move(event.oldIndex! - 1, event.newIndex! - 1),
       });
       return () => sortable.destroy();
