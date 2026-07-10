@@ -5,7 +5,7 @@ import type { PokedexFormatKey } from "../../../models/pokedex/format";
 import { PokedexFormatContext } from "../../../state/context";
 import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";
-import { PokedexTextView } from "./text";
+import { PokedexTextView3 } from "./text3";
 
 interface FormatRenderingInfo {
   component: FunctionComponent<PokedexFormatViewProps>;
@@ -19,7 +19,8 @@ const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
     component: PokedexNamesView,
   },
   text: {
-    component: PokedexTextView,
+    // TODO: Lazy load this.
+    component: PokedexTextView3,
   },
 };
 

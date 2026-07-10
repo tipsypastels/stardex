@@ -1,10 +1,16 @@
 import type { RawPokemon } from "..";
-import { POKEMON_VERSION } from "../../versioned";
+import { POKEMON_LIST_VERSION, POKEMON_VERSION } from "../../versioned";
+import type { RawPokemonList } from "../list";
 import { SPECIES } from "../species";
 import { PokemonListTextDiffBuilder } from "./diff";
 
-export function parsePokemonListText(text: string) {
-  const pokemons: RawPokemon[] = [];
+export interface ParsePokemonListTextResult {
+  pokemons: RawPokemonList;
+  errors: PokemonListTextParseError[];
+}
+
+export function parsePokemonListText(text: string): ParsePokemonListTextResult {
+  const all: RawPokemon[] = [];
   const pokemonKeysToLineIndices = new Map<string, number>();
   const textDiff = new PokemonListTextDiffBuilder();
   const errors: PokemonListTextParseError[] = [];
@@ -110,14 +116,17 @@ export function parsePokemonListText(text: string) {
       pokemon.exclude = true;
     }
 
-    pokemons.push(pokemon);
+    all.push(pokemon);
     textDiff.entry();
   }
 
   return {
-    pokemons,
+    pokemons: {
+      v: POKEMON_LIST_VERSION,
+      all,
+      textDiff: textDiff.finish(),
+    },
     errors,
-    textDiff: textDiff.finish(),
   };
 }
 
