@@ -17,7 +17,7 @@ export function useDraggable(format: PokedexFormatKey, pokemons: PokemonList) {
   const sortableRef = useRef<Sortable>(null);
 
   useEffect(() => {
-    if (format !== "text" && gridRef.current && !sortableRef.current) {
+    if (format !== "text" && gridRef.current) {
       sortableRef.current = Sortable.create(gridRef.current, {
         animation: 150,
         ghostClass: "opacity-0",
@@ -30,9 +30,5 @@ export function useDraggable(format: PokedexFormatKey, pokemons: PokemonList) {
     }
   }, [format]);
 
-  function sort(keys: string[]) {
-    sortableRef.current?.sort(keys, true);
-  }
-
-  return { gridRef, sort };
+  return { gridRef };
 }

@@ -1,4 +1,4 @@
-import { useModel } from "@preact/signals";
+import { batch, useModel } from "@preact/signals";
 import { useContext, useRef, type FunctionComponent, type RefObject } from "preact/compat";
 import { PokedexFilter } from "../../../models/pokedex/filter";
 import type { PokedexFormatKey } from "../../../models/pokedex/format";
@@ -51,14 +51,11 @@ export function PokedexFormat({ setEditingIndex }: PokedexFormatProps) {
       <PokedexActions
         filter={filter}
         inTextView={format.key.value === "text"}
-        onAutosort={(options) => {
-          filter.raw.value = undefined;
-
-          const { keys, apply } = pokemons.autosorter(options);
-          draggable.sort(keys);
-          // Give the animation time to finish without
-          // interrupting it with re-renders.
-          setTimeout(apply, 100);
+        onAutosort={(request) => {
+          batch(() => {
+            filter.raw.value = undefined;
+            pokemons.autosort(request);
+          });
         }}
       />
       <div class="mb-4" ref={ref}>

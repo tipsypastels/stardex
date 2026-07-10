@@ -2,7 +2,7 @@ import { batch, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import type { PokedexFilter } from "../../../models/pokedex/filter";
-import type { AutosortOptions } from "../../../models/pokemon/autosort";
+import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import { PokedexFormatContext } from "../../../state/context";
 import { Actions, type ActionsAction } from "../../common/menus/actions";
 import { AddPokemon } from "../add";
@@ -13,7 +13,7 @@ import { FormatPokedexModal } from "./format";
 export interface PokedexActionsProps {
   filter: PokedexFilter;
   inTextView: boolean;
-  onAutosort(options: AutosortOptions): void;
+  onAutosort(request: AutosortRequest): void;
 }
 
 export function PokedexActions({ filter, inTextView, onAutosort }: PokedexActionsProps) {

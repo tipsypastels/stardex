@@ -1,7 +1,8 @@
+import { PairSorting } from "immutable";
 import randomColor from "randomcolor";
 import DATA from "../../data/types.json" with { type: "json" };
 import { unwrap } from "../../utils/assert";
-import { capitalize } from "../../utils/string";
+import { capitalize, sortStrings } from "../../utils/string";
 
 export interface Type {
   key: string;
@@ -14,6 +15,18 @@ export interface Type {
 export const TYPES = {
   of(key: string) {
     return key in DATA ? BUILTIN_TYPES.of(key) : CUSTOM_TYPES.of(key);
+  },
+  compareKeys(left: string, right: string) {
+    const leftIsBuiltin = BUILTIN_TYPES.map.has(left);
+    const rightIsBuiltin = BUILTIN_TYPES.map.has(right);
+
+    if (leftIsBuiltin && !rightIsBuiltin) return PairSorting.LeftThenRight;
+    if (rightIsBuiltin && !leftIsBuiltin) return PairSorting.RightThenLeft;
+    if (leftIsBuiltin) {
+      return BUILTIN_TYPES.keys.indexOf(left) - BUILTIN_TYPES.keys.indexOf(right);
+    } else {
+      return sortStrings(left, right);
+    }
   },
 };
 
