@@ -1,24 +1,25 @@
 import { Icon } from "../icon";
 
-interface Action {
+export interface ActionsAction {
   name: string;
   icon: string;
   active?: boolean;
+  desktop?: boolean;
   onClick(): void;
 }
 
 export interface ActionsProps {
-  actions: Action[];
+  actions: ActionsAction[];
   isUpperHalf?: boolean;
 }
 
 export function Actions({ actions, isUpperHalf = false }: ActionsProps) {
   return (
     <ul
-      class={`"border-secondary text-secondary flex border-2 p-2 pl-0 ${isUpperHalf ? "rounded-t-md" : "mb-8 rounded-md"}`}
+      class={`"border-secondary flex border-2 p-2 pl-0 text-secondary ${isUpperHalf ? "rounded-t-md" : "mb-8 rounded-md"}`}
     >
       {actions.map((action) => (
-        <li class="border-r-secondary border-r">
+        <li class={`border-r border-r-secondary ${action.desktop ? "hidden lg:block" : ""}`}>
           <button
             class={`flex cursor-pointer items-center gap-1 px-4 text-sm font-bold ${action.active ? "text-primary" : ""}`}
             onClick={action.onClick}

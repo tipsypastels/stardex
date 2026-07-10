@@ -44,7 +44,7 @@ export function PokedexFormat({ setEditingIndex }: PokedexFormatProps) {
 
   return (
     <>
-      <PokedexActions filter={filter} />
+      <PokedexActions filter={filter} inTextView={format.key.value === "text"} />
       <div class="mb-4" ref={ref}>
         <Component filter={filter} setEditingIndex={setEditingIndex} />
       </div>
