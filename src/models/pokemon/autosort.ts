@@ -1,4 +1,4 @@
-import { List as IList, PairSorting } from "immutable";
+import { List as IList } from "immutable";
 import type { Pokemon } from ".";
 import { Region, REGIONS, type RegionKey } from "../region";
 import { TYPE_KEY_PAIRS } from "../type/key_pair";
@@ -20,9 +20,14 @@ export function runAutosort(all: IList<Pokemon>, request: AutosortRequest) {
     }
     case "types": {
       return all.sort(
-        (left, right) =>
-          TYPE_KEY_PAIRS.compare(left.typeKeys.value, right.typeKeys.value) ||
-          PairSorting.LeftThenRight,
+        (left, right) => {
+          console.log(left.name.peek(), right.name.peek());
+          const typesResult = TYPE_KEY_PAIRS.compare(left.typeKeys.value, right.typeKeys.value);
+          console.log(typesResult);
+          return typesResult;
+        },
+        // TYPE_KEY_PAIRS.compare(left.typeKeys.value, right.typeKeys.value) ||
+        // PairSorting.LeftThenRight,
       );
     }
   }

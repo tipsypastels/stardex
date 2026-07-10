@@ -1,4 +1,4 @@
-import { useComputed, useSignal } from "@preact/signals";
+import { signal, useComputed } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import type { AutosortFailureMode, AutosortRequest } from "../../../models/pokemon/autosort";
 import { REGIONS, type RegionKey } from "../../../models/region";
@@ -23,11 +23,11 @@ const FAILURE_MODES: { key: AutosortFailureMode; name: string }[] = [
   { key: "remove", name: "Removed from the dex" },
 ];
 
-export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexModalProps) {
-  const kind = useSignal<AutosortRequest["kind"]>("id");
-  const region = useSignal<RegionKey>("kanto");
-  const failure = useSignal<AutosortFailureMode>("end");
+const kind = signal<AutosortRequest["kind"]>("id");
+const region = signal<RegionKey>("kanto");
+const failure = signal<AutosortFailureMode>("end");
 
+export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexModalProps) {
   const request = useComputed((): AutosortRequest => {
     switch (kind.value) {
       case "id": {

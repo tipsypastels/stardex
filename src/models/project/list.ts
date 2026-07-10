@@ -64,7 +64,7 @@ export const ProjectList = createModel(
           new InactiveProject({
             v: PROJECT_VERSION,
             id: crypto.randomUUID(),
-            name: `Untitled Project ${all.value.size}`,
+            name: `Untitled Project ${all.value.size + 1}`,
             active: false,
             models: {
               pokemons: { v: POKEMON_LIST_VERSION, all: [] },
