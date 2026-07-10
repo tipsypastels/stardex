@@ -25,9 +25,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
 
     <script>
-      if (window.location.href.includes("deno.net")) {
-        localStorage.removeItem("stardex_pokemon");
-      }
       if (localStorage.stardex_dark === "true") {
         document.documentElement.classList.add("dark");
         document.getElementById("favicon").href = "favicon_dark.png";
