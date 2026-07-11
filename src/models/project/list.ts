@@ -2,7 +2,7 @@ import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList } from "immutable";
 import { assert } from "../../utils/assert";
 import { stored } from "../../utils/storage";
-import { POKEDEX_FORMATS } from "../pokedex/format";
+import { POKEDEX_MODES } from "../pokedex/mode";
 import {
   ActiveProject,
   InactiveProject,
@@ -70,7 +70,7 @@ export const ProjectList = createModel(
               pokemons: { v: POKEMON_LIST_VERSION, all: [] },
               regions: REGIONS.recommendedKeys,
               strictness: STRICTNESSES.defaultKey,
-              pokedexFormat: POKEDEX_FORMATS.defaultKey,
+              pokedexMode: POKEDEX_MODES.defaultKey,
             },
           }),
         );

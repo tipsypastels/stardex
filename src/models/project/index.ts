@@ -1,6 +1,6 @@
 import { createModel, signal } from "@preact/signals";
 import { readonly } from "../../utils/signal";
-import type { PokedexFormatKey } from "../pokedex/format";
+import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawPokemonList } from "../pokemon/list";
 import type { RegionKey } from "../region";
 import type { StrictnessKey } from "../strictness";
@@ -15,7 +15,7 @@ export interface RawProjectModels {
   pokemons: RawPokemonList;
   regions: RegionKey[];
   strictness: StrictnessKey;
-  pokedexFormat: PokedexFormatKey;
+  pokedexMode: PokedexModeKey;
 }
 
 export interface RawSharedProject {

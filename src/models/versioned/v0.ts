@@ -1,5 +1,5 @@
 import { POKEMON_LIST_VERSION, POKEMON_VERSION, PROJECT_VERSION } from ".";
-import type { PokedexFormatKey } from "../pokedex/format";
+import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
 import type { RawPokemonList } from "../pokemon/list";
 import { PokemonListTextDiffBuilder } from "../pokemon/text/diff";
@@ -110,7 +110,7 @@ export interface V0_RawProjectModels {
   pokemon: V0_RawPokemonList;
   regions: RegionKey[];
   strictness: StrictnessKey;
-  pokedexFormat: PokedexFormatKey;
+  pokedexFormat: PokedexModeKey;
 }
 
 export interface V0_RawSharedProject {
@@ -138,12 +138,12 @@ export function V0_upgradeRawActiveProject(raw: V0_RawActiveProject): RawActiveP
 
 export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawInactiveProject {
   const {
-    modelState: { pokemon, ...models },
+    modelState: { pokemon, pokedexFormat, ...models },
     ...rest
   } = raw;
   return {
     v: PROJECT_VERSION,
-    models: { ...models, pokemons: V0_upgradeRawPokemonList(pokemon) },
+    models: { ...models, pokemons: V0_upgradeRawPokemonList(pokemon), pokedexMode: pokedexFormat },
     ...rest,
   };
 }

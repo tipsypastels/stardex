@@ -1,11 +1,11 @@
 import { batch, useSignal, type ReadonlySignal } from "@preact/signals";
 import { useContext, type FunctionComponent } from "preact/compat";
 import { PokedexFilter } from "../../../models/pokedex/filter";
-import type { PokedexFormatKey } from "../../../models/pokedex/format";
+import type { PokedexModeKey } from "../../../models/pokedex/mode";
 import type { Pokemon } from "../../../models/pokemon";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import type { PokemonList } from "../../../models/pokemon/list";
-import { PokedexFormatContext } from "../../../state/context";
+import { PokedexModeContext } from "../../../state/context";
 import { toasts } from "../../../state/toast";
 import { PokedexActions } from "../actions";
 import { toastDescriptionOfAutosortRequest } from "../actions/autosort";
@@ -13,11 +13,11 @@ import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";
 import { PokedexTextView } from "./text";
 
-interface FormatRenderingInfo {
-  component: FunctionComponent<PokedexFormatViewProps>;
+interface ModeRenderingInfo {
+  component: FunctionComponent<PokedexModeViewProps>;
 }
 
-const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
+const MODE_INFOS: Record<PokedexModeKey, ModeRenderingInfo> = {
   icons: {
     component: PokedexIconsView,
   },
@@ -29,7 +29,7 @@ const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
   },
 };
 
-export interface PokedexFormatViewProps {
+export interface PokedexModeViewProps {
   filter: PokedexFilter;
   zapper: ReadonlySignal<boolean>;
   pokemons: PokemonList;
@@ -37,21 +37,21 @@ export interface PokedexFormatViewProps {
   setEditingIndex(index: number): void;
 }
 
-export interface PokedexFormatProps {
+export interface PokedexModeProps {
   filter: PokedexFilter;
   pokemons: PokemonList;
   pokemonsFiltered: ReadonlySignal<Pokemon[]>;
   setEditingIndex(index: number): void;
 }
 
-export function PokedexFormat({
+export function PokedexMode({
   filter,
   pokemons,
   pokemonsFiltered,
   setEditingIndex,
-}: PokedexFormatProps) {
-  const format = useContext(PokedexFormatContext);
-  const formatInfo = FORMAT_INFOS[format.key.value];
+}: PokedexModeProps) {
+  const format = useContext(PokedexModeContext);
+  const formatInfo = MODE_INFOS[format.key.value];
   const Component = formatInfo.component;
 
   const zapper = useSignal(false);
@@ -72,7 +72,7 @@ export function PokedexFormat({
       <PokedexActions
         pokemons={pokemons}
         filter={filter}
-        format={format}
+        mode={format}
         zapper={zapper}
         onAutosort={onAutosort}
       />

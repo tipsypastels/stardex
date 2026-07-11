@@ -5,7 +5,7 @@ import { PokemonsContext } from "../../state/context";
 import { toasts } from "../../state/toast";
 import { Section } from "../layout/section";
 import { EditPokemonModal } from "./edit";
-import { PokedexFormat } from "./format";
+import { PokedexMode } from "./mode";
 
 export function Pokedex() {
   const editingIndex = useSignal<number>();
@@ -26,7 +26,7 @@ export function Pokedex() {
 
   return (
     <Section id="pokedex" title="Pokedex" hotkey="jumpToPokedex" hasActions>
-      <PokedexFormat
+      <PokedexMode
         filter={filter}
         pokemons={pokemons}
         pokemonsFiltered={pokemonsFiltered}

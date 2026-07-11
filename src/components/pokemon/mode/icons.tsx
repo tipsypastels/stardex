@@ -1,10 +1,10 @@
-import type { PokedexFormatViewProps } from ".";
+import type { PokedexModeViewProps } from ".";
 import type { Pokemon } from "../../../models/pokemon";
 import { TypeDots } from "../../types/util/dots";
 import { PokemonIcon } from "../util/pokemon_icon";
 import { PokedexGridlikeView } from "./util/grid";
 
-export function PokedexIconsView(props: PokedexFormatViewProps) {
+export function PokedexIconsView(props: PokedexModeViewProps) {
   return (
     <PokedexGridlikeView
       {...props}

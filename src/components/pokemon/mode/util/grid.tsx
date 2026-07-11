@@ -1,13 +1,13 @@
 import { batch } from "@preact/signals";
 import { For, Show } from "@preact/signals/utils";
 import type { ComponentChildren, RefObject } from "preact";
-import type { PokedexFormatViewProps } from "..";
+import type { PokedexModeViewProps } from "..";
 import type { Pokemon } from "../../../../models/pokemon";
 import { toasts } from "../../../../state/toast";
 import { EmptyPokedex } from "../../empty";
 import { useDraggable } from "./drag";
 
-export interface PokedexGridlikeViewProps extends PokedexFormatViewProps {
+export interface PokedexGridlikeViewProps extends PokedexModeViewProps {
   list(gridRef: RefObject<HTMLOListElement>, contents: ComponentChildren): ComponentChildren;
   item(pokemon: Pokemon, onClick: () => void): ComponentChildren;
 }

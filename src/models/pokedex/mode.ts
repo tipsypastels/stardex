@@ -1,18 +1,18 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
-import RAW_DATA from "../../data/pokedex_formats.json" with { type: "json" };
+import RAW_DATA from "../../data/pokedex_modes.json" with { type: "json" };
 import { stored } from "../../utils/storage";
 
-const store = stored<PokedexFormatKey>("stardex_pokedex_format");
+const store = stored<PokedexModeKey>("stardex_pokedex_mode");
 
-export type PokedexFormatKey = keyof typeof RAW_DATA;
-export type PokedexFormat = InstanceType<typeof PokedexFormat>;
+export type PokedexModeKey = keyof typeof RAW_DATA;
+export type PokedexMode = InstanceType<typeof PokedexMode>;
 
-export const PokedexFormat = createModel(($key: PokedexFormatKey) => {
+export const PokedexMode = createModel(($key: PokedexModeKey) => {
   const key = signal($key);
   const name = computed(() => RAW_DATA[key.value].name);
   const icon = computed(() => RAW_DATA[key.value].icon);
   const description = computed(() => RAW_DATA[key.value].description);
-  const index = computed(() => POKEDEX_FORMATS.keys.indexOf(key.value));
+  const index = computed(() => POKEDEX_MODES.keys.indexOf(key.value));
 
   effect(() => {
     store.dump(key.value);
@@ -21,9 +21,9 @@ export const PokedexFormat = createModel(($key: PokedexFormatKey) => {
   return { key, name, icon, description, index };
 });
 
-export const POKEDEX_FORMATS = (() => {
-  const keys = Object.keys(RAW_DATA) as PokedexFormatKey[];
-  const defaultKey: PokedexFormatKey = "icons";
+export const POKEDEX_MODES = (() => {
+  const keys = Object.keys(RAW_DATA) as PokedexModeKey[];
+  const defaultKey: PokedexModeKey = "icons";
 
   const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
 
@@ -35,7 +35,7 @@ export const POKEDEX_FORMATS = (() => {
       key = "text";
     }
 
-    return new PokedexFormat(key ?? defaultKey);
+    return new PokedexMode(key ?? defaultKey);
   }
 
   return { keys, defaultKey, options, initial };
