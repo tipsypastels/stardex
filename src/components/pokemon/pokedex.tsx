@@ -1,7 +1,8 @@
-import { useComputed, useModel, useSignal, useSignalEffect } from "@preact/signals";
+import { batch, useComputed, useModel, useSignal, useSignalEffect } from "@preact/signals";
 import { useContext } from "preact/hooks";
 import { PokedexFilter, runPokedexFilter } from "../../models/pokedex/filter";
 import { PokemonsContext } from "../../state/context";
+import { toasts } from "../../state/toast";
 import { Section } from "../layout/section";
 import { EditPokemonModal } from "./edit";
 import { PokedexFormat } from "./format";
@@ -16,7 +17,10 @@ export function Pokedex() {
 
   useSignalEffect(() => {
     if (filter.state.value && pokemonsFiltered.value.length === 0) {
-      filter.state.value = undefined;
+      batch(() => {
+        filter.state.value = undefined;
+        toasts.push({ text: "Cleared filter.", icon: "asterisk" });
+      });
     }
   });
 

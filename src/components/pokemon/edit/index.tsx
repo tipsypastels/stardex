@@ -1,6 +1,7 @@
 import { batch } from "@preact/signals";
 import { useContext } from "preact/hooks";
 import { PokemonsContext } from "../../../state/context";
+import { toasts } from "../../../state/toast";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { EditPokemonBehavior } from "./behavior";
@@ -18,6 +19,7 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
 
   function onRemove() {
     batch(() => {
+      toasts.push({ text: `Removed ${pokemon.name.peek()}!`, icon: "times" });
       pokemons.delete(index);
       onClose();
     });

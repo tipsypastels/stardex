@@ -4,6 +4,7 @@ import { useContext } from "preact/hooks";
 import type { PokedexFilter, PokedexFilterState } from "../../../models/pokedex/filter";
 import { TYPES } from "../../../models/type";
 import { MetricsContext } from "../../../state/context";
+import { toasts } from "../../../state/toast";
 import { Icon } from "../../common/icon";
 import { Modal } from "../../common/menus/modal";
 
@@ -18,6 +19,7 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
   function onClickAny() {
     batch(() => {
       filter.state.value = undefined;
+      toasts.push({ text: "Cleared filter.", icon: "asterisk" });
       onClose();
     });
   }
@@ -25,6 +27,7 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
   function onClickType(typeKey: string) {
     batch(() => {
       filter.state.value = { kind: "type", typeKey };
+      toasts.push({ text: `Set filter to ${typeKey}!`, icon: TYPES.of(typeKey).icon });
       onClose();
     });
   }
@@ -51,8 +54,9 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
           )}
         </For>
       </ul>
-      <div class="text-center text-sm">
-        <strong>Tip:</strong> You can't drag to reorder your Pokédex while filtering.
+      <div class="text-sm">
+        <strong>Tip:</strong> You can't drag to reorder your Pokédex while filtering. That would be
+        weird.
       </div>
     </Modal>
   );
