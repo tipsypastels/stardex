@@ -10,6 +10,7 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-warning: var(--warning);
+  --color-error: var(--error);
   --color-footer: var(--footer);
 
   --color-foreground: var(--foreground);
@@ -36,6 +37,7 @@
   --primary: var(--color-lime-600);
   --secondary: var(--color-mauve-500);
   --warning: var(--color-amber-400);
+  --error: var(--color-red-600);
   --footer: var(--secondary);
 
   --divider-light: var(--color-slate-300);
@@ -56,6 +58,7 @@
   --primary: var(--color-indigo-300);
   --secondary: var(--color-slate-500);
   --warning: var(--color-amber-400);
+  --error: var(--color-red-600);
   --footer: var(--color-slate-900);
 
   --divider-light: var(--color-slate-800);
