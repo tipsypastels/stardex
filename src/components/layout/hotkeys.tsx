@@ -68,7 +68,7 @@ function HotkeysModal({ onClose }: HotkeysModalProps) {
       <ul class="grid grid-cols-2 gap-4">
         <For each={() => Object.entries(HOTKEY_INFOS)} getKey={([key]) => key}>
           {([, { key, name }]) => (
-            <li class="rounded-md border-2 border-divider-heavy p-4 text-sm">
+            <li class="rounded-md border-2 border-divider-heavy p-4 text-sm select-none">
               <div class="mb-1 font-bold">{name}</div>
               <div class="keyboard-key">{key}</div>
             </li>
