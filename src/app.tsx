@@ -9,6 +9,7 @@ import { Recommendations } from "./components/recommendations";
 import { Toast } from "./components/toast";
 import { Types } from "./components/types";
 import { TypeSuggestions } from "./components/types/util/suggestions";
+import { ErrorBoundary } from "./error";
 import { Models } from "./state/context";
 import { useDarkClass } from "./state/dark";
 
@@ -16,7 +17,7 @@ export function App() {
   useDarkClass();
 
   return (
-    <>
+    <ErrorBoundary>
       <TypeSuggestions />
       <Models>
         <Layout>
@@ -28,7 +29,7 @@ export function App() {
           <Export />
         </Layout>
       </Models>
-    </>
+    </ErrorBoundary>
   );
 }
 
