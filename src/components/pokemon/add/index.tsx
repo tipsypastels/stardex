@@ -90,7 +90,10 @@ export function AddPokemon() {
     }
   }
 
-  useHotkey("focusAddPokemon", () => inputRef.current?.focus());
+  useHotkey("focusAddPokemon", (e) => {
+    e.preventDefault();
+    inputRef.current?.focus();
+  });
 
   return (
     <div class="mb-8">

@@ -72,12 +72,6 @@
 }
 
 @layer base {
-  *,
-  *::before,
-  *::after {
-    @apply transition-colors duration-500;
-  }
-
   body {
     @apply w-full bg-background text-foreground md:text-lg;
   }

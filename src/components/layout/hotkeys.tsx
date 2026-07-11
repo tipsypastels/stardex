@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { For, Show } from "@preact/signals/utils";
-import hotkeys from "hotkeys-js";
+import hotkeys, { type KeyHandler } from "hotkeys-js";
 import { useEffect } from "preact/hooks";
 import { ButtonIcon } from "../common/button_icon";
 import { Modal } from "../common/menus/modal";
@@ -47,7 +47,7 @@ const HOTKEY_INFOS = {
   },
 };
 
-export function useHotkey(key: HotkeyInfoKey, f: () => void) {
+export function useHotkey(key: HotkeyInfoKey, f: KeyHandler) {
   useEffect(() => {
     hotkeys(HOTKEY_INFOS[key].key, f);
     return () => hotkeys.unbind(HOTKEY_INFOS[key].key, f);
