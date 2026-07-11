@@ -98,7 +98,7 @@ function Error({ error, errorInfo }: ErrorProps) {
   }
 
   return (
-    <div class="m-auto w-200 max-w-full pt-8">
+    <div class="m-auto w-200 max-w-full px-4 pt-8 md:px-0">
       <h1 class="mb-2 border-b-2 border-b-red-600 pb-2 text-3xl font-bold text-red-600">Error!</h1>
       <p class="mb-4">
         Stardex failed to start and couldn't recover. This may be a sign that your project state is
