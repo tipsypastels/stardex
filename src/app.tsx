@@ -2,6 +2,7 @@ import "drag-drop-touch";
 import "./app.css";
 
 import { render } from "preact";
+import { Export } from "./components/export";
 import { Layout } from "./components/layout";
 import { Pokedex } from "./components/pokemon/pokedex";
 import { Recommendations } from "./components/recommendations";
@@ -24,6 +25,7 @@ export function App() {
           <Pokedex />
           <Types />
           <Recommendations />
+          <Export />
         </Layout>
       </Models>
     </>

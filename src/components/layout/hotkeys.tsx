@@ -37,6 +37,10 @@ const HOTKEY_INFOS = {
     key: "3",
     name: "Jump to Recommendations",
   },
+  jumpToExport: {
+    key: "4",
+    name: "Jump to Export",
+  },
   focusAddPokemon: {
     key: "a",
     name: (

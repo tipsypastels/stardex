@@ -72,7 +72,7 @@ export function Recommendations() {
           <RecommendedChangeGroup change="none" title="Just Right" />
         </Show>
 
-        <ButtonLink onClick={() => (showJustRight.value = !showJustRight.value)} small>
+        <ButtonLink onClick={() => (showJustRight.value = !showJustRight.value)}>
           {showJustRight.value ? "Hide" : "Show"} just right
         </ButtonLink>
       </Show>
