@@ -1,25 +1,35 @@
-import { batch, Signal, useSignal } from "@preact/signals";
+import { batch, Signal, useComputed, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
-import { useContext } from "preact/hooks";
 import type { PokedexFilter } from "../../../models/pokedex/filter";
+import type { PokedexFormat } from "../../../models/pokedex/format";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
-import { PokedexFormatContext } from "../../../state/context";
+import type { PokemonList } from "../../../models/pokemon/list";
 import { toasts } from "../../../state/toast";
-import { Actions, type ActionsAction } from "../../common/menus/actions";
+import { Actions } from "../../common/menus/actions";
 import { AddPokemon } from "../add";
 import { AutosortPokedexModal } from "./autosort";
 import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
 import { FormatPokedexModal } from "./format";
 
 export interface PokedexActionsProps {
+  pokemons: PokemonList;
   filter: PokedexFilter;
+  format: PokedexFormat;
   zapper: Signal<boolean>;
-  inTextView: boolean;
   onAutosort(request: AutosortRequest): void;
 }
 
-export function PokedexActions({ filter, zapper, inTextView, onAutosort }: PokedexActionsProps) {
-  const format = useContext(PokedexFormatContext);
+export function PokedexActions({
+  pokemons,
+  filter,
+  format,
+  zapper,
+  onAutosort,
+}: PokedexActionsProps) {
+  const emptyOrTextFormat = useComputed(
+    () => pokemons.size.value === 0 || format.key.value === "text",
+  );
+
   const modal = useSignal<"format" | "filter" | "autosort">();
 
   function toggleZapper() {
@@ -34,40 +44,40 @@ export function PokedexActions({ filter, zapper, inTextView, onAutosort }: Poked
     });
   }
 
-  const actions: ActionsAction[] = [
-    {
-      icon: format.icon.value,
-      name: "Format",
-      onClick: () => (modal.value = "format"),
-    },
-  ];
-
-  if (!inTextView) {
-    actions.push(
-      {
-        icon: filterPokedexActionIcon(filter.state.value),
-        name: "Filter",
-        onClick: () => (modal.value = "filter"),
-      },
-      {
-        icon: "arrow-down-1-9",
-        name: "Autosort",
-        onClick: () => (modal.value = "autosort"),
-      },
-      {
-        icon: "bolt",
-        name: "Zapper",
-        onClick: toggleZapper,
-        active: zapper.value,
-        desktop: true,
-      },
-    );
-  }
-
   return (
     <>
-      <Actions actions={actions} isUpperHalf={!inTextView} />
-      {!inTextView ? <AddPokemon /> : null}
+      <Actions
+        actions={[
+          {
+            icon: format.icon.value,
+            name: "Format",
+            onClick: () => (modal.value = "format"),
+          },
+          {
+            icon: filterPokedexActionIcon(filter.state.value),
+            name: "Filter",
+            onClick: () => (modal.value = "filter"),
+            active: !!filter.state.value,
+            disabled: emptyOrTextFormat,
+          },
+          {
+            icon: "arrow-down-1-9",
+            name: "Autosort",
+            onClick: () => (modal.value = "autosort"),
+            disabled: emptyOrTextFormat,
+          },
+          {
+            icon: "bolt",
+            name: "Zapper",
+            onClick: toggleZapper,
+            active: zapper.value,
+            desktop: true,
+          },
+        ]}
+        isUpperHalf
+      />
+
+      <Show when={() => format.key.value !== "text"}>{() => <AddPokemon />}</Show>
 
       <Show when={() => modal.value === "format"}>
         <FormatPokedexModal format={format} onClose={() => (modal.value = undefined)} />

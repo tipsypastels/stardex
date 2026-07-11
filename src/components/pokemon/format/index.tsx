@@ -70,9 +70,10 @@ export function PokedexFormat({
   return (
     <>
       <PokedexActions
+        pokemons={pokemons}
         filter={filter}
+        format={format}
         zapper={zapper}
-        inTextView={format.key.value === "text"}
         onAutosort={onAutosort}
       />
       <div class="mb-4">
