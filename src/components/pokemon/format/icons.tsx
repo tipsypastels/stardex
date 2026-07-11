@@ -26,11 +26,11 @@ interface ItemProps {
 function Item({ pokemon, onClick }: ItemProps) {
   return (
     <li
-      class={`relative inline-flex justify-center hover:wiggle ${pokemon.exclude.value ? "opacity-50" : ""}`}
+      class={`relative inline-flex justify-center ${pokemon.exclude.value ? "opacity-50" : ""}`}
       key={pokemon.key}
       data-id={pokemon.key}
     >
-      <button class="cursor-pointer" onClick={onClick}>
+      <button data-handle class="cursor-pointer hover:wiggle" onClick={onClick}>
         <TypeDots types={pokemon.types.value} />
         <PokemonIcon pokemon={pokemon} />
       </button>

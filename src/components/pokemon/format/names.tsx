@@ -30,6 +30,7 @@ function Item({ pokemon, onClick }: ItemProps) {
       data-id={pokemon.key}
     >
       <button
+        data-handle
         class="flex w-full cursor-pointer gap-2 border border-divider-light px-4 py-2"
         onClick={onClick}
       >

@@ -19,6 +19,7 @@ export function useDraggable(enabled: boolean, pokemons: PokemonList) {
     if (enabled && gridRef.current) {
       sortableRef.current = Sortable.create(gridRef.current, {
         animation: 150,
+        handle: "[data-handle]",
         ghostClass: "opacity-0",
         onEnd: (event) => pokemons.move(event.oldIndex! - 1, event.newIndex! - 1),
       });
