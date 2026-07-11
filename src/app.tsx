@@ -6,6 +6,7 @@ import { Layout } from "./components/layout";
 import { Section } from "./components/layout/section";
 import { Pokedex } from "./components/pokemon/pokedex";
 import { Recommendations } from "./components/recommendations";
+import { Toast } from "./components/toasts";
 import { Types } from "./components/types";
 import { TypeSuggestions } from "./components/types/util/suggestions";
 import { Models } from "./state/context";
@@ -19,6 +20,8 @@ export function App() {
       <TypeSuggestions />
       <Models>
         <Layout>
+          <Toast />
+
           <Pokedex />
           <Types />
           <Recommendations />

@@ -2,8 +2,11 @@ import { batch, useModel } from "@preact/signals";
 import { useContext, useRef, type FunctionComponent, type RefObject } from "preact/compat";
 import { PokedexFilter } from "../../../models/pokedex/filter";
 import type { PokedexFormatKey } from "../../../models/pokedex/format";
+import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import { PokedexFormatContext, PokemonsContext } from "../../../state/context";
+import { toasts } from "../../../state/toast";
 import { PokedexActions } from "../actions";
+import { toastDescriptionOfAutosortRequest } from "../actions/autosort";
 import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";
 import { PokedexTextView } from "./text";
@@ -46,17 +49,23 @@ export function PokedexFormat({ setEditingIndex }: PokedexFormatProps) {
   const ref = useRef<HTMLDivElement>(null);
   const draggable = useDraggable(format.key.value, pokemons);
 
+  function onAutosort(request: AutosortRequest) {
+    batch(() => {
+      filter.raw.value = undefined;
+      pokemons.autosort(request);
+      toasts.push({
+        text: `Pokédex sorted by ${toastDescriptionOfAutosortRequest(request)}!`,
+        icon: "arrow-down-1-9",
+      });
+    });
+  }
+
   return (
     <>
       <PokedexActions
         filter={filter}
         inTextView={format.key.value === "text"}
-        onAutosort={(request) => {
-          batch(() => {
-            filter.raw.value = undefined;
-            pokemons.autosort(request);
-          });
-        }}
+        onAutosort={onAutosort}
       />
       <div class="mb-4" ref={ref}>
         <Component gridRef={draggable.gridRef} filter={filter} setEditingIndex={setEditingIndex} />

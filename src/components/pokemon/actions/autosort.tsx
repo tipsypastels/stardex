@@ -12,8 +12,8 @@ export interface AutosortPokedexModalProps {
 }
 
 const KINDS: { key: AutosortRequest["kind"]; name: string }[] = [
-  { key: "id", name: "By National Dex" },
-  { key: "region", name: "By Regional Dex" },
+  { key: "id", name: "By National Dex Number" },
+  { key: "region", name: "By Regional Dex Number" },
   { key: "types", name: "By Types" },
 ];
 
@@ -80,4 +80,18 @@ export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexMod
       </Show>
     </Modal>
   );
+}
+
+export function toastDescriptionOfAutosortRequest(request: AutosortRequest) {
+  switch (request.kind) {
+    case "id": {
+      return "national dex number";
+    }
+    case "region": {
+      return `${request.region} dex number`;
+    }
+    case "types": {
+      return "types";
+    }
+  }
 }

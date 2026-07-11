@@ -22,6 +22,7 @@ export function runAutosort(all: IList<Pokemon>, request: AutosortRequest) {
       return all.sort(
         (left, right) =>
           TYPE_KEY_PAIRS.compare(left.typeKeys.value, right.typeKeys.value) ||
+          (left.species.value?.id ?? Infinity) - (right.species.value?.id ?? Infinity) ||
           PairSorting.LeftThenRight,
       );
     }
