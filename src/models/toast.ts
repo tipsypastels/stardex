@@ -15,10 +15,10 @@ export const ToastList = createModel(() => {
   const current = computed(() => all.value.first());
   return {
     current,
-    push(toast: Toast) {
-      all.value = all.value.push(toast);
+    add(icon: string, text: string) {
+      all.value = all.value.push({ icon, text });
     },
-    shift() {
+    next() {
       all.value = all.value.shift();
     },
   };

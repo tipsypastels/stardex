@@ -1,7 +1,9 @@
+import { batch } from "@preact/signals";
 import { For, Show } from "@preact/signals/utils";
 import type { ComponentChildren, RefObject } from "preact";
 import type { PokedexFormatViewProps } from "..";
 import type { Pokemon } from "../../../../models/pokemon";
+import { toasts } from "../../../../state/toast";
 import { EmptyPokedex } from "../../empty";
 import { useDraggable } from "./drag";
 
@@ -12,6 +14,7 @@ export interface PokedexGridlikeViewProps extends PokedexFormatViewProps {
 
 export function PokedexGridlikeView({
   filter,
+  zapper,
   pokemons,
   pokemonsFiltered,
   setEditingIndex,
@@ -28,11 +31,19 @@ export function PokedexGridlikeView({
           <li class="hidden"></li>
           <For each={pokemonsFiltered} getKey={(pokemon) => pokemon.key.value}>
             {(pokemon) =>
-              item(pokemon, () =>
+              item(pokemon, () => {
                 // NOTE: We can't use the loop index here, that's the filtered index and we need
                 // the unfiltered index to do the lookup in the parent.
-                setEditingIndex(pokemons.indices.value.get(pokemon.key.value)!),
-              )
+                const index = pokemons.indices.value.get(pokemon.key.value)!;
+                if (zapper.value) {
+                  batch(() => {
+                    toasts.add("bolt", `Zapped ${pokemon.name.peek()}!`);
+                    pokemons.delete(index);
+                  });
+                } else {
+                  setEditingIndex(index);
+                }
+              })
             }
           </For>
         </>,

@@ -19,7 +19,7 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
 
   function onRemove() {
     batch(() => {
-      toasts.push({ text: `Removed ${pokemon.name.peek()}!`, icon: "times" });
+      toasts.add("times", `Removed ${pokemon.name.peek()}!`);
       pokemons.delete(index);
       onClose();
     });

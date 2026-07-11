@@ -19,7 +19,7 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
   function onClickAny() {
     batch(() => {
       filter.state.value = undefined;
-      toasts.push({ text: "Cleared filter.", icon: "asterisk" });
+      toasts.add("asterisk", "Cleared filter.");
       onClose();
     });
   }
@@ -27,7 +27,7 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
   function onClickType(type: Type) {
     batch(() => {
       filter.state.value = { kind: "type", typeKey: type.key };
-      toasts.push({ text: `Set filter to ${type.name}!`, icon: type.icon });
+      toasts.add(type.icon, `Set filter to ${type.name}!`);
       onClose();
     });
   }

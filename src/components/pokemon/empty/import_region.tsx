@@ -19,7 +19,7 @@ export function ImportRegionModal({ onClose }: ImportRegionModalProps) {
     batch(() => {
       const region = REGIONS.of(regionKey.value);
       pokemons.setFromRegion(region);
-      toasts.push({ text: `Imported ${region.name} Pokédex!`, icon: region.icon });
+      toasts.add(region.icon, `Imported ${region.name} Pokédex!`);
       onClose();
     });
   }

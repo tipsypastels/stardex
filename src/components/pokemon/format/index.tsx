@@ -1,4 +1,4 @@
-import { batch, type ReadonlySignal } from "@preact/signals";
+import { batch, useSignal, type ReadonlySignal } from "@preact/signals";
 import { useContext, type FunctionComponent } from "preact/compat";
 import { PokedexFilter } from "../../../models/pokedex/filter";
 import type { PokedexFormatKey } from "../../../models/pokedex/format";
@@ -31,6 +31,7 @@ const FORMAT_INFOS: Record<PokedexFormatKey, FormatRenderingInfo> = {
 
 export interface PokedexFormatViewProps {
   filter: PokedexFilter;
+  zapper: ReadonlySignal<boolean>;
   pokemons: PokemonList;
   pokemonsFiltered: ReadonlySignal<Pokemon[]>;
   setEditingIndex(index: number): void;
@@ -53,14 +54,16 @@ export function PokedexFormat({
   const formatInfo = FORMAT_INFOS[format.key.value];
   const Component = formatInfo.component;
 
+  const zapper = useSignal(false);
+
   function onAutosort(request: AutosortRequest) {
     batch(() => {
       filter.state.value = undefined;
       pokemons.autosort(request);
-      toasts.push({
-        text: `Pokédex sorted by ${toastDescriptionOfAutosortRequest(request)}!`,
-        icon: "arrow-down-1-9",
-      });
+      toasts.add(
+        "arrow-down-1-9",
+        `Pokédex sorted by ${toastDescriptionOfAutosortRequest(request)}!`,
+      );
     });
   }
 
@@ -68,12 +71,14 @@ export function PokedexFormat({
     <>
       <PokedexActions
         filter={filter}
+        zapper={zapper}
         inTextView={format.key.value === "text"}
         onAutosort={onAutosort}
       />
       <div class="mb-4">
         <Component
           filter={filter}
+          zapper={zapper}
           pokemons={pokemons}
           pokemonsFiltered={pokemonsFiltered}
           setEditingIndex={setEditingIndex}

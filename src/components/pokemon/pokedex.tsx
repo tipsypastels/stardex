@@ -19,7 +19,7 @@ export function Pokedex() {
     if (filter.state.value && pokemonsFiltered.value.length === 0) {
       batch(() => {
         filter.state.value = undefined;
-        toasts.push({ text: "Cleared filter.", icon: "asterisk" });
+        toasts.add("asterisk", "Cleared filter.");
       });
     }
   });

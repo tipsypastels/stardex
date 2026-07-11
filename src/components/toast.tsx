@@ -21,7 +21,7 @@ function ToastInner({ toast }: ToastInnerProps) {
     requestAnimationFrame(() => setIsIn(true));
 
     const fadeTimeout = setTimeout(() => setIsIn(false), DURATION);
-    const removeTimeout = setTimeout(() => toasts.shift(), DURATION + 300);
+    const removeTimeout = setTimeout(() => toasts.next(), DURATION + 300);
 
     return () => {
       clearTimeout(fadeTimeout);
