@@ -31,7 +31,7 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
 
   return (
     <Modal title="Filter Pokédex" onClose={onClose}>
-      <ul class="grid grid-cols-3 gap-4 md:grid-cols-5">
+      <ul class="mb-4 grid grid-cols-3 gap-4 md:grid-cols-5">
         <FilterOption
           icon="asterisk"
           text="Any"
@@ -51,6 +51,9 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
           )}
         </For>
       </ul>
+      <div class="text-center text-sm">
+        <strong>Tip:</strong> You can't drag to reorder your Pokédex while filtering.
+      </div>
     </Modal>
   );
 }
