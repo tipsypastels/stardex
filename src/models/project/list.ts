@@ -13,7 +13,7 @@ import {
 } from "../project";
 import { REGIONS } from "../region";
 import { STRICTNESSES } from "../strictness";
-import { POKEMON_LIST_VERSION, PROJECT_VERSION } from "../versioned";
+import { CUSTOM_ICON_PACK_VERSION, POKEMON_LIST_VERSION, PROJECT_VERSION } from "../versioned";
 
 export const store = stored<RawProject[], IList<Project>>("stardex_projects");
 
@@ -71,6 +71,7 @@ export const ProjectList = createModel(
               regions: REGIONS.recommendedKeys,
               strictness: STRICTNESSES.defaultKey,
               pokedexMode: POKEDEX_MODES.defaultKey,
+              customIcons: { v: CUSTOM_ICON_PACK_VERSION, all: {} },
             },
           }),
         );
