@@ -3,7 +3,8 @@ import { List as IList, Map as IMap } from "immutable";
 import { POKEMONS, type Pokemon, type RawPokemon } from ".";
 import { readonly } from "../../utils/signal";
 import { stored } from "../../utils/storage";
-import { POKEMON_LIST_VERSION, upgradeRawPokemonList } from "../versioned";
+import type { Region } from "../region";
+import { POKEMON_LIST_VERSION, POKEMON_VERSION, upgradeRawPokemonList } from "../versioned";
 import type { V0_RawPokemonList } from "../versioned/v0";
 import { runAutosort, type AutosortRequest } from "./autosort";
 import { PokemonListTextDiff } from "./text/diff";
@@ -75,6 +76,13 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
       const raw = upgradeRawPokemonList($raw);
       all.value = IList(raw.all.map(POKEMONS.from));
       textDiff.set(raw.textDiff);
+    },
+    setFromRegion(region: Region) {
+      all.value = IList(
+        region.members.map((member) =>
+          POKEMONS.from({ v: POKEMON_VERSION, species: member.speciesKey }),
+        ),
+      );
     },
     toRaw(): RawPokemonList {
       return {

@@ -2,8 +2,8 @@ import { For, Show } from "@preact/signals/utils";
 import type { ComponentChildren, RefObject } from "preact";
 import type { PokedexFormatViewProps } from "..";
 import type { Pokemon } from "../../../../models/pokemon";
+import { EmptyPokedex } from "../../empty";
 import { useDraggable } from "./drag";
-import { EmptyPokedex } from "./empty";
 
 export interface PokedexGridlikeViewProps extends PokedexFormatViewProps {
   list(gridRef: RefObject<HTMLOListElement>, contents: ComponentChildren): ComponentChildren;

@@ -2,7 +2,7 @@ import { batch } from "@preact/signals";
 import { For } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import type { PokedexFilter, PokedexFilterState } from "../../../models/pokedex/filter";
-import { TYPES } from "../../../models/type";
+import { TYPES, type Type } from "../../../models/type";
 import { MetricsContext } from "../../../state/context";
 import { toasts } from "../../../state/toast";
 import { Icon } from "../../common/icon";
@@ -24,10 +24,10 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
     });
   }
 
-  function onClickType(typeKey: string) {
+  function onClickType(type: Type) {
     batch(() => {
-      filter.state.value = { kind: "type", typeKey };
-      toasts.push({ text: `Set filter to ${typeKey}!`, icon: TYPES.of(typeKey).icon });
+      filter.state.value = { kind: "type", typeKey: type.key };
+      toasts.push({ text: `Set filter to ${type.name}!`, icon: type.icon });
       onClose();
     });
   }
@@ -49,7 +49,7 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
               color={type.color}
               count={count}
               active={filter.typeKey.value === type.key}
-              setActive={() => onClickType(type.key)}
+              setActive={() => onClickType(type)}
             />
           )}
         </For>
