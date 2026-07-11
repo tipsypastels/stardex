@@ -11,12 +11,13 @@ const modalOpen = signal(false);
 export function ProjectsSelect() {
   const projects = useContext(ProjectsContext);
 
+  // TODO: Clean this up.
   return (
     <div class="w-max">
       <div class="mb-1 flex text-sm">
         <div class="grow font-bold">Projects</div>
         <button
-          class="text-primary cursor-pointer underline"
+          class="cursor-pointer text-primary underline"
           title="Manage all your Stardex projects"
           onClick={() => {
             modalOpen.value = true;
@@ -26,7 +27,7 @@ export function ProjectsSelect() {
         </button>
       </div>
       <select
-        class="border-divider-light bg-background w-75 max-w-full border-x-0 border-y-2"
+        class="w-75 max-w-full border-x-0 border-y-2 border-divider-light bg-background"
         value={projects.active.value.id}
         onChange={(e) => {
           e.preventDefault();
@@ -64,7 +65,7 @@ export function ProjectsModal() {
                     }}
                   />
 
-                  <div class={`text-primary mr-4 ${project.isActive() ? "" : "opacity-0"}`}>
+                  <div class={`mr-4 text-primary ${project.isActive() ? "" : "opacity-0"}`}>
                     <Icon name="badge-check" />
                   </div>
 
@@ -121,7 +122,7 @@ export function ProjectsModal() {
                   ]}
                   trigger={(toggle) => (
                     <button
-                      class="text-primary cursor-pointer px-4"
+                      class="cursor-pointer px-4 text-primary"
                       title="Actions"
                       onClick={toggle}
                     >
@@ -144,7 +145,7 @@ export function ProjectsModal() {
               }}
             />
 
-            <div class="text-primary mr-4">
+            <div class="mr-4 text-primary">
               <Icon name="plus" />
             </div>
 

@@ -3,6 +3,8 @@ import type { ComponentChildren } from "preact";
 import { useRef } from "preact/hooks";
 import { Icon } from "../icon";
 
+// TODO: Decide if you want this.
+
 interface ButtonItem {
   type: "button";
   name: string;
@@ -47,13 +49,13 @@ export function Menu(props: MenuProps) {
       {props.trigger(() => (open.value = !open.value))}
 
       {open.value ? (
-        <div class="border-divider-light bg-background absolute right-0 z-40 w-max border-2 shadow-lg">
+        <div class="absolute right-0 z-40 w-max border-2 border-divider-light bg-background shadow-lg">
           <ul class="appearance-none py-2">
             {props.items.map((item) =>
               item.type === "button" ? (
                 <li>
                   <button
-                    class="{item.class} hover:text-primary cursor-pointer px-4 py-1"
+                    class="{item.class} cursor-pointer px-4 py-1 hover:text-primary"
                     onClick={() => {
                       item.onClick();
                       if (!item.keepOpenOnClick) {
