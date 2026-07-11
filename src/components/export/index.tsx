@@ -66,7 +66,7 @@ export function Export() {
               </p>
             </div>
 
-            <div class="mb-4">
+            <div>
               <LinedSubheading>As Spreadsheet Cells</LinedSubheading>
               <p class="mb-2">
                 This creates cells from your Pokédex that you can paste into Google Sheets.
