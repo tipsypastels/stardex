@@ -85,7 +85,7 @@ export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexMod
 export function toastDescriptionOfAutosortRequest(request: AutosortRequest) {
   switch (request.kind) {
     case "id": {
-      return "National dex number";
+      return "national dex number";
     }
     case "region": {
       return `${REGIONS.of(request.region).name} dex number`;
