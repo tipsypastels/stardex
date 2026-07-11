@@ -80,7 +80,11 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
     setFromRegion(region: Region) {
       all.value = IList(
         region.members.map((member) =>
-          POKEMONS.from({ v: POKEMON_VERSION, species: member.speciesKey }),
+          POKEMONS.from({
+            v: POKEMON_VERSION,
+            species: member.speciesKey,
+            types: member.getAltTypeKeys(),
+          }),
         ),
       );
     },
