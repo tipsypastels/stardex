@@ -1,14 +1,14 @@
 import { batch, useComputed, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import Fuse from "fuse.js";
-import hotkeys from "hotkeys-js";
-import { useContext, useEffect, useRef } from "preact/hooks";
+import { useContext, useRef } from "preact/hooks";
 import { BUILTIN_POKEMONS, CUSTOM_POKEMONS } from "../../../models/pokemon";
 import { EVOLUTION_LINES } from "../../../models/pokemon/evolution_line";
 import { Species, SPECIES } from "../../../models/pokemon/species";
 import { PokemonsContext } from "../../../state/context";
 import { capitalizeWords } from "../../../utils/string";
 import { Button } from "../../common/button";
+import { useHotkey } from "../../layout/hotkeys";
 import { SpeciesIcon } from "../util/species_icon";
 import { AddCustom } from "./custom";
 
@@ -90,18 +90,11 @@ export function AddPokemon() {
     }
   }
 
-  // TODO: Indicate this somehow.
-  useEffect(() => {
-    hotkeys("a", (e) => {
-      e.preventDefault();
-      inputRef.current?.focus();
-    });
-    return () => hotkeys.unbind("a");
-  }, []);
+  useHotkey("focusAddPokemon", () => inputRef.current?.focus());
 
   return (
     <div class="mb-8">
-      <div class="border-secondary relative mb-2 rounded-b-md border-2 border-t-0">
+      <div class="relative mb-2 rounded-b-md border-2 border-t-0 border-secondary">
         <input
           ref={inputRef}
           class="block h-20 w-full border-0"

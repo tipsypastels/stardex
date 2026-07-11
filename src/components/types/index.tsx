@@ -8,7 +8,7 @@ import { TypePieChart } from "./util/pie_chart";
 export function Types() {
   const metrics = useContext(MetricsContext);
   return (
-    <Section id="types" title="Types">
+    <Section id="types" title="Types" hotkey="jumpToTypes">
       <Show
         when={() => metrics.pokemonsAllotment.value.total > 0}
         fallback={<Empty>You have no Pokémon yet.</Empty>}

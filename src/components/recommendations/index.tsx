@@ -45,7 +45,7 @@ export function Recommendations() {
   }
 
   return (
-    <Section id="recommendations" title="Recommendations" hasActions>
+    <Section id="recommendations" title="Recommendations" hotkey="jumpToRecommendations" hasActions>
       <Actions
         actions={[
           {

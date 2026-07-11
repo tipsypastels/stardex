@@ -25,7 +25,7 @@ export function Pokedex() {
   });
 
   return (
-    <Section id="pokedex" title="Pokedex" hasActions>
+    <Section id="pokedex" title="Pokedex" hotkey="jumpToPokedex" hasActions>
       <PokedexFormat
         filter={filter}
         pokemons={pokemons}

@@ -1,9 +1,10 @@
+import { dark } from "../../state/dark";
 import { Icon } from "../common/icon";
-import { Link } from "../common/link";
+import { ButtonLink, Link } from "../common/link";
 
 export function Footer() {
   return (
-    <footer class="bg-footer mt-8 py-8 text-center text-white">
+    <footer class="mt-8 bg-footer py-8 text-center text-white">
       <div class="mb-1">
         Created by <Icon name="duck" />{" "}
         <Link blank to="https://github.com/tipsypastels" look="none" bold>
@@ -18,7 +19,11 @@ export function Footer() {
         •{" "}
         <Link blank to="https://github.com/tipsypastels/stardex" look="none">
           GitHub
-        </Link>
+        </Link>{" "}
+        •{" "}
+        <ButtonLink look="none" onClick={() => (dark.value = !dark.value)}>
+          {dark.value ? "Light" : "Dark"} Mode
+        </ButtonLink>
       </div>
     </footer>
   );
