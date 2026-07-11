@@ -33,13 +33,13 @@ export function Modal({ title, children, footer, large, onClose }: ModalProps) {
 
   return createPortal(
     <div
-      class="fixed bottom-0 left-0 z-10 flex h-screen w-screen items-end justify-center overscroll-contain bg-black/(--backdrop-opacity) lg:items-center"
+      class="fixed bottom-0 left-0 z-50 flex h-screen w-screen items-end justify-center overscroll-contain bg-black/(--backdrop-opacity) lg:items-center"
       onClick={handleClick}
     >
       <div
-        class={`bg-background flex w-125 max-w-full flex-col overflow-y-scroll rounded-md p-8 lg:h-[unset] lg:overflow-y-auto ${large ? "h-[80vh]" : "h-[60vh]"}`}
+        class={`flex w-125 max-w-full flex-col overflow-y-scroll rounded-md bg-background p-8 lg:h-[unset] lg:overflow-y-auto ${large ? "h-[80vh]" : "h-[60vh]"}`}
       >
-        <div class="border-b-divider-heavy mb-4 flex border-b-2 pb-4">
+        <div class="mb-4 flex border-b-2 border-b-divider-heavy pb-4">
           <h1 class="grow text-xl font-bold">{title}</h1>
           <ButtonIcon icon="times" label="Close" onClick={onClose} />
         </div>

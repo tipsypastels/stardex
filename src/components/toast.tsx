@@ -31,7 +31,7 @@ function ToastInner({ toast }: ToastInnerProps) {
 
   return (
     <div
-      className={`fixed right-8 bottom-8 z-50 transform rounded-lg border-2 border-divider-heavy bg-background px-8 py-4 shadow-shadow transition-all duration-300 ${
+      className={`fixed right-8 bottom-8 z-40 transform rounded-lg border-2 border-divider-heavy bg-background px-8 py-4 shadow-shadow transition-all duration-300 ${
         isIn
           ? "translate-y-0 scale-100 opacity-100 ease-out"
           : "translate-y-4 scale-95 opacity-0 ease-in"

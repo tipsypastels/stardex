@@ -6,7 +6,7 @@ import { Layout } from "./components/layout";
 import { Section } from "./components/layout/section";
 import { Pokedex } from "./components/pokemon/pokedex";
 import { Recommendations } from "./components/recommendations";
-import { Toast } from "./components/toasts";
+import { Toast } from "./components/toast";
 import { Types } from "./components/types";
 import { TypeSuggestions } from "./components/types/util/suggestions";
 import { Models } from "./state/context";
