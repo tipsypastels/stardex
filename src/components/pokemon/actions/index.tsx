@@ -7,7 +7,7 @@ import { PokedexFormatContext } from "../../../state/context";
 import { Actions, type ActionsAction } from "../../common/menus/actions";
 import { AddPokemon } from "../add";
 import { AutosortPokedexModal } from "./autosort";
-import { FilterPokedexModal } from "./filter";
+import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
 import { FormatPokedexModal } from "./format";
 
 export interface PokedexActionsProps {
@@ -31,7 +31,7 @@ export function PokedexActions({ filter, inTextView, onAutosort }: PokedexAction
   if (!inTextView) {
     actions.push(
       {
-        icon: filter.icon.value,
+        icon: filterPokedexActionIcon(filter.state.value),
         name: "Filter",
         onClick: () => (modal.value = "filter"),
       },

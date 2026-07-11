@@ -1,27 +1,19 @@
-import { Show } from "@preact/signals/utils";
-import { useContext } from "preact/hooks";
 import type { PokedexFormatViewProps } from ".";
 import type { Pokemon } from "../../../models/pokemon";
-import { PokemonsContext } from "../../../state/context";
 import { Icon } from "../../common/icon";
-import { EmptyFilteredPokedex, EmptyPokedex } from "./util/empty";
+import { PokedexGridlikeView } from "./util/grid";
 
-export function PokedexNamesView({ gridRef, filter, setEditingIndex }: PokedexFormatViewProps) {
-  const pokemons = useContext(PokemonsContext);
-  const filtered = filter.iterator.value(pokemons.all.value);
-
+export function PokedexNamesView(props: PokedexFormatViewProps) {
   return (
-    <Show when={() => pokemons.size.value > 0} fallback={<EmptyPokedex />}>
-      <Show when={() => !filtered.isEmpty} fallback={<EmptyFilteredPokedex />}>
-        <ol class="grid grid-cols-1 gap-4 md:grid-cols-3" ref={gridRef}>
-          {/* Dummy, see useDraggable. */}
-          <li class="hidden"></li>
-          {filtered.toArray().map((pokemon, index) => (
-            <Item pokemon={pokemon} onClick={() => setEditingIndex(index)} />
-          ))}
+    <PokedexGridlikeView
+      {...props}
+      item={(pokemon, onClick) => <Item pokemon={pokemon} onClick={onClick} />}
+      list={(ref, children) => (
+        <ol class="grid grid-cols-1 gap-4 md:grid-cols-3" ref={ref}>
+          {children}
         </ol>
-      </Show>
-    </Show>
+      )}
+    />
   );
 }
 

@@ -16,12 +16,12 @@ export interface ActionsProps {
 export function Actions({ actions, isUpperHalf = false }: ActionsProps) {
   return (
     <ul
-      class={`"border-secondary flex border-2 p-2 pl-0 text-secondary ${isUpperHalf ? "rounded-t-md" : "mb-8 rounded-md"}`}
+      class={`"border-secondary flex border-2 text-secondary ${isUpperHalf ? "rounded-t-md" : "mb-8 rounded-md"}`}
     >
       {actions.map((action) => (
         <li class={`border-r border-r-secondary ${action.desktop ? "hidden lg:block" : ""}`}>
           <button
-            class={`flex cursor-pointer items-center gap-1 px-4 text-sm font-bold ${action.active ? "text-primary" : ""}`}
+            class={`flex cursor-pointer items-center gap-1 px-4 py-2 text-sm font-bold ${action.active ? "text-primary" : ""}`}
             onClick={action.onClick}
           >
             <div class="text-xs">

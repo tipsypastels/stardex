@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "preact/hooks";
 import Sortable from "sortablejs";
-import type { PokedexFormatKey } from "../../../../models/pokedex/format";
 import type { PokemonList } from "../../../../models/pokemon/list";
 
 /**
@@ -12,12 +11,12 @@ import type { PokemonList } from "../../../../models/pokemon/list";
  * a hidden dummy element at the start that offsets
  * everything. Shrug.
  */
-export function useDraggable(format: PokedexFormatKey, pokemons: PokemonList) {
+export function useDraggable(enabled: boolean, pokemons: PokemonList) {
   const gridRef = useRef<HTMLOListElement>(null);
   const sortableRef = useRef<Sortable>(null);
 
   useEffect(() => {
-    if (format !== "text" && gridRef.current) {
+    if (enabled && gridRef.current) {
       sortableRef.current = Sortable.create(gridRef.current, {
         animation: 150,
         ghostClass: "opacity-0",
@@ -28,7 +27,7 @@ export function useDraggable(format: PokedexFormatKey, pokemons: PokemonList) {
         sortableRef.current = null;
       };
     }
-  }, [format]);
+  }, [enabled]);
 
   return { gridRef };
 }
