@@ -30,7 +30,7 @@ export function ImportRegionModal({ onClose }: ImportRegionModalProps) {
       onClose={onClose}
       footer={
         <div class="flex flex-col justify-center">
-          <Button onClick={doImport}>Autosort</Button>
+          <Button onClick={doImport}>Import</Button>
         </div>
       }
     >
