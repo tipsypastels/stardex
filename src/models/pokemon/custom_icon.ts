@@ -34,6 +34,9 @@ export const CustomIconPack = createModel(($raw: RawCustomIconPack) => {
     set(key: string, url: string) {
       map.value = map.value.set(key, { url });
     },
+    delete(key: string) {
+      map.value = map.value.delete(key);
+    },
     setFromRaw(raw: RawCustomIconPack) {
       map.value = IMap(raw.all);
     },

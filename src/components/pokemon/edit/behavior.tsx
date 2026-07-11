@@ -6,7 +6,7 @@ export interface EditPokemonBehaviorProps {
 
 export function EditPokemonBehavior({ pokemon }: EditPokemonBehaviorProps) {
   return (
-    <div>
+    <div class="mb-4">
       <h2 class="mb-2 font-bold">Behaviour</h2>
       <label class="flex cursor-pointer items-center justify-center select-none md:justify-normal">
         <input
