@@ -8,6 +8,7 @@ import { POKEMON_LIST_VERSION, POKEMON_VERSION, upgradeRawPokemonList } from "..
 import type { V0_RawPokemonList } from "../versioned/v0";
 import { runAutosort, type AutosortRequest } from "./autosort";
 import { PokemonListTextDiff } from "./text/diff";
+import { serializePokemonListToText } from "./text/serialize";
 
 const store = stored<RawPokemonList, DumpedPokemonList>("stardex_pokemon");
 
@@ -94,6 +95,20 @@ export const PokemonList = createModel(($all: Pokemon[], $textDiff?: string[]) =
         all: all.value.map((p) => p.toRaw()).toArray(),
         textDiff: textDiff.raw.value,
       };
+    },
+    peekSerializeToText() {
+      const iter = all.peek();
+
+      function* eager() {
+        for (const pokemon of iter) {
+          yield pokemon.toRaw();
+        }
+      }
+
+      return serializePokemonListToText({
+        pokemons: eager(),
+        textDiff: textDiff.raw.peek(),
+      });
     },
   };
 });

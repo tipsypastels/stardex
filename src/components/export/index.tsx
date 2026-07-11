@@ -1,7 +1,8 @@
 import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import { PokemonsContext } from "../../state/context";
+import { PokemonsContext, ProjectsContext } from "../../state/context";
+import { saveToFile } from "../../utils/save";
 import { Button } from "../common/button";
 import { Empty } from "../common/empty";
 import { Icon } from "../common/icon";
@@ -13,7 +14,14 @@ import { ExportCellsModal } from "./cells";
 
 export function Export() {
   const pokemons = useContext(PokemonsContext);
+  const projects = useContext(ProjectsContext);
   const modal = useSignal<"cells" | "help">();
+
+  function saveTextFile() {
+    const text = pokemons.peekSerializeToText();
+    const name = projects.active.peek().name.peek();
+    saveToFile(`Stardex ${name}.txt`, text);
+  }
 
   return (
     <Section id="export" title="Export" hotkey="jumpToExport">
@@ -23,7 +31,7 @@ export function Export() {
       >
         <div class="mb-4 flex gap-2">
           <Button onClick={() => {}}>As JSON</Button>
-          <Button onClick={() => {}}>As Text File</Button>
+          <Button onClick={saveTextFile}>As Text File</Button>
           <Button onClick={() => (modal.value = "cells")}>As Spreadsheet Cells</Button>
         </div>
 

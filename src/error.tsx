@@ -2,6 +2,7 @@ import { useSignal } from "@preact/signals";
 import { Component, type ComponentChildren, type ErrorInfo } from "preact";
 import { Button } from "./components/common/button";
 import { ButtonLink, Link } from "./components/common/link";
+import { saveToFile } from "./utils/save";
 
 export interface ErrorBoundaryProps {
   children: ComponentChildren;
@@ -70,15 +71,7 @@ function Error({ error, errorInfo }: ErrorProps) {
       dump.locals[key] = value;
     }
 
-    const a = document.createElement("a");
-    const json = JSON.stringify(dump, null, 2);
-    const blob = new Blob([json], { type: "application/json" });
-
-    a.href = URL.createObjectURL(blob);
-    a.download = "stardex_error_dump.json";
-    a.click();
-
-    URL.revokeObjectURL(a.href);
+    saveToFile("stardex_error_dump.json", JSON.stringify(dump, null, 2));
     madeErrorDump.value = true;
   }
 
