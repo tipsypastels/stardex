@@ -30,9 +30,11 @@ function Item({ pokemon, onClick }: ItemProps) {
       key={pokemon.key}
       data-id={pokemon.key}
     >
-      <button data-handle class="cursor-pointer hover:wiggle" onClick={onClick}>
+      <button data-handle class="cursor-pointer" onClick={onClick}>
         <TypeDots types={pokemon.types.value} />
-        <PokemonIcon pokemon={pokemon} />
+        <div class="hover:wiggle">
+          <PokemonIcon pokemon={pokemon} />
+        </div>
       </button>
     </li>
   );
