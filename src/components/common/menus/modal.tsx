@@ -33,7 +33,7 @@ export function Modal({ title, children, footer, large, onClose }: ModalProps) {
 
   return createPortal(
     <div
-      class="fixed bottom-0 left-0 z-50 flex h-screen w-screen items-end justify-center overscroll-contain bg-black/(--backdrop-opacity) lg:items-center"
+      class="fixed bottom-0 left-0 z-50 flex h-dvh w-screen items-end justify-center overscroll-contain bg-black/(--backdrop-opacity) lg:items-center"
       onClick={handleClick}
     >
       <div

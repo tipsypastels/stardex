@@ -67,8 +67,8 @@ interface FilterOptionProps {
 function FilterOption({ icon, text, color, count, active, setActive }: FilterOptionProps) {
   return (
     <li class={`relative ${active ? "" : "opacity-50"}`}>
-      <label class="flex cursor-pointer select-none">
-        <div class="flex grow flex-col items-center">
+      <label class="flex cursor-pointer justify-center select-none">
+        <div class="flex flex-col items-center">
           <input class="hidden" type="radio" name="pokedex_filter_type" onClick={setActive} />
           <div class="text-3xl dim" style={`color: ${color}`}>
             <Icon name={icon} />
