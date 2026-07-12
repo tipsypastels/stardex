@@ -53,7 +53,7 @@ export function Export() {
               <p class="mb-2">
                 This exports Stardex's internal state for the current project. Though it's text,
                 it's not intended to be human readable. It includes project-specific settings like
-                compared regions and strictness.
+                compared regions and custom icons.
               </p>
               <p class="mb-2">
                 If you just want to share a project between people or devices, this is easiest.
@@ -67,7 +67,7 @@ export function Export() {
               <LinedSubheading>As Text File</LinedSubheading>
               <p class="mb-2">
                 This exports your Pokédex as a text file. It's exactly the same format used in the
-                text editor mode. Other settings like regions and strictness are not included.
+                text editor mode. Other settings like regions and custom icons are not included.
               </p>
               <p class="text-sm font-bold text-primary">
                 <Icon name="check" /> Importable

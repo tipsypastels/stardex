@@ -1,11 +1,13 @@
-import { batch } from "@preact/signals";
+import { batch, Signal, useSignal } from "@preact/signals";
+import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
+import type { Pokemon } from "../../../models/pokemon";
 import { PokemonsContext } from "../../../state/context";
 import { toasts } from "../../../state/toast";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { EditPokemonBehavior } from "./behavior";
-import { EditPokemonCustomIconLink } from "./custom_icon";
+import { EditPokemonCustomIconLink, EditPokemonCustomIconModal } from "./custom_icon";
 import { EditPokemonName } from "./name";
 import { EditPokemonTypes } from "./types";
 
@@ -17,6 +19,7 @@ export interface EditPokemonModalProps {
 export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
   const pokemons = useContext(PokemonsContext);
   const pokemon = pokemons.get(index)!;
+  const customIconFile = useSignal<File>();
 
   function onRemove() {
     batch(() => {
@@ -26,6 +29,19 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
     });
   }
 
+  return (
+    <Show when={customIconFile} fallback={editMainView(pokemon, onClose, onRemove, customIconFile)}>
+      {(file) => <EditPokemonCustomIconModal pokemon={pokemon} file={file} onClose={onClose} />}
+    </Show>
+  );
+}
+
+function editMainView(
+  pokemon: Pokemon,
+  onClose: () => void,
+  onRemove: () => void,
+  customIconFile: Signal<File | undefined>,
+) {
   return (
     <Modal
       title={`Edit ${pokemon.name.value}`}
@@ -39,9 +55,12 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
       }
       hasFooterDivider
     >
-      {!pokemon.species.value ? <EditPokemonName pokemon={pokemon} /> : null}
+      <Show when={() => !pokemon.species.value}>
+        <EditPokemonName pokemon={pokemon} />
+      </Show>
+
       <EditPokemonTypes pokemon={pokemon} />
-      <EditPokemonCustomIconLink onUpload={() => {}} />
+      <EditPokemonCustomIconLink onUpload={(file) => (customIconFile.value = file)} />
       <EditPokemonBehavior pokemon={pokemon} />
     </Modal>
   );
