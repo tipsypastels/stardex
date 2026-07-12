@@ -6,12 +6,11 @@ export interface CustomIconsDbEntry {
   blob: Blob;
 }
 
-type State = { type: "uninit" } | { type: "db"; db: IDBDatabase } | { type: "denied" };
-
-let state: State = { type: "uninit" };
-
-export function getCustomIcons(projectId: string, f: (entries: CustomIconsDbEntry[]) => void) {
-  run((db) => {
+export function getCustomIconDbEntries(
+  projectId: string,
+  f: (entries: CustomIconsDbEntry[]) => void,
+) {
+  withDb((db) => {
     const transaction = db.transaction("customIcons", "readonly");
     const store = transaction.objectStore("customIcons");
     const index = store.index("projectId");
@@ -23,7 +22,11 @@ export function getCustomIcons(projectId: string, f: (entries: CustomIconsDbEntr
   });
 }
 
-function run(f: (db: IDBDatabase) => void) {
+type State = { type: "uninit" } | { type: "db"; db: IDBDatabase } | { type: "denied" };
+
+let state: State = { type: "uninit" };
+
+function withDb(f: (db: IDBDatabase) => void) {
   switch (state.type) {
     case "denied": {
       return;

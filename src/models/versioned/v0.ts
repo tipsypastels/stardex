@@ -1,4 +1,9 @@
-import { CUSTOM_ICON_SET_VERSION, POKEMON_LIST_VERSION, POKEMON_VERSION, PROJECT_VERSION } from ".";
+import {
+  CUSTOM_ICONS_METADATA_VERSION,
+  POKEMON_LIST_VERSION,
+  POKEMON_VERSION,
+  PROJECT_VERSION,
+} from ".";
 import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
 import type { RawPokemonList } from "../pokemon/list";
@@ -147,7 +152,7 @@ export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawIna
       ...models,
       pokemons: V0_upgradeRawPokemonList(pokemon),
       pokedexMode: pokedexFormat,
-      customIconSet: { v: CUSTOM_ICON_SET_VERSION, pokemonKeys: [] },
+      customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
     },
     ...rest,
   };
