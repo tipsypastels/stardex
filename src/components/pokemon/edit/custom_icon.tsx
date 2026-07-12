@@ -40,12 +40,16 @@ export interface EditPokemonCustomIconModalProps {
   pokemon: Pokemon;
   file: File;
   onClose(): void;
+  onFinishUpload(blob: Blob): void;
+  onCancelUpload(): void;
 }
 
 export function EditPokemonCustomIconModal({
   pokemon,
   file,
   onClose,
+  onFinishUpload,
+  onCancelUpload,
 }: EditPokemonCustomIconModalProps) {
   const [blob, setBlob] = useState<Blob>(file);
 
@@ -194,11 +198,11 @@ export function EditPokemonCustomIconModal({
       onClose={onClose}
       footer={
         <div class="flex">
-          <ButtonLink look="secondary" onClick={() => {}}>
+          <ButtonLink look="secondary" onClick={onCancelUpload}>
             Cancel
           </ButtonLink>
           <div class="grow" />
-          <Button onClick={() => {}}>Upload</Button>
+          <Button onClick={() => onFinishUpload(blob)}>Upload</Button>
         </div>
       }
       hasFooterDivider

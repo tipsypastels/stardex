@@ -31,7 +31,15 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
 
   return (
     <Show when={customIconFile} fallback={editMainView(pokemon, onClose, onRemove, customIconFile)}>
-      {(file) => <EditPokemonCustomIconModal pokemon={pokemon} file={file} onClose={onClose} />}
+      {(file) => (
+        <EditPokemonCustomIconModal
+          pokemon={pokemon}
+          file={file}
+          onClose={onClose}
+          onFinishUpload={() => {}}
+          onCancelUpload={() => (customIconFile.value = undefined)}
+        />
+      )}
     </Show>
   );
 }
