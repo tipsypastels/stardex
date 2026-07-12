@@ -1,7 +1,9 @@
-import { useSignal } from "@preact/signals";
+import { batch, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Pokemon } from "../../../models/pokemon";
+import { CustomIconsContext } from "../../../state/context";
+import { blobToDataUrl } from "../../../utils/file";
 import { Button } from "../../common/button";
 import { Icon } from "../../common/icon";
 import { ButtonLink } from "../../common/link";
@@ -40,17 +42,16 @@ export interface EditPokemonCustomIconModalProps {
   pokemon: Pokemon;
   file: File;
   onClose(): void;
-  onFinishUpload(blob: Blob): void;
-  onCancelUpload(): void;
+  onFinishOrCancel(): void;
 }
 
 export function EditPokemonCustomIconModal({
   pokemon,
   file,
   onClose,
-  onFinishUpload,
-  onCancelUpload,
+  onFinishOrCancel,
 }: EditPokemonCustomIconModalProps) {
+  const customIcons = useContext(CustomIconsContext);
   const [blob, setBlob] = useState<Blob>(file);
 
   const didDoubleScale = useSignal(false);
@@ -178,18 +179,19 @@ export function EditPokemonCustomIconModal({
     img.src = dataUrl;
   }
 
+  function upload() {
+    batch(() => {
+      customIcons.upload(pokemon.key.value, blob);
+      onFinishOrCancel();
+    });
+  }
+
   useEffect(() => {
-    const fileReader = new FileReader();
-
-    fileReader.onload = () => {
+    blobToDataUrl(blob, (dataUrl) => {
       if (!imageRef.current) return;
-      const dataUrl = fileReader.result as string;
-
       imageRef.current.style.setProperty("--data-url", `url("${dataUrl}")`);
       dataUrlRef.current = dataUrl;
-    };
-
-    fileReader.readAsDataURL(blob);
+    });
   }, [blob]);
 
   return (
@@ -198,11 +200,11 @@ export function EditPokemonCustomIconModal({
       onClose={onClose}
       footer={
         <div class="flex">
-          <ButtonLink look="secondary" onClick={onCancelUpload}>
+          <ButtonLink look="secondary" onClick={onFinishOrCancel}>
             Cancel
           </ButtonLink>
           <div class="grow" />
-          <Button onClick={() => onFinishUpload(blob)}>Upload</Button>
+          <Button onClick={upload}>Upload</Button>
         </div>
       }
       hasFooterDivider

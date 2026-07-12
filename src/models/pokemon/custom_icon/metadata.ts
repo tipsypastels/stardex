@@ -1,6 +1,5 @@
 import { createModel, effect, signal } from "@preact/signals";
 import { Set as ISet } from "immutable";
-import { readonly } from "../../../utils/signal";
 import { stored } from "../../../utils/storage";
 import { CUSTOM_ICONS_METADATA_VERSION } from "../../versioned";
 
@@ -29,7 +28,7 @@ export const CustomIconsMetadata = createModel(($raw: RawCustomIconsMetadata) =>
   });
 
   return {
-    pokemonKeys: readonly(pokemonKeys),
+    pokemonKeys,
     setFromRaw(raw: RawCustomIconsMetadata) {
       pokemonKeys.value = ISet(raw.pokemonKeys);
     },

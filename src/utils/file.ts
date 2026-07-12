@@ -10,3 +10,10 @@ export function saveToFile(name: string, kind: "text" | "json", contents: string
 
   URL.revokeObjectURL(a.href);
 }
+
+export function blobToDataUrl(blob: Blob, f: (dataUrl: string) => void) {
+  const fileReader = new FileReader();
+
+  fileReader.onload = () => f(fileReader.result as string);
+  fileReader.readAsDataURL(blob);
+}

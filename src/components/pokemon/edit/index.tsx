@@ -36,8 +36,7 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
           pokemon={pokemon}
           file={file}
           onClose={onClose}
-          onFinishUpload={() => {}}
-          onCancelUpload={() => (customIconFile.value = undefined)}
+          onFinishOrCancel={() => (customIconFile.value = undefined)}
         />
       )}
     </Show>

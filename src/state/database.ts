@@ -22,6 +22,19 @@ export function getCustomIconDbEntries(
   });
 }
 
+export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f: () => void) {
+  withDb((db) => {
+    const transaction = db.transaction("customIcons", "readwrite");
+    const store = transaction.objectStore("customIcons");
+    const request = store.add(entry);
+
+    request.onsuccess = () => {
+      console.log(`Custom icon "${entry.projectId}-${entry.pokemonKey}" uploaded!`);
+      f();
+    };
+  });
+}
+
 type State = { type: "uninit" } | { type: "db"; db: IDBDatabase } | { type: "denied" };
 
 let state: State = { type: "uninit" };

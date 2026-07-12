@@ -2,7 +2,7 @@ import { useSignal } from "@preact/signals";
 import { Component, type ComponentChildren, type ErrorInfo } from "preact";
 import { Button } from "./components/common/button";
 import { ButtonLink, Link } from "./components/common/link";
-import { saveToFile } from "./utils/save";
+import { saveToFile } from "./utils/file";
 
 export interface ErrorBoundaryProps {
   children: ComponentChildren;
