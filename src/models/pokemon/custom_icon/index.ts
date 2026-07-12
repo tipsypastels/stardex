@@ -11,7 +11,9 @@ export const CustomIcons = createModel(
     effect(() => {
       const projectId = projects.active.value.id.value;
       if (metadata.pokemonKeys.value.size > 0 && mode.key.value === "icons") {
-        getCustomIconDbEntries(projectId, (entries) => {});
+        getCustomIconDbEntries(projectId, () => {
+          // TODO
+        });
       }
     });
 
