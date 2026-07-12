@@ -63,7 +63,10 @@ export function EditPokemonCustomIconModal({
 
     img.onload = () => {
       const { width, height } = img;
-      if (width === height) return;
+      if (width === height) {
+        didCrop.value = true;
+        return;
+      }
 
       const canvas = document.createElement("canvas");
 
@@ -128,7 +131,7 @@ export function EditPokemonCustomIconModal({
           />
         </div>
         <div class="grow">
-          <h3 class="text-sm">pre-upload actions:</h3>
+          <h3 class="text-sm">pre-upload options:</h3>
           <ul class="list-inside list-disc">
             <li>
               <ButtonLink onClick={cropInHalf} disabled={didCrop}>
