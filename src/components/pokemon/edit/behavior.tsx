@@ -8,7 +8,7 @@ export function EditPokemonBehavior({ pokemon }: EditPokemonBehaviorProps) {
   return (
     <div>
       <h2 class="mb-2 font-bold">Behaviour</h2>
-      <label class="flex cursor-pointer items-center justify-center select-none md:justify-normal">
+      <label class="flex cursor-pointer items-center select-none">
         <input
           type="checkbox"
           class="mr-2"
