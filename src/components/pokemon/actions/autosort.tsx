@@ -78,6 +78,10 @@ export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexMod
           onChange={(v) => (failure.value = v)}
         />
       </Show>
+
+      <div class="mt-2 text-center text-sm">
+        <strong class="text-warning">Warning:</strong> Autosorting isn't automatically reversible.
+      </div>
     </Modal>
   );
 }
