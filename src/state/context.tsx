@@ -2,7 +2,9 @@ import { useModel } from "@preact/signals";
 import { createContext, type ComponentChildren } from "preact";
 import { Metrics } from "../models/metrics";
 import { POKEDEX_MODES, PokedexMode } from "../models/pokedex/mode";
+import { CUSTOM_ICON_SETS } from "../models/pokemon/custom_icons";
 import { POKEMON_LISTS, PokemonList } from "../models/pokemon/list";
+import type { RawProjectModels } from "../models/project";
 import { PROJECT_LISTS, ProjectList } from "../models/project/list";
 import { REGION_SETS, RegionSet } from "../models/region/set";
 import { Strictness, STRICTNESSES } from "../models/strictness";
@@ -26,21 +28,24 @@ export function Models({ children }: ModelsProps) {
 
   const projects = useModel(() =>
     PROJECT_LISTS.initial(
-      () => ({
+      (): RawProjectModels => ({
         pokemons: pokemons.toRaw(),
         regions: regions.toRaw(),
         strictness: strictness.key.value,
         pokedexMode: pokedexMode.key.value,
+        customIconSet: customIconSet.toRaw(),
       }),
       (models) => {
         pokemons.setFromRaw(models.pokemons);
         regions.set(models.regions);
         strictness.key.value = models.strictness;
         pokedexMode.key.value = models.pokedexMode;
+        customIconSet.setFromRaw(models.customIconSet);
       },
     ),
   );
 
+  const customIconSet = useModel(() => CUSTOM_ICON_SETS.initial(projects));
   const metrics = useModel(() => new Metrics(pokemons, regions, strictness));
 
   return (
