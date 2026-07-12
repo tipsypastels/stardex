@@ -1,4 +1,4 @@
-import { batch, useSignal } from "@preact/signals";
+import { batch, Signal, useComputed, useSignal, type ReadonlySignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext, useEffect, useRef, useState } from "preact/hooks";
 import type { Pokemon } from "../../../models/pokemon";
@@ -10,11 +10,10 @@ import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 
 export interface EditPokemonCustomIconLinkProps {
-  onUpload(file: File): void;
+  state: CustomIconUploadState;
 }
 
-export function EditPokemonCustomIconLink({ onUpload }: EditPokemonCustomIconLinkProps) {
-  // TODO: "Manage" if it has one already.
+export function EditPokemonCustomIconLink({ state }: EditPokemonCustomIconLinkProps) {
   return (
     <div class="mb-4">
       <h2 class="font-bold">Custom Icon</h2>
@@ -27,12 +26,20 @@ export function EditPokemonCustomIconLink({ onUpload }: EditPokemonCustomIconLin
               accept="image/png"
               onChange={(e) => {
                 const file = e.currentTarget.files?.[0];
-                if (file) onUpload(file);
+                if (file) state.uploaded.value = file;
               }}
             />
-            upload
+            <Show when={state.alreadyHas} fallback="upload">
+              reupload
+            </Show>
           </label>
         </li>
+
+        <Show when={state.alreadyHas}>
+          <li>
+            <ButtonLink onClick={() => state.delete()}>remove</ButtonLink>
+          </li>
+        </Show>
       </ul>
     </div>
   );
@@ -250,4 +257,25 @@ export function EditPokemonCustomIconModal({
       </div>
     </Modal>
   );
+}
+
+export interface CustomIconUploadState {
+  uploaded: Signal<File | undefined>;
+  alreadyHas: ReadonlySignal<boolean>;
+  delete(): void;
+}
+
+export function useCustomIconUploadState(pokemon: Pokemon): CustomIconUploadState {
+  const uploaded = useSignal<File>();
+  const customIcons = useContext(CustomIconsContext);
+  const alreadyHas = useComputed(() =>
+    customIcons.metadata.pokemonKeys.value.has(pokemon.key.value),
+  );
+  return {
+    uploaded,
+    alreadyHas,
+    delete() {
+      customIcons.delete(pokemon.key.value);
+    },
+  };
 }

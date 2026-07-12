@@ -1,6 +1,10 @@
 import { createModel, effect, signal } from "@preact/signals";
 import { Map as IMap } from "immutable";
-import { addCustomIconsDbEntry, getCustomIconDbEntries } from "../../../state/database";
+import {
+  addCustomIconsDbEntry,
+  deleteCustomIconsDbEntry,
+  getCustomIconDbEntries,
+} from "../../../state/database";
 import { blobToDataUrl } from "../../../utils/file";
 import { readonly } from "../../../utils/signal";
 import type { PokedexMode } from "../../pokedex/mode";
@@ -42,6 +46,7 @@ export const CustomIcons = createModel(
 
     return {
       loadedEntries: readonly(loadedEntries),
+      metadata,
       upload(pokemonKey: string, blob: Blob) {
         addCustomIconsDbEntry(
           { pokemonKey, blob, projectId: projects.active.value.id.value },
@@ -49,6 +54,11 @@ export const CustomIcons = createModel(
             metadata.pokemonKeys.value = metadata.pokemonKeys.value.add(pokemonKey);
           },
         );
+      },
+      delete(pokemonKey: string) {
+        deleteCustomIconsDbEntry({ pokemonKey, projectId: projects.active.value.id.value }, () => {
+          metadata.pokemonKeys.value = metadata.pokemonKeys.value.delete(pokemonKey);
+        });
       },
     };
   },

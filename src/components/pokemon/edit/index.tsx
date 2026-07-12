@@ -1,4 +1,4 @@
-import { batch, Signal, useSignal } from "@preact/signals";
+import { batch } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import type { Pokemon } from "../../../models/pokemon";
@@ -7,7 +7,12 @@ import { toasts } from "../../../state/toast";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { EditPokemonBehavior } from "./behavior";
-import { EditPokemonCustomIconLink, EditPokemonCustomIconModal } from "./custom_icon";
+import {
+  EditPokemonCustomIconLink,
+  EditPokemonCustomIconModal,
+  useCustomIconUploadState,
+  type CustomIconUploadState,
+} from "./custom_icon";
 import { EditPokemonName } from "./name";
 import { EditPokemonTypes } from "./types";
 
@@ -19,7 +24,7 @@ export interface EditPokemonModalProps {
 export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
   const pokemons = useContext(PokemonsContext);
   const pokemon = pokemons.get(index)!;
-  const customIconFile = useSignal<File>();
+  const customIconState = useCustomIconUploadState(pokemon);
 
   function onRemove() {
     batch(() => {
@@ -30,13 +35,16 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
   }
 
   return (
-    <Show when={customIconFile} fallback={editMainView(pokemon, onClose, onRemove, customIconFile)}>
+    <Show
+      when={customIconState.uploaded}
+      fallback={editMainView(pokemon, customIconState, onClose, onRemove)}
+    >
       {(file) => (
         <EditPokemonCustomIconModal
           pokemon={pokemon}
           file={file}
           onClose={onClose}
-          onFinishOrCancel={() => (customIconFile.value = undefined)}
+          onFinishOrCancel={() => (customIconState.uploaded.value = undefined)}
         />
       )}
     </Show>
@@ -45,9 +53,9 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
 
 function editMainView(
   pokemon: Pokemon,
+  customIconState: CustomIconUploadState,
   onClose: () => void,
   onRemove: () => void,
-  customIconFile: Signal<File | undefined>,
 ) {
   return (
     <Modal
@@ -67,7 +75,7 @@ function editMainView(
       </Show>
 
       <EditPokemonTypes pokemon={pokemon} />
-      <EditPokemonCustomIconLink onUpload={(file) => (customIconFile.value = file)} />
+      <EditPokemonCustomIconLink state={customIconState} />
       <EditPokemonBehavior pokemon={pokemon} />
     </Modal>
   );

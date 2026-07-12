@@ -35,6 +35,19 @@ export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f: () => void) 
   });
 }
 
+export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">, f: () => void) {
+  withDb((db) => {
+    const transaction = db.transaction("customIcons", "readwrite");
+    const store = transaction.objectStore("customIcons");
+    const request = store.delete([entry.projectId, entry.pokemonKey]);
+
+    request.onsuccess = () => {
+      console.log(`Custom icon "${entry.projectId}-${entry.pokemonKey}" deleted!`);
+      f();
+    };
+  });
+}
+
 type State = { type: "uninit" } | { type: "db"; db: IDBDatabase } | { type: "denied" };
 
 let state: State = { type: "uninit" };
