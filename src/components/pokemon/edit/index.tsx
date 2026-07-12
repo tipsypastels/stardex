@@ -31,9 +31,12 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
       onClose={onClose}
       footer={
         <div class="text-right">
-          <ButtonLink onClick={onRemove}>Remove</ButtonLink>
+          <ButtonLink look="warning" onClick={onRemove}>
+            Remove {pokemon.name}
+          </ButtonLink>
         </div>
       }
+      hasFooterDivider
     >
       {!pokemon.species.value ? <EditPokemonName pokemon={pokemon} /> : null}
       <EditPokemonTypes pokemon={pokemon} />

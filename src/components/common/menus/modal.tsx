@@ -10,10 +10,11 @@ export interface ModalProps {
   title: ComponentChildren;
   children: ComponentChildren;
   footer?: ComponentChildren;
+  hasFooterDivider?: boolean;
   onClose(): void;
 }
 
-export function Modal({ title, children, footer, onClose }: ModalProps) {
+export function Modal({ title, children, footer, hasFooterDivider, onClose }: ModalProps) {
   function handleClick(e: MouseEvent) {
     if ((e.target as HTMLElement)?.parentNode === root) {
       onClose();
@@ -41,7 +42,11 @@ export function Modal({ title, children, footer, onClose }: ModalProps) {
           <ButtonIcon icon="times" label="Close" onClick={onClose} />
         </div>
         <div class="grow">{children}</div>
-        {footer ? <div class="mt-4">{footer}</div> : null}
+        {footer ? (
+          <div class={`mt-4 ${hasFooterDivider ? "border-t-2 border-t-divider-heavy pt-4" : ""}`}>
+            {footer}
+          </div>
+        ) : null}
       </div>
     </div>,
     root,

@@ -4,6 +4,7 @@ const LOOKS = {
   primary: "text-primary",
   secondary: "text-secondary",
   none: "",
+  warning: "text-warning",
 };
 
 interface SharedProps {
