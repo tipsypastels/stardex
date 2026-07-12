@@ -25,6 +25,9 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
   }
 
   function onClickType(type: Type) {
+    if (filter.typeKey.value === type.key) {
+      return onClickAny();
+    }
     batch(() => {
       filter.state.value = { kind: "type", typeKey: type.key };
       toasts.add(type.icon, `Set filter to ${type.key}!`);
