@@ -20,7 +20,7 @@ export function Export() {
   function saveTextFile() {
     const text = pokemons.peekSerializeToText();
     const name = projects.active.peek().name.peek();
-    saveToFile(`Stardex ${name}.txt`, text);
+    saveToFile(`Stardex ${name}.txt`, "text", text);
   }
 
   return (

@@ -71,7 +71,7 @@ function Error({ error, errorInfo }: ErrorProps) {
       dump.locals[key] = value;
     }
 
-    saveToFile("stardex_error_dump.json", JSON.stringify(dump, null, 2));
+    saveToFile("stardex_error_dump.json", "json", JSON.stringify(dump, null, 2));
     madeErrorDump.value = true;
   }
 
