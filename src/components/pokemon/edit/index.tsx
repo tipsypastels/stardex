@@ -5,6 +5,7 @@ import { toasts } from "../../../state/toast";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { EditPokemonBehavior } from "./behavior";
+import { EditPokemonCustomIconLink } from "./custom_icon";
 import { EditPokemonName } from "./name";
 import { EditPokemonTypes } from "./types";
 
@@ -40,6 +41,7 @@ export function EditPokemonModal({ index, onClose }: EditPokemonModalProps) {
     >
       {!pokemon.species.value ? <EditPokemonName pokemon={pokemon} /> : null}
       <EditPokemonTypes pokemon={pokemon} />
+      <EditPokemonCustomIconLink onUpload={() => {}} />
       <EditPokemonBehavior pokemon={pokemon} />
     </Modal>
   );

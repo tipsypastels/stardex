@@ -6,7 +6,7 @@ export interface EditPokemonBehaviorProps {
 
 export function EditPokemonBehavior({ pokemon }: EditPokemonBehaviorProps) {
   return (
-    <div class="mb-4">
+    <div>
       <h2 class="mb-2 font-bold">Behaviour</h2>
       <label class="flex cursor-pointer items-center justify-center select-none md:justify-normal">
         <input
@@ -15,7 +15,7 @@ export function EditPokemonBehavior({ pokemon }: EditPokemonBehaviorProps) {
           checked={pokemon.exclude.value}
           onChange={(e) => (pokemon.exclude.value = e.currentTarget.checked)}
         />
-        <div>Exclude this Pokémon from recommendations.</div>
+        <div>Exclude from recommendations.</div>
       </label>
     </div>
   );
