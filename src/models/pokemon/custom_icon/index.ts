@@ -23,7 +23,10 @@ export const CustomIcons = createModel(
 
     effect(() => {
       const projectId = projects.active.value.id.value;
-      if (metadata.pokemonKeys.value.size > 0 && mode.key.value === "icons") {
+      const keysCount = metadata.pokemonKeys.value.size;
+      const modeKey = mode.key.value;
+
+      if (keysCount > 0 && modeKey === "icons") {
         getCustomIconDbEntries(projectId, (entries) => {
           if (entries.length === 0) {
             loadedEntries.value = IMap();
@@ -41,6 +44,8 @@ export const CustomIcons = createModel(
             });
           }
         });
+      } else if (keysCount === 0) {
+        loadedEntries.value = IMap();
       }
     });
 
