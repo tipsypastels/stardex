@@ -65,6 +65,10 @@ export function EditPokemonCustomIconModal({
   const didCrop = useSignal(false);
   const didRemoveBackground = useSignal(false);
 
+  const noChanges = useComputed(
+    () => !didDoubleScale.value && !didCrop.value && !didRemoveBackground.value,
+  );
+
   const imageRef = useRef<HTMLDivElement>(null);
   const dataUrlRef = useRef<string>();
 
@@ -193,6 +197,15 @@ export function EditPokemonCustomIconModal({
     });
   }
 
+  function reset() {
+    batch(() => {
+      setBlob(file);
+      didDoubleScale.value = false;
+      didCrop.value = false;
+      didRemoveBackground.value = false;
+    });
+  }
+
   useEffect(() => {
     blobToDataUrl(blob, (dataUrl) => {
       if (!imageRef.current) return;
@@ -217,13 +230,18 @@ export function EditPokemonCustomIconModal({
       hasFooterDivider
     >
       <div class="flex items-start gap-4">
-        <div class="rounded-md border-2 border-divider-heavy p-2">
-          <div
-            ref={imageRef}
-            role="img"
-            class="h-15 w-20 dim"
-            style="background: transparent var(--data-url) no-repeat center; image-rendering: pixelated;"
-          />
+        <div class="flex flex-col items-center">
+          <div class="rounded-md border-2 border-divider-heavy p-2">
+            <div
+              ref={imageRef}
+              role="img"
+              class="h-15 w-20 dim"
+              style="background: transparent var(--data-url) no-repeat center; image-rendering: pixelated;"
+            />
+          </div>
+          <ButtonLink onClick={reset} disabled={noChanges} small>
+            Reset
+          </ButtonLink>
         </div>
         <div class="grow">
           <h3 class="text-sm">pre-upload options:</h3>
