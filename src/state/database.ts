@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 export interface CustomIconsDbEntry {
   projectId: string;
   pokemonKey: string;
@@ -8,46 +10,58 @@ type State = { type: "uninit" } | { type: "db"; db: IDBDatabase } | { type: "den
 
 let state: State = { type: "uninit" };
 
-export function getCustomIcons(f: (entries: CustomIconsDbEntry[]) => void) {
-  tryInit();
-  if (state.type !== "db") return;
+export function getCustomIcons(projectId: string, f: (entries: CustomIconsDbEntry[]) => void) {
+  run((db) => {
+    const transaction = db.transaction("customIcons", "readonly");
+    const store = transaction.objectStore("customIcons");
+    const index = store.index("projectId");
+    const request = index.getAll(projectId);
 
-  const transaction = state.db.transaction(["customIcons"]);
-  const store = transaction.objectStore("customIcons");
-  const request = store.getAll();
-
-  request.onsuccess = () => {
-    f(request.result);
-  };
+    request.onsuccess = () => {
+      f(request.result);
+    };
+  });
 }
 
-function tryInit() {
-  if (state.type !== "uninit") {
-    return;
+function run(f: (db: IDBDatabase) => void) {
+  switch (state.type) {
+    case "denied": {
+      return;
+    }
+    case "db": {
+      f(state.db);
+      return;
+    }
+    case "uninit": {
+      const request = indexedDB.open("stardex", 1);
+
+      request.onupgradeneeded = (event) => {
+        // @ts-expect-error Untyped.
+        const db: IDBDatabase = event.target.result;
+
+        db.onerror = (event) => {
+          // @ts-expect-error Untyped.
+          console.error("Database error", event.target.error?.message);
+        };
+
+        const store = db.createObjectStore("customIcons", { keyPath: ["projectId", "pokemonKey"] });
+        store.createIndex("projectId", "projectId");
+
+        console.log("Database upgraded.");
+      };
+
+      request.onerror = () => {
+        state = { type: "denied" };
+      };
+
+      request.onsuccess = (event) => {
+        // @ts-expect-error Untyped.
+        const db: IDBDatabase = event.target.result;
+        state = { type: "db", db };
+
+        console.log("Database initialized.");
+        f(db);
+      };
+    }
   }
-
-  const request = indexedDB.open("stardex", 1);
-
-  request.onupgradeneeded = (event) => {
-    // @ts-expect-error Untyped.
-    const db: IDBDatabase = event.target.result;
-
-    db.createObjectStore("customIcons", { keyPath: ["projectId", "pokemonKey"] });
-
-    // eslint-disable-next-line no-console
-    console.log("Database upgraded.");
-  };
-
-  request.onerror = () => {
-    state = { type: "denied" };
-  };
-
-  request.onsuccess = (event) => {
-    // @ts-expect-error Untyped.
-    const db: IDBDatabase = event.target.result;
-    state = { type: "db", db };
-
-    // eslint-disable-next-line no-console
-    console.log("Database initialized.");
-  };
 }

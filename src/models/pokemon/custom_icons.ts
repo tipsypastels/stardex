@@ -1,5 +1,6 @@
 import { createModel, effect, signal } from "@preact/signals";
 import { Set as ISet } from "immutable";
+import { getCustomIcons as getCustomIconsDbEntries } from "../../state/database";
 import { stored } from "../../utils/storage";
 import type { ProjectList } from "../project/list";
 import { CUSTOM_ICON_SET_VERSION } from "../versioned";
@@ -18,7 +19,7 @@ interface DumpedSet {
 
 export type CustomIconSet = InstanceType<typeof CustomIconSet>;
 
-export const CustomIconSet = createModel(($raw: RawCustomIconSet, _projects: ProjectList) => {
+export const CustomIconSet = createModel(($raw: RawCustomIconSet, projects: ProjectList) => {
   const pokemonKeys = signal(ISet($raw.pokemonKeys));
 
   effect(() => {
@@ -26,6 +27,15 @@ export const CustomIconSet = createModel(($raw: RawCustomIconSet, _projects: Pro
       v: CUSTOM_ICON_SET_VERSION,
       pokemonKeys: pokemonKeys.value,
     });
+  });
+
+  effect(() => {
+    if (pokemonKeys.value.size > 0) {
+      console.log("querying");
+      getCustomIconsDbEntries((dbEntries) => {
+        console.log(dbEntries);
+      });
+    }
   });
 
   return {
