@@ -22,7 +22,7 @@ export function EditPokemonCustomIconLink({ onUpload }: EditPokemonCustomIconLin
             <input
               class="hidden"
               type="file"
-              accept="image/png, image/gif, image/jpeg"
+              accept="image/png"
               onChange={(e) => {
                 const file = e.currentTarget.files?.[0];
                 if (file) onUpload(file);
@@ -49,11 +49,42 @@ export function EditPokemonCustomIconModal({
 }: EditPokemonCustomIconModalProps) {
   const [blob, setBlob] = useState<Blob>(file);
 
+  const didDoubleScale = useSignal(false);
   const didCrop = useSignal(false);
   const didRemoveBackground = useSignal(false);
 
   const imageRef = useRef<HTMLDivElement>(null);
   const dataUrlRef = useRef<string>();
+
+  function doubleScale() {
+    const dataUrl = dataUrlRef.current;
+    if (!dataUrl) return;
+
+    const img = new Image();
+
+    img.onload = () => {
+      const { width, height } = img;
+
+      const canvas = document.createElement("canvas");
+
+      canvas.width = width * 2;
+      canvas.height = height * 2;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.imageSmoothingEnabled = false;
+
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          setBlob(blob);
+          didDoubleScale.value = true;
+        }
+      }, "image/png");
+    };
+    img.src = dataUrl;
+  }
 
   function cropInHalf() {
     const dataUrl = dataUrlRef.current;
@@ -87,7 +118,53 @@ export function EditPokemonCustomIconModal({
           setBlob(blob);
           didCrop.value = true;
         }
-      });
+      }, "image/png");
+    };
+    img.src = dataUrl;
+  }
+
+  function removeBackgroundColor() {
+    const dataUrl = dataUrlRef.current;
+    if (!dataUrl) return;
+
+    const img = new Image();
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.drawImage(img, 0, 0);
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const { data } = imageData;
+
+      const bgR = data[0];
+      const bgG = data[1];
+      const bgB = data[2];
+
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+
+        if (r === bgR && g === bgG && b === bgB) {
+          data[i + 3] = 0;
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+
+      canvas.toBlob((blob) => {
+        if (blob) {
+          setBlob(blob);
+          didRemoveBackground.value = true;
+        }
+      }, "image/png");
     };
     img.src = dataUrl;
   }
@@ -121,7 +198,7 @@ export function EditPokemonCustomIconModal({
       }
       hasFooterDivider
     >
-      <div class="flex gap-4">
+      <div class="flex items-start gap-4">
         <div class="rounded-md border-2 border-divider-heavy p-2">
           <div
             ref={imageRef}
@@ -134,6 +211,14 @@ export function EditPokemonCustomIconModal({
           <h3 class="text-sm">pre-upload options:</h3>
           <ul class="list-inside list-disc">
             <li>
+              <ButtonLink onClick={doubleScale} disabled={didDoubleScale}>
+                <Show when={didDoubleScale}>
+                  <Icon name="check" />
+                </Show>
+                Scale up (for RH icons).
+              </ButtonLink>
+            </li>
+            <li>
               <ButtonLink onClick={cropInHalf} disabled={didCrop}>
                 <Show when={didCrop}>
                   <Icon name="check" />
@@ -142,7 +227,7 @@ export function EditPokemonCustomIconModal({
               </ButtonLink>
             </li>
             <li>
-              <ButtonLink onClick={() => {}} disabled={didRemoveBackground}>
+              <ButtonLink onClick={removeBackgroundColor} disabled={didRemoveBackground}>
                 <Show when={didRemoveBackground}>
                   <Icon name="check" />
                 </Show>
