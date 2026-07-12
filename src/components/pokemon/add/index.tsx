@@ -129,7 +129,7 @@ export function AddPokemon() {
               </Button>
             ) : null}
 
-            {closestLine.value ? (
+            {closestLine.value && closestLine.value.length > 1 ? (
               <Button onClick={() => addFamily(closestLine.value!)}>Add Family</Button>
             ) : null}
 
