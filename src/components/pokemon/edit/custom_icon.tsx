@@ -1,6 +1,9 @@
+import { useSignal } from "@preact/signals";
+import { Show } from "@preact/signals/utils";
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { Pokemon } from "../../../models/pokemon";
 import { Button } from "../../common/button";
+import { Icon } from "../../common/icon";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 
@@ -44,8 +47,47 @@ export function EditPokemonCustomIconModal({
   file,
   onClose,
 }: EditPokemonCustomIconModalProps) {
-  const [blob] = useState<Blob>(file);
+  const [blob, setBlob] = useState<Blob>(file);
+
+  const didCrop = useSignal(false);
+  const didRemoveBackground = useSignal(false);
+
   const imageRef = useRef<HTMLDivElement>(null);
+  const dataUrlRef = useRef<string>();
+
+  function cropInHalf() {
+    const dataUrl = dataUrlRef.current;
+    if (!dataUrl) return;
+
+    const img = new Image();
+
+    img.onload = () => {
+      const { width, height } = img;
+      if (width === height) return;
+
+      const canvas = document.createElement("canvas");
+
+      if (width > height) {
+        canvas.width = width / 2;
+        canvas.height = height;
+      } else {
+        canvas.width = width;
+        canvas.height = height / 2;
+      }
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      ctx.drawImage(img, 0, 0);
+      canvas.toBlob((blob) => {
+        if (blob) {
+          setBlob(blob);
+          didCrop.value = true;
+        }
+      });
+    };
+    img.src = dataUrl;
+  }
 
   useEffect(() => {
     const fileReader = new FileReader();
@@ -53,7 +95,9 @@ export function EditPokemonCustomIconModal({
     fileReader.onload = () => {
       if (!imageRef.current) return;
       const dataUrl = fileReader.result as string;
+
       imageRef.current.style.setProperty("--data-url", `url("${dataUrl}")`);
+      dataUrlRef.current = dataUrl;
     };
 
     fileReader.readAsDataURL(blob);
@@ -87,10 +131,20 @@ export function EditPokemonCustomIconModal({
           <h3 class="text-sm">pre-upload actions:</h3>
           <ul class="list-inside list-disc">
             <li>
-              <ButtonLink onClick={() => {}}>Crop to first frame of two.</ButtonLink>
+              <ButtonLink onClick={cropInHalf} disabled={didCrop}>
+                <Show when={didCrop}>
+                  <Icon name="check" />
+                </Show>
+                Crop to first frame of two.
+              </ButtonLink>
             </li>
             <li>
-              <ButtonLink onClick={() => {}}>Remove background colour.</ButtonLink>
+              <ButtonLink onClick={() => {}} disabled={didRemoveBackground}>
+                <Show when={didRemoveBackground}>
+                  <Icon name="check" />
+                </Show>
+                Remove background colour.
+              </ButtonLink>
             </li>
           </ul>
         </div>

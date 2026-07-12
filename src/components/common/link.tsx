@@ -1,4 +1,5 @@
-import type { ComponentChildren } from "preact";
+import type { ComponentChildren, Signalish } from "preact";
+import { tw } from "../../utils/style";
 
 const LOOKS = {
   primary: "text-primary",
@@ -28,7 +29,7 @@ export function Link(props: LinkProps) {
 }
 
 export interface ButtonLinkProps extends SharedProps {
-  disabled?: boolean;
+  disabled?: Signalish<boolean>;
   onClick(): void;
 }
 
@@ -41,5 +42,5 @@ export function ButtonLink(props: ButtonLinkProps) {
 }
 
 function toClassList({ look, bold, small }: SharedProps) {
-  return `cursor-pointer underline ${LOOKS[look ?? "primary"]} ${bold ? `font-bold` : ""} ${small ? `text-sm` : ""}`;
+  return tw`cursor-pointer underline ${LOOKS[look ?? "primary"]} ${bold ? `font-bold` : ""} ${small ? `text-sm` : ""} disabled:opacity-70 disabled:cursor-not-allowed`;
 }
