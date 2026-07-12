@@ -1,8 +1,7 @@
-import { useSignal, useSignalEffect } from "@preact/signals";
+import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import { PokemonsContext, RegionsContext, StrictnessContext } from "../../state/context";
-import { stored } from "../../utils/storage";
 import { Empty } from "../common/empty";
 import { ButtonLink } from "../common/link";
 import { Actions } from "../common/menus/actions";
@@ -11,19 +10,12 @@ import { RecommendedChangeGroup } from "./groups";
 import { regionsIcon, RegionsModal } from "./regions";
 import { StrictnessModal } from "./strictness";
 
-const store = stored<boolean>("stardex_recommendations_show_just_right");
-
 export function Recommendations() {
   const pokemons = useContext(PokemonsContext);
   const regions = useContext(RegionsContext);
   const strictness = useContext(StrictnessContext);
-  const showJustRight = useSignal(store.load() ?? false);
 
   const modal = useSignal<"regions" | "strictness">();
-
-  useSignalEffect(() => {
-    store.dump(showJustRight.value);
-  });
 
   function emptyFallbacks() {
     return (
@@ -67,14 +59,7 @@ export function Recommendations() {
       >
         <RecommendedChangeGroup change="remove" title="Too Many" />
         <RecommendedChangeGroup change="add" title="Too Few" />
-
-        <Show when={showJustRight}>
-          <RecommendedChangeGroup change="none" title="Just Right" />
-        </Show>
-
-        <ButtonLink onClick={() => (showJustRight.value = !showJustRight.value)}>
-          {showJustRight.value ? "Hide" : "Show"} just right
-        </ButtonLink>
+        <RecommendedChangeGroup change="none" title="Just Right" />
       </Show>
 
       <Show when={() => modal.value === "regions"}>
