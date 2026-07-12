@@ -143,6 +143,11 @@ export function EditPokemonCustomIconModal({
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const { data } = imageData;
 
+      if (data[3] === 0) {
+        didRemoveBackground.value = true;
+        return;
+      }
+
       const bgR = data[0];
       const bgG = data[1];
       const bgB = data[2];
