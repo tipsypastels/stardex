@@ -1,6 +1,4 @@
-import { useContext } from "preact/hooks";
 import type { Pokemon } from "../../../models/pokemon";
-import { CustomIconsContext } from "../../../state/context";
 import { SpeciesIcon } from "./species_icon";
 
 /**
@@ -72,12 +70,6 @@ export interface PokemonIconProps {
 }
 
 export function PokemonIcon({ pokemon }: PokemonIconProps) {
-  const customIcons = useContext(CustomIconsContext);
-  const customIcon = customIcons.map.value.get(pokemon.key.value);
-  if (customIcon) {
-    return <img src={customIcon.url} />;
-  }
-
   const species = pokemon.species.value;
   if (!species) {
     return <SpeciesIcon species={{ id: 0, name: pokemon.name.value }} />;

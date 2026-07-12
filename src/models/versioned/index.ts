@@ -17,7 +17,6 @@ import {
 export const POKEMON_VERSION = 1;
 export const POKEMON_LIST_VERSION = 1;
 export const PROJECT_VERSION = 1;
-export const CUSTOM_ICON_PACK_VERSION = 1;
 
 /* -------------------------------------------------------------------------- */
 /*                                   Pokemon                                  */
