@@ -26,11 +26,11 @@ export const CustomIcons = createModel(
             return;
           }
 
-          const newEntries = new Map();
+          const newEntries = new Map<string, CustomIconLoadedEntry>();
 
           for (const entry of entries) {
             blobToDataUrl(entry.blob, (dataUrl) => {
-              newEntries.set(entry.pokemonKey, dataUrl);
+              newEntries.set(entry.pokemonKey, { dataUrl });
               if (newEntries.size === entries.length) {
                 loadedEntries.value = IMap(newEntries);
               }
