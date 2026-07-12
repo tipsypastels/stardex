@@ -45,7 +45,7 @@ export function Export() {
       </Show>
 
       <Show when={() => modal.value === "help"}>
-        <Modal title="Export Help" onClose={() => (modal.value = undefined)} large>
+        <Modal title="Export Help" onClose={() => (modal.value = undefined)}>
           <p class="mb-4">Stardex has multiple ways to export your project.</p>
           <div class="text-base">
             <div class="mb-4">

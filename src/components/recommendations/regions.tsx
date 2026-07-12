@@ -14,12 +14,12 @@ export interface RegionsModalProps {
 
 export function RegionsModal({ regions, onClose }: RegionsModalProps) {
   return (
-    <Modal title="Regions" onClose={onClose} large>
+    <Modal title="Regions" onClose={onClose}>
       <div class="mb-4 grid grid-cols-2 gap-4">
         {REGIONS.all.map((region) => {
           const checked = regions.has(region);
           return (
-            <label class="border-divider-light relative flex cursor-pointer rounded-xs border p-2 transition select-none hover:-translate-y-1">
+            <label class="relative flex cursor-pointer rounded-xs border border-divider-light p-2 transition select-none hover:-translate-y-1">
               <input
                 class="hidden"
                 type="checkbox"
@@ -34,7 +34,7 @@ export function RegionsModal({ regions, onClose }: RegionsModalProps) {
               />
 
               {checked ? (
-                <div class="text-primary absolute -top-2 -left-2">
+                <div class="absolute -top-2 -left-2 text-primary">
                   <Icon name="badge-check" />
                 </div>
               ) : null}
