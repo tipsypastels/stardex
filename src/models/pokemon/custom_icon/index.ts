@@ -9,6 +9,7 @@ import { blobToDataUrl } from "../../../utils/file";
 import { readonly } from "../../../utils/signal";
 import type { PokedexMode } from "../../pokedex/mode";
 import type { ProjectList } from "../../project/list";
+import type { RawSavedCustomIcons } from "../../save";
 import type { CustomIconsMetadata } from "./metadata";
 
 export interface CustomIconLoadedEntry {
@@ -63,6 +64,9 @@ export const CustomIcons = createModel(
         deleteCustomIconsDbEntry({ pokemonKey, projectId: projects.active.value.id.value }, () =>
           metadata.deletePokemonKey(pokemonKey),
         );
+      },
+      toRawSavedCustomIcons(): RawSavedCustomIcons {
+        return { all: loadedEntries.value.toJS() };
       },
     };
   },

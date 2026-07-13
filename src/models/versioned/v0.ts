@@ -3,6 +3,7 @@ import {
   POKEMON_LIST_VERSION,
   POKEMON_VERSION,
   PROJECT_VERSION,
+  SAVE_VERSION,
 } from ".";
 import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
@@ -10,6 +11,7 @@ import type { RawPokemonList } from "../pokemon/list";
 import { PokemonListTextDiffBuilder } from "../pokemon/text/diff";
 import type { RawActiveProject, RawInactiveProject } from "../project";
 import type { RegionKey } from "../region";
+import type { RawSave } from "../save";
 import type { StrictnessKey } from "../strictness";
 
 /* -------------------------------------------------------------------------- */
@@ -111,6 +113,8 @@ export function V0_upgradeRawPokemonList(raws: V0_RawPokemonList): RawPokemonLis
  *  - Models is called modelState.
  */
 
+// Note: Same shape as V0_RawExport, but the upgraded
+// versions are different.
 export interface V0_RawProjectModels {
   pokemon: V0_RawPokemonList;
   regions: RegionKey[];
@@ -155,5 +159,34 @@ export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawIna
       customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
     },
     ...rest,
+  };
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Export                                   */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Export V0:
+ *  - No explicit version.
+ *  - Pokemons is called pokemon.
+ *  - Pokedex mode is called pokedex format.
+ */
+
+export interface V0_RawSave {
+  pokemon: V0_RawPokemonList;
+  regions: RegionKey[];
+  strictness: StrictnessKey;
+  pokedexFormat: PokedexModeKey;
+}
+
+export function V0_upgradeRawSave(raw: V0_RawSave): RawSave {
+  return {
+    v: SAVE_VERSION,
+    pokemons: V0_upgradeRawPokemonList(raw.pokemon),
+    regions: raw.regions,
+    strictness: raw.strictness,
+    pokedexMode: raw.pokedexFormat,
+    customIcons: { all: {} },
   };
 }
