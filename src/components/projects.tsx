@@ -1,6 +1,7 @@
 import { signal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
+import { ActiveProject } from "../models/project";
 import { ProjectsContext } from "../state/context";
 import { Icon } from "./common/icon";
 import { Menu } from "./common/menus/menu";
@@ -12,6 +13,7 @@ export function ProjectsSelect() {
   const projects = useContext(ProjectsContext);
 
   // TODO: Clean this up.
+  // FIXME: Now broken by projects change.
   return (
     <div class="w-max">
       <div class="mb-1 flex text-sm">
@@ -58,14 +60,16 @@ export function ProjectsModal() {
                     class="hidden"
                     type="radio"
                     name="project"
-                    checked={project.isActive()}
+                    checked={project instanceof ActiveProject}
                     onClick={(e) => {
                       e.preventDefault();
                       projects.setActive(project.id.value);
                     }}
                   />
 
-                  <div class={`mr-4 text-primary ${project.isActive() ? "" : "opacity-0"}`}>
+                  <div
+                    class={`mr-4 text-primary ${project instanceof ActiveProject ? "" : "opacity-0"}`}
+                  >
                     <Icon name="badge-check" />
                   </div>
 
@@ -104,7 +108,7 @@ export function ProjectsModal() {
                       icon: "times",
                       class: "text-red-600",
                       onClick: () => {
-                        if (project.isActive()) {
+                        if (project instanceof ActiveProject) {
                           return alert(
                             "Can't delete the current project! Make a new project and switch to it first.",
                           );

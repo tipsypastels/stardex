@@ -1,6 +1,7 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList } from "immutable";
 import { assert } from "../../utils/assert";
+import { makeLifter, type Lifter } from "../../utils/signal";
 import { stored } from "../../utils/storage";
 import { POKEDEX_MODES } from "../pokedex/mode";
 import {
@@ -24,14 +25,18 @@ export const ProjectList = createModel(
     $all: Project[],
     getModels: () => RawProjectModels,
     setModels: (models: RawProjectModels) => void,
+    lifter: Lifter,
   ) => {
     const all = signal(IList($all));
-    const activeIndex = computed(() => all.value.findIndex((p) => p.isActive()));
+    const activeIndex = computed(() => all.value.findIndex((p) => p instanceof ActiveProject));
     const active = computed(() => all.value.get(activeIndex.value) as ActiveProject);
 
-    effect(() => {
+    function onChange() {
       store.dump(all.value);
-    });
+    }
+
+    effect(onChange);
+    lifter.onChange(onChange);
 
     function findIndex(id: string) {
       const index = all.value.findIndex((p) => p.id.value === id);
@@ -61,19 +66,22 @@ export const ProjectList = createModel(
       },
       pushEmpty() {
         all.value = all.value.push(
-          new InactiveProject({
-            v: PROJECT_VERSION,
-            id: crypto.randomUUID(),
-            name: `Untitled Project ${all.value.size + 1}`,
-            active: false,
-            models: {
-              pokemons: { v: POKEMON_LIST_VERSION, all: [] },
-              regions: REGIONS.recommendedKeys,
-              strictness: STRICTNESSES.defaultKey,
-              pokedexMode: POKEDEX_MODES.defaultKey,
-              customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
+          new InactiveProject(
+            {
+              v: PROJECT_VERSION,
+              id: crypto.randomUUID(),
+              name: `Untitled Project ${all.value.size + 1}`,
+              active: false,
+              models: {
+                pokemons: { v: POKEMON_LIST_VERSION, all: [] },
+                regions: REGIONS.recommendedKeys,
+                strictness: STRICTNESSES.defaultKey,
+                pokedexMode: POKEDEX_MODES.defaultKey,
+                customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
+              },
             },
-          }),
+            lifter,
+          ),
         );
       },
       pushDuplicate(id: string) {
@@ -107,8 +115,9 @@ export const PROJECT_LISTS = (() => {
     getModels: () => RawProjectModels,
     setModels: (models: RawProjectModels) => void,
   ) {
-    const projects = (store.load() ?? defaults).map(PROJECTS.from);
-    return new ProjectList(projects, getModels, setModels);
+    const lifter = makeLifter();
+    const projects = (store.load() ?? defaults).map((raw) => PROJECTS.from(raw, lifter));
+    return new ProjectList(projects, getModels, setModels, lifter);
   }
   return { initial };
 })();

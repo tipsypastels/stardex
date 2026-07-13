@@ -6,6 +6,7 @@ import { BUILTIN_POKEMONS, CUSTOM_POKEMONS } from "../../../models/pokemon";
 import { EVOLUTION_LINES } from "../../../models/pokemon/evolution_line";
 import { Species, SPECIES } from "../../../models/pokemon/species";
 import { PokemonsContext } from "../../../state/context";
+import type { Lifter } from "../../../utils/signal";
 import { capitalizeWords } from "../../../utils/string";
 import { Button } from "../../common/button";
 import { useHotkey } from "../../layout/hotkeys";
@@ -48,7 +49,7 @@ export function AddPokemon() {
       if (pokemons.hasKey(species.key)) {
         alert(`${species.name} is already in your Pokédex!`);
       } else {
-        pokemons.push(BUILTIN_POKEMONS.of(species.key));
+        pokemons.push((lifter) => BUILTIN_POKEMONS.of(species.key, lifter));
       }
       input.value = "";
     });
@@ -60,7 +61,11 @@ export function AddPokemon() {
       if (notAlreadyIncluded.length === 0) {
         alert(`The ${family[0].name} family is already in your Pokédex!`);
       } else {
-        pokemons.push(...notAlreadyIncluded.map((species) => BUILTIN_POKEMONS.of(species.key)));
+        pokemons.push(
+          ...notAlreadyIncluded.map(
+            (species) => (lifter: Lifter) => BUILTIN_POKEMONS.of(species.key, lifter),
+          ),
+        );
       }
       input.value = "";
     });
@@ -71,7 +76,7 @@ export function AddPokemon() {
     const name = inputCapitalizedWords.value;
 
     batch(() => {
-      pokemons.push(CUSTOM_POKEMONS.of(key, name, typeKeys));
+      pokemons.push((lifter) => CUSTOM_POKEMONS.of(key, name, typeKeys, lifter));
       input.value = "";
       addingCustom.value = false;
     });
