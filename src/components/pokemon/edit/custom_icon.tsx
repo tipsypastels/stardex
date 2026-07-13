@@ -49,14 +49,14 @@ export interface EditPokemonCustomIconModalProps {
   pokemon: Pokemon;
   file: File;
   onClose(): void;
-  onFinishOrCancel(): void;
+  onCancel(): void;
 }
 
 export function EditPokemonCustomIconModal({
   pokemon,
   file,
   onClose,
-  onFinishOrCancel,
+  onCancel,
 }: EditPokemonCustomIconModalProps) {
   const customIcons = useContext(CustomIconsContext);
   const [blob, setBlob] = useState<Blob>(file);
@@ -193,7 +193,7 @@ export function EditPokemonCustomIconModal({
   function upload() {
     batch(() => {
       customIcons.upload(pokemon.key.value, blob);
-      onFinishOrCancel();
+      onClose();
     });
   }
 
@@ -220,7 +220,7 @@ export function EditPokemonCustomIconModal({
       onClose={onClose}
       footer={
         <div class="flex">
-          <ButtonLink look="secondary" onClick={onFinishOrCancel}>
+          <ButtonLink look="secondary" onClick={onCancel}>
             Cancel
           </ButtonLink>
           <div class="grow" />
