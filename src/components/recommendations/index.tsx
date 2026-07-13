@@ -4,7 +4,7 @@ import { useContext } from "preact/hooks";
 import { PokemonsContext, RegionsContext, StrictnessContext } from "../../state/context";
 import { Empty } from "../common/empty";
 import { ButtonLink } from "../common/link";
-import { Actions } from "../common/menus/actions";
+import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
 import { Section } from "../layout/section";
 import { RecommendedChangeGroup } from "./groups";
 import { regionsIcon, RegionsModal } from "./regions";
@@ -38,20 +38,18 @@ export function Recommendations() {
 
   return (
     <Section id="recommendations" title="Recommendations" hotkey="jumpToRecommendations" hasActions>
-      <Actions
-        actions={[
-          {
-            name: "Regions",
-            icon: regionsIcon(regions),
-            onClick: () => (modal.value = "regions"),
-          },
-          {
-            name: "Strictness",
-            icon: strictness.icon.value,
-            onClick: () => (modal.value = "strictness"),
-          },
-        ]}
-      />
+      <ActionBar>
+        <ActionBarItem
+          name="Regions"
+          icon={regionsIcon(regions)}
+          onClick={() => (modal.value = "regions")}
+        />
+        <ActionBarItem
+          name="Strictness"
+          icon={strictness.icon.value}
+          onClick={() => (modal.value = "strictness")}
+        />
+      </ActionBar>
 
       <Show
         when={() => pokemons.size.value > 0 && regions.size.value > 0}
