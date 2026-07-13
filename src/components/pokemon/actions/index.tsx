@@ -81,7 +81,7 @@ export function PokedexActions({
                 onClick={() => (modal.value = "autosort")}
               />
               <ActionBarItem
-                name="Zapper"
+                name="Zap"
                 icon="bolt"
                 active={zapper}
                 disabled={isEmpty}
