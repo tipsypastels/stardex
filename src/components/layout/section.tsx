@@ -8,7 +8,7 @@ import { useHotkey, type HotkeyInfoKey } from "./hotkeys";
 
 export interface SectionProps {
   id: string;
-  title: string;
+  title: ComponentChildren;
   hotkey: HotkeyInfoKey;
   children: ComponentChildren;
   hasActions?: boolean;

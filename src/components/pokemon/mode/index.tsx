@@ -76,15 +76,13 @@ export function PokedexMode({
         zapper={zapper}
         onAutosort={onAutosort}
       />
-      <div class="mb-4">
-        <Component
-          filter={filter}
-          zapper={zapper}
-          pokemons={pokemons}
-          pokemonsFiltered={pokemonsFiltered}
-          setEditingIndex={setEditingIndex}
-        />
-      </div>
+      <Component
+        filter={filter}
+        zapper={zapper}
+        pokemons={pokemons}
+        pokemonsFiltered={pokemonsFiltered}
+        setEditingIndex={setEditingIndex}
+      />
     </>
   );
 }

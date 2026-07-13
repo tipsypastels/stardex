@@ -14,7 +14,7 @@ export interface ButtonIconProps {
 export function ButtonIcon({ icon, look = "lesser", label, onClick }: ButtonIconProps) {
   return (
     <button
-      class={`cursor-pointer ${LOOKS[look]}`}
+      class={`cursor-pointer touch-manipulation ${LOOKS[look]}`}
       title={label}
       aria-label={label}
       onClick={onClick}

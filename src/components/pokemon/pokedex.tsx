@@ -1,4 +1,5 @@
 import { batch, useComputed, useModel, useSignal, useSignalEffect } from "@preact/signals";
+import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import { PokedexFilter, runPokedexFilter } from "../../models/pokedex/filter";
 import { PokemonsContext } from "../../state/context";
@@ -25,7 +26,19 @@ export function Pokedex() {
   });
 
   return (
-    <Section id="pokedex" title="Pokedex" hotkey="jumpToPokedex" hasActions>
+    <Section
+      id="pokedex"
+      title={
+        <>
+          Pokedex{" "}
+          <Show when={pokemons.size}>
+            <sub class="text-lg text-foreground-lesser">{pokemons.size}</sub>
+          </Show>
+        </>
+      }
+      hotkey="jumpToPokedex"
+      hasActions
+    >
       <PokedexMode
         filter={filter}
         pokemons={pokemons}
