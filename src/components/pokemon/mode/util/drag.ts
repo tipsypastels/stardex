@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "preact/hooks";
+import { useSignalEffect, type ReadonlySignal } from "@preact/signals";
+import { useRef } from "preact/hooks";
 import Sortable from "sortablejs";
 import type { PokemonList } from "../../../../models/pokemon/list";
 
@@ -11,12 +12,12 @@ import type { PokemonList } from "../../../../models/pokemon/list";
  * a hidden dummy element at the start that offsets
  * everything. Shrug.
  */
-export function useDraggable(enabled: boolean, pokemons: PokemonList) {
+export function useDraggable(enabled: ReadonlySignal<boolean>, pokemons: PokemonList) {
   const gridRef = useRef<HTMLOListElement>(null);
   const sortableRef = useRef<Sortable>(null);
 
-  useEffect(() => {
-    if (enabled && gridRef.current) {
+  useSignalEffect(() => {
+    if (enabled.value && gridRef.current) {
       sortableRef.current = Sortable.create(gridRef.current, {
         animation: 150,
         handle: "[data-handle]",
@@ -28,7 +29,7 @@ export function useDraggable(enabled: boolean, pokemons: PokemonList) {
         sortableRef.current = null;
       };
     }
-  }, [enabled]);
+  });
 
   return { gridRef };
 }

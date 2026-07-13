@@ -1,4 +1,4 @@
-import { batch } from "@preact/signals";
+import { batch, useComputed } from "@preact/signals";
 import { For, Show } from "@preact/signals/utils";
 import type { ComponentChildren, RefObject } from "preact";
 import type { PokedexModeViewProps } from "..";
@@ -12,7 +12,15 @@ export interface PokedexGridlikeViewProps extends PokedexModeViewProps {
   item(pokemon: Pokemon, onClick: () => void): ComponentChildren;
 }
 
-export function PokedexGridlikeView({
+export function PokedexGridlikeView(props: PokedexGridlikeViewProps) {
+  return (
+    <Show when={() => props.pokemons.size.value > 0} fallback={<EmptyPokedex />}>
+      {() => <Inner {...props} />}
+    </Show>
+  );
+}
+
+function Inner({
   filter,
   zapper,
   pokemons,
@@ -21,9 +29,10 @@ export function PokedexGridlikeView({
   list,
   item,
 }: PokedexGridlikeViewProps) {
-  const { gridRef } = useDraggable(!filter.state.value, pokemons);
+  const draggableEnabled = useComputed(() => !filter.state.value);
+  const { gridRef } = useDraggable(draggableEnabled, pokemons);
   return (
-    <Show when={() => pokemons.size.value > 0} fallback={<EmptyPokedex />}>
+    <>
       {list(
         gridRef,
         <>
@@ -48,6 +57,6 @@ export function PokedexGridlikeView({
           </For>
         </>,
       )}
-    </Show>
+    </>
   );
 }
