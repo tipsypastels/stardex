@@ -1,9 +1,10 @@
-import { batch, Signal, useComputed, useSignal } from "@preact/signals";
+import { batch, Signal, useComputed, useSignal, useSignalEffect } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import type { PokedexFilter } from "../../../models/pokedex/filter";
 import type { PokedexMode } from "../../../models/pokedex/mode";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import type { PokemonList } from "../../../models/pokemon/list";
+import { POKEMON_LIST_VERSION } from "../../../models/versioned";
 import { toasts } from "../../../state/toast";
 import { Actions } from "../../common/menus/actions";
 import { AddPokemon } from "../add";
@@ -29,6 +30,12 @@ export function PokedexActions({
   const emptyOrTextMode = useComputed(() => pokemons.size.value === 0 || mode.key.value === "text");
   const modal = useSignal<"mode" | "filter" | "autosort">();
 
+  useSignalEffect(() => {
+    if (emptyOrTextMode.value) {
+      zapper.value = false;
+    }
+  });
+
   function toggleZapper() {
     batch(() => {
       if (zapper.value) {
@@ -38,6 +45,17 @@ export function PokedexActions({
         zapper.value = true;
         toasts.add("bolt", "Zapper active. Pokémon you click will be deleted!");
       }
+    });
+  }
+
+  function clearPokedex() {
+    if (!confirm("Are you sure you want to clear your Pokédex? You won't be getting it back.")) {
+      return;
+    }
+
+    batch(() => {
+      pokemons.setFromRaw({ v: POKEMON_LIST_VERSION, all: [] });
+      toasts.add("trash", "Pokédex cleared! A blank slate...");
     });
   }
 
@@ -59,7 +77,7 @@ export function PokedexActions({
           },
           {
             icon: "arrow-down-1-9",
-            name: "Autosort",
+            name: "Sort",
             onClick: () => (modal.value = "autosort"),
             disabled: emptyOrTextMode,
           },
@@ -68,9 +86,19 @@ export function PokedexActions({
             name: "Zapper",
             onClick: toggleZapper,
             active: zapper.value,
+            disabled: emptyOrTextMode,
             desktop: true,
           },
         ]}
+        // TODO: This really should be a More i think...
+        // TODO: This renders wrong on light mode.
+        rightAction={{
+          icon: "trash",
+          name: "Clear",
+          look: "footer",
+          onClick: clearPokedex,
+          disabled: emptyOrTextMode,
+        }}
         isUpperHalf
       />
 

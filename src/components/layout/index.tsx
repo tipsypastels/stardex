@@ -34,6 +34,11 @@ export function Layout(props: LayoutProps) {
             <ProjectsModal />
 
             {/* TODO: <Notices /> */}
+
+            {/* <h2 class="border-y border-divider-light py-4 text-2xl font-bold text-foreground-lesser">
+              {activeProjectName}
+            </h2> */}
+
             <div class="mb-8 hidden border border-divider-light lg:block"></div>
             <main class="mx-4 md:mx-0">{props.children}</main>
           </div>

@@ -85,8 +85,9 @@ function errorToJSX(error: unknown): ComponentChildren {
   } else if (error instanceof PBSMissingTypesError) {
     return (
       <div>
-        - Expected <strong>Types=</strong> for custom Pokémon <strong>{error.essentialsId}</strong>{" "}
-        at <strong>{error.fileName}</strong> line <strong>{error.lineIndex + 1}</strong>.
+        - Expected <strong>Types=</strong> for custom Pokémon{" "}
+        <strong>[{error.essentialsId}]</strong> at <strong>{error.fileName}</strong> line{" "}
+        <strong>{error.lineIndex + 1}</strong>.
       </div>
     );
   } else {
