@@ -6,7 +6,7 @@ import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import type { PokemonList } from "../../../models/pokemon/list";
 import { POKEMON_LIST_VERSION } from "../../../models/versioned";
 import { toasts } from "../../../state/toast";
-import { Actions } from "../../common/menus/actions";
+import { ActionBar, ActionBarItem } from "../../common/menus/action_bar";
 import { AddPokemon } from "../add";
 import { AutosortPokedexModal } from "./autosort";
 import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
@@ -27,11 +27,12 @@ export function PokedexActions({
   zapper,
   onAutosort,
 }: PokedexActionsProps) {
-  const emptyOrTextMode = useComputed(() => pokemons.size.value === 0 || mode.key.value === "text");
+  const isNonTextMode = useComputed(() => mode.key.value !== "text");
+  const isEmpty = useComputed(() => pokemons.size.value === 0);
   const modal = useSignal<"mode" | "filter" | "autosort">();
 
   useSignalEffect(() => {
-    if (emptyOrTextMode.value) {
+    if (isEmpty.value || !isNonTextMode.value) {
       zapper.value = false;
     }
   });
@@ -61,46 +62,36 @@ export function PokedexActions({
 
   return (
     <>
-      <Actions
-        actions={[
-          {
-            icon: mode.icon.value,
-            name: "Mode",
-            onClick: () => (modal.value = "mode"),
-          },
-          {
-            icon: filterPokedexActionIcon(filter.state.value),
-            name: "Filter",
-            onClick: () => (modal.value = "filter"),
-            active: !!filter.state.value,
-            disabled: emptyOrTextMode,
-          },
-          {
-            icon: "arrow-down-1-9",
-            name: "Sort",
-            onClick: () => (modal.value = "autosort"),
-            disabled: emptyOrTextMode,
-          },
-          {
-            icon: "bolt",
-            name: "Zapper",
-            onClick: toggleZapper,
-            active: zapper.value,
-            disabled: emptyOrTextMode,
-            desktop: true,
-          },
-        ]}
-        // TODO: This really should be a More i think...
-        // TODO: This renders wrong on light mode.
-        rightAction={{
-          icon: "trash",
-          name: "Clear",
-          look: "footer",
-          onClick: clearPokedex,
-          disabled: emptyOrTextMode,
-        }}
-        isUpperHalf
-      />
+      <ActionBar isUpperHalf>
+        <ActionBarItem name="Mode" icon={mode.icon.value} onClick={() => (modal.value = "mode")} />
+        <Show when={isNonTextMode}>
+          {() => (
+            <>
+              <ActionBarItem
+                name="Filter"
+                icon={filterPokedexActionIcon(filter.state.value)}
+                active={!!filter.state.value}
+                disabled={isEmpty}
+                onClick={() => (modal.value = "filter")}
+              />
+              <ActionBarItem
+                name="Sort"
+                icon="arrow-down-1-9"
+                disabled={isEmpty}
+                onClick={() => (modal.value = "autosort")}
+              />
+              <ActionBarItem
+                name="Zapper"
+                icon="bolt"
+                active={zapper}
+                disabled={isEmpty}
+                onClick={toggleZapper}
+              />
+              <ActionBarItem name="Clear" icon="trash" disabled={isEmpty} onClick={clearPokedex} />
+            </>
+          )}
+        </Show>
+      </ActionBar>
 
       <Show when={() => mode.key.value !== "text"}>{() => <AddPokemon />}</Show>
 

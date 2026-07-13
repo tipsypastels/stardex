@@ -24,6 +24,7 @@ export interface ActionsProps {
   isUpperHalf?: boolean;
 }
 
+/** @deprecated */
 export function Actions({ actions, rightAction, isUpperHalf = false }: ActionsProps) {
   function renderAction(action: ActionsAction, isRightAction = false) {
     return (

@@ -44,11 +44,11 @@ export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexMod
 
   return (
     <Modal
-      title="Autosort Pokédex"
+      title="Sort Pokédex"
       onClose={onClose}
       footer={
         <div class="flex flex-col justify-center">
-          <Button onClick={() => onAutosort(request.value)}>Autosort</Button>
+          <Button onClick={() => onAutosort(request.value)}>Sort</Button>
         </div>
       }
     >
@@ -80,7 +80,7 @@ export function AutosortPokedexModal({ onAutosort, onClose }: AutosortPokedexMod
       </Show>
 
       <div class="mt-2 text-center text-sm">
-        <strong class="text-warning">Warning:</strong> Autosorting isn't automatically reversible.
+        <strong class="text-warning">Warning:</strong> Sorting isn't automatically reversible.
       </div>
     </Modal>
   );
