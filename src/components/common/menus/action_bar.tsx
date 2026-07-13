@@ -10,7 +10,7 @@ export interface ActionBarProps {
 export function ActionBar({ children, isUpperHalf }: ActionBarProps) {
   return (
     <ul
-      class="mb-8 flex scrollbar-none overflow-x-scroll rounded-md border-2 border-secondary text-secondary data-upper-half:rounded-b-none data-[upper-half=true]:mb-0"
+      class="mb-8 flex scrollbar-none overflow-x-scroll overscroll-x-none rounded-md border-2 border-secondary text-secondary data-upper-half:rounded-b-none data-[upper-half=true]:mb-0"
       data-upper-half={isUpperHalf}
     >
       {children}
