@@ -6,7 +6,7 @@ import { CustomIconsContext } from "../../../state/context";
 import { blobToDataUrl } from "../../../utils/file";
 import { Button } from "../../common/button";
 import { Icon } from "../../common/icon";
-import { ButtonLink } from "../../common/link";
+import { ButtonLink, UploadLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 
 export interface EditPokemonCustomIconLinkProps {
@@ -19,20 +19,16 @@ export function EditPokemonCustomIconLink({ state }: EditPokemonCustomIconLinkPr
       <h2 class="font-bold">Custom Icon</h2>
       <ul class="list-inside list-disc">
         <li>
-          <label class="cursor-pointer text-primary underline">
-            <input
-              class="hidden"
-              type="file"
-              accept="image/png"
-              onChange={(e) => {
-                const file = e.currentTarget.files?.[0];
-                if (file) state.uploaded.value = file;
-              }}
-            />
+          <UploadLink
+            accept="image/png"
+            onUpload={(files) => {
+              if (files[0]) state.uploaded.value = files[0];
+            }}
+          >
             <Show when={state.alreadyHas} fallback="upload">
               reupload
             </Show>
-          </label>
+          </UploadLink>
         </li>
 
         <Show when={state.alreadyHas}>

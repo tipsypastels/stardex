@@ -77,7 +77,7 @@ describe(parsePBSFile, () => {
   test("missing section at start is an error", () => {
     expect(() => p("Name=Bulbasaur")).toThrow(
       expect.objectContaining({
-        message: "Expected a section at the start of the file, e.g. [BULBASAUR]",
+        name: "MissingSectionError",
         lineIndex: 0,
       }),
     );
@@ -87,14 +87,14 @@ describe(parsePBSFile, () => {
     expect(() => p("[FOO]")).toThrow(
       expect.objectContaining({
         errors: [
-          expect.objectContaining({ message: "Pokémon [FOO] is missing Types=", lineIndex: 0 }),
+          expect.objectContaining({ name: "MissingTypesError", essentialsId: "FOO", lineIndex: 0 }),
         ],
       }),
     );
     expect(() => p("[FOO]\nName=Bar")).toThrow(
       expect.objectContaining({
         errors: [
-          expect.objectContaining({ message: "Pokémon [FOO] is missing Types=", lineIndex: 0 }),
+          expect.objectContaining({ name: "MissingTypesError", essentialsId: "FOO", lineIndex: 0 }),
         ],
       }),
     );

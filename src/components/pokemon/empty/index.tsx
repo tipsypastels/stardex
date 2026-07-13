@@ -1,10 +1,13 @@
 import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
-import { ButtonLink } from "../../common/link";
+import { ButtonLink, UploadLink } from "../../common/link";
+import { ImportPBSErrorModal, usePBSImport } from "./import_pbs";
 import { ImportRegionModal } from "./import_region";
 
 export function EmptyPokedex() {
   const modal = useSignal<"import" | "importRegion">();
+  const pbsImport = usePBSImport();
+
   return (
     <>
       <div class="rounded-t-md border-2 border-primary p-4">
@@ -25,6 +28,16 @@ export function EmptyPokedex() {
             </ButtonLink>
           </li>
           <li>
+            <UploadLink
+              accept="text/plain"
+              onUpload={(files) => {
+                if (files[0]) pbsImport.import(files[0]);
+              }}
+            >
+              Import an Essentials <code>pokemon.txt</code>.
+            </UploadLink>
+          </li>
+          <li>
             <ButtonLink onClick={() => (modal.value = "importRegion")}>
               Start from a canon region.
             </ButtonLink>
@@ -33,6 +46,10 @@ export function EmptyPokedex() {
       </div>
 
       {/* TODO: Implement import. */}
+
+      <Show when={pbsImport.error}>
+        {(error) => <ImportPBSErrorModal error={error} onClose={() => pbsImport.closeError()} />}
+      </Show>
 
       <Show when={() => modal.value === "importRegion"}>
         <ImportRegionModal onClose={() => (modal.value = undefined)} />

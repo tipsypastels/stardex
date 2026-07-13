@@ -41,6 +41,29 @@ export function ButtonLink(props: ButtonLinkProps) {
   );
 }
 
+export interface UploadLinkProps extends SharedProps {
+  onUpload(files: FileList): void;
+  accept?: string;
+}
+
+export function UploadLink(props: UploadLinkProps) {
+  return (
+    <label class={toClassList(props)}>
+      <input
+        class="hidden"
+        type="file"
+        accept={props.accept}
+        onChange={(e) => {
+          if (e.currentTarget.files) {
+            props.onUpload(e.currentTarget.files);
+          }
+        }}
+      />
+      {props.children}
+    </label>
+  );
+}
+
 function toClassList({ look, bold, small }: SharedProps) {
   return tw`cursor-pointer underline ${LOOKS[look ?? "primary"]} ${bold ? `font-bold` : ""} ${small ? `text-sm` : ""} disabled:opacity-70 disabled:cursor-not-allowed`;
 }

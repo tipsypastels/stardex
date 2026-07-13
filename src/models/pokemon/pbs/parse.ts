@@ -67,7 +67,7 @@ class Builder {
     this.#flush();
 
     const pokemons: RawPokemon[] = [];
-    const errors: PBSParseError[] = [];
+    const errors: PBSError[] = [];
 
     for (const entry of this.#entries) {
       const name = entry.name ?? capitalize(entry.essentialsId);
@@ -83,14 +83,12 @@ class Builder {
       } else if (types) {
         pokemons.push({ v: POKEMON_VERSION, key, name, types });
       } else {
-        errors.push(
-          this.error(`Pokémon [${entry.essentialsId}] is missing Types=`, entry.startLineIndex),
-        );
+        errors.push(new MissingTypesError(entry.essentialsId, entry.startLineIndex));
       }
     }
 
     if (errors.length > 0) {
-      throw new PBSAggregateError(errors);
+      throw new MultiError(errors);
     }
 
     return pokemons;
@@ -101,34 +99,71 @@ class Builder {
   }
 
   #ensureCurrent() {
-    return (
-      this.#current ||
-      this.throw("Expected a section at the start of the file, e.g. [BULBASAUR]", 0)
-    );
-  }
-
-  throw(message: string, lineIndex: number): never {
-    throw this.error(message, lineIndex);
-  }
-
-  error(message: string, lineIndex: number) {
-    return new PBSParseError(message, lineIndex);
+    if (!this.#current) throw new MissingSectionError();
+    return this.#current;
   }
 }
 
-export class PBSAggregateError extends AggregateError {
-  get errors(): PBSParseError[] {
-    return super.errors;
+/* -------------------------------------------------------------------------- */
+/*                                    Error                                   */
+/* -------------------------------------------------------------------------- */
+
+export abstract class PBSError {
+  abstract toHTML(): string;
+
+  get name() {
+    return this.constructor.name;
   }
 }
 
-export class PBSParseError extends Error {
+class MultiError extends PBSError {
+  readonly errors: PBSError[];
+
+  constructor(errors: PBSError[]) {
+    super();
+    this.errors = errors;
+  }
+
+  toHTML() {
+    return this.errors.map((error) => error.toHTML()).join("<br />");
+  }
+}
+
+abstract class SingleError extends PBSError {
   readonly lineIndex: number;
-  constructor(message: string, lineIndex: number) {
-    super(message);
+
+  constructor(lineIndex: number) {
+    super();
     this.lineIndex = lineIndex;
   }
 }
+
+class MissingTypesError extends SingleError {
+  readonly essentialsId: string;
+
+  constructor(essentialsId: string, lineIndex: number) {
+    super(lineIndex);
+    this.essentialsId = essentialsId;
+  }
+
+  toHTML() {
+    return `- Pokémon <strong>[${this.essentialsId}]</strong> is missing Types= at line <strong>${this.lineIndex}</strong>.`;
+  }
+}
+
+class MissingSectionError extends SingleError {
+  constructor() {
+    super(0);
+  }
+
+  toHTML() {
+    return `- Expected a section, e.g. <strong>[BULBASAUR]</strong> at line <strong>${this.lineIndex}</strong>.`;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Keys                                    */
+/* -------------------------------------------------------------------------- */
 
 const TROUBLESOME_IDS: Record<string, string> = {
   NIDORANfE: "nidoran-f",
