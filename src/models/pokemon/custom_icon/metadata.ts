@@ -42,6 +42,7 @@ export const CustomIconsMetadata = createModel(($raw: RawCustomIconsMetadata) =>
     },
     setFromRaw(raw: RawCustomIconsMetadata) {
       pokemonKeys.value = ISet(raw.pokemonKeys);
+      changed.value++;
     },
     toRaw(): RawCustomIconsMetadata {
       return {

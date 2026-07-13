@@ -1,3 +1,4 @@
+import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawBuiltinPokemon, RawCustomPokemon } from "../pokemon";
 import type { RawPokemonList } from "../pokemon/list";
 import type { RawActiveProject, RawInactiveProject } from "../project";
@@ -9,6 +10,7 @@ import {
   V0_upgradeRawInactiveProject,
   V0_upgradeRawPokemonList,
   V0_upgradeRawSave,
+  type V0_PokedexModeKey,
   type V0_RawActiveProject,
   type V0_RawBuiltinPokemon,
   type V0_RawCustomPokemon,
@@ -67,4 +69,12 @@ export function upgradeRawInactiveProject(
 
 export function upgradeRawSave(raw: RawSave | V0_RawSave) {
   return "v" in raw ? raw : V0_upgradeRawSave(raw);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Pokedex Mode                                */
+/* -------------------------------------------------------------------------- */
+
+export function upgradePokedexModeKey(raw: PokedexModeKey | V0_PokedexModeKey): PokedexModeKey {
+  return raw === "legacyText" ? "text" : raw;
 }

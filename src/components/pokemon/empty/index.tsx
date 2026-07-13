@@ -1,12 +1,32 @@
 import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
+import { useSaver } from "../../../state/save";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { ImportPBSErrorModal, usePBSImport } from "./import_pbs";
 import { ImportRegionModal } from "./import_region";
 
 export function EmptyPokedex() {
-  const modal = useSignal<"import" | "importRegion">();
+  const importRegionModalOpen = useSignal(false);
+  const saver = useSaver();
   const pbsImport = usePBSImport();
+
+  function loadSaveJSONOrText([file]: FileList) {
+    if (!file) return;
+
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      const text = fileReader.result as string;
+      if (file.type === "application/json") {
+        saver.load(JSON.parse(text));
+      } else {
+        // TODO
+        alert("Not yet implemented.");
+      }
+    };
+
+    fileReader.readAsText(file);
+  }
 
   return (
     <>
@@ -23,9 +43,9 @@ export function EmptyPokedex() {
         <h3 class="mb-2 text-lg font-bold text-primary">Other Ways to Start</h3>
         <ul class="ml-4 list-disc">
           <li>
-            <ButtonLink onClick={() => (modal.value = "import")}>
+            <UploadLink accept="text/plain,application/json" onUpload={loadSaveJSONOrText}>
               Import a Stardex project.
-            </ButtonLink>
+            </UploadLink>
           </li>
           <li>
             <UploadLink accept="text/plain" multiple onUpload={pbsImport.import}>
@@ -33,7 +53,7 @@ export function EmptyPokedex() {
             </UploadLink>
           </li>
           <li>
-            <ButtonLink onClick={() => (modal.value = "importRegion")}>
+            <ButtonLink onClick={() => (importRegionModalOpen.value = true)}>
               Start from a canon region.
             </ButtonLink>
           </li>
@@ -46,8 +66,8 @@ export function EmptyPokedex() {
         {(error) => <ImportPBSErrorModal error={error} onClose={() => pbsImport.closeError()} />}
       </Show>
 
-      <Show when={() => modal.value === "importRegion"}>
-        <ImportRegionModal onClose={() => (modal.value = undefined)} />
+      <Show when={importRegionModalOpen}>
+        <ImportRegionModal onClose={() => (importRegionModalOpen.value = false)} />
       </Show>
     </>
   );

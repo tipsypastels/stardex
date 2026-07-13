@@ -119,7 +119,7 @@ export interface V0_RawProjectModels {
   pokemon: V0_RawPokemonList;
   regions: RegionKey[];
   strictness: StrictnessKey;
-  pokedexFormat: PokedexModeKey;
+  pokedexFormat: V0_PokedexModeKey;
 }
 
 export interface V0_RawSharedProject {
@@ -155,7 +155,7 @@ export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawIna
     models: {
       ...models,
       pokemons: V0_upgradeRawPokemonList(pokemon),
-      pokedexMode: pokedexFormat,
+      pokedexMode: V0_upgradePokedexModeKey(pokedexFormat),
       customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
     },
     ...rest,
@@ -177,7 +177,7 @@ export interface V0_RawSave {
   pokemon: V0_RawPokemonList;
   regions: RegionKey[];
   strictness: StrictnessKey;
-  pokedexFormat: PokedexModeKey;
+  pokedexFormat: V0_PokedexModeKey;
 }
 
 export function V0_upgradeRawSave(raw: V0_RawSave): RawSave {
@@ -186,7 +186,22 @@ export function V0_upgradeRawSave(raw: V0_RawSave): RawSave {
     pokemons: V0_upgradeRawPokemonList(raw.pokemon),
     regions: raw.regions,
     strictness: raw.strictness,
-    pokedexMode: raw.pokedexFormat,
+    pokedexMode: V0_upgradePokedexModeKey(raw.pokedexFormat),
     customIcons: { all: {} },
   };
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Pokedex Mode                                */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Pokedex Mode V0:
+ *  - Text is called legacyText.
+ */
+
+export type V0_PokedexModeKey = "icons" | "names" | "legacyText";
+
+export function V0_upgradePokedexModeKey(raw: V0_PokedexModeKey): PokedexModeKey {
+  return raw === "legacyText" ? "text" : raw;
 }

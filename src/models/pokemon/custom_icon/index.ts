@@ -1,6 +1,7 @@
 import { createModel, effect, signal } from "@preact/signals";
 import { Map as IMap } from "immutable";
 import {
+  addBulkCustomIconsDbEntries,
   addCustomIconsDbEntry,
   deleteCustomIconsDbEntry,
   getCustomIconDbEntries,
@@ -10,6 +11,7 @@ import { readonly } from "../../../utils/signal";
 import type { PokedexMode } from "../../pokedex/mode";
 import type { ProjectList } from "../../project/list";
 import type { RawSavedCustomIcons } from "../../save";
+import { CUSTOM_ICONS_METADATA_VERSION } from "../../versioned";
 import type { CustomIconsMetadata } from "./metadata";
 
 export interface CustomIconLoadedEntry {
@@ -65,8 +67,23 @@ export const CustomIcons = createModel(
           metadata.deletePokemonKey(pokemonKey),
         );
       },
-      toRawSavedCustomIcons(): RawSavedCustomIcons {
+      toRawSaved(): RawSavedCustomIcons {
         return { all: loadedEntries.value.toJS() };
+      },
+      setFromRawSaved(raw: RawSavedCustomIcons) {
+        Promise.all(
+          Object.entries(raw.all).map(async ([pokemonKey, { dataUrl }]) => {
+            const blob = await fetch(dataUrl).then((res) => res.blob());
+            return { pokemonKey, blob };
+          }),
+        ).then((entries) => {
+          addBulkCustomIconsDbEntries(projects.active.value.id.value, entries, () => {
+            metadata.setFromRaw({
+              v: CUSTOM_ICONS_METADATA_VERSION,
+              pokemonKeys: entries.map((e) => e.pokemonKey),
+            });
+          });
+        });
       },
     };
   },

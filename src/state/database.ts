@@ -48,6 +48,39 @@ export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">
   });
 }
 
+export function addBulkCustomIconsDbEntries(
+  projectId: string,
+  entries: Omit<CustomIconsDbEntry, "projectId">[],
+  f: () => void,
+) {
+  if (entries.length === 0) {
+    f();
+    return;
+  }
+
+  withDb((db) => {
+    const transaction = db.transaction("customIcons", "readwrite");
+    const store = transaction.objectStore("customIcons");
+
+    for (const entry of entries) {
+      const request = store.put({ ...entry, projectId });
+
+      request.onerror = (event) => {
+        console.error(
+          `Failed to add custom icon "${projectId}-${entry.pokemonKey}" during bulk.`,
+          // @ts-expect-error Untyped.
+          event.target.error,
+        );
+      };
+    }
+
+    transaction.oncomplete = () => {
+      console.log(`${entries.length} custom icons for "${projectId}" uploaded!`);
+      f();
+    };
+  });
+}
+
 type State = { type: "uninit" } | { type: "db"; db: IDBDatabase } | { type: "denied" };
 
 let state: State = { type: "uninit" };
@@ -70,7 +103,7 @@ function withDb(f: (db: IDBDatabase) => void) {
 
         db.onerror = (event) => {
           // @ts-expect-error Untyped.
-          console.error("Database error", event.target.error?.message);
+          console.error("Database error", event.target.error);
         };
 
         const store = db.createObjectStore("customIcons", { keyPath: ["projectId", "pokemonKey"] });

@@ -1,8 +1,10 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import RAW_DATA from "../../data/pokedex_modes.json" with { type: "json" };
 import { stored } from "../../utils/storage";
+import { upgradePokedexModeKey } from "../versioned";
+import { type V0_PokedexModeKey } from "../versioned/v0";
 
-const store = stored<PokedexModeKey>("stardex_pokedex_mode");
+const store = stored<PokedexModeKey | V0_PokedexModeKey>("stardex_pokedex_mode");
 
 export type PokedexModeKey = keyof typeof RAW_DATA;
 export type PokedexMode = InstanceType<typeof PokedexMode>;
@@ -28,14 +30,8 @@ export const POKEDEX_MODES = (() => {
   const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
 
   function initial() {
-    let key = store.load();
-
-    // Not deserving of a whole v0 thing.
-    if ((key as string) === "legacyText") {
-      key = "text";
-    }
-
-    return new PokedexMode(key ?? defaultKey);
+    const key = store.load();
+    return new PokedexMode(key ? upgradePokedexModeKey(key) : defaultKey);
   }
 
   return { keys, defaultKey, options, initial };

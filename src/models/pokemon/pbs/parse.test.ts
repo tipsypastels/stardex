@@ -7,7 +7,7 @@ describe(parsePBSFiles, () => {
     parsePBSFiles(texts.map((t, i) => ({ text: t, name: `f${i}` })));
 
   function expectSampleToMatchAllPokemon(name: string) {
-    const pokemons = p(fs.readFileSync(`${__dirname}/${name}`, "utf-8"));
+    const pokemons = p(fs.readFileSync(`samples/pbs/${name}`, "utf-8"));
 
     for (const pokemon of pokemons) {
       expect(pokemon).toEqual({
@@ -18,11 +18,11 @@ describe(parsePBSFiles, () => {
   }
 
   test("sample", () => {
-    expectSampleToMatchAllPokemon("sample.txt");
+    expectSampleToMatchAllPokemon("base.txt");
   });
 
   test("sample gen 9", () => {
-    expectSampleToMatchAllPokemon("sample_gen9.txt");
+    expectSampleToMatchAllPokemon("base_gen9.txt");
   });
 
   test("empty", () => {

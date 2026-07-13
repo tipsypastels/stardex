@@ -29,7 +29,7 @@ export function useSaver() {
         regions: regions.toRaw(),
         strictness: strictness.key.value,
         pokedexMode: pokedexMode.key.value,
-        customIcons: customIcons.toRawSavedCustomIcons(),
+        customIcons: customIcons.toRawSaved(),
       };
     },
     load(save_: RawSave | V0_RawSave) {
@@ -48,7 +48,7 @@ export function useSaver() {
         regions.set(save.regions);
         strictness.key.value = save.strictness;
         pokedexMode.key.value = save.pokedexMode;
-        // TODO: Custom icons.
+        customIcons.setFromRawSaved(save.customIcons);
       });
     },
   };
