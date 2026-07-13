@@ -16,12 +16,6 @@ import { SPECIES } from "./species";
 export interface RawSharedPokemon {
   v: typeof POKEMON_VERSION;
   exclude?: boolean;
-  /** @deprecated */
-  comment?: string;
-  /** @deprecated */
-  newlinesBefore?: number;
-  /** @deprecated */
-  newlinesAfterIfLast?: number;
 }
 
 export interface RawBuiltinPokemon extends RawSharedPokemon {

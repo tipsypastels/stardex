@@ -30,6 +30,7 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@preact/preset-vite": "^2.10.1",
+    "@types/node": "^26.1.1",
     "@types/randomcolor": "^0.5.9",
     "@types/sortablejs": "^1.15.9",
     "eslint": "^10.6.0",

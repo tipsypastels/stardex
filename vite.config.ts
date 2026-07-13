@@ -4,6 +4,5 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [preact(), tailwindcss()],
-  // @ts-expect-error I don't want @types/node just for this.
   base: process.env.BASE,
 });

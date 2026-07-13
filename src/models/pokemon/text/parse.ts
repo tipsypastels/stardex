@@ -11,6 +11,7 @@ export function parsePokemonListText(text: string) {
   const lines = new SpannedString(text).lines();
 
   lines: for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+    // TODO: Support same-line comments like PBS parser?
     const line = lines[lineIndex].trim();
 
     if (line.value.length === 0) {
