@@ -86,7 +86,7 @@
   }
 
   code {
-    @apply text-base;
+    @apply text-sm md:text-base;
   }
 }
 
