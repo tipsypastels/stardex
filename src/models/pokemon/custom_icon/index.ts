@@ -22,6 +22,8 @@ export const CustomIcons = createModel(
     const loadedEntries = signal(IMap<string, CustomIconLoadedEntry>());
 
     effect(() => {
+      metadata.changed.value;
+
       const projectId = projects.active.value.id.value;
       const keysCount = metadata.pokemonKeys.value.size;
       const modeKey = mode.key.value;
@@ -53,17 +55,14 @@ export const CustomIcons = createModel(
       loadedEntries: readonly(loadedEntries),
       metadata,
       upload(pokemonKey: string, blob: Blob) {
-        addCustomIconsDbEntry(
-          { pokemonKey, blob, projectId: projects.active.value.id.value },
-          () => {
-            metadata.pokemonKeys.value = metadata.pokemonKeys.value.add(pokemonKey);
-          },
+        addCustomIconsDbEntry({ pokemonKey, blob, projectId: projects.active.value.id.value }, () =>
+          metadata.addPokemonKey(pokemonKey),
         );
       },
       delete(pokemonKey: string) {
-        deleteCustomIconsDbEntry({ pokemonKey, projectId: projects.active.value.id.value }, () => {
-          metadata.pokemonKeys.value = metadata.pokemonKeys.value.delete(pokemonKey);
-        });
+        deleteCustomIconsDbEntry({ pokemonKey, projectId: projects.active.value.id.value }, () =>
+          metadata.deletePokemonKey(pokemonKey),
+        );
       },
     };
   },
