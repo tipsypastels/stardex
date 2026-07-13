@@ -1,16 +1,12 @@
-import { createModel, effect, signal } from "@preact/signals";
+import { computed, createModel, effect, signal, type ReadonlySignal } from "@preact/signals";
 import { readonly, type Lifter } from "../../utils/signal";
 import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawCustomIconsMetadata } from "../pokemon/custom_icon/metadata";
 import type { RawPokemonList } from "../pokemon/list";
 import type { RegionKey } from "../region";
 import type { StrictnessKey } from "../strictness";
-import { PROJECT_VERSION, upgradeRawActiveProject, upgradeRawInactiveProject } from "../versioned";
-import type { V0_RawActiveProject, V0_RawInactiveProject, V0_RawProject } from "../versioned/v0";
-
-/* -------------------------------------------------------------------------- */
-/*                                     Raw                                    */
-/* -------------------------------------------------------------------------- */
+import { PROJECT_VERSION, upgradeRawProject } from "../versioned";
+import type { V0_RawProject } from "../versioned/v0";
 
 export interface RawProjectModels {
   pokemons: RawPokemonList;
@@ -37,120 +33,79 @@ export interface RawInactiveProject extends RawSharedProject {
 
 export type RawProject = RawActiveProject | RawInactiveProject;
 
-/* -------------------------------------------------------------------------- */
-/*                                   Shared                                   */
-/* -------------------------------------------------------------------------- */
+export type Project = InstanceType<typeof Project>;
 
-export type Project = ActiveProject | InactiveProject;
+export type ActiveProject = Project & { raw: ReadonlySignal<RawActiveProject> };
+export type InactiveProject = Project & { raw: ReadonlySignal<RawInactiveProject> };
+
+export const Project = createModel(($raw: RawProject, lifter: Lifter) => {
+  const raw = signal($raw);
+  const id = computed(() => raw.value.id);
+  const name = computed(() => raw.value.name);
+  const active = computed(() => raw.value.active);
+
+  effect(() => {
+    raw.value;
+    lifter.change();
+  });
+
+  return {
+    raw: readonly(raw),
+    id,
+    name,
+    active,
+    setName(name: string) {
+      raw.value = { ...raw.value, name };
+    },
+    toRaw(): RawProject {
+      return raw.value;
+    },
+    toJSON(): unknown {
+      return this.toRaw();
+    },
+  };
+});
 
 export const PROJECTS = (() => {
-  function from(raw: RawProject | V0_RawProject, lifter: Lifter) {
-    return raw.active ? ACTIVE_PROJECTS.from(raw, lifter) : INACTIVE_PROJECTS.from(raw, lifter);
+  function createInactiveDuplicateImpl(name: string, models: RawProjectModels, lifter: Lifter) {
+    return new Project(
+      {
+        v: PROJECT_VERSION,
+        id: crypto.randomUUID(),
+        name: `Copy of ${name}`,
+        active: false,
+        models,
+      },
+      lifter,
+    );
   }
-  return { from };
-})();
-
-/* -------------------------------------------------------------------------- */
-/*                               Active Project                               */
-/* -------------------------------------------------------------------------- */
-
-export type ActiveProject = InstanceType<typeof ActiveProject>;
-
-export const ActiveProject = createModel((raw: RawActiveProject, lifter: Lifter) => {
-  const id = signal(raw.id);
-  const name = signal(raw.name);
-
-  effect(() => {
-    name.value;
-    lifter.change();
-  });
 
   return {
-    id: readonly(id),
-    name,
-    createInactiveDuplicate(getActiveModels: () => RawProjectModels) {
-      return createInactiveDuplicate(name.value, getActiveModels(), lifter);
+    from(raw: RawProject | V0_RawProject, lifter: Lifter) {
+      return new Project(upgradeRawProject(raw), lifter);
     },
-    toInactive(models: RawProjectModels) {
-      return new InactiveProject({ ...this.toRaw(), active: false, models }, lifter);
-    },
-    toRaw(): RawActiveProject {
-      return {
-        ...raw,
-        name: name.value,
-      };
-    },
-    toJSON(): unknown {
-      return this.toRaw();
-    },
-  };
-});
 
-export const ACTIVE_PROJECTS = (() => {
-  function from(raw: RawActiveProject | V0_RawActiveProject, lifter: Lifter) {
-    return new ActiveProject(upgradeRawActiveProject(raw), lifter);
-  }
-  return { from };
-})();
-
-/* -------------------------------------------------------------------------- */
-/*                              Inactive Project                              */
-/* -------------------------------------------------------------------------- */
-
-export type InactiveProject = InstanceType<typeof InactiveProject>;
-
-export const InactiveProject = createModel((raw: RawInactiveProject, lifter: Lifter) => {
-  const id = signal(raw.id);
-  const name = signal(raw.name);
-
-  effect(() => {
-    name.value;
-    lifter.change();
-  });
-
-  return {
-    id: readonly(id),
-    name,
-    createInactiveDuplicate() {
-      return createInactiveDuplicate(name.value, raw.models, lifter);
-    },
-    toActiveAndModels() {
-      const { models, ...raw } = this.toRaw();
-      const active = new ActiveProject({ ...raw, active: true }, lifter);
+    inactiveToActiveAndModels(project: InactiveProject, lifter: Lifter) {
+      const { models, ...raw } = project.raw.value;
+      const active = new Project({ ...raw, active: true }, lifter);
       return { active, models };
     },
-    toRaw(): RawInactiveProject {
-      return {
-        ...raw,
-        name: name.value,
-      };
+
+    activeToInactive(project: ActiveProject, models: RawProjectModels, lifter: Lifter) {
+      return new Project({ ...project.toRaw(), active: false, models }, lifter);
     },
-    toJSON(): unknown {
-      return this.toRaw();
+
+    createInactiveDuplicate(
+      project: Project,
+      getActiveModels: () => RawProjectModels,
+      lifter: Lifter,
+    ) {
+      const raw = project.raw.value;
+      if (raw.active) {
+        return createInactiveDuplicateImpl(raw.name, getActiveModels(), lifter);
+      } else {
+        return createInactiveDuplicateImpl(raw.name, raw.models, lifter);
+      }
     },
   };
-});
-
-export const INACTIVE_PROJECTS = (() => {
-  function from(raw: RawInactiveProject | V0_RawInactiveProject, lifter: Lifter) {
-    return new InactiveProject(upgradeRawInactiveProject(raw), lifter);
-  }
-  return { from };
 })();
-
-/* -------------------------------------------------------------------------- */
-/*                                   Helpers                                  */
-/* -------------------------------------------------------------------------- */
-
-function createInactiveDuplicate(name: string, models: RawProjectModels, lifter: Lifter) {
-  return new InactiveProject(
-    {
-      v: PROJECT_VERSION,
-      id: crypto.randomUUID(),
-      name: `Copy of ${name}`,
-      active: false,
-      models,
-    },
-    lifter,
-  );
-}

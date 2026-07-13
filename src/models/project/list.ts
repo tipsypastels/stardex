@@ -5,10 +5,10 @@ import { makeLifter, type Lifter } from "../../utils/signal";
 import { stored } from "../../utils/storage";
 import { POKEDEX_MODES } from "../pokedex/mode";
 import {
-  ActiveProject,
-  InactiveProject,
+  Project,
   PROJECTS,
-  type Project,
+  type ActiveProject,
+  type InactiveProject,
   type RawProject,
   type RawProjectModels,
 } from "../project";
@@ -28,7 +28,7 @@ export const ProjectList = createModel(
     lifter: Lifter,
   ) => {
     const all = signal(IList($all));
-    const activeIndex = computed(() => all.value.findIndex((p) => p instanceof ActiveProject));
+    const activeIndex = computed(() => all.value.findIndex((p) => p.active.value));
     const active = computed(() => all.value.get(activeIndex.value) as ActiveProject);
 
     function onChange() {
@@ -56,17 +56,22 @@ export const ProjectList = createModel(
         const project = all.value.get(index) as InactiveProject;
 
         const oldModels = getModels();
-        const { active: newActive, models: newModels } = project.toActiveAndModels();
+        const { active: newActive, models: newModels } = PROJECTS.inactiveToActiveAndModels(
+          project,
+          lifter,
+        );
 
         all.value = all.value.withMutations((list) => {
-          list.set(activeIndex.value, active.value.toInactive(oldModels)).set(index, newActive);
+          list
+            .set(activeIndex.value, PROJECTS.activeToInactive(active.value, oldModels, lifter))
+            .set(index, newActive);
         });
 
         setModels(newModels);
       },
       pushEmpty() {
         all.value = all.value.push(
-          new InactiveProject(
+          new Project(
             {
               v: PROJECT_VERSION,
               id: crypto.randomUUID(),
@@ -87,7 +92,7 @@ export const ProjectList = createModel(
       pushDuplicate(id: string) {
         const index = findIndex(id);
         const project = all.value.get(index)!;
-        const duplicate = project.createInactiveDuplicate(getModels);
+        const duplicate = PROJECTS.createInactiveDuplicate(project, getModels, lifter);
         all.value = all.value.insert(index + 1, duplicate);
       },
       delete(id: string) {

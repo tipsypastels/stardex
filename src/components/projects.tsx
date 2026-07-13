@@ -1,7 +1,6 @@
 import { signal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import { ActiveProject } from "../models/project";
 import { ProjectsContext } from "../state/context";
 import { Icon } from "./common/icon";
 import { Menu } from "./common/menus/menu";
@@ -60,16 +59,14 @@ export function ProjectsModal() {
                     class="hidden"
                     type="radio"
                     name="project"
-                    checked={project instanceof ActiveProject}
+                    checked={project.active}
                     onClick={(e) => {
                       e.preventDefault();
                       projects.setActive(project.id.value);
                     }}
                   />
 
-                  <div
-                    class={`mr-4 text-primary ${project instanceof ActiveProject ? "" : "opacity-0"}`}
-                  >
+                  <div class={`mr-4 text-primary ${project.active.value ? "" : "opacity-0"}`}>
                     <Icon name="badge-check" />
                   </div>
 
@@ -89,7 +86,7 @@ export function ProjectsModal() {
                         );
 
                         if (name && name !== project.name.value) {
-                          project.name.value = name;
+                          project.setName(name);
                         }
                       },
                     },
@@ -108,7 +105,7 @@ export function ProjectsModal() {
                       icon: "times",
                       class: "text-red-600",
                       onClick: () => {
-                        if (project instanceof ActiveProject) {
+                        if (project.active.value) {
                           return alert(
                             "Can't delete the current project! Make a new project and switch to it first.",
                           );

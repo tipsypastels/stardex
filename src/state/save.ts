@@ -41,7 +41,7 @@ export function useSaver() {
 
       batch(() => {
         if (save.projectName && projects.active.value.name.value.includes("Untitled")) {
-          projects.active.value.name.value = save.projectName;
+          projects.active.value.setName(save.projectName);
         }
 
         pokemons.setFromRaw(save.pokemons);

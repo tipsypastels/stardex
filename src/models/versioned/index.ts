@@ -1,7 +1,7 @@
 import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawBuiltinPokemon, RawCustomPokemon } from "../pokemon";
 import type { RawPokemonList } from "../pokemon/list";
-import type { RawActiveProject, RawInactiveProject } from "../project";
+import type { RawActiveProject, RawInactiveProject, RawProject } from "../project";
 import type { RawSave } from "../save";
 import {
   V0_upgradeRawActiveProject,
@@ -16,6 +16,7 @@ import {
   type V0_RawCustomPokemon,
   type V0_RawInactiveProject,
   type V0_RawPokemonList,
+  type V0_RawProject,
   type V0_RawSave,
 } from "./v0";
 
@@ -50,6 +51,10 @@ export function upgradeRawPokemonList(raw: RawPokemonList | V0_RawPokemonList): 
 /* -------------------------------------------------------------------------- */
 /*                                   Project                                  */
 /* -------------------------------------------------------------------------- */
+
+export function upgradeRawProject(raw: RawProject | V0_RawProject) {
+  return raw.active ? upgradeRawActiveProject(raw) : upgradeRawInactiveProject(raw);
+}
 
 export function upgradeRawActiveProject(
   raw: RawActiveProject | V0_RawActiveProject,
