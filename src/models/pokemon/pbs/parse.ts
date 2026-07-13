@@ -4,33 +4,41 @@ import { compareTypeKeysUnordered } from "../../type/key_pair";
 import { POKEMON_VERSION } from "../../versioned";
 import { SPECIES } from "../species";
 
-export function parsePBSFile(text: string) {
-  const lines = text.split("\n");
+export interface InputPBSFile {
+  name: string;
+  text: string;
+}
+
+export function parsePBSFiles(files: InputPBSFile[]) {
   const builder = new Builder();
 
-  for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-    const line = lines[lineIndex].trim().replace(/\s*#.*$/, "");
-    if (line.length === 0 || line.startsWith("#")) {
-      continue;
-    }
+  for (const file of files) {
+    const lines = file.text.split("\n");
 
-    let heading: RegExpMatchArray | null;
-    let kv: RegExpMatchArray | null;
+    for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+      const line = lines[lineIndex].trim().replace(/\s*#.*$/, "");
+      if (line.length === 0 || line.startsWith("#")) {
+        continue;
+      }
 
-    if ((heading = line.match(/^\[\s*(.*)\s*\]$/))) {
-      builder.entry(heading[1], lineIndex);
-    } else if ((kv = line.match(/^\s*(\w+)\s*=\s*(.*)$/))) {
-      const key = kv[1].toLowerCase();
-      const value = kv[2];
+      let heading: RegExpMatchArray | null;
+      let kv: RegExpMatchArray | null;
 
-      switch (key) {
-        case "name": {
-          builder.name(value);
-          break;
-        }
-        case "types": {
-          builder.types(value);
-          break;
+      if ((heading = line.match(/^\[\s*(.*)\s*\]$/))) {
+        builder.entry(heading[1], file.name, lineIndex);
+      } else if ((kv = line.match(/^\s*(\w+)\s*=\s*(.*)$/))) {
+        const key = kv[1].toLowerCase();
+        const value = kv[2];
+
+        switch (key) {
+          case "name": {
+            builder.name(value, file.name);
+            break;
+          }
+          case "types": {
+            builder.types(value, file.name);
+            break;
+          }
         }
       }
     }
@@ -43,6 +51,7 @@ interface Entry {
   essentialsId: string;
   name?: string;
   types?: string;
+  fileName: string;
   startLineIndex: number;
 }
 
@@ -50,17 +59,17 @@ class Builder {
   #entries: Entry[] = [];
   #current?: Entry;
 
-  entry(essentialsId: string, startLineIndex: number) {
+  entry(essentialsId: string, fileName: string, startLineIndex: number) {
     this.#flush();
-    this.#current = { essentialsId, startLineIndex };
+    this.#current = { essentialsId, fileName, startLineIndex };
   }
 
-  name(name: string) {
-    this.#ensureCurrent().name = name;
+  name(name: string, fileName: string) {
+    this.#ensureCurrent(fileName).name = name;
   }
 
-  types(types: string) {
-    this.#ensureCurrent().types = types;
+  types(types: string, fileName: string) {
+    this.#ensureCurrent(fileName).types = types;
   }
 
   finish() {
@@ -70,6 +79,11 @@ class Builder {
     const errors: PBSError[] = [];
 
     for (const entry of this.#entries) {
+      // This is a form, ignore it.
+      if (entry.essentialsId.match(/,\d+$/)) {
+        continue;
+      }
+
       const name = entry.name ?? capitalize(entry.essentialsId);
       const key = makeKey(entry.essentialsId, name);
       const species = SPECIES.tryOf(key);
@@ -83,12 +97,12 @@ class Builder {
       } else if (types) {
         pokemons.push({ v: POKEMON_VERSION, key, name, types });
       } else {
-        errors.push(new MissingTypesError(entry.essentialsId, entry.startLineIndex));
+        errors.push(new PBSMissingTypesError(entry));
       }
     }
 
     if (errors.length > 0) {
-      throw new MultiError(errors);
+      throw new PBSAggregateError(errors);
     }
 
     return pokemons;
@@ -98,8 +112,8 @@ class Builder {
     if (this.#current) this.#entries.push(this.#current);
   }
 
-  #ensureCurrent() {
-    if (!this.#current) throw new MissingSectionError();
+  #ensureCurrent(fileName: string) {
+    if (!this.#current) throw new PBSMissingSectionError(fileName);
     return this.#current;
   }
 }
@@ -108,56 +122,43 @@ class Builder {
 /*                                    Error                                   */
 /* -------------------------------------------------------------------------- */
 
-export abstract class PBSError {
-  abstract toHTML(): string;
+export class PBSAggregateError extends AggregateError {
+  get name() {
+    return this.constructor.name;
+  }
+
+  get errors(): PBSError[] {
+    return super.errors;
+  }
+}
+
+export abstract class PBSError extends Error {
+  readonly fileName: string;
+  readonly lineIndex: number;
+
+  constructor(fileName: string, lineIndex: number) {
+    super();
+    this.fileName = fileName;
+    this.lineIndex = lineIndex;
+  }
 
   get name() {
     return this.constructor.name;
   }
 }
 
-class MultiError extends PBSError {
-  readonly errors: PBSError[];
-
-  constructor(errors: PBSError[]) {
-    super();
-    this.errors = errors;
-  }
-
-  toHTML() {
-    return this.errors.map((error) => error.toHTML()).join("<br />");
-  }
-}
-
-abstract class SingleError extends PBSError {
-  readonly lineIndex: number;
-
-  constructor(lineIndex: number) {
-    super();
-    this.lineIndex = lineIndex;
-  }
-}
-
-class MissingTypesError extends SingleError {
+export class PBSMissingTypesError extends PBSError {
   readonly essentialsId: string;
 
-  constructor(essentialsId: string, lineIndex: number) {
-    super(lineIndex);
-    this.essentialsId = essentialsId;
-  }
-
-  toHTML() {
-    return `- Pokémon <strong>[${this.essentialsId}]</strong> is missing Types= at line <strong>${this.lineIndex}</strong>.`;
+  constructor(entry: Entry) {
+    super(entry.fileName, entry.startLineIndex);
+    this.essentialsId = entry.essentialsId;
   }
 }
 
-class MissingSectionError extends SingleError {
-  constructor() {
-    super(0);
-  }
-
-  toHTML() {
-    return `- Expected a section, e.g. <strong>[BULBASAUR]</strong> at line <strong>${this.lineIndex}</strong>.`;
+export class PBSMissingSectionError extends PBSError {
+  constructor(fileName: string) {
+    super(fileName, 0);
   }
 }
 

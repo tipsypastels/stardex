@@ -1,9 +1,10 @@
 import fs from "node:fs";
 import { describe, expect, test } from "vitest";
-import { parsePBSFile } from "./parse";
+import { parsePBSFiles } from "./parse";
 
-describe(parsePBSFile, () => {
-  const p = parsePBSFile;
+describe(parsePBSFiles, () => {
+  const p = (...texts: string[]) =>
+    parsePBSFiles(texts.map((t, i) => ({ text: t, name: `f${i}` })));
 
   function expectSampleToMatchAllPokemon(name: string) {
     const pokemons = p(fs.readFileSync(`${__dirname}/${name}`, "utf-8"));
@@ -74,10 +75,22 @@ describe(parsePBSFile, () => {
     ]);
   });
 
+  test("forms are ignored", () => {
+    expect(p("[FOO,1]\nName=Foo\n[BULBASAUR]")).toEqual([{ v: 1, species: "bulbasaur" }]);
+  });
+
+  test("multiple files", () => {
+    expect(p("[BULBASAUR]", "[IVYSAUR]")).toEqual([
+      { v: 1, species: "bulbasaur" },
+      { v: 1, species: "ivysaur" },
+    ]);
+  });
+
   test("missing section at start is an error", () => {
     expect(() => p("Name=Bulbasaur")).toThrow(
       expect.objectContaining({
-        name: "MissingSectionError",
+        name: "PBSMissingSectionError",
+        fileName: "f0",
         lineIndex: 0,
       }),
     );
@@ -87,14 +100,24 @@ describe(parsePBSFile, () => {
     expect(() => p("[FOO]")).toThrow(
       expect.objectContaining({
         errors: [
-          expect.objectContaining({ name: "MissingTypesError", essentialsId: "FOO", lineIndex: 0 }),
+          expect.objectContaining({
+            name: "PBSMissingTypesError",
+            fileName: "f0",
+            essentialsId: "FOO",
+            lineIndex: 0,
+          }),
         ],
       }),
     );
     expect(() => p("[FOO]\nName=Bar")).toThrow(
       expect.objectContaining({
         errors: [
-          expect.objectContaining({ name: "MissingTypesError", essentialsId: "FOO", lineIndex: 0 }),
+          expect.objectContaining({
+            name: "PBSMissingTypesError",
+            fileName: "f0",
+            essentialsId: "FOO",
+            lineIndex: 0,
+          }),
         ],
       }),
     );

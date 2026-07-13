@@ -28,13 +28,8 @@ export function EmptyPokedex() {
             </ButtonLink>
           </li>
           <li>
-            <UploadLink
-              accept="text/plain"
-              onUpload={(files) => {
-                if (files[0]) pbsImport.import(files[0]);
-              }}
-            >
-              Import an Essentials <code>pokemon.txt</code>.
+            <UploadLink accept="text/plain" multiple onUpload={pbsImport.import}>
+              Import Essentials <code>pokemon.txt</code> files.
             </UploadLink>
           </li>
           <li>

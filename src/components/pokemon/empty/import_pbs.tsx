@@ -1,10 +1,17 @@
 import { batch, useSignal } from "@preact/signals";
+import type { ComponentChildren } from "preact";
 import { useContext } from "preact/hooks";
-import { parsePBSFile, PBSError } from "../../../models/pokemon/pbs/parse";
+import {
+  parsePBSFiles,
+  PBSAggregateError,
+  PBSMissingSectionError,
+  PBSMissingTypesError,
+  type InputPBSFile,
+} from "../../../models/pokemon/pbs/parse";
 import { POKEMON_LIST_VERSION } from "../../../models/versioned";
 import { PokemonsContext } from "../../../state/context";
-import { toasts } from "../../../state/toast";
 import { readonly } from "../../../utils/signal";
+import { sortStrings } from "../../../utils/string";
 import { Modal } from "../../common/menus/modal";
 
 export function usePBSImport() {
@@ -13,26 +20,37 @@ export function usePBSImport() {
 
   return {
     error: readonly(error),
-    import(file: File) {
-      const fileReader = new FileReader();
+    import(files: FileList) {
+      const pbsFiles: InputPBSFile[] = [];
 
-      fileReader.onload = () => {
-        try {
+      for (const file of files) {
+        const fileReader = new FileReader();
+
+        fileReader.onload = () => {
           const text = fileReader.result as string;
-          const pbsPokemons = parsePBSFile(text);
+          pbsFiles.push({ name: file.name, text });
 
-          batch(() => {
-            pokemons.setFromRaw({
-              v: POKEMON_LIST_VERSION,
-              all: pbsPokemons,
+          if (pbsFiles.length < files.length) {
+            return;
+          }
+
+          pbsFiles.sort((a, b) => sortStrings(a.name, b.name));
+
+          try {
+            const pbsPokemons = parsePBSFiles(pbsFiles);
+
+            batch(() => {
+              pokemons.setFromRaw({
+                v: POKEMON_LIST_VERSION,
+                all: pbsPokemons,
+              });
             });
-            toasts.add("upload", "Imported PBS file!");
-          });
-        } catch (e) {
-          error.value = e;
-        }
-      };
-      fileReader.readAsText(file);
+          } catch (e) {
+            error.value = e;
+          }
+        };
+        fileReader.readAsText(file);
+      }
     },
     closeError() {
       error.value = undefined;
@@ -48,14 +66,30 @@ export interface ImportPBSErrorModalProps {
 export function ImportPBSErrorModal({ error, onClose }: ImportPBSErrorModalProps) {
   return (
     <Modal title="Invalid PBS File" onClose={onClose}>
-      <div class="mb-4 rounded-md border-2 border-divider-heavy p-4">
-        {error instanceof PBSError ? (
-          <div dangerouslySetInnerHTML={{ __html: error.toHTML() }} />
-        ) : (
-          <>{`${error}`}</>
-        )}
-      </div>
+      <div class="mb-4 rounded-md border-2 border-divider-heavy p-4">{errorToJSX(error)}</div>
       <div class="text-center">Stardex can't import this.</div>
     </Modal>
   );
+}
+
+function errorToJSX(error: unknown): ComponentChildren {
+  if (error instanceof PBSAggregateError) {
+    return error.errors.map(errorToJSX);
+  } else if (error instanceof PBSMissingSectionError) {
+    return (
+      <div>
+        - Expected a section, e.g. <strong>[BULBASAUR]</strong> at <strong>{error.fileName}</strong>{" "}
+        line <strong>{error.lineIndex + 1}</strong>.
+      </div>
+    );
+  } else if (error instanceof PBSMissingTypesError) {
+    return (
+      <div>
+        - Expected <strong>Types=</strong> for custom Pokémon <strong>{error.essentialsId}</strong>{" "}
+        at <strong>{error.fileName}</strong> line <strong>{error.lineIndex + 1}</strong>.
+      </div>
+    );
+  } else {
+    return `${error}`;
+  }
 }

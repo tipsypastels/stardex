@@ -44,6 +44,7 @@ export function ButtonLink(props: ButtonLinkProps) {
 export interface UploadLinkProps extends SharedProps {
   onUpload(files: FileList): void;
   accept?: string;
+  multiple?: boolean;
 }
 
 export function UploadLink(props: UploadLinkProps) {
@@ -53,8 +54,9 @@ export function UploadLink(props: UploadLinkProps) {
         class="hidden"
         type="file"
         accept={props.accept}
+        multiple={props.multiple}
         onChange={(e) => {
-          if (e.currentTarget.files) {
+          if (e.currentTarget.files?.length) {
             props.onUpload(e.currentTarget.files);
           }
         }}
