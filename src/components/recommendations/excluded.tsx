@@ -20,11 +20,10 @@ export function ExcludedTypesModal({ excludedTypes, onClose }: ExcludedTypesModa
         <Option type={BUILTIN_TYPES.of("steel")} excludedTypes={excludedTypes} />
         <Option type={BUILTIN_TYPES.of("fairy")} excludedTypes={excludedTypes} />
       </ul>
-      <div class="mb-2 text-sm">
+      <div class="text-sm">
         <strong>Tip:</strong> Excluded types are only excluded from recommendations. The actual
         types of the Pokémon in your Pokédex won't change unless you change them yourself.
       </div>
-      <div class="text-sm text-foreground-lesser">This feature may be expanded in the future.</div>
     </Modal>
   );
 }
