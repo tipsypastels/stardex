@@ -1,11 +1,12 @@
-import { batch } from "@preact/signals";
-import { For } from "@preact/signals/utils";
+import { batch, useComputed } from "@preact/signals";
+import { For, Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
+import type { Metrics } from "../../../models/metrics";
 import type { PokedexFilter, PokedexFilterState } from "../../../models/pokedex/filter";
-import { TYPES, type Type } from "../../../models/type";
+import { BUILTIN_TYPES, TYPES, type Type } from "../../../models/type";
 import { MetricsContext } from "../../../state/context";
 import { toasts } from "../../../state/toast";
-import { Icon } from "../../common/icon";
+import { IconPickerGrid, IconPickerGridItem } from "../../common/menus/icon_picker_grid";
 import { Modal } from "../../common/menus/modal";
 
 export interface FilterPokedexModalProps {
@@ -15,6 +16,8 @@ export interface FilterPokedexModalProps {
 
 export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps) {
   const metrics = useContext(MetricsContext);
+  const noFilter = useComputed(() => !filter.state.value);
+  const sortedCustomTypes = useComputed(() => metrics.pokemonsAllotment.value.sortedCustomTypes);
 
   function onClickAny() {
     batch(() => {
@@ -37,26 +40,31 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
 
   return (
     <Modal title="Filter Pokédex" onClose={onClose}>
-      <ul class="mb-4 grid grid-cols-3 gap-4 md:grid-cols-5">
-        <FilterOption
-          icon="asterisk"
-          text="Any"
-          active={filter.state.value === undefined}
-          setActive={onClickAny}
-        />
-        <For each={() => [...metrics.pokemonsAllotment.value.types.values()]}>
-          {({ type, count }) => (
-            <FilterOption
-              icon={type.icon}
-              text={type.name}
-              color={type.color}
-              count={count}
-              active={filter.typeKey.value === type.key}
-              setActive={() => onClickType(type)}
+      <IconPickerGrid>
+        <IconPickerGridItem name="Any" icon="asterisk" active={noFilter} onClick={onClickAny} />
+
+        <For each={() => BUILTIN_TYPES.all} getKey={(type) => type.key}>
+          {(type) => (
+            <TypeItem
+              type={type}
+              metrics={metrics}
+              filter={filter}
+              onClick={() => onClickType(type)}
             />
           )}
         </For>
-      </ul>
+
+        <For each={sortedCustomTypes} getKey={(type) => type.key}>
+          {(type) => (
+            <TypeItem
+              type={type}
+              metrics={metrics}
+              filter={filter}
+              onClick={() => onClickType(type)}
+            />
+          )}
+        </For>
+      </IconPickerGrid>
       <div class="text-sm">
         <strong>Tip:</strong> You can't drag to reorder your Pokédex while filtering. That would be
         weird.
@@ -65,29 +73,30 @@ export function FilterPokedexModal({ filter, onClose }: FilterPokedexModalProps)
   );
 }
 
-interface FilterOptionProps {
-  icon: string;
-  text: string;
-  color?: string;
-  count?: number;
-  active: boolean;
-  setActive(): void;
+interface TypeItemProps {
+  type: Type;
+  metrics: Metrics;
+  filter: PokedexFilter;
+  onClick(): void;
 }
 
-function FilterOption({ icon, text, color, count, active, setActive }: FilterOptionProps) {
+function TypeItem({ type, metrics, filter, onClick }: TypeItemProps) {
+  const count = useComputed(() => metrics.pokemonsAllotment.value.types.get(type.key)?.count);
+  const active = useComputed(() => filter.typeKey.value === type.key);
+
   return (
-    <li class={`relative ${active ? "" : "opacity-50"}`}>
-      <label class="flex cursor-pointer justify-center select-none">
-        <div class="flex flex-col items-center">
-          <input class="hidden" type="radio" name="pokedex_filter_type" onClick={setActive} />
-          <div class="text-3xl dim" style={`color: ${color}`}>
-            <Icon name={icon} />
-          </div>
-          <div>{text}</div>
-        </div>
-        {count ? <sub class="text-foreground-lesser">{count}</sub> : null}
-      </label>
-    </li>
+    <Show when={count}>
+      {(count) => (
+        <IconPickerGridItem
+          name={type.name}
+          icon={type.icon}
+          iconColor={type.color}
+          count={count}
+          active={active}
+          onClick={onClick}
+        />
+      )}
+    </Show>
   );
 }
 

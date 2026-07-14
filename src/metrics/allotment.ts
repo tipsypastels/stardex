@@ -4,6 +4,7 @@ import { sortStrings } from "../utils/string";
 export interface Allotment {
   total: number;
   types: Map<string, AllotedType>;
+  sortedCustomTypes: Type[];
 }
 
 export interface AllotedType {
@@ -21,6 +22,8 @@ export function createAllotment(allotables: Iterable<Allotable>): Allotment {
   const counts = new Map<string, number>();
   let total = 0;
 
+  const customTypesSet = new Set<Type>();
+
   for (const allotable of allotables) {
     if (allotable.exclude) {
       continue;
@@ -30,6 +33,10 @@ export function createAllotment(allotables: Iterable<Allotable>): Allotment {
       const currCount = counts.get(type.key) ?? 0;
       counts.set(type.key, currCount + 1);
       total += 1;
+
+      if (type.kind === "custom") {
+        customTypesSet.add(type);
+      }
     }
   }
 
@@ -44,7 +51,10 @@ export function createAllotment(allotables: Iterable<Allotable>): Allotment {
     }),
   );
 
-  return { total, types };
+  const sortedCustomTypes = [...customTypesSet];
+  sortedCustomTypes.sort((a, b) => sortStrings(a.name, b.name));
+
+  return { total, types, sortedCustomTypes };
 }
 
 function sortCountEntries([aName, aCnt]: [string, number], [bName, bCnt]: [string, number]) {

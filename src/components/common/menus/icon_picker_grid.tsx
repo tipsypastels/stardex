@@ -15,7 +15,6 @@ export interface IconPickerGridItemProps {
   iconColor?: string;
   count?: number;
   active: Signalish<boolean>;
-  dim?: boolean;
   onClick(): void;
 }
 
@@ -25,7 +24,6 @@ export function IconPickerGridItem({
   iconColor,
   count,
   active,
-  dim,
   onClick,
 }: IconPickerGridItemProps) {
   return (
@@ -35,7 +33,7 @@ export function IconPickerGridItem({
     >
       <button class="flex cursor-pointer justify-center select-none" onClick={onClick}>
         <div class="flex flex-col items-center">
-          <div class="text-3xl data-[dim=true]:dim" style={`color: ${iconColor}`} data-dim={dim}>
+          <div class="text-3xl dim" style={`color: ${iconColor}`}>
             <Icon name={icon} />
           </div>
           <div>{name}</div>
