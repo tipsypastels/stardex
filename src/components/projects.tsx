@@ -116,7 +116,7 @@ function ProjectOption({ project, projects, dropdownId }: ProjectOptionProps) {
         </label>
 
         <button
-          class="cursor-pointer touch-manipulation text-foreground-lesser data-[open=true]:text-primary"
+          class="cursor-pointer text-foreground-lesser data-[open=true]:text-primary"
           data-open={dropdownOpen}
           title="Actions"
           onClick={() => (dropdownId.value = project.id.value)}

@@ -75,6 +75,10 @@
 }
 
 @layer base {
+  * {
+    @apply touch-manipulation;
+  }
+
   body {
     @apply w-full bg-background text-foreground md:text-lg;
   }
