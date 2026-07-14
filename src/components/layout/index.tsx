@@ -2,6 +2,7 @@ import type { ComponentChildren } from "preact";
 import { ProjectsModal, ProjectsSelect } from "../projects";
 import { Controls } from "./controls";
 import { Footer } from "./footer";
+import { MobileJump } from "./jump";
 import { Logo } from "./logo";
 
 export interface LayoutProps {
@@ -41,6 +42,8 @@ export function Layout(props: LayoutProps) {
 
             <div class="mb-8 hidden border border-divider-light lg:block"></div>
             <main class="mx-4 md:mx-0">{props.children}</main>
+
+            <MobileJump />
           </div>
         </div>
 

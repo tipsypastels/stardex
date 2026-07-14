@@ -36,7 +36,7 @@ function ToastInner({ toast }: ToastInnerProps) {
           ? "translate-y-0 scale-100 opacity-100 ease-out"
           : "translate-y-4 scale-95 opacity-0 ease-in"
       } `}
-      style={`left: 50%; transform: translateX(-50%);`}
+      style="left: 50%; transform: translateX(-50%);"
     >
       <div class="flex items-center space-x-2">
         <span class="text-primary">
