@@ -80,7 +80,9 @@ export function EmptyPokedex() {
       <div class="text-center text-base text-foreground-lesser">
         Don't want a visual editor? Try out{" "}
         <ButtonLink onClick={() => (pokedexMode.key.value = "text")}>text mode</ButtonLink> for an
-        improved version of the <span class="hover:text-[#FB5687]">old Stardex</span> experience.
+        improved version of the{" "}
+        <span class="transition-colors duration-200 hover:text-[#FB5687]">old Stardex</span>{" "}
+        experience.
       </div>
 
       <Show when={pbsImport.error}>

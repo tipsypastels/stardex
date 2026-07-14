@@ -8,6 +8,7 @@ import { POKEMON_LISTS, PokemonList } from "../models/pokemon/list";
 import { PROJECT_LISTS, ProjectList } from "../models/project/list";
 import { REGION_SETS, RegionSet } from "../models/region/set";
 import { Strictness, STRICTNESSES } from "../models/strictness";
+import { EXCLUDED_TYPES_SETS, ExcludedTypesSet } from "../models/type/excluded";
 
 export const PokemonsContext = createContext({} as PokemonList);
 export const RegionsContext = createContext({} as RegionSet);
@@ -16,6 +17,7 @@ export const PokedexModeContext = createContext({} as PokedexMode);
 export const ProjectsContext = createContext({} as ProjectList);
 export const MetricsContext = createContext({} as Metrics);
 export const CustomIconsContext = createContext({} as CustomIcons);
+export const ExcludedTypesContext = createContext({} as ExcludedTypesSet);
 
 export interface ModelsProps {
   children: ComponentChildren;
@@ -27,6 +29,7 @@ export function Models({ children }: ModelsProps) {
   const strictness = useModel(() => STRICTNESSES.initial());
   const pokedexMode = useModel(() => POKEDEX_MODES.initial());
   const customIconsMetadata = useModel(() => CUSTOM_ICONS_METADATAS.initial());
+  const excludedTypes = useModel(() => EXCLUDED_TYPES_SETS.initial());
 
   const projects = useModel(() =>
     PROJECT_LISTS.initial(
@@ -36,6 +39,7 @@ export function Models({ children }: ModelsProps) {
         strictness: strictness.key.value,
         pokedexMode: pokedexMode.key.value,
         customIconsMetadata: customIconsMetadata.toRaw(),
+        excludedTypes: excludedTypes.toRaw(),
       }),
       (models) => {
         pokemons.setFromRaw(models.pokemons);
@@ -43,6 +47,7 @@ export function Models({ children }: ModelsProps) {
         strictness.key.value = models.strictness;
         pokedexMode.key.value = models.pokedexMode;
         customIconsMetadata.setFromRaw(models.customIconsMetadata);
+        excludedTypes.setFromRaw(models.excludedTypes);
       },
     ),
   );
@@ -59,7 +64,9 @@ export function Models({ children }: ModelsProps) {
             <ProjectsContext.Provider value={projects}>
               <MetricsContext.Provider value={metrics}>
                 <CustomIconsContext.Provider value={customIcons}>
-                  {children}
+                  <ExcludedTypesContext.Provider value={excludedTypes}>
+                    {children}
+                  </ExcludedTypesContext.Provider>
                 </CustomIconsContext.Provider>
               </MetricsContext.Provider>
             </ProjectsContext.Provider>

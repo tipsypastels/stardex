@@ -1,5 +1,6 @@
 import {
   CUSTOM_ICONS_METADATA_VERSION,
+  EXCLUDED_TYPES_VERSION,
   POKEMON_LIST_VERSION,
   POKEMON_VERSION,
   PROJECT_VERSION,
@@ -157,6 +158,7 @@ export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawIna
       pokemons: V0_upgradeRawPokemonList(pokemon),
       pokedexMode: V0_upgradePokedexModeKey(pokedexFormat),
       customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
+      excludedTypes: { v: EXCLUDED_TYPES_VERSION, all: [] },
     },
     ...rest,
   };

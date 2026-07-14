@@ -25,6 +25,7 @@ export const POKEMON_LIST_VERSION = 1;
 export const PROJECT_VERSION = 1;
 export const CUSTOM_ICONS_METADATA_VERSION = 1;
 export const SAVE_VERSION = 1;
+export const EXCLUDED_TYPES_VERSION = 1;
 
 /* -------------------------------------------------------------------------- */
 /*                                   Pokemon                                  */

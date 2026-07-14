@@ -5,6 +5,7 @@ import type { RawCustomIconsMetadata } from "../pokemon/custom_icon/metadata";
 import type { RawPokemonList } from "../pokemon/list";
 import type { RegionKey } from "../region";
 import type { StrictnessKey } from "../strictness";
+import type { RawExcludedTypesSet } from "../type/excluded";
 import { PROJECT_VERSION, upgradeRawProject } from "../versioned";
 import type { V0_RawProject } from "../versioned/v0";
 
@@ -14,6 +15,7 @@ export interface RawProjectModels {
   strictness: StrictnessKey;
   pokedexMode: PokedexModeKey;
   customIconsMetadata: RawCustomIconsMetadata;
+  excludedTypes: RawExcludedTypesSet;
 }
 
 export interface RawSharedProject {
