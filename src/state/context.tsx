@@ -52,7 +52,8 @@ export function Models({ children }: ModelsProps) {
     ),
   );
 
-  const metrics = useModel(() => new Metrics(pokemons, regions, strictness));
+  // Composite models.
+  const metrics = useModel(() => new Metrics(pokemons, regions, strictness, excludedTypes));
   const customIcons = useModel(() => new CustomIcons(customIconsMetadata, projects, pokedexMode));
 
   return (

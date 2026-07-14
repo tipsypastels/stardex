@@ -5,11 +5,17 @@ import type { ReadonlySignalled } from "../utils/signal";
 import type { PokemonList } from "./pokemon/list";
 import type { RegionSet } from "./region/set";
 import type { Strictness } from "./strictness";
+import type { ExcludedTypesSet } from "./type/excluded";
 
 export type Metrics = InstanceType<typeof Metrics>;
 
 export const Metrics = createModel(
-  (pokemons: PokemonList, regions: RegionSet, strictness: Strictness) => {
+  (
+    pokemons: PokemonList,
+    regions: RegionSet,
+    strictness: Strictness,
+    excludedTypes: ExcludedTypesSet,
+  ) => {
     function* eagerAllotables(allotables: Iterable<ReadonlySignalled<Allotable>>) {
       for (const allotable of allotables) {
         yield {
@@ -29,6 +35,7 @@ export const Metrics = createModel(
         pokemonsAllotment.value,
         regionsAllotment.value,
         strictness.maximumRatioDifference.value,
+        excludedTypes.all.value,
       ),
     );
 

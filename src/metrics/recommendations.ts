@@ -1,3 +1,4 @@
+import { Set as ISet } from "immutable";
 import { BUILTIN_TYPES, TYPES, type Type } from "../models/type";
 import { sortStrings } from "../utils/string";
 import type { AllotedType, Allotment } from "./allotment";
@@ -15,6 +16,7 @@ export function createRecommendations(
   ownAllot: Allotment,
   againstAllot: Allotment,
   maxDiff: number,
+  excludedTypeKeys: ISet<string>,
 ) {
   const recs: Recommendation[] = [];
 
@@ -23,6 +25,11 @@ export function createRecommendations(
 
   for (let i = 0; i < own.length; i++) {
     const ownAllotedType = own[i];
+
+    if (excludedTypeKeys.has(ownAllotedType.type.key)) {
+      continue;
+    }
+
     const againstAllotedType = against[i];
 
     const ownRatio = ownAllotedType.ratio;
