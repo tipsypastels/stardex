@@ -1,10 +1,10 @@
 import { useComputed } from "@preact/signals";
-import { For, Show } from "@preact/signals/utils";
+import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import { BUILTIN_TYPES, type Type } from "../../../models/type";
 import type { ExcludedTypesSet } from "../../../models/type/excluded";
-import { ExcludedTypesContext, PokedexModeContext } from "../../../state/context";
-import { IconPickerGrid, IconPickerGridItem } from "../../common/menus/icon_picker_grid";
+import { ExcludedTypesContext } from "../../../state/context";
+import { Icon } from "../../common/icon";
 import { Modal } from "../../common/menus/modal";
 
 export interface ExcludeTypesModalProps {
@@ -12,28 +12,20 @@ export interface ExcludeTypesModalProps {
 }
 
 export function ExcludeTypesModal({ onClose }: ExcludeTypesModalProps) {
-  const pokedexMode = useContext(PokedexModeContext);
   const excludedTypes = useContext(ExcludedTypesContext);
   return (
     <Modal title="Excluded Types" onClose={onClose}>
-      <IconPickerGrid>
-        <For each={() => BUILTIN_TYPES.all}>
-          {(type) => (
-            <Option
-              type={type}
-              excludedTypes={excludedTypes}
-              onClick={() => excludedTypes.toggle(type.key)}
-            />
-          )}
-        </For>
-      </IconPickerGrid>
+      <p class="mb-4">Hacking a game without later types?</p>
+
+      <ul class="mb-4 pl-2">
+        <Option type={BUILTIN_TYPES.of("dark")} excludedTypes={excludedTypes} />
+        <Option type={BUILTIN_TYPES.of("steel")} excludedTypes={excludedTypes} />
+        <Option type={BUILTIN_TYPES.of("fairy")} excludedTypes={excludedTypes} />
+      </ul>
 
       <div class="text-sm">
-        <strong>Tip:</strong> Excluded types will be omitted from graphs and recommendations
-        <Show when={() => pokedexMode.key.value !== "text"}>
-          , and de-emphasized in Pokédex listings
-        </Show>
-        .
+        <strong>Tip:</strong> Excluded types will be omitted from graphs and recommendations. The
+        types of the Pokémon as shown in the Pokédex won't change unless you change them yourself.
       </div>
     </Modal>
   );
@@ -42,19 +34,34 @@ export function ExcludeTypesModal({ onClose }: ExcludeTypesModalProps) {
 interface OptionProps {
   type: Type;
   excludedTypes: ExcludedTypesSet;
-  onClick(): void;
 }
 
-function Option({ type, excludedTypes, onClick }: OptionProps) {
+function Option({ type, excludedTypes }: OptionProps) {
   const excluded = useComputed(() => excludedTypes.all.value.has(type.key));
 
   return (
-    <IconPickerGridItem
-      name={type.name}
-      icon={type.icon}
-      iconColor={type.color}
-      active={excluded}
-      onClick={onClick}
-    />
+    <li class="mb-2 last:mb-0">
+      <label class="flex cursor-pointer items-center gap-2" data-checked={excluded}>
+        <input
+          type="checkbox"
+          class="hidden"
+          checked={excluded}
+          onChange={() => excludedTypes.toggle(type.key)}
+        />
+
+        <div
+          class="flex h-8 w-8 items-center justify-center rounded-md border-2 border-divider-heavy text-white"
+          style={`color: ${type.color}`}
+        >
+          <Show when={excluded}>
+            <Icon name="times" />
+          </Show>
+        </div>
+
+        <div>
+          <strong>Exclude {type.name}</strong>
+        </div>
+      </label>
+    </li>
   );
 }

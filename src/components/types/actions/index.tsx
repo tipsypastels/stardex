@@ -14,7 +14,7 @@ export function TypesActions() {
       <ActionBar>
         <ActionBarItem
           name="Exclude"
-          icon={excludedTypes.icon.value}
+          icon={excludedTypes.all.value.size > 0 ? "eye-closed" : "eye"}
           onClick={() => (excludeModalOpen.value = true)}
         />
 

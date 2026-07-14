@@ -12,7 +12,7 @@ export function EditPokemonBehavior({ pokemon }: EditPokemonBehaviorProps) {
         <input
           type="checkbox"
           class="mr-2"
-          checked={pokemon.exclude.value}
+          checked={pokemon.exclude}
           onChange={(e) => (pokemon.exclude.value = e.currentTarget.checked)}
         />
         <div>Exclude from recommendations.</div>

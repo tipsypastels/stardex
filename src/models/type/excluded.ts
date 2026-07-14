@@ -1,6 +1,5 @@
-import { computed, createModel, effect, signal } from "@preact/signals";
+import { createModel, effect, signal } from "@preact/signals";
 import { Set as ISet } from "immutable";
-import { TYPES } from ".";
 import { readonly } from "../../utils/signal";
 import { stored } from "../../utils/storage";
 import { EXCLUDED_TYPES_VERSION } from "../versioned";
@@ -22,12 +21,6 @@ export type ExcludedTypesSet = InstanceType<typeof ExcludedTypesSet>;
 export const ExcludedTypesSet = createModel(($raw: RawExcludedTypesSet) => {
   const all = signal(ISet($raw.all));
 
-  const icon = computed(() => {
-    if (all.value.size === 0) return "empty-set";
-    if (all.value.size === 1) return TYPES.of(all.value.first()!).icon;
-    return "trash-can-list";
-  });
-
   effect(() => {
     store.dump({
       v: EXCLUDED_TYPES_VERSION,
@@ -37,7 +30,6 @@ export const ExcludedTypesSet = createModel(($raw: RawExcludedTypesSet) => {
 
   return {
     all: readonly(all),
-    icon,
     toggle(typeKey: string) {
       if (all.value.has(typeKey)) {
         all.value = all.value.remove(typeKey);

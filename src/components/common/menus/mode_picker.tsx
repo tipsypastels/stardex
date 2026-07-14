@@ -20,12 +20,7 @@ export function ModePicker({ modes, activeIndex, setActiveIndex }: ModePickerPro
         return (
           <li class="border-b border-b-divider-light py-2 first:pt-0 last:border-b-0 last:pb-0">
             <label class="flex cursor-pointer items-center border-t border-t-divider-light first:border-t-0">
-              <input
-                class="hidden"
-                type="radio"
-                name="strictness"
-                onClick={() => setActiveIndex(index)}
-              />
+              <input class="hidden" type="radio" onClick={() => setActiveIndex(index)} />
 
               <div class={`mr-4 ${active ? "text-primary" : "opacity-20"}`}>
                 <Icon name={mode.icon} />
