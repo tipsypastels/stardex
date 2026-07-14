@@ -1,5 +1,11 @@
+import { useComputed } from "@preact/signals";
+import { For } from "@preact/signals/utils";
+import { useContext } from "preact/hooks";
 import type { PokedexModeViewProps } from ".";
 import type { Pokemon } from "../../../models/pokemon";
+import type { Type } from "../../../models/type";
+import { ExcludedTypesSet } from "../../../models/type/excluded";
+import { ExcludedTypesContext } from "../../../state/context";
 import { Icon } from "../../common/icon";
 import { PokedexGridlikeView } from "./util/grid";
 
@@ -23,11 +29,14 @@ interface ItemProps {
 }
 
 function Item({ pokemon, onClick }: ItemProps) {
+  const excludedTypes = useContext(ExcludedTypesContext);
+
   return (
     <li
-      class={`relative inline-flex cursor-pointer justify-center ${pokemon.exclude.value ? "opacity-50" : ""}`}
+      class="relative inline-flex cursor-pointer justify-center data-[exclude=true]:opacity-50"
       key={pokemon.key}
       data-id={pokemon.key}
+      data-exclude={pokemon.exclude}
     >
       <button
         data-handle
@@ -36,12 +45,29 @@ function Item({ pokemon, onClick }: ItemProps) {
       >
         <div>{pokemon.name}</div>
         <div class="grow"></div>
-        {pokemon.types.value.map((type) => (
-          <div title={type.name} class="dim" style={`color: ${type.color}`}>
-            <Icon name={type.icon} />
-          </div>
-        ))}
+        <For each={pokemon.types} getKey={(type) => type.key}>
+          {(type) => <TypeIcon type={type} excludedTypes={excludedTypes} />}
+        </For>
       </button>
     </li>
+  );
+}
+
+interface TypeIconProps {
+  type: Type;
+  excludedTypes: ExcludedTypesSet;
+}
+
+function TypeIcon({ type, excludedTypes }: TypeIconProps) {
+  const exclude = useComputed(() => excludedTypes.all.value.has(type.key));
+  return (
+    <div
+      title={type.name}
+      class="dim data-[exclude=true]:opacity-50"
+      style={`color: ${type.color}`}
+      data-exclude={exclude}
+    >
+      <Icon name={type.icon} />
+    </div>
   );
 }
