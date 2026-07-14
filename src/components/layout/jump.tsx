@@ -33,11 +33,19 @@ export function MobileJump() {
   }
 
   return (
-    <div class="fixed right-4 bottom-8 z-40 flex flex-col gap-2 rounded-lg border-2 border-divider-heavy bg-background p-4 shadow-shadow md:hidden">
-      <button class="cursor-pointer disabled:opacity-50" onClick={jumpUp} disabled={state.atStart}>
+    <div class="fixed right-4 bottom-8 z-40 flex flex-col rounded-lg border-2 border-divider-heavy bg-background shadow-shadow md:hidden">
+      <button
+        class="cursor-pointer p-4 pb-1 disabled:opacity-50"
+        onClick={jumpUp}
+        disabled={state.atStart}
+      >
         <Icon name="angle-up" />
       </button>
-      <button class="cursor-pointer disabled:opacity-50" onClick={jumpDown} disabled={state.atEnd}>
+      <button
+        class="cursor-pointer p-4 pt-1 disabled:opacity-50"
+        onClick={jumpDown}
+        disabled={state.atEnd}
+      >
         <Icon name="angle-down" />
       </button>
     </div>
