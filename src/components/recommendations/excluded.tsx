@@ -1,33 +1,30 @@
 import { useComputed } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
-import { useContext } from "preact/hooks";
-import { BUILTIN_TYPES, type Type } from "../../../models/type";
-import type { ExcludedTypesSet } from "../../../models/type/excluded";
-import { ExcludedTypesContext } from "../../../state/context";
-import { Icon } from "../../common/icon";
-import { Modal } from "../../common/menus/modal";
-import { TypeName } from "../util/name";
+import { BUILTIN_TYPES, type Type } from "../../models/type";
+import type { ExcludedTypesSet } from "../../models/type/excluded";
+import { Icon } from "../common/icon";
+import { Modal } from "../common/menus/modal";
+import { TypeName } from "../types/util/name";
 
-export interface ExcludeTypesModalProps {
+export interface ExcludedTypesModalProps {
+  excludedTypes: ExcludedTypesSet;
   onClose(): void;
 }
 
-export function ExcludeTypesModal({ onClose }: ExcludeTypesModalProps) {
-  const excludedTypes = useContext(ExcludedTypesContext);
+export function ExcludedTypesModal({ excludedTypes, onClose }: ExcludedTypesModalProps) {
   return (
     <Modal title="Excluded Types" onClose={onClose}>
       <p class="mb-4">Hacking a game without later types?</p>
-
       <ul class="mb-4 pl-2">
         <Option type={BUILTIN_TYPES.of("dark")} excludedTypes={excludedTypes} />
         <Option type={BUILTIN_TYPES.of("steel")} excludedTypes={excludedTypes} />
         <Option type={BUILTIN_TYPES.of("fairy")} excludedTypes={excludedTypes} />
       </ul>
-
-      <div class="text-sm">
-        <strong>Tip:</strong> Excluded types will be omitted from graphs and recommendations. The
-        types of the Pokémon as shown in the Pokédex won't change unless you change them yourself.
+      <div class="mb-2 text-sm">
+        <strong>Tip:</strong> Excluded types are only excluded from recommendations. The actual
+        types of the Pokémon in your Pokédex won't change unless you change them yourself.
       </div>
+      <div class="text-sm text-foreground-lesser">This feature may be expanded in the future.</div>
     </Modal>
   );
 }
@@ -61,7 +58,7 @@ function Option({ type, excludedTypes }: OptionProps) {
 
         <div>
           <strong>
-            Exclude <TypeName type={type} />
+            Don't Recommend <TypeName type={type} />
           </strong>
         </div>
       </label>
