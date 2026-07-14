@@ -15,7 +15,7 @@ export function EditPokemonBehavior({ pokemon }: EditPokemonBehaviorProps) {
           checked={pokemon.exclude}
           onChange={(e) => (pokemon.exclude.value = e.currentTarget.checked)}
         />
-        <div>Exclude from recommendations.</div>
+        <div>Exclude from graphs and recommendations.</div>
       </label>
     </div>
   );

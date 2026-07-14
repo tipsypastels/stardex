@@ -1,17 +1,11 @@
 import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import {
-  ExcludedTypesContext,
-  PokemonsContext,
-  RegionsContext,
-  StrictnessContext,
-} from "../../state/context";
+import { PokemonsContext, RegionsContext, StrictnessContext } from "../../state/context";
 import { Empty } from "../common/empty";
 import { ButtonLink } from "../common/link";
 import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
 import { Section } from "../layout/section";
-import { ExcludedTypesModal } from "./excluded";
 import { RecommendedChangeGroup } from "./groups";
 import { regionsIcon, RegionsModal } from "./regions";
 import { StrictnessModal } from "./strictness";
@@ -20,9 +14,8 @@ export function Recommendations() {
   const pokemons = useContext(PokemonsContext);
   const regions = useContext(RegionsContext);
   const strictness = useContext(StrictnessContext);
-  const excludedTypes = useContext(ExcludedTypesContext);
 
-  const modal = useSignal<"regions" | "strictness" | "exclude">();
+  const modal = useSignal<"regions" | "strictness">();
 
   function emptyFallbacks() {
     return (
@@ -56,11 +49,6 @@ export function Recommendations() {
           icon={strictness.icon.value}
           onClick={() => (modal.value = "strictness")}
         />
-        <ActionBarItem
-          name="Exclude"
-          icon={excludedTypes.all.value.size === 0 ? "eye" : "eye-closed"}
-          onClick={() => (modal.value = "exclude")}
-        />
       </ActionBar>
 
       <Show
@@ -78,13 +66,6 @@ export function Recommendations() {
 
       <Show when={() => modal.value === "strictness"}>
         <StrictnessModal strictness={strictness} onClose={() => (modal.value = undefined)} />
-      </Show>
-
-      <Show when={() => modal.value === "exclude"}>
-        <ExcludedTypesModal
-          excludedTypes={excludedTypes}
-          onClose={() => (modal.value = undefined)}
-        />
       </Show>
     </Section>
   );

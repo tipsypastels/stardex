@@ -1,3 +1,4 @@
+import { Set as ISet } from "immutable";
 import { type Type, TYPES } from "../models/type";
 import { sortStrings } from "../utils/string";
 
@@ -18,7 +19,10 @@ export interface Allotable {
   exclude?: boolean;
 }
 
-export function createAllotment(allotables: Iterable<Allotable>): Allotment {
+export function createAllotment(
+  allotables: Iterable<Allotable>,
+  excludedTypeKeys?: ISet<string>,
+): Allotment {
   const counts = new Map<string, number>();
   let total = 0;
 
@@ -30,6 +34,10 @@ export function createAllotment(allotables: Iterable<Allotable>): Allotment {
     }
 
     for (const type of allotable.types) {
+      if (excludedTypeKeys?.has(type.key)) {
+        continue;
+      }
+
       const currCount = counts.get(type.key) ?? 0;
       counts.set(type.key, currCount + 1);
       total += 1;

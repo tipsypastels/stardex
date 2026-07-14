@@ -21,8 +21,8 @@ export function ExcludedTypesModal({ excludedTypes, onClose }: ExcludedTypesModa
         <Option type={BUILTIN_TYPES.of("fairy")} excludedTypes={excludedTypes} />
       </ul>
       <div class="text-sm">
-        <strong>Tip:</strong> Excluded types are only excluded from recommendations. The actual
-        types of the Pokémon in your Pokédex won't change unless you change them yourself.
+        <strong>Tip:</strong> Excluded types are only excluded from graphs and recommendations. The
+        actual types of the Pokémon in your Pokédex won't change unless you change them yourself.
       </div>
     </Modal>
   );
@@ -57,7 +57,7 @@ function Option({ type, excludedTypes }: OptionProps) {
 
         <div>
           <strong>
-            Don't Recommend <TypeName type={type} />
+            Exclude <TypeName type={type} />
           </strong>
         </div>
       </label>

@@ -25,7 +25,10 @@ export const Metrics = createModel(
       }
     }
 
-    const pokemonsAllotment = computed(() => createAllotment(eagerAllotables(pokemons.all.value)));
+    const pokemonsAllotment = computed(() =>
+      createAllotment(eagerAllotables(pokemons.all.value), excludedTypes.all.value),
+    );
+
     const regionsAllotment = computed(() =>
       createAllotment(regions.all.value.flatMap((r) => r.members)),
     );
