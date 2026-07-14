@@ -1,13 +1,16 @@
-import { useSignal } from "@preact/signals";
+import { batch, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
-import { PokedexModeContext } from "../../../state/context";
+import { parsePokemonListText } from "../../../models/pokemon/text/parse";
+import { POKEMON_LIST_VERSION } from "../../../models/versioned";
+import { PokedexModeContext, PokemonsContext } from "../../../state/context";
 import { useSaver } from "../../../state/save";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { ImportPBSErrorModal, usePBSImport } from "./import_pbs";
 import { ImportRegionModal } from "./import_region";
 
 export function EmptyPokedex() {
+  const pokemons = useContext(PokemonsContext);
   const pokedexMode = useContext(PokedexModeContext);
   const importRegionModalOpen = useSignal(false);
   const saver = useSaver();
@@ -23,8 +26,16 @@ export function EmptyPokedex() {
       if (file.type === "application/json") {
         saver.load(JSON.parse(text));
       } else {
-        // TODO
-        alert("Not yet implemented.");
+        const result = parsePokemonListText(text);
+
+        batch(() => {
+          pokemons.setFromRaw({
+            v: POKEMON_LIST_VERSION,
+            all: result.pokemons,
+            textDiff: result.textDiff,
+          });
+          pokedexMode.key.value = "text";
+        });
       }
     };
 
