@@ -6,6 +6,7 @@ import type { ExcludedTypesSet } from "../../../models/type/excluded";
 import { ExcludedTypesContext } from "../../../state/context";
 import { Icon } from "../../common/icon";
 import { Modal } from "../../common/menus/modal";
+import { TypeName } from "../util/name";
 
 export interface ExcludeTypesModalProps {
   onClose(): void;
@@ -59,7 +60,9 @@ function Option({ type, excludedTypes }: OptionProps) {
         </div>
 
         <div>
-          <strong>Exclude {type.name}</strong>
+          <strong>
+            Exclude <TypeName type={type} />
+          </strong>
         </div>
       </label>
     </li>
