@@ -5,6 +5,7 @@ import { parsePokemonListText } from "../../../models/pokemon/text/parse";
 import { POKEMON_LIST_VERSION } from "../../../models/versioned";
 import { PokedexModeContext, PokemonsContext } from "../../../state/context";
 import { useSaver } from "../../../state/save";
+import { toasts } from "../../../state/toast";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { ImportPBSErrorModal, usePBSImport } from "./import_pbs";
 import { ImportRegionModal } from "./import_region";
@@ -24,17 +25,19 @@ export function EmptyPokedex() {
     fileReader.onload = () => {
       const text = fileReader.result as string;
       if (file.type === "application/json") {
-        saver.load(JSON.parse(text));
+        batch(() => {
+          saver.load(JSON.parse(text));
+          toasts.add("upload", "Save file loaded!");
+        });
       } else {
         const result = parsePokemonListText(text);
-
         batch(() => {
           pokemons.setFromRaw({
             v: POKEMON_LIST_VERSION,
             all: result.pokemons,
             textDiff: result.textDiff,
           });
-          pokedexMode.key.value = "text";
+          toasts.add("upload", "Save file loaded!");
         });
       }
     };
