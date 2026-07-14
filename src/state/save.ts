@@ -12,7 +12,12 @@ import {
   StrictnessContext,
 } from "./context";
 
-export function useSaver() {
+export interface Saver {
+  make(): RawSave;
+  load(save: RawSave | V0_RawSave): void;
+}
+
+export function useSaver(): Saver {
   const pokemons = useContext(PokemonsContext);
   const regions = useContext(RegionsContext);
   const strictness = useContext(StrictnessContext);
@@ -21,7 +26,7 @@ export function useSaver() {
   const customIcons = useContext(CustomIconsContext);
 
   return {
-    make(): RawSave {
+    make() {
       return {
         v: SAVE_VERSION,
         projectName: projects.active.value.name.value,
@@ -32,7 +37,7 @@ export function useSaver() {
         customIcons: customIcons.toRawSaved(),
       };
     },
-    load(save_: RawSave | V0_RawSave) {
+    load(save_) {
       const save = upgradeRawSave(save_);
       if (save.v !== SAVE_VERSION) {
         alert("Invalid save data!");

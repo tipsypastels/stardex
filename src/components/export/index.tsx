@@ -2,8 +2,8 @@ import { useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import { useContext } from "preact/hooks";
 import { PokemonsContext, ProjectsContext } from "../../state/context";
+import { exportJSONFile, exportTextFile } from "../../state/export";
 import { useSaver } from "../../state/save";
-import { saveToFile } from "../../utils/file";
 import { Button } from "../common/button";
 import { Empty } from "../common/empty";
 import { Icon } from "../common/icon";
@@ -19,17 +19,6 @@ export function Export() {
   const saver = useSaver();
   const modal = useSignal<"cells" | "help">();
 
-  function saveJSONFile() {
-    const save = saver.make();
-    saveToFile(`Stardex ${save.projectName}.json`, "json", JSON.stringify(save));
-  }
-
-  function saveTextFile() {
-    const text = pokemons.peekSerializeToText();
-    const name = projects.active.value.name.value;
-    saveToFile(`Stardex ${name}.txt`, "text", text);
-  }
-
   return (
     <Section id="export" title="Export" hotkey="jumpToExport">
       <Show
@@ -37,8 +26,8 @@ export function Export() {
         fallback={<Empty>Don't make me say it again!</Empty>}
       >
         <div class="mb-4 flex gap-2">
-          <Button onClick={saveJSONFile}>As JSON</Button>
-          <Button onClick={saveTextFile}>As Text File</Button>
+          <Button onClick={() => exportJSONFile(saver)}>As JSON</Button>
+          <Button onClick={() => exportTextFile(pokemons, projects)}>As Text File</Button>
           <Button onClick={() => (modal.value = "cells")}>As Spreadsheet Cells</Button>
         </div>
 
