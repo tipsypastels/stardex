@@ -188,7 +188,7 @@ export function EditPokemonCustomIconModal({
 
   function upload() {
     batch(() => {
-      customIcons.upload(pokemon.key.value, blob);
+      customIcons.upload(pokemon.id.value, blob);
       onClose();
     });
   }
@@ -282,14 +282,12 @@ export interface CustomIconUploadState {
 export function useCustomIconUploadState(pokemon: Pokemon): CustomIconUploadState {
   const uploaded = useSignal<File>();
   const customIcons = useContext(CustomIconsContext);
-  const alreadyHas = useComputed(() =>
-    customIcons.metadata.pokemonKeys.value.has(pokemon.key.value),
-  );
+  const alreadyHas = useComputed(() => customIcons.metadata.pokemonIds.value.has(pokemon.id.value));
   return {
     uploaded,
     alreadyHas,
     delete() {
-      customIcons.delete(pokemon.key.value);
+      customIcons.delete(pokemon.id.value);
     },
   };
 }

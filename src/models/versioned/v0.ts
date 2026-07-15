@@ -6,6 +6,7 @@ import {
   PROJECT_VERSION,
   SAVE_VERSION,
 } from ".";
+import { id } from "../../state/id";
 import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawBuiltinPokemon, RawCustomPokemon, RawPokemon } from "../pokemon";
 import type { RawPokemonList } from "../pokemon/list";
@@ -22,6 +23,8 @@ import type { StrictnessKey } from "../strictness";
 /**
  * Pokemon V0:
  *  - No explicit version.
+ *  - No ID.
+ *  - Had a key for custom forms.
  *  - Species is an object.
  *  - Types is called type.
  */
@@ -50,6 +53,7 @@ export function V0_upgradeRawBuiltinPokemon(raw: V0_RawBuiltinPokemon): RawBuilt
   const { species, type, ...rest } = raw;
   return {
     v: POKEMON_VERSION,
+    id: id(),
     species: species.key,
     types: type,
     ...rest,
@@ -57,8 +61,8 @@ export function V0_upgradeRawBuiltinPokemon(raw: V0_RawBuiltinPokemon): RawBuilt
 }
 
 export function V0_upgradeRawCustomPokemon(raw: V0_RawCustomPokemon): RawCustomPokemon {
-  const { type, ...rest } = raw;
-  return { v: POKEMON_VERSION, types: type, ...rest };
+  const { key: _key, type, ...rest } = raw;
+  return { v: POKEMON_VERSION, id: id(), types: type, ...rest };
 }
 
 export function V0_upgradeRawPokemon(raw: V0_RawPokemon): RawPokemon {
@@ -157,7 +161,7 @@ export function V0_upgradeRawInactiveProject(raw: V0_RawInactiveProject): RawIna
       ...models,
       pokemons: V0_upgradeRawPokemonList(pokemon),
       pokedexMode: V0_upgradePokedexModeKey(pokedexFormat),
-      customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
+      customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonIds: [] },
       excludedTypes: { v: EXCLUDED_TYPES_VERSION, all: [] },
     },
     ...rest,

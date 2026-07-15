@@ -74,7 +74,7 @@ export interface PokemonIconProps {
 
 export function PokemonIcon({ pokemon }: PokemonIconProps) {
   const customIcons = useContext(CustomIconsContext);
-  const customIcon = customIcons.loadedEntries.value.get(pokemon.key.value);
+  const customIcon = customIcons.loadedEntries.value.get(pokemon.id.value);
   if (customIcon) {
     return <CustomIcon dataUrl={customIcon.dataUrl} name={pokemon.name.value} />;
   }

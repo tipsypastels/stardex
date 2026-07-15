@@ -1,11 +1,11 @@
 import type { RawPokemon } from "..";
+import { id } from "../../../state/id";
 import { POKEMON_VERSION } from "../../versioned";
 import { SPECIES } from "../species";
 import { PokemonListTextDiffBuilder } from "./diff";
 
 export function parsePokemonListText(text: string) {
   const pokemons: RawPokemon[] = [];
-  const pokemonKeysToLineIndices = new Map<string, number>();
   const textDiff = new PokemonListTextDiffBuilder();
   const errors: PokemonListTextParseError[] = [];
   const lines = new SpannedString(text).lines();
@@ -78,7 +78,11 @@ export function parsePokemonListText(text: string) {
     const species = SPECIES.search(name);
     const pokemon: RawPokemon | undefined = (() => {
       if (species) {
-        const pokemon: RawPokemon = { v: POKEMON_VERSION, species: species.key };
+        const pokemon: RawPokemon = {
+          v: POKEMON_VERSION,
+          id: id(),
+          species: species.key,
+        };
         if (types.length > 0) {
           pokemon.types = types;
         }
@@ -88,24 +92,17 @@ export function parsePokemonListText(text: string) {
           error(CustomMissingTypes);
           return;
         }
-
-        const key = name.toLowerCase().replace(" ", "-");
-        return { v: POKEMON_VERSION, key, name, types };
+        return {
+          v: POKEMON_VERSION,
+          id: id(),
+          name,
+          types,
+        };
       }
     })();
     if (!pokemon) {
       continue lines;
     }
-
-    const key = species?.key || (pokemon as { key: string }).key;
-    const lineIndexOfSame = pokemonKeysToLineIndices.get(key);
-
-    if (typeof lineIndexOfSame !== "undefined") {
-      error(DuplicateListing);
-      continue lines;
-    }
-
-    pokemonKeysToLineIndices.set(key, lineIndex);
 
     if (exclude) {
       pokemon.exclude = true;
@@ -192,12 +189,6 @@ class EmptyTypeList extends PokemonListTextParseError {
 class UnknownToken extends PokemonListTextParseError {
   get message() {
     return "unknown token";
-  }
-}
-
-class DuplicateListing extends PokemonListTextParseError {
-  get message() {
-    return "duplicate";
   }
 }
 

@@ -1,8 +1,11 @@
 import { describe, expect, test } from "vitest";
 import type { RawPokemon } from "..";
+import { id } from "../../../state/id";
 import { serializePokemonListToText } from "./serialize";
 
 describe(serializePokemonListToText, () => {
+  const header = () => ({ v: 1 as const, id: id() });
+
   function s(pokemons: RawPokemon[], textDiff?: string[], strict?: boolean) {
     return serializePokemonListToText({ pokemons, textDiff, strict });
   }
@@ -12,44 +15,46 @@ describe(serializePokemonListToText, () => {
   });
 
   test("single", () => {
-    expect(s([{ v: 1, species: "bulbasaur" }])).toEqual("Bulbasaur");
+    expect(s([{ ...header(), species: "bulbasaur" }])).toEqual("Bulbasaur");
   });
 
   test("multiple", () => {
     expect(
       s([
-        { v: 1, species: "bulbasaur" },
-        { v: 1, species: "ivysaur" },
-        { v: 1, species: "venusaur" },
+        { ...header(), species: "bulbasaur" },
+        { ...header(), species: "ivysaur" },
+        { ...header(), species: "venusaur" },
       ]),
     ).toEqual("Bulbasaur\nIvysaur\nVenusaur");
   });
 
   test("custom", () => {
-    expect(s([{ v: 1, key: "foo", name: "Foo", types: ["flying"] }])).toEqual("Foo (Flying)");
+    expect(s([{ ...header(), name: "Foo", types: ["flying"] }])).toEqual("Foo (Flying)");
   });
 
   test("custom types", () => {
-    expect(s([{ v: 1, species: "bulbasaur", types: ["fire"] }])).toEqual("Bulbasaur (Fire)");
+    expect(s([{ ...header(), species: "bulbasaur", types: ["fire"] }])).toEqual("Bulbasaur (Fire)");
   });
 
   test("exclude", () => {
-    expect(s([{ v: 1, species: "bulbasaur", exclude: true }])).toEqual("Bulbasaur @exclude");
-    expect(s([{ v: 1, key: "foo", name: "Foo", types: ["flying"], exclude: true }])).toEqual(
+    expect(s([{ ...header(), species: "bulbasaur", exclude: true }])).toEqual("Bulbasaur @exclude");
+    expect(s([{ ...header(), name: "Foo", types: ["flying"], exclude: true }])).toEqual(
       "Foo (Flying) @exclude",
     );
   });
 
   test("text diff", () => {
-    expect(s([{ v: 1, species: "bulbasaur" }], ["\0b1", "\0e1"])).toEqual("\nBulbasaur");
-    expect(s([{ v: 1, species: "bulbasaur" }], ["# Hello", "\0e1"])).toEqual("# Hello\nBulbasaur");
+    expect(s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e1"])).toEqual("\nBulbasaur");
+    expect(s([{ ...header(), species: "bulbasaur" }], ["# Hello", "\0e1"])).toEqual(
+      "# Hello\nBulbasaur",
+    );
 
     expect(
       s(
         [
-          { v: 1, species: "bulbasaur" },
-          { v: 1, species: "ivysaur" },
-          { v: 1, species: "venusaur" },
+          { ...header(), species: "bulbasaur" },
+          { ...header(), species: "ivysaur" },
+          { ...header(), species: "venusaur" },
         ],
         ["# Best Starters", "\0e3", "\0b2"],
       ),
@@ -57,15 +62,15 @@ describe(serializePokemonListToText, () => {
   });
 
   test("text diff being longer than list is ignored", () => {
-    expect(s([{ v: 1, species: "bulbasaur" }], ["\0b1", "\0e2"])).toEqual("\nBulbasaur");
+    expect(s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e2"])).toEqual("\nBulbasaur");
   });
 
   test("list being longer than text diff is ignored", () => {
     expect(
       s(
         [
-          { v: 1, species: "bulbasaur" },
-          { v: 1, species: "ivysaur" },
+          { ...header(), species: "bulbasaur" },
+          { ...header(), species: "ivysaur" },
         ],
         ["\0b1", "\0e1"],
       ),
@@ -73,15 +78,15 @@ describe(serializePokemonListToText, () => {
   });
 
   test("both of those can be made to throw", () => {
-    expect(() => s([{ v: 1, species: "bulbasaur" }], ["\0b1", "\0e2"], true)).toThrow(
+    expect(() => s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e2"], true)).toThrow(
       new Error("Text diff entry count exceeded Pokemon list length"),
     );
 
     expect(() =>
       s(
         [
-          { v: 1, species: "bulbasaur" },
-          { v: 1, species: "ivysaur" },
+          { ...header(), species: "bulbasaur" },
+          { ...header(), species: "ivysaur" },
         ],
         ["\0b1", "\0e1"],
         true,
@@ -90,7 +95,7 @@ describe(serializePokemonListToText, () => {
   });
 
   test("except with a trivial diff, which is always ignored", () => {
-    s([{ v: 1, species: "bulbasaur" }], [], true);
-    s([{ v: 1, species: "bulbasaur" }], ["\0e2"], true);
+    s([{ ...header(), species: "bulbasaur" }], [], true);
+    s([{ ...header(), species: "bulbasaur" }], ["\0e2"], true);
   });
 });

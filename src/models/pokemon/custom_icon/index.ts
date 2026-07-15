@@ -28,10 +28,10 @@ export const CustomIcons = createModel(
       metadata.changed.value;
 
       const projectId = projects.active.value.id.value;
-      const keysCount = metadata.pokemonKeys.value.size;
+      const idsCount = metadata.pokemonIds.value.size;
       const modeKey = mode.key.value;
 
-      if (keysCount > 0 && modeKey === "icons") {
+      if (idsCount > 0 && modeKey === "icons") {
         getCustomIconDbEntries(projectId, (entries) => {
           if (entries.length === 0) {
             loadedEntries.value = IMap();
@@ -42,14 +42,14 @@ export const CustomIcons = createModel(
 
           for (const entry of entries) {
             blobToDataUrl(entry.blob, (dataUrl) => {
-              newEntries.set(entry.pokemonKey, { dataUrl });
+              newEntries.set(entry.pokemonId, { dataUrl });
               if (newEntries.size === entries.length) {
                 loadedEntries.value = IMap(newEntries);
               }
             });
           }
         });
-      } else if (keysCount === 0) {
+      } else if (idsCount === 0) {
         loadedEntries.value = IMap();
       }
     });
@@ -57,14 +57,14 @@ export const CustomIcons = createModel(
     return {
       loadedEntries: readonly(loadedEntries),
       metadata,
-      upload(pokemonKey: string, blob: Blob) {
-        addCustomIconsDbEntry({ pokemonKey, blob, projectId: projects.active.value.id.value }, () =>
-          metadata.addPokemonKey(pokemonKey),
+      upload(pokemonId: string, blob: Blob) {
+        addCustomIconsDbEntry({ pokemonId, blob, projectId: projects.active.value.id.value }, () =>
+          metadata.addPokemonId(pokemonId),
         );
       },
-      delete(pokemonKey: string) {
-        deleteCustomIconsDbEntry({ pokemonKey, projectId: projects.active.value.id.value }, () =>
-          metadata.deletePokemonKey(pokemonKey),
+      delete(pokemonId: string) {
+        deleteCustomIconsDbEntry({ pokemonId, projectId: projects.active.value.id.value }, () =>
+          metadata.deletePokemonId(pokemonId),
         );
       },
       toRawSaved(): RawSavedCustomIcons {
@@ -72,15 +72,15 @@ export const CustomIcons = createModel(
       },
       setFromRawSaved(raw: RawSavedCustomIcons) {
         Promise.all(
-          Object.entries(raw.all).map(async ([pokemonKey, { dataUrl }]) => {
+          Object.entries(raw.all).map(async ([pokemonId, { dataUrl }]) => {
             const blob = await fetch(dataUrl).then((res) => res.blob());
-            return { pokemonKey, blob };
+            return { pokemonId, blob };
           }),
         ).then((entries) => {
           addBulkCustomIconsDbEntries(projects.active.value.id.value, entries, () => {
             metadata.setFromRaw({
               v: CUSTOM_ICONS_METADATA_VERSION,
-              pokemonKeys: entries.map((e) => e.pokemonKey),
+              pokemonIds: entries.map((e) => e.pokemonId),
             });
           });
         });

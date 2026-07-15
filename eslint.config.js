@@ -11,12 +11,26 @@ export default defineConfig([
     languageOptions: { globals: globals.browser },
     rules: {
       "no-console": "error",
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "nanoid",
+              message: "Use `id` from utils/id.ts instead.",
+            },
+          ],
+        },
+      ],
     },
   },
   tseslint.configs.recommended,
   {
     rules: {
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
       // Sometimes you need to explicitly access signals in effects just to subscribe to them.
       "@typescript-eslint/no-unused-expressions": "off",
     },

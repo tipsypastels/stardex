@@ -9,8 +9,6 @@ export interface AddCustomProps {
   onCancel(): void;
 }
 
-// TODO: This never checks that a Pokemon with that key isn't in the dex.
-// It's a no-op but it still lets you specify types.
 export function AddCustom({ onSubmit, onCancel }: AddCustomProps) {
   const type1 = useSignal("");
   const type2 = useSignal("");

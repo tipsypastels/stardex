@@ -1,6 +1,7 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList, Map as IMap } from "immutable";
-import { POKEMONS, type Pokemon, type RawPokemon } from ".";
+import { BUILTIN_POKEMONS, CUSTOM_POKEMONS, POKEMONS, type Pokemon, type RawPokemon } from ".";
+import { id } from "../../state/id";
 import { makeLifter, readonly, type Lifter } from "../../utils/signal";
 import { stored } from "../../utils/storage";
 import type { Region } from "../region";
@@ -29,7 +30,7 @@ export type PokemonList = InstanceType<typeof PokemonList>;
 export const PokemonList = createModel(
   ($all: Pokemon[], $textDiff: string[] | undefined, lifter: Lifter) => {
     const all = signal(IList($all));
-    const indices = computed(() => IMap(all.value.map((p, i) => [p.key.value, i])));
+    const indicesById = computed(() => IMap(all.value.map((p, i) => [p.id.value, i])));
     const size = computed(() => all.value.size);
 
     const textDiff = new PokemonListTextDiff($textDiff);
@@ -45,24 +46,23 @@ export const PokemonList = createModel(
     effect(onChange);
     lifter.onChange(onChange);
 
+    function push(pokemons: Pokemon[]) {
+      all.value = all.value.push(...pokemons);
+    }
+
     return {
       all: readonly(all),
-      indices: readonly(indices),
+      indicesById,
       size,
       textDiff,
-      has(pokemon: Pokemon) {
-        return this.hasKey(pokemon.key.value);
-      },
-      hasKey(key: string) {
-        return indices.value.has(key);
-      },
       get(index: number) {
         return all.value.get(index);
       },
-      push(...makePokemons: ((lifter: Lifter) => Pokemon)[]) {
-        all.value = all.value.push(
-          ...makePokemons.map((f) => f(lifter)).filter((p) => !this.has(p)),
-        );
+      pushBuiltins(speciesKeys: string[]) {
+        push(speciesKeys.map((speciesKey) => BUILTIN_POKEMONS.of(speciesKey, lifter)));
+      },
+      pushCustom(name: string, typeKeys: string[]) {
+        push([CUSTOM_POKEMONS.of(name, typeKeys, lifter)]);
       },
       move(index: number, jndex: number) {
         const value = all.value.get(index);
@@ -86,6 +86,7 @@ export const PokemonList = createModel(
             POKEMONS.from(
               {
                 v: POKEMON_VERSION,
+                id: id(),
                 species: member.speciesKey,
                 types: member.getAltTypeKeys(),
               },

@@ -2,11 +2,9 @@ import { batch, useComputed, useSignal } from "@preact/signals";
 import { Show } from "@preact/signals/utils";
 import Fuse from "fuse.js";
 import { useContext, useRef } from "preact/hooks";
-import { BUILTIN_POKEMONS, CUSTOM_POKEMONS } from "../../../models/pokemon";
 import { EVOLUTION_LINES } from "../../../models/pokemon/evolution_line";
 import { Species, SPECIES } from "../../../models/pokemon/species";
 import { PokemonsContext } from "../../../state/context";
-import type { Lifter } from "../../../utils/signal";
 import { capitalizeWords } from "../../../utils/string";
 import { Button } from "../../common/button";
 import { useHotkey } from "../../layout/hotkeys";
@@ -46,37 +44,23 @@ export function AddPokemon() {
 
   function addPokemon(species: Species) {
     batch(() => {
-      if (pokemons.hasKey(species.key)) {
-        alert(`${species.name} is already in your Pokédex!`);
-      } else {
-        pokemons.push((lifter) => BUILTIN_POKEMONS.of(species.key, lifter));
-      }
+      pokemons.pushBuiltins([species.key]);
       input.value = "";
     });
   }
 
   function addFamily(family: Species[]) {
     batch(() => {
-      const notAlreadyIncluded = family.filter((species) => !pokemons.hasKey(species.key));
-      if (notAlreadyIncluded.length === 0) {
-        alert(`The ${family[0].name} family is already in your Pokédex!`);
-      } else {
-        pokemons.push(
-          ...notAlreadyIncluded.map(
-            (species) => (lifter: Lifter) => BUILTIN_POKEMONS.of(species.key, lifter),
-          ),
-        );
-      }
+      pokemons.pushBuiltins(family.map((species) => species.key));
       input.value = "";
     });
   }
 
   function addCustom(typeKeys: string[]) {
-    const key = input.value.toLowerCase();
     const name = inputCapitalizedWords.value;
 
     batch(() => {
-      pokemons.push((lifter) => CUSTOM_POKEMONS.of(key, name, typeKeys, lifter));
+      pokemons.pushCustom(name, typeKeys);
       input.value = "";
       addingCustom.value = false;
     });

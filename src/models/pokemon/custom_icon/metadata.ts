@@ -8,46 +8,46 @@ const store = stored<RawCustomIconsMetadata, Dumped>("stardex_custom_icons_metad
 
 export interface RawCustomIconsMetadata {
   v: typeof CUSTOM_ICONS_METADATA_VERSION;
-  pokemonKeys: string[];
+  pokemonIds: string[];
 }
 
 interface Dumped {
   v: typeof CUSTOM_ICONS_METADATA_VERSION;
-  pokemonKeys: ISet<string>;
+  pokemonIds: ISet<string>;
 }
 
 export type CustomIconsMetadata = InstanceType<typeof CustomIconsMetadata>;
 
 export const CustomIconsMetadata = createModel(($raw: RawCustomIconsMetadata) => {
-  const pokemonKeys = signal(ISet($raw.pokemonKeys));
+  const pokemonIds = signal(ISet($raw.pokemonIds));
   const changed = signal(0);
 
   effect(() => {
     store.dump({
       v: CUSTOM_ICONS_METADATA_VERSION,
-      pokemonKeys: pokemonKeys.value,
+      pokemonIds: pokemonIds.value,
     });
   });
 
   return {
-    pokemonKeys: readonly(pokemonKeys),
+    pokemonIds: readonly(pokemonIds),
     changed: readonly(changed),
-    addPokemonKey(pokemonKey: string) {
-      pokemonKeys.value = pokemonKeys.value.add(pokemonKey);
+    addPokemonId(pokemonId: string) {
+      pokemonIds.value = pokemonIds.value.add(pokemonId);
       changed.value++;
     },
-    deletePokemonKey(pokemonKey: string) {
-      pokemonKeys.value = pokemonKeys.value.delete(pokemonKey);
+    deletePokemonId(pokemonId: string) {
+      pokemonIds.value = pokemonIds.value.delete(pokemonId);
       changed.value++;
     },
     setFromRaw(raw: RawCustomIconsMetadata) {
-      pokemonKeys.value = ISet(raw.pokemonKeys);
+      pokemonIds.value = ISet(raw.pokemonIds);
       changed.value++;
     },
     toRaw(): RawCustomIconsMetadata {
       return {
         v: CUSTOM_ICONS_METADATA_VERSION,
-        pokemonKeys: pokemonKeys.value.toArray(),
+        pokemonIds: pokemonIds.value.toArray(),
       };
     },
     toJSON(): unknown {
@@ -59,7 +59,7 @@ export const CustomIconsMetadata = createModel(($raw: RawCustomIconsMetadata) =>
 export const CUSTOM_ICONS_METADATAS = {
   initial() {
     return new CustomIconsMetadata(
-      store.load() ?? { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
+      store.load() ?? { v: CUSTOM_ICONS_METADATA_VERSION, pokemonIds: [] },
     );
   },
 };

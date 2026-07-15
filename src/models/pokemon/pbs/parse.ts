@@ -1,4 +1,5 @@
-import type { RawPokemon } from "..";
+import type { RawBuiltinPokemon, RawPokemon } from "..";
+import { id } from "../../../state/id";
 import { capitalize } from "../../../utils/string";
 import { compareTypeKeysUnordered } from "../../type/key_pair";
 import { POKEMON_VERSION } from "../../versioned";
@@ -90,12 +91,17 @@ class Builder {
       const types = entry.types?.toLowerCase().split(/\s*,\s*/);
 
       if (species) {
-        const typesIfDifferent =
-          types && !compareTypeKeysUnordered(types, species.typeKeys) ? types : undefined;
-
-        pokemons.push({ v: POKEMON_VERSION, species: key, types: typesIfDifferent });
+        const pokemon: RawBuiltinPokemon = {
+          v: POKEMON_VERSION,
+          id: id(),
+          species: key,
+        };
+        if (types && !compareTypeKeysUnordered(types, species.typeKeys)) {
+          pokemon.types = types;
+        }
+        pokemons.push(pokemon);
       } else if (types) {
-        pokemons.push({ v: POKEMON_VERSION, key, name, types });
+        pokemons.push({ v: POKEMON_VERSION, id: id(), name, types });
       } else {
         errors.push(new PBSMissingTypesError(entry));
       }

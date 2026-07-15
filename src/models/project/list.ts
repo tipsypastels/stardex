@@ -1,5 +1,6 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
 import { List as IList } from "immutable";
+import { id } from "../../state/id";
 import { assert } from "../../utils/assert";
 import { makeLifter, type Lifter } from "../../utils/signal";
 import { stored } from "../../utils/storage";
@@ -79,7 +80,7 @@ export const ProjectList = createModel(
           new Project(
             {
               v: PROJECT_VERSION,
-              id: crypto.randomUUID(),
+              id: id(),
               name: `Untitled Project ${all.value.size + 1}`,
               active: false,
               models: {
@@ -87,7 +88,7 @@ export const ProjectList = createModel(
                 regions: REGIONS.recommendedKeys,
                 strictness: STRICTNESSES.defaultKey,
                 pokedexMode: POKEDEX_MODES.defaultKey,
-                customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonKeys: [] },
+                customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonIds: [] },
                 excludedTypes: { v: EXCLUDED_TYPES_VERSION, all: [] },
               },
             },

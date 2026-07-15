@@ -1,4 +1,5 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
+import { id } from "../../state/id";
 import { readonly, type Lifter } from "../../utils/signal";
 import { matchTypeKeysUnorderedInArray, TypeKeyPair } from "../type/key_pair";
 import { POKEMON_VERSION, upgradeRawBuiltinPokemon, upgradeRawCustomPokemon } from "../versioned";
@@ -15,6 +16,7 @@ import { SPECIES } from "./species";
 
 export interface RawSharedPokemon {
   v: typeof POKEMON_VERSION;
+  id: string;
   exclude?: boolean;
 }
 
@@ -24,7 +26,6 @@ export interface RawBuiltinPokemon extends RawSharedPokemon {
 }
 
 export interface RawCustomPokemon extends RawSharedPokemon {
-  key: string;
   name: string;
   types: string[];
 }
@@ -54,7 +55,7 @@ export type BuiltinPokemon = InstanceType<typeof BuiltinPokemon>;
 
 export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon, lifter: Lifter) => {
   const species = signal(SPECIES.of(raw.species));
-  const key = computed(() => species.value.key);
+  const id = signal(raw.id);
   const name = computed(() => species.value.name);
 
   const typeKeyPair = new TypeKeyPair(raw.types ?? species.value.typeKeys, {
@@ -77,7 +78,7 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon, lifter: Lifte
 
   return {
     species: readonly(species),
-    key,
+    id: readonly(id),
     name,
     typeKeys: typeKeyPair.keys,
     typeChanged: typeKeyPair.changed,
@@ -106,7 +107,7 @@ export const BuiltinPokemon = createModel((raw: RawBuiltinPokemon, lifter: Lifte
 
 export const BUILTIN_POKEMONS = (() => {
   function of(key: string, lifter: Lifter) {
-    return new BuiltinPokemon({ v: POKEMON_VERSION, species: key }, lifter);
+    return new BuiltinPokemon({ v: POKEMON_VERSION, id: id(), species: key }, lifter);
   }
 
   function from(raw: RawBuiltinPokemon | V0_RawBuiltinPokemon, lifter: Lifter) {
@@ -123,7 +124,7 @@ export const BUILTIN_POKEMONS = (() => {
 export type CustomPokemon = InstanceType<typeof CustomPokemon>;
 
 export const CustomPokemon = createModel((raw: RawCustomPokemon, lifter: Lifter) => {
-  const key = signal(raw.key);
+  const id = signal(raw.id);
   const name = signal(raw.name);
 
   const typeKeyPair = new TypeKeyPair(raw.types);
@@ -142,7 +143,7 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon, lifter: Lifter)
 
   return {
     species,
-    key,
+    id: readonly(id),
     name,
     typeKeys: typeKeyPair.keys,
     typeChanged: typeKeyPair.changed,
@@ -158,7 +159,6 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon, lifter: Lifter)
     toRaw(): RawCustomPokemon {
       return {
         ...raw,
-        key: key.value,
         name: name.value,
         types: typeKeyPair.keys.value,
         exclude: exclude.value,
@@ -171,8 +171,8 @@ export const CustomPokemon = createModel((raw: RawCustomPokemon, lifter: Lifter)
 });
 
 export const CUSTOM_POKEMONS = (() => {
-  function of(key: string, name: string, typeKeys: string[], lifter: Lifter) {
-    return new CustomPokemon({ v: POKEMON_VERSION, key, name, types: typeKeys }, lifter);
+  function of(name: string, typeKeys: string[], lifter: Lifter) {
+    return new CustomPokemon({ v: POKEMON_VERSION, id: id(), name, types: typeKeys }, lifter);
   }
 
   function from(raw: RawCustomPokemon | V0_RawCustomPokemon, lifter: Lifter) {

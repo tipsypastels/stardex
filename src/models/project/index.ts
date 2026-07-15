@@ -1,4 +1,5 @@
 import { computed, createModel, effect, signal, type ReadonlySignal } from "@preact/signals";
+import { id } from "../../state/id";
 import { readonly, type Lifter } from "../../utils/signal";
 import type { PokedexModeKey } from "../pokedex/mode";
 import type { RawCustomIconsMetadata } from "../pokemon/custom_icon/metadata";
@@ -73,7 +74,7 @@ export const PROJECTS = (() => {
     return new Project(
       {
         v: PROJECT_VERSION,
-        id: crypto.randomUUID(),
+        id: id(),
         name: `Copy of ${name}`,
         active: false,
         models,

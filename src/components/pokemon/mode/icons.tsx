@@ -27,8 +27,8 @@ function Item({ pokemon, onClick }: ItemProps) {
   return (
     <li
       class="relative inline-flex justify-center data-[exclude=true]:opacity-50"
-      key={pokemon.key}
-      data-id={pokemon.key}
+      key={pokemon.id}
+      data-id={pokemon.id}
       data-exclude={pokemon.exclude}
     >
       <button data-handle class="cursor-pointer" onClick={onClick}>

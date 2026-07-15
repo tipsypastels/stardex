@@ -2,7 +2,7 @@
 
 export interface CustomIconsDbEntry {
   projectId: string;
-  pokemonKey: string;
+  pokemonId: string;
   blob: Blob;
 }
 
@@ -29,7 +29,7 @@ export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f: () => void) 
     const request = store.put(entry);
 
     request.onsuccess = () => {
-      console.log(`Custom icon "${entry.projectId}-${entry.pokemonKey}" uploaded!`);
+      console.log(`Custom icon "${entry.projectId}-${entry.pokemonId}" uploaded!`);
       f();
     };
   });
@@ -39,10 +39,10 @@ export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">
   withDb((db) => {
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
-    const request = store.delete([entry.projectId, entry.pokemonKey]);
+    const request = store.delete([entry.projectId, entry.pokemonId]);
 
     request.onsuccess = () => {
-      console.log(`Custom icon "${entry.projectId}-${entry.pokemonKey}" deleted!`);
+      console.log(`Custom icon "${entry.projectId}-${entry.pokemonId}" deleted!`);
       f();
     };
   });
@@ -67,7 +67,7 @@ export function addBulkCustomIconsDbEntries(
 
       request.onerror = (event) => {
         console.error(
-          `Failed to add custom icon "${projectId}-${entry.pokemonKey}" during bulk.`,
+          `Failed to add custom icon "${projectId}-${entry.pokemonId}" during bulk.`,
           // @ts-expect-error Untyped.
           event.target.error,
         );
@@ -106,7 +106,7 @@ function withDb(f: (db: IDBDatabase) => void) {
           console.error("Database error", event.target.error);
         };
 
-        const store = db.createObjectStore("customIcons", { keyPath: ["projectId", "pokemonKey"] });
+        const store = db.createObjectStore("customIcons", { keyPath: ["projectId", "pokemonId"] });
         store.createIndex("projectId", "projectId");
 
         console.log("Database upgraded.");

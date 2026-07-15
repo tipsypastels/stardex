@@ -3,6 +3,7 @@ import { parsePokemonListText } from "./parse";
 
 describe(parsePokemonListText, () => {
   const p = parsePokemonListText;
+  const pHeader = () => ({ v: 1, id: expect.any(String) });
 
   test("empty", () => {
     expect(p("")).toEqual({ pokemons: [], errors: [], textDiff: undefined });
@@ -10,12 +11,12 @@ describe(parsePokemonListText, () => {
 
   test("single", () => {
     expect(p("charmander")).toEqual({
-      pokemons: [{ v: 1, species: "charmander" }],
+      pokemons: [{ ...pHeader(), species: "charmander" }],
       errors: [],
       textDiff: undefined,
     });
     expect(p("Charmander")).toEqual({
-      pokemons: [{ v: 1, species: "charmander" }],
+      pokemons: [{ ...pHeader(), species: "charmander" }],
       errors: [],
       textDiff: undefined,
     });
@@ -24,9 +25,9 @@ describe(parsePokemonListText, () => {
   test("multiple", () => {
     expect(p("charmander\ncharmeleon\ncharizard")).toEqual({
       pokemons: [
-        { v: 1, species: "charmander" },
-        { v: 1, species: "charmeleon" },
-        { v: 1, species: "charizard" },
+        { ...pHeader(), species: "charmander" },
+        { ...pHeader(), species: "charmeleon" },
+        { ...pHeader(), species: "charizard" },
       ],
       errors: [],
       textDiff: undefined,
@@ -36,15 +37,15 @@ describe(parsePokemonListText, () => {
   test("blank lines", () => {
     expect(p("\n")).toEqual({ pokemons: [], errors: [], textDiff: ["\0b2"] });
     expect(p("\ncharmander")).toEqual({
-      pokemons: [{ v: 1, species: "charmander" }],
+      pokemons: [{ ...pHeader(), species: "charmander" }],
       errors: [],
       textDiff: ["\0b1", "\0e1"],
     });
     expect(p("charmander\n\ncharmeleon\n\ncharizard")).toEqual({
       pokemons: [
-        { v: 1, species: "charmander" },
-        { v: 1, species: "charmeleon" },
-        { v: 1, species: "charizard" },
+        { ...pHeader(), species: "charmander" },
+        { ...pHeader(), species: "charmeleon" },
+        { ...pHeader(), species: "charizard" },
       ],
       errors: [],
       textDiff: ["\0e1", "\0b1", "\0e1", "\0b1", "\0e1"],
@@ -53,7 +54,7 @@ describe(parsePokemonListText, () => {
 
   test("comments", () => {
     expect(p("# hello!\ncharmander")).toEqual({
-      pokemons: [{ v: 1, species: "charmander" }],
+      pokemons: [{ ...pHeader(), species: "charmander" }],
       errors: [],
       textDiff: ["# hello!", "\0e1"],
     });
@@ -61,7 +62,7 @@ describe(parsePokemonListText, () => {
 
   test("trimming", () => {
     expect(p(" # hello!  \n   charmander  ")).toEqual({
-      pokemons: [{ v: 1, species: "charmander" }],
+      pokemons: [{ ...pHeader(), species: "charmander" }],
       errors: [],
       textDiff: ["# hello!", "\0e1"],
     });
@@ -69,12 +70,12 @@ describe(parsePokemonListText, () => {
 
   test("exclude", () => {
     expect(p("charmander @exclude")).toEqual({
-      pokemons: [{ v: 1, species: "charmander", exclude: true }],
+      pokemons: [{ ...pHeader(), species: "charmander", exclude: true }],
       errors: [],
       textDiff: undefined,
     });
     expect(p("charmander @ignore")).toEqual({
-      pokemons: [{ v: 1, species: "charmander", exclude: true }],
+      pokemons: [{ ...pHeader(), species: "charmander", exclude: true }],
       errors: [],
       textDiff: undefined,
     });
@@ -82,12 +83,12 @@ describe(parsePokemonListText, () => {
 
   test("types", () => {
     expect(p("charmander (water)")).toEqual({
-      pokemons: [{ v: 1, species: "charmander", types: ["water"] }],
+      pokemons: [{ ...pHeader(), species: "charmander", types: ["water"] }],
       errors: [],
       textDiff: undefined,
     });
     expect(p("charmander (Water/Flying)")).toEqual({
-      pokemons: [{ v: 1, species: "charmander", types: ["water", "flying"] }],
+      pokemons: [{ ...pHeader(), species: "charmander", types: ["water", "flying"] }],
       errors: [],
       textDiff: undefined,
     });
@@ -95,12 +96,24 @@ describe(parsePokemonListText, () => {
 
   test("customs", () => {
     expect(p("foo (fire)")).toEqual({
-      pokemons: [{ v: 1, key: "foo", name: "foo", types: ["fire"] }],
+      pokemons: [{ ...pHeader(), name: "foo", types: ["fire"] }],
       errors: [],
       textDiff: undefined,
     });
     expect(p("foo (fire/fantasy)")).toEqual({
-      pokemons: [{ v: 1, key: "foo", name: "foo", types: ["fire", "fantasy"] }],
+      pokemons: [{ ...pHeader(), name: "foo", types: ["fire", "fantasy"] }],
+      errors: [],
+      textDiff: undefined,
+    });
+  });
+
+  test("duplicates", () => {
+    expect(p("charmander\ncharmander\ncharmander (water)")).toEqual({
+      pokemons: [
+        { ...pHeader(), species: "charmander" },
+        { ...pHeader(), species: "charmander" },
+        { ...pHeader(), species: "charmander", types: ["water"] },
+      ],
       errors: [],
       textDiff: undefined,
     });
@@ -113,10 +126,10 @@ describe(parsePokemonListText, () => {
       ),
     ).toEqual({
       pokemons: [
-        { v: 1, species: "charmander", types: ["water"] },
-        { v: 1, species: "charmeleon", types: ["water"], exclude: true },
-        { v: 1, species: "charizard", types: ["water", "flying"] },
-        { v: 1, key: "foo", name: "foo", types: ["fire", "fantasy"], exclude: true },
+        { ...pHeader(), species: "charmander", types: ["water"] },
+        { ...pHeader(), species: "charmeleon", types: ["water"], exclude: true },
+        { ...pHeader(), species: "charizard", types: ["water", "flying"] },
+        { ...pHeader(), name: "foo", types: ["fire", "fantasy"], exclude: true },
       ],
       errors: [],
       textDiff: ["# the gauntlet:", "\0e3", "\0b1", "\0e1"],
@@ -136,12 +149,12 @@ describe(parsePokemonListText, () => {
 
     test("unimplemented legacy modifier", () => {
       expect(p("charmander @alt")).toEqual({
-        pokemons: [{ v: 1, species: "charmander" }],
+        pokemons: [{ ...pHeader(), species: "charmander" }],
         errors: [error("UnimplementedLegacyModifier")],
         textDiff: undefined,
       });
       expect(p("charmander @filler")).toEqual({
-        pokemons: [{ v: 1, species: "charmander" }],
+        pokemons: [{ ...pHeader(), species: "charmander" }],
         errors: [error("UnimplementedLegacyModifier")],
         textDiff: undefined,
       });
@@ -149,7 +162,7 @@ describe(parsePokemonListText, () => {
 
     test("unknown modifer", () => {
       expect(p("charmander @foo")).toEqual({
-        pokemons: [{ v: 1, species: "charmander" }],
+        pokemons: [{ ...pHeader(), species: "charmander" }],
         errors: [error("UnknownModifier")],
         textDiff: undefined,
       });

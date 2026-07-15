@@ -6,12 +6,14 @@ describe(parsePBSFiles, () => {
   const p = (...texts: string[]) =>
     parsePBSFiles(texts.map((t, i) => ({ text: t, name: `f${i}` })));
 
+  const header = () => ({ v: 1, id: expect.any(String) });
+
   function expectSampleToMatchAllPokemon(name: string) {
     const pokemons = p(fs.readFileSync(`samples/pbs/${name}`, "utf-8"));
 
     for (const pokemon of pokemons) {
       expect(pokemon).toEqual({
-        v: 1,
+        ...header(),
         species: expect.stringMatching(/^[a-z0-9-]+$/),
       });
     }
@@ -31,58 +33,63 @@ describe(parsePBSFiles, () => {
 
   test("basic", () => {
     expect(p("[BULBASAUR]\nName=Bulbasaur\nTypes=GRASS,POISON")).toEqual([
-      { v: 1, species: "bulbasaur" },
+      { ...header(), species: "bulbasaur" },
     ]);
   });
 
   test("spacing", () => {
     expect(p("  [ BULBASAUR  ]\n Name =  Bulbasaur \nTypes=GRASS , POISON ")).toEqual([
-      { v: 1, species: "bulbasaur" },
+      { ...header(), species: "bulbasaur" },
     ]);
   });
 
   test("comments", () => {
-    expect(p("# foo\n[BULBASAUR]")).toEqual([{ v: 1, species: "bulbasaur" }]);
+    expect(p("# foo\n[BULBASAUR]")).toEqual([{ ...header(), species: "bulbasaur" }]);
     expect(p("[FOO] #foo\nName=Bar #baz\nTypes=NORMAL")).toEqual([
-      { v: 1, key: "bar", name: "Bar", types: ["normal"] },
+      { ...header(), name: "Bar", types: ["normal"] },
     ]);
   });
 
   test("invalid lines are ignored", () => {
     expect(p("xd")).toEqual([]);
-    expect(p("[BULBASAUR]\nxd")).toEqual([{ v: 1, species: "bulbasaur" }]);
+    expect(p("[BULBASAUR]\nxd")).toEqual([{ ...header(), species: "bulbasaur" }]);
   });
 
   test("name can be omitted if it's just capitalize(id)", () => {
-    expect(p("[BULBASAUR]\nTypes=GRASS,POISON")).toEqual([{ v: 1, species: "bulbasaur" }]);
-    expect(p("[FOO]\nTypes=NORMAL")).toEqual([
-      { v: 1, key: "foo", name: "Foo", types: ["normal"] },
-    ]);
+    expect(p("[BULBASAUR]\nTypes=GRASS,POISON")).toEqual([{ ...header(), species: "bulbasaur" }]);
+    expect(p("[FOO]\nTypes=NORMAL")).toEqual([{ ...header(), name: "Foo", types: ["normal"] }]);
     expect(p("[MRMIME]\nTypes=PSYCHIC")).toEqual([
-      { v: 1, key: "mrmime", name: "Mrmime", types: ["psychic"] },
+      { ...header(), name: "Mrmime", types: ["psychic"] },
     ]);
   });
 
   test("builtin pokemon can omit types", () => {
-    expect(p("[BULBASAUR]\nName=Bulbasaur")).toEqual([{ v: 1, species: "bulbasaur" }]);
-    expect(p("[BULBASAUR]")).toEqual([{ v: 1, species: "bulbasaur" }]);
+    expect(p("[BULBASAUR]\nName=Bulbasaur")).toEqual([{ ...header(), species: "bulbasaur" }]);
+    expect(p("[BULBASAUR]")).toEqual([{ ...header(), species: "bulbasaur" }]);
   });
 
   test("multiple omitting everything", () => {
     expect(p("[BULBASAUR]\n[IVYSAUR]")).toEqual([
-      { v: 1, species: "bulbasaur" },
-      { v: 1, species: "ivysaur" },
+      { ...header(), species: "bulbasaur" },
+      { ...header(), species: "ivysaur" },
     ]);
   });
 
   test("forms are ignored", () => {
-    expect(p("[FOO,1]\nName=Foo\n[BULBASAUR]")).toEqual([{ v: 1, species: "bulbasaur" }]);
+    expect(p("[FOO,1]\nName=Foo\n[BULBASAUR]")).toEqual([{ ...header(), species: "bulbasaur" }]);
+  });
+
+  test("duplicates are allowed", () => {
+    expect(p("[BULBASAUR]\n[BULBASAUR]")).toEqual([
+      { ...header(), species: "bulbasaur" },
+      { ...header(), species: "bulbasaur" },
+    ]);
   });
 
   test("multiple files", () => {
     expect(p("[BULBASAUR]", "[IVYSAUR]")).toEqual([
-      { v: 1, species: "bulbasaur" },
-      { v: 1, species: "ivysaur" },
+      { ...header(), species: "bulbasaur" },
+      { ...header(), species: "ivysaur" },
     ]);
   });
 
