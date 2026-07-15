@@ -101,6 +101,12 @@ function withDb(f: (db: IDBDatabase) => void) {
         // @ts-expect-error Untyped.
         const db: IDBDatabase = event.target.result;
 
+        db.onversionchange = () => {
+          if (dropping) {
+            return db.close();
+          }
+        };
+
         db.onerror = (event) => {
           // @ts-expect-error Untyped.
           console.error("Database error", event.target.error);
@@ -126,4 +132,12 @@ function withDb(f: (db: IDBDatabase) => void) {
       };
     }
   }
+}
+
+let dropping = false;
+
+export function dropDb(f: () => void) {
+  dropping = true;
+  const request = indexedDB.deleteDatabase("stardex");
+  request.onsuccess = f;
 }

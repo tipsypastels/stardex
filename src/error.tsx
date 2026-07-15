@@ -2,6 +2,7 @@ import { useSignal } from "@preact/signals";
 import { Component, type ComponentChildren, type ErrorInfo } from "preact";
 import { Button } from "./components/common/button";
 import { ButtonLink, Link } from "./components/common/link";
+import { unsafeWipeEverythingAndReload } from "./state/wipe";
 import { saveToFile } from "./utils/file";
 
 export interface ErrorBoundaryProps {
@@ -85,9 +86,7 @@ function Error({ error, errorInfo }: ErrorProps) {
     ) {
       return;
     }
-
-    localStorage.clear();
-    location.reload();
+    unsafeWipeEverythingAndReload();
   }
 
   return (
