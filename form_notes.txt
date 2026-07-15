@@ -1,0 +1,46 @@
+OBVIOUSLY, already in
+- regional forms
+
+YES, I GUESS
+mostly these are pokemon that aren't really what i envision stardex for, but i guess if you're using it as a more general planner it could be useful to specify which will be in the game. and you might want them to be part of the metrics, unsure
+
+- megas 
+- primals
+- origin forms
+- oricorio
+- lycanroc
+- necrozma
+- crowned forms
+- urshifu
+- calyrex riders
+- ogerpon
+- ursaluna blood moon
+
+UNSURE
+mostly these are pokemon that i wonder if they're useful to specify because it seems weird to have only one of their forms. a lot of them are intrinsically connected to form changing
+
+- deoxys (also they're all the same type)
+- rotoms
+- burmy/wormadam
+- skymin
+- arceus (i have to wonder if pokemon that can change to every type are actually useful for metrics. is anyone going to be inserting 18 differently typed arceuses into their pokedex?)
+- darmanitan (the regional forms are already in, but zen mode is not)
+- therian forms
+- kyurem
+- keldeo
+- hoopa (god i hate this thing)
+- silvally (see arceus)
+
+NO
+- everything cosmetic
+- everything gender based
+- anything in-battle only (castform, meloetta, aegislash, wishiwashi, cramorant, etc.)
+- unown (identical)
+- deerling/sawsbuck
+- genesect
+- ash greninja
+- zygarde
+- toxtricity
+- dada zarude
+- maushold
+- terapagos
