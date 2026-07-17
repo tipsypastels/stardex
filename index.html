@@ -2,12 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Stardex</title>
+
+    <meta name="theme-color" content="#65a30d" />
+    <meta property="description" content="Pokédex builder and analyzer." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stardex" />
+    <meta property="og:description" content="Pokédex builder and analyzer." />
+    <meta property="og:url" content="https://tipsypastels.github.io/stardex/" />
+    <meta property="og:image" content="https://tipsypastels.github.io/stardex/thumbnail.png" />
+
+    <link id="favicon" rel="icon" href="favicon.png" />
+
+    <link href="fonts/fa/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="fonts/fa/css/solid.min.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
+
+    <script>
+      if (localStorage.stardex_dark === "true") {
+        document.documentElement.classList.add("dark");
+        document.getElementById("favicon").href = "favicon_dark.png";
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <div id="root-modal"></div>
     <script type="module" src="/src/app.tsx"></script>
   </body>
 </html>

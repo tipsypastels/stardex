@@ -1,0 +1,17 @@
+{
+  "icons": {
+    "icon": "icons",
+    "name": "Icons",
+    "description": "Display your Pokédex as party icons."
+  },
+  "names": {
+    "icon": "diagram-cells",
+    "name": "Names",
+    "description": "Display your Pokédex as name cards."
+  },
+  "text": {
+    "icon": "pen-line",
+    "name": "Text",
+    "description": "Type all your Pokémon into a giant textbox."
+  }
+}

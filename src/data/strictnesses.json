@@ -1,0 +1,26 @@
+{
+  "easygoing": {
+    "name": "Easygoing",
+    "icon": "face-grin-squint",
+    "description": "If you're just trying out Stardex.",
+    "maximumRatioDifference": 0.1
+  },
+  "normal": {
+    "name": "Normal",
+    "icon": "face-smile",
+    "description": "If you're using Stardex as a rough guideline.",
+    "maximumRatioDifference": 0.04
+  },
+  "strict": {
+    "name": "Strict",
+    "icon": "face-raised-eyebrow",
+    "description": "If you're using Stardex as a strict guideline.",
+    "maximumRatioDifference": 0.02
+  },
+  "bitchy": {
+    "name": "Bitchy",
+    "icon": "face-angry-horns",
+    "description": "If you're here for a real fight.",
+    "maximumRatioDifference": 0.01
+  }
+}
