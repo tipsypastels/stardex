@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-footer: var(--footer);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-primary: var(--foreground-primary);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-lesser: var(--foreground-lesser);
+
+  --color-divider-light: var(--divider-light);
+  --color-divider-heavy: var(--divider-heavy);
+  --color-shadow: var(--shadow);
+
+  --font-*: initial;
+  --font-sans: Itim, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: Itim, ui-serif, Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  --font-mono: monospace;
+
+  --backdrop-opacity: var(--backdrop-opacity);
+}
+
+:root {
+  --background: white;
+  --primary: var(--color-lime-600);
+  --secondary: var(--color-mauve-500);
+  --warning: var(--color-amber-400);
+  --error: var(--color-red-600);
+  --footer: var(--secondary);
+
+  --divider-light: var(--color-slate-300);
+  --divider-heavy: var(--color-slate-700);
+
+  --foreground: black;
+  --foreground-primary: white;
+  --foreground-secondary: white;
+  --foreground-lesser: var(--color-slate-600);
+
+  --shadow: var(--color-slate-400);
+
+  --backdrop-opacity: 30%;
+}
+
+.dark {
+  --background: var(--color-slate-950);
+  --primary: var(--color-indigo-300);
+  --secondary: var(--color-slate-500);
+  --warning: var(--color-amber-400);
+  --error: var(--color-red-600);
+  --footer: var(--color-slate-900);
+
+  --divider-light: var(--color-slate-800);
+  --divider-heavy: var(--color-slate-700);
+
+  --foreground: var(--color-slate-400);
+  --foreground-primary: black;
+  --foreground-secondary: black;
+  --foreground-lesser: var(--color-slate-500);
+
+  --shadow: var(--color-black);
+
+  --backdrop-opacity: 60%;
+}
+
+@layer base {
+  * {
+    @apply touch-manipulation;
+  }
+
+  body {
+    @apply w-full bg-background text-foreground md:text-lg;
+  }
+
+  input:not([type]),
+  input[type="text"],
+  select {
+    @apply bg-background!;
+  }
+
+  code {
+    @apply text-sm md:text-base;
+  }
+}
+
+@utility dim {
+  @variant dark {
+    filter: brightness(0.75);
+  }
+}
+
+@utility wiggle {
+  animation: wiggle 1s infinite;
+}
+
+@utility keyboard-key {
+  @apply inline-block rounded-sm border border-[#e6e6e6] bg-white px-2 py-1 text-black;
+
+  /* Based on https://shhdharmen.github.io/keyboard-css/. */
+  box-shadow: 0 0 #d9d9d9, 0 0px #d9d9d9, 0 1px #d9d9d9, 0 2px #d9d9d9,
+    0 3px #d9d9d9, 0 4px #d9d9d9, 0 5px #d9d9d9, 2px 2.5px 4px #adb5bd,
+    0 -1px 2.5px #adb5bd;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(5deg);
+  }
+  95% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+html.has-modal body {
+  @apply max-md:overflow-y-hidden;
+}
