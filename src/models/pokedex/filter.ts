@@ -14,18 +14,36 @@ export const PokedexFilter = createModel(() => {
   };
 });
 
+export interface PokedexFilteredEntry {
+  pokemon: Pokemon;
+  unfilteredIndex: number;
+}
+
 export function runPokedexFilter(
   pokemons: Iterable<Pokemon>,
   state: PokedexFilterState | undefined,
 ) {
-  if (!state) return pokemons;
+  if (!state) return filterByNothing(pokemons);
   return filterByType(pokemons, state.typeKey);
 }
 
-function* filterByType(pokemons: Iterable<Pokemon>, typeKey: string) {
+function* filterByNothing(pokemons: Iterable<Pokemon>): Generator<PokedexFilteredEntry> {
+  let i = 0;
+  for (const pokemon of pokemons) {
+    yield { pokemon, unfilteredIndex: i };
+    i++;
+  }
+}
+
+function* filterByType(
+  pokemons: Iterable<Pokemon>,
+  typeKey: string,
+): Generator<PokedexFilteredEntry> {
+  let i = 0;
   for (const pokemon of pokemons) {
     if (pokemon.typeKeys.value.includes(typeKey)) {
-      yield pokemon;
+      yield { pokemon, unfilteredIndex: i };
     }
+    i++;
   }
 }

@@ -1,8 +1,7 @@
 import { batch, useSignal, type ReadonlySignal } from "@preact/signals";
 import { useContext, type FunctionComponent } from "preact/compat";
-import { PokedexFilter } from "../../../models/pokedex/filter";
+import { PokedexFilter, type PokedexFilteredEntry } from "../../../models/pokedex/filter";
 import type { PokedexModeKey } from "../../../models/pokedex/mode";
-import type { Pokemon } from "../../../models/pokemon";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import type { PokemonList } from "../../../models/pokemon/list";
 import { PokedexModeContext } from "../../../state/context";
@@ -33,23 +32,18 @@ export interface PokedexModeViewProps {
   filter: PokedexFilter;
   zapper: ReadonlySignal<boolean>;
   pokemons: PokemonList;
-  pokemonsFiltered: ReadonlySignal<Pokemon[]>;
+  filtered: ReadonlySignal<PokedexFilteredEntry[]>;
   setEditingIndex(index: number): void;
 }
 
 export interface PokedexModeProps {
   filter: PokedexFilter;
   pokemons: PokemonList;
-  pokemonsFiltered: ReadonlySignal<Pokemon[]>;
+  filtered: ReadonlySignal<PokedexFilteredEntry[]>;
   setEditingIndex(index: number): void;
 }
 
-export function PokedexMode({
-  filter,
-  pokemons,
-  pokemonsFiltered,
-  setEditingIndex,
-}: PokedexModeProps) {
+export function PokedexMode({ filter, pokemons, filtered, setEditingIndex }: PokedexModeProps) {
   const format = useContext(PokedexModeContext);
   const formatInfo = MODE_INFOS[format.key.value];
   const Component = formatInfo.component;
@@ -80,7 +74,7 @@ export function PokedexMode({
         filter={filter}
         zapper={zapper}
         pokemons={pokemons}
-        pokemonsFiltered={pokemonsFiltered}
+        filtered={filtered}
         setEditingIndex={setEditingIndex}
       />
     </>

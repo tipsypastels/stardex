@@ -24,7 +24,7 @@ function Inner({
   filter,
   zapper,
   pokemons,
-  pokemonsFiltered,
+  filtered,
   setEditingIndex,
   list,
   item,
@@ -38,19 +38,16 @@ function Inner({
         <>
           {/* Dummy, see useDraggable. */}
           <li class="hidden"></li>
-          <For each={pokemonsFiltered} getKey={(pokemon) => pokemon.id.value}>
-            {(pokemon) =>
+          <For each={filtered} getKey={(entry) => entry.pokemon.id.value}>
+            {({ pokemon, unfilteredIndex }) =>
               item(pokemon, () => {
-                // NOTE: We can't use the loop index here, that's the filtered index and we need
-                // the unfiltered index to do the lookup in the parent.
-                const index = pokemons.indicesById.value.get(pokemon.id.value)!;
                 if (zapper.value) {
                   batch(() => {
                     toasts.add("bolt", `Zapped ${pokemon.name.peek()}!`);
-                    pokemons.delete(index);
+                    pokemons.delete(unfilteredIndex);
                   });
                 } else {
-                  setEditingIndex(index);
+                  setEditingIndex(unfilteredIndex);
                 }
               })
             }

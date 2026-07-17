@@ -1,5 +1,5 @@
 import { computed, createModel, effect, signal } from "@preact/signals";
-import { List as IList, Map as IMap } from "immutable";
+import { List as IList } from "immutable";
 import { BUILTIN_POKEMONS, CUSTOM_POKEMONS, POKEMONS, type Pokemon, type RawPokemon } from ".";
 import { id } from "../../state/id";
 import { makeLifter, readonly, type Lifter } from "../../utils/signal";
@@ -30,7 +30,6 @@ export type PokemonList = InstanceType<typeof PokemonList>;
 export const PokemonList = createModel(
   ($all: Pokemon[], $textDiff: string[] | undefined, lifter: Lifter) => {
     const all = signal(IList($all));
-    const indicesById = computed(() => IMap(all.value.map((p, i) => [p.id.value, i])));
     const size = computed(() => all.value.size);
 
     const textDiff = new PokemonListTextDiff($textDiff);
@@ -52,7 +51,6 @@ export const PokemonList = createModel(
 
     return {
       all: readonly(all),
-      indicesById,
       size,
       textDiff,
       get(index: number) {

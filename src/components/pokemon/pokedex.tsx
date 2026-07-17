@@ -11,12 +11,10 @@ export function Pokedex() {
   const editingIndex = useSignal<number>();
   const filter = useModel(PokedexFilter);
   const pokemons = useContext(PokemonsContext);
-  const pokemonsFiltered = useComputed(() => [
-    ...runPokedexFilter(pokemons.all.value, filter.state.value),
-  ]);
+  const filtered = useComputed(() => [...runPokedexFilter(pokemons.all.value, filter.state.value)]);
 
   useSignalEffect(() => {
-    if (filter.state.value && pokemonsFiltered.value.length === 0) {
+    if (filter.state.value && filtered.value.length === 0) {
       batch(() => {
         filter.state.value = undefined;
         toasts.add("asterisk", "Cleared filter.");
@@ -29,7 +27,7 @@ export function Pokedex() {
       <PokedexMode
         filter={filter}
         pokemons={pokemons}
-        pokemonsFiltered={pokemonsFiltered}
+        filtered={filtered}
         setEditingIndex={(index) => (editingIndex.value = index)}
       />
       {editingIndex.value != null ? (
