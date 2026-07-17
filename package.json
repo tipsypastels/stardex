@@ -15,7 +15,7 @@
     "valibot": "^1.4.2"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
+    "@eslint/js": "^9.39.5",
     "@types/node": "^26.1.1",
     "eslint": "^9.39.5",
     "eslint-plugin-solid": "^0.14.5",
