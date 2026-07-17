@@ -1,9 +1,10 @@
-import { batch, useComputed } from "@preact/signals";
+import { useComputed } from "@preact/signals";
 import { For, Show } from "@preact/signals/utils";
+import hotkeys from "hotkeys-js";
 import type { ComponentChildren, RefObject } from "preact";
+import { useEffect } from "preact/hooks";
 import type { PokedexModeViewProps } from "..";
 import type { Pokemon } from "../../../../models/pokemon";
-import { toasts } from "../../../../state/toast";
 import { EmptyPokedex } from "../../empty";
 import { useDraggable } from "./drag";
 
@@ -31,6 +32,13 @@ function Inner({
 }: PokedexGridlikeViewProps) {
   const draggableEnabled = useComputed(() => !filter.state.value);
   const { gridRef } = useDraggable(draggableEnabled, pokemons);
+
+  useEffect(() => {
+    const f = () => pokemons.delete(0);
+    hotkeys("x", f);
+    return () => hotkeys.unbind("x", f);
+  });
+
   return (
     <>
       {list(
@@ -39,18 +47,7 @@ function Inner({
           {/* Dummy, see useDraggable. */}
           <li class="hidden"></li>
           <For each={filtered} getKey={(entry) => entry.pokemon.id.value}>
-            {({ pokemon, unfilteredIndex }) =>
-              item(pokemon, () => {
-                if (zapper.value) {
-                  batch(() => {
-                    toasts.add("bolt", `Zapped ${pokemon.name.peek()}!`);
-                    pokemons.delete(unfilteredIndex);
-                  });
-                } else {
-                  setEditingIndex(unfilteredIndex);
-                }
-              })
-            }
+            {({ pokemon, unfilteredIndex }) => item(pokemon)}
           </For>
         </>,
       )}

@@ -1,5 +1,5 @@
 import { batch, useComputed, useModel, useSignal, useSignalEffect } from "@preact/signals";
-import { useContext } from "preact/hooks";
+import { useCallback, useContext } from "preact/hooks";
 import { PokedexFilter, runPokedexFilter } from "../../models/pokedex/filter";
 import { PokemonsContext } from "../../state/context";
 import { toasts } from "../../state/toast";
@@ -12,6 +12,10 @@ export function Pokedex() {
   const filter = useModel(PokedexFilter);
   const pokemons = useContext(PokemonsContext);
   const filtered = useComputed(() => [...runPokedexFilter(pokemons.all.value, filter.state.value)]);
+
+  const setEditingIndex = useCallback((index: number) => {
+    editingIndex.value = index;
+  }, []);
 
   useSignalEffect(() => {
     if (filter.state.value && filtered.value.length === 0) {
@@ -28,7 +32,7 @@ export function Pokedex() {
         filter={filter}
         pokemons={pokemons}
         filtered={filtered}
-        setEditingIndex={(index) => (editingIndex.value = index)}
+        setEditingIndex={setEditingIndex}
       />
       {editingIndex.value != null ? (
         <EditPokemonModal
