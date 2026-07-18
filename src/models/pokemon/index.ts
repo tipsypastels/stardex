@@ -85,6 +85,8 @@ export interface BuiltinPokemon {
   exclude: boolean | undefined;
   isBuiltin(): this is BuiltinPokemon;
   isCustom(): this is CustomPokemon;
+  toRaw(): RawBuiltinPokemon;
+  toJSON(): unknown;
 }
 
 export const BUILTIN_POKEMONS = (() => {
@@ -111,11 +113,23 @@ export const BUILTIN_POKEMONS = (() => {
         return this.typeKeys.map(TYPES.of);
       },
       exclude: raw.exclude,
-      get isBuiltin() {
-        return (): this is BuiltinPokemon => true;
+      isBuiltin(): this is BuiltinPokemon {
+        return true;
       },
-      get isCustom() {
-        return (): this is CustomPokemon => false;
+      isCustom(): this is CustomPokemon {
+        return false;
+      },
+      toRaw(): RawBuiltinPokemon {
+        return {
+          v: POKEMON_VERSION,
+          species: raw.species,
+          id: raw.id,
+          types: this.changedTypeKeys,
+          exclude: this.exclude || undefined,
+        };
+      },
+      toJSON(): unknown {
+        return this.toRaw();
       },
     };
   }
@@ -136,6 +150,8 @@ export interface CustomPokemon {
   exclude: boolean | undefined;
   isBuiltin(): this is BuiltinPokemon;
   isCustom(): this is CustomPokemon;
+  toRaw(): RawCustomPokemon;
+  toJSON(): unknown;
 }
 
 export const CUSTOM_POKEMONS = (() => {
@@ -156,11 +172,23 @@ export const CUSTOM_POKEMONS = (() => {
         return this.typeKeys.map(TYPES.of);
       },
       exclude: raw.exclude,
-      get isBuiltin() {
-        return (): this is BuiltinPokemon => false;
+      isBuiltin(): this is BuiltinPokemon {
+        return false;
       },
-      get isCustom() {
-        return (): this is CustomPokemon => true;
+      isCustom(): this is CustomPokemon {
+        return true;
+      },
+      toRaw(): RawCustomPokemon {
+        return {
+          v: POKEMON_VERSION,
+          id: raw.id,
+          name: this.name,
+          types: this.typeKeys,
+          exclude: this.exclude || undefined,
+        };
+      },
+      toJSON(): unknown {
+        return this.toRaw();
       },
     };
   }

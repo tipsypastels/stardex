@@ -1,6 +1,6 @@
 import { batch, createSignal, type Component } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import { pokedexFilter, type PokedexFilteredEntry } from "../../../models/pokedex/filter";
+import { pokedexFilter } from "../../../models/pokedex/filter";
 import { pokedexMode, type PokedexModeKey } from "../../../models/pokedex/mode";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import { pokemons } from "../../../models/pokemon/list";
@@ -24,8 +24,7 @@ const MODE_INFOS: Record<PokedexModeKey, ModeRenderingInfo> = {
 };
 
 export interface PokedexModeProps {
-  filtered: PokedexFilteredEntry[];
-  setEditingIndex(index: number): void;
+  setEditingId(id: string): void;
 }
 
 export interface PokedexModeViewProps extends PokedexModeProps {
@@ -55,8 +54,7 @@ export function PokedexMode(props: PokedexModeProps) {
       <Dynamic
         component={formatInfo().component}
         zapper={zapper()}
-        filtered={props.filtered}
-        setEditingIndex={props.setEditingIndex}
+        setEditingId={props.setEditingId}
       />
     </>
   );

@@ -1,16 +1,15 @@
-import { batch, createEffect, createMemo, createSignal } from "solid-js";
-import { pokedexFilter, runPokedexFilter } from "../../models/pokedex/filter";
+import { batch, createEffect, createSignal } from "solid-js";
+import { pokedexFilter, pokemonsFiltered } from "../../models/pokedex/filter";
 import { pokemons } from "../../models/pokemon/list";
 import { toasts } from "../../models/ui/toast";
 import { Section } from "../layout/section";
 import { PokedexMode } from "./mode";
 
 export function Pokedex() {
-  const [editingIndex, setEditingIndex] = createSignal<number>();
-  const filtered = createMemo(() => [...runPokedexFilter(pokemons.all, pokedexFilter.state)]);
+  const [editingId, setEditingId] = createSignal<string>();
 
   createEffect(() => {
-    if (pokedexFilter.state && filtered.length === 0) {
+    if (pokedexFilter.state && pokemonsFiltered.all.length === 0) {
       batch(() => {
         pokedexFilter.state = undefined;
         toasts.add("asterisk", "Cleared filter.");
@@ -20,7 +19,7 @@ export function Pokedex() {
 
   return (
     <Section id="pokedex" title="Pokédex" count={pokemons.all.length} hasActions>
-      <PokedexMode filtered={filtered()} setEditingIndex={setEditingIndex} />
+      <PokedexMode setEditingId={setEditingId} />
       {/* {editingIndex() != null ? (
         <EditPokemonModal
           index={editingIndex.value}

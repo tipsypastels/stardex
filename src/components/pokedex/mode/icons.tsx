@@ -1,28 +1,30 @@
+import { For } from "solid-js";
 import type { PokedexModeViewProps } from ".";
-import { pokedexFilter } from "../../../models/pokedex/filter";
+import { pokedexFilter, pokemonsFiltered } from "../../../models/pokedex/filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { TypeDots } from "../../types/util/dots";
 import { PokemonIcon } from "../util/pokemon_icon";
+import { onClickPokemon } from "./util/click";
 import { draggable } from "./util/drag";
-import { PokedexGridlikeView } from "./util/grid";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
 draggable;
 
 export function PokedexIconsView(props: PokedexModeViewProps) {
   return (
-    <PokedexGridlikeView
-      {...props}
-      item={(pokemon, onClick) => <Item pokemon={pokemon} onClick={onClick} />}
-      list={(children) => (
-        <ol
-          class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
-          use:draggable={!pokedexFilter.state}
-        >
-          {children}
-        </ol>
-      )}
-    />
+    <ol
+      class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
+      use:draggable={!pokedexFilter.state}
+    >
+      <For each={pokemonsFiltered.all}>
+        {(pokemon) => (
+          <Item
+            pokemon={pokemon}
+            onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
+          />
+        )}
+      </For>
+    </ol>
   );
 }
 

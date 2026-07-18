@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createEffect, createRoot, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
@@ -33,30 +33,38 @@ export interface PokemonList {
 
 export const POKEMON_LISTS = (() => {
   function initial() {
-    const store = stored("stardex_pokemon");
-    const raw = v.parse(VAny_RawPokemonList, store.load() ?? { v: POKEMON_LIST_VERSION, any: [] });
+    return createRoot(() => {
+      const store = stored("stardex_pokemon");
+      const raw = v.parse(
+        VAny_RawPokemonList,
+        store.load() ?? { v: POKEMON_LIST_VERSION, any: [] },
+      );
 
-    const [all, setAll] = createStore(raw.all.map(POKEMONS.from));
-    const [textDiff, setTextDiff] = createSignal(raw.textDiff);
+      const [all, setAll] = createStore(raw.all.map(POKEMONS.from));
+      const [textDiff, setTextDiff] = createSignal(raw.textDiff);
 
-    return {
-      all,
-      textDiff,
+      createEffect(() => {
+        store.dump({ v: POKEMON_LIST_VERSION, all });
+      });
 
-      move(index: number, toIndex: number) {
-        const pokemon = all[index];
-        setAll(
-          produce((all) => {
-            all.splice(index, 1);
-            all.splice(toIndex, 0, pokemon);
-          }),
-        );
-      },
+      return {
+        all,
+        textDiff,
 
-      delete(index: number) {
-        setAll(all.filter((_, i) => i !== index));
-      },
-    };
+        move(index: number, toIndex: number) {
+          setAll(
+            produce((all) => {
+              const [pokemon] = all.splice(index, 1);
+              all.splice(toIndex, 0, pokemon);
+            }),
+          );
+        },
+
+        delete(id: string) {
+          setAll(all.filter((pokemon) => pokemon.id !== id));
+        },
+      };
+    });
   }
   return { initial };
 })();

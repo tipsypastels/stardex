@@ -11,24 +11,29 @@ declare module "solid-js" {
   }
 }
 
-/**
- * NOTE: Moving items to index zero causes a desync
- * between the state and sortable. I haven't figured
- * out why, possibly zero being falsey breaking something?
- *
- * But instead I just require that the lists have
- * a hidden dummy element at the start that offsets
- * everything. Shrug.
- */
 export function draggable(element: HTMLElement, enabled: Accessor<boolean>) {
   createEffect(() => {
     if (enabled()) {
+      let nextSibling: Node | null = null;
+
       const sortable = Sortable.create(element, {
         animation: 150,
         handle: "[data-handle]",
         ghostClass: "opacity-0",
+        onStart(event) {
+          nextSibling = event.item.nextSibling;
+        },
         onEnd(event) {
-          pokemons.move(event.oldIndex! - 1, event.newIndex! - 1);
+          const item = event.item;
+          const parent = event.to;
+
+          if (nextSibling) {
+            parent.insertBefore(item, nextSibling);
+          } else {
+            parent.appendChild(item);
+          }
+
+          pokemons.move(event.oldIndex!, event.newIndex!);
         },
       });
       onCleanup(() => sortable?.destroy());

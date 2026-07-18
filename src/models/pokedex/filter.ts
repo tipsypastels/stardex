@@ -1,5 +1,5 @@
-import { createSignal } from "solid-js";
-import type { Pokemon } from "../pokemon";
+import { createMemo, createRoot, createSignal } from "solid-js";
+import { pokemons } from "../pokemon/list";
 
 export type PokedexFilterState = { kind: "type"; typeKey: string };
 
@@ -19,36 +19,16 @@ export const pokedexFilter = (() => {
   };
 })();
 
-export interface PokedexFilteredEntry {
-  pokemon: Pokemon;
-  unfilteredIndex: number;
-}
-
-export function runPokedexFilter(
-  pokemons: Iterable<Pokemon>,
-  state: PokedexFilterState | undefined,
-) {
-  if (!state) return filterByNothing(pokemons);
-  return filterByType(pokemons, state.typeKey);
-}
-
-function* filterByNothing(pokemons: Iterable<Pokemon>): Generator<PokedexFilteredEntry> {
-  let i = 0;
-  for (const pokemon of pokemons) {
-    yield { pokemon, unfilteredIndex: i };
-    i++;
-  }
-}
-
-function* filterByType(
-  pokemons: Iterable<Pokemon>,
-  typeKey: string,
-): Generator<PokedexFilteredEntry> {
-  let i = 0;
-  for (const pokemon of pokemons) {
-    if (pokemon.typeKeys.includes(typeKey)) {
-      yield { pokemon, unfilteredIndex: i };
-    }
-    i++;
-  }
-}
+export const pokemonsFiltered = createRoot(() => {
+  const all = createMemo(() => {
+    if (!pokedexFilter.state) return pokemons.all;
+    return pokemons.all.filter((pokemon) =>
+      pokemon.typeKeys.includes(pokedexFilter.state!.typeKey),
+    );
+  });
+  return {
+    get all() {
+      return all();
+    },
+  };
+});
