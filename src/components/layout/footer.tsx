@@ -1,4 +1,4 @@
-import { dark } from "../../models/dark";
+import { dark } from "../../models/ui/dark";
 import { Icon } from "../common/icon";
 import { ButtonLink, Link } from "../common/link";
 

@@ -1,6 +1,7 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "tailwindCSS.classFunctions": ["tw"],
+  "tailwindCSS.classAttributes": ["class", "className", "classList"],
   "files.associations": {
     "*.css": "tailwindcss"
   },

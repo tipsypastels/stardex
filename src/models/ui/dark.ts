@@ -1,5 +1,5 @@
 import { createEffect, createSignal } from "solid-js";
-import { stored } from "../utils/storage";
+import { stored } from "../../utils/storage";
 
 export const dark = (() => {
   const favicon = document.getElementById("favicon") as HTMLLinkElement;

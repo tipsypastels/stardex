@@ -4,7 +4,9 @@ import type { JSXElement } from "solid-js";
 // import { Controls } from "./controls";
 import { Footer } from "./footer";
 // import { MobileJump } from "./jump";
+import { Controls } from "./controls";
 import { Logo } from "./logo";
+import { Toast } from "./toast";
 
 export interface LayoutProps {
   children: JSXElement;
@@ -17,7 +19,9 @@ export function Layout(props: LayoutProps) {
         <div class="grow">
           <div class="sticky top-4 ml-4 hidden lg:block">
             <div class="mb-2">{/* <ProjectsSelect /> */}</div>
-            <div class="ml-2">{/* <Controls /> */}</div>
+            <div class="ml-2">
+              <Controls />
+            </div>
           </div>
           <div class="m-auto w-200 max-w-full grow pt-8">
             <div class="mb-4 flex flex-col items-center gap-2 lg:mb-12 lg:flex-row lg:gap-3">
@@ -38,6 +42,7 @@ export function Layout(props: LayoutProps) {
             <div class="mb-8 hidden border border-divider-light lg:block" />
             <main class="mx-4 md:mx-0">{props.children}</main>
 
+            <Toast />
             {/* <MobileJump /> */}
           </div>
         </div>
