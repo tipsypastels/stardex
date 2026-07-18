@@ -6,7 +6,8 @@ import { Section } from "../layout/section";
 import { PokedexMode } from "./mode";
 
 export function Pokedex() {
-  const [editingId, setEditingId] = createSignal<string>();
+  // TODO
+  const [_editingId, setEditingId] = createSignal<string>();
 
   createEffect(() => {
     if (pokedexFilter.state && pokemonsFiltered.all.length === 0) {

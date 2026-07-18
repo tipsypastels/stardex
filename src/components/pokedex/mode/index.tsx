@@ -4,6 +4,9 @@ import { pokedexFilter } from "../../../models/pokedex/filter";
 import { pokedexMode, type PokedexModeKey } from "../../../models/pokedex/mode";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import { pokemons } from "../../../models/pokemon/list";
+import { toasts } from "../../../models/ui/toast";
+import { PokedexActions } from "../actions";
+import { toastDescriptionOfAutosortRequest } from "../actions/autosort";
 import { PokedexIconsView } from "./icons";
 
 interface ModeRenderingInfo {
@@ -40,16 +43,16 @@ export function PokedexMode(props: PokedexModeProps) {
     batch(() => {
       pokedexFilter.state = undefined;
       pokemons.autosort(request);
-      // TODO
-      // toasts.add(
-      //   "arrow-down-1-9",
-      //   `Pokédex sorted by ${toastDescriptionOfAutosortRequest(request)}!`,
-      // );
+      toasts.add(
+        "arrow-down-1-9",
+        `Pokédex sorted by ${toastDescriptionOfAutosortRequest(request)}!`,
+      );
     });
   }
 
   return (
     <>
+      <PokedexActions zapper={zapper()} setZapper={setZapper} onAutosort={onAutosort} />
       {/* <PokedexActions zapper={zapper} onAutosort={onAutosort} /> */}
       <Dynamic
         component={formatInfo().component}

@@ -3,6 +3,7 @@ import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { stored } from "../../utils/storage";
+import { runAutosort, type AutosortRequest } from "./autosort";
 import { POKEMON_LIST_VERSION, V0_RawPokemonList, V0_upgradeRawPokemonList } from "./versioned";
 
 /* -------------------------------------------------------------------------- */
@@ -41,7 +42,8 @@ export const POKEMON_LISTS = (() => {
       );
 
       const [all, setAll] = createStore(raw.all.map(POKEMONS.from));
-      const [textDiff, setTextDiff] = createSignal(raw.textDiff);
+      // TODO
+      const [textDiff, _setTextDiff] = createSignal(raw.textDiff);
 
       createEffect(() => {
         store.dump({ v: POKEMON_LIST_VERSION, all });
@@ -61,7 +63,15 @@ export const POKEMON_LISTS = (() => {
         },
 
         delete(id: string) {
-          setAll(all.filter((pokemon) => pokemon.id !== id));
+          setAll((all) => all.filter((pokemon) => pokemon.id !== id));
+        },
+
+        autosort(request: AutosortRequest) {
+          setAll((all) => runAutosort(all, request));
+        },
+
+        setFromRawAll(all: RawPokemon[]) {
+          setAll(all.map(POKEMONS.from));
         },
       };
     });
