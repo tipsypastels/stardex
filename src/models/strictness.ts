@@ -1,4 +1,5 @@
 import { createEffect, createRoot, createSignal } from "solid-js";
+import * as v from "valibot";
 import RAW_DATA from "../data/strictnesses.json" with { type: "json" };
 import { stored } from "../utils/storage";
 
@@ -53,3 +54,5 @@ export const STRICTNESSES = (() => {
 })();
 
 export const strictness = STRICTNESSES.initial();
+
+export const StrictnessKey = v.picklist(STRICTNESSES.keys);

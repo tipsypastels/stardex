@@ -16,9 +16,7 @@ export const regions = createRoot(() => {
   });
 
   return {
-    get keys(): ReadonlySet<RegionKey> {
-      return keys;
-    },
+    keys: keys as ReadonlySet<RegionKey>,
     get all() {
       return all();
     },

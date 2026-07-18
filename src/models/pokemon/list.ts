@@ -42,11 +42,14 @@ export const POKEMON_LISTS = (() => {
       );
 
       const [all, setAll] = createStore(raw.all.map(POKEMONS.from));
-      // TODO
-      const [textDiff, _setTextDiff] = createSignal(raw.textDiff);
+      const [textDiff, setTextDiff] = createSignal(raw.textDiff);
 
       createEffect(() => {
-        store.dump({ v: POKEMON_LIST_VERSION, all });
+        store.dump({
+          v: POKEMON_LIST_VERSION,
+          all: [...all],
+          textDiff: textDiff(),
+        });
       });
 
       return {
@@ -70,8 +73,24 @@ export const POKEMON_LISTS = (() => {
           setAll((all) => runAutosort(all, request));
         },
 
-        setFromRawAll(all: RawPokemon[]) {
-          setAll(all.map(POKEMONS.from));
+        clear() {
+          this.setFromRaw({ v: POKEMON_LIST_VERSION, all: [] });
+        },
+
+        setFromRaw(raw: RawPokemonList) {
+          setAll(raw.all.map(POKEMONS.from));
+          setTextDiff(raw.textDiff);
+        },
+
+        toRaw(): RawPokemonList {
+          return {
+            v: POKEMON_LIST_VERSION,
+            all: all.map((pokemon) => pokemon.toRaw()),
+            textDiff: textDiff(),
+          };
+        },
+        toJSON(): unknown {
+          return this.toRaw();
         },
       };
     });

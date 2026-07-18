@@ -6,6 +6,7 @@ import { Footer } from "./footer";
 // import { MobileJump } from "./jump";
 import { Controls } from "./controls";
 import { Logo } from "./logo";
+import { ProjectsModal, ProjectsSelect } from "./projects";
 import { Toast } from "./toast";
 
 export interface LayoutProps {
@@ -18,7 +19,9 @@ export function Layout(props: LayoutProps) {
       <div class="flex min-h-screen flex-col">
         <div class="grow">
           <div class="sticky top-4 ml-4 hidden lg:block">
-            <div class="mb-2">{/* <ProjectsSelect /> */}</div>
+            <div class="mb-2">
+              <ProjectsSelect />
+            </div>
             <div class="ml-2">
               <Controls />
             </div>
@@ -29,9 +32,11 @@ export function Layout(props: LayoutProps) {
               <h1 class="grow text-4xl font-bold text-primary">Stardex</h1>
             </div>
 
-            <div class="mb-4 flex justify-center lg:hidden">{/* <ProjectsSelect /> */}</div>
+            <div class="mb-4 flex justify-center lg:hidden">
+              <ProjectsSelect />
+            </div>
 
-            {/* <ProjectsModal /> */}
+            <ProjectsModal />
 
             {/* TODO: <Notices /> */}
 

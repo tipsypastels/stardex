@@ -46,7 +46,7 @@ export function PokedexActions(props: PokedexActionsProps) {
     }
 
     batch(() => {
-      pokemons.setFromRawAll([]);
+      pokemons.clear();
       toasts.add("trash", "Pokédex cleared! A blank slate...");
     });
   }

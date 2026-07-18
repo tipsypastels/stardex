@@ -4,6 +4,8 @@ import { id } from "../../utils/id";
 import type { RawPokemonList } from "./list";
 import { PokemonListTextDiffBuilder } from "./text/diff";
 
+export const POKEMON_VERSION = 1;
+
 /**
  * Pokemon V0:
  *  - No explicit version.
@@ -12,8 +14,6 @@ import { PokemonListTextDiffBuilder } from "./text/diff";
  *  - Species is an object.
  *  - Types is called type.
  */
-
-export const POKEMON_VERSION = 1;
 
 export const V0_RawBuiltinPokemon = v.object({
   species: v.object({ key: v.string() }),

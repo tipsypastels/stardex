@@ -1,15 +1,7 @@
 import * as v from "valibot";
 import { TYPES, type Type } from "../type";
 import { SPECIES, type Species, type SpeciesAlt } from "./species";
-import {
-  POKEMON_VERSION,
-  V0_RawBuiltinPokemon,
-  V0_RawCustomPokemon,
-  V0_RawPokemon,
-  V0_upgradeRawBuiltinPokemon,
-  V0_upgradeRawCustomPokemon,
-  V0_upgradeRawPokemon,
-} from "./versioned";
+import { POKEMON_VERSION, V0_RawPokemon, V0_upgradeRawPokemon } from "./versioned";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
@@ -38,16 +30,6 @@ export const RawCustomPokemon = v.object({
 });
 
 export const RawPokemon = v.union([RawBuiltinPokemon, RawCustomPokemon]);
-
-export const VAny_RawBuiltinPokemon = v.union([
-  RawBuiltinPokemon,
-  v.pipe(V0_RawBuiltinPokemon, v.transform(V0_upgradeRawBuiltinPokemon)),
-]);
-
-export const VAny_RawCustomPokemon = v.union([
-  RawCustomPokemon,
-  v.pipe(V0_RawCustomPokemon, v.transform(V0_upgradeRawCustomPokemon)),
-]);
 
 export const VAny_RawPokemon = v.union([
   RawPokemon,

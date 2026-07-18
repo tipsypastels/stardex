@@ -30,9 +30,7 @@ export const EXCLUDED_TYPES_SETS = (() => {
       });
 
       return {
-        get all(): ReadonlySet<string> {
-          return all;
-        },
+        all: all as ReadonlySet<string>,
 
         toggle(typeKey: string) {
           if (all.has(typeKey)) {

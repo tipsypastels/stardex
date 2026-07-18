@@ -1,8 +1,10 @@
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 import type { PokedexModeViewProps } from ".";
 import { pokedexFilter, pokemonsFiltered } from "../../../models/pokedex/filter";
 import type { Pokemon } from "../../../models/pokemon";
+import { pokemons } from "../../../models/pokemon/list";
 import { TypeDots } from "../../types/util/dots";
+import { EmptyPokedex } from "../empty";
 import { PokemonIcon } from "../util/pokemon_icon";
 import { onClickPokemon } from "./util/click";
 import { draggable } from "./util/drag";
@@ -12,19 +14,21 @@ draggable;
 
 export function PokedexIconsView(props: PokedexModeViewProps) {
   return (
-    <ol
-      class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
-      use:draggable={!pokedexFilter.state}
-    >
-      <For each={pokemonsFiltered.all}>
-        {(pokemon) => (
-          <Item
-            pokemon={pokemon}
-            onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
-          />
-        )}
-      </For>
-    </ol>
+    <Show when={pokemons.all.length > 0} fallback={<EmptyPokedex />}>
+      <ol
+        class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
+        use:draggable={!pokedexFilter.state}
+      >
+        <For each={pokemonsFiltered.all}>
+          {(pokemon) => (
+            <Item
+              pokemon={pokemon}
+              onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
+            />
+          )}
+        </For>
+      </ol>
+    </Show>
   );
 }
 
