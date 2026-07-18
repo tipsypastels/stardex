@@ -6,3 +6,9 @@ export function capitalize(s: string) {
 export function capitalizeWords(s: string) {
   return s.split(/\s+/).map(capitalize).join(" ");
 }
+
+export function sortStrings(a: string, b: string) {
+  if (a > b) return 1;
+  if (a < b) return -1;
+  return 0;
+}

@@ -1,7 +1,7 @@
 // TODO
 // import { unsafeWipeEverythingAndReload } from "../../state/wipe";
 
-import { createEffect } from "solid-js";
+import { onCleanup } from "solid-js";
 
 export function Logo() {
   const onClick = createNthClickHandler(import.meta.env.DEV ? 3 : 15, () => {
@@ -29,16 +29,11 @@ function createNthClickHandler(max: number, f: () => void) {
   let count = 0;
   let timeout: number | undefined;
 
-  createEffect(() => () => {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-  });
+  onCleanup(() => clearTimeout(timeout));
 
   return () => {
-    if (timeout) {
-      clearTimeout(timeout);
-    }
+    clearTimeout(timeout);
+
     if (count + 1 === max) {
       count = 0;
       f();

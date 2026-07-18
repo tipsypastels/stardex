@@ -35,7 +35,7 @@ export function Section(props: SectionProps) {
           />
         </div>
       </div>
-      <Show when={open}>
+      <Show when={open()}>
         <div>{props.children}</div>
       </Show>
     </section>

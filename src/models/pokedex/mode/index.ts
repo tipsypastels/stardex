@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createRoot, createSignal } from "solid-js";
 import * as v from "valibot";
 import RAW_DATA from "../../../data/pokedex_modes.json" with { type: "json" };
 import { stored } from "../../../utils/storage";
@@ -20,32 +20,33 @@ export const POKEDEX_MODES = (() => {
   const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
 
   function initial() {
-    const store = stored("stardex_pokedex_mode");
-    const initialKey = v.parse(VAny_PokedexModeKey, store.load() ?? defaultKey);
-    const [key, setKey] = createSignal(initialKey);
+    return createRoot(() => {
+      const store = stored("stardex_pokedex_mode");
+      const initialKey = v.parse(VAny_PokedexModeKey, store.load() ?? defaultKey);
+      const [key, setKey] = createSignal(initialKey);
 
-    return {
-      get key() {
-        return key();
-      },
-      set key(key: PokedexModeKey) {
-        setKey(key);
-      },
-      get name() {
-        return RAW_DATA[key()].name;
-      },
-      get icon() {
-        return RAW_DATA[key()].icon;
-      },
-      get description() {
-        return RAW_DATA[key()].description;
-      },
-      subscribe() {
-        createEffect(() => {
-          store.dump(key());
-        });
-      },
-    };
+      createEffect(() => {
+        store.dump(key());
+      });
+
+      return {
+        get key() {
+          return key();
+        },
+        set key(key: PokedexModeKey) {
+          setKey(key);
+        },
+        get name() {
+          return RAW_DATA[key()].name;
+        },
+        get icon() {
+          return RAW_DATA[key()].icon;
+        },
+        get description() {
+          return RAW_DATA[key()].description;
+        },
+      };
+    });
   }
 
   return { keys, defaultKey, options, initial };

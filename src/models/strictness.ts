@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createRoot, createSignal } from "solid-js";
 import RAW_DATA from "../data/strictnesses.json" with { type: "json" };
 import { stored } from "../utils/storage";
 
@@ -10,39 +10,40 @@ export const STRICTNESSES = (() => {
   const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
 
   function initial() {
-    const store = stored("stardex_strictness");
-    let initialKey = store.load();
-    if (!initialKey || typeof initialKey !== "string" || !(initialKey in RAW_DATA)) {
-      initialKey = "normal";
-    }
+    return createRoot(() => {
+      const store = stored("stardex_strictness");
+      let initialKey = store.load();
+      if (!initialKey || typeof initialKey !== "string" || !(initialKey in RAW_DATA)) {
+        initialKey = "normal";
+      }
 
-    const [key, setKey] = createSignal(initialKey as StrictnessKey);
+      const [key, setKey] = createSignal(initialKey as StrictnessKey);
 
-    return {
-      get key() {
-        return key();
-      },
-      set key(key: StrictnessKey) {
-        setKey(key);
-      },
-      get name() {
-        return RAW_DATA[key()].name;
-      },
-      get icon() {
-        return RAW_DATA[key()].icon;
-      },
-      get description() {
-        return RAW_DATA[key()].description;
-      },
-      get maximumRatioDifference() {
-        return RAW_DATA[key()].maximumRatioDifference;
-      },
-      subscribe() {
-        createEffect(() => {
-          store.dump(key());
-        });
-      },
-    };
+      createEffect(() => {
+        store.dump(key());
+      });
+
+      return {
+        get key() {
+          return key();
+        },
+        set key(key: StrictnessKey) {
+          setKey(key);
+        },
+        get name() {
+          return RAW_DATA[key()].name;
+        },
+        get icon() {
+          return RAW_DATA[key()].icon;
+        },
+        get description() {
+          return RAW_DATA[key()].description;
+        },
+        get maximumRatioDifference() {
+          return RAW_DATA[key()].maximumRatioDifference;
+        },
+      };
+    });
   }
 
   return { keys, defaultKey, options, initial };

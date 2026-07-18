@@ -2,5 +2,6 @@
   "printWidth": 100,
   "quoteProps": "consistent",
   "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
-  "tailwindStylesheet": "./src/app.css"
+  "tailwindStylesheet": "./src/app.css",
+  "tailwindAttributes": ["classList"]
 }

@@ -1,5 +1,5 @@
 import { createStore } from "solid-js/store";
-import { id } from "../utils/id";
+import { id } from "../../utils/id";
 
 export interface Toast {
   id: string;
