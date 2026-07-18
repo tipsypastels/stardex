@@ -42,6 +42,9 @@ export const STRICTNESSES = (() => {
         get maximumRatioDifference() {
           return RAW_DATA[key()].maximumRatioDifference;
         },
+        get index() {
+          return STRICTNESSES.keys.indexOf(key());
+        },
       };
     });
   }

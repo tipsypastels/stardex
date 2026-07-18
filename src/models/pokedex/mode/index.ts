@@ -45,6 +45,9 @@ export const POKEDEX_MODES = (() => {
         get description() {
           return RAW_DATA[key()].description;
         },
+        get index() {
+          return POKEDEX_MODES.keys.indexOf(key());
+        },
       };
     });
   }
