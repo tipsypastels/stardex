@@ -17,6 +17,7 @@
     "hotkeys-js": "^4.0.4",
     "randomcolor": "^0.6.2",
     "solid-js": "^1.9.5",
+    "sortablejs": "^1.15.7",
     "tailwindcss": "^4.3.2",
     "valibot": "^1.4.2"
   },
@@ -24,6 +25,7 @@
     "@eslint/js": "^9.39.5",
     "@types/node": "^26.1.1",
     "@types/randomcolor": "^0.5.9",
+    "@types/sortablejs": "^1.15.9",
     "eslint": "^9.39.5",
     "eslint-plugin-solid": "^0.14.5",
     "globals": "^17.7.0",

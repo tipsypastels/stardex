@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { stored } from "../../utils/storage";
@@ -42,6 +42,20 @@ export const POKEMON_LISTS = (() => {
     return {
       all,
       textDiff,
+
+      move(index: number, toIndex: number) {
+        const pokemon = all[index];
+        setAll(
+          produce((all) => {
+            all.splice(index, 1);
+            all.splice(toIndex, 0, pokemon);
+          }),
+        );
+      },
+
+      delete(index: number) {
+        setAll(all.filter((_, i) => i !== index));
+      },
     };
   }
   return { initial };

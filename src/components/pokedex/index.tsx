@@ -1,10 +1,8 @@
-import { batch } from "@preact/signals";
-import { createEffect, createMemo, createSignal } from "solid-js";
+import { batch, createEffect, createMemo, createSignal } from "solid-js";
 import { pokedexFilter, runPokedexFilter } from "../../models/pokedex/filter";
 import { pokemons } from "../../models/pokemon/list";
-import { toasts } from "../../state/toast";
+import { toasts } from "../../models/ui/toast";
 import { Section } from "../layout/section";
-import { EditPokemonModal } from "./edit";
 import { PokedexMode } from "./mode";
 
 export function Pokedex() {
@@ -21,19 +19,14 @@ export function Pokedex() {
   });
 
   return (
-    <Section id="pokedex" title="Pokédex" count={pokemons.size} hasActions>
-      <PokedexMode
-        filter={filter}
-        pokemons={pokemons}
-        filtered={filtered}
-        setEditingIndex={(index) => (editingIndex.value = index)}
-      />
-      {editingIndex.value != null ? (
+    <Section id="pokedex" title="Pokédex" count={pokemons.all.length} hasActions>
+      <PokedexMode filtered={filtered()} setEditingIndex={setEditingIndex} />
+      {/* {editingIndex() != null ? (
         <EditPokemonModal
           index={editingIndex.value}
           onClose={() => (editingIndex.value = undefined)}
         />
-      ) : null}
+      ) : null} */}
     </Section>
   );
 }

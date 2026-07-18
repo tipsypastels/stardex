@@ -100,8 +100,8 @@ export const BUILTIN_POKEMONS = (() => {
         return SPECIES.of(raw.species);
       },
       get alt(): SpeciesAlt | undefined {
-        throw new Error("not yet");
         // TODO
+        return;
       },
       changedTypeKeys: raw.types,
       get typeKeys() {

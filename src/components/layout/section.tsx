@@ -25,7 +25,7 @@ export function Section(props: SectionProps) {
       <div class={`flex ${open() ? (props.hasActions ? "mb-4" : "mb-8") : ""}`}>
         <h2 class="grow text-3xl select-none">
           <span data-section-title>{props.title}</span>
-          {props.count ? <sub class="text-lg text-foreground-lesser">{props.count}</sub> : null}
+          {props.count ? <sub class="text-lg text-foreground-lesser"> {props.count}</sub> : null}
         </h2>
         <div class="text-xl">
           <ButtonIcon
