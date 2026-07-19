@@ -17,3 +17,11 @@ export function blobToDataUrl(blob: Blob, f: (dataUrl: string) => void) {
   fileReader.onload = () => f(fileReader.result as string);
   fileReader.readAsDataURL(blob);
 }
+
+export function readFileAsTextAsync(file: File) {
+  return new Promise<string>((ok) => {
+    const fileReader = new FileReader();
+    fileReader.onload = () => ok(fileReader.result as string);
+    fileReader.readAsText(file);
+  });
+}

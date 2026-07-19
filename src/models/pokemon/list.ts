@@ -2,11 +2,18 @@ import { createEffect, createRoot, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
+import { id } from "../../utils/id";
 import { stored } from "../../utils/storage";
+import type { Region } from "../region";
 import { catchValidationError } from "../ui/error/validation";
 import { runAutosort, type AutosortRequest } from "./autosort";
 import { createPokemonMutator } from "./mutator";
-import { POKEMON_LIST_VERSION, V0_RawPokemonList, V0_upgradeRawPokemonList } from "./versioned";
+import {
+  POKEMON_LIST_VERSION,
+  POKEMON_VERSION,
+  V0_RawPokemonList,
+  V0_upgradeRawPokemonList,
+} from "./versioned";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
@@ -102,6 +109,19 @@ export const POKEMON_LISTS = (() => {
         setFromRaw(raw: RawPokemonList) {
           setAll(raw.all.map(POKEMONS.make));
           setTextDiff(raw.textDiff);
+        },
+
+        setFromRegion(region: Region) {
+          setAll(
+            region.members.map((member) =>
+              POKEMONS.make({
+                v: POKEMON_VERSION,
+                id: id(),
+                species: member.speciesKey,
+                types: member.getAltTypeKeys(),
+              }),
+            ),
+          );
         },
 
         toRaw(): RawPokemonList {
