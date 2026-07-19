@@ -21,13 +21,18 @@ export function Section(props: SectionProps) {
   });
 
   return (
-    <section data-section id={props.id} class="relative mb-8 border-b border-b-divider-light pb-8">
+    <section
+      data-section
+      data-open={open()}
+      id={props.id}
+      class="relative mb-8 border-b border-b-divider-light pb-8"
+    >
       <div class={`flex ${open() ? (props.hasActions ? "mb-4" : "mb-8") : ""}`}>
         <h2 class="grow text-3xl select-none">
           <span data-section-title>{props.title}</span>
           {props.count ? <sub class="text-lg text-foreground-lesser"> {props.count}</sub> : null}
         </h2>
-        <div class="text-xl">
+        <div data-section-toggle-container class="text-xl">
           <ButtonIcon
             icon={`angle-${open() ? "down" : "up"}`}
             label={`Hide ${props.title}`}

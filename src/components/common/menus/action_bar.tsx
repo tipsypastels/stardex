@@ -19,6 +19,7 @@ export function ActionBar(props: ActionBarProps) {
 
 export interface ActionBarItemProps {
   ref?: Ref<HTMLButtonElement>;
+  id?: string;
   name: string;
   icon: string;
   active?: boolean;
@@ -31,6 +32,7 @@ export function ActionBarItem(props: ActionBarItemProps) {
     <li class="border-r border-r-secondary last:max-sm:border-r-0">
       <button
         ref={props.ref}
+        id={props.id}
         class="flex cursor-pointer items-center justify-center gap-1 px-4 py-2 text-sm font-bold"
         classList={{
           "cursor-not-allowed opacity-70": props.disabled,

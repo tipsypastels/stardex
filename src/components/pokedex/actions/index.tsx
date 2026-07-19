@@ -54,11 +54,17 @@ export function PokedexActions(props: PokedexActionsProps) {
   return (
     <>
       <ActionBar isUpperHalf>
-        <ActionBarItem name="Mode" icon={pokedexMode.icon} onClick={() => setModal("mode")} />
+        <ActionBarItem
+          id="pokedex-mode"
+          name="Mode"
+          icon={pokedexMode.icon}
+          onClick={() => setModal("mode")}
+        />
         <Show when={isNonTextMode()}>
           {(_) => (
             <>
               <ActionBarItem
+                id="pokedex-filter"
                 name="Filter"
                 icon={filterPokedexActionIcon(pokedexFilter.state)}
                 active={!!pokedexFilter.state}
@@ -66,12 +72,14 @@ export function PokedexActions(props: PokedexActionsProps) {
                 onClick={() => setModal("filter")}
               />
               <ActionBarItem
+                id="pokedex-sort"
                 name="Sort"
                 icon="arrow-down-1-9"
                 disabled={isEmpty()}
                 onClick={() => setModal("autosort")}
               />
               <ActionBarItem
+                id="pokedex-zapper"
                 name="Zap"
                 icon="bolt"
                 active={props.zapper}

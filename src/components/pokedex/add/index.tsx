@@ -96,6 +96,7 @@ export function AddPokemon() {
     <div class="mb-8">
       <div class="relative mb-2 rounded-b-md border-2 border-t-0 border-secondary">
         <input
+          id="add-pokemon"
           class="block h-20 w-full border-0"
           placeholder="Enter a Pokémon..."
           value={query()}

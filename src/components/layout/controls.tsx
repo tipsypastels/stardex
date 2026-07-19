@@ -1,7 +1,6 @@
 import { dark } from "../../models/ui/dark";
 import { ButtonIcon } from "../common/button";
-// TODO
-// import { Hotkeys } from "./hotkeys";
+import { Hotkeys } from "./hotkeys";
 
 export function Controls() {
   return (
@@ -11,7 +10,7 @@ export function Controls() {
         label={`${dark.on ? "Light" : "Dark"} Mode`}
         onClick={() => (dark.on = !dark.on)}
       />
-      {/* <Hotkeys /> */}
+      <Hotkeys />
     </div>
   );
 }
