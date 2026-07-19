@@ -5,6 +5,7 @@ import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { stored } from "../../utils/storage";
 import { catchValidationError } from "../ui/error/validation";
 import { runAutosort, type AutosortRequest } from "./autosort";
+import { createPokemonMutator } from "./mutator";
 import { POKEMON_LIST_VERSION, V0_RawPokemonList, V0_upgradeRawPokemonList } from "./versioned";
 
 /* -------------------------------------------------------------------------- */
@@ -64,6 +65,10 @@ export const POKEMON_LISTS = (() => {
       return {
         all,
         textDiff,
+
+        mutator(id: string) {
+          return createPokemonMutator(id, setAll);
+        },
 
         move(index: number, toIndex: number) {
           setAll(

@@ -1,5 +1,6 @@
 import * as v from "valibot";
 import { TYPES, type Type } from "../type";
+import { TYPE_KEY_PAIRS } from "../type/key_pair";
 import { SPECIES, type Species, type SpeciesAlt } from "./species";
 import { POKEMON_VERSION, V0_RawPokemon, V0_upgradeRawPokemon } from "./versioned";
 
@@ -84,8 +85,10 @@ export const BUILTIN_POKEMONS = (() => {
         return SPECIES.of(raw.species);
       },
       get alt(): SpeciesAlt | undefined {
-        // TODO
-        return;
+        if (this.changedTypeKeys && this.species.alts.length > 0) {
+          const equal = TYPE_KEY_PAIRS.select(this.changedTypeKeys);
+          return this.species.alts.find((alt) => equal(alt.typeKeys));
+        }
       },
       changedTypeKeys: raw.types,
       get typeKeys() {

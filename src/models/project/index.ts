@@ -1,7 +1,7 @@
 import * as v from "valibot";
 import { id } from "../../utils/id";
 import { PokedexModeKey } from "../pokedex/mode";
-import { RawCustomIconsMetadata } from "../pokemon/custom_icon";
+import { RawCustomIconsMetadata } from "../pokemon/custom_icon/metadata";
 import { RawPokemonList } from "../pokemon/list";
 import { RegionKey } from "../region";
 import { StrictnessKey } from "../strictness";

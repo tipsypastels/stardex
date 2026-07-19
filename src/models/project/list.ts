@@ -6,7 +6,10 @@ import { mustIndex } from "../../utils/assert";
 import { id } from "../../utils/id";
 import { stored } from "../../utils/storage";
 import { POKEDEX_MODES, pokedexMode } from "../pokedex/mode";
-import { CUSTOM_ICONS_METADATA_VERSION, customIcons } from "../pokemon/custom_icon";
+import {
+  CUSTOM_ICONS_METADATA_VERSION,
+  customIconsMetadata,
+} from "../pokemon/custom_icon/metadata";
 import { pokemons } from "../pokemon/list";
 import { POKEMON_LIST_VERSION } from "../pokemon/versioned";
 import { REGIONS } from "../region";
@@ -36,7 +39,7 @@ export const PROJECT_LISTS = (() => {
       regions: regions.toRaw(),
       strictness: strictness.key,
       pokedexMode: pokedexMode.key,
-      customIconsMetadata: customIcons.toRawMetadata(),
+      customIconsMetadata: customIconsMetadata.toRaw(),
       excludedTypes: excludedTypes.toRaw(),
     };
   }
@@ -47,7 +50,7 @@ export const PROJECT_LISTS = (() => {
       regions.set(models.regions);
       strictness.key = models.strictness;
       pokedexMode.key = models.pokedexMode;
-      customIcons.setFromRawMetadata(models.customIconsMetadata);
+      customIconsMetadata.setFromRaw(models.customIconsMetadata);
       excludedTypes.setFromRaw(models.excludedTypes);
     });
   }
