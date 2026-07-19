@@ -70,6 +70,14 @@ export const POKEMON_LISTS = (() => {
           return createPokemonMutator(id, setAll);
         },
 
+        push(pokemon: Pokemon) {
+          setAll(all.length, pokemon);
+        },
+
+        pushMany(pokemons: Pokemon[]) {
+          setAll((all) => all.concat(pokemons));
+        },
+
         move(index: number, toIndex: number) {
           setAll(
             produce((all) => {

@@ -100,7 +100,7 @@ function ProjectOption(props: ProjectOptionProps) {
 
           <div
             class="mr-4 opacity-20"
-            classList={{ "text-primary opacity-100": isActive(props.project.id) }}
+            classList={{ "text-primary opacity-100!": isActive(props.project.id) }}
           >
             <Icon name="badge-check" />
           </div>
@@ -109,8 +109,8 @@ function ProjectOption(props: ProjectOptionProps) {
         </label>
 
         <button
-          class="cursor-pointer text-foreground-lesser data-[open=true]:text-primary"
-          classList={{ "text-primary": dropdownOpen() }}
+          class="cursor-pointer text-foreground-lesser"
+          classList={{ "text-primary!": dropdownOpen() }}
           title="Actions"
           onClick={() => props.setDropdownId(props.project.id)}
         >

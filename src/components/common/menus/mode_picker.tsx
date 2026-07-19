@@ -24,7 +24,7 @@ export function ModePicker(props: ModePickerProps) {
 
               <div
                 class="mr-4 opacity-20"
-                classList={{ "text-primary opacity-100": index() === props.activeIndex }}
+                classList={{ "text-primary opacity-100!": index() === props.activeIndex }}
               >
                 <Icon name={mode.icon} />
               </div>

@@ -1,11 +1,11 @@
-import { batch, createEffect, createSignal, Show } from "solid-js";
+import { batch, createEffect, createSignal, Match, Show, Switch } from "solid-js";
 import { pokedexFilter } from "../../../models/pokedex/filter";
 import { pokedexMode } from "../../../models/pokedex/mode";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
 import { ActionBar, ActionBarItem } from "../../common/menus/action_bar";
-// import { AddPokemon } from "../add";
+import { AddPokemon } from "../add";
 import { AutosortPokedexModal } from "./autosort";
 import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
 import { PokedexModeModal } from "./mode";
@@ -89,27 +89,31 @@ export function PokedexActions(props: PokedexActionsProps) {
         </Show>
       </ActionBar>
 
-      {/* TODO <Show when={isNonTextMode()}>{(_) => <AddPokemon />}</Show> */}
-
-      <Show when={modal() === "mode"}>
-        <PokedexModeModal onClose={() => setModal(undefined)} />
+      <Show when={isNonTextMode()}>
+        <AddPokemon />
       </Show>
 
-      <Show when={modal() === "filter"}>
-        <FilterPokedexModal onClose={() => setModal(undefined)} />
-      </Show>
+      <Switch>
+        <Match when={modal() === "mode"}>
+          <PokedexModeModal onClose={() => setModal(undefined)} />
+        </Match>
 
-      <Show when={modal() === "autosort"}>
-        <AutosortPokedexModal
-          onAutosort={(request) => {
-            batch(() => {
-              setModal(undefined);
-              props.onAutosort(request);
-            });
-          }}
-          onClose={() => setModal(undefined)}
-        />
-      </Show>
+        <Match when={modal() === "filter"}>
+          <FilterPokedexModal onClose={() => setModal(undefined)} />
+        </Match>
+
+        <Match when={modal() === "autosort"}>
+          <AutosortPokedexModal
+            onAutosort={(request) => {
+              batch(() => {
+                setModal(undefined);
+                props.onAutosort(request);
+              });
+            }}
+            onClose={() => setModal(undefined)}
+          />
+        </Match>
+      </Switch>
     </>
   );
 }

@@ -20,10 +20,7 @@ export interface IconPickerGridItemProps {
 
 export function IconPickerGridItem(props: IconPickerGridItemProps) {
   return (
-    <li
-      class="group relative flex justify-center data-[active=false]:opacity-50"
-      classList={{ "opacity-50": !props.active }}
-    >
+    <li class="group relative flex justify-center" classList={{ "opacity-50": !props.active }}>
       <button
         class="flex cursor-pointer justify-center select-none"
         onClick={() => props.onClick()}

@@ -40,7 +40,7 @@ interface ItemProps {
 function Item(props: ItemProps) {
   return (
     <li
-      class="relative inline-flex justify-center data-[exclude=true]:opacity-50"
+      class="relative inline-flex justify-center"
       classList={{ "opacity-50": props.pokemon.exclude }}
       data-id={props.pokemon.id}
     >

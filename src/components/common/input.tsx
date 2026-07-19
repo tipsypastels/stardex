@@ -13,7 +13,7 @@ export interface InputProps {
   onInput?(e: Event & { currentTarget: HTMLInputElement }): void;
   onChange?(e: Event & { currentTarget: HTMLInputElement }): void;
   onBlur?(e: Event & { currentTarget: HTMLInputElement }): void;
-  onKeyUp?(e: Event & { currentTarget: HTMLInputElement }): void;
+  onKeyUp?(e: KeyboardEvent & { currentTarget: HTMLInputElement }): void;
 }
 
 export function Input(props: InputProps) {

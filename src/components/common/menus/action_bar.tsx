@@ -10,7 +10,7 @@ export function ActionBar(props: ActionBarProps) {
   return (
     <ul
       class="mb-8 flex scrollbar-none overflow-x-scroll rounded-md border-2 border-secondary text-secondary"
-      classList={{ "mb-0 rounded-b-none": props.isUpperHalf }}
+      classList={{ "mb-0! rounded-b-none": props.isUpperHalf }}
     >
       {props.children}
     </ul>

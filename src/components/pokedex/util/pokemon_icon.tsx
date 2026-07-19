@@ -92,14 +92,12 @@ export function PokemonIcon(props: PokemonIconProps) {
         {(species) => (
           <Show when={props.pokemon.alt} fallback={<SpeciesIcon species={species()} />}>
             {(alt) => (
-              <div data-species={species().key} data-alt={alt().kind}>
-                <SpeciesIcon
-                  species={{
-                    id: ALT_POSITIONS[`${species().key}-${alt().kind}`],
-                    name: species().name,
-                  }}
-                />
-              </div>
+              <SpeciesIcon
+                species={{
+                  id: ALT_POSITIONS[`${species().key}-${alt().kind}`],
+                  name: species().name,
+                }}
+              />
             )}
           </Show>
         )}

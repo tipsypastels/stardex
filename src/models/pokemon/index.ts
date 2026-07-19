@@ -1,4 +1,5 @@
 import * as v from "valibot";
+import { id } from "../../utils/id";
 import { TYPES, type Type } from "../type";
 import { TYPE_KEY_PAIRS } from "../type/key_pair";
 import { SPECIES, type Species, type SpeciesAlt } from "./species";
@@ -73,6 +74,10 @@ export interface BuiltinPokemon {
 }
 
 export const BUILTIN_POKEMONS = (() => {
+  function of(species: Species) {
+    return make({ v: POKEMON_VERSION, id: id(), species: species.key });
+  }
+
   function make(raw: RawBuiltinPokemon): BuiltinPokemon {
     return {
       get id() {
@@ -118,7 +123,7 @@ export const BUILTIN_POKEMONS = (() => {
       },
     };
   }
-  return { make };
+  return { of, make };
 })();
 
 /* -------------------------------------------------------------------------- */
@@ -140,6 +145,10 @@ export interface CustomPokemon {
 }
 
 export const CUSTOM_POKEMONS = (() => {
+  function of(name: string, typeKeys: string[]) {
+    return make({ v: POKEMON_VERSION, id: id(), name, types: typeKeys });
+  }
+
   function make(raw: RawCustomPokemon): CustomPokemon {
     return {
       get id() {
@@ -177,5 +186,5 @@ export const CUSTOM_POKEMONS = (() => {
       },
     };
   }
-  return { make };
+  return { of, make };
 })();
