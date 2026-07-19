@@ -1,7 +1,9 @@
 import type { Pokemon } from "../../../models/pokemon";
+import type { PokemonMutator } from "../../../models/pokemon/mutator";
 
 export interface EditPokemonBehaviorProps {
   pokemon: Pokemon;
+  mutator: PokemonMutator;
 }
 
 export function EditPokemonBehavior(props: EditPokemonBehaviorProps) {
@@ -13,8 +15,7 @@ export function EditPokemonBehavior(props: EditPokemonBehaviorProps) {
           type="checkbox"
           class="mr-2"
           checked={props.pokemon.exclude}
-          // TODO: This is probably illegal.
-          onChange={(e) => (props.pokemon.exclude = e.currentTarget.checked)}
+          onChange={(e) => props.mutator.setExclude(e.target.checked)}
         />
         <div>Exclude from graphs and recommendations.</div>
       </label>

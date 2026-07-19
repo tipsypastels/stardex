@@ -1,4 +1,4 @@
-import { batch, createEffect, createSignal, Show } from "solid-js";
+import { batch, createEffect, createSignal, Show, type Accessor } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import { customIcons } from "../../../models/pokemon/custom_icon";
 import { blobToDataUrl } from "../../../utils/file";
@@ -277,7 +277,7 @@ export interface CustomIconUploadState {
   delete(): void;
 }
 
-export function createCustomIconUploadState(pokemon: Pokemon): CustomIconUploadState {
+export function createCustomIconUploadState(pokemonId: Accessor<string>): CustomIconUploadState {
   const [uploaded, setUploaded] = createSignal<File>();
   return {
     get uploaded() {
@@ -285,10 +285,10 @@ export function createCustomIconUploadState(pokemon: Pokemon): CustomIconUploadS
     },
     setUploaded,
     get alreadyHas() {
-      return customIcons.pokemonIds.has(pokemon.id);
+      return customIcons.pokemonIds.has(pokemonId());
     },
     delete() {
-      customIcons.delete(pokemon.id);
+      customIcons.delete(pokemonId());
     },
   };
 }

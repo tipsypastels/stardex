@@ -10,6 +10,7 @@ export interface InputProps {
   value: string;
   list?: string;
   size?: "double";
+  onInput?(e: Event & { currentTarget: HTMLInputElement }): void;
   onChange?(e: Event & { currentTarget: HTMLInputElement }): void;
   onBlur?(e: Event & { currentTarget: HTMLInputElement }): void;
   onKeyUp?(e: Event & { currentTarget: HTMLInputElement }): void;
@@ -23,6 +24,7 @@ export function Input(props: InputProps) {
       type="text"
       value={props.value}
       list={props.list}
+      onInput={(e) => props.onInput?.(e)}
       onChange={(e) => props.onChange?.(e)}
       onBlur={(e) => props.onBlur?.(e)}
       onKeyUp={(e) => props.onKeyUp?.(e)}
