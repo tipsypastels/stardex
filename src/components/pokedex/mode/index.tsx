@@ -8,6 +8,7 @@ import { toasts } from "../../../models/ui/toast";
 import { PokedexActions } from "../actions";
 import { toastDescriptionOfAutosortRequest } from "../actions/autosort";
 import { PokedexIconsView } from "./icons";
+import { PokedexNamesView } from "./names";
 
 interface ModeRenderingInfo {
   component: Component<PokedexModeViewProps>;
@@ -18,7 +19,7 @@ const MODE_INFOS: Record<PokedexModeKey, ModeRenderingInfo> = {
     component: PokedexIconsView,
   },
   names: {
-    component: () => null,
+    component: PokedexNamesView,
   },
   text: {
     // TODO: Lazy load.
@@ -53,7 +54,6 @@ export function PokedexMode(props: PokedexModeProps) {
   return (
     <>
       <PokedexActions zapper={zapper()} setZapper={setZapper} onAutosort={onAutosort} />
-      {/* <PokedexActions zapper={zapper} onAutosort={onAutosort} /> */}
       <Dynamic
         component={formatInfo().component}
         zapper={zapper()}

@@ -2,21 +2,14 @@ import { createEffect, onCleanup, type Accessor } from "solid-js";
 import Sortable from "sortablejs";
 import { pokemons } from "../../../../models/pokemon/list";
 
-declare module "solid-js" {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace JSX {
-    interface Directives {
-      draggable: boolean;
-    }
-  }
-}
+export function createDraggable(enabled: Accessor<boolean>) {
+  const list: { current?: HTMLOListElement } = {};
 
-export function draggable(element: HTMLElement, enabled: Accessor<boolean>) {
   createEffect(() => {
-    if (enabled()) {
+    if (enabled() && list.current) {
       let nextSibling: Node | null = null;
 
-      const sortable = Sortable.create(element, {
+      const sortable = Sortable.create(list.current, {
         animation: 150,
         handle: "[data-handle]",
         ghostClass: "opacity-0",
@@ -39,4 +32,10 @@ export function draggable(element: HTMLElement, enabled: Accessor<boolean>) {
       onCleanup(() => sortable?.destroy());
     }
   });
+
+  return {
+    list(current: HTMLOListElement) {
+      list.current = current;
+    },
+  };
 }

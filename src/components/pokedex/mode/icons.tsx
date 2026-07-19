@@ -7,18 +7,13 @@ import { TypeDots } from "../../types/util/dots";
 import { EmptyPokedex } from "../empty";
 import { PokemonIcon } from "../util/pokemon_icon";
 import { onClickPokemon } from "./util/click";
-import { draggable } from "./util/drag";
-
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-draggable;
+import { createDraggable } from "./util/drag";
 
 export function PokedexIconsView(props: PokedexModeViewProps) {
+  const { list } = createDraggable(() => !pokedexFilter.state);
   return (
     <Show when={pokemons.all.length > 0} fallback={<EmptyPokedex />}>
-      <ol
-        class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8"
-        use:draggable={!pokedexFilter.state}
-      >
+      <ol ref={list} class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
         <For each={pokemonsFiltered.all}>
           {(pokemon) => (
             <Item
