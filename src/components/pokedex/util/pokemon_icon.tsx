@@ -32,12 +32,12 @@ const ALT_POSITIONS: { [id: string]: number } = {
   "rapidash-galar": 1032 + 168,
   "farfetchd-galar": 1032 + 169,
   "weezing-galar": 1032 + 170,
-  "mrmime-galar": 1032 + 171,
+  "mr-mime-galar": 1032 + 171,
   "corsola-galar": 1032 + 172,
   "zigzagoon-galar": 1032 + 173,
   "linoone-galar": 1032 + 174,
   "darumaka-galar": 1032 + 175,
-  "darmanitan-galar": 1032 + 176,
+  "darmanitan-galar-standard": 1032 + 176,
   "yamask-galar": 1032 + 178,
   "stunfisk-galar": 1032 + 179,
   "slowpoke-galar": 1032 + 196,
@@ -92,12 +92,14 @@ export function PokemonIcon(props: PokemonIconProps) {
         {(species) => (
           <Show when={props.pokemon.alt} fallback={<SpeciesIcon species={species()} />}>
             {(alt) => (
-              <SpeciesIcon
-                species={{
-                  id: ALT_POSITIONS[`${species().key}-${alt().kind}`],
-                  name: species().name,
-                }}
-              />
+              <div data-species={species().key} data-alt={alt().kind}>
+                <SpeciesIcon
+                  species={{
+                    id: ALT_POSITIONS[`${species().key}-${alt().kind}`],
+                    name: species().name,
+                  }}
+                />
+              </div>
             )}
           </Show>
         )}

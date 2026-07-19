@@ -36,7 +36,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
       when={customIconState.uploaded}
       fallback={
         <Modal
-          title={`Edit ${pokemon.name}`}
+          title={`Edit ${pokemon().name}`}
           onClose={props.onClose}
           footer={
             <div class="text-right">
