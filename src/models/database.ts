@@ -22,7 +22,7 @@ export function getCustomIconDbEntries(
   });
 }
 
-export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f: () => void) {
+export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f?: () => void) {
   withDb((db) => {
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
@@ -30,12 +30,12 @@ export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f: () => void) 
 
     request.onsuccess = () => {
       console.log(`Custom icon "${entry.projectId}-${entry.pokemonId}" uploaded!`);
-      f();
+      f?.();
     };
   });
 }
 
-export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">, f: () => void) {
+export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">, f?: () => void) {
   withDb((db) => {
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
@@ -43,7 +43,7 @@ export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">
 
     request.onsuccess = () => {
       console.log(`Custom icon "${entry.projectId}-${entry.pokemonId}" deleted!`);
-      f();
+      f?.();
     };
   });
 }
@@ -77,6 +77,26 @@ export function addBulkCustomIconsDbEntries(
     transaction.oncomplete = () => {
       console.log(`${entries.length} custom icons for "${projectId}" uploaded!`);
       f();
+    };
+  });
+}
+
+export function deleteBulkCustomIconDbEntries(projectId: string, f?: () => void) {
+  withDb((db) => {
+    const transaction = db.transaction("customIcons", "readwrite");
+    const store = transaction.objectStore("customIcons");
+    const index = store.index("projectId");
+    const request = index.openKeyCursor(projectId);
+
+    request.onsuccess = (event) => {
+      // @ts-expect-error Untyped.
+      const cursor: IDBCursor | null = event.target.result;
+      if (cursor) {
+        cursor.delete();
+        cursor.continue();
+      } else {
+        f?.();
+      }
     };
   });
 }
