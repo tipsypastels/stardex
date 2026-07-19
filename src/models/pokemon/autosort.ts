@@ -1,5 +1,6 @@
 import type { BuiltinPokemon, Pokemon } from ".";
 import { Region } from "../region";
+import { TYPE_KEY_PAIRS } from "../type/key_pair";
 
 export type AutosortFailureMode = "end" | "start" | "remove";
 export type AutosortRequest =
@@ -35,13 +36,13 @@ export function runAutosort(all: Pokemon[], request: AutosortRequest) {
       );
     }
     case "types": {
-      throw new Error("TODO");
-      // return all.sort(
-      //   (left, right) =>
-      //     TYPE_KEY_PAIRS.compare(left.typeKeys.value, right.typeKeys.value) ||
-      //     (left.species.value?.id ?? Infinity) - (right.species.value?.id ?? Infinity) ||
-      //     PairSorting.LeftThenRight,
-      // );
+      return unwrapStable(
+        wrapStable(all).sort(
+          (left, right) =>
+            TYPE_KEY_PAIRS.ordering(left.pokemon.typeKeys, right.pokemon.typeKeys) ||
+            left.index - right.index,
+        ),
+      );
     }
   }
 }
@@ -51,11 +52,11 @@ interface StableItem {
   index: number;
 }
 
-function stableBy<T extends StableItem>(
-  f: (item: T) => number | undefined,
+function stableBy(
+  f: (item: StableItem) => number | undefined,
   failure: Exclude<AutosortFailureMode, "remove">,
 ) {
-  return (left: T, right: T) => {
+  return (left: StableItem, right: StableItem) => {
     const leftId = f(left);
     const rightId = f(right);
 

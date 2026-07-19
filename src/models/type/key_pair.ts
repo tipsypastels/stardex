@@ -1,3 +1,4 @@
+import { TYPES } from ".";
 import type { Pokemon } from "../pokemon";
 
 export const TYPE_KEY_PAIRS = (() => {
@@ -12,6 +13,23 @@ export const TYPE_KEY_PAIRS = (() => {
 
     select(left: string[]) {
       return (right: string[]) => this.equal(left, right);
+    },
+
+    ordering(left: string[], right: string[]) {
+      return new Array(Math.max(left.length, right.length))
+        .fill(undefined)
+        .reduce((prev: number, _, index) => {
+          if (prev) return prev;
+
+          const leftKey = left.at(index);
+          const rightKey = right.at(index);
+
+          if (leftKey && rightKey) return TYPES.ordering(leftKey, rightKey);
+          // Pokemon with fewer types sort earlier.
+          else if (leftKey) return 1;
+          else if (rightKey) return -1;
+          return 0;
+        }, 0);
     },
 
     set(pokemon: Pokemon, keys: string[] | undefined) {

@@ -1,7 +1,7 @@
 import randomColor from "randomcolor";
 import RAW_DATA from "../../data/types.json" with { type: "json" };
 import { must } from "../../utils/assert";
-import { capitalize } from "../../utils/string";
+import { capitalize, sortStrings } from "../../utils/string";
 
 export interface Type {
   key: string;
@@ -14,6 +14,19 @@ export interface Type {
 export const TYPES = {
   of(key: string) {
     return key in RAW_DATA ? BUILTIN_TYPES.of(key) : CUSTOM_TYPES.of(key);
+  },
+
+  ordering(left: string, right: string) {
+    const leftIsBuiltin = BUILTIN_TYPES.map.has(left);
+    const rightIsBuiltin = BUILTIN_TYPES.map.has(right);
+
+    if (leftIsBuiltin && !rightIsBuiltin) return -1;
+    if (rightIsBuiltin && !leftIsBuiltin) return 1;
+    if (leftIsBuiltin) {
+      return BUILTIN_TYPES.keys.indexOf(left) - BUILTIN_TYPES.keys.indexOf(right);
+    } else {
+      return sortStrings(left, right);
+    }
   },
 };
 

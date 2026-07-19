@@ -7,6 +7,10 @@ import { Modal } from "../common/menus/modal";
 
 const [modalOpen, setModalOpen] = createSignal(false);
 
+export function ProjectsHotkeyButton() {
+  return <button id="manage-projects" class="hidden" onClick={() => setModalOpen(true)} />;
+}
+
 export function ProjectsSelect() {
   return (
     <div class="w-max">

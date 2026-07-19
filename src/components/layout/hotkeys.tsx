@@ -2,6 +2,7 @@ import hotkeys from "hotkeys-js";
 import { createSignal, For, onCleanup, onMount, Show } from "solid-js";
 import { ButtonIcon } from "../common/button";
 import { Modal } from "../common/menus/modal";
+import { ProjectsHotkeyButton } from "./projects";
 
 const [open, setOpen] = createSignal(false);
 
@@ -11,6 +12,8 @@ export function Hotkeys() {
   return (
     <>
       <ButtonIcon icon="keyboard" label="Hotkeys" onClick={() => setOpen(true)} />
+      <ProjectsHotkeyButton />
+
       <Show when={open()}>
         <HotkeysModal onClose={() => setOpen(false)} />
       </Show>
@@ -130,6 +133,13 @@ const HOTKEYS: Hotkey[] = [
       setOpen(false);
       ensureSectionOpen("pokedex");
       document.getElementById("pokedex-zapper")?.click();
+    },
+  },
+  {
+    key: "p",
+    name: "Manage Projects",
+    call() {
+      document.getElementById("manage-projects")?.click();
     },
   },
 ];
