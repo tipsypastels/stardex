@@ -3,6 +3,7 @@ import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { stored } from "../../utils/storage";
+import { catchValidationError } from "../ui/error/validation";
 import { runAutosort, type AutosortRequest } from "./autosort";
 import { POKEMON_LIST_VERSION, V0_RawPokemonList, V0_upgradeRawPokemonList } from "./versioned";
 
@@ -36,21 +37,29 @@ export const POKEMON_LISTS = (() => {
   function initial() {
     return createRoot(() => {
       const store = stored("stardex_pokemon");
-      const raw = v.parse(
-        VAny_RawPokemonList,
-        store.load() ?? { v: POKEMON_LIST_VERSION, any: [] },
-      );
 
-      const [all, setAll] = createStore(raw.all.map(POKEMONS.from));
-      const [textDiff, setTextDiff] = createSignal(raw.textDiff);
+      const [all, setAll] = createStore<Pokemon[]>([]);
+      const [textDiff, setTextDiff] = createSignal<string[]>();
 
-      createEffect(() => {
-        store.dump({
-          v: POKEMON_LIST_VERSION,
-          all: [...all],
-          textDiff: textDiff(),
-        });
+      const caught = catchValidationError(() => {
+        const raw_ = store.load();
+        if (!raw_) return;
+
+        const raw = v.parse(VAny_RawPokemonList, raw_);
+
+        setAll(raw.all.map(POKEMONS.make));
+        setTextDiff(raw.textDiff);
       });
+
+      if (!caught) {
+        createEffect(() => {
+          store.dump({
+            v: POKEMON_LIST_VERSION,
+            all: [...all],
+            textDiff: textDiff(),
+          });
+        });
+      }
 
       return {
         all,
@@ -78,7 +87,7 @@ export const POKEMON_LISTS = (() => {
         },
 
         setFromRaw(raw: RawPokemonList) {
-          setAll(raw.all.map(POKEMONS.from));
+          setAll(raw.all.map(POKEMONS.make));
           setTextDiff(raw.textDiff);
         },
 

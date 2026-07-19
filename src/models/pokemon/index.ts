@@ -46,10 +46,10 @@ export const POKEMONS = (() => {
   function make(raw: RawPokemon) {
     return "species" in raw ? BUILTIN_POKEMONS.make(raw) : CUSTOM_POKEMONS.make(raw);
   }
-  function from(raw: unknown) {
+  function fromOrThrow(raw: unknown) {
     return make(v.parse(VAny_RawPokemon, raw));
   }
-  return { make, from };
+  return { make, fromOrThrow };
 })();
 
 /* -------------------------------------------------------------------------- */

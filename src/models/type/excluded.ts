@@ -2,6 +2,7 @@ import { ReactiveSet } from "@solid-primitives/set";
 import { createEffect, createRoot } from "solid-js";
 import * as v from "valibot";
 import { stored } from "../../utils/storage";
+import { catchValidationError } from "../ui/error/validation";
 
 export const EXCLUDED_TYPES_VERSION = 1;
 
@@ -15,19 +16,25 @@ export const EXCLUDED_TYPES_SETS = (() => {
   function initial() {
     return createRoot(() => {
       const store = stored("stardex_excluded_types");
-      const raw = v.parse(
-        RawExcludedTypesSet,
-        store.load() ?? { v: EXCLUDED_TYPES_VERSION, all: [] },
-      );
 
-      const all = new ReactiveSet(raw.all);
+      const all = new ReactiveSet<string>();
 
-      createEffect(() => {
-        store.dump({
-          v: EXCLUDED_TYPES_VERSION,
-          all: [...all],
-        } satisfies RawExcludedTypesSet);
+      const caught = catchValidationError(() => {
+        const raw = store.load();
+        if (!raw) return;
+        for (const type of v.parse(RawExcludedTypesSet, raw).all) {
+          all.add(type);
+        }
       });
+
+      if (!caught) {
+        createEffect(() => {
+          store.dump({
+            v: EXCLUDED_TYPES_VERSION,
+            all: [...all],
+          } satisfies RawExcludedTypesSet);
+        });
+      }
 
       return {
         all: all as ReadonlySet<string>,

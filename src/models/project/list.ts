@@ -1,16 +1,7 @@
-import { batch, createEffect, createMemo, createRoot } from "solid-js";
+import { batch, createEffect, createMemo, createRoot, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
-import {
-  ACTIVE_PROJECTS,
-  INACTIVE_PROJECTS,
-  PROJECTS,
-  RawProject,
-  RawProjectModels,
-  VAny_RawProject,
-  type ActiveProject,
-  type InactiveProject,
-} from ".";
+import { PROJECTS, RawProject, RawProjectModels, type ProjectWithDormantModels } from ".";
 import { mustIndex } from "../../utils/assert";
 import { id } from "../../utils/id";
 import { stored } from "../../utils/storage";
@@ -25,17 +16,22 @@ import { REGIONS } from "../region";
 import { regions } from "../region/set";
 import { strictness, STRICTNESSES } from "../strictness";
 import { EXCLUDED_TYPES_VERSION, excludedTypes } from "../type/excluded";
-import { PROJECT_VERSION } from "./versioned";
+import { catchValidationError } from "../ui/error/validation";
+import { PROJECT_LIST_VERSION, PROJECT_VERSION } from "./versioned";
+
+export type RawProjectList = v.InferOutput<typeof RawProjectList>;
+export const RawProjectList = v.object({
+  v: v.literal(PROJECT_VERSION),
+  all: v.array(RawProject),
+  activeId: v.string(),
+});
 
 export const PROJECT_LISTS = (() => {
-  const defaults: RawProject[] = [
-    {
-      v: PROJECT_VERSION,
-      id: "default",
-      name: "Untitled Project 1",
-      active: true,
-    },
-  ];
+  const defaults: RawProjectList = {
+    v: PROJECT_LIST_VERSION,
+    all: [{ v: PROJECT_VERSION, id: "default", name: "Untitled Project 1" }],
+    activeId: "default",
+  };
 
   function getModels(): RawProjectModels {
     return {
@@ -62,17 +58,30 @@ export const PROJECT_LISTS = (() => {
   function initial() {
     return createRoot(() => {
       const store = stored("stardex_projects");
-      const initial = v
-        .parse(v.array(VAny_RawProject), store.load() ?? defaults)
-        .map(PROJECTS.make);
 
-      const [all, setAll] = createStore(initial);
-      const activeIndex = createMemo(() => all.findIndex((p) => p.active));
-      const active = createMemo(() => all[activeIndex()] as ActiveProject);
+      const [all, setAll] = createStore(defaults.all.map(PROJECTS.make));
+      const [activeId, setActiveId] = createSignal(defaults.activeId);
+      const active = createMemo(() => all.find((project) => project.id === activeId()));
 
-      createEffect(() => {
-        store.dump([...all]);
+      const caught = catchValidationError(() => {
+        const raw_ = store.load();
+        if (!raw_) return;
+
+        const raw = v.parse(RawProjectList, raw_);
+
+        setAll(raw.all.map(PROJECTS.make));
+        setActiveId(raw.activeId);
       });
+
+      if (!caught) {
+        createEffect(() => {
+          store.dump({
+            v: PROJECT_LIST_VERSION,
+            all: [...all],
+            activeId: activeId(),
+          });
+        });
+      }
 
       function findIndex(id: string) {
         return mustIndex(
@@ -84,6 +93,10 @@ export const PROJECT_LISTS = (() => {
       return {
         all,
 
+        get activeId() {
+          return activeId();
+        },
+
         get active() {
           return active();
         },
@@ -93,24 +106,23 @@ export const PROJECT_LISTS = (() => {
         },
 
         setActive(id: string) {
-          if (id === active().id) {
+          if (id === activeId()) {
             return;
           }
 
-          const index = findIndex(id);
-          const project = all[index] as InactiveProject;
-
+          const oldActiveId = activeId();
+          const oldActiveIndex = findIndex(oldActiveId);
           const oldModels = getModels();
-          const { active: newActive, models: newModels } =
-            INACTIVE_PROJECTS.toActiveAndModels(project);
+
+          const newActiveIndex = findIndex(id);
+          const { dormantModels: newModels, ...newActive } = all[
+            newActiveIndex
+          ] as ProjectWithDormantModels;
 
           batch(() => {
-            setAll(
-              produce((all) => {
-                all[activeIndex()] = ACTIVE_PROJECTS.toInactive(active(), oldModels);
-                all[index] = newActive;
-              }),
-            );
+            setAll(oldActiveIndex, "dormantModels", oldModels);
+            setAll(newActiveIndex, newActive);
+            setActiveId(id);
             setModels(newModels);
           });
         },
@@ -118,12 +130,11 @@ export const PROJECT_LISTS = (() => {
         pushEmpty() {
           setAll(
             all.length,
-            INACTIVE_PROJECTS.make({
+            PROJECTS.make({
               v: PROJECT_VERSION,
               id: id(),
-              name: `Untitled Project ${all.length}`,
-              active: false,
-              models: {
+              name: `Untitled Project ${all.length + 1}`,
+              dormantModels: {
                 pokemons: { v: POKEMON_LIST_VERSION, all: [] },
                 regions: REGIONS.recommendedKeys,
                 strictness: STRICTNESSES.defaultKey,
@@ -138,7 +149,7 @@ export const PROJECT_LISTS = (() => {
         pushDuplicate(id: string) {
           const index = findIndex(id);
           const project = all[index];
-          const duplicate = PROJECTS.makeInactiveDuplicate(project, getModels);
+          const duplicate = PROJECTS.makeDuplicate(project, getModels);
 
           setAll(
             produce((all) => {

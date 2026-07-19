@@ -1,5 +1,5 @@
-import { createSignal, For, Show } from "solid-js";
-import type { InactiveProject, Project } from "../../models/project";
+import { createSelector, createSignal, For, Show } from "solid-js";
+import type { Project } from "../../models/project";
 import { projects } from "../../models/project/list";
 import { Icon } from "../common/icon";
 import { Dropdown, DropdownDivider, DropdownItem } from "../common/menus/dropdown";
@@ -22,11 +22,8 @@ export function ProjectsSelect() {
       </div>
       <select
         class="w-75 max-w-full border-x-0 border-y-2 border-divider-light bg-background"
-        value={projects.active.id}
-        onChange={(e) => {
-          e.preventDefault();
-          projects.setActive(e.target.value);
-        }}
+        value={projects.activeId}
+        onInput={(e) => projects.setActive(e.currentTarget.value)}
       >
         <For each={projects.all}>
           {(project) => <option value={project.id}>{project.name}</option>}
@@ -84,6 +81,7 @@ interface ProjectOptionProps {
 
 function ProjectOption(props: ProjectOptionProps) {
   const dropdownOpen = () => props.dropdownId === props.project.id;
+  const isActive = createSelector(() => projects.activeId);
 
   return (
     <li>
@@ -93,7 +91,7 @@ function ProjectOption(props: ProjectOptionProps) {
             class="hidden"
             type="radio"
             name="project"
-            checked={props.project.active}
+            checked={isActive(props.project.id)}
             onClick={(e) => {
               e.preventDefault();
               projects.setActive(props.project.id);
@@ -102,7 +100,7 @@ function ProjectOption(props: ProjectOptionProps) {
 
           <div
             class="mr-4 opacity-20"
-            classList={{ "text-primary opacity-100": props.project.active }}
+            classList={{ "text-primary opacity-100": isActive(props.project.id) }}
           >
             <Icon name="badge-check" />
           </div>
@@ -144,13 +142,13 @@ function ProjectOption(props: ProjectOptionProps) {
             name="Delete Project"
             icon="trash"
             onClick={() => {
-              if (props.project.active) {
+              if (isActive(props.project.id)) {
                 return alert(
                   "Can't delete the active project! Make a new project and switch to it first.",
                 );
               }
               if (
-                (props.project as InactiveProject).toRaw().models.pokemons.all.length === 0 ||
+                props.project.dormantModels?.pokemons.all.length === 0 ||
                 confirm(
                   `Are you sure you want to PERMANENTLY delete the project "${props.project.name}"?`,
                 )
