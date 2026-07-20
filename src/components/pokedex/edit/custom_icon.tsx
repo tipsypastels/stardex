@@ -34,10 +34,12 @@ export function EditPokemonCustomIconLink(props: EditPokemonCustomIconLinkProps)
 
         <Show when={props.state.alreadyHas}>
           <li>
-            <span class="pr-1">
-              <Icon name="times" />
-            </span>
-            <ButtonLink onClick={() => props.state.delete()}>Remove</ButtonLink>
+            <ButtonLink onClick={() => props.state.delete()}>
+              <span class="pr-1">
+                <Icon name="times" />
+              </span>
+              Remove
+            </ButtonLink>
           </li>
         </Show>
       </ul>
