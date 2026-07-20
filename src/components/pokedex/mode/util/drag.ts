@@ -14,6 +14,7 @@ export function createDraggable() {
         animation: 150,
         handle: "[data-handle]",
         ghostClass: "opacity-0",
+        fallbackOnBody: true,
         onStart(event) {
           nextSibling = event.item.nextSibling;
         },
@@ -28,6 +29,7 @@ export function createDraggable() {
           }
 
           pokemons.move(event.oldIndex!, event.newIndex!);
+          nextSibling = null;
         },
       });
       onCleanup(() => sortable?.destroy());
