@@ -121,12 +121,6 @@ function withDb(f: (db: IDBDatabase) => void) {
         // @ts-expect-error Untyped.
         const db: IDBDatabase = event.target.result;
 
-        db.onversionchange = () => {
-          if (dropping) {
-            return db.close();
-          }
-        };
-
         db.onerror = (event) => {
           // @ts-expect-error Untyped.
           console.error("Database error", event.target.error);
@@ -145,6 +139,13 @@ function withDb(f: (db: IDBDatabase) => void) {
       request.onsuccess = (event) => {
         // @ts-expect-error Untyped.
         const db: IDBDatabase = event.target.result;
+
+        db.onversionchange = () => {
+          db.close();
+          state = { type: "uninit" };
+          console.warn("Database closed due to external version change or deletion.");
+        };
+
         state = { type: "db", db };
 
         console.log("Database initialized.");
@@ -154,10 +155,25 @@ function withDb(f: (db: IDBDatabase) => void) {
   }
 }
 
-let dropping = false;
-
 export function dropDb(f: () => void) {
-  dropping = true;
+  if (state.type === "db") {
+    state.db.close();
+    state = { type: "uninit" };
+  }
+
   const request = indexedDB.deleteDatabase("stardex");
   request.onsuccess = f;
+
+  request.onerror = (e) => {
+    console.error("Failed to delete database:", e);
+  };
+
+  request.onblocked = () => {
+    console.warn("Database deletion blocked, is it open in another tab?");
+  };
+}
+
+export function unsafeWipeEverythingAndReload() {
+  localStorage.clear();
+  dropDb(() => location.reload());
 }
