@@ -86,7 +86,9 @@ export function deleteBulkCustomIconDbEntries(projectId: string, f?: () => void)
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
     const index = store.index("projectId");
-    const request = index.openKeyCursor(projectId);
+    const request = index.openCursor(projectId);
+
+    let i = 0;
 
     request.onsuccess = (event) => {
       // @ts-expect-error Untyped.
@@ -94,7 +96,11 @@ export function deleteBulkCustomIconDbEntries(projectId: string, f?: () => void)
       if (cursor) {
         cursor.delete();
         cursor.continue();
+        i++;
       } else {
+        if (i > 0) {
+          console.log(`${i} custom icons for "${projectId}" deleted!`);
+        }
         f?.();
       }
     };

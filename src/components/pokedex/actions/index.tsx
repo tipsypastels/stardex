@@ -2,6 +2,7 @@ import { batch, createEffect, createSignal, Match, Show, Switch } from "solid-js
 import { pokedexFilter } from "../../../models/pokedex/filter";
 import { pokedexMode } from "../../../models/pokedex/mode";
 import type { AutosortRequest } from "../../../models/pokemon/autosort";
+import { customIcons } from "../../../models/pokemon/custom_icon";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
 import { ActionBar, ActionBarItem } from "../../common/menus/action_bar";
@@ -47,6 +48,7 @@ export function PokedexActions(props: PokedexActionsProps) {
 
     batch(() => {
       pokemons.clear();
+      customIcons.clear();
       toasts.add("trash", "Pokédex cleared! A blank slate...");
     });
   }
