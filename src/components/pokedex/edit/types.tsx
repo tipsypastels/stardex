@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import type { PokemonMutator } from "../../../models/pokemon/mutator";
 import { Checkbox } from "../../common/forms/checkbox";
@@ -64,7 +64,13 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                   radio
                   checked={!props.pokemon.altKind}
                   onChange={setDefault}
-                />
+                >
+                  <Show when={!props.pokemon.altKind && props.pokemon.changedTypeKeys}>
+                    <div class="ml-1 text-sm">
+                      <ButtonLink onClick={setDefault}>(reset customized type?)</ButtonLink>
+                    </div>
+                  </Show>
+                </Checkbox>
               </li>
               <For each={props.pokemon.species.alts}>
                 {(alt) => (
@@ -74,15 +80,25 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                       radio
                       checked={props.pokemon.altKind === alt.kind}
                       onChange={() => setAltKind(alt.kind)}
-                    />
+                    >
+                      <Show
+                        when={props.pokemon.altKind === alt.kind && props.pokemon.changedTypeKeys}
+                      >
+                        <div class="ml-1 text-sm">
+                          <ButtonLink onClick={() => setAltKind(alt.kind)}>
+                            (reset customized type?)
+                          </ButtonLink>
+                        </div>
+                      </Show>
+                    </Checkbox>
                   </li>
                 )}
               </For>
             </ul>
           </div>
         ) : props.pokemon.isBuiltin() && props.pokemon.changedTypeKeys ? (
-          <div class="mt-2 ml-2 text-sm">
-            <ButtonLink onClick={setDefault}>reset customized type</ButtonLink>
+          <div class="mt-2 text-sm">
+            <ButtonLink onClick={setDefault}>reset customized type?</ButtonLink>
           </div>
         ) : null}
       </div>

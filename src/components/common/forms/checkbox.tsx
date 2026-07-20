@@ -1,3 +1,4 @@
+import type { JSXElement } from "solid-js";
 import { Icon } from "../icon";
 
 export interface CheckboxProps {
@@ -5,6 +6,7 @@ export interface CheckboxProps {
   radio?: boolean;
   checked: boolean | undefined;
   onChange(checked: boolean): void;
+  children?: JSXElement;
 }
 
 export function Checkbox(props: CheckboxProps) {
@@ -29,6 +31,7 @@ export function Checkbox(props: CheckboxProps) {
         <Icon name={icon()} />
       </div>
       <div>{props.name}</div>
+      {props.children}
     </label>
   );
 }
