@@ -3,7 +3,7 @@ import { createEffect, createMemo, createRoot } from "solid-js";
 import * as v from "valibot";
 import { RegionKey, REGIONS } from ".";
 import { stored } from "../../utils/storage";
-import { catchValidationError } from "../ui/error/validation";
+import { catchInitialValidationError } from "../ui/error/validation";
 
 export const regions = createRoot(() => {
   const store = stored("stardex_regions");
@@ -11,7 +11,7 @@ export const regions = createRoot(() => {
   const keys = new ReactiveSet<RegionKey>(REGIONS.recommendedKeys);
   const all = createMemo(() => [...keys].map(REGIONS.of));
 
-  const caught = catchValidationError(() => {
+  const caught = catchInitialValidationError(() => {
     const raw = store.load();
     if (!raw) return;
     for (const key of v.parse(v.array(RegionKey), raw)) {

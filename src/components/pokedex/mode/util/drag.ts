@@ -1,12 +1,13 @@
-import { createEffect, onCleanup, type Accessor } from "solid-js";
+import { createEffect, onCleanup } from "solid-js";
 import Sortable from "sortablejs";
+import { pokedexFilter } from "../../../../models/pokedex/filter";
 import { pokemons } from "../../../../models/pokemon/list";
 
-export function createDraggable(enabled: Accessor<boolean>) {
+export function createDraggable() {
   const list: { current?: HTMLOListElement } = {};
 
   createEffect(() => {
-    if (enabled() && list.current) {
+    if (pokemons.all.length > 0 && !pokedexFilter.state && list.current) {
       let nextSibling: Node | null = null;
 
       const sortable = Sortable.create(list.current, {

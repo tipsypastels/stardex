@@ -1,6 +1,6 @@
 import { For, Show } from "solid-js";
 import type { PokedexModeViewProps } from ".";
-import { pokedexFilter, pokemonsFiltered } from "../../../models/pokedex/filter";
+import { pokemonsFiltered } from "../../../models/pokedex/filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { TypeDots } from "../../types/util/dots";
@@ -10,7 +10,7 @@ import { onClickPokemon } from "./util/click";
 import { createDraggable } from "./util/drag";
 
 export function PokedexIconsView(props: PokedexModeViewProps) {
-  const { list } = createDraggable(() => !pokedexFilter.state);
+  const { list } = createDraggable();
   return (
     <Show when={pokemons.all.length > 0} fallback={<EmptyPokedex />}>
       <ol ref={list} class="grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">

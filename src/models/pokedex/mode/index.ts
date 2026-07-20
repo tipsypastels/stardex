@@ -2,7 +2,7 @@ import { createEffect, createRoot, createSignal } from "solid-js";
 import * as v from "valibot";
 import RAW_DATA from "../../../data/pokedex_modes.json" with { type: "json" };
 import { stored } from "../../../utils/storage";
-import { catchValidationError } from "../../ui/error/validation";
+import { catchInitialValidationError } from "../../ui/error/validation";
 import { V0_PokedexModeKey, V0_upgradePokedexModeKey } from "./versioned";
 
 const KEYS = Object.keys(RAW_DATA) as PokedexModeKey[];
@@ -27,7 +27,7 @@ export const POKEDEX_MODES = (() => {
       const store = stored("stardex_pokedex_mode");
       const [key, setKey] = createSignal(defaultKey);
 
-      const caught = catchValidationError(() => {
+      const caught = catchInitialValidationError(() => {
         const key = store.load();
         if (key) setKey(v.parse(VAny_PokedexModeKey, key));
       });

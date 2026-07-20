@@ -139,6 +139,7 @@ const HOTKEYS: Hotkey[] = [
     key: "p",
     name: "Manage Projects",
     call() {
+      setOpen(false);
       document.getElementById("manage-projects")?.click();
     },
   },

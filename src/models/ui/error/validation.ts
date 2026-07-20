@@ -1,12 +1,22 @@
 import { catchError, createSignal } from "solid-js";
 
-export const [validationError, setValidationError] = createSignal<Error>();
+export interface ValidationError {
+  error: Error;
+  phase: "initial" | "import";
+}
 
-export function catchValidationError(f: () => void): boolean {
+export const [validationError, setValidationError] = createSignal<ValidationError>();
+
+export function catchInitialValidationError(f: () => void): boolean {
   return (
-    catchError(() => {
-      f();
-      return false;
-    }, setValidationError) ?? true
+    catchError(
+      () => {
+        f();
+        return false;
+      },
+      (error) => {
+        setValidationError({ error, phase: "initial" });
+      },
+    ) ?? true
   );
 }

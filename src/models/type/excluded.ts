@@ -2,7 +2,7 @@ import { ReactiveSet } from "@solid-primitives/set";
 import { createEffect, createRoot } from "solid-js";
 import * as v from "valibot";
 import { stored } from "../../utils/storage";
-import { catchValidationError } from "../ui/error/validation";
+import { catchInitialValidationError } from "../ui/error/validation";
 
 export const EXCLUDED_TYPES_VERSION = 1;
 
@@ -19,7 +19,7 @@ export const EXCLUDED_TYPES_SETS = (() => {
 
       const all = new ReactiveSet<string>();
 
-      const caught = catchValidationError(() => {
+      const caught = catchInitialValidationError(() => {
         const raw = store.load();
         if (!raw) return;
         for (const type of v.parse(RawExcludedTypesSet, raw).all) {

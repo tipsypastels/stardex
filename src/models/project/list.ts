@@ -16,7 +16,7 @@ import { REGIONS } from "../region";
 import { regions } from "../region/set";
 import { strictness, STRICTNESSES } from "../strictness";
 import { EXCLUDED_TYPES_VERSION, excludedTypes } from "../type/excluded";
-import { catchValidationError } from "../ui/error/validation";
+import { catchInitialValidationError } from "../ui/error/validation";
 import { PROJECT_LIST_VERSION, PROJECT_VERSION } from "./versioned";
 
 export type RawProjectList = v.InferOutput<typeof RawProjectList>;
@@ -63,7 +63,7 @@ export const PROJECT_LISTS = (() => {
       const [activeId, setActiveId] = createSignal(defaults.activeId);
       const active = createMemo(() => all.find((project) => project.id === activeId()));
 
-      const caught = catchValidationError(() => {
+      const caught = catchInitialValidationError(() => {
         const raw_ = store.load();
         if (!raw_) return;
 

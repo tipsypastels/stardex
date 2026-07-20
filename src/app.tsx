@@ -3,7 +3,7 @@
 import "./app.css";
 
 import { render } from "solid-js/web";
-import { CatchValidationError } from "./components/error";
+import { CatchValidationError } from "./components/error/validation";
 import { Layout } from "./components/layout";
 import { Pokedex } from "./components/pokedex";
 import { Recommendations } from "./components/recommendations";
