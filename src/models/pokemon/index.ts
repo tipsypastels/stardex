@@ -135,6 +135,7 @@ export interface CustomPokemon {
   readonly id: string;
   name: string;
   readonly species?: undefined;
+  readonly altKind?: undefined;
   readonly alt?: undefined;
   typeKeys: string[];
   readonly types: Type[];
@@ -157,6 +158,9 @@ export const CUSTOM_POKEMONS = (() => {
       },
       name: raw.name,
       get species() {
+        return undefined;
+      },
+      get altKind(): undefined {
         return undefined;
       },
       get alt(): undefined {

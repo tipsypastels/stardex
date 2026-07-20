@@ -46,54 +46,6 @@ import * as process from "node:process";
  * }} ResolvedMon
  */
 
-const SKIPPED_VARIETY_NAME_PATTERNS = [/-totem-/, /-totem$/];
-const SKIPPED_VARIETY_NAMES = new Set([
-  // LGPE gimmicks
-  "eevee-starter",
-  "pikachu-starter",
-  // All meaningless
-  "pikachu-rock-star",
-  "pikachu-belle",
-  "pikachu-pop-star",
-  "pikachu-phd",
-  "pikachu-libre",
-  "pikachu-cosplay",
-  "pikachu-original-cap",
-  "pikachu-hoenn-cap",
-  "pikachu-sinnoh-cap",
-  "pikachu-unova-cap",
-  "pikachu-kalos-cap",
-  "pikachu-alola-cap",
-  "pikachu-partner-cap",
-  "pikachu-world-cap",
-  // Changes when/how it changes forms
-  "zygarde-10-power-construct",
-  "zygarde-50-power-construct",
-  // Changes stats, but not relevant to stardex
-  "pumpkaboo-small",
-  "pumpkaboo-large",
-  "pumpkaboo-super",
-  "gourgeist-small",
-  "gourgeist-large",
-  "gourgeist-super",
-  // Only affects its evolution's form
-  "rockruff-own-tempo",
-  // Cosmetic
-  "dudunsparce-three-segment",
-  // Only matters in overworld
-  "miraidon-low-power-mode",
-  "miraidon-drive-mode",
-  "miraidon-aquatic-mode",
-  "miraidon-glide-mode",
-  "koraidon-limited-build",
-  "koraidon-sprinting-build",
-  "koraidon-swimming-build",
-  "koraidon-gliding-build",
-  // Doesn't have a smogon icon, only an in battle change
-  "mimikyu-busted",
-  "mimikyu-totem-busted",
-]);
-
 /** @type {Record<string, PokemonSpecies['varieties']>} */
 const OVERRIDE_VARIETIES = {
   // PokeAPI considers meteor to be the default form, Smogon considers red core. Defer to Smogon.
@@ -160,23 +112,73 @@ const OVERRIDE_VARIETIES = {
   ],
 };
 
+const SKIPPED_VARIETY_NAME_PATTERNS = [/-totem-/, /-totem$/];
+const SKIPPED_VARIETY_NAMES = new Set([
+  // LGPE gimmicks
+  "eevee-starter",
+  "pikachu-starter",
+  // All meaningless
+  "pikachu-rock-star",
+  "pikachu-belle",
+  "pikachu-pop-star",
+  "pikachu-phd",
+  "pikachu-libre",
+  "pikachu-cosplay",
+  "pikachu-original-cap",
+  "pikachu-hoenn-cap",
+  "pikachu-sinnoh-cap",
+  "pikachu-unova-cap",
+  "pikachu-kalos-cap",
+  "pikachu-alola-cap",
+  "pikachu-partner-cap",
+  "pikachu-world-cap",
+  // Changes when/how it changes forms
+  "zygarde-10-power-construct",
+  "zygarde-50-power-construct",
+  // Changes stats, but not relevant to stardex
+  "pumpkaboo-small",
+  "pumpkaboo-large",
+  "pumpkaboo-super",
+  "gourgeist-small",
+  "gourgeist-large",
+  "gourgeist-super",
+  // Only affects its evolution's form
+  "rockruff-own-tempo",
+  // Cosmetic
+  "dudunsparce-three-segment",
+  // Only matters in overworld
+  "miraidon-low-power-mode",
+  "miraidon-drive-mode",
+  "miraidon-aquatic-mode",
+  "miraidon-glide-mode",
+  "koraidon-limited-build",
+  "koraidon-sprinting-build",
+  "koraidon-swimming-build",
+  "koraidon-gliding-build",
+  // Doesn't have a smogon icon, only an in battle change
+  "mimikyu-busted",
+  "mimikyu-totem-busted",
+]);
+
+/** @type {[RegExp, string][]} */
+const VARIETY_KIND_NAME_PATTERNS = [
+  [/-alola$/, "Alolan"],
+  [/-galar$/, "Galarian"],
+  [/-hisui$/, "Hisuian"],
+  [/-paldea$/, "Paldean"],
+  [/-gmax$/, "Gigantamax"],
+];
+
 /** @type {Record<string, string>} */
-const ALT_KIND_NAMES = {
-  "alola": "Alolan",
-  "galar": "Galarian",
-  "hisui": "Hisuian",
-  "paldea": "Paldean",
-  // Tauros
-  "paldea-combat-breed": "Paldean Combat Breed",
-  "paldea-blaze-breed": "Paldean Blaze Breed",
-  "paldea-aqua-breed": "Paldean Aqua Breed",
-  // Darmanitan
-  "galar-standard": "Galarian",
-  "galar-zen": "Galarian Zen",
-  // Zygarde
-  "10": "10%",
-  // Gimmicks
-  "gmax": "Gigantamax",
+const VARIETY_KIND_NAMES = {
+  "tauros-paldea-combat-breed": "Paldean Combat Breed",
+  "tauros-paldea-blaze-breed": "Paldean Blaze Breed",
+  "tauros-paldea-aqua-breed": "Paldean Aqua Breed",
+  "darmanitan-galar-standard": "Galarian",
+  "darmanitan-galar-zen": "Galarian Zen",
+  "zygarde-10": "10%",
+  "urshifu-single-strike-gmax": "Single Strike Gigantamax",
+  "urshifu-rapid-strike-gmax": "Rapid Strike Gigantamax",
 };
 
 // From https://github.com/smogon/pokemon-showdown-client/blob/master/play.pokemonshowdown.com/src/battle-dex-data.ts#L151.
@@ -847,12 +849,17 @@ async function resolveAlts(species) {
   const varieties = OVERRIDE_VARIETIES[species.name] || species.varieties;
 
   for (const variety of varieties) {
-    if (variety.is_default) continue;
-    if (SKIPPED_VARIETY_NAME_PATTERNS.some((p) => p.exec(variety.pokemon.name))) continue;
-    if (SKIPPED_VARIETY_NAMES.has(variety.pokemon.name)) continue;
+    const key = variety.pokemon.name;
 
-    const kind = variety.pokemon.name.replace(`${species.name}-`, "");
-    const name = ALT_KIND_NAMES[kind] || capitalizeWords(kind.replace(/-/g, " "));
+    if (variety.is_default) continue;
+    if (SKIPPED_VARIETY_NAME_PATTERNS.some((p) => p.exec(key))) continue;
+    if (SKIPPED_VARIETY_NAMES.has(key)) continue;
+
+    const kind = key.replace(`${species.name}-`, "");
+    const name =
+      VARIETY_KIND_NAMES[key] ||
+      VARIETY_KIND_NAME_PATTERNS.find(([p]) => p.exec(key))?.[1] ||
+      capitalizeWords(kind.replace(/-/g, " "));
 
     const iconIndexOrUseSpecies =
       OVERRIDE_ALT_ICON_INDICES[variety.pokemon.name] ||

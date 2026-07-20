@@ -1,6 +1,7 @@
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import type { PokemonMutator } from "../../../models/pokemon/mutator";
+import { Icon } from "../../common/icon";
 import { Input } from "../../common/input";
 import { ButtonLink } from "../../common/link";
 import { TYPE_SUGGESTIONS_LIST } from "../../types/util/suggestions";
@@ -55,15 +56,26 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
 
         {props.pokemon.species?.alts.length ? (
           <div class="mt-2">
-            <h3 class="text-sm">presets:</h3>
+            <h3 class="text-sm">forms:</h3>
             <ul class="list-inside list-disc">
               <li>
-                <ButtonLink onClick={() => setDefault()}>normal form</ButtonLink>
+                <ButtonLink onClick={() => setDefault()} disabled={!props.pokemon.altKind}>
+                  <Show when={!props.pokemon.altKind}>
+                    <Icon name="check" />
+                  </Show>
+                  normal form
+                </ButtonLink>
               </li>
               <For each={props.pokemon.species.alts}>
                 {(alt) => (
                   <li>
-                    <ButtonLink onClick={() => setAltKind(alt.kind)}>
+                    <ButtonLink
+                      onClick={() => setAltKind(alt.kind)}
+                      disabled={props.pokemon.altKind === alt.kind}
+                    >
+                      <Show when={props.pokemon.altKind === alt.kind}>
+                        <Icon name="check" />
+                      </Show>
                       {alt.nameLower} form
                     </ButtonLink>
                   </li>

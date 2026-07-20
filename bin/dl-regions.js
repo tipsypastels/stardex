@@ -93,9 +93,9 @@ async function resolve(key, { icon, apiIds }) {
      * treats alts as regional forms. It must account for inexact kinds, e.g. Darmanitan's galar-standard,
      * and having multiple alts in the same region, e.g. Tauros.
      */
-    const matchingAlts = /** @type {{ alts?: { kind: string }[] } | undefined} */ RAW_SPECIES_DATA[
-      species
-    ]?.alts?.filter((alt) => alt.kind.includes(key));
+    const matchingAlts = /** @type {{ alts?: { kind: string }[] } | undefined} */ (
+      RAW_SPECIES_DATA[species]
+    )?.alts?.filter((alt) => alt.kind.includes(key));
 
     if (matchingAlts?.length) {
       return matchingAlts.map((alt) => ({

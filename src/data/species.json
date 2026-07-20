@@ -12339,7 +12339,7 @@
       },
       {
         "kind": "single-strike-gmax",
-        "name": "Single Strike Gmax",
+        "name": "Single Strike Gigantamax",
         "types": [
           "fighting",
           "dark"
@@ -12348,7 +12348,7 @@
       },
       {
         "kind": "rapid-strike-gmax",
-        "name": "Rapid Strike Gmax",
+        "name": "Rapid Strike Gigantamax",
         "types": [
           "fighting",
           "water"
