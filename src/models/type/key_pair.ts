@@ -41,7 +41,7 @@ export const TYPE_KEY_PAIRS = (() => {
         return;
       }
       if (pokemon.isBuiltin()) {
-        if (this.equal(keys, pokemon.species.typeKeys)) {
+        if (this.equal(keys, pokemon.alt?.typeKeys ?? pokemon.species.typeKeys)) {
           pokemon.changedTypeKeys = undefined;
           return;
         }
