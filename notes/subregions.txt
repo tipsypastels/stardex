@@ -1,0 +1,22 @@
+Sub-region notes
+
+- Kanto - None
+- Johto (updated to intersperse cross-gen evos)
+- Hoenn (likewise)
+- Sinnoh (platinum expands at end)
+- Unova (bw2 changes order and interperses others, should be stored separately i think)
+- Kalos (three different dexes)
+- Alola (technically has four sub-island dexes but pokeapi also just has alola so we'll go with that. but also USUM intersperses)
+- Galar (dlc sub-regions)
+- Paldea (same)
+
+Sub-region members mode:
+  - Replace (list its own pokedex)
+  - Append
+  - Intersperse (stores members and indices?)
+
+For Kalos, where there is no "main" region but only three sub-regions, have the main list be empty?
+  - Or just arbitrarily call central the main region.
+    - I think that's fine.
+
+If the base and replace sub-regions are selected, it does the deduping.
