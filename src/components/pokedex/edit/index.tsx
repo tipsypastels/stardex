@@ -1,4 +1,5 @@
 import { batch, createMemo, Show } from "solid-js";
+import { customIcons } from "../../../models/pokemon/custom_icon";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
 import { ButtonLink } from "../../common/link";
@@ -27,6 +28,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
     batch(() => {
       toasts.add("times", `Removed ${pokemon().name}!`);
       pokemons.delete(props.id);
+      customIcons.delete(props.id);
       props.onClose();
     });
   }

@@ -1,4 +1,5 @@
 import { batch, createResource, createRoot } from "solid-js";
+import { assert } from "../../../utils/assert";
 import { blobToDataUrl } from "../../../utils/file";
 import {
   addBulkCustomIconsDbEntries,
@@ -64,6 +65,12 @@ export const customIcons = createRoot(() => {
       });
 
       deleteCustomIconsDbEntry({ pokemonId, projectId: projects.activeId });
+    },
+
+    deleteProject(projectId: string) {
+      assert(projectId !== projects.activeId, "Can't delete custom icons for the active project.");
+      // We don't need to update state because we know this isn't the active project.
+      deleteBulkCustomIconDbEntries(projectId);
     },
 
     clear() {

@@ -1,4 +1,5 @@
 import { createSelector, createSignal, For, Show } from "solid-js";
+import { customIcons } from "../../models/pokemon/custom_icon";
 import type { Project } from "../../models/project";
 import { projects } from "../../models/project/list";
 import { Icon } from "../common/icon";
@@ -158,6 +159,7 @@ function ProjectOption(props: ProjectOptionProps) {
                 )
               ) {
                 projects.delete(props.project.id);
+                customIcons.deleteProject(props.project.id);
               }
             }}
           />
