@@ -63,7 +63,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                   <Show when={!props.pokemon.altKind}>
                     <Icon name="check" />
                   </Show>
-                  normal form
+                  {props.pokemon.species.noAltNameLower ?? "normal"} form
                 </ButtonLink>
               </li>
               <For each={props.pokemon.species.alts}>

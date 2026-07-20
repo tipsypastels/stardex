@@ -6,6 +6,7 @@ export interface RawSpecies {
   id: number;
   name: string;
   hiddenName?: string;
+  noAltName?: string;
   types: string[];
   evos?: { from?: string; to?: string[] };
   alts?: RawSpeciesAlt[];
@@ -31,6 +32,7 @@ export class Species {
   readonly key: string;
 
   #nameLower?: string;
+  #noAltNameLower?: string | false;
   #types?: Type[];
   #alts?: SpeciesAlt[];
 
@@ -53,6 +55,16 @@ export class Species {
 
   get hiddenName() {
     return this.#raw.hiddenName;
+  }
+
+  get noAltName() {
+    return this.#raw.noAltName;
+  }
+
+  get noAltNameLower() {
+    if (this.#noAltNameLower === false) return;
+    this.#noAltNameLower ??= this.noAltName?.toLowerCase() || false;
+    return this.#noAltNameLower || undefined;
   }
 
   get types() {

@@ -5896,6 +5896,7 @@
   "wormadam": {
     "id": 413,
     "name": "Wormadam",
+    "noAltName": "Plant Cloak",
     "types": [
       "bug",
       "grass"
@@ -5906,7 +5907,7 @@
     "alts": [
       {
         "kind": "sandy",
-        "name": "Sandy",
+        "name": "Sandy Cloak",
         "types": [
           "bug",
           "ground"
@@ -5915,7 +5916,7 @@
       },
       {
         "kind": "trash",
-        "name": "Trash",
+        "name": "Trash Cloak",
         "types": [
           "bug",
           "steel"
@@ -7663,6 +7664,7 @@
   "basculin": {
     "id": 550,
     "name": "Basculin",
+    "noAltName": "Red Striped",
     "types": [
       "water"
     ],
@@ -8846,6 +8848,7 @@
   "tornadus": {
     "id": 641,
     "name": "Tornadus",
+    "noAltName": "Incarnate",
     "types": [
       "flying"
     ],
@@ -8863,6 +8866,7 @@
   "thundurus": {
     "id": 642,
     "name": "Thundurus",
+    "noAltName": "Incarnate",
     "types": [
       "electric",
       "flying"
@@ -8898,6 +8902,7 @@
   "landorus": {
     "id": 645,
     "name": "Landorus",
+    "noAltName": "Incarnate",
     "types": [
       "ground",
       "flying"
@@ -8964,6 +8969,7 @@
   "meloetta": {
     "id": 648,
     "name": "Meloetta",
+    "noAltName": "Aria",
     "types": [
       "normal",
       "psychic"
@@ -9462,6 +9468,7 @@
   "aegislash": {
     "id": 681,
     "name": "Aegislash",
+    "noAltName": "Shield",
     "types": [
       "steel",
       "ghost"
@@ -9957,6 +9964,7 @@
   "zygarde": {
     "id": 718,
     "name": "Zygarde",
+    "noAltName": "50%",
     "types": [
       "dragon",
       "ground"
@@ -10292,6 +10300,7 @@
   "oricorio": {
     "id": 741,
     "name": "Oricorio",
+    "noAltName": "Baile",
     "types": [
       "fire",
       "flying"
@@ -10299,7 +10308,7 @@
     "alts": [
       {
         "kind": "pom-pom",
-        "name": "Pom Pom",
+        "name": "Pom-Pom",
         "types": [
           "electric",
           "flying"
@@ -10308,7 +10317,7 @@
       },
       {
         "kind": "pau",
-        "name": "Pau",
+        "name": "Pa'u",
         "types": [
           "psychic",
           "flying"
@@ -10365,6 +10374,7 @@
   "lycanroc": {
     "id": 745,
     "name": "Lycanroc",
+    "noAltName": "Midday",
     "types": [
       "rock"
     ],
@@ -10393,6 +10403,7 @@
   "wishiwashi": {
     "id": 746,
     "name": "Wishiwashi",
+    "noAltName": "Solo",
     "types": [
       "water"
     ],
@@ -10719,6 +10730,7 @@
   "minior": {
     "id": 774,
     "name": "Minior",
+    "noAltName": "Core",
     "types": [
       "rock",
       "flying"
@@ -10982,7 +10994,7 @@
     "alts": [
       {
         "kind": "dusk",
-        "name": "Dusk",
+        "name": "Dusk Mane",
         "types": [
           "psychic",
           "steel"
@@ -10991,7 +11003,7 @@
       },
       {
         "kind": "dawn",
-        "name": "Dawn",
+        "name": "Dawn Wings",
         "types": [
           "psychic",
           "ghost"
@@ -11716,6 +11728,7 @@
   "toxtricity": {
     "id": 849,
     "name": "Toxtricity",
+    "noAltName": "Amped",
     "types": [
       "electric",
       "poison"
@@ -12072,13 +12085,14 @@
   "eiscue": {
     "id": 875,
     "name": "Eiscue",
+    "noAltName": "Ice Face",
     "types": [
       "ice"
     ],
     "alts": [
       {
         "kind": "noice",
-        "name": "Noice",
+        "name": "Noice Face",
         "types": [
           "ice"
         ],
@@ -12108,6 +12122,7 @@
   "morpeko": {
     "id": 877,
     "name": "Morpeko",
+    "noAltName": "Full Belly",
     "types": [
       "electric",
       "dark"
@@ -12253,13 +12268,14 @@
   "zacian": {
     "id": 888,
     "name": "Zacian",
+    "noAltName": "Hero of Many Battles",
     "types": [
       "fairy"
     ],
     "alts": [
       {
         "kind": "crowned",
-        "name": "Crowned",
+        "name": "Crowned Sword",
         "types": [
           "fairy",
           "steel"
@@ -12271,13 +12287,14 @@
   "zamazenta": {
     "id": 889,
     "name": "Zamazenta",
+    "noAltName": "Hero of Many Battles",
     "types": [
       "fighting"
     ],
     "alts": [
       {
         "kind": "crowned",
-        "name": "Crowned",
+        "name": "Crowned Shield",
         "types": [
           "fighting",
           "steel"
@@ -12320,6 +12337,7 @@
   "urshifu": {
     "id": 892,
     "name": "Urshifu",
+    "noAltName": "Single Strike",
     "types": [
       "fighting",
       "dark"
@@ -12414,7 +12432,7 @@
     "alts": [
       {
         "kind": "ice",
-        "name": "Ice",
+        "name": "Ice Rider",
         "types": [
           "psychic",
           "ice"
@@ -12423,7 +12441,7 @@
       },
       {
         "kind": "shadow",
-        "name": "Shadow",
+        "name": "Shadow Rider",
         "types": [
           "psychic",
           "ghost"
@@ -12523,6 +12541,7 @@
   "enamorus": {
     "id": 905,
     "name": "Enamorus",
+    "noAltName": "Incarnate",
     "types": [
       "fairy",
       "flying"
@@ -12776,6 +12795,7 @@
   "maushold": {
     "id": 925,
     "name": "Maushold",
+    "noAltName": "Family of Three",
     "types": [
       "normal"
     ],
@@ -12785,7 +12805,7 @@
     "alts": [
       {
         "kind": "family-of-four",
-        "name": "Family Of Four",
+        "name": "Family of Four",
         "types": [
           "normal"
         ],
@@ -12856,6 +12876,7 @@
   "squawkabilly": {
     "id": 931,
     "name": "Squawkabilly",
+    "noAltName": "Green Plumage",
     "types": [
       "normal",
       "flying"
@@ -13269,6 +13290,7 @@
   "palafin": {
     "id": 964,
     "name": "Palafin",
+    "noAltName": "Zero",
     "types": [
       "water"
     ],
@@ -13430,6 +13452,7 @@
   "tatsugiri": {
     "id": 978,
     "name": "Tatsugiri",
+    "noAltName": "Curly",
     "types": [
       "dragon",
       "water"
@@ -13684,6 +13707,7 @@
   "gimmighoul": {
     "id": 999,
     "name": "Gimmighoul",
+    "noAltName": "Chest",
     "types": [
       "ghost"
     ],
@@ -13859,6 +13883,7 @@
   "ogerpon": {
     "id": 1017,
     "name": "Ogerpon",
+    "noAltName": "Teal Mask",
     "types": [
       "grass"
     ],

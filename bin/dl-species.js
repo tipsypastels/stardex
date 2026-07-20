@@ -40,6 +40,7 @@ import * as process from "node:process";
  *  key: string,
  *  name: string,
  *  hiddenName?: string;
+ *  noAltName?: string;
  *  types: string[],
  *  evos?: { from?: string, to?: string[] }
  *  alts?: { kind: string, name: string, types: string[], iconIndex: number }[]
@@ -171,14 +172,54 @@ const VARIETY_KIND_NAME_PATTERNS = [
 
 /** @type {Record<string, string>} */
 const VARIETY_KIND_NAMES = {
+  "wormadam-sandy": "Sandy Cloak",
+  "wormadam-trash": "Trash Cloak",
   "tauros-paldea-combat-breed": "Paldean Combat Breed",
   "tauros-paldea-blaze-breed": "Paldean Blaze Breed",
   "tauros-paldea-aqua-breed": "Paldean Aqua Breed",
   "darmanitan-galar-standard": "Galarian",
   "darmanitan-galar-zen": "Galarian Zen",
   "zygarde-10": "10%",
+  "oricorio-pom-pom": "Pom-Pom",
+  "oricorio-pau": "Pa'u",
+  "necrozma-dusk": "Dusk Mane",
+  "necrozma-dawn": "Dawn Wings",
+  "eiscue-noice": "Noice Face",
+  "zacian-crowned": "Crowned Sword",
+  "zamazenta-crowned": "Crowned Shield",
   "urshifu-single-strike-gmax": "Single Strike Gigantamax",
   "urshifu-rapid-strike-gmax": "Rapid Strike Gigantamax",
+  "calyrex-ice": "Ice Rider",
+  "calyrex-shadow": "Shadow Rider",
+};
+
+/** @type {Record<string, string>} */
+const NO_KIND_NAMES = {
+  wormadam: "Plant Cloak",
+  basculin: "Red Striped",
+  tornadus: "Incarnate",
+  thundurus: "Incarnate",
+  landorus: "Incarnate",
+  meloetta: "Aria",
+  aegislash: "Shield",
+  zygarde: "50%",
+  oricorio: "Baile",
+  lycanroc: "Midday",
+  wishiwashi: "Solo",
+  minior: "Core",
+  toxtricity: "Amped",
+  eiscue: "Ice Face",
+  morpeko: "Full Belly",
+  zacian: "Hero of Many Battles",
+  zamazenta: "Hero of Many Battles",
+  urshifu: "Single Strike",
+  enamorus: "Incarnate",
+  maushold: "Family of Three",
+  squawkabilly: "Green Plumage",
+  palafin: "Zero",
+  tatsugiri: "Curly",
+  gimmighoul: "Chest",
+  ogerpon: "Teal Mask",
 };
 
 // From https://github.com/smogon/pokemon-showdown-client/blob/master/play.pokemonshowdown.com/src/battle-dex-data.ts#L151.
@@ -802,6 +843,8 @@ function fillSegment(promises, segment) {
     const name =
       species.names?.find((n) => n.language.name === "en")?.name ?? capitalize(species.name);
     const hiddenName = HIDDEN_NAMES[key];
+    const noAltName = NO_KIND_NAMES[key];
+
     /** @type {ResolvedMon['evos']} */
     let evos;
 
@@ -821,7 +864,7 @@ function fillSegment(promises, segment) {
       }
     }
 
-    return { id, key, name, hiddenName, types, evos, alts };
+    return { id, key, name, hiddenName, noAltName, types, evos, alts };
   }
 
   for (const { url } of segment.results) {
@@ -953,7 +996,7 @@ function findOwnSpeciesInEvosChain(entries, speciesKey) {
  * @returns {string}
  */
 function capitalizeWords(s) {
-  return s.split(/\s+/).map(capitalize).join(" ");
+  return s.split(/\s+/).map(capitalize).join(" ").replace(/ Of /g, " of ");
 }
 
 /**
