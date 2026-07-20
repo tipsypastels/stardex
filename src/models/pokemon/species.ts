@@ -15,6 +15,7 @@ export interface RawSpeciesAlt {
   kind: string;
   name: string;
   types: string[];
+  iconIndex: number;
 }
 
 RAW_DATA satisfies Record<string, RawSpecies>;
@@ -117,6 +118,10 @@ export class SpeciesAlt {
 
   get typeKeys() {
     return this.#raw.types;
+  }
+
+  get iconIndex() {
+    return this.#raw.iconIndex;
   }
 }
 

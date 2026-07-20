@@ -2,6 +2,7 @@
 // @ts-check
 
 import fs from "node:fs/promises";
+import process from "node:process";
 import RAW_SPECIES_DATA from "../src/data/species.json" with { type: "json" };
 
 /**
@@ -49,10 +50,12 @@ async function main() {
     out[key] = entry;
   }
 
-  await fs.writeFile(
-    `${import.meta.dirname}/../src/data/regions.json`,
-    JSON.stringify(out, null, 2),
-  );
+  if (!process.env.DRY) {
+    await fs.writeFile(
+      `${import.meta.dirname}/../src/data/regions.json`,
+      JSON.stringify(out, null, 2),
+    );
+  }
 }
 
 /**

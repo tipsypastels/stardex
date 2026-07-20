@@ -1,7 +1,6 @@
 import * as v from "valibot";
 import { id } from "../../utils/id";
 import { TYPES, type Type } from "../type";
-import { TYPE_KEY_PAIRS } from "../type/key_pair";
 import { SPECIES, type Species, type SpeciesAlt } from "./species";
 import { POKEMON_VERSION, V0_RawPokemon, V0_upgradeRawPokemon } from "./versioned";
 
@@ -22,6 +21,7 @@ const RawSharedPokemon = v.object({
 export const RawBuiltinPokemon = v.object({
   ...RawSharedPokemon.entries,
   species: v.string(),
+  alt: v.optional(v.string()),
   types: v.optional(v.array(v.string())),
 });
 
@@ -62,6 +62,7 @@ export interface BuiltinPokemon {
   readonly id: string;
   readonly name: string;
   readonly species: Species;
+  altKind?: string;
   readonly alt?: SpeciesAlt;
   changedTypeKeys: string[] | undefined;
   readonly typeKeys: string[];
@@ -89,15 +90,14 @@ export const BUILTIN_POKEMONS = (() => {
       get species() {
         return SPECIES.of(raw.species);
       },
-      get alt(): SpeciesAlt | undefined {
-        if (this.changedTypeKeys && this.species.alts.length > 0) {
-          const equal = TYPE_KEY_PAIRS.select(this.changedTypeKeys);
-          return this.species.alts.find((alt) => equal(alt.typeKeys));
-        }
+      altKind: raw.alt,
+      get alt() {
+        if (!this.altKind) return;
+        return this.species.alts.find((alt) => alt.kind === this.altKind);
       },
       changedTypeKeys: raw.types,
       get typeKeys() {
-        return this.changedTypeKeys ?? this.species.typeKeys;
+        return this.changedTypeKeys ?? this.alt?.typeKeys ?? this.species.typeKeys;
       },
       get types() {
         return this.typeKeys.map(TYPES.of);
@@ -114,6 +114,7 @@ export const BUILTIN_POKEMONS = (() => {
           v: POKEMON_VERSION,
           species: raw.species,
           id: raw.id,
+          alt: this.altKind,
           types: this.changedTypeKeys,
           exclude: this.exclude || undefined,
         };

@@ -35,7 +35,27 @@
     ],
     "evos": {
       "from": "ivysaur"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "poison"
+        ],
+        "iconIndex": 1320
+      },
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "grass",
+          "poison"
+        ],
+        "iconIndex": 1397
+      }
+    ]
   },
   "charmander": {
     "id": 4,
@@ -71,7 +91,36 @@
     ],
     "evos": {
       "from": "charmeleon"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega-x",
+        "name": "Mega X",
+        "types": [
+          "fire",
+          "dragon"
+        ],
+        "iconIndex": 1321
+      },
+      {
+        "kind": "mega-y",
+        "name": "Mega Y",
+        "types": [
+          "fire",
+          "flying"
+        ],
+        "iconIndex": 1322
+      },
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "fire",
+          "flying"
+        ],
+        "iconIndex": 1370
+      }
+    ]
   },
   "squirtle": {
     "id": 7,
@@ -106,7 +155,25 @@
     ],
     "evos": {
       "from": "wartortle"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1323
+      },
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1398
+      }
+    ]
   },
   "caterpie": {
     "id": 10,
@@ -142,7 +209,18 @@
     ],
     "evos": {
       "from": "metapod"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "bug",
+          "flying"
+        ],
+        "iconIndex": 1371
+      }
+    ]
   },
   "weedle": {
     "id": 13,
@@ -180,7 +258,18 @@
     ],
     "evos": {
       "from": "kakuna"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "bug",
+          "poison"
+        ],
+        "iconIndex": 1324
+      }
+    ]
   },
   "pidgey": {
     "id": 16,
@@ -218,7 +307,18 @@
     ],
     "evos": {
       "from": "pidgeotto"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "normal",
+          "flying"
+        ],
+        "iconIndex": 1325
+      }
+    ]
   },
   "rattata": {
     "id": 19,
@@ -238,7 +338,8 @@
         "types": [
           "dark",
           "normal"
-        ]
+        ],
+        "iconIndex": 1151
       }
     ]
   },
@@ -258,7 +359,8 @@
         "types": [
           "dark",
           "normal"
-        ]
+        ],
+        "iconIndex": 1152
       }
     ]
   },
@@ -319,7 +421,17 @@
       "to": [
         "raichu"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "electric"
+        ],
+        "iconIndex": 1372
+      }
+    ]
   },
   "raichu": {
     "id": 26,
@@ -337,7 +449,24 @@
         "types": [
           "electric",
           "psychic"
-        ]
+        ],
+        "iconIndex": 1153
+      },
+      {
+        "kind": "mega-x",
+        "name": "Mega X",
+        "types": [
+          "electric"
+        ],
+        "iconIndex": 1430
+      },
+      {
+        "kind": "mega-y",
+        "name": "Mega Y",
+        "types": [
+          "electric"
+        ],
+        "iconIndex": 1431
       }
     ]
   },
@@ -359,7 +488,8 @@
         "types": [
           "ice",
           "steel"
-        ]
+        ],
+        "iconIndex": 1154
       }
     ]
   },
@@ -379,7 +509,8 @@
         "types": [
           "ice",
           "steel"
-        ]
+        ],
+        "iconIndex": 1155
       }
     ]
   },
@@ -478,7 +609,18 @@
     ],
     "evos": {
       "from": "clefairy"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fairy",
+          "flying"
+        ],
+        "iconIndex": 1404
+      }
+    ]
   },
   "vulpix": {
     "id": 37,
@@ -497,7 +639,8 @@
         "name": "Alolan",
         "types": [
           "ice"
-        ]
+        ],
+        "iconIndex": 1156
       }
     ]
   },
@@ -517,7 +660,8 @@
         "types": [
           "ice",
           "fairy"
-        ]
+        ],
+        "iconIndex": 1157
       }
     ]
   },
@@ -678,7 +822,8 @@
         "types": [
           "ground",
           "steel"
-        ]
+        ],
+        "iconIndex": 1158
       }
     ]
   },
@@ -698,7 +843,8 @@
         "types": [
           "ground",
           "steel"
-        ]
+        ],
+        "iconIndex": 1159
       }
     ]
   },
@@ -720,14 +866,24 @@
         "name": "Alolan",
         "types": [
           "dark"
-        ]
+        ],
+        "iconIndex": 1160
       },
       {
         "kind": "galar",
         "name": "Galarian",
         "types": [
           "steel"
-        ]
+        ],
+        "iconIndex": 1198
+      },
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1373
       }
     ]
   },
@@ -746,7 +902,8 @@
         "name": "Alolan",
         "types": [
           "dark"
-        ]
+        ],
+        "iconIndex": 1161
       }
     ]
   },
@@ -815,7 +972,8 @@
         "types": [
           "fire",
           "rock"
-        ]
+        ],
+        "iconIndex": 1238
       }
     ]
   },
@@ -835,7 +993,8 @@
         "types": [
           "fire",
           "rock"
-        ]
+        ],
+        "iconIndex": 1239
       }
     ]
   },
@@ -909,7 +1068,17 @@
     ],
     "evos": {
       "from": "kadabra"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1326
+      }
+    ]
   },
   "machop": {
     "id": 66,
@@ -944,7 +1113,17 @@
     ],
     "evos": {
       "from": "machoke"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "fighting"
+        ],
+        "iconIndex": 1374
+      }
+    ]
   },
   "bellsprout": {
     "id": 69,
@@ -982,7 +1161,18 @@
     ],
     "evos": {
       "from": "weepinbell"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "poison"
+        ],
+        "iconIndex": 1405
+      }
+    ]
   },
   "tentacool": {
     "id": 72,
@@ -1027,7 +1217,8 @@
         "types": [
           "rock",
           "electric"
-        ]
+        ],
+        "iconIndex": 1162
       }
     ]
   },
@@ -1051,7 +1242,8 @@
         "types": [
           "rock",
           "electric"
-        ]
+        ],
+        "iconIndex": 1163
       }
     ]
   },
@@ -1072,7 +1264,8 @@
         "types": [
           "rock",
           "electric"
-        ]
+        ],
+        "iconIndex": 1164
       }
     ]
   },
@@ -1093,7 +1286,8 @@
         "name": "Galarian",
         "types": [
           "psychic"
-        ]
+        ],
+        "iconIndex": 1199
       }
     ]
   },
@@ -1113,7 +1307,8 @@
         "types": [
           "psychic",
           "fairy"
-        ]
+        ],
+        "iconIndex": 1200
       }
     ]
   },
@@ -1136,7 +1331,8 @@
         "name": "Galarian",
         "types": [
           "psychic"
-        ]
+        ],
+        "iconIndex": 1228
       }
     ]
   },
@@ -1152,12 +1348,22 @@
     },
     "alts": [
       {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "psychic"
+        ],
+        "iconIndex": 1327
+      },
+      {
         "kind": "galar",
         "name": "Galarian",
         "types": [
           "poison",
           "psychic"
-        ]
+        ],
+        "iconIndex": 1229
       }
     ]
   },
@@ -1206,7 +1412,8 @@
         "name": "Galarian",
         "types": [
           "fighting"
-        ]
+        ],
+        "iconIndex": 1201
       }
     ]
   },
@@ -1275,7 +1482,8 @@
         "types": [
           "poison",
           "dark"
-        ]
+        ],
+        "iconIndex": 1165
       }
     ]
   },
@@ -1295,7 +1503,8 @@
         "types": [
           "poison",
           "dark"
-        ]
+        ],
+        "iconIndex": 1166
       }
     ]
   },
@@ -1358,7 +1567,27 @@
     ],
     "evos": {
       "from": "haunter"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ghost",
+          "poison"
+        ],
+        "iconIndex": 1328
+      },
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "ghost",
+          "poison"
+        ],
+        "iconIndex": 1375
+      }
+    ]
   },
   "onix": {
     "id": 95,
@@ -1415,7 +1644,17 @@
     ],
     "evos": {
       "from": "krabby"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1376
+      }
+    ]
   },
   "voltorb": {
     "id": 100,
@@ -1435,7 +1674,8 @@
         "types": [
           "electric",
           "grass"
-        ]
+        ],
+        "iconIndex": 1240
       }
     ]
   },
@@ -1455,7 +1695,8 @@
         "types": [
           "electric",
           "grass"
-        ]
+        ],
+        "iconIndex": 1241
       }
     ]
   },
@@ -1489,7 +1730,8 @@
         "types": [
           "grass",
           "dragon"
-        ]
+        ],
+        "iconIndex": 1167
       }
     ]
   },
@@ -1521,7 +1763,8 @@
         "types": [
           "fire",
           "ghost"
-        ]
+        ],
+        "iconIndex": 1168
       }
     ]
   },
@@ -1585,7 +1828,8 @@
         "types": [
           "poison",
           "fairy"
-        ]
+        ],
+        "iconIndex": 1202
       }
     ]
   },
@@ -1646,6 +1890,16 @@
     "name": "Kangaskhan",
     "types": [
       "normal"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1329
+      }
     ]
   },
   "horsea": {
@@ -1716,7 +1970,18 @@
     ],
     "evos": {
       "from": "staryu"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "psychic"
+        ],
+        "iconIndex": 1406
+      }
+    ]
   },
   "mr-mime": {
     "id": 122,
@@ -1739,7 +2004,8 @@
         "types": [
           "ice",
           "psychic"
-        ]
+        ],
+        "iconIndex": 1203
       }
     ]
   },
@@ -1799,6 +2065,17 @@
     "name": "Pinsir",
     "types": [
       "bug"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "bug",
+          "flying"
+        ],
+        "iconIndex": 1330
+      }
     ]
   },
   "tauros": {
@@ -1813,7 +2090,8 @@
         "name": "Paldean Combat Breed",
         "types": [
           "fighting"
-        ]
+        ],
+        "iconIndex": 1256
       },
       {
         "kind": "paldea-blaze-breed",
@@ -1821,7 +2099,8 @@
         "types": [
           "fighting",
           "fire"
-        ]
+        ],
+        "iconIndex": 1257
       },
       {
         "kind": "paldea-aqua-breed",
@@ -1829,7 +2108,8 @@
         "types": [
           "fighting",
           "water"
-        ]
+        ],
+        "iconIndex": 1258
       }
     ]
   },
@@ -1854,7 +2134,18 @@
     ],
     "evos": {
       "from": "magikarp"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "dark"
+        ],
+        "iconIndex": 1331
+      }
+    ]
   },
   "lapras": {
     "id": 131,
@@ -1862,6 +2153,17 @@
     "types": [
       "water",
       "ice"
+    ],
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "water",
+          "ice"
+        ],
+        "iconIndex": 1377
+      }
     ]
   },
   "ditto": {
@@ -1888,7 +2190,17 @@
         "glaceon",
         "sylveon"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1378
+      }
+    ]
   },
   "vaporeon": {
     "id": 134,
@@ -1986,6 +2298,17 @@
     "types": [
       "rock",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "rock",
+          "flying"
+        ],
+        "iconIndex": 1332
+      }
     ]
   },
   "snorlax": {
@@ -1996,7 +2319,17 @@
     ],
     "evos": {
       "from": "munchlax"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1379
+      }
+    ]
   },
   "articuno": {
     "id": 144,
@@ -2012,7 +2345,8 @@
         "types": [
           "psychic",
           "flying"
-        ]
+        ],
+        "iconIndex": 1232
       }
     ]
   },
@@ -2030,7 +2364,8 @@
         "types": [
           "fighting",
           "flying"
-        ]
+        ],
+        "iconIndex": 1233
       }
     ]
   },
@@ -2048,7 +2383,8 @@
         "types": [
           "dark",
           "flying"
-        ]
+        ],
+        "iconIndex": 1234
       }
     ]
   },
@@ -2086,13 +2422,43 @@
     ],
     "evos": {
       "from": "dragonair"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "flying"
+        ],
+        "iconIndex": 1407
+      }
+    ]
   },
   "mewtwo": {
     "id": 150,
     "name": "Mewtwo",
     "types": [
       "psychic"
+    ],
+    "alts": [
+      {
+        "kind": "mega-x",
+        "name": "Mega X",
+        "types": [
+          "psychic",
+          "fighting"
+        ],
+        "iconIndex": 1333
+      },
+      {
+        "kind": "mega-y",
+        "name": "Mega Y",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1334
+      }
     ]
   },
   "mew": {
@@ -2135,7 +2501,18 @@
     ],
     "evos": {
       "from": "bayleef"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "fairy"
+        ],
+        "iconIndex": 1408
+      }
+    ]
   },
   "cyndaquil": {
     "id": 155,
@@ -2178,7 +2555,8 @@
         "types": [
           "fire",
           "ghost"
-        ]
+        ],
+        "iconIndex": 1242
       }
     ]
   },
@@ -2215,7 +2593,18 @@
     ],
     "evos": {
       "from": "croconaw"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "dragon"
+        ],
+        "iconIndex": 1409
+      }
+    ]
   },
   "sentret": {
     "id": 161,
@@ -2466,7 +2855,18 @@
     ],
     "evos": {
       "from": "flaaffy"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "electric",
+          "dragon"
+        ],
+        "iconIndex": 1335
+      }
+    ]
   },
   "bellossom": {
     "id": 182,
@@ -2628,7 +3028,8 @@
         "types": [
           "poison",
           "ground"
-        ]
+        ],
+        "iconIndex": 1259
       }
     ]
   },
@@ -2693,7 +3094,8 @@
         "types": [
           "poison",
           "psychic"
-        ]
+        ],
+        "iconIndex": 1235
       }
     ]
   },
@@ -2796,7 +3198,18 @@
     ],
     "evos": {
       "from": "onix"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "steel",
+          "ground"
+        ],
+        "iconIndex": 1336
+      }
+    ]
   },
   "snubbull": {
     "id": 209,
@@ -2839,7 +3252,8 @@
         "types": [
           "dark",
           "poison"
-        ]
+        ],
+        "iconIndex": 1243
       }
     ]
   },
@@ -2852,7 +3266,18 @@
     ],
     "evos": {
       "from": "scyther"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "bug",
+          "steel"
+        ],
+        "iconIndex": 1337
+      }
+    ]
   },
   "shuckle": {
     "id": 213,
@@ -2868,6 +3293,17 @@
     "types": [
       "bug",
       "fighting"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "bug",
+          "fighting"
+        ],
+        "iconIndex": 1338
+      }
     ]
   },
   "sneasel": {
@@ -2890,7 +3326,8 @@
         "types": [
           "fighting",
           "poison"
-        ]
+        ],
+        "iconIndex": 1244
       }
     ]
   },
@@ -2987,7 +3424,8 @@
         "name": "Galarian",
         "types": [
           "ghost"
-        ]
+        ],
+        "iconIndex": 1204
       }
     ]
   },
@@ -3038,6 +3476,17 @@
     "types": [
       "steel",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "steel",
+          "flying"
+        ],
+        "iconIndex": 1410
+      }
     ]
   },
   "houndour": {
@@ -3062,7 +3511,18 @@
     ],
     "evos": {
       "from": "houndour"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dark",
+          "fire"
+        ],
+        "iconIndex": 1339
+      }
+    ]
   },
   "kingdra": {
     "id": 230,
@@ -3264,7 +3724,18 @@
     ],
     "evos": {
       "from": "pupitar"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "rock",
+          "dark"
+        ],
+        "iconIndex": 1340
+      }
+    ]
   },
   "lugia": {
     "id": 249,
@@ -3323,7 +3794,18 @@
     ],
     "evos": {
       "from": "grovyle"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "dragon"
+        ],
+        "iconIndex": 1341
+      }
+    ]
   },
   "torchic": {
     "id": 255,
@@ -3360,7 +3842,18 @@
     ],
     "evos": {
       "from": "combusken"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fire",
+          "fighting"
+        ],
+        "iconIndex": 1342
+      }
+    ]
   },
   "mudkip": {
     "id": 258,
@@ -3397,7 +3890,18 @@
     ],
     "evos": {
       "from": "marshtomp"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "ground"
+        ],
+        "iconIndex": 1343
+      }
+    ]
   },
   "poochyena": {
     "id": 261,
@@ -3439,7 +3943,8 @@
         "types": [
           "dark",
           "normal"
-        ]
+        ],
+        "iconIndex": 1205
       }
     ]
   },
@@ -3462,7 +3967,8 @@
         "types": [
           "dark",
           "normal"
-        ]
+        ],
+        "iconIndex": 1206
       }
     ]
   },
@@ -3687,7 +4193,18 @@
     ],
     "evos": {
       "from": "kirlia"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "psychic",
+          "fairy"
+        ],
+        "iconIndex": 1344
+      }
+    ]
   },
   "surskit": {
     "id": 283,
@@ -3917,6 +4434,17 @@
     "types": [
       "dark",
       "ghost"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dark",
+          "ghost"
+        ],
+        "iconIndex": 1345
+      }
     ]
   },
   "mawile": {
@@ -3925,6 +4453,17 @@
     "types": [
       "steel",
       "fairy"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "steel",
+          "fairy"
+        ],
+        "iconIndex": 1346
+      }
     ]
   },
   "aron": {
@@ -3963,7 +4502,17 @@
     ],
     "evos": {
       "from": "lairon"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "steel"
+        ],
+        "iconIndex": 1347
+      }
+    ]
   },
   "meditite": {
     "id": 307,
@@ -3987,7 +4536,18 @@
     ],
     "evos": {
       "from": "meditite"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fighting",
+          "psychic"
+        ],
+        "iconIndex": 1348
+      }
+    ]
   },
   "electrike": {
     "id": 309,
@@ -4009,7 +4569,17 @@
     ],
     "evos": {
       "from": "electrike"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "electric"
+        ],
+        "iconIndex": 1349
+      }
+    ]
   },
   "plusle": {
     "id": 311,
@@ -4097,7 +4667,18 @@
     ],
     "evos": {
       "from": "carvanha"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "dark"
+        ],
+        "iconIndex": 1350
+      }
+    ]
   },
   "wailmer": {
     "id": 320,
@@ -4143,7 +4724,18 @@
     ],
     "evos": {
       "from": "numel"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fire",
+          "ground"
+        ],
+        "iconIndex": 1351
+      }
+    ]
   },
   "torkoal": {
     "id": 324,
@@ -4263,7 +4855,18 @@
     ],
     "evos": {
       "from": "swablu"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "fairy"
+        ],
+        "iconIndex": 1352
+      }
+    ]
   },
   "zangoose": {
     "id": 335,
@@ -4441,6 +5044,32 @@
     "name": "Castform",
     "types": [
       "normal"
+    ],
+    "alts": [
+      {
+        "kind": "sunny",
+        "name": "Sunny",
+        "types": [
+          "fire"
+        ],
+        "iconIndex": 1069
+      },
+      {
+        "kind": "rainy",
+        "name": "Rainy",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1067
+      },
+      {
+        "kind": "snowy",
+        "name": "Snowy",
+        "types": [
+          "ice"
+        ],
+        "iconIndex": 1068
+      }
     ]
   },
   "kecleon": {
@@ -4470,7 +5099,17 @@
     ],
     "evos": {
       "from": "shuppet"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ghost"
+        ],
+        "iconIndex": 1353
+      }
+    ]
   },
   "duskull": {
     "id": 355,
@@ -4513,13 +5152,43 @@
     ],
     "evos": {
       "from": "chingling"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "psychic",
+          "steel"
+        ],
+        "iconIndex": 1432
+      }
+    ]
   },
   "absol": {
     "id": 359,
     "name": "Absol",
     "types": [
       "dark"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dark"
+        ],
+        "iconIndex": 1354
+      },
+      {
+        "kind": "mega-z",
+        "name": "Mega Z",
+        "types": [
+          "dark",
+          "ghost"
+        ],
+        "iconIndex": 1433
+      }
     ]
   },
   "wynaut": {
@@ -4555,7 +5224,17 @@
     ],
     "evos": {
       "from": "snorunt"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ice"
+        ],
+        "iconIndex": 1355
+      }
+    ]
   },
   "spheal": {
     "id": 363,
@@ -4677,7 +5356,18 @@
     ],
     "evos": {
       "from": "shelgon"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "flying"
+        ],
+        "iconIndex": 1356
+      }
+    ]
   },
   "beldum": {
     "id": 374,
@@ -4715,7 +5405,18 @@
     ],
     "evos": {
       "from": "metang"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "steel",
+          "psychic"
+        ],
+        "iconIndex": 1357
+      }
+    ]
   },
   "regirock": {
     "id": 377,
@@ -4744,6 +5445,17 @@
     "types": [
       "dragon",
       "psychic"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "psychic"
+        ],
+        "iconIndex": 1358
+      }
     ]
   },
   "latios": {
@@ -4752,6 +5464,17 @@
     "types": [
       "dragon",
       "psychic"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "psychic"
+        ],
+        "iconIndex": 1359
+      }
     ]
   },
   "kyogre": {
@@ -4759,6 +5482,16 @@
     "name": "Kyogre",
     "types": [
       "water"
+    ],
+    "alts": [
+      {
+        "kind": "primal",
+        "name": "Primal",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1360
+      }
     ]
   },
   "groudon": {
@@ -4766,6 +5499,17 @@
     "name": "Groudon",
     "types": [
       "ground"
+    ],
+    "alts": [
+      {
+        "kind": "primal",
+        "name": "Primal",
+        "types": [
+          "ground",
+          "fire"
+        ],
+        "iconIndex": 1361
+      }
     ]
   },
   "rayquaza": {
@@ -4774,6 +5518,17 @@
     "types": [
       "dragon",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "flying"
+        ],
+        "iconIndex": 1362
+      }
     ]
   },
   "jirachi": {
@@ -4789,6 +5544,32 @@
     "name": "Deoxys",
     "types": [
       "psychic"
+    ],
+    "alts": [
+      {
+        "kind": "attack",
+        "name": "Attack",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1070
+      },
+      {
+        "kind": "defense",
+        "name": "Defense",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1071
+      },
+      {
+        "kind": "speed",
+        "name": "Speed",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1072
+      }
     ]
   },
   "turtwig": {
@@ -4936,7 +5717,18 @@
     ],
     "evos": {
       "from": "staravia"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fighting",
+          "flying"
+        ],
+        "iconIndex": 1434
+      }
+    ]
   },
   "bidoof": {
     "id": 399,
@@ -5110,7 +5902,27 @@
     ],
     "evos": {
       "from": "burmy"
-    }
+    },
+    "alts": [
+      {
+        "kind": "sandy",
+        "name": "Sandy",
+        "types": [
+          "bug",
+          "ground"
+        ],
+        "iconIndex": 1075
+      },
+      {
+        "kind": "trash",
+        "name": "Trash",
+        "types": [
+          "bug",
+          "steel"
+        ],
+        "iconIndex": 1076
+      }
+    ]
   },
   "mothim": {
     "id": 414,
@@ -5275,7 +6087,18 @@
     ],
     "evos": {
       "from": "buneary"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "normal",
+          "fighting"
+        ],
+        "iconIndex": 1363
+      }
+    ]
   },
   "mismagius": {
     "id": 429,
@@ -5470,7 +6293,26 @@
     ],
     "evos": {
       "from": "gabite"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "ground"
+        ],
+        "iconIndex": 1364
+      },
+      {
+        "kind": "mega-z",
+        "name": "Mega Z",
+        "types": [
+          "dragon"
+        ],
+        "iconIndex": 1435
+      }
+    ]
   },
   "munchlax": {
     "id": 446,
@@ -5505,7 +6347,27 @@
     ],
     "evos": {
       "from": "riolu"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fighting",
+          "steel"
+        ],
+        "iconIndex": 1365
+      },
+      {
+        "kind": "mega-z",
+        "name": "Mega Z",
+        "types": [
+          "fighting",
+          "steel"
+        ],
+        "iconIndex": 1436
+      }
+    ]
   },
   "hippopotas": {
     "id": 449,
@@ -5641,7 +6503,18 @@
     ],
     "evos": {
       "from": "snover"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "ice"
+        ],
+        "iconIndex": 1366
+      }
+    ]
   },
   "weavile": {
     "id": 461,
@@ -5799,7 +6672,18 @@
     ],
     "evos": {
       "from": "kirlia"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "psychic",
+          "fighting"
+        ],
+        "iconIndex": 1367
+      }
+    ]
   },
   "probopass": {
     "id": 476,
@@ -5831,7 +6715,18 @@
     ],
     "evos": {
       "from": "snorunt"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ice",
+          "ghost"
+        ],
+        "iconIndex": 1411
+      }
+    ]
   },
   "rotom": {
     "id": 479,
@@ -5839,6 +6734,53 @@
     "types": [
       "electric",
       "ghost"
+    ],
+    "alts": [
+      {
+        "kind": "heat",
+        "name": "Heat",
+        "types": [
+          "electric",
+          "fire"
+        ],
+        "iconIndex": 1082
+      },
+      {
+        "kind": "wash",
+        "name": "Wash",
+        "types": [
+          "electric",
+          "water"
+        ],
+        "iconIndex": 1084
+      },
+      {
+        "kind": "frost",
+        "name": "Frost",
+        "types": [
+          "electric",
+          "ice"
+        ],
+        "iconIndex": 1081
+      },
+      {
+        "kind": "fan",
+        "name": "Fan",
+        "types": [
+          "electric",
+          "flying"
+        ],
+        "iconIndex": 1080
+      },
+      {
+        "kind": "mow",
+        "name": "Mow",
+        "types": [
+          "electric",
+          "grass"
+        ],
+        "iconIndex": 1083
+      }
     ]
   },
   "uxie": {
@@ -5868,6 +6810,17 @@
     "types": [
       "steel",
       "dragon"
+    ],
+    "alts": [
+      {
+        "kind": "origin",
+        "name": "Origin",
+        "types": [
+          "steel",
+          "dragon"
+        ],
+        "iconIndex": 1269
+      }
     ]
   },
   "palkia": {
@@ -5876,6 +6829,17 @@
     "types": [
       "water",
       "dragon"
+    ],
+    "alts": [
+      {
+        "kind": "origin",
+        "name": "Origin",
+        "types": [
+          "water",
+          "dragon"
+        ],
+        "iconIndex": 1270
+      }
     ]
   },
   "heatran": {
@@ -5884,6 +6848,17 @@
     "types": [
       "fire",
       "steel"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fire",
+          "steel"
+        ],
+        "iconIndex": 1437
+      }
     ]
   },
   "regigigas": {
@@ -5899,6 +6874,17 @@
     "types": [
       "ghost",
       "dragon"
+    ],
+    "alts": [
+      {
+        "kind": "origin",
+        "name": "Origin",
+        "types": [
+          "ghost",
+          "dragon"
+        ],
+        "iconIndex": 1085
+      }
     ]
   },
   "cresselia": {
@@ -5932,6 +6918,16 @@
     "name": "Darkrai",
     "types": [
       "dark"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dark"
+        ],
+        "iconIndex": 1438
+      }
     ]
   },
   "shaymin": {
@@ -5939,6 +6935,17 @@
     "name": "Shaymin",
     "types": [
       "grass"
+    ],
+    "alts": [
+      {
+        "kind": "sky",
+        "name": "Sky",
+        "types": [
+          "grass",
+          "flying"
+        ],
+        "iconIndex": 1086
+      }
     ]
   },
   "arceus": {
@@ -6026,7 +7033,18 @@
     ],
     "evos": {
       "from": "pignite"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fire",
+          "fighting"
+        ],
+        "iconIndex": 1412
+      }
+    ]
   },
   "oshawott": {
     "id": 501,
@@ -6069,7 +7087,8 @@
         "types": [
           "water",
           "dark"
-        ]
+        ],
+        "iconIndex": 1245
       }
     ]
   },
@@ -6380,13 +7399,35 @@
     ],
     "evos": {
       "from": "drilbur"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ground",
+          "steel"
+        ],
+        "iconIndex": 1413
+      }
+    ]
   },
   "audino": {
     "id": 531,
     "name": "Audino",
     "types": [
       "normal"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "normal",
+          "fairy"
+        ],
+        "iconIndex": 1368
+      }
     ]
   },
   "timburr": {
@@ -6549,7 +7590,18 @@
     ],
     "evos": {
       "from": "whirlipede"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "bug",
+          "poison"
+        ],
+        "iconIndex": 1414
+      }
+    ]
   },
   "cottonee": {
     "id": 546,
@@ -6603,7 +7655,8 @@
         "types": [
           "grass",
           "fighting"
-        ]
+        ],
+        "iconIndex": 1246
       }
     ]
   },
@@ -6617,7 +7670,25 @@
       "to": [
         "basculegion"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "blue-striped",
+        "name": "Blue Striped",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1088
+      },
+      {
+        "kind": "white-striped",
+        "name": "White Striped",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1271
+      }
+    ]
   },
   "sandile": {
     "id": 551,
@@ -6674,7 +7745,8 @@
         "name": "Galarian",
         "types": [
           "ice"
-        ]
+        ],
+        "iconIndex": 1207
       }
     ]
   },
@@ -6689,11 +7761,30 @@
     },
     "alts": [
       {
+        "kind": "zen",
+        "name": "Zen",
+        "types": [
+          "fire",
+          "psychic"
+        ],
+        "iconIndex": 1089
+      },
+      {
         "kind": "galar-standard",
         "name": "Galarian",
         "types": [
           "ice"
-        ]
+        ],
+        "iconIndex": 1208
+      },
+      {
+        "kind": "galar-zen",
+        "name": "Galarian Zen",
+        "types": [
+          "ice",
+          "fire"
+        ],
+        "iconIndex": 1209
       }
     ]
   },
@@ -6750,7 +7841,18 @@
     ],
     "evos": {
       "from": "scraggy"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dark",
+          "fighting"
+        ],
+        "iconIndex": 1415
+      }
+    ]
   },
   "sigilyph": {
     "id": 561,
@@ -6779,7 +7881,8 @@
         "types": [
           "ground",
           "ghost"
-        ]
+        ],
+        "iconIndex": 1210
       }
     ]
   },
@@ -6861,7 +7964,17 @@
     ],
     "evos": {
       "from": "trubbish"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "poison"
+        ],
+        "iconIndex": 1380
+      }
+    ]
   },
   "zorua": {
     "id": 570,
@@ -6881,7 +7994,8 @@
         "types": [
           "normal",
           "ghost"
-        ]
+        ],
+        "iconIndex": 1247
       }
     ]
   },
@@ -6901,7 +8015,8 @@
         "types": [
           "normal",
           "ghost"
-        ]
+        ],
+        "iconIndex": 1248
       }
     ]
   },
@@ -7282,7 +8397,17 @@
     ],
     "evos": {
       "from": "eelektrik"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "electric"
+        ],
+        "iconIndex": 1416
+      }
+    ]
   },
   "elgyem": {
     "id": 605,
@@ -7342,7 +8467,18 @@
     ],
     "evos": {
       "from": "lampent"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ghost",
+          "fire"
+        ],
+        "iconIndex": 1417
+      }
+    ]
   },
   "axew": {
     "id": 610,
@@ -7444,7 +8580,8 @@
         "types": [
           "ground",
           "steel"
-        ]
+        ],
+        "iconIndex": 1211
       }
     ]
   },
@@ -7499,7 +8636,18 @@
     ],
     "evos": {
       "from": "golett"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "ground",
+          "ghost"
+        ],
+        "iconIndex": 1439
+      }
+    ]
   },
   "pawniard": {
     "id": 624,
@@ -7565,7 +8713,8 @@
         "types": [
           "psychic",
           "flying"
-        ]
+        ],
+        "iconIndex": 1249
       }
     ]
   },
@@ -7699,6 +8848,16 @@
     "name": "Tornadus",
     "types": [
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "therian",
+        "name": "Therian",
+        "types": [
+          "flying"
+        ],
+        "iconIndex": 1098
+      }
     ]
   },
   "thundurus": {
@@ -7707,6 +8866,17 @@
     "types": [
       "electric",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "therian",
+        "name": "Therian",
+        "types": [
+          "electric",
+          "flying"
+        ],
+        "iconIndex": 1099
+      }
     ]
   },
   "reshiram": {
@@ -7731,6 +8901,17 @@
     "types": [
       "ground",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "therian",
+        "name": "Therian",
+        "types": [
+          "ground",
+          "flying"
+        ],
+        "iconIndex": 1100
+      }
     ]
   },
   "kyurem": {
@@ -7739,6 +8920,26 @@
     "types": [
       "dragon",
       "ice"
+    ],
+    "alts": [
+      {
+        "kind": "black",
+        "name": "Black",
+        "types": [
+          "dragon",
+          "ice"
+        ],
+        "iconIndex": 1101
+      },
+      {
+        "kind": "white",
+        "name": "White",
+        "types": [
+          "dragon",
+          "ice"
+        ],
+        "iconIndex": 1102
+      }
     ]
   },
   "keldeo": {
@@ -7747,6 +8948,17 @@
     "types": [
       "water",
       "fighting"
+    ],
+    "alts": [
+      {
+        "kind": "resolute",
+        "name": "Resolute",
+        "types": [
+          "water",
+          "fighting"
+        ],
+        "iconIndex": 1103
+      }
     ]
   },
   "meloetta": {
@@ -7755,6 +8967,17 @@
     "types": [
       "normal",
       "psychic"
+    ],
+    "alts": [
+      {
+        "kind": "pirouette",
+        "name": "Pirouette",
+        "types": [
+          "normal",
+          "fighting"
+        ],
+        "iconIndex": 1104
+      }
     ]
   },
   "genesect": {
@@ -7799,7 +9022,18 @@
     ],
     "evos": {
       "from": "quilladin"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "fighting"
+        ],
+        "iconIndex": 1418
+      }
+    ]
   },
   "fennekin": {
     "id": 653,
@@ -7835,7 +9069,18 @@
     ],
     "evos": {
       "from": "braixen"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fire",
+          "psychic"
+        ],
+        "iconIndex": 1419
+      }
+    ]
   },
   "froakie": {
     "id": 656,
@@ -7871,7 +9116,36 @@
     ],
     "evos": {
       "from": "frogadier"
-    }
+    },
+    "alts": [
+      {
+        "kind": "battle-bond",
+        "name": "Battle Bond",
+        "types": [
+          "water",
+          "dark"
+        ],
+        "iconIndex": 658
+      },
+      {
+        "kind": "ash",
+        "name": "Ash",
+        "types": [
+          "water",
+          "dark"
+        ],
+        "iconIndex": 1169
+      },
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "water",
+          "dark"
+        ],
+        "iconIndex": 1420
+      }
+    ]
   },
   "bunnelby": {
     "id": 659,
@@ -7992,7 +9266,18 @@
     ],
     "evos": {
       "from": "litleo"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fire",
+          "normal"
+        ],
+        "iconIndex": 1421
+      }
+    ]
   },
   "flabebe": {
     "id": 669,
@@ -8017,7 +9302,25 @@
       "to": [
         "florges"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "eternal",
+        "name": "Eternal",
+        "types": [
+          "fairy"
+        ],
+        "iconIndex": 1130
+      },
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fairy"
+        ],
+        "iconIndex": 1422
+      }
+    ]
   },
   "florges": {
     "id": 671,
@@ -8101,7 +9404,33 @@
     ],
     "evos": {
       "from": "espurr"
-    }
+    },
+    "alts": [
+      {
+        "kind": "female",
+        "name": "Female",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1147
+      },
+      {
+        "kind": "male-mega",
+        "name": "Male Mega",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1440
+      },
+      {
+        "kind": "female-mega",
+        "name": "Female Mega",
+        "types": [
+          "psychic"
+        ],
+        "iconIndex": 1440
+      }
+    ]
   },
   "honedge": {
     "id": 679,
@@ -8139,7 +9468,18 @@
     ],
     "evos": {
       "from": "doublade"
-    }
+    },
+    "alts": [
+      {
+        "kind": "blade",
+        "name": "Blade",
+        "types": [
+          "steel",
+          "ghost"
+        ],
+        "iconIndex": 1148
+      }
+    ]
   },
   "spritzee": {
     "id": 682,
@@ -8207,7 +9547,18 @@
     ],
     "evos": {
       "from": "inkay"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dark",
+          "psychic"
+        ],
+        "iconIndex": 1423
+      }
+    ]
   },
   "binacle": {
     "id": 688,
@@ -8231,7 +9582,18 @@
     ],
     "evos": {
       "from": "binacle"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "rock",
+          "fighting"
+        ],
+        "iconIndex": 1424
+      }
+    ]
   },
   "skrelp": {
     "id": 690,
@@ -8255,7 +9617,18 @@
     ],
     "evos": {
       "from": "skrelp"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "poison",
+          "dragon"
+        ],
+        "iconIndex": 1425
+      }
+    ]
   },
   "clauncher": {
     "id": 692,
@@ -8367,6 +9740,17 @@
     "types": [
       "fighting",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fighting",
+          "flying"
+        ],
+        "iconIndex": 1426
+      }
     ]
   },
   "dedenne": {
@@ -8416,7 +9800,8 @@
         "types": [
           "steel",
           "dragon"
-        ]
+        ],
+        "iconIndex": 1250
       }
     ]
   },
@@ -8436,7 +9821,8 @@
         "types": [
           "steel",
           "dragon"
-        ]
+        ],
+        "iconIndex": 1251
       }
     ]
   },
@@ -8524,7 +9910,8 @@
         "types": [
           "ice",
           "rock"
-        ]
+        ],
+        "iconIndex": 1252
       }
     ]
   },
@@ -8573,6 +9960,35 @@
     "types": [
       "dragon",
       "ground"
+    ],
+    "alts": [
+      {
+        "kind": "complete",
+        "name": "Complete",
+        "types": [
+          "dragon",
+          "ground"
+        ],
+        "iconIndex": 1171
+      },
+      {
+        "kind": "10",
+        "name": "10%",
+        "types": [
+          "dragon",
+          "ground"
+        ],
+        "iconIndex": 1170
+      },
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "ground"
+        ],
+        "iconIndex": 1427
+      }
     ]
   },
   "diancie": {
@@ -8581,6 +9997,17 @@
     "types": [
       "rock",
       "fairy"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "rock",
+          "fairy"
+        ],
+        "iconIndex": 1369
+      }
     ]
   },
   "hoopa": {
@@ -8589,6 +10016,17 @@
     "types": [
       "psychic",
       "ghost"
+    ],
+    "alts": [
+      {
+        "kind": "unbound",
+        "name": "Unbound",
+        "types": [
+          "psychic",
+          "dark"
+        ],
+        "iconIndex": 1150
+      }
     ]
   },
   "volcanion": {
@@ -8643,7 +10081,8 @@
         "types": [
           "grass",
           "fighting"
-        ]
+        ],
+        "iconIndex": 1253
       }
     ]
   },
@@ -8837,7 +10276,18 @@
     ],
     "evos": {
       "from": "crabrawler"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fighting",
+          "ice"
+        ],
+        "iconIndex": 1441
+      }
+    ]
   },
   "oricorio": {
     "id": 741,
@@ -8845,6 +10295,35 @@
     "types": [
       "fire",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "pom-pom",
+        "name": "Pom Pom",
+        "types": [
+          "electric",
+          "flying"
+        ],
+        "iconIndex": 1172
+      },
+      {
+        "kind": "pau",
+        "name": "Pau",
+        "types": [
+          "psychic",
+          "flying"
+        ],
+        "iconIndex": 1173
+      },
+      {
+        "kind": "sensu",
+        "name": "Sensu",
+        "types": [
+          "ghost",
+          "flying"
+        ],
+        "iconIndex": 1174
+      }
     ]
   },
   "cutiefly": {
@@ -8891,13 +10370,41 @@
     ],
     "evos": {
       "from": "rockruff"
-    }
+    },
+    "alts": [
+      {
+        "kind": "midnight",
+        "name": "Midnight",
+        "types": [
+          "rock"
+        ],
+        "iconIndex": 1175
+      },
+      {
+        "kind": "dusk",
+        "name": "Dusk",
+        "types": [
+          "rock"
+        ],
+        "iconIndex": 1192
+      }
+    ]
   },
   "wishiwashi": {
     "id": 746,
     "name": "Wishiwashi",
     "types": [
       "water"
+    ],
+    "alts": [
+      {
+        "kind": "school",
+        "name": "School",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1176
+      }
     ]
   },
   "mareanie": {
@@ -9143,7 +10650,18 @@
     ],
     "evos": {
       "from": "wimpod"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "bug",
+          "steel"
+        ],
+        "iconIndex": 1442
+      }
+    ]
   },
   "sandygast": {
     "id": 769,
@@ -9204,6 +10722,17 @@
     "types": [
       "rock",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "meteor",
+        "name": "Meteor",
+        "types": [
+          "rock",
+          "flying"
+        ],
+        "iconIndex": 1177
+      }
     ]
   },
   "komala": {
@@ -9251,6 +10780,17 @@
     "types": [
       "normal",
       "dragon"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "normal",
+          "dragon"
+        ],
+        "iconIndex": 1428
+      }
     ]
   },
   "dhelmise": {
@@ -9438,6 +10978,35 @@
     "name": "Necrozma",
     "types": [
       "psychic"
+    ],
+    "alts": [
+      {
+        "kind": "dusk",
+        "name": "Dusk",
+        "types": [
+          "psychic",
+          "steel"
+        ],
+        "iconIndex": 1193
+      },
+      {
+        "kind": "dawn",
+        "name": "Dawn",
+        "types": [
+          "psychic",
+          "ghost"
+        ],
+        "iconIndex": 1194
+      },
+      {
+        "kind": "ultra",
+        "name": "Ultra",
+        "types": [
+          "psychic",
+          "dragon"
+        ],
+        "iconIndex": 1195
+      }
     ]
   },
   "magearna": {
@@ -9446,6 +11015,35 @@
     "types": [
       "steel",
       "fairy"
+    ],
+    "alts": [
+      {
+        "kind": "original",
+        "name": "Original",
+        "types": [
+          "steel",
+          "fairy"
+        ],
+        "iconIndex": 1184
+      },
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "steel",
+          "fairy"
+        ],
+        "iconIndex": 1443
+      },
+      {
+        "kind": "original-mega",
+        "name": "Original Mega",
+        "types": [
+          "steel",
+          "fairy"
+        ],
+        "iconIndex": 1444
+      }
     ]
   },
   "marshadow": {
@@ -9500,6 +11098,16 @@
     "name": "Zeraora",
     "types": [
       "electric"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "electric"
+        ],
+        "iconIndex": 1445
+      }
     ]
   },
   "meltan": {
@@ -9517,7 +11125,17 @@
     ],
     "evos": {
       "from": "meltan"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "steel"
+        ],
+        "iconIndex": 1381
+      }
+    ]
   },
   "grookey": {
     "id": 810,
@@ -9552,7 +11170,17 @@
     ],
     "evos": {
       "from": "thwackey"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "grass"
+        ],
+        "iconIndex": 1399
+      }
+    ]
   },
   "scorbunny": {
     "id": 813,
@@ -9587,7 +11215,17 @@
     ],
     "evos": {
       "from": "raboot"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "fire"
+        ],
+        "iconIndex": 1400
+      }
+    ]
   },
   "sobble": {
     "id": 816,
@@ -9622,7 +11260,17 @@
     ],
     "evos": {
       "from": "drizzile"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1401
+      }
+    ]
   },
   "skwovet": {
     "id": 819,
@@ -9680,7 +11328,18 @@
     ],
     "evos": {
       "from": "corvisquire"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "flying",
+          "steel"
+        ],
+        "iconIndex": 1382
+      }
+    ]
   },
   "blipbug": {
     "id": 824,
@@ -9717,7 +11376,18 @@
     ],
     "evos": {
       "from": "dottler"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "bug",
+          "psychic"
+        ],
+        "iconIndex": 1383
+      }
+    ]
   },
   "nickit": {
     "id": 827,
@@ -9806,7 +11476,18 @@
     ],
     "evos": {
       "from": "chewtle"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "water",
+          "rock"
+        ],
+        "iconIndex": 1384
+      }
+    ]
   },
   "yamper": {
     "id": 835,
@@ -9865,7 +11546,18 @@
     ],
     "evos": {
       "from": "carkol"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "rock",
+          "fire"
+        ],
+        "iconIndex": 1385
+      }
+    ]
   },
   "applin": {
     "id": 840,
@@ -9891,7 +11583,18 @@
     ],
     "evos": {
       "from": "applin"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "grass",
+          "dragon"
+        ],
+        "iconIndex": 1386
+      }
+    ]
   },
   "appletun": {
     "id": 842,
@@ -9902,7 +11605,18 @@
     ],
     "evos": {
       "from": "applin"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "grass",
+          "dragon"
+        ],
+        "iconIndex": 1387
+      }
+    ]
   },
   "silicobra": {
     "id": 843,
@@ -9924,7 +11638,17 @@
     ],
     "evos": {
       "from": "silicobra"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "ground"
+        ],
+        "iconIndex": 1388
+      }
+    ]
   },
   "cramorant": {
     "id": 845,
@@ -9932,6 +11656,26 @@
     "types": [
       "flying",
       "water"
+    ],
+    "alts": [
+      {
+        "kind": "gulping",
+        "name": "Gulping",
+        "types": [
+          "flying",
+          "water"
+        ],
+        "iconIndex": 1212
+      },
+      {
+        "kind": "gorging",
+        "name": "Gorging",
+        "types": [
+          "flying",
+          "water"
+        ],
+        "iconIndex": 1213
+      }
     ]
   },
   "arrokuda": {
@@ -9978,7 +11722,27 @@
     ],
     "evos": {
       "from": "toxel"
-    }
+    },
+    "alts": [
+      {
+        "kind": "low-key",
+        "name": "Low Key",
+        "types": [
+          "electric",
+          "poison"
+        ],
+        "iconIndex": 1214
+      },
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "electric",
+          "poison"
+        ],
+        "iconIndex": 1389
+      }
+    ]
   },
   "sizzlipede": {
     "id": 850,
@@ -10002,7 +11766,18 @@
     ],
     "evos": {
       "from": "sizzlipede"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "fire",
+          "bug"
+        ],
+        "iconIndex": 1390
+      }
+    ]
   },
   "clobbopus": {
     "id": 852,
@@ -10082,7 +11857,18 @@
     ],
     "evos": {
       "from": "hattrem"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "psychic",
+          "fairy"
+        ],
+        "iconIndex": 1391
+      }
+    ]
   },
   "impidimp": {
     "id": 859,
@@ -10120,7 +11906,18 @@
     ],
     "evos": {
       "from": "morgrem"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "dark",
+          "fairy"
+        ],
+        "iconIndex": 1392
+      }
+    ]
   },
   "obstagoon": {
     "id": 862,
@@ -10205,13 +12002,33 @@
     ],
     "evos": {
       "from": "milcery"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "fairy"
+        ],
+        "iconIndex": 1393
+      }
+    ]
   },
   "falinks": {
     "id": 870,
     "name": "Falinks",
     "types": [
       "fighting"
+    ],
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "fighting"
+        ],
+        "iconIndex": 1429
+      }
     ]
   },
   "pincurchin": {
@@ -10257,6 +12074,16 @@
     "name": "Eiscue",
     "types": [
       "ice"
+    ],
+    "alts": [
+      {
+        "kind": "noice",
+        "name": "Noice",
+        "types": [
+          "ice"
+        ],
+        "iconIndex": 1223
+      }
     ]
   },
   "indeedee": {
@@ -10265,6 +12092,17 @@
     "types": [
       "psychic",
       "normal"
+    ],
+    "alts": [
+      {
+        "kind": "female",
+        "name": "Female",
+        "types": [
+          "psychic",
+          "normal"
+        ],
+        "iconIndex": 1224
+      }
     ]
   },
   "morpeko": {
@@ -10273,6 +12111,17 @@
     "types": [
       "electric",
       "dark"
+    ],
+    "alts": [
+      {
+        "kind": "hangry",
+        "name": "Hangry",
+        "types": [
+          "electric",
+          "dark"
+        ],
+        "iconIndex": 1225
+      }
     ]
   },
   "cufant": {
@@ -10295,7 +12144,17 @@
     ],
     "evos": {
       "from": "cufant"
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "steel"
+        ],
+        "iconIndex": 1394
+      }
+    ]
   },
   "dracozolt": {
     "id": 880,
@@ -10340,7 +12199,18 @@
       "to": [
         "archaludon"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "gmax",
+        "name": "Gigantamax",
+        "types": [
+          "steel",
+          "dragon"
+        ],
+        "iconIndex": 1395
+      }
+    ]
   },
   "dreepy": {
     "id": 885,
@@ -10385,6 +12255,17 @@
     "name": "Zacian",
     "types": [
       "fairy"
+    ],
+    "alts": [
+      {
+        "kind": "crowned",
+        "name": "Crowned",
+        "types": [
+          "fairy",
+          "steel"
+        ],
+        "iconIndex": 1226
+      }
     ]
   },
   "zamazenta": {
@@ -10392,6 +12273,17 @@
     "name": "Zamazenta",
     "types": [
       "fighting"
+    ],
+    "alts": [
+      {
+        "kind": "crowned",
+        "name": "Crowned",
+        "types": [
+          "fighting",
+          "steel"
+        ],
+        "iconIndex": 1227
+      }
     ]
   },
   "eternatus": {
@@ -10400,6 +12292,17 @@
     "types": [
       "poison",
       "dragon"
+    ],
+    "alts": [
+      {
+        "kind": "eternamax",
+        "name": "Eternamax",
+        "types": [
+          "poison",
+          "dragon"
+        ],
+        "iconIndex": 1396
+      }
     ]
   },
   "kubfu": {
@@ -10423,7 +12326,36 @@
     ],
     "evos": {
       "from": "kubfu"
-    }
+    },
+    "alts": [
+      {
+        "kind": "rapid-strike",
+        "name": "Rapid Strike",
+        "types": [
+          "fighting",
+          "water"
+        ],
+        "iconIndex": 892
+      },
+      {
+        "kind": "single-strike-gmax",
+        "name": "Single Strike Gmax",
+        "types": [
+          "fighting",
+          "dark"
+        ],
+        "iconIndex": 1402
+      },
+      {
+        "kind": "rapid-strike-gmax",
+        "name": "Rapid Strike Gmax",
+        "types": [
+          "fighting",
+          "water"
+        ],
+        "iconIndex": 1403
+      }
+    ]
   },
   "zarude": {
     "id": 893,
@@ -10431,6 +12363,17 @@
     "types": [
       "dark",
       "grass"
+    ],
+    "alts": [
+      {
+        "kind": "dada",
+        "name": "Dada",
+        "types": [
+          "dark",
+          "grass"
+        ],
+        "iconIndex": 1230
+      }
     ]
   },
   "regieleki": {
@@ -10467,6 +12410,26 @@
     "types": [
       "psychic",
       "grass"
+    ],
+    "alts": [
+      {
+        "kind": "ice",
+        "name": "Ice",
+        "types": [
+          "psychic",
+          "ice"
+        ],
+        "iconIndex": 1236
+      },
+      {
+        "kind": "shadow",
+        "name": "Shadow",
+        "types": [
+          "psychic",
+          "ghost"
+        ],
+        "iconIndex": 1237
+      }
     ]
   },
   "wyrdeer": {
@@ -10500,7 +12463,18 @@
     ],
     "evos": {
       "from": "ursaring"
-    }
+    },
+    "alts": [
+      {
+        "kind": "bloodmoon",
+        "name": "Bloodmoon",
+        "types": [
+          "ground",
+          "normal"
+        ],
+        "iconIndex": 1272
+      }
+    ]
   },
   "basculegion": {
     "id": 902,
@@ -10511,7 +12485,18 @@
     ],
     "evos": {
       "from": "basculin"
-    }
+    },
+    "alts": [
+      {
+        "kind": "female",
+        "name": "Female",
+        "types": [
+          "water",
+          "ghost"
+        ],
+        "iconIndex": 1254
+      }
+    ]
   },
   "sneasler": {
     "id": 903,
@@ -10541,6 +12526,17 @@
     "types": [
       "fairy",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "therian",
+        "name": "Therian",
+        "types": [
+          "fairy",
+          "flying"
+        ],
+        "iconIndex": 1255
+      }
     ]
   },
   "sprigatito": {
@@ -10671,7 +12667,17 @@
     ],
     "evos": {
       "from": "lechonk"
-    }
+    },
+    "alts": [
+      {
+        "kind": "female",
+        "name": "Female",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1260
+      }
+    ]
   },
   "tarountula": {
     "id": 917,
@@ -10775,7 +12781,17 @@
     ],
     "evos": {
       "from": "tandemaus"
-    }
+    },
+    "alts": [
+      {
+        "kind": "family-of-four",
+        "name": "Family Of Four",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1262
+      }
+    ]
   },
   "fidough": {
     "id": 926,
@@ -10843,6 +12859,35 @@
     "types": [
       "normal",
       "flying"
+    ],
+    "alts": [
+      {
+        "kind": "blue-plumage",
+        "name": "Blue Plumage",
+        "types": [
+          "normal",
+          "flying"
+        ],
+        "iconIndex": 1265
+      },
+      {
+        "kind": "yellow-plumage",
+        "name": "Yellow Plumage",
+        "types": [
+          "normal",
+          "flying"
+        ],
+        "iconIndex": 1266
+      },
+      {
+        "kind": "white-plumage",
+        "name": "White Plumage",
+        "types": [
+          "normal",
+          "flying"
+        ],
+        "iconIndex": 1267
+      }
     ]
   },
   "nacli": {
@@ -11083,7 +13128,18 @@
     ],
     "evos": {
       "from": "capsakid"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "grass",
+          "fire"
+        ],
+        "iconIndex": 1446
+      }
+    ]
   },
   "rellor": {
     "id": 953,
@@ -11218,7 +13274,17 @@
     ],
     "evos": {
       "from": "finizen"
-    }
+    },
+    "alts": [
+      {
+        "kind": "hero",
+        "name": "Hero",
+        "types": [
+          "water"
+        ],
+        "iconIndex": 1261
+      }
+    ]
   },
   "varoom": {
     "id": 965,
@@ -11281,7 +13347,18 @@
     ],
     "evos": {
       "from": "glimmet"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "rock",
+          "poison"
+        ],
+        "iconIndex": 1447
+      }
+    ]
   },
   "greavard": {
     "id": 971,
@@ -11356,6 +13433,53 @@
     "types": [
       "dragon",
       "water"
+    ],
+    "alts": [
+      {
+        "kind": "droopy",
+        "name": "Droopy",
+        "types": [
+          "dragon",
+          "water"
+        ],
+        "iconIndex": 1263
+      },
+      {
+        "kind": "stretchy",
+        "name": "Stretchy",
+        "types": [
+          "dragon",
+          "water"
+        ],
+        "iconIndex": 1264
+      },
+      {
+        "kind": "curly-mega",
+        "name": "Curly Mega",
+        "types": [
+          "dragon",
+          "water"
+        ],
+        "iconIndex": 1448
+      },
+      {
+        "kind": "droopy-mega",
+        "name": "Droopy Mega",
+        "types": [
+          "dragon",
+          "water"
+        ],
+        "iconIndex": 1449
+      },
+      {
+        "kind": "stretchy-mega",
+        "name": "Stretchy Mega",
+        "types": [
+          "dragon",
+          "water"
+        ],
+        "iconIndex": 1450
+      }
     ]
   },
   "annihilape": {
@@ -11544,7 +13668,18 @@
     ],
     "evos": {
       "from": "arctibax"
-    }
+    },
+    "alts": [
+      {
+        "kind": "mega",
+        "name": "Mega",
+        "types": [
+          "dragon",
+          "ice"
+        ],
+        "iconIndex": 1451
+      }
+    ]
   },
   "gimmighoul": {
     "id": 999,
@@ -11556,7 +13691,17 @@
       "to": [
         "gholdengo"
       ]
-    }
+    },
+    "alts": [
+      {
+        "kind": "roaming",
+        "name": "Roaming",
+        "types": [
+          "ghost"
+        ],
+        "iconIndex": 1268
+      }
+    ]
   },
   "gholdengo": {
     "id": 1000,
@@ -11716,6 +13861,35 @@
     "name": "Ogerpon",
     "types": [
       "grass"
+    ],
+    "alts": [
+      {
+        "kind": "wellspring-mask",
+        "name": "Wellspring Mask",
+        "types": [
+          "grass",
+          "water"
+        ],
+        "iconIndex": 1273
+      },
+      {
+        "kind": "hearthflame-mask",
+        "name": "Hearthflame Mask",
+        "types": [
+          "grass",
+          "fire"
+        ],
+        "iconIndex": 1274
+      },
+      {
+        "kind": "cornerstone-mask",
+        "name": "Cornerstone Mask",
+        "types": [
+          "grass",
+          "rock"
+        ],
+        "iconIndex": 1275
+      }
     ]
   },
   "archaludon": {
@@ -11777,6 +13951,24 @@
     "name": "Terapagos",
     "types": [
       "normal"
+    ],
+    "alts": [
+      {
+        "kind": "terastal",
+        "name": "Terastal",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1276
+      },
+      {
+        "kind": "stellar",
+        "name": "Stellar",
+        "types": [
+          "normal"
+        ],
+        "iconIndex": 1277
+      }
     ]
   },
   "pecharunt": {

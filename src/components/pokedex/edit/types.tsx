@@ -25,8 +25,13 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
     synchronize();
   }
 
-  function setPreset(typeKeys: string[] | undefined) {
-    props.mutator.setTypeKeys(typeKeys);
+  function setDefault() {
+    props.mutator.unsetTypeKeysAndAlt();
+    synchronize();
+  }
+
+  function setAltKind(altKind: string) {
+    props.mutator.setAltKind(altKind);
     synchronize();
   }
 
@@ -53,12 +58,12 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
             <h3 class="text-sm">presets:</h3>
             <ul class="list-inside list-disc">
               <li>
-                <ButtonLink onClick={() => setPreset(undefined)}>normal form</ButtonLink>
+                <ButtonLink onClick={() => setDefault()}>normal form</ButtonLink>
               </li>
               <For each={props.pokemon.species.alts}>
                 {(alt) => (
                   <li>
-                    <ButtonLink onClick={() => setPreset(alt.typeKeys)}>
+                    <ButtonLink onClick={() => setAltKind(alt.kind)}>
                       {alt.nameLower} form
                     </ButtonLink>
                   </li>
@@ -68,7 +73,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
           </div>
         ) : props.pokemon.isBuiltin() && props.pokemon.changedTypeKeys ? (
           <div class="mt-2 ml-2 text-sm">
-            <ButtonLink onClick={() => setPreset(undefined)}>reset customized type</ButtonLink>
+            <ButtonLink onClick={() => setDefault()}>reset customized type</ButtonLink>
           </div>
         ) : null}
       </div>
