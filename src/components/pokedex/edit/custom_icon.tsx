@@ -15,7 +15,7 @@ export function EditPokemonCustomIconLink(props: EditPokemonCustomIconLinkProps)
   return (
     <div class="mb-4">
       <h2 class="font-bold">Custom Icon</h2>
-      <ul class="list-inside list-disc">
+      <ul>
         <li>
           <UploadLink
             accept="image/png"
@@ -23,15 +23,21 @@ export function EditPokemonCustomIconLink(props: EditPokemonCustomIconLinkProps)
               if (files[0]) props.state.setUploaded(files[0]);
             }}
           >
-            <Show when={props.state.alreadyHas} fallback="upload">
-              reupload
+            <span class="pr-1">
+              <Icon name="upload" />
+            </span>
+            <Show when={props.state.alreadyHas} fallback="Upload">
+              Reupload
             </Show>
           </UploadLink>
         </li>
 
         <Show when={props.state.alreadyHas}>
           <li>
-            <ButtonLink onClick={() => props.state.delete()}>remove</ButtonLink>
+            <span class="pr-1">
+              <Icon name="times" />
+            </span>
+            <ButtonLink onClick={() => props.state.delete()}>Remove</ButtonLink>
           </li>
         </Show>
       </ul>

@@ -3,5 +3,6 @@
   "quoteProps": "consistent",
   "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
   "tailwindStylesheet": "./src/app.css",
-  "tailwindAttributes": ["classList"]
+  "tailwindAttributes": ["classList"],
+  "tailwindFunctions": ["tw"]
 }
