@@ -12,28 +12,16 @@ export interface EditPokemonTypesProps {
 }
 
 export function EditPokemonTypes(props: EditPokemonTypesProps) {
-  let input1: HTMLInputElement | undefined;
-  let input2: HTMLInputElement | undefined;
-
-  function synchronize() {
-    const [key1, key2] = props.pokemon.typeKeys;
-    if (input1) input1.value = key1 ?? "";
-    if (input2) input2.value = key2 ?? "";
-  }
-
   function set(index: number, typeKey: string) {
     props.mutator.setTypeKeyAt(index, typeKey.trim().toLowerCase());
-    synchronize();
   }
 
   function setDefault() {
     props.mutator.unsetTypeKeysAndAlt();
-    synchronize();
   }
 
   function setAltKind(altKind: string) {
     props.mutator.setAltKind(altKind);
-    synchronize();
   }
 
   return (
@@ -41,14 +29,12 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
       <h2 class="font-bold">Types</h2>
       <div>
         <Input
-          ref={input1}
           value={props.pokemon.typeKeys.at(0) ?? ""}
           list={TYPE_SUGGESTIONS_LIST}
           onChange={(e) => set(0, e.currentTarget.value)}
         />
         {" and "}
         <Input
-          ref={input2}
           value={props.pokemon.typeKeys.at(1) ?? ""}
           list={TYPE_SUGGESTIONS_LIST}
           onChange={(e) => set(1, e.currentTarget.value)}
