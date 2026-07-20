@@ -1,6 +1,6 @@
 import hotkeys from "hotkeys-js";
 import { createEffect, onCleanup, onMount } from "solid-js";
-import { Input } from "../../common/input";
+import { Input } from "../../common/forms/input";
 import { ButtonLink } from "../../common/link";
 import { TYPE_SUGGESTIONS_LIST } from "../../types/util/suggestions";
 

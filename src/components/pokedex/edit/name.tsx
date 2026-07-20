@@ -1,6 +1,6 @@
 import type { Pokemon } from "../../../models/pokemon";
 import type { PokemonMutator } from "../../../models/pokemon/mutator";
-import { Input } from "../../common/input";
+import { Input } from "../../common/forms/input";
 
 export interface EditPokemonNameProps {
   pokemon: Pokemon;

@@ -3,8 +3,8 @@ import { pokemons } from "../../../models/pokemon/list";
 import { type RegionKey, REGIONS } from "../../../models/region";
 import { toasts } from "../../../models/ui/toast";
 import { Button } from "../../common/button";
+import { Select } from "../../common/forms/select";
 import { Modal } from "../../common/menus/modal";
-import { Select } from "../../common/select";
 
 export interface ImportRegionModalProps {
   onClose(): void;

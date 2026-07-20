@@ -1,8 +1,8 @@
 import { For, Show } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import type { PokemonMutator } from "../../../models/pokemon/mutator";
+import { Input } from "../../common/forms/input";
 import { Icon } from "../../common/icon";
-import { Input } from "../../common/input";
 import { ButtonLink } from "../../common/link";
 import { TYPE_SUGGESTIONS_LIST } from "../../types/util/suggestions";
 

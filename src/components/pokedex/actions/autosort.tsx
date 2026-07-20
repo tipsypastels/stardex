@@ -2,8 +2,8 @@ import { createMemo, createSignal, Match, Show, Switch } from "solid-js";
 import type { AutosortFailureMode, AutosortRequest } from "../../../models/pokemon/autosort";
 import { REGIONS, type RegionKey } from "../../../models/region";
 import { Button } from "../../common/button";
+import { Select } from "../../common/forms/select";
 import { Modal } from "../../common/menus/modal";
-import { Select } from "../../common/select";
 
 export interface AutosortPokedexModalProps {
   onAutosort(request: AutosortRequest): void;
