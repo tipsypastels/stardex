@@ -1,4 +1,5 @@
-import { onMount } from "solid-js";
+import hotkeys from "hotkeys-js";
+import { createEffect, onCleanup, onMount } from "solid-js";
 import { Input } from "../../common/input";
 import { ButtonLink } from "../../common/link";
 import { TYPE_SUGGESTIONS_LIST } from "../../types/util/suggestions";
@@ -28,11 +29,18 @@ export function AddCustom(props: AddCustomProps) {
   function handleKeyUp(e: KeyboardEvent) {
     if (e.key === "Enter") {
       submit();
+    } else if (e.key === "Escape") {
+      props.onCancel();
     }
   }
 
   onMount(() => {
     input1?.focus();
+  });
+
+  createEffect(() => {
+    hotkeys("esc", props.onCancel);
+    onCleanup(() => hotkeys.unbind("esc", props.onCancel));
   });
 
   return (
