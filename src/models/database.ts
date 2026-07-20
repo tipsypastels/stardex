@@ -51,10 +51,10 @@ export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">
 export function addBulkCustomIconsDbEntries(
   projectId: string,
   entries: Omit<CustomIconsDbEntry, "projectId">[],
-  f: () => void,
+  f?: () => void,
 ) {
   if (entries.length === 0) {
-    f();
+    f?.();
     return;
   }
 
@@ -76,7 +76,7 @@ export function addBulkCustomIconsDbEntries(
 
     transaction.oncomplete = () => {
       console.log(`${entries.length} custom icons for "${projectId}" uploaded!`);
-      f();
+      f?.();
     };
   });
 }

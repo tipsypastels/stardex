@@ -1,6 +1,7 @@
 import { batch, createResource, createRoot } from "solid-js";
 import { blobToDataUrl } from "../../../utils/file";
 import {
+  addBulkCustomIconsDbEntries,
   addCustomIconsDbEntry,
   deleteBulkCustomIconDbEntries,
   deleteCustomIconsDbEntry,
@@ -72,6 +73,30 @@ export const customIcons = createRoot(() => {
       });
 
       deleteBulkCustomIconDbEntries(projects.activeId);
+    },
+
+    setFromRawExport(raw: RawJSONExportCustomIcons) {
+      const promises = Object.entries(raw.dataUrls).map(async ([pokemonId, dataUrl]) => {
+        const blob = await fetch(dataUrl).then((res) => res.blob());
+        return { pokemonId, blob };
+      });
+
+      Promise.all(promises).then((entries) => {
+        batch(() => {
+          this.pokemonIds.clear();
+
+          const newDataUrls: Record<string, string> = {};
+
+          for (const entry of entries) {
+            this.pokemonIds.add(entry.pokemonId);
+            newDataUrls[entry.pokemonId] = raw.dataUrls[entry.pokemonId];
+          }
+
+          mutateDataUrls(() => newDataUrls);
+        });
+
+        addBulkCustomIconsDbEntries(projects.activeId, entries);
+      });
     },
 
     toRawExport(): RawJSONExportCustomIcons {

@@ -1,5 +1,9 @@
-import { createSignal, Show } from "solid-js";
+import { batch, createSignal, Show } from "solid-js";
+import * as v from "valibot";
+import { loadJSONExport, VAny_RawJSONExport } from "../../../models/export";
 import { pokedexMode } from "../../../models/pokedex/mode";
+import { toasts } from "../../../models/ui/toast";
+import { readFileAsTextAsync } from "../../../utils/file";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { createPBSState, ImportPBSErrorModal } from "./import_pbs";
 import { ImportRegionModal } from "./import_region";
@@ -8,7 +12,29 @@ export function EmptyPokedex() {
   const [importRegionModalOpen, setImportRegionModalOpen] = createSignal(false);
   const pbsState = createPBSState();
 
-  function loadSaveJSONOrText() {
+  async function loadJSONOrTextExport([file]: FileList) {
+    if (!file) return;
+
+    const text = await readFileAsTextAsync(file);
+
+    if (file.type === "application/json") {
+      try {
+        const data = JSON.parse(text) as unknown;
+        const jsonExport = v.parse(VAny_RawJSONExport, data);
+
+        batch(() => {
+          loadJSONExport(jsonExport);
+          toasts.add("upload", "Save file loaded!");
+        });
+      } catch {
+        // TODO: Display a late validation error.
+        alert("Error!");
+      }
+    } else if (file.type === "text/plain") {
+      alert("TODO: Importing text files.");
+    } else {
+      alert("Unknown file format.");
+    }
     // TODO
     // if (!file) return;
     // const fileReader = new FileReader();
@@ -49,7 +75,7 @@ export function EmptyPokedex() {
         <h3 class="mb-2 text-lg font-bold text-primary">Other Ways to Start</h3>
         <ul class="ml-4 list-disc">
           <li>
-            <UploadLink accept="text/plain,application/json" onUpload={loadSaveJSONOrText}>
+            <UploadLink accept="text/plain,application/json" onUpload={loadJSONOrTextExport}>
               Import a Stardex project.
             </UploadLink>
           </li>

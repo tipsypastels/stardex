@@ -1,3 +1,4 @@
+import { batch } from "solid-js";
 import * as v from "valibot";
 import { saveToFile } from "../../utils/file";
 import { pokedexMode, PokedexModeKey } from "../pokedex/mode";
@@ -8,6 +9,7 @@ import { RegionKey } from "../region";
 import { regions } from "../region/set";
 import { strictness, StrictnessKey } from "../strictness";
 import { excludedTypes, RawExcludedTypesSet } from "../type/excluded";
+import { V0_RawJSONExport, V0_upgradeRawJSONExport } from "./versioned";
 
 export const JSON_EXPORT_VERSION = 1;
 
@@ -28,6 +30,26 @@ export const RawJSONExport = v.object({
 
 export type RawJSONExportCustomIcons = v.InferOutput<typeof RawJSONExportCustomIcons>;
 export type RawJSONExport = v.InferOutput<typeof RawJSONExport>;
+
+export const VAny_RawJSONExport = v.union([
+  RawJSONExport,
+  v.pipe(V0_RawJSONExport, v.transform(V0_upgradeRawJSONExport)),
+]);
+
+export function loadJSONExport(raw: RawJSONExport) {
+  batch(() => {
+    if (raw.projectName && projects.active.name.includes("Untitled")) {
+      projects.setName(projects.activeId, raw.projectName);
+    }
+
+    pokemons.setFromRaw(raw.pokemons);
+    regions.set(raw.regions);
+    strictness.key = raw.strictness;
+    pokedexMode.key = raw.pokedexMode;
+    excludedTypes.setFromRaw(raw.excludedTypes);
+    customIcons.setFromRawExport(raw.customIcons);
+  });
+}
 
 export function saveJSONExport() {
   const json: RawJSONExport = {
