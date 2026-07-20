@@ -9,6 +9,8 @@ export interface PokemonIconProps {
 }
 
 export function PokemonIcon(props: PokemonIconProps) {
+  const name = () => props.pokemon.nameWithAltNameOrNoAltName;
+
   const customIcon = () => customIcons.get(props.pokemon.id);
   const customIconLoading = () => customIcon()?.type === "loading";
   const customIconUrl = () => {
@@ -17,17 +19,15 @@ export function PokemonIcon(props: PokemonIconProps) {
   };
 
   return (
-    <Switch fallback={<SpeciesIcon species={{ id: 0, name: props.pokemon.name }} />}>
-      <Match when={customIconUrl()}>
-        {(url) => <CustomIcon name={props.pokemon.name} url={url()} />}
-      </Match>
+    <Switch fallback={<SpeciesIcon id={0} name={name()} />}>
+      <Match when={customIconUrl()}>{(url) => <CustomIcon name={name()} url={url()} />}</Match>
       <Match when={customIconLoading()}>
-        <CustomIconLoading name={props.pokemon.name} />
+        <CustomIconLoading name={name()} />
       </Match>
       <Match when={props.pokemon.species}>
         {(species) => (
-          <Show when={props.pokemon.alt} fallback={<SpeciesIcon species={species()} />}>
-            {(alt) => <SpeciesIcon species={{ id: alt().iconIndex, name: species().name }} />}
+          <Show when={props.pokemon.alt} fallback={<SpeciesIcon id={species().id} name={name()} />}>
+            {(alt) => <SpeciesIcon id={alt().iconIndex} name={name()} />}
           </Show>
         )}
       </Match>

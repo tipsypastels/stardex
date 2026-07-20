@@ -84,9 +84,9 @@ export function AddPokemon() {
   function closestIcon() {
     const species = closest()?.species;
     if (species) {
-      return <SpeciesIcon species={species} />;
+      return <SpeciesIcon id={species.id} name={species.name} />;
     } else if (query()) {
-      return <SpeciesIcon species={{ id: 0, name: queryCapitalizedWords() }} />;
+      return <SpeciesIcon id={0} name={queryCapitalizedWords()} />;
     } else {
       return null;
     }

@@ -37,22 +37,29 @@ interface ItemProps {
 function Item(props: ItemProps) {
   return (
     <li
-      class="relative inline-flex cursor-pointer justify-center data-[exclude=true]:opacity-50"
+      class="relative inline-flex cursor-pointer justify-center"
       classList={{ "opacity-50": props.pokemon.exclude }}
       data-id={props.pokemon.id}
     >
       <button
         data-handle
-        class="flex w-full cursor-pointer gap-2 border border-divider-light px-4 py-2"
+        class="relative flex w-full cursor-pointer gap-2 border border-divider-light px-4 py-2"
         onClick={() => props.onClick()}
       >
+        <Show when={props.pokemon.altNameOrNoAltName}>
+          {(name) => (
+            <div class="absolute -top-2.5 left-2 bg-background px-1 text-xs text-foreground-lesser">
+              {name()}
+            </div>
+          )}
+        </Show>
         <div>{props.pokemon.name}</div>
         <div class="grow" />
         <For each={props.pokemon.types}>
           {(type) => (
             <div
               title={type.name}
-              class="dim data-[exclude=true]:opacity-50"
+              class="dim"
               classList={{ "opacity-50": excludedTypes.all.has(type.key) }}
               style={{ color: type.color }}
             >

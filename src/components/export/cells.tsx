@@ -19,7 +19,7 @@ export function ExportCellsModal(props: ExportCellsModalProps) {
     for (const pokemon of pokemons.all) {
       out.push([
         makeCell(pokemon.species?.id?.toString() ?? ""),
-        makeCell(pokemon.name),
+        makeCell(pokemon.nameWithAltNameOrNoAltName),
         ...pokemon.types.map((type) => makeCell(type.name, type.color)),
       ]);
     }
