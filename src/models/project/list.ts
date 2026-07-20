@@ -61,7 +61,7 @@ export const PROJECT_LISTS = (() => {
 
       const [all, setAll] = createStore(defaults.all.map(PROJECTS.make));
       const [activeId, setActiveId] = createSignal(defaults.activeId);
-      const active = createMemo(() => all.find((project) => project.id === activeId()));
+      const active = createMemo(() => all.find((project) => project.id === activeId())!);
 
       const caught = catchInitialValidationError(() => {
         const raw_ = store.load();

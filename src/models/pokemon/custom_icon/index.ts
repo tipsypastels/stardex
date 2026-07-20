@@ -7,6 +7,7 @@ import {
   getCustomIconDbEntries,
   type CustomIconsDbEntry,
 } from "../../database";
+import type { RawJSONExportCustomIcons } from "../../export";
 import { projects } from "../../project/list";
 import { customIconsMetadata } from "./metadata";
 
@@ -71,6 +72,10 @@ export const customIcons = createRoot(() => {
       });
 
       deleteBulkCustomIconDbEntries(projects.activeId);
+    },
+
+    toRawExport(): RawJSONExportCustomIcons {
+      return { dataUrls: dataUrls() || {} };
     },
   };
 });

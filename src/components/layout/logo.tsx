@@ -1,7 +1,5 @@
-// TODO
-// import { unsafeWipeEverythingAndReload } from "../../state/wipe";
-
 import { onCleanup } from "solid-js";
+import { unsafeWipeEverythingAndReload } from "../../models/wipe";
 
 export function Logo() {
   const onClick = createNthClickHandler(import.meta.env.DEV ? 3 : 15, () => {
@@ -11,7 +9,7 @@ export function Logo() {
     ) {
       return;
     }
-    // unsafeWipeEverythingAndReload();
+    unsafeWipeEverythingAndReload();
   });
 
   return (
