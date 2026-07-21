@@ -7,7 +7,7 @@ export const language = new LanguageSupport(
     parser: parser.configure({
       props: [
         styleTags({
-          "Name": tags.definition(tags.variableName),
+          "Name": tags.variableName,
           "FormName": tags.labelName,
           "TypeList": tags.typeName,
           "Modifier": tags.annotation,

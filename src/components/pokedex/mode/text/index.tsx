@@ -1,6 +1,7 @@
 import { basicSetup, EditorView } from "codemirror";
 import { onCleanup, onMount } from "solid-js";
 import { language } from "./plugins";
+import { highlightTheme, theme } from "./theme";
 
 export function PokedexTextView() {
   let parent!: HTMLDivElement;
@@ -8,11 +9,11 @@ export function PokedexTextView() {
   onMount(() => {
     const view = new EditorView({
       parent,
-      extensions: [basicSetup, language],
+      extensions: [basicSetup, theme, language, highlightTheme],
     });
 
     onCleanup(() => view.destroy());
   });
 
-  return <div ref={parent} />;
+  return <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />;
 }
