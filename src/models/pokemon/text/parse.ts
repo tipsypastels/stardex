@@ -3,15 +3,15 @@ import {LRParser} from "@lezer/lr"
 import {nameTokenizer, formNameTokenizer} from "./parse.tokens"
 export const parser = LRParser.deserialize({
   version: 14,
-  states: "$bQYQTOOO_QTO'#CaOOQP'#Cj'#CjQYQTOOOmQUO'#CbO{QSO'#ChOOQP'#Ck'#CkO!QQTO,58{OOQP-E6h-E6hO!`QSO'#CeOOQP,58|,58|O!hQSO,58|O!pQSO,58|O!kQSO,58|OOQP,59S,59SOOQP-E6i-E6iO!xQSO'#ClO!}QSO,59POOQP1G.h1G.hO#VQSO1G.hO#_QSO1G.hOOQO,59W,59WOOQO-E6j-E6jOOQP7+$S7+$SO#dQSO7+$SOOQP<<Gn<<Gn",
-  stateData: "#i~OcOSROS~OPPO~OVSO]TOPTXaTX~OQZOW[OZYOdXO~Od^O~OVSO]TOPTaaTa~OY`OZXX~OWcOZbO~OZbOdXO~OdeO~OY`OZXa~OZgOdXO~OZgO~OZiO~O",
-  goto: "!VaPPPPPbfPPjPPfPsy!PTQORTUPVQ]SQd[RhcQRORWRQVPR_VQaXRfa",
-  nodeNames: "⚠ Name FormName Comment Program Listing Spec ( : TypeList / ) Modifier @",
-  maxTerm: 20,
-  skippedNodes: [0,3],
+  states: "$bQVQTOOObQTO'#C`OOQP'#Ck'#CkQVQTOOOvQUO'#CaO!UQSO'#CgOOQP'#Cl'#ClO!ZQTO,58zOOQP-E6i-E6iO!oQSO'#CdOOQP,58{,58{O!wQSO,58{O#PQSO,58{O!zQSO,58{OOQP,59R,59ROOQP-E6j-E6jO#XQSO'#CmO#^QSO,59OOOQP1G.g1G.gO#fQSO1G.gO#nQSO1G.gOOQO,59X,59XOOQO-E6k-E6kOOQP7+$R7+$RO#sQSO7+$ROOQP<<Gm<<Gm",
+  stateData: "#x~OdOS~OPPO]QO^QO~OUSO[TOPSX]SX^SXbSX~OQZOV[OYYOeXO~Oe^O~OUSO[TOPSa]Sa^SabSa~OX`OYWX~OVcOYbO~OYbOeXO~OeeO~OX`OYWa~OYgOeXO~OYgO~OYiO~O",
+  goto: "!WbPPPPcgPPkPPgPPPtz!QTQORTUPVQ]SQd[RhcQRORWRQVPR_VQaXRfa",
+  nodeNames: "⚠ Name FormName Program Listing Spec ( : TypeList / ) Modifier @ Comment Newline",
+  maxTerm: 21,
+  skippedNodes: [0],
   repeatNodeCount: 3,
-  tokenData: "#p~R]XYzYZz]^zpqzst!]xy!wyz!|!P!Q#R!Q![#W![!]#f!b!c#k!c!}#W#T#o#W~!PSc~XYzYZz]^zpqz~!bTR~OY!]Z]!]^;'S!];'S;=`!q<%lO!]~!tP;=`<%l!]~!|OV~~#ROZ~~#WOY~~#]Rd~!Q![#W!c!}#W#T#o#W~#kOW~~#pO]~",
+  tokenData: "#w~R]XYzYZ!V]^![pqzst!dxy#Oyz#T!P!Q#Y!Q![#_![!]#m!b!c#r!c!}#_#T#o#_~!PQd~XYzpqz~![O^~~!aP^~YZ!V~!iT]~OY!dZ]!d^;'S!d;'S;=`!x<%lO!d~!{P;=`<%l!d~#TOU~~#YOY~~#_OX~~#dRe~!Q![#_!c!}#_#T#o#_~#rOV~~#wO[~",
   tokenizers: [nameTokenizer, formNameTokenizer, 0],
-  topRules: {"Program":[0,4]},
+  topRules: {"Program":[0,3]},
   tokenPrec: 0
 })

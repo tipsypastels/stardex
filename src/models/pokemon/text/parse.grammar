@@ -1,6 +1,6 @@
-@top Program { Listing* }
+@top Program { (Listing | Comment | Newline)* }
 
-@skip { space | Comment }
+@skip { space }
 
 @external tokens nameTokenizer from "./parse.tokens" { Name }
 @external tokens formNameTokenizer from "./parse.tokens" { FormName }
@@ -26,7 +26,8 @@ Modifier {
 }
 
 @tokens {
-  space { $[ \t\r\n]+ }
+  space { $[ \t]+ }
+  Newline { "\r\n" | "\n" | "\r" }
   Comment { "#" ![\n\r]* }
   ident { $[A-Za-z0-9]+ }
 

@@ -21,7 +21,7 @@ Bar
 
 ==>
 
-Program(Listing(Name), Listing(Name))
+Program(Listing(Name), Newline, Listing(Name))
 
 # Specs
 
@@ -31,4 +31,31 @@ Baz (Form Name:Fire/Flying)
 
 ==>
 
-Program(Listing(Name, Spec(TypeList)), Listing(Name, Spec(TypeList)), Listing(Name, Spec(FormName, TypeList)))
+Program(
+  Listing(Name, Spec(TypeList)), 
+  Newline, 
+  Listing(Name, Spec(TypeList)), 
+  Newline,
+  Listing(Name, Spec(FormName, TypeList))
+)
+
+# Comments
+
+Foo
+# a comment
+Bar @x
+
+Baz
+
+==>
+
+Program(
+  Listing(Name),
+  Newline,
+  Comment,
+  Newline,
+  Listing(Name, Modifier),
+  Newline,
+  Newline,
+  Listing(Name)
+)

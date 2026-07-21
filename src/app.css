@@ -103,22 +103,6 @@
   animation: wiggle 1s infinite;
 }
 
-@utility keyboard-key {
-  @apply inline-block rounded-sm border border-[#e6e6e6] bg-white px-2 py-1 text-black;
-
-  /* Based on https://shhdharmen.github.io/keyboard-css/. */
-  box-shadow:
-    0 0 #d9d9d9,
-    0 0px #d9d9d9,
-    0 1px #d9d9d9,
-    0 2px #d9d9d9,
-    0 3px #d9d9d9,
-    0 4px #d9d9d9,
-    0 5px #d9d9d9,
-    2px 2.5px 4px #adb5bd,
-    0 -1px 2.5px #adb5bd;
-}
-
 @keyframes wiggle {
   0% {
     transform: rotate(0deg);
@@ -135,6 +119,22 @@
   100% {
     transform: rotate(0deg);
   }
+}
+
+@utility keyboard-key {
+  @apply inline-block rounded-sm border border-[#e6e6e6] bg-white px-2 py-1 text-black;
+
+  /* Based on https://shhdharmen.github.io/keyboard-css/. */
+  box-shadow:
+    0 0 #d9d9d9,
+    0 0px #d9d9d9,
+    0 1px #d9d9d9,
+    0 2px #d9d9d9,
+    0 3px #d9d9d9,
+    0 4px #d9d9d9,
+    0 5px #d9d9d9,
+    2px 2.5px 4px #adb5bd,
+    0 -1px 2.5px #adb5bd;
 }
 
 html.has-modal body {
