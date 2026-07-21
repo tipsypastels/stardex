@@ -4,6 +4,7 @@ import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
+import { PokemonIcon } from "../util/pokemon_icon";
 import { EditPokemonBehavior } from "./behavior";
 import {
   createCustomIconUploadState,
@@ -41,21 +42,33 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
           title={`Edit ${pokemon().name}`}
           onClose={props.onClose}
           footer={
-            <div class="text-right">
+            <div class="flex">
               <ButtonLink look="warning" onClick={onRemove}>
-                Remove {pokemon().name}
+                Remove
+              </ButtonLink>
+
+              <div class="grow" />
+
+              <ButtonLink look="secondary" onClick={props.onClose}>
+                Close
               </ButtonLink>
             </div>
           }
           footerHasDivider
         >
-          <Show when={pokemon().isCustom()}>
-            <EditPokemonName pokemon={pokemon()} mutator={mutator()} />
-          </Show>
+          <div class="relative">
+            <div class="absolute top-0 right-0 rounded-md border-2 border-divider-heavy p-2">
+              <PokemonIcon pokemon={pokemon()} />
+            </div>
 
-          <EditPokemonTypes pokemon={pokemon()} mutator={mutator()} />
-          <EditPokemonCustomIconLink state={customIconState} />
-          <EditPokemonBehavior pokemon={pokemon()} mutator={mutator()} />
+            <Show when={pokemon().isCustom()}>
+              <EditPokemonName pokemon={pokemon()} mutator={mutator()} />
+            </Show>
+
+            <EditPokemonTypes pokemon={pokemon()} mutator={mutator()} />
+            <EditPokemonCustomIconLink state={customIconState} />
+            <EditPokemonBehavior pokemon={pokemon()} mutator={mutator()} />
+          </div>
         </Modal>
       }
     >
@@ -63,8 +76,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
         <EditPokemonCustomIconModal
           pokemon={pokemon()}
           initialFile={file()}
-          onClose={props.onClose}
-          onCancel={() => customIconState.setUploaded(undefined)}
+          onClose={() => customIconState.setUploaded(undefined)}
         />
       )}
     </Show>

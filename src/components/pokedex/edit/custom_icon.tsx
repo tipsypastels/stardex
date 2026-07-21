@@ -51,7 +51,6 @@ export interface EditPokemonCustomIconModalProps {
   pokemon: Pokemon;
   initialFile: File;
   onClose(): void;
-  onCancel(): void;
 }
 
 export function EditPokemonCustomIconModal(props: EditPokemonCustomIconModalProps) {
@@ -216,7 +215,7 @@ export function EditPokemonCustomIconModal(props: EditPokemonCustomIconModalProp
       onClose={props.onClose}
       footer={
         <div class="flex">
-          <ButtonLink look="secondary" onClick={props.onCancel}>
+          <ButtonLink look="secondary" onClick={props.onClose}>
             Cancel
           </ButtonLink>
           <div class="grow" />
