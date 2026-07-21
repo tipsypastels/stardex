@@ -30,8 +30,8 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
     props.mutator.setAltKind(altKind);
   }
 
-  function setCustomAltName(name: string) {
-    props.mutator.setCustomAltName(capitalizeWords(name));
+  function setCustomAltName(name: string | undefined) {
+    props.mutator.setCustomAltName(name && capitalizeWords(name));
   }
 
   return (
@@ -55,8 +55,8 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
         <div>
           <h3 class="text-sm">form{props.pokemon.isBuiltin() ? "s" : " name"}:</h3>
           <ul>
-            {props.pokemon.isBuiltin() ? (
-              <li>
+            <li>
+              {props.pokemon.isBuiltin() ? (
                 <Checkbox
                   name={props.pokemon.species.noAltName ?? "Normal"}
                   radio
@@ -75,8 +75,15 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                     </div>
                   </Show>
                 </Checkbox>
-              </li>
-            ) : null}
+              ) : (
+                <Checkbox
+                  name="Unset"
+                  radio
+                  checked={!props.pokemon.altName}
+                  onChange={() => setCustomAltName(undefined)}
+                />
+              )}
+            </li>
 
             {props.pokemon.species?.alts.length ? (
               <For each={props.pokemon.species.alts}>
@@ -117,6 +124,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                     value={customAltName() ?? ""}
                     onChange={(e) => setCustomAltName(e.currentTarget.value)}
                     short
+                    size="double"
                   />
                 </div>
               </Checkbox>
