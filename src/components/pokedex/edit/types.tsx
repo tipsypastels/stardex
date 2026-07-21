@@ -42,12 +42,14 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
           <Input
             value={props.pokemon.typeKeys.at(0) ?? ""}
             list={TYPE_SUGGESTIONS_LIST}
+            visuallyLowercase
             onChange={(e) => set(0, e.currentTarget.value)}
           />
           {" and "}
           <Input
             value={props.pokemon.typeKeys.at(1) ?? ""}
             list={TYPE_SUGGESTIONS_LIST}
+            visuallyLowercase
             onChange={(e) => set(1, e.currentTarget.value)}
           />
         </div>
@@ -124,6 +126,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                     value={customAltName() ?? ""}
                     onChange={(e) => setCustomAltName(e.currentTarget.value)}
                     short
+                    visuallyLowercase
                   />
                 </div>
               </Checkbox>

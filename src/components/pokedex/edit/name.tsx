@@ -14,7 +14,7 @@ export function EditPokemonName(props: EditPokemonNameProps) {
 
       <div>
         <Input
-          size="double"
+          wide
           value={props.pokemon.name}
           onChange={(e) => {
             if (e.currentTarget.value) {

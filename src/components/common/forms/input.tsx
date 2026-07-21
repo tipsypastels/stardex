@@ -9,8 +9,9 @@ export interface InputProps {
   look?: keyof typeof LOOKS;
   value: string;
   list?: string;
-  size?: "double";
+  wide?: boolean;
   short?: boolean;
+  visuallyLowercase?: boolean;
   onInput?(e: Event & { currentTarget: HTMLInputElement }): void;
   onChange?(e: Event & { currentTarget: HTMLInputElement }): void;
   onBlur?(e: Event & { currentTarget: HTMLInputElement }): void;
@@ -21,8 +22,8 @@ export function Input(props: InputProps) {
   return (
     <input
       ref={props.ref}
-      class={`border-0 border-b-2 ${props.size === "double" ? "w-40" : "w-20"} ${LOOKS[props.look ?? "primary"]}`}
-      classList={{ "py-0": props.short }}
+      class={`w-20 border-0 border-b-2 lowercase ${LOOKS[props.look ?? "primary"]}`}
+      classList={{ "py-0": props.short, "w-40!": props.wide, "lowercase": props.visuallyLowercase }}
       type="text"
       value={props.value}
       list={props.list}

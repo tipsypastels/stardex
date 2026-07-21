@@ -47,9 +47,21 @@ export function AddCustom(props: AddCustomProps) {
     <div class="flex flex-col justify-center gap-4">
       <div class="grow text-center">
         ...with type{" "}
-        <Input ref={input1} value="" onKeyUp={handleKeyUp} list={TYPE_SUGGESTIONS_LIST} />
+        <Input
+          ref={input1}
+          value=""
+          onKeyUp={handleKeyUp}
+          list={TYPE_SUGGESTIONS_LIST}
+          visuallyLowercase
+        />
         {" and "}
-        <Input ref={input2} value="" onKeyUp={handleKeyUp} list={TYPE_SUGGESTIONS_LIST} />
+        <Input
+          ref={input2}
+          value=""
+          onKeyUp={handleKeyUp}
+          list={TYPE_SUGGESTIONS_LIST}
+          visuallyLowercase
+        />
       </div>
 
       <div class="flex justify-center gap-2 text-center">
