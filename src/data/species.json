@@ -9405,6 +9405,7 @@
   "meowstic": {
     "id": 678,
     "name": "Meowstic",
+    "noAltName": "Male",
     "types": [
       "psychic"
     ],
@@ -9422,15 +9423,7 @@
       },
       {
         "kind": "male-mega",
-        "name": "Male Mega",
-        "types": [
-          "psychic"
-        ],
-        "iconIndex": 1440
-      },
-      {
-        "kind": "female-mega",
-        "name": "Female Mega",
+        "name": "Mega",
         "types": [
           "psychic"
         ],
@@ -12103,6 +12096,7 @@
   "indeedee": {
     "id": 876,
     "name": "Indeedee",
+    "noAltName": "Male",
     "types": [
       "psychic",
       "normal"
@@ -12497,6 +12491,7 @@
   "basculegion": {
     "id": 902,
     "name": "Basculegion",
+    "noAltName": "Male",
     "types": [
       "water",
       "ghost"
@@ -12681,6 +12676,7 @@
   "oinkologne": {
     "id": 916,
     "name": "Oinkologne",
+    "noAltName": "Male",
     "types": [
       "normal"
     ],

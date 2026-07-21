@@ -133,6 +133,8 @@ const SKIPPED_VARIETY_NAMES = new Set([
   "pikachu-alola-cap",
   "pikachu-partner-cap",
   "pikachu-world-cap",
+  // Just based on what gender mega'd
+  "meowstic-female-mega",
   // Changes when/how it changes forms
   "zygarde-10-power-construct",
   "zygarde-50-power-construct",
@@ -174,6 +176,7 @@ const VARIETY_KIND_NAME_PATTERNS = [
 const VARIETY_KIND_NAMES = {
   "wormadam-sandy": "Sandy Cloak",
   "wormadam-trash": "Trash Cloak",
+  "meowstic-male-mega": "Mega",
   "tauros-paldea-combat-breed": "Paldean Combat Breed",
   "tauros-paldea-blaze-breed": "Paldean Blaze Breed",
   "tauros-paldea-aqua-breed": "Paldean Aqua Breed",
@@ -220,6 +223,11 @@ const NO_KIND_NAMES = {
   tatsugiri: "Curly",
   gimmighoul: "Chest",
   ogerpon: "Teal Mask",
+
+  meowstic: "Male",
+  indeedee: "Male",
+  basculegion: "Male",
+  oinkologne: "Male",
 };
 
 // From https://github.com/smogon/pokemon-showdown-client/blob/master/play.pokemonshowdown.com/src/battle-dex-data.ts#L151.
