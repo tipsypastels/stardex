@@ -36,6 +36,15 @@ describe(serializePokemonListToText, () => {
     expect(s([{ ...header(), species: "bulbasaur", types: ["fire"] }])).toEqual("Bulbasaur (Fire)");
   });
 
+  test("alt names", () => {
+    expect(s([{ ...header(), species: "bulbasaur", customAltName: "mega" }])).toEqual(
+      "Bulbasaur (Mega:)",
+    );
+    expect(s([{ ...header(), name: "Foo", altName: "mega z", types: ["fire", "normal"] }])).toEqual(
+      "Foo (Mega Z:Fire/Normal)",
+    );
+  });
+
   test("exclude", () => {
     expect(s([{ ...header(), species: "bulbasaur", exclude: true }])).toEqual("Bulbasaur @exclude");
     expect(s([{ ...header(), name: "Foo", types: ["flying"], exclude: true }])).toEqual(

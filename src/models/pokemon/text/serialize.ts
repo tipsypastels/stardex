@@ -1,5 +1,5 @@
 import type { RawPokemon } from "..";
-import { capitalize } from "../../../utils/string";
+import { capitalize, capitalizeWords } from "../../../utils/string";
 import { SPECIES } from "../species";
 import { pokemonListTextDiffIsTrivial, readPokemonListTextDiff } from "./diff";
 
@@ -57,8 +57,25 @@ export function serializePokemonListToText({
 
 function toLine(pokemon: RawPokemon) {
   let line = "species" in pokemon ? SPECIES.of(pokemon.species).name : pokemon.name;
-  if (pokemon.types) {
-    line += ` (${pokemon.types.map(capitalize).join("/")})`;
+
+  const altName = (() => {
+    if ("species" in pokemon) {
+      if (pokemon.customAltName) return pokemon.customAltName;
+      if (pokemon.alt) return SPECIES.of(pokemon.species).getAlt(pokemon.alt).name;
+    } else {
+      return pokemon.altName;
+    }
+  })();
+
+  if (altName || pokemon.types) {
+    line += " (";
+    if (altName) {
+      line += `${capitalizeWords(altName)}:`;
+    }
+    if (pokemon.types) {
+      line += pokemon.types.map(capitalize).join("/");
+    }
+    line += ")";
   }
   if (pokemon.exclude) {
     line += " @exclude";
