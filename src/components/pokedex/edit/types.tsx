@@ -124,7 +124,6 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                     value={customAltName() ?? ""}
                     onChange={(e) => setCustomAltName(e.currentTarget.value)}
                     short
-                    size="double"
                   />
                 </div>
               </Checkbox>
