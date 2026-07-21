@@ -49,6 +49,7 @@ export function AddCustom(props: AddCustomProps) {
         ...with type{" "}
         <Input
           ref={input1}
+          class="w-20"
           value=""
           onKeyUp={handleKeyUp}
           list={TYPE_SUGGESTIONS_LIST}
@@ -57,6 +58,7 @@ export function AddCustom(props: AddCustomProps) {
         {" and "}
         <Input
           ref={input2}
+          class="w-20"
           value=""
           onKeyUp={handleKeyUp}
           list={TYPE_SUGGESTIONS_LIST}

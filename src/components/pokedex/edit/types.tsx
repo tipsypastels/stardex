@@ -40,6 +40,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
       <div>
         <div class="mb-2">
           <Input
+            class="w-20"
             value={props.pokemon.typeKeys.at(0) ?? ""}
             list={TYPE_SUGGESTIONS_LIST}
             visuallyLowercase
@@ -47,6 +48,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
           />
           {" and "}
           <Input
+            class="w-20"
             value={props.pokemon.typeKeys.at(1) ?? ""}
             list={TYPE_SUGGESTIONS_LIST}
             visuallyLowercase
@@ -119,16 +121,14 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                 checked={!!customAltName()}
                 onClick={() => customAltNameInput?.focus()}
               >
-                {":"}
-                <div class="pl-2">
-                  <Input
-                    ref={customAltNameInput}
-                    value={customAltName() ?? ""}
-                    onChange={(e) => setCustomAltName(e.currentTarget.value)}
-                    short
-                    visuallyLowercase
-                  />
-                </div>
+                <Input
+                  ref={customAltNameInput}
+                  class="ml-2 w-30"
+                  value={customAltName() ?? ""}
+                  onChange={(e) => setCustomAltName(e.currentTarget.value)}
+                  short
+                  visuallyLowercase
+                />
               </Checkbox>
             </li>
           </ul>
