@@ -1,0 +1,38 @@
+@top Program { Listing* }
+
+@skip { space | Comment }
+
+@external tokens nameTokenizer from "./parse.tokens" { Name }
+@external tokens formNameTokenizer from "./parse.tokens" { FormName }
+
+Listing {
+  Name (Spec | Modifier)*
+}
+
+Spec {
+  "(" (
+    FormName (":" TypeList?)? |
+    ":" TypeList? |
+    TypeList
+  )? ")"
+}
+
+TypeList {
+  ident ("/" ident)*
+}
+
+Modifier {
+  "@" ident
+}
+
+@tokens {
+  space { $[ \t\r\n]+ }
+  Comment { "#" ![\n\r]* }
+  ident { $[A-Za-z0-9]+ }
+
+  "("
+  ")"
+  ":"
+  "/"
+  "@"
+}

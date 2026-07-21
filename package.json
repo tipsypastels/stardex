@@ -9,12 +9,17 @@
     "preview": "vite preview",
     "lint": "eslint",
     "check": "tsc -b",
-    "test": "vitest"
+    "test": "vitest",
+    "gen:text-grammar": "lezer-generator ./src/models/pokemon/text/parse.grammar -o ./src/models/pokemon/text/parse.ts --typeScript"
   },
   "dependencies": {
+    "@codemirror/language": "^6.12.4",
+    "@lezer/highlight": "^1.2.3",
+    "@lezer/lr": "^1.4.10",
     "@solid-primitives/set": "^0.7.4",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/vite": "^4.3.2",
+    "codemirror": "^6.0.2",
     "fuse.js": "^7.5.0",
     "hotkeys-js": "^4.0.4",
     "randomcolor": "^0.6.2",
@@ -25,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@lezer/generator": "^1.8.0",
     "@types/node": "^26.1.1",
     "@types/randomcolor": "^0.5.9",
     "@types/sortablejs": "^1.15.9",

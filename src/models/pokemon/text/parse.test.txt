@@ -1,0 +1,34 @@
+# Single name
+
+Bulbasaur
+
+==>
+
+Program(Listing(Name))
+
+# Single non-identifier name
+
+Mr. Mime
+
+==>
+
+Program(Listing(Name))
+
+# Multiple names
+
+Foo
+Bar
+
+==>
+
+Program(Listing(Name), Listing(Name))
+
+# Specs
+
+Foo (Fire)
+Bar (Fire/Flying)
+Baz (Form Name:Fire/Flying)
+
+==>
+
+Program(Listing(Name, Spec(TypeList)), Listing(Name, Spec(TypeList)), Listing(Name, Spec(FormName, TypeList)))
