@@ -49,6 +49,31 @@ import * as process from "node:process";
 
 /** @type {Record<string, PokemonSpecies['varieties']>} */
 const OVERRIDE_VARIETIES = {
+  // PokeAPI gives this two forms based on which gender mega evolves.
+  meowstic: [
+    {
+      is_default: true,
+      pokemon: {
+        name: "meowstic-male",
+        url: "https://pokeapi.co/api/v2/pokemon/678/",
+      },
+    },
+    {
+      is_default: false,
+      pokemon: {
+        name: "meowstic-female",
+        url: "https://pokeapi.co/api/v2/pokemon/10025/",
+      },
+    },
+    {
+      is_default: false,
+      pokemon: {
+        name: "meowstic-mega",
+        url: "https://pokeapi.co/api/v2/pokemon/10314/",
+      },
+    },
+  ],
+
   // PokeAPI considers meteor to be the default form, Smogon considers red core. Defer to Smogon.
   // Also PokeAPI has variants for every colour the meteor form can become, which is useless.
   // Both have the core colours, which are only cosmetic so ignore those too..
@@ -133,8 +158,6 @@ const SKIPPED_VARIETY_NAMES = new Set([
   "pikachu-alola-cap",
   "pikachu-partner-cap",
   "pikachu-world-cap",
-  // Just based on what gender mega'd
-  "meowstic-female-mega",
   // Changes when/how it changes forms
   "zygarde-10-power-construct",
   "zygarde-50-power-construct",
@@ -160,7 +183,6 @@ const SKIPPED_VARIETY_NAMES = new Set([
   "koraidon-gliding-build",
   // Doesn't have a smogon icon, only an in battle change
   "mimikyu-busted",
-  "mimikyu-totem-busted",
 ]);
 
 /** @type {[RegExp, string][]} */
@@ -176,7 +198,6 @@ const VARIETY_KIND_NAME_PATTERNS = [
 const VARIETY_KIND_NAMES = {
   "wormadam-sandy": "Sandy Cloak",
   "wormadam-trash": "Trash Cloak",
-  "meowstic-male-mega": "Mega",
   "tauros-paldea-combat-breed": "Paldean Combat Breed",
   "tauros-paldea-blaze-breed": "Paldean Blaze Breed",
   "tauros-paldea-aqua-breed": "Paldean Aqua Breed",
@@ -773,9 +794,7 @@ const OVERRIDE_ALT_ICON_INDICES = {
   "tauros-paldea-aqua-breed": SMOGON_ALT_ICON_INDICES.taurospaldeaaqua,
   "darmanitan-galar-standard": SMOGON_ALT_ICON_INDICES.darmanitangalar,
   "greninja-battle-bond": SMOGON_ALT_ICON_INDICES.greninjabond,
-  "meowstic-male-mega": SMOGON_ALT_ICON_INDICES.meowsticmmega,
-  "meowstic-female-mega": SMOGON_ALT_ICON_INDICES.meowsticfmega,
-  "mimikyu-totem-disguised": "use-species",
+  "meowstic-mega": SMOGON_ALT_ICON_INDICES.meowsticmmega,
   "necrozma-dusk": SMOGON_ALT_ICON_INDICES.necrozmaduskmane,
   "necrozma-dawn": SMOGON_ALT_ICON_INDICES.necrozmadawnwings,
   "urshifu-rapid-strike": "use-species", // has the same party icon as single strike
