@@ -24,6 +24,9 @@ export function PokemonIcon(props: PokemonIconProps) {
       <Match when={customIconLoading()}>
         <CustomIconLoading name={name()} />
       </Match>
+      <Match when={props.pokemon.isBuiltin() && props.pokemon.customAltName}>
+        <SpeciesIcon id={0} name={name()} />
+      </Match>
       <Match when={props.pokemon.species}>
         {(species) => (
           <Show when={props.pokemon.alt} fallback={<SpeciesIcon id={species().id} name={name()} />}>

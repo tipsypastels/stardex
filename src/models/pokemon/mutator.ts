@@ -9,6 +9,7 @@ export interface PokemonMutator {
   setTypeKeyAt(index: number, typeKey: string | undefined): void;
   setAltKind(altKind: string): void;
   unsetTypeKeysAndAlt(): void;
+  setCustomAltName(altName: string | undefined): void;
   setExclude(exclude: boolean): void;
 }
 
@@ -51,6 +52,7 @@ export function createPokemonMutator(
         produce((pokemon) => {
           assert(pokemon.isBuiltin(), "Can't set alt kind of custom Pokémon");
           pokemon.altKind = altKind;
+          pokemon.customAltName = undefined;
           pokemon.changedTypeKeys = undefined;
         }),
       );
@@ -62,7 +64,22 @@ export function createPokemonMutator(
         produce((pokemon) => {
           assert(pokemon.isBuiltin(), "Can't unset type keys and alt of custom Pokémon");
           pokemon.altKind = undefined;
+          pokemon.customAltName = undefined;
           pokemon.changedTypeKeys = undefined;
+        }),
+      );
+    },
+
+    setCustomAltName(altName) {
+      setAll(
+        (all) => all.id === id,
+        produce((pokemon) => {
+          if (pokemon.isBuiltin()) {
+            pokemon.customAltName = altName;
+            pokemon.altKind = undefined;
+          } else {
+            pokemon.altName = altName;
+          }
         }),
       );
     },

@@ -1,6 +1,7 @@
 import { For, Show } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import type { PokemonMutator } from "../../../models/pokemon/mutator";
+import { capitalizeWords } from "../../../utils/string";
 import { Checkbox } from "../../common/forms/checkbox";
 import { Input } from "../../common/forms/input";
 import { ButtonLink } from "../../common/link";
@@ -12,6 +13,11 @@ export interface EditPokemonTypesProps {
 }
 
 export function EditPokemonTypes(props: EditPokemonTypesProps) {
+  const customAltName = () =>
+    props.pokemon.isBuiltin() ? props.pokemon.customAltName : props.pokemon.altName;
+
+  let customAltNameInput: HTMLInputElement | undefined;
+
   function set(index: number, typeKey: string) {
     props.mutator.setTypeKeyAt(index, typeKey.trim().toLowerCase());
   }
@@ -24,40 +30,55 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
     props.mutator.setAltKind(altKind);
   }
 
+  function setCustomAltName(name: string) {
+    props.mutator.setCustomAltName(capitalizeWords(name));
+  }
+
   return (
     <div class="mb-4">
       <h2 class="font-bold">Types</h2>
       <div>
-        <Input
-          value={props.pokemon.typeKeys.at(0) ?? ""}
-          list={TYPE_SUGGESTIONS_LIST}
-          onChange={(e) => set(0, e.currentTarget.value)}
-        />
-        {" and "}
-        <Input
-          value={props.pokemon.typeKeys.at(1) ?? ""}
-          list={TYPE_SUGGESTIONS_LIST}
-          onChange={(e) => set(1, e.currentTarget.value)}
-        />
+        <div class="mb-2">
+          <Input
+            value={props.pokemon.typeKeys.at(0) ?? ""}
+            list={TYPE_SUGGESTIONS_LIST}
+            onChange={(e) => set(0, e.currentTarget.value)}
+          />
+          {" and "}
+          <Input
+            value={props.pokemon.typeKeys.at(1) ?? ""}
+            list={TYPE_SUGGESTIONS_LIST}
+            onChange={(e) => set(1, e.currentTarget.value)}
+          />
+        </div>
 
-        {props.pokemon.species?.alts.length ? (
-          <div class="mt-2">
-            <h3 class="text-sm">forms:</h3>
-            <ul>
+        <div>
+          <h3 class="text-sm">form{props.pokemon.isBuiltin() ? "s" : " name"}:</h3>
+          <ul>
+            {props.pokemon.isBuiltin() ? (
               <li>
                 <Checkbox
                   name={props.pokemon.species.noAltName ?? "Normal"}
                   radio
-                  checked={!props.pokemon.altKind}
+                  checked={!props.pokemon.altKind && !props.pokemon.customAltName}
                   onChange={setDefault}
                 >
-                  <Show when={!props.pokemon.altKind && props.pokemon.changedTypeKeys}>
+                  <Show
+                    when={
+                      !props.pokemon.altKind &&
+                      !props.pokemon.customAltName &&
+                      props.pokemon.changedTypeKeys
+                    }
+                  >
                     <div class="ml-1 text-sm">
-                      <ButtonLink onClick={setDefault}>(reset customized type?)</ButtonLink>
+                      <ButtonLink onClick={setDefault}>(reset type?)</ButtonLink>
                     </div>
                   </Show>
                 </Checkbox>
               </li>
+            ) : null}
+
+            {props.pokemon.species?.alts.length ? (
               <For each={props.pokemon.species.alts}>
                 {(alt) => (
                   <li>
@@ -72,7 +93,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                       >
                         <div class="ml-1 text-sm">
                           <ButtonLink onClick={() => setAltKind(alt.kind)}>
-                            (reset customized type?)
+                            (reset type?)
                           </ButtonLink>
                         </div>
                       </Show>
@@ -80,13 +101,28 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                   </li>
                 )}
               </For>
-            </ul>
-          </div>
-        ) : props.pokemon.isBuiltin() && props.pokemon.changedTypeKeys ? (
-          <div class="mt-2 text-sm">
-            <ButtonLink onClick={setDefault}>reset customized type?</ButtonLink>
-          </div>
-        ) : null}
+            ) : null}
+
+            <li>
+              <Checkbox
+                name="Custom"
+                radio
+                checked={!!customAltName()}
+                onClick={() => customAltNameInput?.focus()}
+              >
+                {":"}
+                <div class="pl-2">
+                  <Input
+                    ref={customAltNameInput}
+                    value={customAltName() ?? ""}
+                    onChange={(e) => setCustomAltName(e.currentTarget.value)}
+                    short
+                  />
+                </div>
+              </Checkbox>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

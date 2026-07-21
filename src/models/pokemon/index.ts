@@ -22,12 +22,14 @@ export const RawBuiltinPokemon = v.object({
   ...RawSharedPokemon.entries,
   species: v.string(),
   alt: v.optional(v.string()),
+  customAltName: v.optional(v.string()),
   types: v.optional(v.array(v.string())),
 });
 
 export const RawCustomPokemon = v.object({
   ...RawSharedPokemon.entries,
   name: v.string(),
+  altName: v.optional(v.string()),
   types: v.array(v.string()),
 });
 
@@ -64,6 +66,7 @@ export interface BuiltinPokemon {
   readonly nameWithAltNameOrNoAltName: string;
   readonly species: Species;
   altKind?: string;
+  customAltName?: string;
   readonly alt?: SpeciesAlt;
   readonly altNameOrNoAltName?: string;
   changedTypeKeys: string[] | undefined;
@@ -90,25 +93,20 @@ export const BUILTIN_POKEMONS = (() => {
         return this.species.name;
       },
       get nameWithAltNameOrNoAltName() {
-        const alt = this.alt;
-        if (alt) {
-          return `${this.name} (${alt.name})`;
-        }
-        if (this.species.noAltName) {
-          return `${this.name} (${this.species.noAltName})`;
-        }
-        return this.name;
+        const altName = this.altNameOrNoAltName;
+        return altName ? `${this.name} (${altName})` : this.name;
       },
       get species() {
         return SPECIES.of(raw.species);
       },
       altKind: raw.alt,
+      customAltName: raw.customAltName,
       get alt() {
         if (!this.altKind) return;
         return this.species.alts.find((alt) => alt.kind === this.altKind);
       },
       get altNameOrNoAltName() {
-        return this.alt?.name ?? this.species.noAltName;
+        return this.customAltName ?? this.alt?.name ?? this.species.noAltName;
       },
       changedTypeKeys: raw.types,
       get typeKeys() {
@@ -130,6 +128,7 @@ export const BUILTIN_POKEMONS = (() => {
           species: raw.species,
           id: raw.id,
           alt: this.altKind,
+          customAltName: this.customAltName,
           types: this.changedTypeKeys,
           exclude: this.exclude || undefined,
         };
@@ -151,9 +150,10 @@ export interface CustomPokemon {
   name: string;
   readonly nameWithAltNameOrNoAltName: string;
   readonly species?: undefined;
+  altName?: string;
   readonly altKind?: undefined;
   readonly alt?: undefined;
-  readonly altNameOrNoAltName?: undefined;
+  readonly altNameOrNoAltName?: string;
   typeKeys: string[];
   readonly types: Type[];
   exclude: boolean | undefined;
@@ -175,7 +175,7 @@ export const CUSTOM_POKEMONS = (() => {
       },
       name: raw.name,
       get nameWithAltNameOrNoAltName() {
-        return this.name;
+        return this.altName ? `${this.name} (${this.altName})` : this.name;
       },
       get species() {
         return undefined;
@@ -186,8 +186,8 @@ export const CUSTOM_POKEMONS = (() => {
       get alt(): undefined {
         return undefined;
       },
-      get altNameOrNoAltName(): undefined {
-        return undefined;
+      get altNameOrNoAltName() {
+        return this.altName;
       },
       typeKeys: raw.types,
       get types() {
@@ -205,6 +205,7 @@ export const CUSTOM_POKEMONS = (() => {
           v: POKEMON_VERSION,
           id: raw.id,
           name: this.name,
+          altName: this.altName,
           types: this.typeKeys,
           exclude: this.exclude || undefined,
         };

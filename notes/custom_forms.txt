@@ -1,0 +1,28 @@
+I don't think it's worth supporting custom forms for custom pokemon, just have that be part of the name and set the types as such. The only challenge is the parsing ambiguity in text mode, but you can say that Foo (Bar:Fire) or whatever really parses as { name: "Foo (Bar)", type: [Fire] }.
+
+Builtin pokemon should have an altCustomName that gets...
+
+Actually, could you just parse builtin mons with unknown forms in text mode as custom mons? We don't have pokemon keys anymore so nothing prevents us from having custom pokemon that match the names of species keys.
+It probably is worth supporting altName on customs then, mostly for UI consistency so it shows in names mode and not in the edit modal title, etc.. AddCustom can either provide a form name option or can parse Bar (Foo)? Unsure.
+
+I've looped back around.
+
+Don't have a separate ui input for custom name, just parse out / *\((.*\)) *$/? and set that? No I think not that's not intuitive. Fine in text mode but not in the edit modal.
+
+For convenience, stop disallowing adding custom mons with the same name as builtins in the UI? Nothing would actually break I think.
+
+Other issue is sorting, if you want your Blastoise (MyCustom) to sort next to its line but it's actually a custom mon so you can't keep it there. You could treat them as builtins for sorting purposes if the key matches a species key but the key doesn't otherwise matter and they might put in blastoisemycustom for example so that's not reliable.
+
+Okay so workshop having customAltName on builtins then. When you set it it unsets alt, while setting an alt unsets it. Parses same as for customs. Doesn't require types unlike customs, just falls back to species type. Sorts properly. Require a custom icon or render missing. That means you can't have a custom alt with the icon of a builtin alt, but that's fine, people can upload them if they really want them.
+
+Maximalist approach, just do everything. But it probably works best this way.
+
+But wait how are we parsing alt names in text mode if customs are supported for all mons? Foo (Bar) is no longer valid when custom types also exist. Foo (Bar:)? But that's inconsistent with the UI.
+
+Change the type syntax to something more easily parseable, but accept legacy types and convert them?
+
+Foo @type(Bar) @alt(Mega Xyz) ? idk
+Foo type:Bar alt:Mega Xyz ? spaces allowed without delimiters until the next @?
+
+upon consideration I don't hate Foo (Bar:). change the UI to match? meh no that's a confusing look for new users who might not touch the text mode. and it's not like @exclude is consistent with the UI we don't worry about that
+special case builtin alts on builtin mons? maybe accept it but I think don't have that be the canonical repr

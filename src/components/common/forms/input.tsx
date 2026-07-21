@@ -10,6 +10,7 @@ export interface InputProps {
   value: string;
   list?: string;
   size?: "double";
+  short?: boolean;
   onInput?(e: Event & { currentTarget: HTMLInputElement }): void;
   onChange?(e: Event & { currentTarget: HTMLInputElement }): void;
   onBlur?(e: Event & { currentTarget: HTMLInputElement }): void;
@@ -21,6 +22,7 @@ export function Input(props: InputProps) {
     <input
       ref={props.ref}
       class={`border-0 border-b-2 ${props.size === "double" ? "w-40" : "w-20"} ${LOOKS[props.look ?? "primary"]}`}
+      classList={{ "py-0": props.short }}
       type="text"
       value={props.value}
       list={props.list}
