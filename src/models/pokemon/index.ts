@@ -180,6 +180,7 @@ export const CUSTOM_POKEMONS = (() => {
       get species() {
         return undefined;
       },
+      altName: raw.altName,
       get altKind(): undefined {
         return undefined;
       },
