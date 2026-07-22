@@ -1,13 +1,13 @@
 import { describe, expect, test } from "vitest";
 import type { RawPokemon } from "..";
 import { id } from "../../../utils/id";
-import { serializePokemonListToText } from "./serialize";
+import { serializeRawPokemonListToText } from "./serialize";
 
-describe(serializePokemonListToText, () => {
+describe(serializeRawPokemonListToText, () => {
   const header = () => ({ v: 1 as const, id: id() });
 
   function s(pokemons: RawPokemon[], textDiff?: string[], strict?: boolean) {
-    return serializePokemonListToText({ pokemons, textDiff, strict });
+    return serializeRawPokemonListToText({ pokemons, textDiff, strict });
   }
 
   test("empty", () => {
@@ -106,5 +106,14 @@ describe(serializePokemonListToText, () => {
   test("except with a trivial diff, which is always ignored", () => {
     s([{ ...header(), species: "bulbasaur" }], [], true);
     s([{ ...header(), species: "bulbasaur" }], ["\0e2"], true);
+  });
+
+  test("disambiguating the known alt type hack", () => {
+    expect(
+      s([
+        { ...header(), species: "calyrex", types: ["ice"] },
+        { ...header(), species: "calyrex", types: ["shadow"] },
+      ]),
+    ).toEqual("Calyrex (:Ice)\nCalyrex (:Shadow)");
   });
 });

@@ -3,14 +3,11 @@ import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { id } from "../../utils/id";
-import { iterMap } from "../../utils/iter";
-import type { Spanned } from "../../utils/span";
 import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchInitialValidationError } from "../ui/error/validation";
 import { runAutosort, type AutosortRequest } from "./autosort";
 import { createPokemonMutator } from "./mutator";
-import { serializePokemonListToText } from "./text/serialize";
 import {
   POKEMON_LIST_VERSION,
   POKEMON_VERSION,
@@ -38,11 +35,6 @@ export const VAny_RawPokemonList = v.union([
 /* -------------------------------------------------------------------------- */
 /*                                    List                                    */
 /* -------------------------------------------------------------------------- */
-
-export interface PokemonList {
-  all: Pokemon[];
-  textDiff?: string[];
-}
 
 export const POKEMON_LISTS = (() => {
   function initial() {
@@ -74,7 +66,10 @@ export const POKEMON_LISTS = (() => {
 
       return {
         all,
-        textDiff,
+
+        get textDiff() {
+          return textDiff();
+        },
 
         mutator(id: string) {
           return createPokemonMutator(id, setAll);
@@ -137,16 +132,6 @@ export const POKEMON_LISTS = (() => {
 
         toJSON(): unknown {
           return this.toRaw();
-        },
-
-        // TODO: Make this lazy loadable somehow so all
-        // text processing is not included by default.
-        toSerializedText(eachId?: (id: Spanned<string>) => void) {
-          return serializePokemonListToText({
-            pokemons: iterMap(all, (pokemon) => pokemon.toRaw()),
-            textDiff: textDiff(),
-            eachId,
-          });
         },
       };
     });

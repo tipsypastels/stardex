@@ -9,7 +9,7 @@ import { PokedexActions } from "../actions";
 import { toastDescriptionOfAutosortRequest } from "../actions/autosort";
 import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";
-import { PokedexTextView } from "./text";
+import { PokedexTextViewLazy } from "./text.lazy";
 
 interface ModeRenderingInfo {
   component: Component<PokedexModeViewProps>;
@@ -23,8 +23,7 @@ const MODE_INFOS: Record<PokedexModeKey, ModeRenderingInfo> = {
     component: PokedexNamesView,
   },
   text: {
-    // TODO: Lazy load.
-    component: PokedexTextView,
+    component: PokedexTextViewLazy,
   },
 };
 

@@ -14,7 +14,7 @@ import {
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
 import { createEffect, onCleanup, untrack } from "solid-js";
-import { pokemons } from "../../../../models/pokemon/list";
+import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
 import { autocompleteAddToOptions, language } from "./language";
@@ -30,7 +30,7 @@ export function PokedexTextView() {
     projects.activeId;
 
     const ids: Spanned<string>[] = [];
-    const doc = untrack(() => pokemons.toSerializedText((id) => ids.push(id)));
+    const doc = untrack(() => serializePokemonListToText({ eachId: (id) => ids.push(id) }));
 
     const view = new EditorView({
       doc,

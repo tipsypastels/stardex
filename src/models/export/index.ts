@@ -65,8 +65,12 @@ export function saveJSONExport() {
   saveToFile(`Stardex ${json.projectName}.json`, "json", JSON.stringify(json));
 }
 
-export function saveTextExport() {
-  const text = pokemons.toSerializedText();
+export async function saveTextExport() {
+  // This pulls in some of the text mode code that we try to keep out of the non-text bundle.
+  // It's not the biggest deal (it doesn't load CM) but if they're in text mode where this would
+  // actually be useful it should already be loaded.
+  const { serializePokemonListToText } = await import("../pokemon/text/serialize");
+  const text = serializePokemonListToText();
   const name = projects.active.name;
   saveToFile(`Stardex ${name}.txt`, "text", text);
 }

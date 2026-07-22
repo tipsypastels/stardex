@@ -1,22 +1,37 @@
 import type { RawPokemon } from "..";
+import { iterMap } from "../../../utils/iter";
 import type { Spanned } from "../../../utils/span";
 import { capitalize, capitalizeWords } from "../../../utils/string";
+import { pokemons } from "../list";
 import { SPECIES } from "../species";
+import { transformAltNameWithAliases } from "./alt_name";
 import { pokemonListTextDiffIsTrivial, readPokemonListTextDiff } from "./diff";
 
 export interface SerializePokemonListToTextOptions {
+  eachId?(id: Spanned<string>): void;
+}
+
+export function serializePokemonListToText({ eachId }: SerializePokemonListToTextOptions = {}) {
+  return serializeRawPokemonListToText({
+    pokemons: iterMap(pokemons.all, (pokemon) => pokemon.toRaw()),
+    textDiff: pokemons.textDiff,
+    eachId,
+  });
+}
+
+export interface SerializeRawPokemonListToTextOptions {
   pokemons: Iterable<RawPokemon>;
   textDiff?: string[];
   strict?: boolean;
   eachId?(id: Spanned<string>): void;
 }
 
-export function serializePokemonListToText({
+export function serializeRawPokemonListToText({
   pokemons,
   textDiff,
   strict,
   eachId,
-}: SerializePokemonListToTextOptions) {
+}: SerializeRawPokemonListToTextOptions) {
   const lines: string[] = [];
   const idSpans = new IdSpanTracker(eachId);
 
@@ -89,10 +104,11 @@ function toLine(pokemon: RawPokemon, idSpans: IdSpanTracker, verbatimSuffix?: st
     if (altName) {
       line += `${capitalizeWords(altName)}:`;
     }
-    // TODO: If the type can be parsed as an altname
-    // with the known alt type hack, disambiguate it with :.
-    // Only applies to a single type for builtin mons.
     if (pokemon.types) {
+      if (mustDisambiguateSingleTypeForKnownAltTypeHack(pokemon)) {
+        line += ":";
+      }
+
       line += pokemon.types.map(capitalize).join("/");
     }
     line += ")";
@@ -107,6 +123,15 @@ function toLine(pokemon: RawPokemon, idSpans: IdSpanTracker, verbatimSuffix?: st
   idSpans.track(pokemon.id, line.length);
 
   return line;
+}
+
+function mustDisambiguateSingleTypeForKnownAltTypeHack(pokemon: RawPokemon) {
+  return (
+    "species" in pokemon &&
+    pokemon.types?.length === 1 &&
+    SPECIES.of(pokemon.species).alts.length > 0 &&
+    pokemon.types[0] !== transformAltNameWithAliases(pokemon.species, pokemon.types[0])
+  );
 }
 
 class IdSpanTracker {
