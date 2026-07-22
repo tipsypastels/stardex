@@ -10,7 +10,7 @@ import type { SyntaxNode } from "@lezer/common";
 import { styleTags, tags } from "@lezer/highlight";
 import { EVOLUTION_LINES } from "../../../../models/pokemon/evolution_line";
 import { pokemons } from "../../../../models/pokemon/list";
-import { Species, SPECIES } from "../../../../models/pokemon/species";
+import { Species, SPECIES, SpeciesAlt } from "../../../../models/pokemon/species";
 import { parser } from "../../../../models/pokemon/text/lezer";
 import { BUILTIN_TYPES, type Type } from "../../../../models/type";
 import { getTrackedIdAtSpan } from "./metadata";
@@ -86,7 +86,10 @@ function autocomplete(context: CompletionContext): CompletionResult | null {
 
 declare module "@codemirror/autocomplete" {
   interface Completion {
-    stardex?: { kind: "species"; species: Species } | { kind: "type"; type: Type };
+    stardex?:
+      | { kind: "species"; species: Species }
+      | { kind: "type"; type: Type }
+      | { kind: "alt"; alt: SpeciesAlt };
   }
 }
 
@@ -105,6 +108,7 @@ const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
         label: `${species.name} (${alt.name}:)`,
         displayLabel: species.name,
         detail: `(${alt.name})`,
+        stardex: { kind: "alt" as const, alt },
       })),
     );
   }
@@ -160,6 +164,7 @@ function makeAltNameOptions(
   return pokemon.species.alts.map((alt) => ({
     label: `${alt.name}${needsColon ? ":" : ""}`,
     displayLabel: alt.name,
+    stardex: { kind: "alt", alt },
   }));
 }
 
@@ -177,15 +182,7 @@ export const autocompleteAddToOptions = [
 
           const div = document.createElement("div");
           div.classList.add("cm-completionStardexSpecies");
-
-          const img = document.createElement("div");
-          img.classList.add("cm-completionStardexSpeciesIcon", "dim");
-          img.role = "img";
-          img.title = species.name;
-          img.style.setProperty("--left", `-${(species.id % 12) * 40}px`);
-          img.style.setProperty("--top", `-${Math.floor(species.id / 12) * 30}px`);
-
-          div.appendChild(img);
+          div.appendChild(renderSpeciesIcon(species.id));
 
           return div;
         }
@@ -203,7 +200,25 @@ export const autocompleteAddToOptions = [
 
           return div;
         }
+        case "alt": {
+          const { alt } = completion.stardex;
+
+          const div = document.createElement("div");
+          div.classList.add("cm-completionStardexSpecies");
+          div.appendChild(renderSpeciesIcon(alt.iconIndex));
+
+          return div;
+        }
       }
     },
   },
 ];
+
+function renderSpeciesIcon(id: number) {
+  const img = document.createElement("div");
+  img.classList.add("cm-completionStardexSpeciesIcon", "dim");
+  img.role = "img";
+  img.style.setProperty("--left", `-${(id % 12) * 40}px`);
+  img.style.setProperty("--top", `-${Math.floor(id / 12) * 30}px`);
+  return img;
+}

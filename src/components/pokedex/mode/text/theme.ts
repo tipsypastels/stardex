@@ -52,6 +52,7 @@ export const theme = EditorView.theme({
   ".cm-tooltip-autocomplete li": {
     display: "flex",
     alignItems: "center",
+    padding: "0 !important",
   },
   ".cm-tooltip-autocomplete li[aria-selected]": {
     backgroundColor: "var(--background) !important",
@@ -65,7 +66,6 @@ export const theme = EditorView.theme({
     position: "relative",
   },
   ".cm-completionStardexSpeciesIcon": {
-    display: "none", // TODO
     backgroundImage: 'url("https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png?v22")',
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "scroll",
