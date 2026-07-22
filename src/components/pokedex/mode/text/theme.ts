@@ -49,6 +49,10 @@ export const theme = EditorView.theme({
     fontFamily: "var(--font-sans) !important",
     fontSize: "var(--text-lg) !important",
   },
+  ".cm-tooltip-autocomplete li": {
+    display: "flex",
+    alignItems: "center",
+  },
   ".cm-tooltip-autocomplete li[aria-selected]": {
     backgroundColor: "var(--background) !important",
     color: "var(--primary) !important",
@@ -56,11 +60,32 @@ export const theme = EditorView.theme({
   ".cm-completionIcon": {
     display: "none",
   },
-  ".cm-completionStardexTypes": {
-    fontSize: "90%",
-    width: "0.8em",
-    paddingRight: "0.9em",
-    boxSizing: "content-box",
+  ".cm-completionStardexSpecies": {
+    display: "inline-block",
+    position: "relative",
+  },
+  ".cm-completionStardexSpeciesIcon": {
+    backgroundImage: 'url("https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png?v22")',
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "scroll",
+    backgroundPosition: "var(--left) var(--top)",
+    backgroundSize: "480px",
+    imageRendering: "pixelated",
+    height: "calc(var(--spacing) * 7.5)",
+    width: "calc(var(--spacing) * 10)",
+  },
+  ".cm-completionStardexSpeciesFamilyIcon": {
+    position: "absolute",
+    top: "4px",
+    right: 0,
+    fontSize: "50%",
+  },
+  ".cm-completionStardexType": {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "calc(var(--spacing) * 7.5)",
+    width: "calc(var(--spacing) * 10)",
   },
   ".cm-completionMatchedText": {
     textDecoration: "none !important",

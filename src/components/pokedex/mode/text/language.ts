@@ -7,9 +7,9 @@ import {
 import { LanguageSupport, LRLanguage, syntaxTree } from "@codemirror/language";
 import { styleTags, tags } from "@lezer/highlight";
 import { EVOLUTION_LINES } from "../../../../models/pokemon/evolution_line";
-import { SPECIES } from "../../../../models/pokemon/species";
+import { Species, SPECIES } from "../../../../models/pokemon/species";
 import { parser } from "../../../../models/pokemon/text/lezer";
-import type { Type } from "../../../../models/type";
+import { BUILTIN_TYPES, type Type } from "../../../../models/type";
 
 export const language = new LanguageSupport(
   LRLanguage.define({
@@ -47,6 +47,13 @@ function autocomplete(context: CompletionContext): CompletionResult | null {
         validFor: /^[\w.]*$/,
       };
     }
+    case "TypeName": {
+      return {
+        from: node.from,
+        options: TYPE_OPTIONS,
+        validFor: /^[\w.]*$/,
+      };
+    }
     default: {
       return null;
     }
@@ -55,7 +62,7 @@ function autocomplete(context: CompletionContext): CompletionResult | null {
 
 declare module "@codemirror/autocomplete" {
   interface Completion {
-    stardex?: { types: Type[] };
+    stardex?: { kind: "species"; species: Species } | { kind: "type"; type: Type };
   }
 }
 
@@ -64,11 +71,11 @@ const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
     return [
       {
         label: species.name,
-        stardex: { types: species.types },
+        stardex: { kind: "species", species },
       },
       {
         label: `${species.name} Family`,
-        stardex: { types: species.types },
+        stardex: { kind: "species", species },
         apply(view, completion, from, to) {
           const names = EVOLUTION_LINES.of(species)
             .map((species) => species.name)
@@ -85,7 +92,14 @@ const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
   }
   return {
     label: species.name,
-    stardex: { types: species.types },
+    stardex: { kind: "species", species },
+  };
+});
+
+const TYPE_OPTIONS: Completion[] = BUILTIN_TYPES.all.map((type) => {
+  return {
+    label: type.name,
+    stardex: { kind: "type", type },
   };
 });
 
@@ -93,26 +107,43 @@ export const autocompleteAddToOptions = [
   {
     position: 30,
     render(completion: Completion) {
-      if (!completion.stardex?.types) {
+      if (!completion.stardex) {
         return null;
       }
 
-      const span = document.createElement("span");
+      switch (completion.stardex.kind) {
+        case "species": {
+          const { species } = completion.stardex;
 
-      span.classList.add("cm-completionStardexTypes");
+          const div = document.createElement("div");
+          div.classList.add("cm-completionStardexSpecies");
 
-      for (const type of completion.stardex.types) {
-        const icon = document.createElement("i");
+          const img = document.createElement("div");
+          img.classList.add("cm-completionStardexSpeciesIcon", "dim");
+          img.role = "img";
+          img.title = species.name;
+          img.style.setProperty("--left", `-${(species.id % 12) * 40}px`);
+          img.style.setProperty("--top", `-${Math.floor(species.id / 12) * 30}px`);
 
-        icon.classList.add("fas", `fa-${type.icon}`);
-        icon.style.color = type.color;
+          div.appendChild(img);
 
-        span.appendChild(icon);
+          return div;
+        }
+        case "type": {
+          const { type } = completion.stardex;
+
+          const div = document.createElement("div");
+          div.classList.add("cm-completionStardexType");
+
+          const icon = document.createElement("i");
+          icon.classList.add("cm-completionStardexTypeIcon", "fas", `fa-${type.icon}`, "dim");
+          icon.style.color = type.color;
+
+          div.appendChild(icon);
+
+          return div;
+        }
       }
-
-      // TODO: Multiple types.
-
-      return span;
     },
   },
 ];
