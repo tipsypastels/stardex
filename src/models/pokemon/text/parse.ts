@@ -195,7 +195,10 @@ class Listing {
 
         if (types.length > 0) {
           pokemon.types = types;
+        } else if (pokemon.customAltName) {
+          warn("Custom form should specify its types.", this.#altName);
         }
+
         return pokemon;
       } else if (types.length > 0) {
         return {

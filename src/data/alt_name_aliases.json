@@ -4,11 +4,11 @@
     ["^f$", "Female"]
   ],
   "genericPartial": [
-    ["\\balola\\b/", "Alolan"],
-    ["\\bgalar\\b/", "Galarian"],
-    ["\\bhisui\\b/", "Hisuian"],
-    ["\\bpaldea\\b/", "Paldean"],
-    ["\\bg[ -]?max\\b/", "Gigantamax"]
+    ["\\balola\\b", "Alolan"],
+    ["\\bgalar\\b", "Galarian"],
+    ["\\bhisui\\b", "Hisuian"],
+    ["\\bpaldea\\b", "Paldean"],
+    ["\\bg[ -]?max\\b", "Gigantamax"]
   ],
   "specific": {
     "tauros": [
