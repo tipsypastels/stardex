@@ -1,6 +1,6 @@
 import { LanguageSupport, LRLanguage } from "@codemirror/language";
 import { styleTags, tags } from "@lezer/highlight";
-import { parser } from "../../../../models/pokemon/text/parse.js";
+import { parser } from "../../../../models/pokemon/text/lezer";
 
 export const language = new LanguageSupport(
   LRLanguage.define({
@@ -8,7 +8,7 @@ export const language = new LanguageSupport(
       props: [
         styleTags({
           "Name": tags.variableName,
-          "FormName": tags.labelName,
+          "AltName": tags.labelName,
           "TypeList": tags.typeName,
           "Modifier": tags.annotation,
           "Comment": tags.lineComment,

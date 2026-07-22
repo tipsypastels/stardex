@@ -10,11 +10,13 @@
     "lint": "eslint",
     "check": "tsc -b",
     "test": "vitest",
-    "gen:text-grammar": "lezer-generator ./src/models/pokemon/text/parse.grammar -o ./src/models/pokemon/text/parse.ts --typeScript"
+    "gen:text-grammar": "lezer-generator ./src/models/pokemon/text/lezer/text.grammar -o ./src/models/pokemon/text/lezer/index.ts --typeScript"
   },
   "dependencies": {
     "@codemirror/language": "^6.12.4",
+    "@codemirror/lint": "^6.9.7",
     "@codemirror/state": "^6.7.1",
+    "@lezer/common": "^1.5.2",
     "@lezer/highlight": "^1.2.3",
     "@lezer/lr": "^1.4.10",
     "@solid-primitives/set": "^0.7.4",

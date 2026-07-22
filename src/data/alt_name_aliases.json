@@ -1,0 +1,84 @@
+{
+  "genericFull": [
+    ["^m(ale)?$", null],
+    ["^f$", "Female"]
+  ],
+  "genericPartial": [
+    ["\\balola\\b/", "Alolan"],
+    ["\\bgalar\\b/", "Galarian"],
+    ["\\bhisui\\b/", "Hisuian"],
+    ["\\bpaldea\\b/", "Paldean"],
+    ["\\bg[ -]?max\\b/", "Gigantamax"]
+  ],
+  "specific": {
+    "tauros": [
+      ["^combat( breed)?$", "Paldean Combat Breed"],
+      ["^blaze( breed)?$", "Paldean Blaze Breed"],
+      ["^aqua breed?$", "Paldean Aqua Breed"]
+    ],
+    "castform": [
+      ["^sun$", "Sunny"],
+      ["^rain$", "Rainy"],
+      ["^snow$", "Snowy"]
+    ],
+    "wormadam": [
+      ["^plant$", null],
+      ["^sandy?$", "Sandy Cloak"],
+      ["^trash$", "Trash Cloak"]
+    ],
+    "basculin": [
+      ["^red$", null],
+      ["^blue$", "Blue Striped"],
+      ["^white$", "White Striped"]
+    ],
+    "oricorio": [
+      ["^pompom$", "Pom-Pom"],
+      ["^pau$", "Pa'u"]
+    ],
+    "necrozma": [
+      ["^dusk$", "Dusk Mane"],
+      ["^dawn$", "Dawn Wings"]
+    ],
+    "eiscue": [
+      ["^ice$", null],
+      ["^noice$", "Noice Face"]
+    ],
+    "morpeko": [["^full$", null]],
+    "zacian": [
+      ["^hero$", "Hero of Many Battles"],
+      ["^crowned$", "Crowned Sword"]
+    ],
+    "zamazenta": [
+      ["^hero$", "Hero of Many Battles"],
+      ["^crowned$", "Crowned Shield"]
+    ],
+    "urshifu": [
+      ["^single$", "Single Strike"],
+      ["^rapid$", "Rapid Strike"],
+      ["^single gigantamax$", "Single Strike Gigantamax"],
+      ["^rapid gigantamax$", "Rapid Strike Gigantamax"]
+    ],
+    "calyrex": [
+      ["^ice$", "Ice Rider"],
+      ["^shadow$", "Shadow Rider"]
+    ],
+    "ursaluna": [["^blood moon$", "Bloodmoon"]],
+    "squawkabilly": [
+      ["^green$", null],
+      ["^blue$", "Blue Plumage"],
+      ["^yellow$", "Yellow Plumage"],
+      ["^white$", "White Plumage"]
+    ],
+    "tatsugiri": [
+      ["^mega curly$", "Curly Mega"],
+      ["^mega droopy$", "Droopy Mega"],
+      ["^mega stretchy$", "Stretchy Mega"]
+    ],
+    "ogerpon": [
+      ["^teal$", null],
+      ["^wellspring$", "Wellspring Mask"],
+      ["^hearthflame$", "Hearthflame Mask"],
+      ["^cornerstone$", "Cornerstone Mask"]
+    ]
+  }
+}

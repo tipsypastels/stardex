@@ -18,6 +18,16 @@ export function serializePokemonListToText({
 
   if (textDiff && !pokemonListTextDiffIsTrivial(textDiff)) {
     const pokemonsIter = pokemons[Symbol.iterator]();
+
+    function readOne() {
+      const result = pokemonsIter.next();
+      if (result.done) {
+        if (strict) throw new Error("Text diff entry count exceeded Pokemon list length");
+        return;
+      }
+      return result.value;
+    }
+
     for (const entry of readPokemonListTextDiff(textDiff)) {
       switch (entry.type) {
         case "blanks": {
@@ -26,15 +36,16 @@ export function serializePokemonListToText({
         }
         case "entries": {
           for (let i = 0; i < entry.count; i++) {
-            const pokemonResult = pokemonsIter.next();
-            if (pokemonResult.done) {
-              if (strict) {
-                throw new Error("Text diff entry count exceeded Pokemon list length");
-              }
-              break;
-            }
-            lines.push(toLine(pokemonResult.value));
+            const pokemon = readOne();
+            if (!pokemon) break;
+            lines.push(toLine(pokemon));
           }
+          break;
+        }
+        case "entry-with-verbatim-suffix": {
+          const pokemon = readOne();
+          if (!pokemon) break;
+          lines.push(toLine(pokemon, entry.suffix));
           break;
         }
         case "verbatim": {
@@ -55,7 +66,7 @@ export function serializePokemonListToText({
   return lines.join("\n");
 }
 
-function toLine(pokemon: RawPokemon) {
+function toLine(pokemon: RawPokemon, verbatimSuffix?: string) {
   let line = "species" in pokemon ? SPECIES.of(pokemon.species).name : pokemon.name;
 
   const altName = (() => {
@@ -72,6 +83,9 @@ function toLine(pokemon: RawPokemon) {
     if (altName) {
       line += `${capitalizeWords(altName)}:`;
     }
+    // TODO: If the type can be parsed as an altname
+    // with the known alt type hack, disambiguate it with :.
+    // Only applies to a single type for builtin mons.
     if (pokemon.types) {
       line += pokemon.types.map(capitalize).join("/");
     }
@@ -79,6 +93,9 @@ function toLine(pokemon: RawPokemon) {
   }
   if (pokemon.exclude) {
     line += " @exclude";
+  }
+  if (verbatimSuffix) {
+    line += ` ${verbatimSuffix}`;
   }
   return line;
 }

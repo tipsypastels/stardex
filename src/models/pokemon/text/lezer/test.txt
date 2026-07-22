@@ -1,0 +1,102 @@
+# Single name
+
+Bulbasaur
+
+==>
+
+Program(Listing(Name))
+
+# Single non-identifier name
+
+Mr. Mime
+
+==>
+
+Program(Listing(Name))
+
+# Multiple names
+
+Foo
+Bar
+
+==>
+
+Program(Listing(Name), Listing(Name))
+
+# Specs
+
+Foo (Fire)
+Bar (Fire/Flying)
+Baz (Form Name:Fire/Flying)
+
+==>
+
+Program(
+  Listing(Name, Spec(TypeList(TypeName))), 
+  Listing(Name, Spec(TypeList(TypeName, TypeName))), 
+  Listing(Name, Spec(AltName, SpecSeparator, TypeList(TypeName, TypeName)))
+)
+
+# Comments
+
+Foo
+# a comment
+Bar @x
+
+Baz
+
+==>
+
+Program(
+  Listing(Name),
+  Comment,
+  Listing(Name, Modifier),
+  Blank,
+  Listing(Name)
+)
+
+# Inline comments
+
+Foo #bar
+Baz
+
+==>
+
+Program(
+  Listing(Name, InlineComment),
+  Listing(Name)
+)
+
+# A mess of things
+
+Bulbasaur @foo (F:Fire/Flying) @b # foo
+
+==>
+
+Program(Listing(
+  Name,
+  Modifier,
+  Spec(AltName, SpecSeparator, TypeList(TypeName, TypeName)),
+  Modifier,
+  InlineComment
+))
+
+# Type with spaces parses as altname
+
+Bulbasaur (Fire Flying)
+
+==>
+
+Program(Listing(Name, Spec(AltName)))
+
+# Explicit spec separator for half-empty specs
+
+Foo (:Fire)
+Bar (Water:)
+
+==>
+
+Program(
+  Listing(Name, Spec(SpecSeparator, TypeList(TypeName)))
+  Listing(Name, Spec(AltName, SpecSeparator))
+)

@@ -138,6 +138,8 @@ export const POKEMON_LISTS = (() => {
           return this.toRaw();
         },
 
+        // TODO: Make this lazy loadable somehow so all
+        // text processing is not included by default.
         toSerializedText() {
           return serializePokemonListToText({
             pokemons: iterMap(all, (pokemon) => pokemon.toRaw()),

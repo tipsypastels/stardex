@@ -1,11 +1,12 @@
 type DiffState =
   | { type: "entries"; count: number }
   | { type: "blanks"; count: number }
+  | { type: "entry-with-verbatim-suffix"; suffix: string }
   | { type: "verbatim"; line: string };
 
 export class PokemonListTextDiffBuilder {
   #lines: string[] = [];
-  #state?: Exclude<DiffState, { type: "verbatim" }>;
+  #state?: DiffState & { type: "entries" | "blanks" };
 
   entry() {
     if (this.#state?.type === "entries") {
@@ -24,6 +25,12 @@ export class PokemonListTextDiffBuilder {
       this.#flush();
       this.#state = { type: "blanks", count: n };
     }
+    return this;
+  }
+
+  entryWithVerbatimSuffix(suffix: string) {
+    this.#flush();
+    this.#lines.push(`\0w${suffix}`);
     return this;
   }
 
@@ -58,6 +65,9 @@ export function* readPokemonListTextDiff(textDiff: string[]): Generator<DiffStat
     } else if (line.startsWith("\0b")) {
       const count = +line.slice(2);
       yield { type: "blanks", count };
+    } else if (line.startsWith("\0w")) {
+      const suffix = line.slice(2);
+      yield { type: "entry-with-verbatim-suffix", suffix };
     } else {
       yield { type: "verbatim", line };
     }
