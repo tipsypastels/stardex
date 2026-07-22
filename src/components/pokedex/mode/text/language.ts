@@ -15,6 +15,7 @@ export const language = new LanguageSupport(
           "InlineComment": tags.lineComment,
           "( )": tags.paren,
           ":": tags.punctuation,
+          "@": tags.annotation,
         }),
       ],
     }),
