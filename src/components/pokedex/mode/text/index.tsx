@@ -17,6 +17,7 @@ import { createEffect, onCleanup, untrack } from "solid-js";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
+import { createCachedHeightTracker } from "./height";
 import { autocompleteAddToOptions, language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
@@ -63,6 +64,8 @@ export function PokedexTextView() {
     parseInitial(view.state);
     onCleanup(() => view.destroy());
   });
+
+  createCachedHeightTracker(() => parent);
 
   return <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />;
 }
