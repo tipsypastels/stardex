@@ -70,6 +70,14 @@ function autocomplete(context: CompletionContext): CompletionResult | null {
         validFor: /^[\w.]*$/,
       };
     }
+    case "@":
+    case "Modifier": {
+      return {
+        from: node.from,
+        options: MODIFIER_OPTIONS,
+        validFor: /^[\w.]*$/,
+      };
+    }
     default: {
       return null;
     }
@@ -127,6 +135,8 @@ const TYPE_OPTIONS: Completion[] = BUILTIN_TYPES.all.map((type) => ({
   label: type.name,
   stardex: { kind: "type", type },
 }));
+
+const MODIFIER_OPTIONS: Completion[] = [{ label: "@exclude" }];
 
 function makeAltNameOptions(
   state: EditorState,
