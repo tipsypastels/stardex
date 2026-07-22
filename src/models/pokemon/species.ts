@@ -88,6 +88,10 @@ export class Species {
     );
   }
 
+  get isStartOfEvolutionLine() {
+    return !this.#raw.evos?.from && !!this.#raw.evos?.to?.length;
+  }
+
   get #raw() {
     return RAW_DATA[this.key as keyof typeof RAW_DATA] as RawSpecies;
   }

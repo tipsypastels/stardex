@@ -21,7 +21,7 @@ export const theme = EditorView.theme({
   ".cm-cursor": {
     borderLeftColor: "var(--foreground)",
   },
-  ".cm-tooltip": {
+  ".cm-tooltip-hover": {
     backgroundColor: "transparent",
     border: "0",
   },
@@ -40,7 +40,35 @@ export const theme = EditorView.theme({
   ".cm-diagnostic-error": {
     border: "2px solid var(--error)",
   },
+  ".cm-tooltip-autocomplete": {
+    backgroundColor: "var(--background)",
+    color: "var(--foreground)",
+    border: "2px solid var(--primary)",
+  },
+  ".cm-tooltip-autocomplete ul": {
+    fontFamily: "var(--font-sans) !important",
+    fontSize: "var(--text-lg) !important",
+  },
+  ".cm-tooltip-autocomplete li[aria-selected]": {
+    backgroundColor: "var(--background) !important",
+    color: "var(--primary) !important",
+  },
+  ".cm-completionIcon": {
+    display: "none",
+  },
+  ".cm-completionStardexTypes": {
+    fontSize: "90%",
+    width: "0.8em",
+    paddingRight: "0.9em",
+    boxSizing: "content-box",
+  },
+  ".cm-completionMatchedText": {
+    textDecoration: "none !important",
+    fontWeight: "bold",
+  },
 });
+
+// TODO: Style .cm-activeLineGutter identically to how you end up styling active line.
 
 export const highlightTheme = syntaxHighlighting(
   HighlightStyle.define([

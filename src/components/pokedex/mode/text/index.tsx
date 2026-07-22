@@ -1,9 +1,23 @@
-import { basicSetup, EditorView } from "codemirror";
+import {
+  autocompletion,
+  closeBrackets,
+  closeBracketsKeymap,
+  completionKeymap,
+} from "@codemirror/autocomplete";
+import { bracketMatching } from "@codemirror/language";
+import { lintKeymap } from "@codemirror/lint";
+import {
+  highlightActiveLine,
+  highlightActiveLineGutter,
+  keymap,
+  lineNumbers,
+} from "@codemirror/view";
+import { EditorView, minimalSetup } from "codemirror";
 import { createEffect, onCleanup, untrack } from "solid-js";
 import { pokemons } from "../../../../models/pokemon/list";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
-import { language } from "./language";
+import { autocompleteAddToOptions, language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
 import { highlightTheme, theme } from "./theme";
@@ -22,7 +36,21 @@ export function PokedexTextView() {
       doc,
       parent,
       extensions: [
-        basicSetup,
+        minimalSetup,
+        // From basicsetup
+        lineNumbers(),
+        bracketMatching(),
+        closeBrackets(),
+        highlightActiveLine(),
+        highlightActiveLineGutter(),
+        keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap]),
+
+        // From basicsetup, customized
+        autocompletion({
+          addToOptions: autocompleteAddToOptions,
+        }),
+
+        // From stardex
         theme,
         language,
         trackingIds,
