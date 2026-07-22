@@ -12,6 +12,7 @@ export const language = new LanguageSupport(
           "TypeList": tags.typeName,
           "Modifier": tags.annotation,
           "Comment": tags.lineComment,
+          "InlineComment": tags.lineComment,
           "( )": tags.paren,
           ":": tags.punctuation,
         }),

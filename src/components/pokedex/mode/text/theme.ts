@@ -6,7 +6,6 @@ export const theme = EditorView.theme({
   ".cm-content, .cm-gutter": {
     minHeight: "100px",
   },
-
   ".cm-scroller": {
     fontFamily: "var(--font-sans)",
     fontSize: "var(--text-lg)",
@@ -21,6 +20,25 @@ export const theme = EditorView.theme({
   },
   ".cm-cursor": {
     borderLeftColor: "var(--foreground)",
+  },
+  ".cm-tooltip": {
+    backgroundColor: "transparent",
+    border: "0",
+  },
+  ".cm-diagnostic": {
+    backgroundColor: "var(--background)",
+    borderRadius: "var(--radius-md)",
+    paddingLeft: "calc(var(--spacing) * 4)",
+    paddingRight: "calc(var(--spacing) * 4)",
+  },
+  ".cm-diagnostic:not(:first-child)": {
+    marginTop: "calc(var(--spacing) * 2)",
+  },
+  ".cm-diagnostic-warning": {
+    border: "2px solid var(--warning)",
+  },
+  ".cm-diagnostic-error": {
+    border: "2px solid var(--error)",
   },
 });
 
