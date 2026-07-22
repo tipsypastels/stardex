@@ -12,7 +12,7 @@ import { id } from "../../../../utils/id";
 import type { Span } from "../../../../utils/span";
 import { getTrackedIdAtSpan } from "./metadata";
 
-const state = createRoot(() => {
+const current = createRoot(() => {
   const [result, setResult] = createSignal<ParsePokemonListTextResult>();
 
   createEffect(() => {
@@ -20,20 +20,29 @@ const state = createRoot(() => {
     if (list) pokemons.setFromRaw(list);
   });
 
-  return { result, setResult };
+  return {
+    result,
+    parse(state: EditorState) {
+      const text = new SliceableDoc(state);
+      const getId = (span: Span) => getTrackedIdAtSpan(state, span) ?? id();
+      const result = parsePokemonListTextFromLezerTree(syntaxTree(state), text, getId);
+      setResult(result);
+    },
+  };
 });
+
+export function parseInitial(state: EditorState) {
+  current.parse(state);
+}
 
 export const parser: Extension = [
   EditorView.updateListener.of((update) => {
     if (update.docChanged) {
-      const text = new SliceableDoc(update.state);
-      const getId = (span: Span) => getTrackedIdAtSpan(update.state, span) ?? id();
-      const result = parsePokemonListTextFromLezerTree(syntaxTree(update.state), text, getId);
-      state.setResult(result);
+      current.parse(update.state);
     }
   }),
   linter(() => {
-    return state.result()?.errors ?? [];
+    return current.result()?.errors ?? [];
   }),
 ];
 

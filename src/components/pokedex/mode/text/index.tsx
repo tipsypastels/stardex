@@ -4,7 +4,7 @@ import { pokemons } from "../../../../models/pokemon/list";
 import { projects } from "../../../../models/project/list";
 import { language } from "./language";
 import { trackingIds } from "./metadata";
-import { parser } from "./parse";
+import { parseInitial, parser } from "./parse";
 import { highlightTheme, theme } from "./theme";
 
 export function PokedexTextView() {
@@ -22,6 +22,7 @@ export function PokedexTextView() {
       extensions: [basicSetup, theme, language, trackingIds, highlightTheme, parser],
     });
 
+    parseInitial(view.state);
     onCleanup(() => view.destroy());
   });
 
