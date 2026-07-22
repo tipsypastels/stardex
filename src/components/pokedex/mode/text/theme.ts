@@ -65,6 +65,7 @@ export const theme = EditorView.theme({
     position: "relative",
   },
   ".cm-completionStardexSpeciesIcon": {
+    display: "none", // TODO
     backgroundImage: 'url("https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png?v22")',
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "scroll",

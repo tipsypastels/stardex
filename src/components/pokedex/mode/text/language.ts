@@ -5,11 +5,15 @@ import {
   type CompletionResult,
 } from "@codemirror/autocomplete";
 import { LanguageSupport, LRLanguage, syntaxTree } from "@codemirror/language";
+import type { EditorState } from "@codemirror/state";
+import type { SyntaxNode } from "@lezer/common";
 import { styleTags, tags } from "@lezer/highlight";
 import { EVOLUTION_LINES } from "../../../../models/pokemon/evolution_line";
+import { pokemons } from "../../../../models/pokemon/list";
 import { Species, SPECIES } from "../../../../models/pokemon/species";
 import { parser } from "../../../../models/pokemon/text/lezer";
 import { BUILTIN_TYPES, type Type } from "../../../../models/type";
+import { getTrackedIdAtSpan } from "./metadata";
 
 export const language = new LanguageSupport(
   LRLanguage.define({
@@ -48,9 +52,21 @@ function autocomplete(context: CompletionContext): CompletionResult | null {
       };
     }
     case "TypeName": {
+      const seenExplicitSpecSeparator = context.matchBefore(/:[^)]*/);
+      const options = seenExplicitSpecSeparator
+        ? TYPE_OPTIONS
+        : makeAltNameOptions(context.state, node, true).concat(TYPE_OPTIONS);
+
       return {
         from: node.from,
-        options: TYPE_OPTIONS,
+        options,
+        validFor: /^[\w.]*$/,
+      };
+    }
+    case "AltName": {
+      return {
+        from: node.from,
+        options: makeAltNameOptions(context.state, node, false),
         validFor: /^[\w.]*$/,
       };
     }
@@ -67,41 +83,75 @@ declare module "@codemirror/autocomplete" {
 }
 
 const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
-  if (species.isStartOfEvolutionLine) {
-    return [
-      {
-        label: species.name,
-        stardex: { kind: "species", species },
-      },
-      {
-        label: `${species.name} Family`,
-        stardex: { kind: "species", species },
-        apply(view, completion, from, to) {
-          const names = EVOLUTION_LINES.of(species)
-            .map((species) => species.name)
-            .join("\n");
+  const out: Completion[] = [
+    {
+      label: species.name,
+      detail: species.noAltNameLower ? `(${species.noAltName})` : undefined,
+      stardex: { kind: "species", species },
+    },
+  ];
 
-          view.dispatch({
-            changes: { from, to, insert: names },
-            selection: { anchor: from + names.length },
-            annotations: pickedCompletion.of(completion),
-          });
-        },
-      },
-    ];
+  if (species.alts.length > 0) {
+    out.push(
+      ...species.alts.map((alt) => ({
+        label: `${species.name} (${alt.name}:)`,
+        displayLabel: species.name,
+        detail: `(${alt.name})`,
+      })),
+    );
   }
-  return {
-    label: species.name,
-    stardex: { kind: "species", species },
-  };
+
+  if (species.isStartOfEvolutionLine) {
+    out.push({
+      label: species.name,
+      detail: "(Family)",
+      stardex: { kind: "species", species },
+      apply(view, completion, from, to) {
+        const names = EVOLUTION_LINES.of(species)
+          .map((species) => species.name)
+          .join("\n");
+
+        view.dispatch({
+          changes: { from, to, insert: names },
+          selection: { anchor: from + names.length },
+          annotations: pickedCompletion.of(completion),
+        });
+      },
+    });
+  }
+
+  return out;
 });
 
-const TYPE_OPTIONS: Completion[] = BUILTIN_TYPES.all.map((type) => {
-  return {
-    label: type.name,
-    stardex: { kind: "type", type },
-  };
-});
+const TYPE_OPTIONS: Completion[] = BUILTIN_TYPES.all.map((type) => ({
+  label: type.name,
+  stardex: { kind: "type", type },
+}));
+
+function makeAltNameOptions(
+  state: EditorState,
+  node: SyntaxNode,
+  needsColon: boolean,
+): Completion[] {
+  let listing = node;
+
+  while (listing.name !== "Listing") {
+    const parent = listing.parent;
+    if (!parent) return [];
+    listing = parent;
+  }
+
+  const id = getTrackedIdAtSpan(state, listing);
+  if (!id) return [];
+
+  const pokemon = pokemons.all.find((pokemon) => pokemon.id === id);
+  if (!pokemon?.isBuiltin() || pokemon.species.alts.length === 0) return [];
+
+  return pokemon.species.alts.map((alt) => ({
+    label: `${alt.name}${needsColon ? ":" : ""}`,
+    displayLabel: alt.name,
+  }));
+}
 
 export const autocompleteAddToOptions = [
   {
