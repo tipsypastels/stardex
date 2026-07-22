@@ -1,4 +1,5 @@
 import type { RawPokemon } from "..";
+import type { Spanned } from "../../../utils/span";
 import { capitalize, capitalizeWords } from "../../../utils/string";
 import { SPECIES } from "../species";
 import { pokemonListTextDiffIsTrivial, readPokemonListTextDiff } from "./diff";
@@ -7,14 +8,17 @@ export interface SerializePokemonListToTextOptions {
   pokemons: Iterable<RawPokemon>;
   textDiff?: string[];
   strict?: boolean;
+  eachId?(id: Spanned<string>): void;
 }
 
 export function serializePokemonListToText({
   pokemons,
   textDiff,
   strict,
+  eachId,
 }: SerializePokemonListToTextOptions) {
   const lines: string[] = [];
+  const idSpans = new IdSpanTracker(eachId);
 
   if (textDiff && !pokemonListTextDiffIsTrivial(textDiff)) {
     const pokemonsIter = pokemons[Symbol.iterator]();
@@ -32,24 +36,26 @@ export function serializePokemonListToText({
       switch (entry.type) {
         case "blanks": {
           lines.push(...new Array(entry.count).map(() => ""));
+          idSpans.blank(entry.count);
           break;
         }
         case "entries": {
           for (let i = 0; i < entry.count; i++) {
             const pokemon = readOne();
             if (!pokemon) break;
-            lines.push(toLine(pokemon));
+            lines.push(toLine(pokemon, idSpans));
           }
           break;
         }
         case "entry-with-verbatim-suffix": {
           const pokemon = readOne();
           if (!pokemon) break;
-          lines.push(toLine(pokemon, entry.suffix));
+          lines.push(toLine(pokemon, idSpans, entry.suffix));
           break;
         }
         case "verbatim": {
           lines.push(entry.line);
+          idSpans.ignore(entry.line.length);
           break;
         }
       }
@@ -59,14 +65,14 @@ export function serializePokemonListToText({
     }
   } else {
     for (const pokemon of pokemons) {
-      lines.push(toLine(pokemon));
+      lines.push(toLine(pokemon, idSpans));
     }
   }
 
   return lines.join("\n");
 }
 
-function toLine(pokemon: RawPokemon, verbatimSuffix?: string) {
+function toLine(pokemon: RawPokemon, idSpans: IdSpanTracker, verbatimSuffix?: string) {
   let line = "species" in pokemon ? SPECIES.of(pokemon.species).name : pokemon.name;
 
   const altName = (() => {
@@ -97,5 +103,31 @@ function toLine(pokemon: RawPokemon, verbatimSuffix?: string) {
   if (verbatimSuffix) {
     line += ` ${verbatimSuffix}`;
   }
+
+  idSpans.track(pokemon.id, line.length);
+
   return line;
+}
+
+class IdSpanTracker {
+  #eachId?: (id: Spanned<string>) => void;
+
+  #lineStartIndex = 0;
+
+  constructor(eachId?: (id: Spanned<string>) => void) {
+    this.#eachId = eachId;
+  }
+
+  blank(length: number) {
+    this.#lineStartIndex += length;
+  }
+
+  ignore(length: number) {
+    this.#lineStartIndex += length + 1;
+  }
+
+  track(id: string, length: number) {
+    this.#eachId?.({ value: id, from: this.#lineStartIndex, to: this.#lineStartIndex + length });
+    this.#lineStartIndex += length + 1;
+  }
 }

@@ -4,6 +4,7 @@ import * as v from "valibot";
 import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { id } from "../../utils/id";
 import { iterMap } from "../../utils/iter";
+import type { Spanned } from "../../utils/span";
 import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchInitialValidationError } from "../ui/error/validation";
@@ -140,10 +141,11 @@ export const POKEMON_LISTS = (() => {
 
         // TODO: Make this lazy loadable somehow so all
         // text processing is not included by default.
-        toSerializedText() {
+        toSerializedText(eachId?: (id: Spanned<string>) => void) {
           return serializePokemonListToText({
             pokemons: iterMap(all, (pokemon) => pokemon.toRaw()),
             textDiff: textDiff(),
+            eachId,
           });
         },
       };

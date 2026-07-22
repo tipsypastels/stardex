@@ -79,6 +79,10 @@
       ["^wellspring$", "Wellspring Mask"],
       ["^hearthflame$", "Hearthflame Mask"],
       ["^cornerstone$", "Cornerstone Mask"]
+    ],
+    "maushold": [
+      ["^three$", null],
+      ["^four$", "Family of Four"]
     ]
   }
 }

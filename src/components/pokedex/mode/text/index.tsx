@@ -2,8 +2,9 @@ import { basicSetup, EditorView } from "codemirror";
 import { createEffect, onCleanup, untrack } from "solid-js";
 import { pokemons } from "../../../../models/pokemon/list";
 import { projects } from "../../../../models/project/list";
+import type { Spanned } from "../../../../utils/span";
 import { language } from "./language";
-import { trackingIds } from "./metadata";
+import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
 import { highlightTheme, theme } from "./theme";
 
@@ -14,12 +15,21 @@ export function PokedexTextView() {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     projects.activeId;
 
-    // TODO: Set IDs.
-    const doc = untrack(() => pokemons.toSerializedText());
+    const ids: Spanned<string>[] = [];
+    const doc = untrack(() => pokemons.toSerializedText((id) => ids.push(id)));
+
     const view = new EditorView({
       doc,
       parent,
-      extensions: [basicSetup, theme, language, trackingIds, highlightTheme, parser],
+      extensions: [
+        basicSetup,
+        theme,
+        language,
+        trackingIds,
+        initialTrackingIds.of(ids),
+        highlightTheme,
+        parser,
+      ],
     });
 
     parseInitial(view.state);

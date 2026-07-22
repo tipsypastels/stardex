@@ -1,11 +1,16 @@
 import { syntaxTree } from "@codemirror/language";
-import { EditorState, Range, RangeSet, RangeValue, StateField } from "@codemirror/state";
+import { EditorState, Facet, Range, RangeSet, RangeValue, StateField } from "@codemirror/state";
 import { id as makeId } from "../../../../utils/id";
 import type { Span, Spanned } from "../../../../utils/span";
 
 export const trackingIds = StateField.define<RangeSet<TrackedId>>({
   create(state) {
-    return reconcile(state, RangeSet.empty);
+    const seeds = state.facet(initialTrackingIds);
+    const seedSet = RangeSet.of(
+      seeds.map(({ value, from, to }) => new TrackedId(value).range(from, to)),
+      true,
+    );
+    return reconcile(state, seedSet);
   },
   update(value, tr) {
     let mapped = value.map(tr.changes);
@@ -14,6 +19,10 @@ export const trackingIds = StateField.define<RangeSet<TrackedId>>({
     }
     return mapped;
   },
+});
+
+export const initialTrackingIds = Facet.define<Spanned<string>[], Spanned<string>[]>({
+  combine: (arrays) => arrays.at(-1) ?? [],
 });
 
 export function getTrackedIdAtSpan(state: EditorState, span: Span) {
@@ -53,7 +62,7 @@ class TrackedId extends RangeValue {
 }
 
 function reconcile(state: EditorState, mapped: RangeSet<TrackedId>): RangeSet<TrackedId> {
-  const newRanges = computeListingRanges(state);
+  const newRanges = computeRanges(state);
   const claimed = new Set<TrackedId>();
   const out: Range<TrackedId>[] = [];
 
@@ -74,7 +83,7 @@ function reconcile(state: EditorState, mapped: RangeSet<TrackedId>): RangeSet<Tr
   return RangeSet.of(out, true);
 }
 
-function computeListingRanges(state: EditorState): Span[] {
+function computeRanges(state: EditorState): Span[] {
   const tree = syntaxTree(state);
   const ranges: { from: number; to: number }[] = [];
 
