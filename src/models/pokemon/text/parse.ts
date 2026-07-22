@@ -2,6 +2,7 @@ import type { Diagnostic } from "@codemirror/lint";
 import type { SyntaxNodeRef, Tree } from "@lezer/common";
 import type { RawBuiltinPokemon, RawPokemon } from "..";
 import { id } from "../../../utils/id";
+import type { Span } from "../../../utils/span";
 import type { RawPokemonList } from "../list";
 import { Species, SPECIES } from "../species";
 import { POKEMON_LIST_VERSION, POKEMON_VERSION } from "../versioned";
@@ -9,11 +10,20 @@ import { transformAltNameWithAliases } from "./alt_name";
 import { PokemonListTextDiffBuilder } from "./diff";
 import { parser } from "./lezer";
 
-export function parsePokemonListText(text: string) {
-  return parsePokemonListTextFromLezerTree(parser.parse(text), text);
+export interface ParsePokemonListTextResult {
+  list: RawPokemonList;
+  errors: Diagnostic[];
 }
 
-export function parsePokemonListTextFromLezerTree(tree: Tree, text: Pick<string, "slice">) {
+export function parsePokemonListText(text: string) {
+  return parsePokemonListTextFromLezerTree(parser.parse(text), text, id);
+}
+
+export function parsePokemonListTextFromLezerTree(
+  tree: Tree,
+  text: Pick<string, "slice">,
+  getId: (span: Span) => string,
+): ParsePokemonListTextResult {
   const pokemons: RawPokemon[] = [];
   const textDiff = new PokemonListTextDiffBuilder();
   const errors: Diagnostic[] = [];
@@ -28,7 +38,7 @@ export function parsePokemonListTextFromLezerTree(tree: Tree, text: Pick<string,
     enter(ref) {
       switch (ref.name) {
         case "Listing": {
-          listing = new Listing(ref.node, slice);
+          listing = new Listing(ref.node, slice, getId);
           break;
         }
         case "Name": {
@@ -76,18 +86,20 @@ export function parsePokemonListTextFromLezerTree(tree: Tree, text: Pick<string,
     },
   });
 
-  const list: RawPokemonList = {
-    v: POKEMON_LIST_VERSION,
-    all: pokemons,
-    textDiff: textDiff.finish(),
+  return {
+    list: {
+      v: POKEMON_LIST_VERSION,
+      all: pokemons,
+      textDiff: textDiff.finish(),
+    },
+    errors,
   };
-
-  return { list, errors };
 }
 
 class Listing {
   #node: SyntaxNodeRef;
   #slice: (span: Span) => string;
+  #getId: (span: Span) => string;
 
   #name?: Span;
   #altName?: Span;
@@ -96,9 +108,10 @@ class Listing {
   #comment?: Span;
   #explicitSpecSeparator = false;
 
-  constructor(node: SyntaxNodeRef, slice: (span: Span) => string) {
+  constructor(node: SyntaxNodeRef, slice: (span: Span) => string, getId: (span: Span) => string) {
     this.#node = node;
     this.#slice = slice;
+    this.#getId = getId;
   }
 
   name(name: Span) {
@@ -174,7 +187,7 @@ class Listing {
       if (species) {
         const pokemon: RawBuiltinPokemon = {
           v: POKEMON_VERSION,
-          id: id(),
+          id: this.#getId(this.#node),
           species: species.key,
         };
 
@@ -187,7 +200,7 @@ class Listing {
       } else if (types.length > 0) {
         return {
           v: POKEMON_VERSION,
-          id: id(),
+          id: this.#getId(this.#node),
           name,
           altName,
           types,
@@ -212,11 +225,6 @@ class Listing {
       textDiff.entry();
     }
   }
-}
-
-interface Span {
-  from: number;
-  to: number;
 }
 
 function applyAltNameToBuiltinPokemon(
