@@ -41,7 +41,7 @@ export function Modal(props: ModalProps) {
       >
         <div
           class="flex w-125 max-w-full flex-col overflow-y-scroll rounded-t-md bg-background p-8 lg:overflow-y-auto lg:rounded-b-md"
-          classList={{ "border-2 border-primary": props.primaryBorder }}
+          classList={{ "lg:border-2 lg:border-primary": props.primaryBorder }}
         >
           <div class="mb-4 flex border-b-2 border-b-divider-heavy pb-4">
             <h1 class="grow text-xl font-bold" classList={{ "text-primary": props.primaryBorder }}>

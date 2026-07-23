@@ -67,7 +67,7 @@ export function PokedexHelp() {
         <Tutorial />
       </div>
 
-      <div class="mb-2 rounded-b-md border-2 border-t-0 border-primary p-4">
+      <div class="rounded-b-md border-2 border-t-0 border-primary p-4">
         <h3 class="mb-2 text-lg font-bold text-primary">Other Ways to Start</h3>
         <ul class="ml-4 list-disc">
           <li>
@@ -96,7 +96,7 @@ export function PokedexHelp() {
       </div>
 
       <Show when={pokedexMode.key !== "text"}>
-        <div class="text-center text-base text-foreground-lesser">
+        <div class="mt-2 text-center text-base text-foreground-lesser">
           Don't want a visual editor? Try out{" "}
           <ButtonLink onClick={() => (pokedexMode.key = "text")}>text mode</ButtonLink> for an
           improved version of the{" "}
