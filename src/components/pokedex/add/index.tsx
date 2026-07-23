@@ -93,8 +93,8 @@ export function AddPokemon() {
   }
 
   return (
-    <div class="mb-8">
-      <div class="relative mb-2 rounded-b-md border-2 border-t-0 border-secondary">
+    <div>
+      <div class="relative rounded-b-md border-2 border-t-0 border-secondary">
         <input
           id="add-pokemon"
           class="block h-20 w-full border-0"
@@ -113,7 +113,7 @@ export function AddPokemon() {
         fallback={<AddCustom onSubmit={addCustom} onCancel={() => setAddingCustom(false)} />}
       >
         <Show when={query()}>
-          <div class="flex flex-col justify-center gap-2 md:flex-row">
+          <div class="mt-2 flex flex-col justify-center gap-2 md:flex-row">
             <Show when={closest()}>
               {(closest) => (
                 <Button onClick={() => addPokemon(closest().species)}>

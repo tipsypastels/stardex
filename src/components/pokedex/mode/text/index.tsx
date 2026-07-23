@@ -12,12 +12,14 @@ import {
   highlightActiveLineGutter,
   keymap,
   lineNumbers,
+  placeholder,
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
 import { createEffect, onCleanup, untrack } from "solid-js";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
+import { PokedexHelp } from "../../help";
 import { createCachedHeightTracker } from "./height";
 import { autocompleteAddToOptions, language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
@@ -53,6 +55,7 @@ export function PokedexTextView() {
         }),
 
         // From stardex
+        placeholder("Enter some Pokémon, one per line..."),
         theme,
         language,
         trackingIds,
@@ -68,5 +71,10 @@ export function PokedexTextView() {
 
   createCachedHeightTracker(() => parent);
 
-  return <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />;
+  return (
+    <>
+      <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
+      <PokedexHelp />
+    </>
+  );
 }

@@ -5,27 +5,30 @@ import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { excludedTypes } from "../../../models/type/excluded";
 import { Icon } from "../../common/icon";
-import { EmptyPokedex } from "../empty";
+import { PokedexHelp } from "../help";
 import { onClickPokemon } from "./util/click";
 import { createDraggable } from "./util/drag";
 
 export function PokedexNamesView(props: PokedexModeViewProps) {
   const { list } = createDraggable();
   return (
-    <Show when={pokemons.all.length > 0} fallback={<EmptyPokedex />}>
-      <ol ref={list} class="grid grid-cols-1 gap-4 md:grid-cols-3">
-        <For each={pokemonsFiltered.all}>
-          {(pokemon) => {
-            return (
-              <Item
-                pokemon={pokemon}
-                onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
-              />
-            );
-          }}
-        </For>
-      </ol>
-    </Show>
+    <>
+      <Show when={pokemons.all.length > 0}>
+        <ol ref={list} class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <For each={pokemonsFiltered.all}>
+            {(pokemon) => {
+              return (
+                <Item
+                  pokemon={pokemon}
+                  onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
+                />
+              );
+            }}
+          </For>
+        </ol>
+      </Show>
+      <PokedexHelp />
+    </>
   );
 }
 
