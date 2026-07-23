@@ -68,7 +68,7 @@ export function PokedexHelp() {
       when={pokemons.all.length === 0 || manuallyOpened()}
       fallback={
         <Show when={pokemons.all.length > 0}>
-          <div class="text-right">
+          <div class="mt-2 text-right">
             <ButtonLink onClick={() => setManuallyOpened(true)} small>
               Need help?
             </ButtonLink>
