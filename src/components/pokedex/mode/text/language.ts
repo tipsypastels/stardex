@@ -96,7 +96,12 @@ const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
   const out: Completion[] = [
     {
       label: species.name,
-      detail: species.noAltNameLower ? `(${species.noAltName})` : undefined,
+      /* NOTE: I choose not to show noAltName here, because:
+       *   1. It's a little unintuitive that you choose it and it doesn't actually fill in the noAltName.
+       *   2. I want to convey that engaging with alts is optional. If you see Squawkabilly (Green Plumage)
+       *      you might think you need to add every version, but in fact you're perfectly safe ignoring the others.
+       */
+      // detail: species.noAltNameLower ? `(${species.noAltName})` : undefined,
       stardex: { kind: "species", species },
     },
   ];
