@@ -6,6 +6,7 @@ import {
 } from "@codemirror/autocomplete";
 import { bracketMatching } from "@codemirror/language";
 import { lintKeymap } from "@codemirror/lint";
+import { searchKeymap } from "@codemirror/search";
 import {
   highlightActiveLine,
   highlightActiveLineGutter,
@@ -44,7 +45,7 @@ export function PokedexTextView() {
         closeBrackets(),
         highlightActiveLine(),
         highlightActiveLineGutter(),
-        keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap]),
+        keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap, ...searchKeymap]),
 
         // From basicsetup, customized
         autocompletion({
