@@ -95,7 +95,7 @@ export function PokedexHelp() {
                 <li>Enter a Pokémon's name above to add it to your dex.</li>
                 <li>Click on a Pokémon you've added to change its type or settings.</li>
                 <li>Drag and drop Pokémon you've added to reorder them.</li>
-                <li>You will be given recommendations and statistics based on your Pokédex.</li>
+                <li>You'll be given recommendations and statistics based on your Pokédex.</li>
               </>
             }
           >
@@ -129,6 +129,7 @@ export function PokedexHelp() {
                 </li>
               </ul>
             </li>
+            <li>You'll be given recommendations and statistics based on your Pokédex.</li>
             <li>
               To exclude a Pokémon from recommendations, write <code>@exclude</code> or{" "}
               <code>@ignore</code> after its name:
