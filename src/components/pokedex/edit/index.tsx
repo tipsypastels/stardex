@@ -58,7 +58,9 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
         >
           <div class="relative">
             <div class="absolute top-0 right-0 rounded-md border-2 border-divider-heavy p-2">
-              <PokemonIcon pokemon={pokemon()} />
+              <div classList={{ "opacity-50": pokemon().exclude }}>
+                <PokemonIcon pokemon={pokemon()} />
+              </div>
             </div>
 
             <Show when={pokemon().isCustom()}>
