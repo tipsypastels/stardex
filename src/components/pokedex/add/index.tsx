@@ -113,7 +113,7 @@ export function AddPokemon() {
         fallback={<AddCustom onSubmit={addCustom} onCancel={() => setAddingCustom(false)} />}
       >
         <Show when={query()}>
-          <div class="mt-2 flex flex-col justify-center gap-2 md:flex-row">
+          <div class="mt-4 flex flex-col justify-center gap-2 md:flex-row">
             <Show when={closest()}>
               {(closest) => (
                 <Button onClick={() => addPokemon(closest().species)}>
