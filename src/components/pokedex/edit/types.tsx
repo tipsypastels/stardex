@@ -57,7 +57,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
         </div>
 
         <div>
-          <h3 class="text-sm">form{props.pokemon.isBuiltin() ? "s" : " name"}:</h3>
+          <h3 class="text-sm">form{props.pokemon.isBuiltin() ? "" : " name"}:</h3>
           <ul>
             <li>
               {props.pokemon.isBuiltin() ? (
@@ -116,7 +116,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
 
             <li>
               <Checkbox
-                name="Custom"
+                name="Custom:"
                 radio
                 checked={!!customAltName()}
                 onClick={() => customAltNameInput?.focus()}
