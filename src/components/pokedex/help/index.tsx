@@ -77,7 +77,7 @@ export function PokedexHelp() {
       }
     >
       <div
-        class="mt-8 rounded-t-md border-2 border-primary p-4"
+        class="mt-4 rounded-t-md border-2 border-primary p-4"
         classList={{ "mb-2 rounded-b-md": pokemons.all.length > 0 }}
       >
         <div class="flex">
@@ -99,7 +99,7 @@ export function PokedexHelp() {
               </>
             }
           >
-            <li>Type in a Pokémon's name above to add it to your dex.</li>
+            <li>Type or paste in one Pokémon name per line.</li>
             <li>Autocomplete suggestions will be provided as you type.</li>
             <li>
               Blank lines are ignored, as are comments, which start with <code>#</code>.

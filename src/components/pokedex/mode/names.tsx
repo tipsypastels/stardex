@@ -14,7 +14,7 @@ export function PokedexNamesView(props: PokedexModeViewProps) {
   return (
     <>
       <Show when={pokemons.all.length > 0}>
-        <ol ref={list} class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <ol ref={list} class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
           <For each={pokemonsFiltered.all}>
             {(pokemon) => {
               return (
