@@ -9,11 +9,10 @@ import type { EditorState } from "@codemirror/state";
 import type { SyntaxNode } from "@lezer/common";
 import { styleTags, tags } from "@lezer/highlight";
 import { EVOLUTION_LINES } from "../../../../models/pokemon/evolution_line";
-import { pokemons } from "../../../../models/pokemon/list";
 import { Species, SPECIES, SpeciesAlt } from "../../../../models/pokemon/species";
 import { parser } from "../../../../models/pokemon/text/lezer";
 import { BUILTIN_TYPES, type Type } from "../../../../models/type";
-import { getTrackedIdAtSpan } from "./metadata";
+import { getPokemonBySpan } from "./parse";
 
 export const language = new LanguageSupport(
   LRLanguage.define({
@@ -155,10 +154,7 @@ function makeAltNameOptions(
     listing = parent;
   }
 
-  const id = getTrackedIdAtSpan(state, listing);
-  if (!id) return [];
-
-  const pokemon = pokemons.all.find((pokemon) => pokemon.id === id);
+  const pokemon = getPokemonBySpan(state, listing);
   if (!pokemon?.isBuiltin() || pokemon.species.alts.length === 0) return [];
 
   return pokemon.species.alts.map((alt) => ({
