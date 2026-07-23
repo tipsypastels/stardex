@@ -116,7 +116,7 @@ export const POKEMON_LISTS = (() => {
                 v: POKEMON_VERSION,
                 id: id(),
                 species: member.speciesKey,
-                types: member.getAltTypeKeys(),
+                alt: member.altKind,
               }),
             ),
           );

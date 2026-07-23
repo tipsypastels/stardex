@@ -67,6 +67,10 @@ export class RegionMember {
     return this.#raw.species;
   }
 
+  get altKind() {
+    return this.#raw.alt;
+  }
+
   get types() {
     this.#types ??= this.#resolveTypes();
     return this.#types;
@@ -76,12 +80,6 @@ export class RegionMember {
     const species = SPECIES.of(this.#raw.species);
     const form = this.#raw.alt ? species.getAlt(this.#raw.alt) : species;
     return form.types;
-  }
-
-  // No memoization because it's only called in PokemonList#setFromRegion, not on render.
-  getAltTypeKeys() {
-    if (!this.#raw.alt) return;
-    return SPECIES.of(this.#raw.species).getAlt(this.#raw.alt).typeKeys;
   }
 }
 
