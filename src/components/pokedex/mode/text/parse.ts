@@ -1,21 +1,19 @@
-import { ensureSyntaxTree, syntaxTree } from "@codemirror/language";
-import { linter } from "@codemirror/lint";
+import { syntaxTree } from "@codemirror/language";
+import { type Diagnostic, linter } from "@codemirror/lint";
 import type { EditorState, Extension } from "@codemirror/state";
 import { EditorView } from "codemirror";
-import { createEffect, createMemo, createRoot, createSignal } from "solid-js";
+import { batch, createEffect, createMemo, createRoot, createSignal } from "solid-js";
 import { pokedexMode } from "../../../../models/pokedex/mode";
 import type { Pokemon } from "../../../../models/pokemon";
-import { pokemons } from "../../../../models/pokemon/list";
-import {
-  parsePokemonListTextFromLezerTree,
-  type ParsePokemonListTextResult,
-} from "../../../../models/pokemon/text/parse";
+import { pokemons, RawPokemonList } from "../../../../models/pokemon/list";
+import { parsePokemonListTextFromLezerTree } from "../../../../models/pokemon/text/parse";
 import { id } from "../../../../utils/id";
 import type { Span } from "../../../../utils/span";
 import { getTrackedIdAtSpan } from "./metadata";
 
 const current = createRoot(() => {
-  const [result, setResult] = createSignal<ParsePokemonListTextResult>();
+  const [list, setList] = createSignal<RawPokemonList>();
+  const [errors, setErrors] = createSignal<Diagnostic[]>();
 
   const pokemonsById = createMemo(() =>
     // This is still tracked even when we're not in text mode (assuming the text mode bundle
@@ -27,29 +25,41 @@ const current = createRoot(() => {
   );
 
   createEffect(() => {
-    const list = result()?.list;
-    if (list) pokemons.setFromRaw(list);
+    const currentList = list();
+    if (currentList) {
+      pokemons.setFromRaw(currentList);
+    }
   });
 
   return {
-    get result() {
-      return result();
+    get errors() {
+      return errors();
     },
     get pokemonsById() {
       return pokemonsById();
     },
-    parse(state: EditorState) {
+    parse(state: EditorState, onlySetErrors = false) {
       const text = new SliceableDoc(state);
       const getId = (span: Span) => getTrackedIdAtSpan(state, span) ?? id();
       const result = parsePokemonListTextFromLezerTree(syntaxTree(state), text, getId);
-      setResult(result);
+
+      if (onlySetErrors) {
+        setErrors(result.errors);
+      } else {
+        batch(() => {
+          setList(result.list);
+          setErrors(result.errors);
+        });
+      }
     },
   };
 });
 
 export function parseInitial(state: EditorState) {
-  ensureSyntaxTree(state, state.doc.length, 5000);
-  current.parse(state);
+  // Don't overwrite the pokedex, first of all because we know it can't have changed yet,
+  // but more importantly because the syntax tree may not have been fully initialized,
+  // which would result in us losing pokemon.
+  current.parse(state, true);
 }
 
 export function getPokemonBySpan(state: EditorState, span: Span) {
@@ -64,7 +74,7 @@ export const parser: Extension = [
     }
   }),
   linter(() => {
-    return current.result?.errors ?? [];
+    return current.errors ?? [];
   }),
 ];
 
