@@ -31,7 +31,7 @@ export function Checkbox(props: CheckboxProps) {
         checked={props.checked}
         onChange={(e) => props.onChange?.(e.target.checked)}
       />
-      <div class="mr-1 text-primary" classList={{ "text-sm lg:text-base": props.radio }}>
+      <div class="mr-1 text-checkbox" classList={{ "text-sm lg:text-base": props.radio }}>
         <Icon name={icon()} />
       </div>
       <div>{props.name}</div>

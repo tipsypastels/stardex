@@ -17,7 +17,7 @@ export function RegionsModal(props: RegionsModalProps) {
       <div class="mb-4 grid grid-cols-2 gap-4">
         <For each={REGIONS.all}>
           {(region) => (
-            <label class="relative flex cursor-pointer rounded-xs border border-divider-light p-2 transition select-none hover:-translate-y-1">
+            <label class="relative flex cursor-pointer rounded-md border-2 border-divider-light p-2 transition select-none hover:-translate-y-1">
               <input
                 class="hidden"
                 type="checkbox"

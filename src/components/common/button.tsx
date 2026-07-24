@@ -1,10 +1,10 @@
 import type { JSXElement } from "solid-js";
+import { tw } from "../../utils/style";
 import { Icon } from "./icon";
 
 const LOOKS = {
-  primary: "bg-primary text-foreground-primary",
-  // TODO: Figure out exact use of secondary.
-  secondary: "bg-secondary text-foreground-secondary",
+  primary: tw`bg-primary text-primary-foreground`,
+  secondary: tw`bg-secondary text-secondary-foreground`,
 };
 
 export interface ButtonProps {
@@ -25,7 +25,7 @@ export function Button(props: ButtonProps) {
 }
 
 const ICON_LOOKS = {
-  lesser: "text-foreground-lesser",
+  muted: tw`text-foreground-muted`,
 };
 
 export interface ButtonIconProps {
@@ -38,7 +38,7 @@ export interface ButtonIconProps {
 export function ButtonIcon(props: ButtonIconProps) {
   return (
     <button
-      class={`cursor-pointer ${ICON_LOOKS[props.look ?? "lesser"]}`}
+      class={`cursor-pointer ${ICON_LOOKS[props.look ?? "muted"]}`}
       title={props.label}
       aria-label={props.label}
       onClick={() => props.onClick()}

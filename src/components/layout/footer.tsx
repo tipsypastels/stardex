@@ -4,7 +4,7 @@ import { ButtonLink, Link } from "../common/link";
 
 export function Footer() {
   return (
-    <footer class="mt-8 bg-footer py-8 text-center text-white">
+    <footer class="mt-8 bg-footer py-8 text-center text-footer-foreground">
       <div class="mb-1">
         Created by <Icon name="duck" />{" "}
         <Link blank to="https://github.com/tipsypastels" look="none" bold>

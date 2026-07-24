@@ -31,7 +31,7 @@ export function IconPickerGridItem(props: IconPickerGridItemProps) {
           </div>
           <div>{props.name}</div>
         </div>
-        {props.count ? <sub class="text-foreground-lesser">{props.count}</sub> : null}
+        {props.count ? <sub class="text-foreground-muted">{props.count}</sub> : null}
       </button>
     </li>
   );

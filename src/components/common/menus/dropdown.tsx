@@ -31,7 +31,7 @@ export function Dropdown(props: DropdownProps) {
     // eslint-disable-next-line solid/reactivity
     <OnCloseContext.Provider value={props.onClose}>
       <div class="relative" ref={ref}>
-        <div class="absolute -top-4 right-0 z-60 w-max border-2 border-divider-light bg-background shadow-lg">
+        <div class="absolute -top-4 right-0 z-60 w-max rounded-md border-2 border-divider-light bg-background shadow-lg">
           <ul class="appearance-auto py-2">{props.children}</ul>
         </div>
       </div>

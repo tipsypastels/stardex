@@ -46,14 +46,12 @@ function Item(props: ItemProps) {
     >
       <button
         data-handle
-        class="relative flex w-full cursor-pointer gap-2 border border-divider-light px-4 py-2"
+        class="relative flex w-full cursor-pointer gap-2 rounded-md border-2 border-foreground px-4 py-2"
         onClick={() => props.onClick()}
       >
         <Show when={props.pokemon.altNameOrNoAltName}>
           {(name) => (
-            <div class="absolute -top-2.5 left-2 bg-background px-1 text-xs text-foreground-lesser">
-              {name()}
-            </div>
+            <div class="absolute -top-2.5 left-2 bg-background px-1 text-xs">{name()}</div>
           )}
         </Show>
         <div>{props.pokemon.name}</div>

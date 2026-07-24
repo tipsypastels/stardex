@@ -44,7 +44,7 @@ function Option(props: OptionProps) {
         />
 
         <div
-          class="flex h-8 w-8 items-center justify-center rounded-md border-2 border-divider-heavy text-white"
+          class="flex h-8 w-8 items-center justify-center rounded-md border-2 border-divider-heavy"
           style={{ color: props.type.color }}
         >
           <Show when={excluded()}>

@@ -18,8 +18,8 @@ export function ModePicker(props: ModePickerProps) {
     <ul class="mb-4 last:mb-0">
       <For each={props.modes}>
         {(mode, index) => (
-          <li class="border-b border-b-divider-light py-2 first:pt-0 last:border-b-0 last:pb-0">
-            <label class="flex cursor-pointer items-center border-t border-t-divider-light first:border-t-0">
+          <li class="border-b-2 border-b-divider-light py-2 first:pt-0 last:border-b-0 last:pb-0">
+            <label class="flex cursor-pointer items-center">
               <input class="hidden" type="radio" onClick={() => props.setActiveIndex(index())} />
 
               <div

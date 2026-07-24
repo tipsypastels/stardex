@@ -6,19 +6,24 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+
   --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
   --color-warning: var(--warning);
   --color-error: var(--error);
-  --color-footer: var(--footer);
 
-  --color-foreground: var(--foreground);
-  --color-foreground-primary: var(--foreground-primary);
-  --color-foreground-secondary: var(--foreground-secondary);
-  --color-foreground-lesser: var(--foreground-lesser);
+  --color-footer: var(--footer);
+  --color-footer-foreground: var(--footer-foreground);
 
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
+  --color-checkbox: var(--checkbox);
   --color-shadow: var(--shadow);
 
   --font-*: initial;
@@ -32,41 +37,53 @@
 }
 
 :root {
-  --background: white;
+  --background: var(--color-stone-100);
+  --foreground: var(--color-stone-700);
+  --foreground-muted: var(--color-stone-500);
+
   --primary: var(--color-lime-600);
+  --primary-foreground: var(--color-stone-100);
+
   --secondary: var(--color-mauve-500);
-  --warning: var(--color-amber-400);
+  --secondary-foreground: white;
+
+  --warning: var(--color-amber-600);
   --error: var(--color-red-600);
+
   --footer: var(--secondary);
+  --footer-foreground: var(--secondary-foreground);
 
-  --divider-light: var(--color-slate-300);
-  --divider-heavy: var(--color-slate-700);
+  --divider-light: var(--color-stone-300);
+  --divider-heavy: var(--secondary);
 
-  --foreground: black;
-  --foreground-primary: white;
-  --foreground-secondary: white;
-  --foreground-lesser: var(--color-slate-600);
+  --checkbox: var(--secondary);
 
-  --shadow: var(--color-slate-400);
+  --shadow: var(--color-stone-400);
 
   --backdrop-opacity: 30%;
 }
 
 .dark {
   --background: var(--color-slate-950);
+  --foreground: var(--color-slate-400);
+  --foreground-muted: var(--color-slate-500);
+
   --primary: var(--color-indigo-300);
+  --primary-foreground: black;
+
   --secondary: var(--color-slate-500);
+  --secondary-foreground: black;
+
   --warning: var(--color-amber-400);
   --error: var(--color-red-600);
+
   --footer: var(--color-slate-900);
+  --footer-foreground: var(--foreground);
 
   --divider-light: var(--color-slate-800);
-  --divider-heavy: var(--color-slate-700);
+  --divider-heavy: var(--secondary);
 
-  --foreground: var(--color-slate-400);
-  --foreground-primary: black;
-  --foreground-secondary: black;
-  --foreground-lesser: var(--color-slate-500);
+  --checkbox: var(--primary);
 
   --shadow: var(--color-black);
 

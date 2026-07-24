@@ -30,7 +30,7 @@ export function TypePieChart(props: TypePieChartProps) {
             {({ type, ratio, count }) => (
               <li>
                 <TypeName type={type} />
-                <span class="text-foreground-lesser">
+                <span class="text-foreground-muted">
                   {" "}
                   — {(ratio * 100).toFixed(2)}% ({count})
                 </span>

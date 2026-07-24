@@ -29,7 +29,7 @@ export interface ActionBarItemProps {
 
 export function ActionBarItem(props: ActionBarItemProps) {
   return (
-    <li class="border-r border-r-secondary last:max-sm:border-r-0">
+    <li class="border-r-2 border-r-secondary last:max-sm:border-r-0">
       <button
         ref={props.ref}
         id={props.id}

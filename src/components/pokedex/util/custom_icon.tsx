@@ -28,7 +28,7 @@ export function CustomIconLoading(props: Pick<CustomIconProps, "name">) {
       role="img"
       title={props.name}
       aria-label={props.name}
-      class="flex h-15 w-20 items-center justify-center rounded-full text-3xl text-foreground-lesser"
+      class="flex h-15 w-20 items-center justify-center rounded-full text-3xl text-foreground-muted"
     >
       <Icon name="spinner" class="fa-spin" />
     </div>

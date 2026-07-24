@@ -33,7 +33,7 @@ export function RecommendedChangeGroup(props: RecommendedChangeGroupProps) {
                   {type.name}
                 </h2>
 
-                <div class="text-base text-foreground-lesser">
+                <div class="text-base text-foreground-muted">
                   {(ownRatio * 100).toFixed(2)}% — {(againstRatio * 100).toFixed(2)}% of compared.
                 </div>
               </div>

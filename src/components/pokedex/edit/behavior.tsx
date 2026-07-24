@@ -10,7 +10,7 @@ export interface EditPokemonBehaviorProps {
 export function EditPokemonBehavior(props: EditPokemonBehaviorProps) {
   return (
     <div>
-      <h2 class="mb-2 font-bold">Behaviour</h2>
+      <h2 class="font-bold">Behaviour</h2>
       <Checkbox
         name="Exclude from graphs and recommendations?"
         checked={props.pokemon.exclude}

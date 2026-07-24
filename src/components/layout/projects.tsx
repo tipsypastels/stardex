@@ -114,7 +114,7 @@ function ProjectOption(props: ProjectOptionProps) {
         </label>
 
         <button
-          class="cursor-pointer text-foreground-lesser"
+          class="cursor-pointer text-foreground-muted"
           classList={{ "text-primary!": dropdownOpen() }}
           title="Actions"
           onClick={() => props.setDropdownId(props.project.id)}

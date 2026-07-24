@@ -52,7 +52,7 @@ export function PokedexHelp() {
           </div>
 
           <Show when={manuallyOpened()}>
-            <Modal title="What to Know" onClose={() => setManuallyOpened(false)} primaryBorder>
+            <Modal title="What to Know" onClose={() => setManuallyOpened(false)}>
               <Tutorial />
             </Modal>
           </Show>
@@ -96,7 +96,7 @@ export function PokedexHelp() {
       </div>
 
       <Show when={pokedexMode.key !== "text"}>
-        <div class="mt-2 text-center text-base text-foreground-lesser">
+        <div class="mt-2 text-center text-base text-foreground-muted">
           Don't want a visual editor? Try out{" "}
           <ButtonLink onClick={() => (pokedexMode.key = "text")}>text mode</ButtonLink> for an
           improved version of the{" "}

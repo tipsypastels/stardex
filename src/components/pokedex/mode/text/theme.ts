@@ -16,7 +16,7 @@ export const theme = EditorView.theme({
   },
   ".cm-gutterElement": {
     backgroundColor: "transparent",
-    color: "var(--foreground-lesser)",
+    color: "var(--foreground-muted)",
   },
   ".cm-cursor": {
     borderLeftColor: "var(--foreground)",
@@ -102,6 +102,6 @@ export const highlightTheme = syntaxHighlighting(
     { tag: tags.labelName, color: "var(--secondary)" },
     { tag: tags.typeName, color: "var(--primary)" },
     { tag: tags.annotation, color: "var(--secondary)" },
-    { tag: tags.comment, color: "var(--foreground-lesser)" },
+    { tag: tags.comment, color: "var(--foreground-muted)" },
   ]),
 );
