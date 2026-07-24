@@ -113,17 +113,6 @@ export function PokedexHelp() {
         <ImportRegionModal onClose={() => setImportRegionModalOpen(false)} />
       </Show>
     </Show>
-
-    // <Show
-    //   when={pokemons.all.length === 0 || manuallyOpened()}
-    //   fallback={
-    //     <Show when={pokemons.all.length > 0}>
-
-    //     </Show>
-    //   }
-    // >
-
-    // </Show>
   );
 }
 
@@ -144,16 +133,29 @@ function Tutorial() {
         <li>Type or paste in one Pokémon name per line.</li>
         <li>Autocomplete suggestions will be provided as you type.</li>
         <li>
-          Blank lines are ignored, as are comments, which start with <code>#</code>.
+          Blank lines are ignored, as are comments, which start with{" "}
+          <code class="text-sm text-editor-comment">#</code>.
         </li>
         <li>
           To set a Pokémon's type, write it after the name in parentheses:
           <ul class="ml-6 list-disc">
             <li>
-              <code>Oshawott (Fire)</code>
+              <code class="text-sm">
+                <span class="text-editor-name">Oshawott</span>{" "}
+                <span class="text-editor-punctuation">(</span>
+                <span class="text-editor-type-name">Fire</span>
+                <span class="text-editor-punctuation">)</span>
+              </code>
             </li>
             <li>
-              <code>Xatu (MyCustomType/Flying)</code>
+              <code class="text-sm">
+                <span class="text-editor-name">Xatu</span>{" "}
+                <span class="text-editor-punctuation">(</span>
+                <span class="text-editor-type-name">MyCustomType</span>
+                <span class="text-editor-punctuation">/</span>
+                <span class="text-editor-type-name">Flying</span>
+                <span class="text-editor-punctuation">)</span>
+              </code>
             </li>
           </ul>
         </li>
@@ -161,23 +163,51 @@ function Tutorial() {
           To set a Pokémon's form name, write it in those same parentheses, followed by a colon:
           <ul class="ml-6 list-disc">
             <li>
-              <code>Zoroark (Hisuian:)</code>
+              <code class="text-sm">
+                <span class="text-editor-name">Zoroark</span>{" "}
+                <span class="text-editor-punctuation">(</span>
+                <span class="text-editor-alt-name">Hisuian</span>
+                <span class="text-editor-punctuation">:)</span>
+              </code>
             </li>
             <li>
-              <code>Raichu (Mega Y:)</code>
+              <code class="text-sm">
+                <span class="text-editor-name">Raichu</span>{" "}
+                <span class="text-editor-punctuation">(</span>
+                <span class="text-editor-alt-name">Mega Y</span>
+                <span class="text-editor-punctuation">:)</span>
+              </code>
             </li>
             <li>
-              <code>Politoed (MyRegionian:Water/Grass)</code>
+              <code class="text-sm">
+                <span class="text-editor-name">Politoed</span>{" "}
+                <span class="text-editor-punctuation">(</span>
+                <span class="text-editor-alt-name">MyRegionian</span>
+                <span class="text-editor-punctuation">:</span>
+                <span class="text-editor-type-name">Water</span>
+                <span class="text-editor-punctuation">/</span>
+                <span class="text-editor-type-name">Grass</span>
+                <span class="text-editor-punctuation">)</span>
+              </code>
             </li>
           </ul>
         </li>
         <li>You'll be given recommendations and statistics based on your Pokédex.</li>
         <li>
-          To exclude a Pokémon from recommendations, write <code>@exclude</code> or{" "}
-          <code>@ignore</code> after its name:
+          To exclude a Pokémon from recommendations, write{" "}
+          <code class="text-sm text-editor-modifier">@exclude</code> or{" "}
+          <code class="text-sm text-editor-modifier">@ignore</code> after its name:
           <ul class="ml-6 list-disc">
             <li>
-              <code>MySpecialLegendary (Fairy/Normal) @exclude</code>
+              <code class="text-sm">
+                <span class="text-editor-name">MySpecialLegendary</span>{" "}
+                <span class="text-editor-punctuation">(</span>
+                <span class="text-editor-type-name">Fairy</span>
+                <span class="text-editor-punctuation">/</span>
+                <span class="text-editor-type-name">Normal</span>
+                <span class="text-editor-punctuation">)</span>{" "}
+                <span class="text-editor-modifier">@exclude</span>
+              </code>
             </li>
           </ul>
         </li>

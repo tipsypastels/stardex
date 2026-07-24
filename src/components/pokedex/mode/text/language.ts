@@ -21,12 +21,13 @@ export const language = new LanguageSupport(
         styleTags({
           "Name": tags.variableName,
           "AltName": tags.labelName,
-          "TypeList": tags.typeName,
+          "TypeName": tags.typeName,
           "Modifier": tags.annotation,
           "Comment": tags.lineComment,
           "InlineComment": tags.lineComment,
-          "( )": tags.paren,
-          ":": tags.punctuation,
+
+          "SpecSeparator": tags.punctuation,
+          '( ) : "/"': tags.punctuation,
           "@": tags.annotation,
         }),
       ],

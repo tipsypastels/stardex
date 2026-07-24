@@ -28,6 +28,15 @@
   --color-checkbox: var(--checkbox);
   --color-shadow: var(--shadow);
 
+  --color-editor-name: var(--editor-name);
+  --color-editor-alt-name: var(--editor-alt-name);
+  --color-editor-type-name: var(--editor-type-name);
+  --color-editor-modifier: var(--editor-modifier);
+  --color-editor-comment: var(--editor-comment);
+  --color-editor-punctuation: var(--editor-punctuation);
+  --color-editor-active-line: var(--editor-active-line);
+  --color-editor-selected: var(--editor-selected);
+
   --font-*: initial;
   --font-sans:
     Itim, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -64,6 +73,15 @@
   --shadow: var(--color-stone-400);
 
   --backdrop-opacity: 30%;
+
+  --editor-name: var(--secondary);
+  --editor-alt-name: var(--color-indigo-400);
+  --editor-type-name: var(--primary);
+  --editor-modifier: var(--color-mauve-400);
+  --editor-comment: var(--color-mauve-400);
+  --editor-punctuation: var(--color-mauve-400);
+  --editor-active-line: var(--color-stone-300);
+  --editor-selected: var(--color-stone-400);
 }
 
 .dark {
@@ -92,6 +110,15 @@
   --shadow: var(--color-black);
 
   --backdrop-opacity: 60%;
+
+  --editor-name: var(--primary);
+  --editor-alt-name: var(--color-indigo-200);
+  --editor-type-name: var(--color-indigo-200);
+  --editor-modifier: var(--color-secondary);
+  --editor-comment: var(--color-secondary);
+  --editor-punctuation: var(--color-secondary);
+  --editor-active-line: var(--color-slate-900);
+  --editor-selected: var(--color-slate-500);
 }
 
 @layer base {
