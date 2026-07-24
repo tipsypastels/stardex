@@ -23,6 +23,8 @@
 
   --color-divider-light: var(--divider-light);
   --color-divider-heavy: var(--divider-heavy);
+  --color-divider-card: var(--divider-card);
+
   --color-checkbox: var(--checkbox);
   --color-shadow: var(--shadow);
 
@@ -55,6 +57,7 @@
 
   --divider-light: var(--color-stone-300);
   --divider-heavy: var(--secondary);
+  --divider-card: var(--foreground);
 
   --checkbox: var(--secondary);
 
@@ -82,6 +85,7 @@
 
   --divider-light: var(--color-slate-800);
   --divider-heavy: var(--secondary);
+  --divider-card: var(--secondary);
 
   --checkbox: var(--primary);
 
