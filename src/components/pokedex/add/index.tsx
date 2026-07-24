@@ -1,7 +1,7 @@
 import Fuse from "fuse.js";
 import { batch, createMemo, createSignal, Show } from "solid-js";
 import { BUILTIN_POKEMONS, CUSTOM_POKEMONS } from "../../../models/pokemon";
-import { EVOLUTION_LINES } from "../../../models/pokemon/evolution_line";
+import { FAMILIES } from "../../../models/pokemon/family";
 import { pokemons } from "../../../models/pokemon/list";
 import { Species, SPECIES } from "../../../models/pokemon/species";
 import { capitalizeWords } from "../../../utils/string";
@@ -32,12 +32,12 @@ export function AddPokemon() {
     return { species, exact };
   });
 
-  const closestLine = createMemo(() => {
+  const closestFamily = createMemo(() => {
     const pokemon = closest();
     if (!pokemon) return;
 
-    const line = EVOLUTION_LINES.of(pokemon.species);
-    if (line.length > 1) return line;
+    const family = FAMILIES.of(pokemon.species);
+    if (family.length > 1) return family;
   });
 
   function addPokemon(species: Species) {
@@ -72,7 +72,7 @@ export function AddPokemon() {
     let family: Species[] | undefined;
     let species: Species | undefined;
 
-    if (e.shiftKey && (family = closestLine())) {
+    if (e.shiftKey && (family = closestFamily())) {
       addFamily(family);
     } else if ((species = closest()?.species)) {
       addPokemon(species);
@@ -122,7 +122,7 @@ export function AddPokemon() {
               )}
             </Show>
 
-            <Show when={closestLine()}>
+            <Show when={closestFamily()}>
               {(closestLine) => (
                 <Button onClick={() => addFamily(closestLine())}>Add Family</Button>
               )}

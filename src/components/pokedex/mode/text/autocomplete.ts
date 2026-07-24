@@ -8,7 +8,7 @@ import {
 import { syntaxTree } from "@codemirror/language";
 import type { EditorState } from "@codemirror/state";
 import type { SyntaxNode } from "@lezer/common";
-import { EVOLUTION_LINES } from "../../../../models/pokemon/evolution_line";
+import { FAMILIES } from "../../../../models/pokemon/family";
 import { Species, SPECIES, SpeciesAlt } from "../../../../models/pokemon/species";
 import { BUILTIN_TYPES, type Type } from "../../../../models/type";
 import { getPokemonAtSpan } from "./parse";
@@ -139,13 +139,13 @@ const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
     );
   }
 
-  if (species.isStartOfEvolutionLine) {
+  if (species.isStartOfFamily) {
     out.push({
       label: species.name,
       detail: "(Family)",
       stardex: { kind: "species", species },
       apply(view, completion, from, to) {
-        const names = EVOLUTION_LINES.of(species)
+        const names = FAMILIES.of(species)
           .map((species) => species.name)
           .join("\n");
 

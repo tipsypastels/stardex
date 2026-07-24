@@ -88,7 +88,7 @@ export class Species {
     );
   }
 
-  get isStartOfEvolutionLine() {
+  get isStartOfFamily() {
     return !this.#raw.evos?.from && !!this.#raw.evos?.to?.length;
   }
 

@@ -1,6 +1,6 @@
-import { SPECIES, type Species } from "./species";
+import { SPECIES, type Species } from "../species";
 
-export const EVOLUTION_LINES = (() => {
+export const FAMILIES = (() => {
   function findOrigin(initial: Species) {
     let origin = initial;
     let originRaw = initial.toRaw();
@@ -33,9 +33,7 @@ export const EVOLUTION_LINES = (() => {
 
     followLine(origin, set);
 
-    const out = [...set];
-    out.sort((a, b) => a.id - b.id);
-    return out;
+    return [...set];
   }
 
   return { of };
