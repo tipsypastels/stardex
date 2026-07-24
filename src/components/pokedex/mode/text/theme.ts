@@ -33,33 +33,24 @@ export const theme = EditorView.theme({
     // our selection decoration does it better
     backgroundColor: "transparent !important",
   },
-  ".cm-tooltip-hover": {
-    backgroundColor: "transparent",
-    border: "0",
+  ".cm-placeholder": {
+    color: "var(--secondary)",
   },
-  ".cm-diagnostic": {
-    backgroundColor: "var(--background)",
-    borderRadius: "var(--radius-md)",
-    paddingLeft: "calc(var(--spacing) * 4)",
-    paddingRight: "calc(var(--spacing) * 4)",
-  },
-  ".cm-diagnostic:not(:first-child)": {
-    marginTop: "calc(var(--spacing) * 2)",
-  },
-  ".cm-diagnostic-warning": {
-    border: "2px solid var(--warning)",
-  },
-  ".cm-diagnostic-error": {
-    border: "2px solid var(--error)",
-  },
+
+  /* ------------------------------ Autocomplete ------------------------------ */
+
   ".cm-tooltip-autocomplete": {
-    backgroundColor: "var(--background)",
     color: "var(--foreground)",
-    border: "2px solid var(--primary)",
+    backgroundColor: "var(--background)",
+    border: "2px solid var(--divider-light)",
+    borderRadius: "var(--radius-md)",
+    scrollbarColor: "var(--divider-light) var(--background)",
+    scrollbarWidth: "thin",
   },
   ".cm-tooltip-autocomplete ul": {
     fontFamily: "var(--font-sans) !important",
     fontSize: "var(--text-lg) !important",
+    paddingBottom: "var(--spacing) !important",
   },
   ".cm-tooltip-autocomplete li": {
     display: "flex",
@@ -72,6 +63,13 @@ export const theme = EditorView.theme({
   },
   ".cm-completionIcon": {
     display: "none",
+  },
+  ".cm-completionMatchedText": {
+    textDecoration: "none !important",
+    fontWeight: "bold",
+  },
+  ".cm-completionDetail": {
+    color: "var(--foreground-muted)",
   },
   ".cm-completionStardexSpecies": {
     display: "inline-block",
@@ -87,12 +85,6 @@ export const theme = EditorView.theme({
     height: "calc(var(--spacing) * 7.5)",
     width: "calc(var(--spacing) * 10)",
   },
-  ".cm-completionStardexSpeciesFamilyIcon": {
-    position: "absolute",
-    top: "4px",
-    right: 0,
-    fontSize: "50%",
-  },
   ".cm-completionStardexType": {
     display: "flex",
     alignItems: "center",
@@ -100,9 +92,37 @@ export const theme = EditorView.theme({
     height: "calc(var(--spacing) * 7.5)",
     width: "calc(var(--spacing) * 10)",
   },
-  ".cm-completionMatchedText": {
-    textDecoration: "none !important",
-    fontWeight: "bold",
+
+  /* ------------------------------- Diagnostics ------------------------------ */
+
+  ".cm-tooltip:not(.cm-tooltip-autocomplete):has(.cm-tooltip-lint)": {
+    backgroundColor: "transparent",
+    border: "0",
+  },
+  ".cm-diagnostic": {
+    backgroundColor: "var(--background)",
+    borderRadius: "var(--radius-md)",
+    paddingLeft: "calc(var(--spacing) * 4)",
+    paddingRight: "calc(var(--spacing) * 4)",
+  },
+  ".cm-diagnostic:not(:first-child)": {
+    marginTop: "var(--spacing)",
+  },
+  ".cm-diagnostic-warning": {
+    border: "2px solid var(--warning)",
+  },
+  ".cm-diagnostic-error": {
+    border: "2px solid var(--error)",
+  },
+
+  /* --------------------------------- Tooltip -------------------------------- */
+
+  ".cm-tooltip:not(.cm-tooltip-autocomplete):not(:has(> .cm-tooltip-lint))": {
+    backgroundColor: "var(--background)",
+    border: "2px solid var(--divider-light)",
+    borderRadius: "var(--radius-md)",
+    paddingLeft: "calc(var(--spacing) * 4)",
+    paddingRight: "calc(var(--spacing) * 4)",
   },
 });
 

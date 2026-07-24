@@ -133,7 +133,11 @@
   input:not([type]),
   input[type="text"],
   select {
-    @apply bg-background!;
+    @apply bg-transparent!;
+  }
+
+  input::placeholder {
+    @apply text-secondary!;
   }
 
   code {
