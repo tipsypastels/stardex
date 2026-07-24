@@ -42,7 +42,6 @@ export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">
     const request = store.delete([entry.projectId, entry.pokemonId]);
 
     request.onsuccess = () => {
-      console.log(`Custom icon "${entry.projectId}-${entry.pokemonId}" deleted!`);
       f?.();
     };
   });
