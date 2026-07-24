@@ -4,6 +4,7 @@ import { pokemonsFiltered } from "../../../models/pokedex/filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { TypeDots } from "../../types/util/dots";
+import { WithFilterNone } from "../filter_none";
 import { PokedexHelp } from "../help";
 import { PokemonIcon } from "../util/pokemon_icon";
 import { onClickPokemon } from "./util/click";
@@ -14,16 +15,18 @@ export function PokedexIconsView(props: PokedexModeViewProps) {
   return (
     <>
       <Show when={pokemons.all.length > 0}>
-        <ol ref={list} class="mt-8 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
-          <For each={pokemonsFiltered.all}>
-            {(pokemon) => (
-              <Item
-                pokemon={pokemon}
-                onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
-              />
-            )}
-          </For>
-        </ol>
+        <WithFilterNone>
+          <ol ref={list} class="mt-8 grid grid-cols-3 gap-4 md:grid-cols-6 lg:grid-cols-8">
+            <For each={pokemonsFiltered.all}>
+              {(pokemon) => (
+                <Item
+                  pokemon={pokemon}
+                  onClick={() => onClickPokemon(pokemon, props.zapper, props.setEditingId)}
+                />
+              )}
+            </For>
+          </ol>
+        </WithFilterNone>
       </Show>
       <PokedexHelp />
     </>
