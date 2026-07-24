@@ -27,7 +27,7 @@ export function RecommendedChangeGroup(props: RecommendedChangeGroupProps) {
 
               <div class="grow">
                 <h2 class="dim" style={{ color: type.color }}>
-                  <span class="md:hidden">
+                  <span class="mr-1 md:hidden">
                     <Icon name={type.icon} />
                   </span>
                   {type.name}

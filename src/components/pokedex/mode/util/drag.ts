@@ -13,7 +13,9 @@ export function createDraggable() {
       const sortable = Sortable.create(list.current, {
         animation: 150,
         handle: "[data-handle]",
-        ghostClass: "opacity-0",
+        // Needs to be ! so it doesn't get overridden by the partial opacity
+        // applied to excluded items.
+        ghostClass: "opacity-0!",
         fallbackOnBody: true,
         onStart(event) {
           nextSibling = event.item.nextSibling;

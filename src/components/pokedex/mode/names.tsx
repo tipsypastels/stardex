@@ -48,7 +48,6 @@ function Item(props: ItemProps) {
       data-id={props.pokemon.id}
     >
       <button
-        data-handle
         class="relative flex w-full cursor-pointer gap-2 rounded-md border-2 border-divider-card px-4 py-2"
         onClick={() => props.onClick()}
       >
@@ -71,6 +70,9 @@ function Item(props: ItemProps) {
             </div>
           )}
         </For>
+        <div class="flex items-center text-sm text-foreground-muted" data-handle>
+          <Icon name="grip-vertical" />
+        </div>
       </button>
     </li>
   );
