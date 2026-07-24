@@ -248,7 +248,7 @@ export function EditPokemonCustomIconModal(props: EditPokemonCustomIconModalProp
           <ul class="list-inside list-disc">
             <li>
               <ButtonLink onClick={doubleScale} disabled={didDoubleScale()}>
-                <Show when={didDoubleScale}>
+                <Show when={didDoubleScale()}>
                   <Icon name="check" />
                 </Show>
                 Scale up (for RH icons).
@@ -256,7 +256,7 @@ export function EditPokemonCustomIconModal(props: EditPokemonCustomIconModalProp
             </li>
             <li>
               <ButtonLink onClick={cropInHalf} disabled={didCrop()}>
-                <Show when={didCrop}>
+                <Show when={didCrop()}>
                   <Icon name="check" />
                 </Show>
                 Crop to first frame of two.
@@ -264,7 +264,7 @@ export function EditPokemonCustomIconModal(props: EditPokemonCustomIconModalProp
             </li>
             <li>
               <ButtonLink onClick={removeBackgroundColor} disabled={didRemoveBackground()}>
-                <Show when={didRemoveBackground}>
+                <Show when={didRemoveBackground()}>
                   <Icon name="check" />
                 </Show>
                 Remove background colour.
