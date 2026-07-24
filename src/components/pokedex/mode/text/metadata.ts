@@ -40,13 +40,16 @@ export const initialTrackingIds = Facet.define<Spanned<string>[], Spanned<string
 
 export function getTrackedIdAtSpan(state: EditorState, span: Span) {
   const set = state.field(trackingIds);
-  let id: string | undefined;
+  let best: { id: string; overlap: number } | undefined;
 
-  set.between(span.from, span.to, (_from, _to, value) => {
-    id = value.id;
+  set.between(span.from, span.to, (from, to, value) => {
+    const overlap = Math.min(to, span.to) - Math.max(from, span.from);
+    if (!best || overlap > best.overlap) {
+      best = { id: value.id, overlap };
+    }
   });
 
-  return id;
+  return best?.id;
 }
 
 export function getAllTrackedIds(state: EditorState): Spanned<string>[] {
@@ -116,6 +119,7 @@ function handleLineSwap(old: RangeSet<TrackedId>, tr: Transaction): RangeSet<Tra
 
   const claimed = new Set(oldLines.map((l) => l.id));
   const untouched: Range<TrackedId>[] = [];
+
   old.between(0, tr.startState.doc.length, (from, to, value) => {
     if (!claimed.has(value)) {
       untouched.push(value.range(from, to));
@@ -147,12 +151,17 @@ function handleLineSwap(old: RangeSet<TrackedId>, tr: Transaction): RangeSet<Tra
 
 function computeSpans(state: EditorState): Span[] {
   const tree = syntaxTree(state);
-  const ranges: Span[] = [];
+  const spans: Span[] = [];
+  let prevEnd = 0;
 
   for (const listing of tree.topNode.getChildren("Listing")) {
     const line = state.doc.lineAt(listing.from);
-    ranges.push({ from: line.from, to: line.to });
+    const from = Math.max(line.from, prevEnd);
+    const to = Math.max(from, line.to);
+
+    spans.push({ from, to });
+    prevEnd = to;
   }
 
-  return ranges;
+  return spans;
 }

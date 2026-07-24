@@ -1,9 +1,4 @@
-import {
-  autocompletion,
-  closeBrackets,
-  closeBracketsKeymap,
-  completionKeymap,
-} from "@codemirror/autocomplete";
+import { closeBrackets, closeBracketsKeymap, completionKeymap } from "@codemirror/autocomplete";
 import { bracketMatching } from "@codemirror/language";
 import { lintKeymap } from "@codemirror/lint";
 import { searchKeymap } from "@codemirror/search";
@@ -20,11 +15,13 @@ import { serializePokemonListToText } from "../../../../models/pokemon/text/seri
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
 import { PokedexHelp } from "../../help";
+import { autocomplete } from "./autocomplete";
 import { createCachedHeightTracker } from "./height";
-import { autocompleteAddToOptions, language } from "./language";
+import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
 import { highlightTheme, selectionMark, theme } from "./theme";
+import { tooltip } from "./tooltip";
 
 export function PokedexTextView() {
   let parent!: HTMLDivElement;
@@ -49,11 +46,6 @@ export function PokedexTextView() {
         highlightActiveLineGutter(),
         keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap, ...searchKeymap]),
 
-        // From basicsetup, customized
-        autocompletion({
-          addToOptions: autocompleteAddToOptions,
-        }),
-
         // From stardex
         placeholder("Enter some Pokémon, one per line..."),
         theme,
@@ -64,6 +56,8 @@ export function PokedexTextView() {
         trackingIds,
         initialTrackingIds.of(ids),
         parser,
+        autocomplete,
+        tooltip,
       ],
     });
 

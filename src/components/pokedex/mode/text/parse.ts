@@ -7,7 +7,7 @@ import { pokedexMode } from "../../../../models/pokedex/mode";
 import type { Pokemon } from "../../../../models/pokemon";
 import { pokemons, RawPokemonList } from "../../../../models/pokemon/list";
 import { parsePokemonListTextFromLezerTree } from "../../../../models/pokemon/text/parse";
-import { id } from "../../../../utils/id";
+import { id as makeId } from "../../../../utils/id";
 import type { Span } from "../../../../utils/span";
 import { getTrackedIdAtSpan } from "./metadata";
 
@@ -40,7 +40,7 @@ const current = createRoot(() => {
     },
     parse(state: EditorState, onlySetErrors = false) {
       const text = new SliceableDoc(state);
-      const getId = (span: Span) => getTrackedIdAtSpan(state, span) ?? id();
+      const getId = makeGetId(state);
       const result = parsePokemonListTextFromLezerTree(syntaxTree(state), text, getId);
 
       if (onlySetErrors) {
@@ -62,7 +62,7 @@ export function parseInitial(state: EditorState) {
   current.parse(state, true);
 }
 
-export function getPokemonBySpan(state: EditorState, span: Span) {
+export function getPokemonAtSpan(state: EditorState, span: Span) {
   const id = getTrackedIdAtSpan(state, span);
   return id ? current.pokemonsById.get(id) : undefined;
 }
@@ -77,6 +77,23 @@ export const parser: Extension = [
     return current.errors ?? [];
   }),
 ];
+
+function makeGetId(state: EditorState) {
+  const set = new Set<string>();
+
+  return (span: Span) => {
+    const id = getTrackedIdAtSpan(state, span) ?? makeId();
+
+    if (set.has(id)) {
+      const fresh = makeId();
+      set.add(fresh);
+      return fresh;
+    }
+
+    set.add(id);
+    return id;
+  };
+}
 
 class SliceableDoc implements Pick<string, "slice"> {
   #state: EditorState;
