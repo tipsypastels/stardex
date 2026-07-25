@@ -7,7 +7,7 @@
   "fire": {
     "name": "Fire",
     "color": "rgb(240, 128, 48)",
-    "icon": "fire"
+    "icon": "fire-flame-curved"
   },
   "fighting": {
     "name": "Fighting",
