@@ -20,11 +20,11 @@ describe(parsePBSFiles, () => {
   }
 
   test("sample", () => {
-    expectSampleToMatchAllPokemon("base.txt");
+    expectSampleToMatchAllPokemon("pokemon.txt");
   });
 
   test("sample gen 9", () => {
-    expectSampleToMatchAllPokemon("base_gen9.txt");
+    expectSampleToMatchAllPokemon("pokemon_gen9.txt");
   });
 
   test("empty", () => {
