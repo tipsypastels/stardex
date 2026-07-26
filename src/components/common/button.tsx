@@ -9,6 +9,7 @@ const LOOKS = {
 
 export interface ButtonProps {
   look?: keyof typeof LOOKS;
+  disabled?: boolean;
   children: JSXElement;
   onClick(): void;
 }
@@ -16,7 +17,8 @@ export interface ButtonProps {
 export function Button(props: ButtonProps) {
   return (
     <button
-      class={`cursor-pointer rounded-md px-4 py-2 ${LOOKS[props.look ?? "primary"]}`}
+      class={`cursor-pointer rounded-md px-4 py-2 ${LOOKS[props.look ?? "primary"]} disabled:cursor-not-allowed disabled:opacity-70`}
+      disabled={props.disabled}
       onClick={() => props.onClick()}
     >
       {props.children}
@@ -45,5 +47,34 @@ export function ButtonIcon(props: ButtonIconProps) {
     >
       <Icon name={props.icon} />
     </button>
+  );
+}
+
+export interface UploadButtonProps {
+  look?: keyof typeof LOOKS;
+  children: JSXElement;
+  accept?: string;
+  multiple?: boolean;
+  onUpload(files: FileList): void;
+}
+
+export function UploadButton(props: UploadButtonProps) {
+  return (
+    <label
+      class={`cursor-pointer rounded-md px-4 py-2 text-center ${LOOKS[props.look ?? "primary"]}`}
+    >
+      <input
+        class="hidden"
+        type="file"
+        accept={props.accept}
+        multiple={props.multiple}
+        onChange={(e) => {
+          if (e.currentTarget.files?.length) {
+            props.onUpload(e.currentTarget.files);
+          }
+        }}
+      />
+      {props.children}
+    </label>
   );
 }

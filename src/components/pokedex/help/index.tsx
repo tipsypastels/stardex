@@ -7,13 +7,14 @@ import { toasts } from "../../../models/ui/toast";
 import { readFileAsTextAsync } from "../../../utils/file";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
-import { createPBSState, ImportPBSErrorModal } from "./import_pbs";
+import { ImportPBSModal } from "./import_pbs";
+import { createImportPBSState } from "./import_pbs/state";
 import { ImportRegionModal } from "./import_region";
 
 export function PokedexHelp() {
   const [manuallyOpened, setManuallyOpened] = createSignal(false);
   const [importRegionModalOpen, setImportRegionModalOpen] = createSignal(false);
-  const pbsState = createPBSState();
+  const pbsState = createImportPBSState();
 
   async function loadJSONOrTextExport([file]: FileList) {
     if (!file) return;
@@ -77,7 +78,7 @@ export function PokedexHelp() {
           </li>
           <li>
             <UploadLink accept="text/plain" multiple onUpload={pbsState.import}>
-              Import Essentials <code>pokemon.txt</code> files.
+              Import Essentials PBS files.
             </UploadLink>
           </li>
           <li>
@@ -105,8 +106,8 @@ export function PokedexHelp() {
         </div>
       </Show>
 
-      <Show when={pbsState.error}>
-        {(error) => <ImportPBSErrorModal error={error()} onClose={() => pbsState.closeError()} />}
+      <Show when={pbsState.files.length > 0}>
+        <ImportPBSModal state={pbsState} />
       </Show>
 
       <Show when={importRegionModalOpen()}>

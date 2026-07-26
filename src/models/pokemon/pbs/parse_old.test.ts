@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { describe, expect, test } from "vitest";
-import { parsePBSFiles } from "./parse";
+import { parsePBSFiles } from "./parse_old";
 
 describe(parsePBSFiles, () => {
   const p = (...texts: string[]) =>

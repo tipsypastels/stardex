@@ -67,5 +67,5 @@ export function UploadLink(props: UploadLinkProps) {
 }
 
 function toClassList({ look, bold, small }: SharedProps) {
-  return tw`cursor-pointer underline ${LOOKS[look ?? "primary"]} ${bold ? `font-bold` : ""} ${small ? `text-sm` : ""} disabled:opacity-70 disabled:cursor-not-allowed`;
+  return tw`cursor-pointer underline ${LOOKS[look ?? "primary"]} ${bold ? `font-bold` : ""} ${small ? `text-sm` : ""} disabled:cursor-not-allowed disabled:opacity-70`;
 }

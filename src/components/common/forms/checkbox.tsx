@@ -2,7 +2,7 @@ import type { JSXElement } from "solid-js";
 import { Icon } from "../icon";
 
 export interface CheckboxProps {
-  name: string;
+  name: JSXElement;
   radio?: boolean;
   checked: boolean | undefined;
   onChange?(checked: boolean): void;
