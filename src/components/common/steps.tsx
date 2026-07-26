@@ -21,8 +21,8 @@ export function Steps(props: StepsProps) {
           <>
             <Show when={i() > 0}>
               <div
-                class="rounded-full border-y-2 border-secondary bg-secondary"
-                classList={{ "bg-primary!": i() <= props.currentIndex }}
+                class="rounded-full border-y-2 border-secondary"
+                classList={{ "border-primary!": i() <= props.currentIndex }}
               />
             </Show>
             <div
