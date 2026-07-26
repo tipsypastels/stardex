@@ -15,7 +15,7 @@ export function ImportPBSModal(props: ImportPBSModalProps) {
       <Show when={props.state.parsed} fallback="Parsed loading TODO">
         {(parsed) => (
           <Switch fallback={<Inner state={props.state} parsed={parsed()} />}>
-            <Match when={parsed().pokemonsAndForms.length === 0}>TODO no pokemon</Match>
+            <Match when={parsed().pokemonsCount === 0}>TODO no pokemon</Match>
             <Match when={parsed().errors.length > 0}>TODO errors</Match>
           </Switch>
         )}

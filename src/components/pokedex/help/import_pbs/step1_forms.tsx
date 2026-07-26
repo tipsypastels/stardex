@@ -11,8 +11,8 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
       fallback={
         <>
           <p class="mb-2">
-            Stardex supports non-cosmetic Pokémon forms. You can upload your{" "}
-            <code>pokemon_forms.txt</code> to add some or all of them to your Pokédex.
+            Stardex supports Pokémon forms. You can upload your <code>pokemon_forms.txt</code> to
+            add some or all of them to your Pokédex.
           </p>
 
           <p class="mb-4">
@@ -34,8 +34,9 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
       }
     >
       <p class="mb-2">
-        Out of the box, Stardex supports <strong>non-cosmetic</strong> Pokémon forms. By contrast,{" "}
-        <code>pokemon_forms.txt</code> makes no distinction between the two kinds of forms.
+        Stardex's built-in Pokémon list only contains <strong>non-cosmetic</strong> forms. By
+        contrast, <code>pokemon_forms.txt</code> makes no distinction between the two kinds of
+        forms.
       </p>
 
       <div class="mb-2 flex text-base text-foreground-muted">
