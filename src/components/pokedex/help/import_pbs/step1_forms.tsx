@@ -51,7 +51,7 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
           <strong>Non-Cosmetic Forms</strong>
           <div class="flex">
             <SpeciesIcon id={1159} name="Dugtrio (Alolan)" />
-            <SpeciesIcon id={1407} name="Dragonite (Mega)" />
+            <SpeciesIcon id={1345} name="Sableye (Mega)" />
           </div>
         </div>
       </div>
