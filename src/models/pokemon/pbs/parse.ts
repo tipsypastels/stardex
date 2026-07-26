@@ -40,7 +40,7 @@ export function parsePBSAsRecords(file: NamedText) {
 
     if ((heading = line.match(/^\[\s*([A-z0-9]+)\s*(?:,\s*(\d+)\s*)?\]$/))) {
       const section = heading[1];
-      const subsection = heading[1];
+      const subsection = heading[2];
 
       if (current) {
         out.push(current);

@@ -21,12 +21,12 @@ export function Steps(props: StepsProps) {
           <>
             <Show when={i() > 0}>
               <div
-                class="h-2 rounded-full bg-foreground-muted"
-                classList={{ "bg-primary": i() <= props.currentIndex }}
+                class="rounded-full border-y-2 border-secondary bg-secondary"
+                classList={{ "bg-primary!": i() <= props.currentIndex }}
               />
             </Show>
             <div
-              class="flex h-10 w-10 items-center justify-center rounded-full border-4 border-foreground-muted text-primary"
+              class="flex h-10 w-10 items-center justify-center rounded-full border-4 border-secondary text-primary"
               classList={{
                 "bg-primary text-primary-foreground!": i() < props.currentIndex,
                 "border-primary!": i() <= props.currentIndex,

@@ -2,7 +2,8 @@ import { Match, Show, Switch } from "solid-js";
 import { Modal } from "../../../common/menus/modal";
 import { Steps } from "../../../common/steps";
 import type { ImportPBSParsedState, ImportPBSState } from "./state";
-import { ImportPBSStep1Dex } from "./step1_dex";
+import { ImportPBSStep0Dex } from "./step0_dex";
+import { ImportPBSStep1Forms } from "./step1_forms";
 
 export interface ImportPBSModalProps {
   state: ImportPBSState;
@@ -38,7 +39,10 @@ function Inner(props: ImportPBSStepProps) {
       </div>
       <Switch>
         <Match when={props.state.stepIndex === 0}>
-          <ImportPBSStep1Dex {...props} />
+          <ImportPBSStep0Dex {...props} />
+        </Match>
+        <Match when={props.state.stepIndex === 1}>
+          <ImportPBSStep1Forms {...props} />
         </Match>
       </Switch>
     </>

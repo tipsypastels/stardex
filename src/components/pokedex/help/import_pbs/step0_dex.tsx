@@ -4,7 +4,7 @@ import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { ButtonLink } from "../../../common/link";
 
-export function ImportPBSStep1Dex(props: ImportPBSStepProps) {
+export function ImportPBSStep0Dex(props: ImportPBSStepProps) {
   const intro = (
     <>
       <code>pokemon.txt</code> files define <em>every</em> Pokémon that exists in the game, but
