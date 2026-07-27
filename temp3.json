@@ -1,0 +1,4050 @@
+[
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "VENUSAUR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "venusaur",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "BLASTOISE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "blastoise",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "BEEDRILL",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "beedrill",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "PIDGEOT",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "pidgeot",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "ALAKAZAM",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "alakazam",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SLOWBRO",
+        "subsection": 2,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "slowbro",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GENGAR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "gengar",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "KANGASKHAN",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "kangaskhan",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "PINSIR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "pinsir",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GYARADOS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "gyarados",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "AERODACTYL",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "aerodactyl",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "AMPHAROS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ampharos",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "STEELIX",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "steelix",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SCIZOR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "scizor",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "HERACROSS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "heracross",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "HOUNDOOM",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "houndoom",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "TYRANITAR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "tyranitar",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SCEPTILE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sceptile",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "BLAZIKEN",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "blaziken",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SWAMPERT",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "swampert",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GARDEVOIR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "gardevoir",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SABLEYE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sableye",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MAWILE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "mawile",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "AGGRON",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "aggron",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MEDICHAM",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "medicham",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MANECTRIC",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "manectric",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SHARPEDO",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sharpedo",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "CAMERUPT",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "camerupt",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "ALTARIA",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "altaria",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "BANETTE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "banette",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "ABSOL",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "absol",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GLALIE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "glalie",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SALAMENCE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "salamence",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "METAGROSS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "metagross",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "LATIAS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "latias",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "LATIOS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "latios",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "RAYQUAZA",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rayquaza",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "LOPUNNY",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "lopunny",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GARCHOMP",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "garchomp",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "LUCARIO",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "lucario",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "ABOMASNOW",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "abomasnow",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GALLADE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "gallade",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "AUDINO",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "audino",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "DIANCIE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "diancie",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "CLEFABLE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "clefable",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "VICTREEBEL",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "victreebel",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "STARMIE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "starmie",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "DRAGONITE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "dragonite",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MEGANIUM",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "meganium",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "FERALIGATR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "feraligatr",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SKARMORY",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "skarmory",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "CHIMECHO",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "chimecho",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "STARAPTOR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "staraptor",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "FROSLASS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "froslass",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "HEATRAN",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "heatran",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "DARKRAI",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "darkrai",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "EMBOAR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "emboar",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "EXCADRILL",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "excadrill",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SCOLIPEDE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "scolipede",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SCRAFTY",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "scrafty",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "EELEKTROSS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "eelektross",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "CHANDELURE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "chandelure",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GOLURK",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "golurk",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "CHESNAUGHT",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "chesnaught",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "DELPHOX",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "delphox",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GRENINJA",
+        "subsection": 3,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "greninja",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "PYROAR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "pyroar",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "FLOETTE",
+        "subsection": 6,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "floette",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MEOWSTIC",
+        "subsection": 2,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "meowstic",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MALAMAR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "malamar",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "BARBARACLE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "barbaracle",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "DRAGALGE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "dragalge",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "HAWLUCHA",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "hawlucha",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "ZYGARDE",
+        "subsection": 4,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zygarde",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "CRABOMINABLE",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "crabominable",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GOLISOPOD",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "golisopod",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "DRAMPA",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "drampa",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "MAGEARNA",
+        "subsection": 2,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "magearna",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "ZERAORA",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zeraora",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "FALINKS",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "falinks",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "SCOVILLAIN",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "scovillain",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "GLIMMORA",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "glimmora",
+          "altKind": "mega"
+        }
+      },
+      {
+        "section": "BAXCALIBUR",
+        "subsection": 1,
+        "formName": "Mega",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "baxcalibur",
+          "altKind": "mega"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "UNOWN",
+        "subsection": 1,
+        "formName": "B",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 2,
+        "formName": "C",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 3,
+        "formName": "D",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 4,
+        "formName": "E",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 5,
+        "formName": "F",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 6,
+        "formName": "G",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 7,
+        "formName": "H",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 8,
+        "formName": "I",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 9,
+        "formName": "J",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 10,
+        "formName": "K",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 11,
+        "formName": "L",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 12,
+        "formName": "M",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 13,
+        "formName": "N",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 14,
+        "formName": "O",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 15,
+        "formName": "P",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 16,
+        "formName": "Q",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 17,
+        "formName": "R",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 18,
+        "formName": "S",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 19,
+        "formName": "T",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 20,
+        "formName": "U",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 21,
+        "formName": "V",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 22,
+        "formName": "W",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 23,
+        "formName": "X",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 24,
+        "formName": "Y",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 25,
+        "formName": "Z",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 26,
+        "formName": "?",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 27,
+        "formName": "!",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "VIVILLON",
+        "subsection": 1,
+        "formName": "Continental Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 2,
+        "formName": "Elegant Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 3,
+        "formName": "Garden Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 4,
+        "formName": "High Plains Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 5,
+        "formName": "Icy Snow Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 6,
+        "formName": "Jungle Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 7,
+        "formName": "Marine Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 8,
+        "formName": "Meadow Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 9,
+        "formName": "Modern Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 10,
+        "formName": "Monsoon Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 11,
+        "formName": "Ocean Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 12,
+        "formName": "Polar Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 13,
+        "formName": "River Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 14,
+        "formName": "Sandstorm Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 15,
+        "formName": "Savanna Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 16,
+        "formName": "Sun Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 17,
+        "formName": "Tundra Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 18,
+        "formName": "Fancy Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      },
+      {
+        "section": "VIVILLON",
+        "subsection": 19,
+        "formName": "Poké Ball Pattern",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "vivillon"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "RATTATA",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rattata",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "RATICATE",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "raticate",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "RAICHU",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "raichu",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "SANDSHREW",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sandshrew",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "SANDSLASH",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sandslash",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "VULPIX",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "vulpix",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "NINETALES",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ninetales",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "DIGLETT",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "diglett",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "DUGTRIO",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "dugtrio",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "MEOWTH",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "meowth",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "PERSIAN",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "persian",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "GEODUDE",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "geodude",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "GRAVELER",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "graveler",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "GOLEM",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "golem",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "GRIMER",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "grimer",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "MUK",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "muk",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "EXEGGUTOR",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "exeggutor",
+          "altKind": "alola"
+        }
+      },
+      {
+        "section": "MAROWAK",
+        "subsection": 1,
+        "formName": "Alolan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "marowak",
+          "altKind": "alola"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "MEOWTH",
+        "subsection": 2,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "meowth",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "PONYTA",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ponyta",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "RAPIDASH",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rapidash",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "SLOWPOKE",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "slowpoke",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "SLOWBRO",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "slowbro",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "FARFETCHD",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "farfetchd",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "WEEZING",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "weezing",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "MRMIME",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "mr-mime",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "ARTICUNO",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "articuno",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "ZAPDOS",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zapdos",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "MOLTRES",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "moltres",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "SLOWKING",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "slowking",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "CORSOLA",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "corsola",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "ZIGZAGOON",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zigzagoon",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "LINOONE",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "linoone",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "DARUMAKA",
+        "subsection": 2,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "darumaka",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "YAMASK",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "yamask",
+          "altKind": "galar"
+        }
+      },
+      {
+        "section": "STUNFISK",
+        "subsection": 1,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "stunfisk",
+          "altKind": "galar"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ARCEUS",
+        "subsection": 1,
+        "formName": "Fighting Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 2,
+        "formName": "Flying Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 3,
+        "formName": "Poison Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 4,
+        "formName": "Ground Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 5,
+        "formName": "Rock Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 6,
+        "formName": "Bug Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 7,
+        "formName": "Ghost Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 8,
+        "formName": "Steel Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 9,
+        "formName": "Unknown Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 10,
+        "formName": "Fire Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 11,
+        "formName": "Water Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 12,
+        "formName": "Grass Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 13,
+        "formName": "Electric Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 14,
+        "formName": "Psychic Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 15,
+        "formName": "Ice Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 16,
+        "formName": "Dragon Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 17,
+        "formName": "Dark Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      },
+      {
+        "section": "ARCEUS",
+        "subsection": 18,
+        "formName": "Fairy Type",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "arceus"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "SILVALLY",
+        "subsection": 1,
+        "formName": "Type: Fighting",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 2,
+        "formName": "Type: Flying",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 3,
+        "formName": "Type: Poison",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 4,
+        "formName": "Type: Ground",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 5,
+        "formName": "Type: Rock",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 6,
+        "formName": "Type: Bug",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 7,
+        "formName": "Type: Ghost",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 8,
+        "formName": "Type: Steel",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 9,
+        "formName": "Type: Unknown",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 10,
+        "formName": "Type: Fire",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 11,
+        "formName": "Type: Water",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 12,
+        "formName": "Type: Grass",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 13,
+        "formName": "Type: Electric",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 14,
+        "formName": "Type: Psychic",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 15,
+        "formName": "Type: Ice",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 16,
+        "formName": "Type: Dragon",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 17,
+        "formName": "Type: Dark",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      },
+      {
+        "section": "SILVALLY",
+        "subsection": 18,
+        "formName": "Type: Fairy",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "silvally"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "GROWLITHE",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "growlithe",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "ARCANINE",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "arcanine",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "VOLTORB",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "voltorb",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "ELECTRODE",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "electrode",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "TYPHLOSION",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "typhlosion",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "QWILFISH",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "qwilfish",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "SNEASEL",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sneasel",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "SAMUROTT",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "samurott",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "LILLIGANT",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "lilligant",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "ZORUA",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zorua",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "ZOROARK",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zoroark",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "BRAVIARY",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "braviary",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "SLIGGOO",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "sliggoo",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "GOODRA",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "goodra",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "AVALUGG",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "avalugg",
+          "altKind": "hisui"
+        }
+      },
+      {
+        "section": "DECIDUEYE",
+        "subsection": 1,
+        "formName": "Hisuian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "decidueye",
+          "altKind": "hisui"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "FURFROU",
+        "subsection": 1,
+        "formName": "Heart Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 2,
+        "formName": "Star Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 3,
+        "formName": "Diamond Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 4,
+        "formName": "Debutante Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 5,
+        "formName": "Matron Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 6,
+        "formName": "Dandy Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 7,
+        "formName": "La Reine Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 8,
+        "formName": "Kabuki Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      },
+      {
+        "section": "FURFROU",
+        "subsection": 9,
+        "formName": "Pharaoh Trim",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "furfrou"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ALCREMIE",
+        "subsection": 7,
+        "formName": "Ruby Cream",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 14,
+        "formName": "Matcha Cream",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 21,
+        "formName": "Mint Cream",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 28,
+        "formName": "Lemon Cream",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 35,
+        "formName": "Salted Cream",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 42,
+        "formName": "Ruby Swirl",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 49,
+        "formName": "Caramel Swirl",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      },
+      {
+        "section": "ALCREMIE",
+        "subsection": 56,
+        "formName": "Rainbow Swirl",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "alcremie"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "MINIOR",
+        "subsection": 7,
+        "formName": "Red Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      },
+      {
+        "section": "MINIOR",
+        "subsection": 8,
+        "formName": "Orange Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      },
+      {
+        "section": "MINIOR",
+        "subsection": 9,
+        "formName": "Yellow Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      },
+      {
+        "section": "MINIOR",
+        "subsection": 10,
+        "formName": "Green Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      },
+      {
+        "section": "MINIOR",
+        "subsection": 11,
+        "formName": "Blue Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      },
+      {
+        "section": "MINIOR",
+        "subsection": 12,
+        "formName": "Indigo Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      },
+      {
+        "section": "MINIOR",
+        "subsection": 13,
+        "formName": "Violet Core",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "minior"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ROTOM",
+        "subsection": 1,
+        "formName": "Heat",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rotom",
+          "altKind": "heat"
+        }
+      },
+      {
+        "section": "ROTOM",
+        "subsection": 2,
+        "formName": "Wash",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rotom",
+          "altKind": "wash"
+        }
+      },
+      {
+        "section": "ROTOM",
+        "subsection": 3,
+        "formName": "Frost",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rotom",
+          "altKind": "frost"
+        }
+      },
+      {
+        "section": "ROTOM",
+        "subsection": 4,
+        "formName": "Fan",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rotom",
+          "altKind": "fan"
+        }
+      },
+      {
+        "section": "ROTOM",
+        "subsection": 5,
+        "formName": "Mow",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "rotom",
+          "altKind": "mow"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "TATSUGIRI",
+        "subsection": 1,
+        "formName": "Droopy",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "tatsugiri",
+          "altKind": "droopy"
+        }
+      },
+      {
+        "section": "TATSUGIRI",
+        "subsection": 2,
+        "formName": "Stretchy",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "tatsugiri",
+          "altKind": "stretchy"
+        }
+      },
+      {
+        "section": "TATSUGIRI",
+        "subsection": 3,
+        "formName": "Mega (Curly )",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "tatsugiri"
+        }
+      },
+      {
+        "section": "TATSUGIRI",
+        "subsection": 4,
+        "formName": "Mega (Droopy )",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "tatsugiri"
+        }
+      },
+      {
+        "section": "TATSUGIRI",
+        "subsection": 5,
+        "formName": "Mega (Stretchy )",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "tatsugiri"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "TORNADUS",
+        "subsection": 1,
+        "formName": "Therian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "tornadus",
+          "altKind": "therian"
+        }
+      },
+      {
+        "section": "THUNDURUS",
+        "subsection": 1,
+        "formName": "Therian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "thundurus",
+          "altKind": "therian"
+        }
+      },
+      {
+        "section": "LANDORUS",
+        "subsection": 1,
+        "formName": "Therian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "landorus",
+          "altKind": "therian"
+        }
+      },
+      {
+        "section": "ENAMORUS",
+        "subsection": 1,
+        "formName": "Therian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "enamorus",
+          "altKind": "therian"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "MEOWSTIC",
+        "subsection": 1,
+        "formName": "Female",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "meowstic",
+          "altKind": "female"
+        }
+      },
+      {
+        "section": "INDEEDEE",
+        "subsection": 1,
+        "formName": "Female",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "indeedee",
+          "altKind": "female"
+        }
+      },
+      {
+        "section": "BASCULEGION",
+        "subsection": 3,
+        "formName": "Female",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "basculegion",
+          "altKind": "female"
+        }
+      },
+      {
+        "section": "OINKOLOGNE",
+        "subsection": 1,
+        "formName": "Female",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "oinkologne",
+          "altKind": "female"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "GENESECT",
+        "subsection": 1,
+        "formName": "Shock Drive",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "genesect"
+        }
+      },
+      {
+        "section": "GENESECT",
+        "subsection": 2,
+        "formName": "Burn Drive",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "genesect"
+        }
+      },
+      {
+        "section": "GENESECT",
+        "subsection": 3,
+        "formName": "Chill Drive",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "genesect"
+        }
+      },
+      {
+        "section": "GENESECT",
+        "subsection": 4,
+        "formName": "Douse Drive",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "genesect"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "OGERPON",
+        "subsection": 8,
+        "formName": "Terastal Teal Mask",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "ogerpon"
+        }
+      },
+      {
+        "section": "OGERPON",
+        "subsection": 9,
+        "formName": "Terastal Wellspring Mask",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "ogerpon"
+        }
+      },
+      {
+        "section": "OGERPON",
+        "subsection": 10,
+        "formName": "Terastal Hearthflame Mask",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "ogerpon"
+        }
+      },
+      {
+        "section": "OGERPON",
+        "subsection": 11,
+        "formName": "Terastal Cornerstone Mask",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "ogerpon"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "CHARIZARD",
+        "subsection": 1,
+        "formName": "Mega X",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "charizard",
+          "altKind": "mega-x"
+        }
+      },
+      {
+        "section": "MEWTWO",
+        "subsection": 1,
+        "formName": "Mega X",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "mewtwo",
+          "altKind": "mega-x"
+        }
+      },
+      {
+        "section": "RAICHU",
+        "subsection": 2,
+        "formName": "Mega X",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "raichu",
+          "altKind": "mega-x"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "CHARIZARD",
+        "subsection": 2,
+        "formName": "Mega Y",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "charizard",
+          "altKind": "mega-y"
+        }
+      },
+      {
+        "section": "MEWTWO",
+        "subsection": 2,
+        "formName": "Mega Y",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "mewtwo",
+          "altKind": "mega-y"
+        }
+      },
+      {
+        "section": "RAICHU",
+        "subsection": 3,
+        "formName": "Mega Y",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "raichu",
+          "altKind": "mega-y"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "GIRATINA",
+        "subsection": 1,
+        "formName": "Origin",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "giratina",
+          "altKind": "origin"
+        }
+      },
+      {
+        "section": "DIALGA",
+        "subsection": 1,
+        "formName": "Origin",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "dialga",
+          "altKind": "origin"
+        }
+      },
+      {
+        "section": "PALKIA",
+        "subsection": 1,
+        "formName": "Origin",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "palkia",
+          "altKind": "origin"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "FLABEBE",
+        "subsection": 1,
+        "formName": "Yellow Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "flabebe"
+        }
+      },
+      {
+        "section": "FLOETTE",
+        "subsection": 1,
+        "formName": "Yellow Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "floette"
+        }
+      },
+      {
+        "section": "FLORGES",
+        "subsection": 1,
+        "formName": "Yellow Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "florges"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "FLABEBE",
+        "subsection": 2,
+        "formName": "Orange Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "flabebe"
+        }
+      },
+      {
+        "section": "FLOETTE",
+        "subsection": 2,
+        "formName": "Orange Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "floette"
+        }
+      },
+      {
+        "section": "FLORGES",
+        "subsection": 2,
+        "formName": "Orange Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "florges"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "FLABEBE",
+        "subsection": 3,
+        "formName": "Blue Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "flabebe"
+        }
+      },
+      {
+        "section": "FLOETTE",
+        "subsection": 3,
+        "formName": "Blue Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "floette"
+        }
+      },
+      {
+        "section": "FLORGES",
+        "subsection": 3,
+        "formName": "Blue Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "florges"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "FLABEBE",
+        "subsection": 4,
+        "formName": "White Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "flabebe"
+        }
+      },
+      {
+        "section": "FLOETTE",
+        "subsection": 4,
+        "formName": "White Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "floette"
+        }
+      },
+      {
+        "section": "FLORGES",
+        "subsection": 4,
+        "formName": "White Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "florges"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "ABSOL",
+        "subsection": 2,
+        "formName": "Mega Z",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "absol",
+          "altKind": "mega-z"
+        }
+      },
+      {
+        "section": "GARCHOMP",
+        "subsection": 2,
+        "formName": "Mega Z",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "garchomp",
+          "altKind": "mega-z"
+        }
+      },
+      {
+        "section": "LUCARIO",
+        "subsection": 2,
+        "formName": "Mega Z",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "lucario",
+          "altKind": "mega-z"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "CASTFORM",
+        "subsection": 1,
+        "formName": "Sunny",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "castform",
+          "altKind": "sunny"
+        }
+      },
+      {
+        "section": "CASTFORM",
+        "subsection": 2,
+        "formName": "Rainy",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "castform",
+          "altKind": "rainy"
+        }
+      },
+      {
+        "section": "CASTFORM",
+        "subsection": 3,
+        "formName": "Snowy",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "castform",
+          "altKind": "snowy"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "DEOXYS",
+        "subsection": 1,
+        "formName": "Attack",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "deoxys",
+          "altKind": "attack"
+        }
+      },
+      {
+        "section": "DEOXYS",
+        "subsection": 2,
+        "formName": "Defense",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "deoxys",
+          "altKind": "defense"
+        }
+      },
+      {
+        "section": "DEOXYS",
+        "subsection": 3,
+        "formName": "Speed",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "deoxys",
+          "altKind": "speed"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "DARMANITAN",
+        "subsection": 1,
+        "formName": "Zen Mode",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "darmanitan"
+        }
+      },
+      {
+        "section": "DARMANITAN",
+        "subsection": 2,
+        "formName": "Galarian Standard Mode",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "darmanitan"
+        }
+      },
+      {
+        "section": "DARMANITAN",
+        "subsection": 3,
+        "formName": "Galarian Zen Mode",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "darmanitan"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ORICORIO",
+        "subsection": 1,
+        "formName": "Pom-Pom Style",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "oricorio"
+        }
+      },
+      {
+        "section": "ORICORIO",
+        "subsection": 2,
+        "formName": "Pa'u Style",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "oricorio"
+        }
+      },
+      {
+        "section": "ORICORIO",
+        "subsection": 3,
+        "formName": "Sensu Style",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "oricorio"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "NECROZMA",
+        "subsection": 1,
+        "formName": "Dusk Mane",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "necrozma",
+          "altKind": "dusk"
+        }
+      },
+      {
+        "section": "NECROZMA",
+        "subsection": 2,
+        "formName": "Dawn Wings",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "necrozma",
+          "altKind": "dawn"
+        }
+      },
+      {
+        "section": "NECROZMA",
+        "subsection": 3,
+        "formName": "Ultra",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "necrozma",
+          "altKind": "ultra"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "TAUROS",
+        "subsection": 1,
+        "formName": "Paldean (Combat Breed)",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "tauros"
+        }
+      },
+      {
+        "section": "TAUROS",
+        "subsection": 2,
+        "formName": "Paldean (Blaze Breed)",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "tauros"
+        }
+      },
+      {
+        "section": "TAUROS",
+        "subsection": 3,
+        "formName": "Paldean (Aqua Breed)",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "tauros"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "SQUAWKABILLY",
+        "subsection": 1,
+        "formName": "Blue Plumage",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "squawkabilly",
+          "altKind": "blue-plumage"
+        }
+      },
+      {
+        "section": "SQUAWKABILLY",
+        "subsection": 2,
+        "formName": "Yellow Plumage",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "squawkabilly",
+          "altKind": "yellow-plumage"
+        }
+      },
+      {
+        "section": "SQUAWKABILLY",
+        "subsection": 3,
+        "formName": "White Plumage",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "squawkabilly",
+          "altKind": "white-plumage"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "KYOGRE",
+        "subsection": 1,
+        "formName": "Primal",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "kyogre",
+          "altKind": "primal"
+        }
+      },
+      {
+        "section": "GROUDON",
+        "subsection": 1,
+        "formName": "Primal",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "groudon",
+          "altKind": "primal"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "BURMY",
+        "subsection": 1,
+        "formName": "Sandy Cloak",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "burmy"
+        }
+      },
+      {
+        "section": "WORMADAM",
+        "subsection": 1,
+        "formName": "Sandy Cloak",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "wormadam",
+          "altKind": "sandy"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "BURMY",
+        "subsection": 2,
+        "formName": "Trash Cloak",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "burmy"
+        }
+      },
+      {
+        "section": "WORMADAM",
+        "subsection": 2,
+        "formName": "Trash Cloak",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "wormadam",
+          "altKind": "trash"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "SHELLOS",
+        "subsection": 1,
+        "formName": "East Sea",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "shellos"
+        }
+      },
+      {
+        "section": "GASTRODON",
+        "subsection": 1,
+        "formName": "East Sea",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "gastrodon"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "DEERLING",
+        "subsection": 1,
+        "formName": "Summer",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "deerling"
+        }
+      },
+      {
+        "section": "SAWSBUCK",
+        "subsection": 1,
+        "formName": "Summer",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "sawsbuck"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "DEERLING",
+        "subsection": 2,
+        "formName": "Autumn",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "deerling"
+        }
+      },
+      {
+        "section": "SAWSBUCK",
+        "subsection": 2,
+        "formName": "Autumn",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "sawsbuck"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "DEERLING",
+        "subsection": 3,
+        "formName": "Winter",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "deerling"
+        }
+      },
+      {
+        "section": "SAWSBUCK",
+        "subsection": 3,
+        "formName": "Winter",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "sawsbuck"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "PUMPKABOO",
+        "subsection": 1,
+        "formName": "Average Size",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "pumpkaboo"
+        }
+      },
+      {
+        "section": "GOURGEIST",
+        "subsection": 1,
+        "formName": "Average Size",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "gourgeist"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "PUMPKABOO",
+        "subsection": 2,
+        "formName": "Large Size",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "pumpkaboo"
+        }
+      },
+      {
+        "section": "GOURGEIST",
+        "subsection": 2,
+        "formName": "Large Size",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "gourgeist"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "PUMPKABOO",
+        "subsection": 3,
+        "formName": "Super Size",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "pumpkaboo"
+        }
+      },
+      {
+        "section": "GOURGEIST",
+        "subsection": 3,
+        "formName": "Super Size",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "gourgeist"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "SINISTEA",
+        "subsection": 1,
+        "formName": "Antique",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "sinistea"
+        }
+      },
+      {
+        "section": "POLTEAGEIST",
+        "subsection": 1,
+        "formName": "Antique",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "polteageist"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "OGERPON",
+        "subsection": 1,
+        "formName": "Wellspring Mask",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ogerpon",
+          "altKind": "wellspring-mask"
+        }
+      },
+      {
+        "section": "OGERPON",
+        "subsection": 5,
+        "formName": "Wellspring Mask",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ogerpon",
+          "altKind": "wellspring-mask"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "OGERPON",
+        "subsection": 2,
+        "formName": "Hearthflame Mask",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ogerpon",
+          "altKind": "hearthflame-mask"
+        }
+      },
+      {
+        "section": "OGERPON",
+        "subsection": 6,
+        "formName": "Hearthflame Mask",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ogerpon",
+          "altKind": "hearthflame-mask"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "formName",
+    "entries": [
+      {
+        "section": "OGERPON",
+        "subsection": 3,
+        "formName": "Cornerstone Mask",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ogerpon",
+          "altKind": "cornerstone-mask"
+        }
+      },
+      {
+        "section": "OGERPON",
+        "subsection": 7,
+        "formName": "Cornerstone Mask",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ogerpon",
+          "altKind": "cornerstone-mask"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "BASCULIN",
+        "subsection": 1,
+        "formName": "Blue-Striped",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "basculin"
+        }
+      },
+      {
+        "section": "BASCULIN",
+        "subsection": 2,
+        "formName": "White-Striped",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "basculin"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "KYUREM",
+        "subsection": 1,
+        "formName": "White",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "kyurem",
+          "altKind": "white"
+        }
+      },
+      {
+        "section": "KYUREM",
+        "subsection": 2,
+        "formName": "Black",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "kyurem",
+          "altKind": "black"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ZYGARDE",
+        "subsection": 1,
+        "formName": "10%",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zygarde",
+          "altKind": "10"
+        }
+      },
+      {
+        "section": "ZYGARDE",
+        "subsection": 2,
+        "formName": "Complete",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zygarde",
+          "altKind": "complete"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "LYCANROC",
+        "subsection": 1,
+        "formName": "Midnight",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "lycanroc",
+          "altKind": "midnight"
+        }
+      },
+      {
+        "section": "LYCANROC",
+        "subsection": 2,
+        "formName": "Dusk",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "lycanroc",
+          "altKind": "dusk"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "MAGEARNA",
+        "subsection": 1,
+        "formName": "Original Color",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "magearna"
+        }
+      },
+      {
+        "section": "MAGEARNA",
+        "subsection": 3,
+        "formName": "Mega (Original Color)",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "magearna"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "CRAMORANT",
+        "subsection": 1,
+        "formName": "Gulping",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "cramorant",
+          "altKind": "gulping"
+        }
+      },
+      {
+        "section": "CRAMORANT",
+        "subsection": 2,
+        "formName": "Gorging",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "cramorant",
+          "altKind": "gorging"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "CALYREX",
+        "subsection": 1,
+        "formName": "Ice Rider",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "calyrex",
+          "altKind": "ice"
+        }
+      },
+      {
+        "section": "CALYREX",
+        "subsection": 2,
+        "formName": "Shadow Rider",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "calyrex",
+          "altKind": "shadow"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "TERAPAGOS",
+        "subsection": 1,
+        "formName": "Terastal",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "terapagos",
+          "altKind": "terastal"
+        }
+      },
+      {
+        "section": "TERAPAGOS",
+        "subsection": 2,
+        "formName": "Stellar",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "terapagos",
+          "altKind": "stellar"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "PICHU",
+        "subsection": 2,
+        "formName": "Spiky-Eared",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "pichu"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "CHERRIM",
+        "subsection": 1,
+        "formName": "Sunshine",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "cherrim"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "SHAYMIN",
+        "subsection": 1,
+        "formName": "Sky",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "shaymin",
+          "altKind": "sky"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "KELDEO",
+        "subsection": 1,
+        "formName": "Resolute",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "keldeo",
+          "altKind": "resolute"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "MELOETTA",
+        "subsection": 1,
+        "formName": "Pirouette",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "meloetta",
+          "altKind": "pirouette"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "GRENINJA",
+        "subsection": 2,
+        "formName": "Ash-",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "greninja"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "FLOETTE",
+        "subsection": 5,
+        "formName": "Eternal Flower",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "floette"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "AEGISLASH",
+        "subsection": 1,
+        "formName": "Blade",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "aegislash",
+          "altKind": "blade"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "XERNEAS",
+        "subsection": 1,
+        "formName": "Active Mode",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "xerneas"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "HOOPA",
+        "subsection": 1,
+        "formName": "Unbound",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "hoopa",
+          "altKind": "unbound"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "WISHIWASHI",
+        "subsection": 1,
+        "formName": "School",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "wishiwashi",
+          "altKind": "school"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "MIMIKYU",
+        "subsection": 1,
+        "formName": "Busted",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "mimikyu"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "TOXTRICITY",
+        "subsection": 1,
+        "formName": "Low Key",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "toxtricity",
+          "altKind": "low-key"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "EISCUE",
+        "subsection": 1,
+        "formName": "Noice Face",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "eiscue",
+          "altKind": "noice"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "MORPEKO",
+        "subsection": 1,
+        "formName": "Hangry Mode",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "morpeko"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ZACIAN",
+        "subsection": 1,
+        "formName": "Crowned Sword",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zacian",
+          "altKind": "crowned"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "ZAMAZENTA",
+        "subsection": 1,
+        "formName": "Crowned Shield",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "zamazenta",
+          "altKind": "crowned"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "URSHIFU",
+        "subsection": 1,
+        "formName": "Rapid Strike Style",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "urshifu"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "WOOPER",
+        "subsection": 1,
+        "formName": "Paldean",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "wooper",
+          "altKind": "paldea"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "URSALUNA",
+        "subsection": 1,
+        "formName": "Bloodmoon",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "ursaluna",
+          "altKind": "bloodmoon"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "DUDUNSPARCE",
+        "subsection": 1,
+        "formName": "Three-Segment",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "dudunsparce"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "PALAFIN",
+        "subsection": 1,
+        "formName": "Hero",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "palafin",
+          "altKind": "hero"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "MAUSHOLD",
+        "subsection": 1,
+        "formName": "Family of Three",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "maushold"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "GIMMIGHOUL",
+        "subsection": 1,
+        "formName": "Roaming",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "gimmighoul",
+          "altKind": "roaming"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "POLTCHAGEIST",
+        "subsection": 1,
+        "formName": "Artisan",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "poltchageist"
+        }
+      }
+    ]
+  },
+  {
+    "groupedBy": "section",
+    "entries": [
+      {
+        "section": "SINISTCHA",
+        "subsection": 1,
+        "formName": "Masterpiece",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "sinistcha"
+        }
+      }
+    ]
+  }
+]

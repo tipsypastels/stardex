@@ -8,10 +8,12 @@ export interface ImportPBSState {
   parsed: ImportPBSParsedState | undefined;
   stepIndex: number;
   filteredDexSection: number | undefined;
+  formGranularity: ImportPBSFormGranularity | undefined;
   import(files: FileList): Promise<void>;
   close(): void;
   advance(): void;
   setFilteredDexSection(section: number | undefined): void;
+  setFormGranularity(granularity: ImportPBSFormGranularity | undefined): void;
 }
 
 export interface ImportPBSParsedState {
@@ -21,6 +23,9 @@ export interface ImportPBSParsedState {
   pokemonsCount: number;
   formsCount: number;
 }
+
+export type ImportPBSFormGranularity =
+  { type: "all" } | { type: "has-types" } | { type: "known" } | { type: "advanced" };
 
 export function createImportPBSState(): ImportPBSState {
   // Not using a store because we don't care about changes to individual values, just the list.
@@ -59,6 +64,7 @@ export function createImportPBSState(): ImportPBSState {
 
   const [stepIndex, setStepIndex] = createSignal(0);
   const [filteredDexSection, setFilteredDexSection] = createSignal<number>();
+  const [formGranularity, setFormGranularity] = createSignal<ImportPBSFormGranularity>();
 
   return {
     get files() {
@@ -75,6 +81,10 @@ export function createImportPBSState(): ImportPBSState {
 
     get filteredDexSection() {
       return filteredDexSection();
+    },
+
+    get formGranularity() {
+      return formGranularity();
     },
 
     async import(fileList) {
@@ -107,5 +117,6 @@ export function createImportPBSState(): ImportPBSState {
     },
 
     setFilteredDexSection,
+    setFormGranularity,
   };
 }

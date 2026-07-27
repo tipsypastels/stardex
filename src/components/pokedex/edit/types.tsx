@@ -67,6 +67,14 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
                   checked={!props.pokemon.altKind && !props.pokemon.customAltName}
                   onChange={setDefault}
                 >
+                  <Show when={props.pokemon.species.hasCustomTypeIcons}>
+                    <span
+                      class="text-foreground-muted"
+                      title="This form has icons for multiple types."
+                    >
+                      *
+                    </span>
+                  </Show>
                   <Show
                     when={
                       !props.pokemon.altKind &&
