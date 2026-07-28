@@ -3,7 +3,6 @@
 
 import * as fs from "node:fs/promises";
 import * as process from "node:process";
-import RAW_TYPE_DATA from "../src/data/types.json" with { type: "json" };
 
 /**
  * @typedef {{
@@ -45,7 +44,6 @@ import RAW_TYPE_DATA from "../src/data/types.json" with { type: "json" };
  *  types: string[],
  *  evos?: { from?: string, to?: string[] }
  *  alts?: { kind: string, name: string, types: string[], iconIndex: number }[]
- *  customTypeIcons?: { types: string[], iconIndex: number }[]
  * }} ResolvedMon
  */
 
@@ -817,25 +815,6 @@ const HIDDEN_NAMES = {
   "mime-jr": "Mime Junior",
 };
 
-// PokeAPI doesn't consider these to be varieties, but forms. We ignore forms so we need to account for them specially.
-// const FORCE_ALTS_FOR_EVERY_TYPE_BUT_NORMAL = new Set(["arceus", "silvally"]);
-/** @type {Record<string, ResolvedMon['customTypeIcons']>} */
-const CUSTOM_TYPE_ICONS = {
-  arceus: Object.keys(RAW_TYPE_DATA)
-    .filter((key) => key !== "normal")
-    .map((key) => ({
-      types: [key],
-      iconIndex: SMOGON_ALT_ICON_INDICES[`arceus${key}`],
-    })),
-
-  silvally: Object.keys(RAW_TYPE_DATA)
-    .filter((key) => key !== "normal")
-    .map((key) => ({
-      types: [key],
-      iconIndex: SMOGON_ALT_ICON_INDICES[`silvally${key}`],
-    })),
-};
-
 async function main() {
   /** @type {Promise<ResolvedMon | null>[]} */
   const promises = [];
@@ -892,7 +871,6 @@ function fillSegment(promises, segment) {
       species.names?.find((n) => n.language.name === "en")?.name ?? capitalize(species.name);
     const hiddenName = HIDDEN_NAMES[key];
     const noAltName = NO_KIND_NAMES[key];
-    const customTypeIcons = CUSTOM_TYPE_ICONS[key];
 
     /** @type {ResolvedMon['evos']} */
     let evos;
@@ -913,17 +891,7 @@ function fillSegment(promises, segment) {
       }
     }
 
-    return {
-      id,
-      key,
-      name,
-      hiddenName,
-      noAltName,
-      types,
-      evos,
-      alts,
-      customTypeIcons,
-    };
+    return { id, key, name, hiddenName, noAltName, types, evos, alts };
   }
 
   for (const { url } of segment.results) {

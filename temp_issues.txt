@@ -1,6 +1,0 @@
-- Displayname for line buckets is wrong, defaulting to end? Even if that is not in the bucket.
-- Paldean wooper is distinct? Wot?
-- Maushold fo4 is default, override that?
-- Override minior, ogerpon.
-- Burmy cloak is cosmetic, only affects evolution, override that.
-- Names broken for Tatsugiri megas.

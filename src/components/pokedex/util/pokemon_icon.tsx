@@ -1,4 +1,4 @@
-import { Match, Switch } from "solid-js";
+import { Match, Show, Switch } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import { customIcons } from "../../../models/pokemon/custom_icon";
 import { CustomIcon, CustomIconLoading } from "./custom_icon";
@@ -29,14 +29,9 @@ export function PokemonIcon(props: PokemonIconProps) {
       </Match>
       <Match when={props.pokemon.species}>
         {(species) => (
-          <Switch fallback={<SpeciesIcon id={species().id} name={name()} />}>
-            <Match when={props.pokemon.alt}>
-              {(alt) => <SpeciesIcon id={alt().iconIndex} name={name()} />}
-            </Match>
-            <Match when={species().getCustomTypeIconIndex(props.pokemon.typeKeys)}>
-              {(iconIndex) => <SpeciesIcon id={iconIndex()} name={name()} />}
-            </Match>
-          </Switch>
+          <Show when={props.pokemon.alt} fallback={<SpeciesIcon id={species().id} name={name()} />}>
+            {(alt) => <SpeciesIcon id={alt().iconIndex} name={name()} />}
+          </Show>
         )}
       </Match>
     </Switch>

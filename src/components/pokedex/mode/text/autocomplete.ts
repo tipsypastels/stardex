@@ -139,7 +139,7 @@ const NAME_OPTIONS: Completion[] = SPECIES.all.flatMap((species) => {
     );
   }
 
-  if (!species.evolvesFromKey && species.evolvesToKeys) {
+  if (species.isStartOfFamily) {
     out.push({
       label: species.name,
       detail: "(Family)",

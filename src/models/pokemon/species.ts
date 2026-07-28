@@ -1,7 +1,6 @@
 import RAW_DATA from "../../data/species.json" with { type: "json" };
 import { must } from "../../utils/assert";
 import { BUILTIN_TYPES, type Type } from "../type";
-import { TYPE_KEY_PAIRS } from "../type/key_pair";
 
 export interface RawSpecies {
   id: number;
@@ -11,7 +10,6 @@ export interface RawSpecies {
   types: string[];
   evos?: { from?: string; to?: string[] };
   alts?: RawSpeciesAlt[];
-  customTypeIcons?: { types: string[]; iconIndex: number }[];
 }
 
 export interface RawSpeciesAlt {
@@ -90,21 +88,8 @@ export class Species {
     );
   }
 
-  get hasCustomTypeIcons() {
-    return !!this.#raw.customTypeIcons;
-  }
-
-  getCustomTypeIconIndex(types: string[]) {
-    return this.#raw.customTypeIcons?.find((icon) => TYPE_KEY_PAIRS.equal(icon.types, types))
-      ?.iconIndex;
-  }
-
-  get evolvesFromKey() {
-    return this.#raw.evos?.from;
-  }
-
-  get evolvesToKeys() {
-    return this.#raw.evos?.to;
+  get isStartOfFamily() {
+    return !this.#raw.evos?.from && !!this.#raw.evos?.to?.length;
   }
 
   get #raw() {
