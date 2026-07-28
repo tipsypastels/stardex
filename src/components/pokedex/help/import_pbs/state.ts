@@ -31,7 +31,7 @@ export interface ImportPBSParsedState {
   formsCount: number;
 }
 
-export type ImportPBSFormGranularityAdvancedDecision = "keep" | "replace" | "omit";
+export type ImportPBSFormGranularityAdvancedDecision = "add" | "replace" | "omit";
 export type ImportPBSFormGranularityAdvancedPickView =
   | { type: "loading" }
   | { type: "done" }

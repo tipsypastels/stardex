@@ -229,7 +229,7 @@ function FilterBuckets(props: FilterBucketsProps) {
     return (
       <>
         {shownNames}
-        {overflowed ? ` and ${props.bucket.entries.length - show} more` : ""}
+        {overflowed ? ` and ${inputs.length - show} more` : ""}
       </>
     );
   }
@@ -278,8 +278,8 @@ function FilterBuckets(props: FilterBucketsProps) {
         class="absolute -bottom-2.5 bg-background px-2 text-center whitespace-nowrap"
         style={{ left: "50%", transform: "translateX(-50%)" }}
       >
-        <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("keep")}>
-          Keep
+        <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("add")}>
+          Add
         </ButtonLink>
         <span class="text-foreground-muted">{" / "}</span>
         <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("replace")}>
