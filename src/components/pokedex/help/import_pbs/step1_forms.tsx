@@ -213,7 +213,7 @@ function FilterBuckets(props: FilterBucketsProps) {
       <div>
         {props.bucket.groupedBy === "formName" ? (
           <>
-            <strong>Form:</strong> {props.bucket.displayName}
+            <strong>Form:</strong> {props.bucket.formName}
             <ul class="list-inside list-disc text-sm text-foreground-muted">
               <li>
                 <strong>{props.bucket.entries.length}</strong> Pokémon have this form.
@@ -223,7 +223,10 @@ function FilterBuckets(props: FilterBucketsProps) {
           </>
         ) : (
           <>
-            <strong>Forms of Family:</strong> {props.bucket.displayName}
+            <strong>
+              Forms of {props.bucket.speciesNames.length === 1 ? "Pokémon" : "Family"}:
+            </strong>{" "}
+            {props.bucket.speciesNames[0]}
             <ul class="list-inside list-disc text-sm text-foreground-muted">
               <li>
                 <strong>{props.bucket.entries.length}</strong> unique form

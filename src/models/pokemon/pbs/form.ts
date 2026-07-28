@@ -4,13 +4,17 @@ import { SPECIES } from "../species";
 import type { PBSRecord } from "./parse";
 import { getPBSRecordSectionSpecies } from "./species";
 
-export interface PBSFormFilterBucket {
-  groupedBy: "formName" | "line";
-  entries: PBSFormFilterBucketEntry[];
-  // If groupedBy formName, this is the form name.
-  // If groupedBy line this is the root species name.
-  displayName: string;
-}
+export type PBSFormFilterBucket =
+  | {
+      groupedBy: "formName";
+      entries: PBSFormFilterBucketEntry[];
+      formName: string;
+    }
+  | {
+      groupedBy: "line";
+      entries: PBSFormFilterBucketEntry[];
+      speciesNames: string[];
+    };
 
 export interface PBSFormFilterBucketEntry {
   section: string;
@@ -126,7 +130,7 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
     if (linesInvolved.size > 1) {
       nameBuckets.push({
         groupedBy: "formName",
-        displayName: formName,
+        formName,
         entries,
       });
     } else {
@@ -136,23 +140,28 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
   }
 
   const lineBuckets = [...rootSectionToEntries.values()].map((entries): PBSFormFilterBucket => {
-    const [firstEntry] = entries;
-    const displayName =
-      firstEntry.resolutionInfo.kind === "unknown"
-        ? firstEntry.resolutionInfo.speciesName
-        : SPECIES.of(firstEntry.resolutionInfo.speciesKey).name;
+    const speciesNames = [
+      ...new Set(
+        entries.map((entry) =>
+          entry.resolutionInfo.kind === "unknown"
+            ? entry.resolutionInfo.speciesName
+            : SPECIES.of(entry.resolutionInfo.speciesKey).name,
+        ),
+      ),
+    ];
 
     return {
       groupedBy: "line",
       entries,
-      displayName,
+      speciesNames,
     };
   });
 
   const buckets = [...nameBuckets, ...lineBuckets];
+  const asDisplayName = (bucket: PBSFormFilterBucket) =>
+    bucket.groupedBy === "formName" ? bucket.formName : bucket.speciesNames[0];
 
-  buckets.sort((left, right) => sortStrings(left.displayName, right.displayName));
-
+  buckets.sort((left, right) => sortStrings(asDisplayName(left), asDisplayName(right)));
   return buckets;
 }
 
