@@ -100,12 +100,7 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
             name="Let me decide for each form type."
             radio
             checked={props.state.formGranularity?.type === "advanced"}
-            onChange={() =>
-              props.state.setFormGranularity({
-                type: "advanced",
-                decisions: new Array(70).fill("omit"),
-              })
-            }
+            onChange={() => props.state.setFormGranularity({ type: "advanced", decisions: [] })}
           />
         </li>
       </ul>
