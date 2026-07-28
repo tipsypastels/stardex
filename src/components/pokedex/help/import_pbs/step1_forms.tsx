@@ -1,4 +1,4 @@
-import { batch, createMemo, Match, Show, Switch } from "solid-js";
+import { batch, Match, Show, Switch } from "solid-js";
 import type { ImportPBSStepProps } from ".";
 import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
 import { Button, UploadButton } from "../../../common/button";
@@ -97,7 +97,7 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
         </li>
         <li>
           <Checkbox
-            name="Let me decide for each form type."
+            name="Let me decide for each form class."
             radio
             checked={props.state.formGranularity?.type === "advanced"}
             onChange={() => props.state.setFormGranularity({ type: "advanced", decisions: [] })}
@@ -155,7 +155,7 @@ function renderGranularityAdvancedPickView(state: ImportPBSState) {
       return "TODO done";
     }
     case "bucket": {
-      return <FilterBuckets state={state} bucket={state.formGranularityAdvancedPickView.bucket} />;
+      return <FilterBuckets state={state} {...state.formGranularityAdvancedPickView} />;
     }
   }
 }
@@ -163,29 +163,19 @@ function renderGranularityAdvancedPickView(state: ImportPBSState) {
 interface FilterBucketsProps {
   state: ImportPBSState;
   bucket: PBSFormFilterBucket;
+  index: number;
+  total: number;
 }
 
 function FilterBuckets(props: FilterBucketsProps) {
-  const bucket = createMemo(() => {
-    if (props.state.formGranularity?.type !== "advanced") return;
-    if (!props.state.formGranularityAdvancedFilterBuckets) return;
-
-    return props.state.formGranularityAdvancedFilterBuckets.at(
-      props.state.formGranularity.decisions.length,
-    );
-  });
-
-  function render(bucket: PBSFormFilterBucket) {
-    const index = (props.state.formGranularity as { decisions: unknown[] }).decisions.length;
-    const total = props.state.formGranularityAdvancedFilterBuckets!.length;
-
-    const knownCount = bucket.entries.filter((entry) =>
+  function renderKnown() {
+    const knownCount = props.bucket.entries.filter((entry) =>
       entry.resolutionInfo.kind.startsWith("known"),
     ).length;
 
-    const known = (
+    return (
       <li>
-        Recognized by Stardex?
+        <span class="mr-1">Recognized by Stardex?</span>
         <Switch
           fallback={
             <span class="text-warning">
@@ -193,7 +183,7 @@ function FilterBuckets(props: FilterBucketsProps) {
             </span>
           }
         >
-          <Match when={knownCount === bucket.entries.length}>
+          <Match when={knownCount === props.bucket.entries.length}>
             <span class="text-primary">
               <Icon name="check" /> Yes
             </span>
@@ -206,62 +196,63 @@ function FilterBuckets(props: FilterBucketsProps) {
         </Switch>
       </li>
     );
-
-    return (
-      <div class="relative rounded-md border-2 border-divider-heavy p-4">
-        <div class="absolute -top-2.5 left-4 bg-background px-2 text-xs">
-          {index + 1} / {total}
-        </div>
-        <div>
-          {bucket.groupedBy === "formName" ? (
-            <>
-              <strong>Form:</strong> {bucket.displayName}
-              <ul class="list-inside list-disc text-sm text-foreground-muted">
-                <li>
-                  <strong>{bucket.entries.length}</strong> Pokémon have this form.
-                </li>
-                {known}
-              </ul>
-            </>
-          ) : (
-            <>
-              <strong>Forms of Family:</strong> {bucket.displayName}
-              <ul class="list-inside list-disc text-sm text-foreground-muted">
-                <li>
-                  <strong>{bucket.entries.length}</strong> unique form
-                  {bucket.entries.length === 1 ? "" : "s"} in this family.
-                </li>
-                {known}
-              </ul>
-            </>
-          )}
-        </div>
-        <div
-          class="absolute -bottom-2.5 bg-background px-2 text-center whitespace-nowrap"
-          style={{ left: "50%", transform: "translateX(-50%)" }}
-        >
-          <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("keep")}>
-            Keep
-          </ButtonLink>
-          <span class="text-foreground-muted">{" / "}</span>
-          <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("replace")}>
-            Replace Base
-          </ButtonLink>
-          <span class="text-foreground-muted">{" / "}</span>
-          <ButtonLink
-            onClick={() => props.state.pushFormGranularityAdvancedDecision("omit")}
-            look="warning"
-          >
-            Omit
-          </ButtonLink>
-        </div>
-      </div>
-    );
   }
 
   return (
-    <Show when={bucket()} keyed fallback="TODO Loading">
-      {(bucket) => render(bucket)}
-    </Show>
+    <div class="relative rounded-md border-2 border-divider-heavy p-4">
+      <div class="absolute -top-2.5 left-4 bg-background px-2 text-xs">
+        {props.index + 1} / {props.total}
+      </div>
+      <Show when={props.index}>
+        <div class="absolute -top-2.5 right-4 bg-background px-2 text-xs">
+          <ButtonLink onClick={() => props.state.undoFormGranularityAdvancedDecision()}>
+            Undo
+          </ButtonLink>
+        </div>
+      </Show>
+      <div>
+        {props.bucket.groupedBy === "formName" ? (
+          <>
+            <strong>Form:</strong> {props.bucket.displayName}
+            <ul class="list-inside list-disc text-sm text-foreground-muted">
+              <li>
+                <strong>{props.bucket.entries.length}</strong> Pokémon have this form.
+              </li>
+              {renderKnown()}
+            </ul>
+          </>
+        ) : (
+          <>
+            <strong>Forms of Family:</strong> {props.bucket.displayName}
+            <ul class="list-inside list-disc text-sm text-foreground-muted">
+              <li>
+                <strong>{props.bucket.entries.length}</strong> unique form
+                {props.bucket.entries.length === 1 ? "" : "s"} in this family.
+              </li>
+              {renderKnown()}
+            </ul>
+          </>
+        )}
+      </div>
+      <div
+        class="absolute -bottom-2.5 bg-background px-2 text-center whitespace-nowrap"
+        style={{ left: "50%", transform: "translateX(-50%)" }}
+      >
+        <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("keep")}>
+          Keep
+        </ButtonLink>
+        <span class="text-foreground-muted">{" / "}</span>
+        <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("replace")}>
+          Replace Base
+        </ButtonLink>
+        <span class="text-foreground-muted">{" / "}</span>
+        <ButtonLink
+          onClick={() => props.state.pushFormGranularityAdvancedDecision("omit")}
+          look="warning"
+        >
+          Omit
+        </ButtonLink>
+      </div>
+    </div>
   );
 }

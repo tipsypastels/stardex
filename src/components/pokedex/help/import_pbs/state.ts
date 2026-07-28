@@ -20,6 +20,7 @@ export interface ImportPBSState {
   setFilteredDexSection(section: number | undefined): void;
   setFormGranularity(granularity: ImportPBSFormGranularity | undefined): void;
   pushFormGranularityAdvancedDecision(decision: ImportPBSFormGranularityAdvancedDecision): void;
+  undoFormGranularityAdvancedDecision(): void;
 }
 
 export interface ImportPBSParsedState {
@@ -32,7 +33,9 @@ export interface ImportPBSParsedState {
 
 export type ImportPBSFormGranularityAdvancedDecision = "keep" | "replace" | "omit";
 export type ImportPBSFormGranularityAdvancedPickView =
-  { type: "loading" } | { type: "done" } | { type: "bucket"; bucket: PBSFormFilterBucket };
+  | { type: "loading" }
+  | { type: "done" }
+  | { type: "bucket"; bucket: PBSFormFilterBucket; index: number; total: number };
 export type ImportPBSFormGranularity =
   | { type: "all" }
   | { type: "has-types" }
@@ -102,11 +105,12 @@ export function createImportPBSState(): ImportPBSState {
       // This shouldn't actually happen the way the UI is set up.
       if (granularity?.type !== "advanced") return { type: "loading" };
 
+      const index = granularity.decisions.length;
       const buckets = formGranularityAdvancedFilterBuckets();
       if (!buckets) return { type: "loading" };
-      if (buckets.length === granularity.decisions.length) return { type: "done" };
+      if (buckets.length === index) return { type: "done" };
 
-      return { type: "bucket", bucket: buckets[granularity.decisions.length] };
+      return { type: "bucket", bucket: buckets[index], index, total: buckets.length };
     },
   );
 
@@ -182,6 +186,16 @@ export function createImportPBSState(): ImportPBSState {
         } else {
           return { type: "advanced", decisions: [decision] };
         }
+      });
+    },
+
+    undoFormGranularityAdvancedDecision() {
+      setFormGranularity((granularity) => {
+        if (granularity?.type !== "advanced") return granularity;
+        return {
+          ...granularity,
+          decisions: granularity.decisions.slice(0, granularity.decisions.length - 1),
+        };
       });
     },
   };
