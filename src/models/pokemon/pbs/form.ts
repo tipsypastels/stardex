@@ -70,12 +70,10 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
       continue;
     }
 
-    // TODO: Normalize special cases.
     let formName = formNameMaybeWithSpeciesName
       .replace(speciesName, "")
       .replace(/\s*\bForme?\b\s*/, "")
       .replace(/\s*\bStyle\b\s*/, "")
-      .replace(/\s*\bGiga\b\s*/, "Gigantamax")
       .replace(/-$/, "")
       .replace(/  +/g, " ")
       .trim();

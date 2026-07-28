@@ -936,7 +936,7 @@
     "entries": [
       {
         "section": "ETERNATUS",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Eternamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1484,7 +1484,7 @@
     "entries": [
       {
         "section": "VENUSAUR",
-        "subsection": 3,
+        "subsection": 2,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1494,7 +1494,7 @@
       },
       {
         "section": "CHARIZARD",
-        "subsection": 4,
+        "subsection": 3,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1504,7 +1504,7 @@
       },
       {
         "section": "BLASTOISE",
-        "subsection": 3,
+        "subsection": 2,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1514,7 +1514,7 @@
       },
       {
         "section": "BUTTERFREE",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1524,7 +1524,7 @@
       },
       {
         "section": "PIKACHU",
-        "subsection": 18,
+        "subsection": 17,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1534,7 +1534,7 @@
       },
       {
         "section": "MEOWTH",
-        "subsection": 4,
+        "subsection": 3,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1544,7 +1544,7 @@
       },
       {
         "section": "MACHAMP",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1554,7 +1554,7 @@
       },
       {
         "section": "GENGAR",
-        "subsection": 3,
+        "subsection": 2,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1564,7 +1564,7 @@
       },
       {
         "section": "KINGLER",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1574,7 +1574,7 @@
       },
       {
         "section": "LAPRAS",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1584,7 +1584,7 @@
       },
       {
         "section": "EEVEE",
-        "subsection": 3,
+        "subsection": 2,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1594,7 +1594,7 @@
       },
       {
         "section": "SNORLAX",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1604,7 +1604,7 @@
       },
       {
         "section": "GARBODOR",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1614,7 +1614,7 @@
       },
       {
         "section": "MELMETAL",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1624,7 +1624,7 @@
       },
       {
         "section": "RILLABOOM",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1634,7 +1634,7 @@
       },
       {
         "section": "CINDERACE",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1644,7 +1644,7 @@
       },
       {
         "section": "INTELEON",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1654,7 +1654,7 @@
       },
       {
         "section": "CORVIKNIGHT",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1664,7 +1664,7 @@
       },
       {
         "section": "ORBEETLE",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1674,7 +1674,7 @@
       },
       {
         "section": "DREDNAW",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1684,7 +1684,7 @@
       },
       {
         "section": "COALOSSAL",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1694,7 +1694,7 @@
       },
       {
         "section": "FLAPPLE",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1704,7 +1704,7 @@
       },
       {
         "section": "APPLETUN",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1714,7 +1714,7 @@
       },
       {
         "section": "SANDACONDA",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1723,8 +1723,18 @@
         }
       },
       {
-        "section": "CENTISKORCH",
+        "section": "TOXTRICITY",
         "subsection": 2,
+        "formName": "Gigantamax",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "toxtricity",
+          "altKind": "gmax"
+        }
+      },
+      {
+        "section": "CENTISKORCH",
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1734,7 +1744,7 @@
       },
       {
         "section": "HATTERENE",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1744,7 +1754,7 @@
       },
       {
         "section": "GRIMMSNARL",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1754,7 +1764,7 @@
       },
       {
         "section": "ALCREMIE",
-        "subsection": 64,
+        "subsection": 63,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1764,7 +1774,7 @@
       },
       {
         "section": "COPPERAJAH",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1774,7 +1784,7 @@
       },
       {
         "section": "DURALUDON",
-        "subsection": 2,
+        "subsection": 1,
         "formName": "Gigantamax",
         "resolutionInfo": {
           "kind": "known",
@@ -1811,16 +1821,6 @@
       {
         "section": "GRENINJA",
         "subsection": 2,
-        "formName": "Ash",
-        "resolutionInfo": {
-          "kind": "known",
-          "speciesKey": "greninja",
-          "altKind": "ash"
-        }
-      },
-      {
-        "section": "GRENINJA",
-        "subsection": 4,
         "formName": "Ash",
         "resolutionInfo": {
           "kind": "known",
@@ -2138,26 +2138,6 @@
     ],
     "speciesNames": [
       "Magearna"
-    ]
-  },
-  {
-    "groupedBy": "line",
-    "entries": [
-      {
-        "section": "MARSHADOW",
-        "subsection": 1,
-        "formName": "Zenith",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "marshadow"
-        }
-      }
-    ],
-    "formNames": [
-      "Zenith"
-    ],
-    "speciesNames": [
-      "Marshadow"
     ]
   },
   {
@@ -4506,6 +4486,24 @@
       },
       {
         "section": "UNOWN",
+        "subsection": 23,
+        "formName": "X",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
+        "subsection": 24,
+        "formName": "Y",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "unown"
+        }
+      },
+      {
+        "section": "UNOWN",
         "subsection": 25,
         "formName": "Z",
         "resolutionInfo": {
@@ -4555,6 +4553,8 @@
       "U",
       "V",
       "W",
+      "X",
+      "Y",
       "Z",
       "?",
       "!"
@@ -4596,10 +4596,30 @@
           "speciesKey": "urshifu",
           "altKind": "rapid-strike"
         }
+      },
+      {
+        "section": "URSHIFU",
+        "subsection": 2,
+        "formName": "Gigantamax Single Strike",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "urshifu"
+        }
+      },
+      {
+        "section": "URSHIFU",
+        "subsection": 3,
+        "formName": "Gigantamax Rapid Strike",
+        "resolutionInfo": {
+          "kind": "custom",
+          "speciesKey": "urshifu"
+        }
       }
     ],
     "formNames": [
-      "Rapid Strike"
+      "Rapid Strike",
+      "Gigantamax Single Strike",
+      "Gigantamax Rapid Strike"
     ],
     "speciesNames": [
       "Urshifu"
@@ -4848,39 +4868,6 @@
     ]
   },
   {
-    "groupedBy": "formName",
-    "formName": "X",
-    "entries": [
-      {
-        "section": "UNOWN",
-        "subsection": 23,
-        "formName": "X",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "unown"
-        }
-      },
-      {
-        "section": "TOXTRICITY",
-        "subsection": 4,
-        "formName": "X",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "toxtricity"
-        }
-      },
-      {
-        "section": "URSHIFU",
-        "subsection": 4,
-        "formName": "X",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "urshifu"
-        }
-      }
-    ]
-  },
-  {
     "groupedBy": "line",
     "entries": [
       {
@@ -4898,39 +4885,6 @@
     ],
     "speciesNames": [
       "Xerneas"
-    ]
-  },
-  {
-    "groupedBy": "formName",
-    "formName": "Y",
-    "entries": [
-      {
-        "section": "UNOWN",
-        "subsection": 24,
-        "formName": "Y",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "unown"
-        }
-      },
-      {
-        "section": "TOXTRICITY",
-        "subsection": 5,
-        "formName": "Y",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "toxtricity"
-        }
-      },
-      {
-        "section": "URSHIFU",
-        "subsection": 5,
-        "formName": "Y",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "urshifu"
-        }
-      }
     ]
   },
   {
@@ -4973,27 +4927,6 @@
     ],
     "speciesNames": [
       "Zamazenta"
-    ]
-  },
-  {
-    "groupedBy": "line",
-    "entries": [
-      {
-        "section": "ZARUDE",
-        "subsection": 1,
-        "formName": "Dada",
-        "resolutionInfo": {
-          "kind": "known",
-          "speciesKey": "zarude",
-          "altKind": "dada"
-        }
-      }
-    ],
-    "formNames": [
-      "Dada"
-    ],
-    "speciesNames": [
-      "Zarude"
     ]
   },
   {
