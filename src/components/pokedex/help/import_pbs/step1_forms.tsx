@@ -1,6 +1,10 @@
 import { batch, Match, Show, Switch } from "solid-js";
 import type { ImportPBSStepProps } from ".";
-import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
+import type {
+  PBSFormFilterBucket,
+  PBSFormFilterBucketEntry,
+} from "../../../../models/pokemon/pbs/form";
+import { SPECIES } from "../../../../models/pokemon/species";
 import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { Icon } from "../../../common/icon";
@@ -174,7 +178,7 @@ function FilterBuckets(props: FilterBucketsProps) {
     ).length;
 
     return (
-      <li>
+      <>
         <span class="mr-1">Recognized by Stardex?</span>
         <Switch
           fallback={
@@ -194,8 +198,30 @@ function FilterBuckets(props: FilterBucketsProps) {
             </span>
           </Match>
         </Switch>
-      </li>
+      </>
     );
+  }
+
+  function renderNameList<T>(inputs: T[], toName: (input: T) => string, show: number) {
+    const overflowed = inputs.length > show;
+    const shownNames = inputs.slice(0, show).map((entry, i) => (
+      <>
+        {i > 0 ? ", " : ""}
+        <strong>{toName(entry)}</strong>
+      </>
+    ));
+    return (
+      <>
+        {shownNames}
+        {overflowed ? ` and ${props.bucket.entries.length - show} more` : ""}
+      </>
+    );
+  }
+
+  function getEntrySpeciesName({ resolutionInfo }: PBSFormFilterBucketEntry) {
+    return resolutionInfo.kind === "unknown"
+      ? resolutionInfo.speciesName
+      : SPECIES.of(resolutionInfo.speciesKey).name;
   }
 
   return (
@@ -215,10 +241,8 @@ function FilterBuckets(props: FilterBucketsProps) {
           <>
             <strong>Form:</strong> {props.bucket.formName}
             <ul class="list-inside list-disc text-sm text-foreground-muted">
-              <li>
-                <strong>{props.bucket.entries.length}</strong> Pokémon have this form.
-              </li>
-              {renderKnown()}
+              <li>{renderNameList(props.bucket.entries, getEntrySpeciesName, 3)}.</li>
+              <li>{renderKnown()}</li>
             </ul>
           </>
         ) : (
@@ -228,11 +252,8 @@ function FilterBuckets(props: FilterBucketsProps) {
             </strong>{" "}
             {props.bucket.speciesNames[0]}
             <ul class="list-inside list-disc text-sm text-foreground-muted">
-              <li>
-                <strong>{props.bucket.entries.length}</strong> unique form
-                {props.bucket.entries.length === 1 ? "" : "s"} in this family.
-              </li>
-              {renderKnown()}
+              <li>{renderNameList(props.bucket.formNames, (s) => s, 2)}.</li>
+              <li>{renderKnown()}</li>
             </ul>
           </>
         )}

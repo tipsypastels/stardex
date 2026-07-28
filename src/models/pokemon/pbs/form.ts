@@ -13,6 +13,7 @@ export type PBSFormFilterBucket =
   | {
       groupedBy: "line";
       entries: PBSFormFilterBucketEntry[];
+      formNames: string[];
       speciesNames: string[];
     };
 
@@ -140,6 +141,7 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
   }
 
   const lineBuckets = [...rootSectionToEntries.values()].map((entries): PBSFormFilterBucket => {
+    const formNames = [...new Set(entries.map((entry) => entry.formName))];
     const speciesNames = [
       ...new Set(
         entries.map((entry) =>
@@ -153,6 +155,7 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
     return {
       groupedBy: "line",
       entries,
+      formNames,
       speciesNames,
     };
   });
