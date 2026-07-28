@@ -70,6 +70,7 @@ export function PokedexTextView() {
   return (
     <>
       <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
+      {/* TODO: Reload the editor state when importing. */}
       <PokedexHelp />
     </>
   );

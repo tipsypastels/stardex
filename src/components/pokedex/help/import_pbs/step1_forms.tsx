@@ -1,10 +1,13 @@
-import { batch, Match, Show, Switch } from "solid-js";
+import hotkeys from "hotkeys-js";
+import { batch, Match, onCleanup, onMount, Show, Switch } from "solid-js";
 import type { ImportPBSStepProps } from ".";
+import { DEBUG } from "../../../../debug";
 import type {
   PBSFormFilterBucket,
   PBSFormFilterBucketEntry,
 } from "../../../../models/pokemon/pbs/form";
 import { SPECIES } from "../../../../models/pokemon/species";
+import { saveToFile } from "../../../../utils/file";
 import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { Icon } from "../../../common/icon";
@@ -172,6 +175,19 @@ interface FilterBucketsProps {
 }
 
 function FilterBuckets(props: FilterBucketsProps) {
+  // TODO: Remove this if you find a good way of running the bucket gen code from the CLI.
+  if (DEBUG) {
+    onMount(() => {
+      function saveBuckets() {
+        const buckets = props.state.formGranularityAdvancedFilterBuckets ?? [];
+        saveToFile("buckets.json", "json", JSON.stringify(buckets, null, 2));
+      }
+
+      hotkeys("b", saveBuckets);
+      onCleanup(() => hotkeys.unbind("b", saveBuckets));
+    });
+  }
+
   function renderKnown() {
     const knownCount = props.bucket.entries.filter((entry) =>
       entry.resolutionInfo.kind.startsWith("known"),

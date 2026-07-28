@@ -13,7 +13,12 @@
         }
       }
     ],
-    "displayName": "Aegislash"
+    "formNames": [
+      "Blade"
+    ],
+    "speciesNames": [
+      "Aegislash"
+    ]
   },
   {
     "groupedBy": "line",
@@ -91,11 +96,23 @@
         }
       }
     ],
-    "displayName": "Alcremie"
+    "formNames": [
+      "Ruby Cream",
+      "Matcha Cream",
+      "Mint Cream",
+      "Lemon Cream",
+      "Salted Cream",
+      "Ruby Swirl",
+      "Caramel Swirl",
+      "Rainbow Swirl"
+    ],
+    "speciesNames": [
+      "Alcremie"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Alolan",
+    "formName": "Alolan",
     "entries": [
       {
         "section": "RATTATA",
@@ -496,7 +513,29 @@
         }
       }
     ],
-    "displayName": "Arceus"
+    "formNames": [
+      "Fighting Type",
+      "Flying Type",
+      "Poison Type",
+      "Ground Type",
+      "Rock Type",
+      "Bug Type",
+      "Ghost Type",
+      "Steel Type",
+      "Unknown Type",
+      "Fire Type",
+      "Water Type",
+      "Grass Type",
+      "Electric Type",
+      "Psychic Type",
+      "Ice Type",
+      "Dragon Type",
+      "Dark Type",
+      "Fairy Type"
+    ],
+    "speciesNames": [
+      "Arceus"
+    ]
   },
   {
     "groupedBy": "line",
@@ -522,7 +561,13 @@
         }
       }
     ],
-    "displayName": "Basculin"
+    "formNames": [
+      "Blue-Striped",
+      "White-Striped"
+    ],
+    "speciesNames": [
+      "Basculin"
+    ]
   },
   {
     "groupedBy": "line",
@@ -566,7 +611,14 @@
         }
       }
     ],
-    "displayName": "Burmy"
+    "formNames": [
+      "Sandy Cloak",
+      "Trash Cloak"
+    ],
+    "speciesNames": [
+      "Burmy",
+      "Wormadam"
+    ]
   },
   {
     "groupedBy": "line",
@@ -592,7 +644,13 @@
         }
       }
     ],
-    "displayName": "Calyrex"
+    "formNames": [
+      "Ice Rider",
+      "Shadow Rider"
+    ],
+    "speciesNames": [
+      "Calyrex"
+    ]
   },
   {
     "groupedBy": "line",
@@ -628,7 +686,14 @@
         }
       }
     ],
-    "displayName": "Castform"
+    "formNames": [
+      "Sunny",
+      "Rainy",
+      "Snowy"
+    ],
+    "speciesNames": [
+      "Castform"
+    ]
   },
   {
     "groupedBy": "line",
@@ -643,7 +708,12 @@
         }
       }
     ],
-    "displayName": "Cherrim"
+    "formNames": [
+      "Sunshine"
+    ],
+    "speciesNames": [
+      "Cherrim"
+    ]
   },
   {
     "groupedBy": "line",
@@ -669,7 +739,13 @@
         }
       }
     ],
-    "displayName": "Cramorant"
+    "formNames": [
+      "Gulping",
+      "Gorging"
+    ],
+    "speciesNames": [
+      "Cramorant"
+    ]
   },
   {
     "groupedBy": "line",
@@ -695,7 +771,13 @@
         }
       }
     ],
-    "displayName": "Darmanitan"
+    "formNames": [
+      "Zen",
+      "Galarian Zen"
+    ],
+    "speciesNames": [
+      "Darmanitan"
+    ]
   },
   {
     "groupedBy": "line",
@@ -755,7 +837,15 @@
         }
       }
     ],
-    "displayName": "Deerling"
+    "formNames": [
+      "Summer",
+      "Autumn",
+      "Winter"
+    ],
+    "speciesNames": [
+      "Deerling",
+      "Sawsbuck"
+    ]
   },
   {
     "groupedBy": "line",
@@ -791,7 +881,14 @@
         }
       }
     ],
-    "displayName": "Deoxys"
+    "formNames": [
+      "Attack",
+      "Defense",
+      "Speed"
+    ],
+    "speciesNames": [
+      "Deoxys"
+    ]
   },
   {
     "groupedBy": "line",
@@ -806,7 +903,12 @@
         }
       }
     ],
-    "displayName": "Dudunsparce"
+    "formNames": [
+      "Three-Segment"
+    ],
+    "speciesNames": [
+      "Dudunsparce"
+    ]
   },
   {
     "groupedBy": "line",
@@ -822,7 +924,12 @@
         }
       }
     ],
-    "displayName": "Eiscue"
+    "formNames": [
+      "Noice Face"
+    ],
+    "speciesNames": [
+      "Eiscue"
+    ]
   },
   {
     "groupedBy": "line",
@@ -838,11 +945,16 @@
         }
       }
     ],
-    "displayName": "Eternatus"
+    "formNames": [
+      "Eternamax"
+    ],
+    "speciesNames": [
+      "Eternatus"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Female",
+    "formName": "Female",
     "entries": [
       {
         "section": "MEOWSTIC",
@@ -1007,7 +1119,18 @@
         }
       }
     ],
-    "displayName": "Flabébé"
+    "formNames": [
+      "Yellow Flower",
+      "Orange Flower",
+      "Blue Flower",
+      "White Flower",
+      "Eternal Flower"
+    ],
+    "speciesNames": [
+      "Flabébé",
+      "Floette",
+      "Florges"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1094,11 +1217,24 @@
         }
       }
     ],
-    "displayName": "Furfrou"
+    "formNames": [
+      "Heart Trim",
+      "Star Trim",
+      "Diamond Trim",
+      "Debutante Trim",
+      "Matron Trim",
+      "Dandy Trim",
+      "La Reine Trim",
+      "Kabuki Trim",
+      "Pharaoh Trim"
+    ],
+    "speciesNames": [
+      "Furfrou"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Galarian",
+    "formName": "Galarian",
     "entries": [
       {
         "section": "MEOWTH",
@@ -1332,11 +1468,19 @@
         }
       }
     ],
-    "displayName": "Genesect"
+    "formNames": [
+      "Shock Drive",
+      "Burn Drive",
+      "Chill Drive",
+      "Douse Drive"
+    ],
+    "speciesNames": [
+      "Genesect"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Gigantamax",
+    "formName": "Gigantamax",
     "entries": [
       {
         "section": "VENUSAUR",
@@ -1654,7 +1798,12 @@
         }
       }
     ],
-    "displayName": "Gimmighoul"
+    "formNames": [
+      "Roaming"
+    ],
+    "speciesNames": [
+      "Gimmighoul"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1680,11 +1829,16 @@
         }
       }
     ],
-    "displayName": "Greninja"
+    "formNames": [
+      "Ash"
+    ],
+    "speciesNames": [
+      "Greninja"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Hisuian",
+    "formName": "Hisuian",
     "entries": [
       {
         "section": "GROWLITHE",
@@ -1862,7 +2016,12 @@
         }
       }
     ],
-    "displayName": "Hoopa"
+    "formNames": [
+      "Unbound"
+    ],
+    "speciesNames": [
+      "Hoopa"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1878,7 +2037,12 @@
         }
       }
     ],
-    "displayName": "Keldeo"
+    "formNames": [
+      "Resolute"
+    ],
+    "speciesNames": [
+      "Keldeo"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1904,7 +2068,13 @@
         }
       }
     ],
-    "displayName": "Kyurem"
+    "formNames": [
+      "White",
+      "Black"
+    ],
+    "speciesNames": [
+      "Kyurem"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1930,7 +2100,13 @@
         }
       }
     ],
-    "displayName": "Lycanroc"
+    "formNames": [
+      "Midnight",
+      "Dusk"
+    ],
+    "speciesNames": [
+      "Lycanroc"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1956,7 +2132,13 @@
         }
       }
     ],
-    "displayName": "Magearna"
+    "formNames": [
+      "Original",
+      "Original Mega"
+    ],
+    "speciesNames": [
+      "Magearna"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1971,7 +2153,12 @@
         }
       }
     ],
-    "displayName": "Marshadow"
+    "formNames": [
+      "Zenith"
+    ],
+    "speciesNames": [
+      "Marshadow"
+    ]
   },
   {
     "groupedBy": "line",
@@ -1986,11 +2173,16 @@
         }
       }
     ],
-    "displayName": "Maushold"
+    "formNames": [
+      "Family of Three"
+    ],
+    "speciesNames": [
+      "Maushold"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Mega",
+    "formName": "Mega",
     "entries": [
       {
         "section": "VENUSAUR",
@@ -2826,7 +3018,7 @@
   },
   {
     "groupedBy": "formName",
-    "displayName": "Mega X",
+    "formName": "Mega X",
     "entries": [
       {
         "section": "CHARIZARD",
@@ -2862,7 +3054,7 @@
   },
   {
     "groupedBy": "formName",
-    "displayName": "Mega Y",
+    "formName": "Mega Y",
     "entries": [
       {
         "section": "CHARIZARD",
@@ -2898,7 +3090,7 @@
   },
   {
     "groupedBy": "formName",
-    "displayName": "Mega Z",
+    "formName": "Mega Z",
     "entries": [
       {
         "section": "ABSOL",
@@ -2946,7 +3138,12 @@
         }
       }
     ],
-    "displayName": "Meloetta"
+    "formNames": [
+      "Pirouette"
+    ],
+    "speciesNames": [
+      "Meloetta"
+    ]
   },
   {
     "groupedBy": "line",
@@ -2961,7 +3158,12 @@
         }
       }
     ],
-    "displayName": "Mimikyu"
+    "formNames": [
+      "Busted"
+    ],
+    "speciesNames": [
+      "Mimikyu"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3030,7 +3232,18 @@
         }
       }
     ],
-    "displayName": "Minior"
+    "formNames": [
+      "Red Core",
+      "Orange Core",
+      "Yellow Core",
+      "Green Core",
+      "Blue Core",
+      "Indigo Core",
+      "Violet Core"
+    ],
+    "speciesNames": [
+      "Minior"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3045,7 +3258,12 @@
         }
       }
     ],
-    "displayName": "Morpeko"
+    "formNames": [
+      "Hangry Mode"
+    ],
+    "speciesNames": [
+      "Morpeko"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3081,7 +3299,14 @@
         }
       }
     ],
-    "displayName": "Necrozma"
+    "formNames": [
+      "Dusk Mane",
+      "Dawn Wings",
+      "Ultra"
+    ],
+    "speciesNames": [
+      "Necrozma"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3183,7 +3408,18 @@
         }
       }
     ],
-    "displayName": "Ogerpon"
+    "formNames": [
+      "Wellspring Mask",
+      "Hearthflame Mask",
+      "Cornerstone Mask",
+      "Terastal Teal Mask",
+      "Terastal Wellspring Mask",
+      "Terastal Hearthflame Mask",
+      "Terastal Cornerstone Mask"
+    ],
+    "speciesNames": [
+      "Ogerpon"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3219,11 +3455,18 @@
         }
       }
     ],
-    "displayName": "Oricorio"
+    "formNames": [
+      "Pom-Pom",
+      "Pa'u",
+      "Sensu"
+    ],
+    "speciesNames": [
+      "Oricorio"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Origin",
+    "formName": "Origin",
     "entries": [
       {
         "section": "GIRATINA",
@@ -3271,7 +3514,12 @@
         }
       }
     ],
-    "displayName": "Palafin"
+    "formNames": [
+      "Hero"
+    ],
+    "speciesNames": [
+      "Palafin"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3286,7 +3534,12 @@
         }
       }
     ],
-    "displayName": "Pichu"
+    "formNames": [
+      "Spiky-Eared"
+    ],
+    "speciesNames": [
+      "Pichu"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3310,11 +3563,18 @@
         }
       }
     ],
-    "displayName": "Poltchageist"
+    "formNames": [
+      "Artisan",
+      "Masterpiece"
+    ],
+    "speciesNames": [
+      "Poltchageist",
+      "Sinistcha"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Primal",
+    "formName": "Primal",
     "entries": [
       {
         "section": "KYOGRE",
@@ -3396,7 +3656,15 @@
         }
       }
     ],
-    "displayName": "Pumpkaboo"
+    "formNames": [
+      "Average Size",
+      "Large Size",
+      "Super Size"
+    ],
+    "speciesNames": [
+      "Pumpkaboo",
+      "Gourgeist"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3452,7 +3720,16 @@
         }
       }
     ],
-    "displayName": "Rotom"
+    "formNames": [
+      "Heat",
+      "Wash",
+      "Frost",
+      "Fan",
+      "Mow"
+    ],
+    "speciesNames": [
+      "Rotom"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3468,7 +3745,12 @@
         }
       }
     ],
-    "displayName": "Shaymin"
+    "formNames": [
+      "Sky"
+    ],
+    "speciesNames": [
+      "Shaymin"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3492,7 +3774,13 @@
         }
       }
     ],
-    "displayName": "Shellos"
+    "formNames": [
+      "East Sea"
+    ],
+    "speciesNames": [
+      "Shellos",
+      "Gastrodon"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3711,7 +3999,29 @@
         }
       }
     ],
-    "displayName": "Silvally"
+    "formNames": [
+      "Type: Fighting",
+      "Type: Flying",
+      "Type: Poison",
+      "Type: Ground",
+      "Type: Rock",
+      "Type: Bug",
+      "Type: Ghost",
+      "Type: Steel",
+      "Type: Unknown",
+      "Type: Fire",
+      "Type: Water",
+      "Type: Grass",
+      "Type: Electric",
+      "Type: Psychic",
+      "Type: Ice",
+      "Type: Dragon",
+      "Type: Dark",
+      "Type: Fairy"
+    ],
+    "speciesNames": [
+      "Silvally"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3735,7 +4045,13 @@
         }
       }
     ],
-    "displayName": "Sinistea"
+    "formNames": [
+      "Antique"
+    ],
+    "speciesNames": [
+      "Sinistea",
+      "Polteageist"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3771,7 +4087,14 @@
         }
       }
     ],
-    "displayName": "Squawkabilly"
+    "formNames": [
+      "Blue Plumage",
+      "Yellow Plumage",
+      "White Plumage"
+    ],
+    "speciesNames": [
+      "Squawkabilly"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3827,7 +4150,16 @@
         }
       }
     ],
-    "displayName": "Tatsugiri"
+    "formNames": [
+      "Droopy",
+      "Stretchy",
+      "Curly Mega",
+      "Droopy Mega",
+      "Stretchy Mega"
+    ],
+    "speciesNames": [
+      "Tatsugiri"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3863,7 +4195,14 @@
         }
       }
     ],
-    "displayName": "Tauros"
+    "formNames": [
+      "Paldean Combat Breed",
+      "Paldean Blaze Breed",
+      "Paldean Aqua Breed"
+    ],
+    "speciesNames": [
+      "Tauros"
+    ]
   },
   {
     "groupedBy": "line",
@@ -3889,11 +4228,17 @@
         }
       }
     ],
-    "displayName": "Terapagos"
+    "formNames": [
+      "Terastal",
+      "Stellar"
+    ],
+    "speciesNames": [
+      "Terapagos"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Therian",
+    "formName": "Therian",
     "entries": [
       {
         "section": "TORNADUS",
@@ -3951,7 +4296,12 @@
         }
       }
     ],
-    "displayName": "Toxtricity"
+    "formNames": [
+      "Low Key"
+    ],
+    "speciesNames": [
+      "Toxtricity"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4182,7 +4532,36 @@
         }
       }
     ],
-    "displayName": "Unown"
+    "formNames": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "Z",
+      "?",
+      "!"
+    ],
+    "speciesNames": [
+      "Unown"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4198,7 +4577,12 @@
         }
       }
     ],
-    "displayName": "Ursaluna"
+    "formNames": [
+      "Bloodmoon"
+    ],
+    "speciesNames": [
+      "Ursaluna"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4214,7 +4598,12 @@
         }
       }
     ],
-    "displayName": "Urshifu"
+    "formNames": [
+      "Rapid Strike"
+    ],
+    "speciesNames": [
+      "Urshifu"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4391,7 +4780,30 @@
         }
       }
     ],
-    "displayName": "Vivillon"
+    "formNames": [
+      "Continental Pattern",
+      "Elegant Pattern",
+      "Garden Pattern",
+      "High Plains Pattern",
+      "Icy Snow Pattern",
+      "Jungle Pattern",
+      "Marine Pattern",
+      "Meadow Pattern",
+      "Modern Pattern",
+      "Monsoon Pattern",
+      "Ocean Pattern",
+      "Polar Pattern",
+      "River Pattern",
+      "Sandstorm Pattern",
+      "Savanna Pattern",
+      "Sun Pattern",
+      "Tundra Pattern",
+      "Fancy Pattern",
+      "Poké Ball Pattern"
+    ],
+    "speciesNames": [
+      "Vivillon"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4407,7 +4819,12 @@
         }
       }
     ],
-    "displayName": "Wishiwashi"
+    "formNames": [
+      "School"
+    ],
+    "speciesNames": [
+      "Wishiwashi"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4423,11 +4840,16 @@
         }
       }
     ],
-    "displayName": "Wooper"
+    "formNames": [
+      "Paldean"
+    ],
+    "speciesNames": [
+      "Wooper"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "X",
+    "formName": "X",
     "entries": [
       {
         "section": "UNOWN",
@@ -4471,11 +4893,16 @@
         }
       }
     ],
-    "displayName": "Xerneas"
+    "formNames": [
+      "Active Mode"
+    ],
+    "speciesNames": [
+      "Xerneas"
+    ]
   },
   {
     "groupedBy": "formName",
-    "displayName": "Y",
+    "formName": "Y",
     "entries": [
       {
         "section": "UNOWN",
@@ -4520,7 +4947,12 @@
         }
       }
     ],
-    "displayName": "Zacian"
+    "formNames": [
+      "Crowned Sword"
+    ],
+    "speciesNames": [
+      "Zacian"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4536,7 +4968,12 @@
         }
       }
     ],
-    "displayName": "Zamazenta"
+    "formNames": [
+      "Crowned Shield"
+    ],
+    "speciesNames": [
+      "Zamazenta"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4552,7 +4989,12 @@
         }
       }
     ],
-    "displayName": "Zarude"
+    "formNames": [
+      "Dada"
+    ],
+    "speciesNames": [
+      "Zarude"
+    ]
   },
   {
     "groupedBy": "line",
@@ -4578,6 +5020,12 @@
         }
       }
     ],
-    "displayName": "Zygarde"
+    "formNames": [
+      "10%",
+      "Complete"
+    ],
+    "speciesNames": [
+      "Zygarde"
+    ]
   }
 ]

@@ -1,9 +1,8 @@
 import { syntaxTree } from "@codemirror/language";
 import { hoverTooltip } from "@codemirror/view";
+import { DEBUG } from "../../../../debug";
 import { tw } from "../../../../utils/style";
 import { getPokemonAtSpan } from "./parse";
-
-const SHOW_IDS = !!localStorage.stardex_debug_tooltip_ids;
 
 export const tooltip = hoverTooltip((view, pos) => {
   const node = syntaxTree(view.state).resolveInner(pos);
@@ -65,7 +64,7 @@ export const tooltip = hoverTooltip((view, pos) => {
         node.appendChild(exclude);
       }
 
-      if (SHOW_IDS) {
+      if (DEBUG) {
         const id = document.createElement("span");
         id.classList.add(tw`text-editor-comment`);
         id.innerText = ` # ${pokemon.id}`;
