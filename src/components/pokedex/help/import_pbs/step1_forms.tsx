@@ -1,9 +1,12 @@
-import { batch, Show } from "solid-js";
+import { batch, createMemo, Match, Show, Switch } from "solid-js";
 import type { ImportPBSStepProps } from ".";
+import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
 import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
+import { Icon } from "../../../common/icon";
 import { ButtonLink } from "../../../common/link";
 import { SpeciesIcon } from "../../util/species_icon";
+import type { ImportPBSState } from "./state";
 
 export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
   return (
@@ -86,7 +89,7 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
         </li>
         <li>
           <Checkbox
-            name="Only non-cosmetic forms Stardex recognizes."
+            name="Only forms Stardex recognizes."
             radio
             checked={props.state.formGranularity?.type === "known"}
             onChange={() => props.state.setFormGranularity({ type: "known" })}
@@ -94,21 +97,38 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
         </li>
         <li>
           <Checkbox
-            name="Let me decide for each form."
+            name="Let me decide for each form type."
             radio
             checked={props.state.formGranularity?.type === "advanced"}
-            onChange={() => props.state.setFormGranularity({ type: "advanced" })}
+            onChange={() =>
+              props.state.setFormGranularity({
+                type: "advanced",
+                decisions: new Array(70).fill("omit"),
+              })
+            }
           />
         </li>
       </ul>
 
-      <div class="mb-4 text-sm text-foreground-muted">
-        <strong>Note:</strong> Forms without a <code class="text-xs">FormName</code> are always
-        ignored, regardless of your choice here.
+      <div class="mb-4">
+        <Show
+          when={props.state.formGranularity?.type === "advanced"}
+          fallback={
+            <div class="text-sm text-foreground-muted">
+              <strong>Note:</strong> Forms without a <code class="text-xs">FormName</code> are
+              always ignored, regardless of your choice here.
+            </div>
+          }
+        >
+          {renderGranularityAdvancedPickView(props.state)}
+        </Show>
       </div>
 
       <div class="mb-4 flex flex-col justify-center">
-        <Button onClick={() => props.state.advance()} disabled={!props.state.formGranularity}>
+        <Button
+          onClick={() => props.state.advance()}
+          disabled={!props.state.formGranularityIsSubmittable}
+        >
           Continue
         </Button>
       </div>
@@ -127,6 +147,126 @@ export function ImportPBSStep1Forms(props: ImportPBSStepProps) {
         </ButtonLink>{" "}
         to only import base forms.
       </div>
+    </Show>
+  );
+}
+
+function renderGranularityAdvancedPickView(state: ImportPBSState) {
+  switch (state.formGranularityAdvancedPickView.type) {
+    case "loading": {
+      return "TODO Loading";
+    }
+    case "done": {
+      return "TODO done";
+    }
+    case "bucket": {
+      return <FilterBuckets state={state} bucket={state.formGranularityAdvancedPickView.bucket} />;
+    }
+  }
+}
+
+interface FilterBucketsProps {
+  state: ImportPBSState;
+  bucket: PBSFormFilterBucket;
+}
+
+function FilterBuckets(props: FilterBucketsProps) {
+  const bucket = createMemo(() => {
+    if (props.state.formGranularity?.type !== "advanced") return;
+    if (!props.state.formGranularityAdvancedFilterBuckets) return;
+
+    return props.state.formGranularityAdvancedFilterBuckets.at(
+      props.state.formGranularity.decisions.length,
+    );
+  });
+
+  function render(bucket: PBSFormFilterBucket) {
+    const index = (props.state.formGranularity as { decisions: unknown[] }).decisions.length;
+    const total = props.state.formGranularityAdvancedFilterBuckets!.length;
+
+    const knownCount = bucket.entries.filter((entry) =>
+      entry.resolutionInfo.kind.startsWith("known"),
+    ).length;
+
+    const known = (
+      <li>
+        Recognized by Stardex?
+        <Switch
+          fallback={
+            <span class="text-warning">
+              <Icon name="tilde" /> Some
+            </span>
+          }
+        >
+          <Match when={knownCount === bucket.entries.length}>
+            <span class="text-primary">
+              <Icon name="check" /> Yes
+            </span>
+          </Match>
+          <Match when={knownCount === 0}>
+            <span class="text-error">
+              <Icon name="times" /> No
+            </span>
+          </Match>
+        </Switch>
+      </li>
+    );
+
+    return (
+      <div class="relative rounded-md border-2 border-divider-heavy p-4">
+        <div class="absolute -top-2.5 left-4 bg-background px-2 text-xs">
+          {index + 1} / {total}
+        </div>
+        <div>
+          {bucket.groupedBy === "formName" ? (
+            <>
+              <strong>Form:</strong> {bucket.displayName}
+              <ul class="list-inside list-disc text-sm text-foreground-muted">
+                <li>
+                  <strong>{bucket.entries.length}</strong> Pokémon have this form.
+                </li>
+                {known}
+              </ul>
+            </>
+          ) : (
+            <>
+              <strong>Forms of Family:</strong> {bucket.displayName}
+              <ul class="list-inside list-disc text-sm text-foreground-muted">
+                <li>
+                  <strong>{bucket.entries.length}</strong> unique form
+                  {bucket.entries.length === 1 ? "" : "s"} in this family.
+                </li>
+                {known}
+              </ul>
+            </>
+          )}
+        </div>
+        <div
+          class="absolute -bottom-2.5 bg-background px-2 text-center whitespace-nowrap"
+          style={{ left: "50%", transform: "translateX(-50%)" }}
+        >
+          <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("keep")}>
+            Keep
+          </ButtonLink>
+          <span class="text-foreground-muted">{" / "}</span>
+          <ButtonLink onClick={() => props.state.pushFormGranularityAdvancedDecision("replace")}>
+            Replace Base
+          </ButtonLink>
+          <span class="text-foreground-muted">{" / "}</span>
+          <ButtonLink
+            onClick={() => props.state.pushFormGranularityAdvancedDecision("omit")}
+            look="warning"
+          >
+            Omit
+          </ButtonLink>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Show when={bucket()} keyed fallback="TODO Loading">
+      {(bucket) => render(bucket)}
     </Show>
   );
 }

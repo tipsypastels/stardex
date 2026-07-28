@@ -1,4 +1,5 @@
-import { batch, createResource, createSignal } from "solid-js";
+import { batch, createMemo, createResource, createSignal } from "solid-js";
+import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
 import type { PBSLabelList, PBSParseError, PBSRecord } from "../../../../models/pokemon/pbs/parse";
 import { readFileAsTextAsync } from "../../../../utils/file";
 import { sortStrings } from "../../../../utils/string";
@@ -10,11 +11,15 @@ export interface ImportPBSState {
   stepIndex: number;
   filteredDexSection: number | undefined;
   formGranularity: ImportPBSFormGranularity | undefined;
+  formGranularityIsSubmittable: boolean;
+  formGranularityAdvancedFilterBuckets: PBSFormFilterBucket[] | undefined;
+  formGranularityAdvancedPickView: ImportPBSFormGranularityAdvancedPickView;
   import(files: FileList): Promise<void>;
   close(): void;
   advance(): void;
   setFilteredDexSection(section: number | undefined): void;
   setFormGranularity(granularity: ImportPBSFormGranularity | undefined): void;
+  pushFormGranularityAdvancedDecision(decision: ImportPBSFormGranularityAdvancedDecision): void;
 }
 
 export interface ImportPBSParsedState {
@@ -25,8 +30,15 @@ export interface ImportPBSParsedState {
   formsCount: number;
 }
 
+export type ImportPBSFormGranularityAdvancedDecision = "keep" | "replace" | "omit";
+export type ImportPBSFormGranularityAdvancedPickView =
+  { type: "loading" } | { type: "done" } | { type: "bucket"; bucket: PBSFormFilterBucket };
 export type ImportPBSFormGranularity =
-  { type: "all" } | { type: "has-types" } | { type: "known" } | { type: "advanced" };
+  | { type: "all" }
+  | { type: "has-types" }
+  | { type: "known" }
+  // Decisions correspond to indices into formGranularityAdvancedFilterBuckets.
+  | { type: "advanced"; decisions: ImportPBSFormGranularityAdvancedDecision[] };
 
 export function createImportPBSState(): ImportPBSState {
   // Not using a store because we don't care about changes to individual values, just the list.
@@ -44,17 +56,14 @@ export function createImportPBSState(): ImportPBSState {
       const fileBasename = file.name.replace(/\.txt$/, "");
       if (fileBasename === "pokemon" || fileBasename.startsWith("pokemon_")) {
         const { parsePBSAsRecords } = await import("../../../../models/pokemon/pbs/parse");
-
         const record = parsePBSAsRecords(file);
         parsed.pokemonsAndForms.push(...record.out);
         parsed.errors.push(...record.errors);
         parsed.pokemonsCount += record.withoutSubsectionsCount;
         parsed.formsCount += record.withSubsectionsCount;
       } else if (fileBasename === "regional_dexes" || fileBasename.startsWith("regional_dexes_")) {
-        const { parsePBSAsLabelLists: parsePBSAsIndexedLabelLists } =
-          await import("../../../../models/pokemon/pbs/parse");
-
-        const list = parsePBSAsIndexedLabelLists(file);
+        const { parsePBSAsLabelLists } = await import("../../../../models/pokemon/pbs/parse");
+        const list = parsePBSAsLabelLists(file);
         parsed.dexes.push(...list.out);
         parsed.errors.push(...list.errors);
       }
@@ -65,7 +74,41 @@ export function createImportPBSState(): ImportPBSState {
 
   const [stepIndex, setStepIndex] = createSignal(0);
   const [filteredDexSection, setFilteredDexSection] = createSignal<number>();
+
   const [formGranularity, setFormGranularity] = createSignal<ImportPBSFormGranularity>();
+  const [formGranularityAdvancedFilterBuckets] = createResource(
+    () => {
+      const currentParsed = parsed();
+      if (currentParsed && formGranularity()?.type === "advanced") return currentParsed;
+    },
+    async (parsed) => {
+      const { getPBSFormFilterBuckets } = await import("../../../../models/pokemon/pbs/form");
+      return getPBSFormFilterBuckets(parsed.pokemonsAndForms);
+    },
+  );
+
+  const formGranularityIsSubmittable = createMemo(() => {
+    const granularity = formGranularity();
+    if (!granularity) return false;
+    if (granularity.type !== "advanced") return true;
+
+    const finishedLength = formGranularityAdvancedFilterBuckets()?.length ?? Infinity;
+    return granularity.decisions.length === finishedLength;
+  });
+
+  const formGranularityAdvancedPickView = createMemo(
+    (): ImportPBSFormGranularityAdvancedPickView => {
+      const granularity = formGranularity();
+      // This shouldn't actually happen the way the UI is set up.
+      if (granularity?.type !== "advanced") return { type: "loading" };
+
+      const buckets = formGranularityAdvancedFilterBuckets();
+      if (!buckets) return { type: "loading" };
+      if (buckets.length === granularity.decisions.length) return { type: "done" };
+
+      return { type: "bucket", bucket: buckets[granularity.decisions.length] };
+    },
+  );
 
   return {
     get files() {
@@ -86,6 +129,18 @@ export function createImportPBSState(): ImportPBSState {
 
     get formGranularity() {
       return formGranularity();
+    },
+
+    get formGranularityIsSubmittable() {
+      return formGranularityIsSubmittable();
+    },
+
+    get formGranularityAdvancedFilterBuckets() {
+      return formGranularityAdvancedFilterBuckets();
+    },
+
+    get formGranularityAdvancedPickView() {
+      return formGranularityAdvancedPickView();
     },
 
     async import(fileList) {
@@ -119,5 +174,15 @@ export function createImportPBSState(): ImportPBSState {
 
     setFilteredDexSection,
     setFormGranularity,
+
+    pushFormGranularityAdvancedDecision(decision) {
+      setFormGranularity((granularity) => {
+        if (granularity?.type === "advanced") {
+          return { ...granularity, decisions: granularity.decisions.concat(decision) };
+        } else {
+          return { type: "advanced", decisions: [decision] };
+        }
+      });
+    },
   };
 }

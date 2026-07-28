@@ -82,8 +82,11 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
 
     const resolutionInfo = ((): PBSFormFilterBucketEntryResolutionInfo => {
       const species = getPBSRecordSectionSpecies(record.section, speciesName);
+      const formNameAsKind = formName
+        .toLowerCase()
+        .replaceAll(" ", "-")
+        .replaceAll(/[^a-z0-9-]/g, "");
 
-      const formNameAsKind = formName.toLowerCase().replace(/ /g, "-");
       const altKind = species?.alts.find(
         (alt) => alt.name === formName || alt.kind === formNameAsKind,
       )?.kind;
