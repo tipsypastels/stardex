@@ -1,4 +1,4 @@
-import type { NamedText } from "../../../utils/file";
+import type { NamedText } from "../../../utils/types";
 
 // Used for pokemon.txt and pokemon_forms.txt.
 export interface PBSRecord {

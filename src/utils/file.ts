@@ -1,8 +1,3 @@
-export interface NamedText {
-  name: string;
-  text: string;
-}
-
 export function saveToFile(name: string, kind: "text" | "json", contents: string) {
   const a = document.createElement("a");
   const blob = new Blob([contents], {

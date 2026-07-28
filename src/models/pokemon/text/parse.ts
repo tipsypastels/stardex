@@ -2,7 +2,7 @@ import type { Diagnostic } from "@codemirror/lint";
 import type { SyntaxNodeRef, Tree } from "@lezer/common";
 import type { RawBuiltinPokemon, RawPokemon } from "..";
 import { id } from "../../../utils/id";
-import type { Span } from "../../../utils/span";
+import type { Span } from "../../../utils/types";
 import type { RawPokemonList } from "../list";
 import { Species, SPECIES } from "../species";
 import { POKEMON_LIST_VERSION, POKEMON_VERSION } from "../versioned";

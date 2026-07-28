@@ -8,7 +8,7 @@ import type { Pokemon } from "../../../../models/pokemon";
 import { pokemons, RawPokemonList } from "../../../../models/pokemon/list";
 import { parsePokemonListTextFromLezerTree } from "../../../../models/pokemon/text/parse";
 import { id as makeId } from "../../../../utils/id";
-import type { Span } from "../../../../utils/span";
+import type { Span } from "../../../../utils/types";
 import { getTrackedIdAtSpan } from "./metadata";
 
 const current = createRoot(() => {

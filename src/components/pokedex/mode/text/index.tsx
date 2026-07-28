@@ -13,7 +13,7 @@ import { EditorView, minimalSetup } from "codemirror";
 import { createEffect, onCleanup, untrack } from "solid-js";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
-import type { Spanned } from "../../../../utils/span";
+import type { Spanned } from "../../../../utils/types";
 import { PokedexHelp } from "../../help";
 import { autocomplete } from "./autocomplete";
 import { createCachedHeightTracker } from "./height";

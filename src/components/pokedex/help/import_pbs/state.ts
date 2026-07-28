@@ -1,7 +1,8 @@
 import { batch, createResource, createSignal } from "solid-js";
 import type { PBSLabelList, PBSParseError, PBSRecord } from "../../../../models/pokemon/pbs/parse";
-import { readFileAsTextAsync, type NamedText } from "../../../../utils/file";
+import { readFileAsTextAsync } from "../../../../utils/file";
 import { sortStrings } from "../../../../utils/string";
+import type { NamedText } from "../../../../utils/types";
 
 export interface ImportPBSState {
   files: NamedText[];
