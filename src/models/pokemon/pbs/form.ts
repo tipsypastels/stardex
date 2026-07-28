@@ -66,15 +66,27 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
     }
 
     // TODO: Normalize special cases.
-    const formName = formNameMaybeWithSpeciesName
+    let formName = formNameMaybeWithSpeciesName
       .replace(speciesName, "")
-      .replace(/\bForme?\b/, "")
-      .replace(/ +/g, " ")
+      .replace(/\s*\bForme?\b\s*/, "")
+      .replace(/\s*\bStyle\b\s*/, "")
+      .replace(/\s*\bGiga\b\s*/, "Gigantamax")
+      .replace(/-$/, "")
+      .replace(/  +/g, " ")
       .trim();
+
+    const overrideKey = `${record.section}:${formName}`;
+    if (OVERRIDE_SECTION_FORM_NAMES[overrideKey]) {
+      formName = OVERRIDE_SECTION_FORM_NAMES[overrideKey];
+    }
 
     const resolutionInfo = ((): PBSFormFilterBucketEntryResolutionInfo => {
       const species = getPBSRecordSectionSpecies(record.section, speciesName);
-      const altKind = species?.alts.find((alt) => alt.name === formName)?.kind;
+
+      const formNameAsKind = formName.toLowerCase().replace(/ /g, "-");
+      const altKind = species?.alts.find(
+        (alt) => alt.name === formName || alt.kind === formNameAsKind,
+      )?.kind;
 
       if (altKind && species) {
         return { kind: "known", speciesKey: species.key, altKind };
@@ -178,3 +190,17 @@ class Lines {
     }
   }
 }
+
+const OVERRIDE_SECTION_FORM_NAMES: Record<string, string> = {
+  "DARMANITAN:Zen Mode": "Zen",
+  "DARMANITAN:Galarian Standard Mode": "Galarian",
+  "DARMANITAN:Galarian Zen Mode": "Galarian Zen",
+  "MAGEARNA:Original Color": "Original",
+  "MAGEARNA:Mega (Original Color)": "Original Mega",
+  "TATSUGIRI:Mega (Curly)": "Curly Mega",
+  "TATSUGIRI:Mega (Stretchy)": "Stretchy Mega",
+  "TATSUGIRI:Mega (Droopy)": "Droopy Mega",
+  "TAUROS:Paldean (Combat Breed)": "Paldean Combat Breed",
+  "TAUROS:Paldean (Blaze Breed)": "Paldean Blaze Breed",
+  "TAUROS:Paldean (Aqua Breed)": "Paldean Aqua Breed",
+};

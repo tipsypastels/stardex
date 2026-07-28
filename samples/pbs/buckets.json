@@ -506,8 +506,9 @@
         "subsection": 1,
         "formName": "Blue-Striped",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "basculin"
+          "kind": "known",
+          "speciesKey": "basculin",
+          "altKind": "blue-striped"
         }
       },
       {
@@ -515,8 +516,9 @@
         "subsection": 2,
         "formName": "White-Striped",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "basculin"
+          "kind": "known",
+          "speciesKey": "basculin",
+          "altKind": "white-striped"
         }
       }
     ],
@@ -675,28 +677,21 @@
       {
         "section": "DARMANITAN",
         "subsection": 1,
-        "formName": "Zen Mode",
+        "formName": "Zen",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "darmanitan"
-        }
-      },
-      {
-        "section": "DARMANITAN",
-        "subsection": 2,
-        "formName": "Galarian Standard Mode",
-        "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "darmanitan"
+          "kind": "known",
+          "speciesKey": "darmanitan",
+          "altKind": "zen"
         }
       },
       {
         "section": "DARMANITAN",
         "subsection": 3,
-        "formName": "Galarian Zen Mode",
+        "formName": "Galarian Zen",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "darmanitan"
+          "kind": "known",
+          "speciesKey": "darmanitan",
+          "altKind": "galar-zen"
         }
       }
     ],
@@ -1266,6 +1261,16 @@
         }
       },
       {
+        "section": "DARMANITAN",
+        "subsection": 2,
+        "formName": "Galarian",
+        "resolutionInfo": {
+          "kind": "known",
+          "speciesKey": "darmanitan",
+          "altKind": "galar-standard"
+        }
+      },
+      {
         "section": "YAMASK",
         "subsection": 1,
         "formName": "Galarian",
@@ -1331,276 +1336,306 @@
   },
   {
     "groupedBy": "formName",
-    "displayName": "Giga",
+    "displayName": "Gigantamax",
     "entries": [
       {
         "section": "VENUSAUR",
         "subsection": 3,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "venusaur"
+          "kind": "known",
+          "speciesKey": "venusaur",
+          "altKind": "gmax"
         }
       },
       {
         "section": "CHARIZARD",
         "subsection": 4,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "charizard"
+          "kind": "known",
+          "speciesKey": "charizard",
+          "altKind": "gmax"
         }
       },
       {
         "section": "BLASTOISE",
         "subsection": 3,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "blastoise"
+          "kind": "known",
+          "speciesKey": "blastoise",
+          "altKind": "gmax"
         }
       },
       {
         "section": "BUTTERFREE",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "butterfree"
+          "kind": "known",
+          "speciesKey": "butterfree",
+          "altKind": "gmax"
         }
       },
       {
         "section": "PIKACHU",
         "subsection": 18,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "pikachu"
+          "kind": "known",
+          "speciesKey": "pikachu",
+          "altKind": "gmax"
         }
       },
       {
         "section": "MEOWTH",
         "subsection": 4,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "meowth"
+          "kind": "known",
+          "speciesKey": "meowth",
+          "altKind": "gmax"
         }
       },
       {
         "section": "MACHAMP",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "machamp"
+          "kind": "known",
+          "speciesKey": "machamp",
+          "altKind": "gmax"
         }
       },
       {
         "section": "GENGAR",
         "subsection": 3,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "gengar"
+          "kind": "known",
+          "speciesKey": "gengar",
+          "altKind": "gmax"
         }
       },
       {
         "section": "KINGLER",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "kingler"
+          "kind": "known",
+          "speciesKey": "kingler",
+          "altKind": "gmax"
         }
       },
       {
         "section": "LAPRAS",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "lapras"
+          "kind": "known",
+          "speciesKey": "lapras",
+          "altKind": "gmax"
         }
       },
       {
         "section": "EEVEE",
         "subsection": 3,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "eevee"
+          "kind": "known",
+          "speciesKey": "eevee",
+          "altKind": "gmax"
         }
       },
       {
         "section": "SNORLAX",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "snorlax"
+          "kind": "known",
+          "speciesKey": "snorlax",
+          "altKind": "gmax"
         }
       },
       {
         "section": "GARBODOR",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "garbodor"
+          "kind": "known",
+          "speciesKey": "garbodor",
+          "altKind": "gmax"
         }
       },
       {
         "section": "MELMETAL",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "melmetal"
+          "kind": "known",
+          "speciesKey": "melmetal",
+          "altKind": "gmax"
         }
       },
       {
         "section": "RILLABOOM",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "rillaboom"
+          "kind": "known",
+          "speciesKey": "rillaboom",
+          "altKind": "gmax"
         }
       },
       {
         "section": "CINDERACE",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "cinderace"
+          "kind": "known",
+          "speciesKey": "cinderace",
+          "altKind": "gmax"
         }
       },
       {
         "section": "INTELEON",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "inteleon"
+          "kind": "known",
+          "speciesKey": "inteleon",
+          "altKind": "gmax"
         }
       },
       {
         "section": "CORVIKNIGHT",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "corviknight"
+          "kind": "known",
+          "speciesKey": "corviknight",
+          "altKind": "gmax"
         }
       },
       {
         "section": "ORBEETLE",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "orbeetle"
+          "kind": "known",
+          "speciesKey": "orbeetle",
+          "altKind": "gmax"
         }
       },
       {
         "section": "DREDNAW",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "drednaw"
+          "kind": "known",
+          "speciesKey": "drednaw",
+          "altKind": "gmax"
         }
       },
       {
         "section": "COALOSSAL",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "coalossal"
+          "kind": "known",
+          "speciesKey": "coalossal",
+          "altKind": "gmax"
         }
       },
       {
         "section": "FLAPPLE",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "flapple"
+          "kind": "known",
+          "speciesKey": "flapple",
+          "altKind": "gmax"
         }
       },
       {
         "section": "APPLETUN",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "appletun"
+          "kind": "known",
+          "speciesKey": "appletun",
+          "altKind": "gmax"
         }
       },
       {
         "section": "SANDACONDA",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "sandaconda"
+          "kind": "known",
+          "speciesKey": "sandaconda",
+          "altKind": "gmax"
         }
       },
       {
         "section": "CENTISKORCH",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "centiskorch"
+          "kind": "known",
+          "speciesKey": "centiskorch",
+          "altKind": "gmax"
         }
       },
       {
         "section": "HATTERENE",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "hatterene"
+          "kind": "known",
+          "speciesKey": "hatterene",
+          "altKind": "gmax"
         }
       },
       {
         "section": "GRIMMSNARL",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "grimmsnarl"
+          "kind": "known",
+          "speciesKey": "grimmsnarl",
+          "altKind": "gmax"
         }
       },
       {
         "section": "ALCREMIE",
         "subsection": 64,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "alcremie"
+          "kind": "known",
+          "speciesKey": "alcremie",
+          "altKind": "gmax"
         }
       },
       {
         "section": "COPPERAJAH",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "copperajah"
+          "kind": "known",
+          "speciesKey": "copperajah",
+          "altKind": "gmax"
         }
       },
       {
         "section": "DURALUDON",
         "subsection": 2,
-        "formName": "Giga",
+        "formName": "Gigantamax",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "duraludon"
+          "kind": "known",
+          "speciesKey": "duraludon",
+          "altKind": "gmax"
         }
       }
     ]
@@ -1627,10 +1662,11 @@
       {
         "section": "GRENINJA",
         "subsection": 2,
-        "formName": "Ash-",
+        "formName": "Ash",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "greninja"
+          "kind": "known",
+          "speciesKey": "greninja",
+          "altKind": "ash"
         }
       },
       {
@@ -1902,19 +1938,21 @@
       {
         "section": "MAGEARNA",
         "subsection": 1,
-        "formName": "Original Color",
+        "formName": "Original",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "magearna"
+          "kind": "known",
+          "speciesKey": "magearna",
+          "altKind": "original"
         }
       },
       {
         "section": "MAGEARNA",
         "subsection": 3,
-        "formName": "Mega (Original Color)",
+        "formName": "Original Mega",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "magearna"
+          "kind": "known",
+          "speciesKey": "magearna",
+          "altKind": "original-mega"
         }
       }
     ],
@@ -3153,28 +3191,31 @@
       {
         "section": "ORICORIO",
         "subsection": 1,
-        "formName": "Pom-Pom Style",
+        "formName": "Pom-Pom",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "oricorio"
+          "kind": "known",
+          "speciesKey": "oricorio",
+          "altKind": "pom-pom"
         }
       },
       {
         "section": "ORICORIO",
         "subsection": 2,
-        "formName": "Pa'u Style",
+        "formName": "Pa'u",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "oricorio"
+          "kind": "known",
+          "speciesKey": "oricorio",
+          "altKind": "pau"
         }
       },
       {
         "section": "ORICORIO",
         "subsection": 3,
-        "formName": "Sensu Style",
+        "formName": "Sensu",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "oricorio"
+          "kind": "known",
+          "speciesKey": "oricorio",
+          "altKind": "sensu"
         }
       }
     ],
@@ -3758,28 +3799,31 @@
       {
         "section": "TATSUGIRI",
         "subsection": 3,
-        "formName": "Mega (Curly )",
+        "formName": "Curly Mega",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "tatsugiri"
+          "kind": "known",
+          "speciesKey": "tatsugiri",
+          "altKind": "curly-mega"
         }
       },
       {
         "section": "TATSUGIRI",
         "subsection": 4,
-        "formName": "Mega (Droopy )",
+        "formName": "Droopy Mega",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "tatsugiri"
+          "kind": "known",
+          "speciesKey": "tatsugiri",
+          "altKind": "droopy-mega"
         }
       },
       {
         "section": "TATSUGIRI",
         "subsection": 5,
-        "formName": "Mega (Stretchy )",
+        "formName": "Stretchy Mega",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "tatsugiri"
+          "kind": "known",
+          "speciesKey": "tatsugiri",
+          "altKind": "stretchy-mega"
         }
       }
     ],
@@ -3791,28 +3835,31 @@
       {
         "section": "TAUROS",
         "subsection": 1,
-        "formName": "Paldean (Combat Breed)",
+        "formName": "Paldean Combat Breed",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "tauros"
+          "kind": "known",
+          "speciesKey": "tauros",
+          "altKind": "paldea-combat-breed"
         }
       },
       {
         "section": "TAUROS",
         "subsection": 2,
-        "formName": "Paldean (Blaze Breed)",
+        "formName": "Paldean Blaze Breed",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "tauros"
+          "kind": "known",
+          "speciesKey": "tauros",
+          "altKind": "paldea-blaze-breed"
         }
       },
       {
         "section": "TAUROS",
         "subsection": 3,
-        "formName": "Paldean (Aqua Breed)",
+        "formName": "Paldean Aqua Breed",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "tauros"
+          "kind": "known",
+          "speciesKey": "tauros",
+          "altKind": "paldea-aqua-breed"
         }
       }
     ],
@@ -4159,10 +4206,11 @@
       {
         "section": "URSHIFU",
         "subsection": 1,
-        "formName": "Rapid Strike Style",
+        "formName": "Rapid Strike",
         "resolutionInfo": {
-          "kind": "custom",
-          "speciesKey": "urshifu"
+          "kind": "known",
+          "speciesKey": "urshifu",
+          "altKind": "rapid-strike"
         }
       }
     ],
