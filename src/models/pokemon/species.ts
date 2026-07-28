@@ -94,8 +94,8 @@ export class Species {
     return !!this.#raw.customTypeIcons;
   }
 
-  getCustomTypeIconIndex(types: string[]) {
-    return this.#raw.customTypeIcons?.find((icon) => TYPE_KEY_PAIRS.equal(icon.types, types))
+  getCustomTypeIconIndex(typeKeys: string[]) {
+    return this.#raw.customTypeIcons?.find((icon) => TYPE_KEY_PAIRS.equal(icon.types, typeKeys))
       ?.iconIndex;
   }
 
