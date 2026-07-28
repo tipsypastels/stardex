@@ -169,6 +169,7 @@ export function createImportPBSState(): ImportPBSState {
         setFiles([]);
         setStepIndex(0);
         setFilteredDexSection(undefined);
+        setFormGranularity(undefined);
       });
     },
 
