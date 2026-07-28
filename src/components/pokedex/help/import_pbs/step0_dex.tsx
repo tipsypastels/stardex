@@ -1,5 +1,6 @@
 import { batch, For, Show } from "solid-js";
 import type { ImportPBSStepProps } from ".";
+import { capitalizeWords } from "../../../../utils/string";
 import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { ButtonLink } from "../../../common/link";
@@ -50,8 +51,8 @@ export function ImportPBSStep0Dex(props: ImportPBSStepProps) {
                 name={
                   <>
                     Dex {dex.section}{" "}
-                    <span class="text-foreground-muted lowercase">
-                      ({dex.labels.slice(0, 3).join(", ")}...)
+                    <span class="text-foreground-muted">
+                      ({dex.labels.slice(0, 3).map(capitalizeWords).join(", ")}...)
                     </span>
                   </>
                 }
