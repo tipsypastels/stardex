@@ -89,7 +89,7 @@ export function ImportPBSModalForms(props: ImportPBSModalFormsProps) {
         </li>
         <li>
           <Checkbox
-            name="Only forms Stardex recognizes."
+            name="Only forms that Stardex recognizes."
             radio
             checked={props.phase.forms.granularity === "known"}
             onChange={() => props.phase.forms.setGranularity("known")}
@@ -341,7 +341,7 @@ function FooterNoForms(props: ImportPBSModalFormsProps) {
       </div>
 
       <div class="text-center text-sm text-foreground-muted">
-        Or, <ButtonLink onClick={() => props.state.gotoForms()}>skip this option</ButtonLink> to
+        Or, <ButtonLink onClick={() => props.state.gotoFinish()}>skip this option</ButtonLink> to
         import only base forms.
       </div>
     </>

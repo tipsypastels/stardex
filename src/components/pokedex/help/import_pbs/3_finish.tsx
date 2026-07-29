@@ -1,3 +1,7 @@
+import { Match, Switch } from "solid-js";
+import { Button } from "../../../common/button";
+import { ButtonLink, UploadLink } from "../../../common/link";
+import { importPBS } from "./import";
 import type { ImportPBSFinishPhase, ImportPBSState } from "./state";
 
 export interface ImportPBSModalFinishProps {
@@ -5,29 +9,68 @@ export interface ImportPBSModalFinishProps {
   phase: ImportPBSFinishPhase;
 }
 
-export function ImportPBSModalFinish(_props: ImportPBSModalFinishProps) {
-  return <>xd</>;
+export function ImportPBSModalFinish(props: ImportPBSModalFinishProps) {
+  return (
+    <>
+      <p class="mb-2">
+        Ready to import <strong>{props.phase.files.files.length}</strong> file
+        {props.phase.files.files.length === 1 ? "" : "s"}, with these settings:
+      </p>
+
+      <ul class="mb-2 list-inside list-disc">
+        <li>
+          <strong>Dex:</strong>{" "}
+          {props.phase.dexes.section != null
+            ? `Pokédex ${props.phase.dexes.section}`
+            : "Not filtering"}
+          .
+        </li>
+        <li>
+          <strong>Forms:</strong>{" "}
+          <Switch fallback="Including only bases.">
+            <Match when={props.phase.forms.granularity === "all"}>Including all.</Match>
+            <Match when={props.phase.forms.granularity === "types"}>
+              Including those with type changes.
+            </Match>
+            <Match when={props.phase.forms.granularity === "known"}>
+              Including those recognized by Stardex.
+            </Match>
+            <Match when={props.phase.forms.granularity === "custom"}>
+              Decided for each form class.
+            </Match>
+          </Switch>
+        </li>
+      </ul>
+
+      <p class="mb-2">Are you ready to go? You can still...</p>
+
+      <ul class="list-inside list-disc">
+        <li>
+          <UploadLink
+            accept="text/plain"
+            multiple
+            onUpload={(fileList) => props.phase.files.import(fileList)}
+          >
+            Upload more files.
+          </UploadLink>
+        </li>
+        <li>
+          <ButtonLink onClick={() => props.state.gotoDexes(props.phase.files)}>
+            Go back to dex settings.
+          </ButtonLink>{" "}
+        </li>
+        <li>
+          <ButtonLink onClick={() => props.state.gotoForms()}>Go back to form settings.</ButtonLink>
+        </li>
+      </ul>
+    </>
+  );
 }
 
-export function ImportPBSModalFinishFooter(_props: ImportPBSModalFinishProps) {
-  // const [uploading, setUploading] = createSignal(false);
-  // return (
-  //   <div class="flex flex-col justify-center">
-  //     <UploadButton
-  //       accept="text/plain"
-  //       multiple
-  //       disabled={uploading()}
-  //       // eslint-disable-next-line solid/reactivity
-  //       onUpload={async (fileList) => {
-  //         setUploading(true);
-
-  //         const files = await createImportPBSFilesState(fileList);
-  //         props.state.gotoDexes(files);
-  //       }}
-  //     >
-  //       Upload PBS Files
-  //     </UploadButton>
-  //   </div>
-  // );
-  return "ok";
+export function ImportPBSModalFinishFooter(props: ImportPBSModalFinishProps) {
+  return (
+    <div class="flex flex-col justify-center">
+      <Button onClick={() => importPBS(props.state, props.phase)}>Import</Button>
+    </div>
+  );
 }

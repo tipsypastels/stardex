@@ -33,8 +33,8 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
     >
       {intro}
       <p class="mb-2">
-        Choose a region from your <code>regional_dexes.txt</code>. Pokémon not in that region won't
-        be added to this Stardex project.
+        Choose a Pokédex from your <code>regional_dexes.txt</code>. Pokémon not in that dex won't be
+        added to this Stardex project.
       </p>
 
       <ul>
