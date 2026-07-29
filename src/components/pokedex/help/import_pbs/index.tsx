@@ -4,6 +4,7 @@ import { Steps } from "../../../common/steps";
 import { ImportPBSModalLanding, ImportPBSModalLandingFooter } from "./0_landing";
 import { ImportPBSModalDexes, ImportPBSModalDexesFooter } from "./1_dexes";
 import { ImportPBSModalForms, ImportPBSModalFormsFooter } from "./2_forms";
+import { ImportPBSModalFinish, ImportPBSModalFinishFooter } from "./3_finish";
 import type { ImportPBSPhase, ImportPBSState } from "./state";
 
 export interface ImportPBSModalProps {
@@ -12,7 +13,7 @@ export interface ImportPBSModalProps {
 }
 
 export function ImportPBSModal(props: ImportPBSModalProps) {
-  function renderChildren(inner: JSXElement) {
+  function makeChildren(inner: JSXElement) {
     return (
       <>
         <div class="mb-2">
@@ -31,20 +32,26 @@ export function ImportPBSModal(props: ImportPBSModalProps) {
     switch (props.phase.type) {
       case "landing": {
         return {
-          children: renderChildren(<ImportPBSModalLanding />),
+          children: makeChildren(<ImportPBSModalLanding />),
           footer: <ImportPBSModalLandingFooter state={props.state} phase={props.phase} />,
         };
       }
       case "dexes": {
         return {
-          children: renderChildren(<ImportPBSModalDexes state={props.state} phase={props.phase} />),
+          children: makeChildren(<ImportPBSModalDexes state={props.state} phase={props.phase} />),
           footer: <ImportPBSModalDexesFooter state={props.state} phase={props.phase} />,
         };
       }
       case "forms": {
         return {
-          children: renderChildren(<ImportPBSModalForms state={props.state} phase={props.phase} />),
+          children: makeChildren(<ImportPBSModalForms state={props.state} phase={props.phase} />),
           footer: <ImportPBSModalFormsFooter state={props.state} phase={props.phase} />,
+        };
+      }
+      case "finish": {
+        return {
+          children: makeChildren(<ImportPBSModalFinish state={props.state} phase={props.phase} />),
+          footer: <ImportPBSModalFinishFooter state={props.state} phase={props.phase} />,
         };
       }
     }

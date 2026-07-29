@@ -4,18 +4,20 @@ import { SPECIES } from "../species";
 import type { PBSRecord } from "./parse";
 import { getPBSRecordSectionSpecies } from "./species";
 
-export type PBSFormFilterBucket =
-  | {
-      groupedBy: "formName";
-      entries: PBSFormFilterBucketEntry[];
-      formName: string;
-    }
-  | {
-      groupedBy: "line";
-      entries: PBSFormFilterBucketEntry[];
-      formNames: string[];
-      speciesNames: string[];
-    };
+export type PBSFormFilterBucket = PBSFormFilterBucketByFormName | PBSFormFilterBucketByLine;
+
+export interface PBSFormFilterBucketByFormName {
+  groupedBy: "formName";
+  entries: PBSFormFilterBucketEntry[];
+  formName: string;
+}
+
+export interface PBSFormFilterBucketByLine {
+  groupedBy: "line";
+  entries: PBSFormFilterBucketEntry[];
+  formNames: string[];
+  speciesNames: string[];
+}
 
 export interface PBSFormFilterBucketEntry {
   section: string;

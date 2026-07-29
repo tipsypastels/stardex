@@ -3,7 +3,8 @@ import { createStore } from "solid-js/store";
 import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
 import { type ImportPBSFilesState } from "./files";
 
-export type ImportPBSPhase = ImportPBSLandingPhase | ImportPBSDexesPhase | ImportPBSFormsPhase;
+export type ImportPBSPhase =
+  ImportPBSLandingPhase | ImportPBSDexesPhase | ImportPBSFormsPhase | ImportPBSFinishPhase;
 
 /* --------------------------------- Landing -------------------------------- */
 
@@ -53,6 +54,16 @@ export interface ImportPBSFormsState {
   dispose(): void;
 }
 
+/* --------------------------------- Finish --------------------------------- */
+
+export interface ImportPBSFinishPhase {
+  type: "finish";
+  index: 3;
+  files: ImportPBSFilesState;
+  dexes: ImportPBSDexesState;
+  forms: ImportPBSFormsState;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                   Factory                                  */
 /* -------------------------------------------------------------------------- */
@@ -62,6 +73,7 @@ export interface ImportPBSState {
   open(): void;
   gotoDexes(files: ImportPBSFilesState): Promise<void>;
   gotoForms(): void;
+  gotoFinish(): void;
   close(): void;
 }
 
@@ -105,6 +117,13 @@ export function createImportPBSState(): ImportPBSState {
           index: 2,
           forms,
         } satisfies ImportPBSFormsPhase;
+      });
+    },
+
+    gotoFinish() {
+      setPhase((phase) => {
+        if (phase?.type !== "forms") return phase;
+        return { ...phase, type: "finish", index: 3 } satisfies ImportPBSFinishPhase;
       });
     },
 

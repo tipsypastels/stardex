@@ -9,11 +9,11 @@ describe(getPBSRecordSectionSpecies, () => {
       ...parsePBSAsRecords({
         name: "pokemon.txt",
         text: readFileSync("samples/pbs/pokemon.txt", "utf-8"),
-      }).out,
+      }).records,
       ...parsePBSAsRecords({
         name: "pokemon_gen9.txt",
         text: readFileSync("samples/pbs/pokemon_gen9.txt", "utf-8"),
-      }).out,
+      }).records,
     ];
 
     // PBS uses a different apostrophe character. This
