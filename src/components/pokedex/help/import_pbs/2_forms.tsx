@@ -130,7 +130,7 @@ function Custom(props: ImportPBSModalFormsProps) {
           when={buckets().length === props.phase.forms.customChoices.length}
           fallback={<CustomInner {...props} buckets={buckets()} />}
         >
-          TODO done
+          <CustomDone {...props} />
         </Show>
       )}
     </Show>
@@ -260,6 +260,17 @@ export function CustomInner(props: CustomInnerProps) {
           Omit
         </ButtonLink>
       </div>
+    </div>
+  );
+}
+
+function CustomDone(props: ImportPBSModalFormsProps) {
+  return (
+    <div class="relative flex items-center justify-center rounded-md border-2 border-primary p-4">
+      <div class="absolute -top-2.5 right-4 bg-background px-2 text-xs">
+        <ButtonLink onClick={() => props.phase.forms.undoCustomChoice()}>Undo</ButtonLink>
+      </div>
+      <div class="text-primary">All done!</div>
     </div>
   );
 }
