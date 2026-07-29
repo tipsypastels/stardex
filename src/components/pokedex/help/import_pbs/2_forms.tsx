@@ -280,7 +280,7 @@ function FooterOnForms(props: ImportPBSModalFormsProps) {
     if (props.phase.forms.granularity !== "custom") return true;
 
     const finishedLength = props.phase.forms.customBuckets?.length ?? Infinity;
-    return props.phase.forms.granularity.length === finishedLength;
+    return props.phase.forms.customChoices.length === finishedLength;
   });
 
   return (
