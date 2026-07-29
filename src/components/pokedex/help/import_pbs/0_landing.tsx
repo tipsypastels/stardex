@@ -24,8 +24,8 @@ export function ImportPBSModalLanding() {
         </li>
       </ul>
       <p class="mb-2">
-        As in Essentials, splitting up files with suffixes like <code>pokemon_myregion.txt</code>{" "}
-        is. Any other files will be ignored.
+        As in Essentials, splitting up files with suffixes like <code>pokemon_myregion.txt</code> is
+        allowed. Any other files will be ignored.
       </p>
       <p>You'll be given the chance to filter your imports in later steps.</p>
     </>
