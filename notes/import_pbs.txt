@@ -1,0 +1,6 @@
+UI implementation notes
+
+- All mutable state needs to go in the import state or you'd need some kind of <ModalChild> weirdness.
+- All derived state should go in the components, e.g. bucket view.
+- Preferably have state be generic instead of needing redundant phase.
+- Reversible, should not throw away state. State should be decreasingly optional properties instead of discriminated union.

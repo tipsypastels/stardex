@@ -32,7 +32,7 @@ export function ImportPBSModal(props: ImportPBSModalProps) {
       case "landing": {
         return {
           children: renderChildren(<ImportPBSModalLanding />),
-          footer: <ImportPBSModalLandingFooter state={props.state} phase={props.phase} />,
+          footer: <ImportPBSModalLandingFooter state={props.state} />,
         };
       }
       case "dexes": {

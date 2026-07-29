@@ -25,3 +25,12 @@ export function readFileAsTextAsync(file: File) {
     fileReader.readAsText(file);
   });
 }
+
+export function readFileListAsTextAsync(files: FileList) {
+  return Promise.all(
+    [...files].map(async (file) => {
+      const text = await readFileAsTextAsync(file);
+      return { name: file.name, text };
+    }),
+  );
+}

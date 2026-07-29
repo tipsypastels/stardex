@@ -20,12 +20,10 @@ export interface PBSParseError {
 }
 
 export function parsePBSAsRecords(file: NamedText) {
-  const out: PBSRecord[] = [];
+  const records: PBSRecord[] = [];
   const errors: PBSParseError[] = [];
 
   let current: PBSRecord | undefined;
-  let withSubsectionsCount = 0;
-  let withoutSubsectionsCount = 0;
 
   const lines = file.text.split("\n");
 
@@ -43,12 +41,7 @@ export function parsePBSAsRecords(file: NamedText) {
       const subsection = heading[2];
 
       if (current) {
-        out.push(current);
-      }
-      if (subsection) {
-        withSubsectionsCount++;
-      } else {
-        withoutSubsectionsCount++;
+        records.push(current);
       }
       current = {
         section,
@@ -77,14 +70,14 @@ export function parsePBSAsRecords(file: NamedText) {
     }
   }
   if (current) {
-    out.push(current);
+    records.push(current);
   }
 
-  return { out, errors, withSubsectionsCount, withoutSubsectionsCount };
+  return { records, errors };
 }
 
 export function parsePBSAsLabelLists(file: NamedText) {
-  const out: PBSLabelList[] = [];
+  const labelLists: PBSLabelList[] = [];
   const errors: PBSParseError[] = [];
 
   let current: PBSLabelList | undefined;
@@ -104,7 +97,7 @@ export function parsePBSAsLabelLists(file: NamedText) {
       const section = +heading[1];
 
       if (current) {
-        out.push(current);
+        labelLists.push(current);
       }
       current = {
         section,
@@ -129,8 +122,8 @@ export function parsePBSAsLabelLists(file: NamedText) {
     }
   }
   if (current) {
-    out.push(current);
+    labelLists.push(current);
   }
 
-  return { out, errors };
+  return { labelLists, errors };
 }

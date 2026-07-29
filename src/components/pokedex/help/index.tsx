@@ -77,9 +77,7 @@ export function PokedexHelp() {
             </UploadLink>
           </li>
           <li>
-            <UploadLink accept="text/plain" multiple onUpload={pbsState.import}>
-              Import Essentials PBS files.
-            </UploadLink>
+            <ButtonLink onClick={() => pbsState.open()}>Import Essentials PBS files.</ButtonLink>
           </li>
           <li>
             <ButtonLink onClick={() => setImportRegionModalOpen(true)}>
@@ -106,8 +104,8 @@ export function PokedexHelp() {
         </div>
       </Show>
 
-      <Show when={pbsState.files.length > 0}>
-        <ImportPBSModal state={pbsState} />
+      <Show when={pbsState.phase}>
+        {(phase) => <ImportPBSModal state={pbsState} phase={phase()} />}
       </Show>
 
       <Show when={importRegionModalOpen()}>
