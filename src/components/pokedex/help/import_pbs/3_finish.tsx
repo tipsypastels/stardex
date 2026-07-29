@@ -28,12 +28,10 @@ export function ImportPBSModalFinish(props: ImportPBSModalFinishProps) {
         <li>
           <strong>Forms:</strong>{" "}
           <Switch fallback="Including only bases.">
-            <Match when={props.phase.forms.granularity === "all"}>Including all.</Match>
-            <Match when={props.phase.forms.granularity === "types"}>
-              Including those with type changes.
-            </Match>
+            <Match when={props.phase.forms.granularity === "all"}>All.</Match>
+            <Match when={props.phase.forms.granularity === "types"}>Any with type changes.</Match>
             <Match when={props.phase.forms.granularity === "known"}>
-              Including those recognized by Stardex.
+              Any recognized by Stardex.
             </Match>
             <Match when={props.phase.forms.granularity === "custom"}>
               Decided for each form class.
