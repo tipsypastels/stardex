@@ -1,7 +1,7 @@
 import { batch, createEffect, createSignal, Show, type Accessor } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import { customIcons } from "../../../models/pokemon/custom_icon";
-import { blobToDataUrl } from "../../../utils/file";
+import { blobToDataUrl } from "../../../utils/fs/web";
 import { Button } from "../../common/button";
 import { Icon } from "../../common/icon";
 import { ButtonLink, UploadLink } from "../../common/link";

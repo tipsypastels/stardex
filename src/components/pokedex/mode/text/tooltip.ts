@@ -1,7 +1,7 @@
 import { syntaxTree } from "@codemirror/language";
 import { hoverTooltip } from "@codemirror/view";
 import { DEBUG } from "../../../../debug";
-import { tw } from "../../../../utils/style";
+import { tw } from "../../../../utils/string";
 import { getPokemonAtSpan } from "./parse";
 
 export const tooltip = hoverTooltip((view, pos) => {

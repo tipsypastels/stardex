@@ -1,7 +1,7 @@
 import type { RawPokemon } from "..";
-import { iterMap } from "../../../utils/iter";
+import { iterMap } from "../../../utils/collection";
+import type { Spanned } from "../../../utils/span";
 import { capitalize, capitalizeWords } from "../../../utils/string";
-import type { Spanned } from "../../../utils/types";
 import { pokemons } from "../list";
 import { SPECIES } from "../species";
 import { transformAltNameWithAliases } from "./alt_name";

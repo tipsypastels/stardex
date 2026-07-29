@@ -1,7 +1,7 @@
 import { batch, createRoot, createSignal } from "solid-js";
 import type { PBSLabelList, PBSParseError, PBSRecord } from "../../../../models/pokemon/pbs/parse";
-import { readFileListAsTextAsync } from "../../../../utils/file";
-import { mergeNamedTextArrays, type NamedText } from "../../../../utils/types";
+import { mergeNamedTextArrays, type NamedText } from "../../../../utils/fs/named_text";
+import { readFileListAsNamedTextAsync } from "../../../../utils/fs/web";
 
 export interface ImportPBSFilesState {
   files: NamedText[];
@@ -17,7 +17,7 @@ export interface ImportPBSParsedState {
 }
 
 export async function createImportPBSFilesState(fileList: FileList): Promise<ImportPBSFilesState> {
-  const initialFiles = await readFileListAsTextAsync(fileList);
+  const initialFiles = await readFileListAsNamedTextAsync(fileList);
   const initialResult = await parse(initialFiles);
 
   return createRoot(() => {
@@ -39,7 +39,7 @@ export async function createImportPBSFilesState(fileList: FileList): Promise<Imp
       },
 
       async import(fileList) {
-        const newFiles = await readFileListAsTextAsync(fileList);
+        const newFiles = await readFileListAsNamedTextAsync(fileList);
         const files = mergeNamedTextArrays(this.files, newFiles);
         const result = await parse(files);
 

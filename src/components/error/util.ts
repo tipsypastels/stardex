@@ -1,6 +1,6 @@
 import { createSignal, type Accessor } from "solid-js";
 import * as v from "valibot";
-import { saveToFile } from "../../utils/file";
+import { saveToFile } from "../../utils/fs/web";
 
 interface ErrorDump {
   date: string;

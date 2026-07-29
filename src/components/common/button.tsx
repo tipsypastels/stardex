@@ -1,5 +1,5 @@
 import type { JSXElement } from "solid-js";
-import { tw } from "../../utils/style";
+import { tw } from "../../utils/string";
 import { Icon } from "./icon";
 
 const LOOKS = {

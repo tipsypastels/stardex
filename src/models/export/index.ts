@@ -1,6 +1,6 @@
 import { batch } from "solid-js";
 import * as v from "valibot";
-import { saveToFile } from "../../utils/file";
+import { saveToFile } from "../../utils/fs/web";
 import { pokedexMode, PokedexModeKey } from "../pokedex/mode";
 import { customIcons } from "../pokemon/custom_icon";
 import { pokemons, RawPokemonList } from "../pokemon/list";

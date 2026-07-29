@@ -1,5 +1,5 @@
 import type { JSXElement } from "solid-js";
-import { tw } from "../../utils/style";
+import { tw } from "../../utils/string";
 
 const LOOKS = {
   primary: "text-primary",

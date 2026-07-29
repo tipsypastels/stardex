@@ -4,7 +4,7 @@ import { loadJSONExport, VAny_RawJSONExport } from "../../../models/export";
 import { pokedexMode } from "../../../models/pokedex/mode";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
-import { readFileAsTextAsync } from "../../../utils/file";
+import { readFileAsTextAsync } from "../../../utils/fs/web";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { ImportPBSModal } from "./import_pbs";

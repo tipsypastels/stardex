@@ -26,7 +26,7 @@ export function readFileAsTextAsync(file: File) {
   });
 }
 
-export function readFileListAsTextAsync(files: FileList) {
+export function readFileListAsNamedTextAsync(files: FileList) {
   return Promise.all(
     [...files].map(async (file) => {
       const text = await readFileAsTextAsync(file);

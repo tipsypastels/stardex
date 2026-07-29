@@ -1,6 +1,6 @@
 import { batch, createResource, createRoot } from "solid-js";
 import { assert } from "../../../utils/assert";
-import { blobToDataUrl } from "../../../utils/file";
+import { blobToDataUrl } from "../../../utils/fs/web";
 import {
   addBulkCustomIconsDbEntries,
   addCustomIconsDbEntry,

@@ -9,7 +9,7 @@ import {
   Transaction,
 } from "@codemirror/state";
 import { id as makeId } from "../../../../utils/id";
-import type { Span, Spanned } from "../../../../utils/types";
+import type { Span, Spanned } from "../../../../utils/span";
 
 export const trackingIds = StateField.define<RangeSet<TrackedId>>({
   create(state) {
