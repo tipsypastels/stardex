@@ -1,7 +1,7 @@
 import { createResource, createRoot, createSignal, type Setter } from "solid-js";
 import { createStore } from "solid-js/store";
 import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
-import { type ImportPBSFilesState } from "./files";
+import { type ImportPBSFiles } from "./files";
 
 export type ImportPBSPhase =
   ImportPBSLandingPhase | ImportPBSDexesPhase | ImportPBSFormsPhase | ImportPBSFinishPhase;
@@ -21,12 +21,12 @@ export interface ImportPBSLandingPhase {
 export interface ImportPBSDexesPhase {
   type: "dexes";
   index: 1;
-  files: ImportPBSFilesState;
-  dexes: ImportPBSDexesState;
-  forms?: ImportPBSFormsState;
+  files: ImportPBSFiles;
+  dexes: ImportPBSDexes;
+  forms?: ImportPBSForms;
 }
 
-export interface ImportPBSDexesState {
+export interface ImportPBSDexes {
   section: number | undefined;
   setSection: Setter<number | undefined>;
 }
@@ -36,15 +36,15 @@ export interface ImportPBSDexesState {
 export interface ImportPBSFormsPhase {
   type: "forms";
   index: 2;
-  files: ImportPBSFilesState;
-  dexes: ImportPBSDexesState;
-  forms: ImportPBSFormsState;
+  files: ImportPBSFiles;
+  dexes: ImportPBSDexes;
+  forms: ImportPBSForms;
 }
 
 export type ImportPBSFormGranularity = "all" | "types" | "known" | "custom";
 export type ImportPBSFormCustomChoice = "add" | "replace" | "omit";
 
-export interface ImportPBSFormsState {
+export interface ImportPBSForms {
   granularity: ImportPBSFormGranularity | undefined;
   customChoices: ImportPBSFormCustomChoice[];
   customBuckets: PBSFormFilterBucket[] | undefined;
@@ -59,9 +59,9 @@ export interface ImportPBSFormsState {
 export interface ImportPBSFinishPhase {
   type: "finish";
   index: 3;
-  files: ImportPBSFilesState;
-  dexes: ImportPBSDexesState;
-  forms: ImportPBSFormsState;
+  files: ImportPBSFiles;
+  dexes: ImportPBSDexes;
+  forms: ImportPBSForms;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -71,7 +71,7 @@ export interface ImportPBSFinishPhase {
 export interface ImportPBSState {
   phase: ImportPBSPhase | undefined;
   open(): void;
-  gotoDexes(files: ImportPBSFilesState): Promise<void>;
+  gotoDexes(files: ImportPBSFiles): void;
   gotoForms(): void;
   gotoFinish(): void;
   close(): void;
@@ -89,7 +89,7 @@ export function createImportPBSState(): ImportPBSState {
       setPhase({ type: "landing", index: 0 });
     },
 
-    async gotoDexes(files) {
+    gotoDexes(files) {
       setPhase((phase) => {
         const { dexes: prevDexes, ...rest } = phase ?? {};
         const dexes = prevDexes ?? createDexesState();
@@ -134,7 +134,7 @@ export function createImportPBSState(): ImportPBSState {
   };
 }
 
-function createDexesState(): ImportPBSDexesState {
+function createDexesState(): ImportPBSDexes {
   const [section, setSection] = createSignal<number>();
 
   return {
@@ -145,7 +145,7 @@ function createDexesState(): ImportPBSDexesState {
   };
 }
 
-function createFormsState(files: ImportPBSFilesState): ImportPBSFormsState {
+function createFormsState(files: ImportPBSFiles): ImportPBSForms {
   return createRoot((dispose) => {
     const [granularity, setGranularity] = createSignal<ImportPBSFormGranularity>();
     const [customChoices, setCustomChoices] = createStore<ImportPBSFormCustomChoice[]>([]);

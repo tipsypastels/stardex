@@ -3,20 +3,20 @@ import type { PBSLabelList, PBSParseError, PBSRecord } from "../../../../models/
 import { mergeNamedTextArrays, type NamedText } from "../../../../utils/fs/named_text";
 import { readFileListAsNamedTextAsync } from "../../../../utils/fs/web";
 
-export interface ImportPBSFilesState {
+export interface ImportPBSFiles {
   files: NamedText[];
-  parsed: ImportPBSParsedState;
+  parsed: ImportPBSParsed;
   errors: PBSParseError[];
   import(fileList: FileList): Promise<void>;
 }
 
-export interface ImportPBSParsedState {
+export interface ImportPBSParsed {
   pokemons: PBSRecord[];
   forms: PBSRecord[];
   dexes: PBSLabelList[];
 }
 
-export async function createImportPBSFilesState(fileList: FileList): Promise<ImportPBSFilesState> {
+export async function createImportPBSFiles(fileList: FileList): Promise<ImportPBSFiles> {
   const initialFiles = await readFileListAsNamedTextAsync(fileList);
   const initialResult = await parse(initialFiles);
 
@@ -54,7 +54,7 @@ export async function createImportPBSFilesState(fileList: FileList): Promise<Imp
 }
 
 async function parse(files: NamedText[]) {
-  const parsed: ImportPBSParsedState = {
+  const parsed: ImportPBSParsed = {
     pokemons: [],
     forms: [],
     dexes: [],
