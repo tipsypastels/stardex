@@ -21,7 +21,7 @@ export function ImportPBSModalForms(props: ImportPBSModalFormsProps) {
             add some or all of them to your Pokédex.
           </p>
 
-          <p class="mb-4">
+          <p>
             You aren't obliged to care about forms with Stardex. If your region has none, they're
             all cosmetic, or it's too much effort to account for them, you can safely skip this
             option.
@@ -137,9 +137,11 @@ function FooterNoForms(props: ImportPBSModalFormsProps) {
           accept="text/plain"
           multiple
           disabled={uploading()}
-          onUpload={(fileList) => {
+          // eslint-disable-next-line solid/reactivity
+          onUpload={async (fileList) => {
             setUploading(true);
-            props.phase.files.import(fileList);
+            await props.phase.files.import(fileList);
+            setUploading(false);
           }}
         >
           Upload Pokémon Forms

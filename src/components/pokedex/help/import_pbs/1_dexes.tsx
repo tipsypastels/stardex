@@ -112,9 +112,11 @@ function FooterOnNoDexes(props: ImportPBSModalDexesProps) {
           accept="text/plain"
           multiple
           disabled={uploading()}
-          onUpload={(fileList) => {
+          // eslint-disable-next-line solid/reactivity
+          onUpload={async (fileList) => {
             setUploading(true);
-            props.phase.files.import(fileList);
+            await props.phase.files.import(fileList);
+            setUploading(false);
           }}
         >
           Upload Regional Dexes

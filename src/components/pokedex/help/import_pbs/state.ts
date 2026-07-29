@@ -1,4 +1,4 @@
-import { createResource, createSignal, type Setter } from "solid-js";
+import { createResource, createRoot, createSignal, type Setter } from "solid-js";
 import { createStore } from "solid-js/store";
 import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
 import { type ImportPBSFilesState } from "./files";
@@ -50,6 +50,7 @@ export interface ImportPBSFormsState {
   setGranularity: Setter<ImportPBSFormGranularity | undefined>;
   pushCustomChoice(choice: ImportPBSFormCustomChoice): void;
   undoCustomChoice(): void;
+  dispose(): void;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -108,6 +109,7 @@ export function createImportPBSState(): ImportPBSState {
     },
 
     close() {
+      phase()?.forms?.dispose();
       setPhase(undefined);
     },
   };
@@ -125,30 +127,33 @@ function createDexesState(): ImportPBSDexesState {
 }
 
 function createFormsState(files: ImportPBSFilesState): ImportPBSFormsState {
-  const [granularity, setGranularity] = createSignal<ImportPBSFormGranularity>();
-  const [customChoices, setCustomChoices] = createStore<ImportPBSFormCustomChoice[]>([]);
-  const [customBuckets] = createResource(
-    () => (granularity() === "custom" ? files.parsed : undefined),
-    async (parsed) => {
-      const { getPBSFormFilterBuckets } = await import("../../../../models/pokemon/pbs/form");
-      return getPBSFormFilterBuckets([...parsed.pokemons, ...parsed.forms]);
-    },
-  );
+  return createRoot((dispose) => {
+    const [granularity, setGranularity] = createSignal<ImportPBSFormGranularity>();
+    const [customChoices, setCustomChoices] = createStore<ImportPBSFormCustomChoice[]>([]);
+    const [customBuckets] = createResource(
+      () => (granularity() === "custom" ? files.parsed : undefined),
+      async (parsed) => {
+        const { getPBSFormFilterBuckets } = await import("../../../../models/pokemon/pbs/form");
+        return getPBSFormFilterBuckets([...parsed.pokemons, ...parsed.forms]);
+      },
+    );
 
-  return {
-    get granularity() {
-      return granularity();
-    },
-    customChoices,
-    get customBuckets() {
-      return customBuckets();
-    },
-    setGranularity,
-    pushCustomChoice(choice) {
-      setCustomChoices(customChoices.length, choice);
-    },
-    undoCustomChoice() {
-      setCustomChoices((choices) => choices.slice(0, choices.length - 1));
-    },
-  };
+    return {
+      get granularity() {
+        return granularity();
+      },
+      customChoices,
+      get customBuckets() {
+        return customBuckets();
+      },
+      setGranularity,
+      pushCustomChoice(choice) {
+        setCustomChoices(customChoices.length, choice);
+      },
+      undoCustomChoice() {
+        setCustomChoices((choices) => choices.slice(0, choices.length - 1));
+      },
+      dispose,
+    };
+  });
 }
