@@ -8,7 +8,7 @@ import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { Icon } from "../../../common/icon";
 import { ButtonLink } from "../../../common/link";
-import { SpeciesIcon } from "../../util/species_icon";
+import { SpeciesIcon } from "../../util/icon/species";
 import type { ImportPBSFormsPhase, ImportPBSState } from "./state";
 
 export interface ImportPBSModalFormsProps {
@@ -45,15 +45,15 @@ export function ImportPBSModalForms(props: ImportPBSModalFormsProps) {
         <div class="flex grow flex-col items-center">
           <strong>Cosmetic Forms</strong>
           <div class="flex">
-            <SpeciesIcon id={1037} name="Pikachu (Popstar)" />
-            <SpeciesIcon id={1090} name="Deerling (Autumn)" />
+            <SpeciesIcon index={1037} name="Pikachu (Popstar)" />
+            <SpeciesIcon index={1090} name="Deerling (Autumn)" />
           </div>
         </div>
         <div class="flex grow flex-col items-center">
           <strong>Non-Cosmetic Forms</strong>
           <div class="flex">
-            <SpeciesIcon id={1159} name="Dugtrio (Alolan)" />
-            <SpeciesIcon id={1345} name="Sableye (Mega)" />
+            <SpeciesIcon index={1159} name="Dugtrio (Alolan)" />
+            <SpeciesIcon index={1345} name="Sableye (Mega)" />
           </div>
         </div>
       </div>

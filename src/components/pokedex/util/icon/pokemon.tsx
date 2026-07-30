@@ -1,8 +1,8 @@
 import { Match, Switch } from "solid-js";
-import type { Pokemon } from "../../../models/pokemon";
-import { customIcons } from "../../../models/pokemon/custom_icon";
-import { CustomIcon, CustomIconLoading } from "./custom_icon";
-import { SpeciesIcon } from "./species_icon";
+import type { Pokemon } from "../../../../models/pokemon";
+import { customIcons } from "../../../../models/pokemon/custom_icon";
+import { SpeciesIcon } from "../icon/species";
+import { CustomIcon, CustomIconLoading } from "./custom";
 
 export interface PokemonIconProps {
   pokemon: Pokemon;
@@ -19,22 +19,22 @@ export function PokemonIcon(props: PokemonIconProps) {
   };
 
   return (
-    <Switch fallback={<SpeciesIcon id={0} name={name()} />}>
+    <Switch fallback={<SpeciesIcon index={0} name={name()} />}>
       <Match when={customIconUrl()}>{(url) => <CustomIcon name={name()} url={url()} />}</Match>
       <Match when={customIconLoading()}>
         <CustomIconLoading name={name()} />
       </Match>
       <Match when={props.pokemon.isBuiltin() && props.pokemon.customAltName}>
-        <SpeciesIcon id={0} name={name()} />
+        <SpeciesIcon index={0} name={name()} />
       </Match>
       <Match when={props.pokemon.species}>
         {(species) => (
-          <Switch fallback={<SpeciesIcon id={species().id} name={name()} />}>
+          <Switch fallback={<SpeciesIcon index={species().iconIndex} name={name()} />}>
             <Match when={props.pokemon.alt}>
-              {(alt) => <SpeciesIcon id={alt().iconIndex} name={name()} />}
+              {(alt) => <SpeciesIcon index={alt().iconIndex} name={name()} />}
             </Match>
             <Match when={species().getCustomTypeIconIndex(props.pokemon.typeKeys)}>
-              {(iconIndex) => <SpeciesIcon id={iconIndex()} name={name()} />}
+              {(iconIndex) => <SpeciesIcon index={iconIndex()} name={name()} />}
             </Match>
           </Switch>
         )}

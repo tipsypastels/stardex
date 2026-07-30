@@ -43,6 +43,7 @@ import RAW_TYPE_DATA from "../src/data/types.json" with { type: "json" };
  *  hiddenName?: string;
  *  noAltName?: string;
  *  types: string[],
+ *  iconIndex?: number;
  *  evos?: { from?: string, to?: string[] }
  *  alts?: { kind: string, name: string, types: string[], iconIndex: number }[]
  *  customTypeIcons?: { types: string[], iconIndex: number }[]
@@ -76,22 +77,20 @@ const OVERRIDE_VARIETIES = {
     },
   ],
 
-  // PokeAPI considers meteor to be the default form, Smogon considers red core. Defer to Smogon.
-  // Also PokeAPI has variants for every colour the meteor form can become, which is useless.
-  // Both have the core colours, which are only cosmetic so ignore those too..
+  // Remove the colour variants.
   minior: [
     {
       is_default: true,
       pokemon: {
-        name: "minior-core",
-        url: "https://pokeapi.co/api/v2/pokemon/10136/",
+        name: "minior-meteor",
+        url: "https://pokeapi.co/api/v2/pokemon/774/",
       },
     },
     {
       is_default: false,
       pokemon: {
-        name: "minior-meteor",
-        url: "https://pokeapi.co/api/v2/pokemon/774/",
+        name: "minior-core",
+        url: "https://pokeapi.co/api/v2/pokemon/10136/",
       },
     },
   ],
@@ -117,24 +116,6 @@ const OVERRIDE_VARIETIES = {
       pokemon: {
         name: "toxtricity-gmax",
         url: "https://pokeapi.co/api/v2/pokemon/10219/",
-      },
-    },
-  ],
-  // PokeAPI (and Bulbapedia) consider Fo4 to be the default form, but Smogon's icon sheet considers Fo3.
-  // Since default forms can't currently have their icon sheet positions overridden, we defer to Smogon.
-  maushold: [
-    {
-      is_default: true,
-      pokemon: {
-        name: "maushold-family-of-three",
-        url: "https://pokeapi.co/api/v2/pokemon/10257/",
-      },
-    },
-    {
-      is_default: false,
-      pokemon: {
-        name: "maushold-family-of-four",
-        url: "https://pokeapi.co/api/v2/pokemon/925/",
       },
     },
   ],
@@ -232,7 +213,7 @@ const NO_KIND_NAMES = {
   oricorio: "Baile",
   lycanroc: "Midday",
   wishiwashi: "Solo",
-  minior: "Core",
+  minior: "Meteor",
   toxtricity: "Amped",
   eiscue: "Ice Face",
   morpeko: "Full Belly",
@@ -240,7 +221,7 @@ const NO_KIND_NAMES = {
   zamazenta: "Hero of Many Battles",
   urshifu: "Single Strike",
   enamorus: "Incarnate",
-  maushold: "Family of Three",
+  maushold: "Family of Four",
   squawkabilly: "Green Plumage",
   palafin: "Zero",
   tatsugiri: "Curly",
@@ -254,7 +235,7 @@ const NO_KIND_NAMES = {
 };
 
 // From https://github.com/smogon/pokemon-showdown-client/blob/master/play.pokemonshowdown.com/src/battle-dex-data.ts#L151.
-// Leave this unchanged to easier diff in the future. Instead put overrides in the next global.
+// Leave this unchanged to easier diff in the future.
 /** @type {Record<string, number>} */
 const SMOGON_ALT_ICON_INDICES = {
   // alt forms
@@ -789,22 +770,29 @@ const SMOGON_ALT_ICON_INDICES = {
   obliteryx: 1560 + 81,
 };
 
-/** @type {Record<string, number | "use-species">} */
+/** @type {Record<string, number>} */
+const OVERRIDE_BASE_ICON_INDICES = {
+  minior: SMOGON_ALT_ICON_INDICES.miniormeteor,
+  maushold: SMOGON_ALT_ICON_INDICES.mausholdfour,
+};
+
+/** @type {Record<string, number | "use-smogon-species">} */
 const OVERRIDE_ALT_ICON_INDICES = {
   "tauros-paldea-combat-breed": SMOGON_ALT_ICON_INDICES.taurospaldeacombat,
   "tauros-paldea-blaze-breed": SMOGON_ALT_ICON_INDICES.taurospaldeablaze,
   "tauros-paldea-aqua-breed": SMOGON_ALT_ICON_INDICES.taurospaldeaaqua,
   "darmanitan-galar-standard": SMOGON_ALT_ICON_INDICES.darmanitangalar,
   "greninja-battle-bond": SMOGON_ALT_ICON_INDICES.greninjabond,
+  "minior-core": "use-smogon-species",
   "meowstic-mega": SMOGON_ALT_ICON_INDICES.meowsticmmega,
   "necrozma-dusk": SMOGON_ALT_ICON_INDICES.necrozmaduskmane,
   "necrozma-dawn": SMOGON_ALT_ICON_INDICES.necrozmadawnwings,
-  "urshifu-rapid-strike": "use-species", // has the same party icon as single strike
+  "urshifu-rapid-strike": "use-smogon-species", // has the same party icon as single strike
   "urshifu-single-strike-gmax": SMOGON_ALT_ICON_INDICES.urshifugmax,
   "squawkabilly-blue-plumage": SMOGON_ALT_ICON_INDICES.squawkabillyblue,
   "squawkabilly-yellow-plumage": SMOGON_ALT_ICON_INDICES.squawkabillyyellow,
   "squawkabilly-white-plumage": SMOGON_ALT_ICON_INDICES.squawkabillywhite,
-  "maushold-family-of-four": SMOGON_ALT_ICON_INDICES.mausholdfour,
+  "maushold-family-of-three": "use-smogon-species",
   "ogerpon-wellspring-mask": SMOGON_ALT_ICON_INDICES.ogerponwellspring,
   "ogerpon-hearthflame-mask": SMOGON_ALT_ICON_INDICES.ogerponhearthflame,
   "ogerpon-cornerstone-mask": SMOGON_ALT_ICON_INDICES.ogerponcornerstone,
@@ -892,6 +880,7 @@ function fillSegment(promises, segment) {
       species.names?.find((n) => n.language.name === "en")?.name ?? capitalize(species.name);
     const hiddenName = HIDDEN_NAMES[key];
     const noAltName = NO_KIND_NAMES[key];
+    const iconIndex = OVERRIDE_BASE_ICON_INDICES[key];
     const customTypeIcons = CUSTOM_TYPE_ICONS[key];
 
     /** @type {ResolvedMon['evos']} */
@@ -922,6 +911,7 @@ function fillSegment(promises, segment) {
       types,
       evos,
       alts,
+      iconIndex,
       customTypeIcons,
     };
   }
@@ -967,7 +957,8 @@ async function resolveAlts(species) {
       OVERRIDE_ALT_ICON_INDICES[variety.pokemon.name] ||
       SMOGON_ALT_ICON_INDICES[variety.pokemon.name.replace(/-female$/, "f").replace(/-/g, "")];
 
-    const iconIndex = iconIndexOrUseSpecies === "use-species" ? species.id : iconIndexOrUseSpecies;
+    const iconIndex =
+      iconIndexOrUseSpecies === "use-smogon-species" ? species.id : iconIndexOrUseSpecies;
 
     if (iconIndex == null) {
       // eslint-disable-next-line no-console

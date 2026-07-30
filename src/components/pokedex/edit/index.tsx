@@ -4,7 +4,7 @@ import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
-import { PokemonIcon } from "../util/pokemon_icon";
+import { PokemonIcon } from "../util/icon/pokemon";
 import { EditPokemonBehavior } from "./behavior";
 import {
   createCustomIconUploadState,

@@ -6,7 +6,7 @@ import { pokemons } from "../../../models/pokemon/list";
 import { Species, SPECIES } from "../../../models/pokemon/species";
 import { capitalizeWords } from "../../../utils/string";
 import { Button } from "../../common/button";
-import { SpeciesIcon } from "../util/species_icon";
+import { SpeciesIcon } from "../util/icon/species";
 import { AddCustom } from "./custom";
 
 export function AddPokemon() {
@@ -84,9 +84,9 @@ export function AddPokemon() {
   function closestIcon() {
     const species = closest()?.species;
     if (species) {
-      return <SpeciesIcon id={species.id} name={species.name} />;
+      return <SpeciesIcon index={species.iconIndex} name={species.name} />;
     } else if (query()) {
-      return <SpeciesIcon id={0} name={queryCapitalizedWords()} />;
+      return <SpeciesIcon index={0} name={queryCapitalizedWords()} />;
     } else {
       return null;
     }

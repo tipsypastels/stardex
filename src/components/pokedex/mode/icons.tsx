@@ -5,7 +5,7 @@ import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { TypeDots } from "../../types/util/dots";
 import { PokedexHelp } from "../help";
-import { PokemonIcon } from "../util/pokemon_icon";
+import { PokemonIcon } from "../util/icon/pokemon";
 import { onClickPokemon } from "./util/click";
 import { createDraggable } from "./util/drag";
 import { WithFilterNone } from "./util/filter_none";

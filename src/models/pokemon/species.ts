@@ -11,6 +11,7 @@ export interface RawSpecies {
   types: string[];
   evos?: { from?: string; to?: string[] };
   alts?: RawSpeciesAlt[];
+  iconIndex?: number;
   customTypeIcons?: { types: string[]; iconIndex: number }[];
 }
 
@@ -88,6 +89,10 @@ export class Species {
       this.alts.find((a) => a.kind === kind),
       `Unknown alt ${kind} for species ${this.key}`,
     );
+  }
+
+  get iconIndex() {
+    return this.#raw.iconIndex ?? this.#raw.id;
   }
 
   get hasCustomTypeIcons() {

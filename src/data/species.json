@@ -10931,22 +10931,23 @@
   "minior": {
     "id": 774,
     "name": "Minior",
-    "noAltName": "Core",
+    "noAltName": "Meteor",
     "types": [
       "rock",
       "flying"
     ],
     "alts": [
       {
-        "kind": "meteor",
-        "name": "Meteor",
+        "kind": "core",
+        "name": "Core",
         "types": [
           "rock",
           "flying"
         ],
-        "iconIndex": 1177
+        "iconIndex": 774
       }
-    ]
+    ],
+    "iconIndex": 1177
   },
   "komala": {
     "id": 775,
@@ -12999,7 +13000,7 @@
   "maushold": {
     "id": 925,
     "name": "Maushold",
-    "noAltName": "Family of Three",
+    "noAltName": "Family of Four",
     "types": [
       "normal"
     ],
@@ -13008,14 +13009,15 @@
     },
     "alts": [
       {
-        "kind": "family-of-four",
-        "name": "Family of Four",
+        "kind": "family-of-three",
+        "name": "Family of Three",
         "types": [
           "normal"
         ],
-        "iconIndex": 1262
+        "iconIndex": 925
       }
-    ]
+    ],
+    "iconIndex": 1262
   },
   "fidough": {
     "id": 926,
