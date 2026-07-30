@@ -1,8 +1,8 @@
 import { batch, Show, type JSXElement } from "solid-js";
-import { pokedexFilter, pokemonsFiltered } from "../../models/pokedex/filter";
-import { toasts } from "../../models/ui/toast";
-import { Empty } from "../common/empty";
-import { ButtonLink } from "../common/link";
+import { pokedexFilter, pokemonsFiltered } from "../../../../models/pokedex/filter";
+import { toasts } from "../../../../models/ui/toast";
+import { Empty } from "../../../common/empty";
+import { ButtonLink } from "../../../common/link";
 
 export interface WithFilterNoneProps {
   children: JSXElement;

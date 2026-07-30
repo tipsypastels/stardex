@@ -4,11 +4,11 @@ import { pokemonsFiltered } from "../../../models/pokedex/filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { TypeDots } from "../../types/util/dots";
-import { WithFilterNone } from "../filter_none";
 import { PokedexHelp } from "../help";
 import { PokemonIcon } from "../util/pokemon_icon";
 import { onClickPokemon } from "./util/click";
 import { createDraggable } from "./util/drag";
+import { WithFilterNone } from "./util/filter_none";
 
 export function PokedexIconsView(props: PokedexModeViewProps) {
   const { list } = createDraggable();
