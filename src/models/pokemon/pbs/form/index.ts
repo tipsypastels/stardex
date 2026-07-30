@@ -116,6 +116,7 @@ const OVERRIDE_SECTION_FORM_NAMES: Record<string, string> = {
   "MORPEKO:Hangry Mode": "Hangry",
   "URSHIFU:Gigantamax Single Strike Style": "Single Strike Gigantamax",
   "URSHIFU:Gigantamax Rapid Strike Style": "Rapid Strike Gigantamax",
+  "MINIOR:Red Core": "Core",
 };
 
 export function getFormName(
