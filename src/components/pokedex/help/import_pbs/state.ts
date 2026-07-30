@@ -1,7 +1,7 @@
 import { ReactiveMap } from "@solid-primitives/map";
 import { createResource, createRoot, createSignal, type Setter } from "solid-js";
 import type { PBSFormBucket } from "../../../../models/pokemon/pbs/form/bucket";
-import { type ImportPBSFiles } from "./files";
+import { createImportPBSFiles, type ImportPBSFiles } from "./files";
 
 export type ImportPBSPhase =
   ImportPBSLandingPhase | ImportPBSDexesPhase | ImportPBSFormsPhase | ImportPBSFinishPhase;
@@ -11,7 +11,6 @@ export type ImportPBSPhase =
 export interface ImportPBSLandingPhase {
   type: "landing";
   index: 0;
-  files?: undefined;
   dexes?: undefined;
   forms?: undefined;
 }
@@ -21,7 +20,6 @@ export interface ImportPBSLandingPhase {
 export interface ImportPBSDexesPhase {
   type: "dexes";
   index: 1;
-  files: ImportPBSFiles;
   dexes: ImportPBSDexes;
   forms?: ImportPBSForms;
 }
@@ -36,7 +34,6 @@ export interface ImportPBSDexes {
 export interface ImportPBSFormsPhase {
   type: "forms";
   index: 2;
-  files: ImportPBSFiles;
   dexes: ImportPBSDexes;
   forms: ImportPBSForms;
 }
@@ -59,7 +56,6 @@ export interface ImportPBSForms {
 export interface ImportPBSFinishPhase {
   type: "finish";
   index: 3;
-  files: ImportPBSFiles;
   dexes: ImportPBSDexes;
   forms: ImportPBSForms;
 }
@@ -70,8 +66,9 @@ export interface ImportPBSFinishPhase {
 
 export interface ImportPBSState {
   phase: ImportPBSPhase | undefined;
+  files: ImportPBSFiles;
   open(): void;
-  gotoDexes(files: ImportPBSFiles): void;
+  gotoDexes(): void;
   gotoForms(): void;
   gotoFinish(): void;
   close(): void;
@@ -79,17 +76,17 @@ export interface ImportPBSState {
 
 export function createImportPBSState(): ImportPBSState {
   const [phase, setPhase] = createSignal<ImportPBSPhase>();
+  const files = createImportPBSFiles();
 
   return {
     get phase() {
       return phase();
     },
-
+    files,
     open() {
       setPhase({ type: "landing", index: 0 });
     },
-
-    gotoDexes(files) {
+    gotoDexes() {
       setPhase((phase) => {
         const { dexes: prevDexes, ...rest } = phase ?? {};
         const dexes = prevDexes ?? createDexesState();
@@ -99,17 +96,15 @@ export function createImportPBSState(): ImportPBSState {
           type: "dexes",
           index: 1,
           dexes,
-          files,
         } satisfies ImportPBSDexesPhase;
       });
     },
-
     gotoForms() {
       setPhase((phase) => {
         if (!phase || phase.type === "landing") return phase;
 
         const { forms: prevForms, ...rest } = phase;
-        const forms = prevForms ?? createFormsState(phase.files);
+        const forms = prevForms ?? createFormsState(files);
 
         return {
           ...rest,
@@ -119,14 +114,12 @@ export function createImportPBSState(): ImportPBSState {
         } satisfies ImportPBSFormsPhase;
       });
     },
-
     gotoFinish() {
       setPhase((phase) => {
         if (phase?.type !== "forms") return phase;
         return { ...phase, type: "finish", index: 3 } satisfies ImportPBSFinishPhase;
       });
     },
-
     close() {
       phase()?.forms?.dispose();
       setPhase(undefined);

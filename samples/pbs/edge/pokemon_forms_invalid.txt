@@ -1,0 +1,7 @@
+[BULBASAUR,16]
+FormName = Type: Dragon
+Types = DRAGON
+
+asdf
+foo
+bar

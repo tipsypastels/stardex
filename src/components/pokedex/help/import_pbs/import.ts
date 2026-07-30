@@ -13,21 +13,20 @@ export async function importPBS(state: ImportPBSState, phase: ImportPBSFinishPha
   const { extractPBSPokemonsToRawPokemons } =
     await import("../../../../models/pokemon/pbs/extract");
 
-  const extractOptions = makeExtractOptions(phase);
+  const extractOptions = makeExtractOptions(state, phase);
   const rawPokemons = extractPBSPokemonsToRawPokemons(extractOptions);
 
   batch(() => {
     state.close();
     pokemons.setFromRaw({ v: POKEMON_LIST_VERSION, all: rawPokemons });
-    toasts.add("file-arrow-up", `Imported PBS file${phase.files.files.length === 1 ? "" : "s"}!`);
+    toasts.add("file-arrow-up", `Imported PBS file${state.files.files.length === 1 ? "" : "s"}!`);
   });
 }
 
-function makeExtractOptions({
-  files: { parsed },
-  dexes: { section: dexSection },
-  forms,
-}: ImportPBSFinishPhase): ExtractPBSPokemonsToRawPokemonsOptions {
+function makeExtractOptions(
+  { files: { parsed } }: ImportPBSState,
+  { dexes: { section: dexSection }, forms }: ImportPBSFinishPhase,
+): ExtractPBSPokemonsToRawPokemonsOptions {
   const pokemons = parsed.pokemons.values();
   const dex = dexSection != null ? parsed.dexes.get(dexSection) : undefined;
 

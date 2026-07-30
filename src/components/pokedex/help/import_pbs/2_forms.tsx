@@ -19,7 +19,7 @@ export interface ImportPBSModalFormsProps {
 export function ImportPBSModalForms(props: ImportPBSModalFormsProps) {
   return (
     <Show
-      when={props.phase.files.parsed.formsCount > 0}
+      when={props.state.files.parsed.formsCount > 0 && props.state.files.errors.length === 0}
       fallback={
         <>
           <p class="mb-2">
@@ -275,7 +275,10 @@ function CustomDone(props: ImportPBSModalFormsProps) {
 
 export function ImportPBSModalFormsFooter(props: ImportPBSModalFormsProps) {
   return (
-    <Show when={props.phase.files.parsed.formsCount > 0} fallback={<FooterNoForms {...props} />}>
+    <Show
+      when={props.state.files.parsed.formsCount > 0 && props.state.files.errors.length === 0}
+      fallback={<FooterNoForms {...props} />}
+    >
       <FooterOnForms {...props} />
     </Show>
   );
@@ -324,11 +327,11 @@ function FooterNoForms(props: ImportPBSModalFormsProps) {
         <UploadButton
           accept="text/plain"
           multiple
-          disabled={uploading()}
+          disabled={uploading() || props.state.files.errors.length > 0}
           // eslint-disable-next-line solid/reactivity
           onUpload={async (fileList) => {
             setUploading(true);
-            await props.phase.files.import(fileList);
+            await props.state.files.import(fileList);
             setUploading(false);
           }}
         >

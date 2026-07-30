@@ -20,7 +20,7 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
 
   return (
     <Show
-      when={props.phase.files.parsed.dexes.size > 0}
+      when={props.state.files.parsed.dexes.size > 0 && props.state.files.errors.length === 0}
       fallback={
         <>
           {intro}
@@ -38,7 +38,7 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
       </p>
 
       <ul>
-        <For each={[...props.phase.files.parsed.dexes.values()]}>
+        <For each={[...props.state.files.parsed.dexes.values()]}>
           {(dex) => (
             <li>
               <Checkbox
@@ -64,7 +64,10 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
 
 export function ImportPBSModalDexesFooter(props: ImportPBSModalDexesProps) {
   return (
-    <Show when={props.phase.files.parsed.dexes.size > 0} fallback={<FooterOnNoDexes {...props} />}>
+    <Show
+      when={props.state.files.parsed.dexes.size > 0 && props.state.files.errors.length === 0}
+      fallback={<FooterOnNoDexes {...props} />}
+    >
       <FooterOnDexes {...props} />
     </Show>
   );
@@ -94,7 +97,7 @@ function FooterOnDexes(props: ImportPBSModalDexesProps) {
         >
           skip this option
         </ButtonLink>{" "}
-        to add <strong>{props.phase.files.parsed.pokemons.size}</strong> Pokémon to your project.
+        to add <strong>{props.state.files.parsed.pokemons.size}</strong> Pokémon to your project.
       </div>
     </>
   );
@@ -108,11 +111,11 @@ function FooterOnNoDexes(props: ImportPBSModalDexesProps) {
         <UploadButton
           accept="text/plain"
           multiple
-          disabled={uploading()}
+          disabled={uploading() || props.state.files.errors.length > 0}
           // eslint-disable-next-line solid/reactivity
           onUpload={async (fileList) => {
             setUploading(true);
-            await props.phase.files.import(fileList);
+            await props.state.files.import(fileList);
             setUploading(false);
           }}
         >
@@ -122,7 +125,7 @@ function FooterOnNoDexes(props: ImportPBSModalDexesProps) {
 
       <div class="text-center text-sm text-foreground-muted">
         Or, <ButtonLink onClick={() => props.state.gotoForms()}>skip this option</ButtonLink> to add{" "}
-        <strong>{props.phase.files.parsed.pokemons.size}</strong> Pokémon to your project.
+        <strong>{props.state.files.parsed.pokemons.size}</strong> Pokémon to your project.
       </div>
     </>
   );

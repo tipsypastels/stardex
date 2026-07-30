@@ -1,11 +1,9 @@
 import { createSignal } from "solid-js";
 import { UploadButton } from "../../../common/button";
-import { createImportPBSFiles } from "./files";
-import type { ImportPBSLandingPhase, ImportPBSState } from "./state";
+import type { ImportPBSState } from "./state";
 
 export interface ImportPBSModalLandingProps {
   state: ImportPBSState;
-  phase: ImportPBSLandingPhase;
 }
 
 export function ImportPBSModalLanding() {
@@ -43,9 +41,12 @@ export function ImportPBSModalLandingFooter(props: ImportPBSModalLandingProps) {
         // eslint-disable-next-line solid/reactivity
         onUpload={async (fileList) => {
           setUploading(true);
-
-          const files = await createImportPBSFiles(fileList);
-          props.state.gotoDexes(files);
+          await props.state.files.importOverwrite(fileList);
+          if (props.state.files.errors.length === 0) {
+            props.state.gotoDexes();
+          } else {
+            setUploading(false);
+          }
         }}
       >
         Upload PBS Files

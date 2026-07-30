@@ -13,8 +13,8 @@ export function ImportPBSModalFinish(props: ImportPBSModalFinishProps) {
   return (
     <>
       <p class="mb-2">
-        Ready to import <strong>{props.phase.files.files.length}</strong> file
-        {props.phase.files.files.length === 1 ? "" : "s"}, with these settings:
+        Ready to import <strong>{props.state.files.files.length}</strong> file
+        {props.state.files.files.length === 1 ? "" : "s"}, with these settings:
       </p>
 
       <ul class="mb-2 list-inside list-disc">
@@ -47,13 +47,13 @@ export function ImportPBSModalFinish(props: ImportPBSModalFinishProps) {
           <UploadLink
             accept="text/plain"
             multiple
-            onUpload={(fileList) => props.phase.files.import(fileList)}
+            onUpload={(fileList) => props.state.files.import(fileList)}
           >
             Upload more files.
           </UploadLink>
         </li>
         <li>
-          <ButtonLink onClick={() => props.state.gotoDexes(props.phase.files)}>
+          <ButtonLink onClick={() => props.state.gotoDexes()}>
             Go back to dex settings.
           </ButtonLink>{" "}
         </li>
@@ -75,7 +75,7 @@ export function ImportPBSModalFinishFooter(props: ImportPBSModalFinishProps) {
           setFinishing(true);
           await importPBS(props.state, props.phase);
         }}
-        disabled={finishing()}
+        disabled={finishing() || props.state.files.errors.length > 0}
       >
         Import
       </Button>
