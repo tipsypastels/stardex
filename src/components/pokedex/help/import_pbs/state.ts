@@ -1,5 +1,5 @@
+import { ReactiveMap } from "@solid-primitives/map";
 import { createResource, createRoot, createSignal, type Setter } from "solid-js";
-import { createStore } from "solid-js/store";
 import type { PBSFormBucket } from "../../../../models/pokemon/pbs/form/bucket";
 import { type ImportPBSFiles } from "./files";
 
@@ -46,10 +46,10 @@ export type ImportPBSFormCustomChoice = "add" | "replace" | "omit";
 
 export interface ImportPBSForms {
   granularity: ImportPBSFormGranularity | undefined;
-  customChoices: ImportPBSFormCustomChoice[];
+  customChoices: ReadonlyMap<string, ImportPBSFormCustomChoice>;
   customBuckets: PBSFormBucket[] | undefined;
   setGranularity: Setter<ImportPBSFormGranularity | undefined>;
-  pushCustomChoice(choice: ImportPBSFormCustomChoice): void;
+  pushCustomChoice(bucket: PBSFormBucket, choice: ImportPBSFormCustomChoice): void;
   undoCustomChoice(): void;
   dispose(): void;
 }
@@ -148,7 +148,10 @@ function createDexesState(): ImportPBSDexes {
 function createFormsState(files: ImportPBSFiles): ImportPBSForms {
   return createRoot((dispose) => {
     const [granularity, setGranularity] = createSignal<ImportPBSFormGranularity>();
-    const [customChoices, setCustomChoices] = createStore<ImportPBSFormCustomChoice[]>([]);
+
+    const customChoices = new ReactiveMap<string, ImportPBSFormCustomChoice>();
+    const customChoiceChosenBucketKeys: string[] = [];
+
     const [customBuckets] = createResource(
       () => (granularity() === "custom" ? files.parsed : undefined),
       async (parsed) => {
@@ -166,11 +169,13 @@ function createFormsState(files: ImportPBSFiles): ImportPBSForms {
         return customBuckets();
       },
       setGranularity,
-      pushCustomChoice(choice) {
-        setCustomChoices(customChoices.length, choice);
+      pushCustomChoice(bucket, choice) {
+        customChoices.set(bucket.key, choice);
+        customChoiceChosenBucketKeys.push(bucket.key);
       },
       undoCustomChoice() {
-        setCustomChoices((choices) => choices.slice(0, choices.length - 1));
+        const key = customChoiceChosenBucketKeys.pop();
+        if (key) customChoices.delete(key);
       },
       dispose,
     };

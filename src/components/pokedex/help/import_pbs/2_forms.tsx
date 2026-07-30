@@ -125,7 +125,7 @@ function Custom(props: ImportPBSModalFormsProps) {
     <Show when={props.phase.forms.customBuckets} fallback="TODO Loading">
       {(buckets) => (
         <Show
-          when={buckets().length === props.phase.forms.customChoices.length}
+          when={buckets().length === props.phase.forms.customChoices.size}
           fallback={<CustomInner {...props} buckets={buckets()} />}
         >
           <CustomDone {...props} />
@@ -140,20 +140,17 @@ interface CustomInnerProps extends ImportPBSModalFormsProps {
 }
 
 export function CustomInner(props: CustomInnerProps) {
-  const view = {
-    get index() {
-      return props.phase.forms.customChoices.length;
-    },
-    get total() {
-      return props.buckets.length;
-    },
-    get bucket() {
-      return props.buckets[this.index];
-    },
-  };
+  const current = createMemo(() => {
+    const total = props.buckets.length;
+    const index = props.buckets.findIndex(
+      (bucket) => !props.phase.forms.customChoices.has(bucket.key),
+    );
+    const bucket = props.buckets[index];
+    return { total, index, bucket };
+  });
 
   function renderKnown() {
-    const knownCount = view.bucket.forms.filter(
+    const knownCount = current().bucket.forms.filter(
       (form) => "species" in form.raw && form.raw.alt,
     ).length;
 
@@ -167,7 +164,7 @@ export function CustomInner(props: CustomInnerProps) {
             </span>
           }
         >
-          <Match when={knownCount === view.bucket.forms.length}>
+          <Match when={knownCount === current().bucket.forms.length}>
             <span class="text-primary">
               <Icon name="check" /> Yes
             </span>
@@ -198,12 +195,18 @@ export function CustomInner(props: CustomInnerProps) {
     );
   }
 
+  function renderBucket(bucket: PBSFormBucket) {
+    return bucket.groupedBy === "formName"
+      ? renderFormNameBucket(bucket)
+      : renderLineBucket(bucket);
+  }
+
   function renderFormNameBucket(bucket: PBSFormBucketByFormName) {
     return (
       <>
         <strong>Form:</strong> {bucket.formName}
         <ul class="list-inside list-disc text-sm text-foreground-muted">
-          <li>{renderNameList(view.bucket.forms, (form) => form.speciesName, 3)}.</li>
+          <li>{renderNameList(current().bucket.forms, (form) => form.speciesName, 3)}.</li>
           <li>{renderKnown()}</li>
         </ul>
       </>
@@ -226,29 +229,30 @@ export function CustomInner(props: CustomInnerProps) {
   return (
     <div class="relative rounded-md border-2 border-divider-heavy p-4">
       <div class="absolute -top-2.5 left-4 bg-background px-2 text-xs">
-        {view.index + 1} / {view.total}
+        {current().index + 1} / {current().total}
       </div>
-      <Show when={view.index}>
+      <Show when={current().index}>
         <div class="absolute -top-2.5 right-4 bg-background px-2 text-xs">
           <ButtonLink onClick={() => props.phase.forms.undoCustomChoice()}>Undo</ButtonLink>
         </div>
       </Show>
-      <div>
-        {view.bucket.groupedBy === "formName"
-          ? renderFormNameBucket(view.bucket)
-          : renderLineBucket(view.bucket)}
-      </div>
+      <div>{renderBucket(current().bucket)}</div>
       <div
         class="absolute -bottom-2.5 bg-background px-2 text-center whitespace-nowrap"
         style={{ left: "50%", transform: "translateX(-50%)" }}
       >
-        <ButtonLink onClick={() => props.phase.forms.pushCustomChoice("add")}>Add</ButtonLink>
+        <ButtonLink onClick={() => props.phase.forms.pushCustomChoice(current().bucket, "add")}>
+          Add
+        </ButtonLink>
         <span class="text-foreground-muted">{" / "}</span>
-        <ButtonLink onClick={() => props.phase.forms.pushCustomChoice("replace")}>
+        <ButtonLink onClick={() => props.phase.forms.pushCustomChoice(current().bucket, "replace")}>
           Replace Base
         </ButtonLink>
         <span class="text-foreground-muted">{" / "}</span>
-        <ButtonLink onClick={() => props.phase.forms.pushCustomChoice("omit")} look="warning">
+        <ButtonLink
+          onClick={() => props.phase.forms.pushCustomChoice(current().bucket, "omit")}
+          look="warning"
+        >
           Omit
         </ButtonLink>
       </div>
@@ -283,7 +287,7 @@ function FooterOnForms(props: ImportPBSModalFormsProps) {
     if (props.phase.forms.granularity !== "custom") return true;
 
     const finishedLength = props.phase.forms.customBuckets?.length ?? Infinity;
-    return props.phase.forms.customChoices.length === finishedLength;
+    return props.phase.forms.customChoices.size === finishedLength;
   });
 
   return (

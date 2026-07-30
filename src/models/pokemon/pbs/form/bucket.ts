@@ -9,6 +9,7 @@ export interface PBSFormBucketByFormName {
   groupedBy: "formName";
   forms: PBSForm[];
   formName: string;
+  key: string;
 }
 
 export interface PBSFormBucketByLine {
@@ -16,6 +17,7 @@ export interface PBSFormBucketByLine {
   forms: PBSForm[];
   formNames: string[];
   speciesNames: string[];
+  key: string;
 }
 
 export function getPBSFormBuckets(pokemons: Map<string, PBSPokemon>) {
@@ -48,6 +50,7 @@ export function getPBSFormBuckets(pokemons: Map<string, PBSPokemon>) {
         groupedBy: "formName",
         formName,
         forms,
+        key: `formName:${formName}`,
       });
     } else {
       const [rootSection] = linesInvolved;
@@ -55,7 +58,7 @@ export function getPBSFormBuckets(pokemons: Map<string, PBSPokemon>) {
     }
   }
 
-  const lineBuckets = [...rootSectionToForms.values()].map((forms): PBSFormBucketByLine => {
+  const lineBuckets = [...rootSectionToForms].map(([rootSection, forms]): PBSFormBucketByLine => {
     const formNames = [...new Set(forms.map((form) => form.formName))];
     const speciesNames = [...new Set(forms.map((form) => form.speciesName))];
 
@@ -64,6 +67,7 @@ export function getPBSFormBuckets(pokemons: Map<string, PBSPokemon>) {
       forms,
       formNames,
       speciesNames,
+      key: `line:${rootSection}`,
     };
   });
 
