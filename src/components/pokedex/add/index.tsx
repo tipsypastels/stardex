@@ -9,13 +9,13 @@ import { Button } from "../../common/button";
 import { SpeciesIcon } from "../util/species_icon";
 import { AddCustom } from "./custom";
 
-const FUSE = new Fuse(SPECIES.all, {
-  keys: ["name", "hiddenName"],
-  threshold: 0.1,
-  includeScore: true,
-});
-
 export function AddPokemon() {
+  const fuse = new Fuse(SPECIES.all, {
+    keys: ["name", "hiddenName"],
+    threshold: 0.1,
+    includeScore: true,
+  });
+
   const [query, setQuery] = createSignal("");
   const queryCapitalizedWords = createMemo(() => capitalizeWords(query()));
   const [addingCustom, setAddingCustom] = createSignal(false);
@@ -23,7 +23,7 @@ export function AddPokemon() {
   const closest = createMemo(() => {
     if (query() === "") return;
 
-    const result = FUSE.search(query(), { limit: 1 }).at(0);
+    const result = fuse.search(query(), { limit: 1 }).at(0);
     if (!result) return;
 
     const species = result.item;

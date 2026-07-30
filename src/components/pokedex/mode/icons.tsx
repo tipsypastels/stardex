@@ -50,6 +50,7 @@ function Item(props: ItemProps) {
         <div class="hover:wiggle">
           <PokemonIcon pokemon={props.pokemon} />
         </div>
+        <div style={{ "font-size": 0 }}>{props.pokemon.name}</div>
       </button>
     </li>
   );
