@@ -1,8 +1,52 @@
 import { mapOfArraysAppend } from "../../../utils/collection";
 import { sortStrings } from "../../../utils/string";
-import { SPECIES } from "../species";
+import { Species, SPECIES } from "../species";
 import type { PBSRecord } from "./parse";
 import { getPBSRecordSectionSpecies } from "./species";
+
+const OVERRIDE_SECTION_FORM_NAMES: Record<string, string> = {
+  "DARMANITAN:Zen Mode": "Zen",
+  "DARMANITAN:Galarian Standard Mode": "Galarian",
+  "DARMANITAN:Galarian Zen Mode": "Galarian Zen",
+  "MAGEARNA:Original Color": "Original",
+  "MAGEARNA:Mega (Original Color)": "Original Mega",
+  "TATSUGIRI:Mega Tatsugiri (Curly Form)": "Curly Mega",
+  "TATSUGIRI:Mega Tatsugiri (Stretchy Form)": "Stretchy Mega",
+  "TATSUGIRI:Mega Tatsugiri (Droopy Form)": "Droopy Mega",
+  "TAUROS:Paldean (Combat Breed)": "Paldean Combat Breed",
+  "TAUROS:Paldean (Blaze Breed)": "Paldean Blaze Breed",
+  "TAUROS:Paldean (Aqua Breed)": "Paldean Aqua Breed",
+};
+
+export function transformPBSFormNameWithMaybeSpeciesName(
+  formNameMaybeWithSpeciesName: string,
+  section: string,
+  speciesName: string,
+) {
+  const overridden = OVERRIDE_SECTION_FORM_NAMES[`${section}:${formNameMaybeWithSpeciesName}`];
+  if (overridden) return overridden;
+
+  return formNameMaybeWithSpeciesName
+    .replace(speciesName, "")
+    .replace(/\s*\bForme?\b\s*/, "")
+    .replace(/\s*\bStyle\b\s*/, "")
+    .replace(/-$/, "")
+    .replace(/  +/g, " ")
+    .trim();
+}
+
+export function matchPBSFormNameToAlt(formName: string, species: Species) {
+  const formNameAsKind = formName
+    .toLowerCase()
+    .replaceAll(" ", "-")
+    .replaceAll(/[^a-z0-9-]/g, "");
+
+  return species?.alts.find((alt) => alt.name === formName || alt.kind === formNameAsKind);
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Buckets                                  */
+/* -------------------------------------------------------------------------- */
 
 export type PBSFormFilterBucket = PBSFormFilterBucketByFormName | PBSFormFilterBucketByLine;
 
@@ -27,20 +71,19 @@ export interface PBSFormFilterBucketEntry {
 }
 
 export type PBSFormFilterBucketEntryResolutionInfo =
-  | { kind: "known"; speciesKey: string; altKind: string }
-  | { kind: "known-custom-type-icon"; speciesKey: string; typeKeys: string[] }
-  | { kind: "custom"; speciesKey: string }
-  | { kind: "unknown"; speciesName: string };
+  | { kind: "known"; speciesKey: string; altKind: string; changedTypeKeys?: string[] }
+  | { kind: "custom-form"; speciesKey: string; changedTypeKeys?: string[] }
+  | { kind: "custom-pokemon"; speciesName: string; typeKeys: string[] };
 
 export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBucket[] {
   const lines = new Lines();
 
   // We can't do a species lookup because we want to remove the names of custom pokemon from their form names too.
-  const sectionsToSpeciesNames = new Map<string, string>();
+  const sectionsToSpeciesRecords = new Map<string, PBSRecord>();
 
   for (const record of records) {
     if (!record.subsection && record.fields.name) {
-      sectionsToSpeciesNames.set(record.section, record.fields.name);
+      sectionsToSpeciesRecords.set(record.section, record);
       lines.find(record.section);
     }
 
@@ -67,34 +110,20 @@ export function getPBSFormFilterBuckets(records: PBSRecord[]): PBSFormFilterBuck
       continue;
     }
 
-    const speciesName = sectionsToSpeciesNames.get(record.section);
-    if (!speciesName) {
+    const speciesRecord = sectionsToSpeciesRecords.get(record.section);
+    if (!speciesRecord) {
       continue;
     }
 
-    let formName = formNameMaybeWithSpeciesName
-      .replace(speciesName, "")
-      .replace(/\s*\bForme?\b\s*/, "")
-      .replace(/\s*\bStyle\b\s*/, "")
-      .replace(/-$/, "")
-      .replace(/  +/g, " ")
-      .trim();
+    const formName = transformPBSFormNameWithMaybeSpeciesName(
+      formNameMaybeWithSpeciesName,
+      record.section,
+      speciesRecord.fields.name,
+    );
 
-    const overrideKey = `${record.section}:${formName}`;
-    if (OVERRIDE_SECTION_FORM_NAMES[overrideKey]) {
-      formName = OVERRIDE_SECTION_FORM_NAMES[overrideKey];
-    }
-
-    const resolutionInfo = ((): PBSFormFilterBucketEntryResolutionInfo => {
-      const species = getPBSRecordSectionSpecies(record.section, speciesName);
-      const formNameAsKind = formName
-        .toLowerCase()
-        .replaceAll(" ", "-")
-        .replaceAll(/[^a-z0-9-]/g, "");
-
-      const altKind = species?.alts.find(
-        (alt) => alt.name === formName || alt.kind === formNameAsKind,
-      )?.kind;
+    const resolutionInfo = ((): PBSFormFilterBucketEntryResolutionInfo | undefined => {
+      const species = getPBSRecordSectionSpecies(record.section, speciesRecord.fields.name);
+      const altKind = species && matchPBSFormNameToAlt(formName, species)?.kind;
 
       if (altKind && species) {
         return { kind: "known", speciesKey: species.key, altKind };
@@ -205,17 +234,3 @@ class Lines {
     }
   }
 }
-
-const OVERRIDE_SECTION_FORM_NAMES: Record<string, string> = {
-  "DARMANITAN:Zen Mode": "Zen",
-  "DARMANITAN:Galarian Standard Mode": "Galarian",
-  "DARMANITAN:Galarian Zen Mode": "Galarian Zen",
-  "MAGEARNA:Original Color": "Original",
-  "MAGEARNA:Mega (Original Color)": "Original Mega",
-  "TATSUGIRI:Mega (Curly)": "Curly Mega",
-  "TATSUGIRI:Mega (Stretchy)": "Stretchy Mega",
-  "TATSUGIRI:Mega (Droopy)": "Droopy Mega",
-  "TAUROS:Paldean (Combat Breed)": "Paldean Combat Breed",
-  "TAUROS:Paldean (Blaze Breed)": "Paldean Blaze Breed",
-  "TAUROS:Paldean (Aqua Breed)": "Paldean Aqua Breed",
-};
