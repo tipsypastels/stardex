@@ -1,11 +1,9 @@
 import { batch, createMemo, createSignal, Match, Show, Switch } from "solid-js";
 import type {
-  PBSFormFilterBucket,
-  PBSFormFilterBucketByFormName,
-  PBSFormFilterBucketByLine,
-  PBSFormFilterBucketEntry,
-} from "../../../../models/pokemon/pbs/form";
-import { SPECIES } from "../../../../models/pokemon/species";
+  PBSFormBucket,
+  PBSFormBucketByFormName,
+  PBSFormBucketByLine,
+} from "../../../../models/pokemon/pbs/form/bucket";
 import { Button, UploadButton } from "../../../common/button";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { Icon } from "../../../common/icon";
@@ -21,7 +19,7 @@ export interface ImportPBSModalFormsProps {
 export function ImportPBSModalForms(props: ImportPBSModalFormsProps) {
   return (
     <Show
-      when={props.phase.files.parsed.forms.length > 0}
+      when={props.phase.files.parsed.formsCount > 0}
       fallback={
         <>
           <p class="mb-2">
@@ -138,7 +136,7 @@ function Custom(props: ImportPBSModalFormsProps) {
 }
 
 interface CustomInnerProps extends ImportPBSModalFormsProps {
-  buckets: PBSFormFilterBucket[];
+  buckets: PBSFormBucket[];
 }
 
 export function CustomInner(props: CustomInnerProps) {
@@ -155,8 +153,8 @@ export function CustomInner(props: CustomInnerProps) {
   };
 
   function renderKnown() {
-    const knownCount = view.bucket.entries.filter((entry) =>
-      entry.resolutionInfo.kind.startsWith("known"),
+    const knownCount = view.bucket.forms.filter(
+      (form) => "species" in form.raw && form.raw.alt,
     ).length;
 
     return (
@@ -169,7 +167,7 @@ export function CustomInner(props: CustomInnerProps) {
             </span>
           }
         >
-          <Match when={knownCount === view.bucket.entries.length}>
+          <Match when={knownCount === view.bucket.forms.length}>
             <span class="text-primary">
               <Icon name="check" /> Yes
             </span>
@@ -200,19 +198,19 @@ export function CustomInner(props: CustomInnerProps) {
     );
   }
 
-  function renderFormNameBucket(bucket: PBSFormFilterBucketByFormName) {
+  function renderFormNameBucket(bucket: PBSFormBucketByFormName) {
     return (
       <>
         <strong>Form:</strong> {bucket.formName}
         <ul class="list-inside list-disc text-sm text-foreground-muted">
-          <li>{renderNameList(view.bucket.entries, getEntrySpeciesName, 3)}.</li>
+          <li>{renderNameList(view.bucket.forms, (form) => form.speciesName, 3)}.</li>
           <li>{renderKnown()}</li>
         </ul>
       </>
     );
   }
 
-  function renderLineBucket(bucket: PBSFormFilterBucketByLine) {
+  function renderLineBucket(bucket: PBSFormBucketByLine) {
     return (
       <>
         <strong>Forms of {bucket.speciesNames.length === 1 ? "Pokémon" : "Family"}:</strong>{" "}
@@ -223,12 +221,6 @@ export function CustomInner(props: CustomInnerProps) {
         </ul>
       </>
     );
-  }
-
-  function getEntrySpeciesName({ resolutionInfo }: PBSFormFilterBucketEntry) {
-    return resolutionInfo.kind === "unknown"
-      ? resolutionInfo.speciesName
-      : SPECIES.of(resolutionInfo.speciesKey).name;
   }
 
   return (
@@ -279,7 +271,7 @@ function CustomDone(props: ImportPBSModalFormsProps) {
 
 export function ImportPBSModalFormsFooter(props: ImportPBSModalFormsProps) {
   return (
-    <Show when={props.phase.files.parsed.forms.length > 0} fallback={<FooterNoForms {...props} />}>
+    <Show when={props.phase.files.parsed.formsCount > 0} fallback={<FooterNoForms {...props} />}>
       <FooterOnForms {...props} />
     </Show>
   );

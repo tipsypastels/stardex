@@ -1,6 +1,6 @@
 import { createResource, createRoot, createSignal, type Setter } from "solid-js";
 import { createStore } from "solid-js/store";
-import type { PBSFormFilterBucket } from "../../../../models/pokemon/pbs/form";
+import type { PBSFormBucket } from "../../../../models/pokemon/pbs/form/bucket";
 import { type ImportPBSFiles } from "./files";
 
 export type ImportPBSPhase =
@@ -47,7 +47,7 @@ export type ImportPBSFormCustomChoice = "add" | "replace" | "omit";
 export interface ImportPBSForms {
   granularity: ImportPBSFormGranularity | undefined;
   customChoices: ImportPBSFormCustomChoice[];
-  customBuckets: PBSFormFilterBucket[] | undefined;
+  customBuckets: PBSFormBucket[] | undefined;
   setGranularity: Setter<ImportPBSFormGranularity | undefined>;
   pushCustomChoice(choice: ImportPBSFormCustomChoice): void;
   undoCustomChoice(): void;
@@ -152,8 +152,8 @@ function createFormsState(files: ImportPBSFiles): ImportPBSForms {
     const [customBuckets] = createResource(
       () => (granularity() === "custom" ? files.parsed : undefined),
       async (parsed) => {
-        const { getPBSFormFilterBuckets } = await import("../../../../models/pokemon/pbs/form");
-        return getPBSFormFilterBuckets([...parsed.pokemons, ...parsed.forms]);
+        const { getPBSFormBuckets } = await import("../../../../models/pokemon/pbs/form/bucket");
+        return getPBSFormBuckets(parsed.pokemons);
       },
     );
 

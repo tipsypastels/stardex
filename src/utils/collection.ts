@@ -1,20 +1,4 @@
 /* -------------------------------------------------------------------------- */
-/*                                   Arrays                                   */
-/* -------------------------------------------------------------------------- */
-
-export function arraySortByRegex<T>(input: T[], toKey: (value: T) => string, regexes: RegExp[]) {
-  function rank(key: string) {
-    return regexes.findIndex((re) => re.test(key));
-  }
-
-  return input
-    .map((value, originalIndex) => ({ value, originalIndex, rank: rank(toKey(value)) }))
-    .filter((entry) => entry.rank !== -1)
-    .sort((a, b) => a.rank - b.rank || a.originalIndex - b.originalIndex)
-    .map((entry) => entry.value);
-}
-
-/* -------------------------------------------------------------------------- */
 /*                                    Maps                                    */
 /* -------------------------------------------------------------------------- */
 

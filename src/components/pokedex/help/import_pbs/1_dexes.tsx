@@ -20,7 +20,7 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
 
   return (
     <Show
-      when={props.phase.files.parsed.dexes.length > 0}
+      when={props.phase.files.parsed.dexes.size > 0}
       fallback={
         <>
           {intro}
@@ -38,7 +38,7 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
       </p>
 
       <ul>
-        <For each={props.phase.files.parsed.dexes}>
+        <For each={[...props.phase.files.parsed.dexes.values()]}>
           {(dex) => (
             <li>
               <Checkbox
@@ -46,7 +46,7 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
                   <>
                     Dex {dex.section}{" "}
                     <span class="text-foreground-muted">
-                      ({dex.labels.slice(0, 3).map(capitalizeWords).join(", ")}...)
+                      ({dex.pokemonSections.slice(0, 3).map(capitalizeWords).join(", ")}...)
                     </span>
                   </>
                 }
@@ -64,10 +64,7 @@ export function ImportPBSModalDexes(props: ImportPBSModalDexesProps) {
 
 export function ImportPBSModalDexesFooter(props: ImportPBSModalDexesProps) {
   return (
-    <Show
-      when={props.phase.files.parsed.dexes.length > 0}
-      fallback={<FooterOnNoDexes {...props} />}
-    >
+    <Show when={props.phase.files.parsed.dexes.size > 0} fallback={<FooterOnNoDexes {...props} />}>
       <FooterOnDexes {...props} />
     </Show>
   );
@@ -97,7 +94,7 @@ function FooterOnDexes(props: ImportPBSModalDexesProps) {
         >
           skip this option
         </ButtonLink>{" "}
-        to add <strong>{props.phase.files.parsed.pokemons.length}</strong> Pokémon to your project.
+        to add <strong>{props.phase.files.parsed.pokemons.size}</strong> Pokémon to your project.
       </div>
     </>
   );
@@ -125,7 +122,7 @@ function FooterOnNoDexes(props: ImportPBSModalDexesProps) {
 
       <div class="text-center text-sm text-foreground-muted">
         Or, <ButtonLink onClick={() => props.state.gotoForms()}>skip this option</ButtonLink> to add{" "}
-        <strong>{props.phase.files.parsed.pokemons.length}</strong> Pokémon to your project.
+        <strong>{props.phase.files.parsed.pokemons.size}</strong> Pokémon to your project.
       </div>
     </>
   );

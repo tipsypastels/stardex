@@ -17,6 +17,7 @@ export interface PBSForm {
 
 export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemon>) {
   const { records, errors } = parsePBSAsRecords(file);
+  let count = 0;
 
   for (const record of records) {
     if (record.subsection == null) {
@@ -89,9 +90,10 @@ export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemo
       },
       raw,
     };
+    count++;
   }
 
-  return { errors };
+  return { errors, count };
 }
 
 /* -------------------------------------------------------------------------- */

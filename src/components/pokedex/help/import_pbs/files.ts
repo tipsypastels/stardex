@@ -1,19 +1,22 @@
 import { batch, createRoot, createSignal } from "solid-js";
-import type { PBSLabelList, PBSParseError, PBSRecord } from "../../../../models/pokemon/pbs/parse";
+import type { PBSDex } from "../../../../models/pokemon/pbs/dex";
+import type { PBSError } from "../../../../models/pokemon/pbs/error";
+import type { PBSPokemon } from "../../../../models/pokemon/pbs/pokemon";
 import { mergeNamedTextArrays, type NamedText } from "../../../../utils/fs/named_text";
 import { readFileListAsNamedTextAsync } from "../../../../utils/fs/web";
+import { sortStrings } from "../../../../utils/string";
 
 export interface ImportPBSFiles {
   files: NamedText[];
   parsed: ImportPBSParsed;
-  errors: PBSParseError[];
+  errors: PBSError[];
   import(fileList: FileList): Promise<void>;
 }
 
 export interface ImportPBSParsed {
-  pokemons: PBSRecord[];
-  forms: PBSRecord[];
-  dexes: PBSLabelList[];
+  pokemons: Map<string, PBSPokemon>;
+  formsCount: number;
+  dexes: Map<number, PBSDex>;
 }
 
 export async function createImportPBSFiles(fileList: FileList): Promise<ImportPBSFiles> {
@@ -55,32 +58,48 @@ export async function createImportPBSFiles(fileList: FileList): Promise<ImportPB
 
 async function parse(files: NamedText[]) {
   const parsed: ImportPBSParsed = {
-    pokemons: [],
-    forms: [],
-    dexes: [],
+    pokemons: new Map(),
+    formsCount: 0,
+    dexes: new Map(),
   };
-  const errors: PBSParseError[] = [];
+  const errors: PBSError[] = [];
+
+  files.sort((left, right) => sortStrings(left.name, right.name));
+
+  const pokemonFiles: NamedText[] = [];
+  const formFiles: NamedText[] = [];
+  const dexFiles: NamedText[] = [];
 
   for (const file of files) {
-    if (/^pokemon_forms(?:_.+)?\.txt$/i.test(file.name)) {
-      const { parsePBSAsRecords } = await import("../../../../models/pokemon/pbs/parse");
-      const result = parsePBSAsRecords(file);
-
-      parsed.forms.push(...result.records);
-      errors.push(...result.errors);
-    } else if (/^pokemon(?:_.+)?\.txt$/.test(file.name)) {
-      const { parsePBSAsRecords } = await import("../../../../models/pokemon/pbs/parse");
-      const result = parsePBSAsRecords(file);
-
-      parsed.pokemons.push(...result.records);
-      errors.push(...result.errors);
+    if (/^pokemon(?:(?!_forms)_.+)?\.txt$/.test(file.name)) {
+      pokemonFiles.push(file);
+    } else if (/^pokemon_forms(?:_.+)?\.txt$/i.test(file.name)) {
+      formFiles.push(file);
     } else if (/^regional_dexes(?:_.+)?\.txt$/.test(file.name)) {
-      const { parsePBSAsLabelLists } = await import("../../../../models/pokemon/pbs/parse");
-      const result = parsePBSAsLabelLists(file);
-
-      parsed.dexes.push(...result.labelLists);
-      errors.push(...result.errors);
+      dexFiles.push(file);
     }
+  }
+
+  for (const file of pokemonFiles) {
+    const { parsePBSAsPokemons } = await import("../../../../models/pokemon/pbs/pokemon");
+    const { errors } = parsePBSAsPokemons(file, parsed.pokemons);
+
+    errors.push(...errors);
+  }
+
+  for (const file of formFiles) {
+    const { parsePBSAsForms } = await import("../../../../models/pokemon/pbs/form");
+    const { errors, count } = parsePBSAsForms(file, parsed.pokemons);
+
+    errors.push(...errors);
+    parsed.formsCount += count;
+  }
+
+  for (const file of dexFiles) {
+    const { parsePBSAsDexes } = await import("../../../../models/pokemon/pbs/dex");
+    const { errors } = parsePBSAsDexes(file, parsed.dexes);
+
+    errors.push(...errors);
   }
 
   return { parsed, errors };

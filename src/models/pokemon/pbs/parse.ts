@@ -1,27 +1,24 @@
 import type { NamedText } from "../../../utils/fs/named_text";
+import type { PBSError } from "./error";
 
 // Used for pokemon.txt and pokemon_forms.txt.
 export interface PBSRecord {
   section: string;
   subsection?: number;
-  fields: Record<string, string>;
+  sectionLineIndex: number;
+  fields: Record<string, string | undefined>;
 }
 
 // Used for regional_dexes.txt.
 export interface PBSLabelList {
   section: number;
+  sectionLineIndex: number;
   labels: string[];
-}
-
-export interface PBSParseError {
-  fileName: string;
-  lineIndex: number;
-  message: string;
 }
 
 export function parsePBSAsRecords(file: NamedText) {
   const records: PBSRecord[] = [];
-  const errors: PBSParseError[] = [];
+  const errors: PBSError[] = [];
 
   let current: PBSRecord | undefined;
 
@@ -46,6 +43,7 @@ export function parsePBSAsRecords(file: NamedText) {
       current = {
         section,
         subsection: subsection ? +subsection : undefined,
+        sectionLineIndex: lineIndex,
         fields: {},
       };
     } else if ((kv = line.match(/^\s*(\w+)\s*=\s*(.*)$/))) {
@@ -78,7 +76,7 @@ export function parsePBSAsRecords(file: NamedText) {
 
 export function parsePBSAsLabelLists(file: NamedText) {
   const labelLists: PBSLabelList[] = [];
-  const errors: PBSParseError[] = [];
+  const errors: PBSError[] = [];
 
   let current: PBSLabelList | undefined;
 
@@ -101,6 +99,7 @@ export function parsePBSAsLabelLists(file: NamedText) {
       }
       current = {
         section,
+        sectionLineIndex: lineIndex,
         labels: [],
       };
     } else if ((labels = line.match(/^\s*([A-z0-9]+(?:\s*,\s*[A-z0-9]+)*)(?:\s*,\s*)?\s*$/))) {
