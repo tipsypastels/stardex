@@ -49,20 +49,20 @@ export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemo
     const raw = ((): RawPokemon => {
       if ("species" in pokemon.raw) {
         const species = SPECIES.of(pokemon.raw.species);
-        const types = getPBSRecordTypeKeys(record, pokemon.raw.types);
         const alt = getAlt(formName, species);
+        const types = getPBSRecordTypeKeys(record, alt?.typeKeys ?? pokemon.raw.types);
         const raw: RawBuiltinPokemon = {
           v: POKEMON_VERSION,
           id: id(),
           species: species.key,
         };
-        if (types) {
-          raw.types = types;
-        }
         if (alt) {
           raw.alt = alt.kind;
         } else {
           raw.customAltName = formName;
+        }
+        if (types) {
+          raw.types = types;
         }
         return raw;
       } else {
@@ -105,13 +105,17 @@ const OVERRIDE_SECTION_FORM_NAMES: Record<string, string> = {
   "DARMANITAN:Galarian Standard Mode": "Galarian",
   "DARMANITAN:Galarian Zen Mode": "Galarian Zen",
   "MAGEARNA:Original Color": "Original",
-  "MAGEARNA:Mega (Original Color)": "Original Mega",
+  "MAGEARNA:Mega Magearna (Original Color)": "Original Mega",
   "TATSUGIRI:Mega Tatsugiri (Curly Form)": "Curly Mega",
   "TATSUGIRI:Mega Tatsugiri (Stretchy Form)": "Stretchy Mega",
   "TATSUGIRI:Mega Tatsugiri (Droopy Form)": "Droopy Mega",
   "TAUROS:Paldean (Combat Breed)": "Paldean Combat Breed",
   "TAUROS:Paldean (Blaze Breed)": "Paldean Blaze Breed",
   "TAUROS:Paldean (Aqua Breed)": "Paldean Aqua Breed",
+  "FLOETTE:Eternal Flower": "Eternal",
+  "MORPEKO:Hangry Mode": "Hangry",
+  "URSHIFU:Gigantamax Single Strike Style": "Single Strike Gigantamax",
+  "URSHIFU:Gigantamax Rapid Strike Style": "Rapid Strike Gigantamax",
 };
 
 export function getFormName(
