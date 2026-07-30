@@ -1,4 +1,4 @@
-import { Match, Switch } from "solid-js";
+import { createSignal, Match, Switch } from "solid-js";
 import { Button } from "../../../common/button";
 import { ButtonLink, UploadLink } from "../../../common/link";
 import { importPBS } from "./import";
@@ -66,9 +66,19 @@ export function ImportPBSModalFinish(props: ImportPBSModalFinishProps) {
 }
 
 export function ImportPBSModalFinishFooter(props: ImportPBSModalFinishProps) {
+  const [finishing, setFinishing] = createSignal(false);
   return (
     <div class="flex flex-col justify-center">
-      <Button onClick={() => importPBS(props.state, props.phase)}>Import</Button>
+      <Button
+        // eslint-disable-next-line solid/reactivity
+        onClick={async () => {
+          setFinishing(true);
+          await importPBS(props.state, props.phase);
+        }}
+        disabled={finishing()}
+      >
+        Import
+      </Button>
     </div>
   );
 }
