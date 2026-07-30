@@ -9,13 +9,15 @@ import { getPBSRecordTypeKeys } from "./type";
 
 export interface PBSPokemon {
   section: string;
+  speciesName: string;
+  evolvesToSections?: string[];
   raw: RawPokemon;
-  forms: PBSForm[];
+  /** May have holes, represent as undefined. */
+  forms: (PBSForm | undefined)[];
 }
 
-export function parsePBSAsPokemons(file: NamedText) {
+export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>) {
   const { records, errors } = parsePBSAsRecords(file);
-  const pokemons: PBSPokemon[] = [];
 
   for (const record of records) {
     const speciesName = record.fields.name;
@@ -33,15 +35,15 @@ export function parsePBSAsPokemons(file: NamedText) {
 
     const raw = ((): RawPokemon | undefined => {
       if (species) {
-        const pokemon: RawBuiltinPokemon = {
+        const raw: RawBuiltinPokemon = {
           v: POKEMON_VERSION,
           id: id(),
           species: species.key,
         };
         if (types) {
-          pokemon.types = types;
+          raw.types = types;
         }
-        return pokemon;
+        return raw;
       } else if (types) {
         return {
           v: POKEMON_VERSION,
@@ -59,11 +61,35 @@ export function parsePBSAsPokemons(file: NamedText) {
     })();
     if (!raw) continue;
 
-    pokemons.push({ section: record.section, raw, forms: [] });
+    // Evolutions is always represented as
+    // SECTION,Method,Param,SECTION2,Method2,Param2,...
+    const evolvesToSections = record.fields.evolutions
+      ?.split(/\s*,\s*/)
+      .filter((_, i) => i % 3 === 0);
+
+    const pokemon: PBSPokemon = {
+      section: record.section,
+      get speciesName() {
+        if ("species" in raw) {
+          return SPECIES.of(raw.species).name;
+        } else {
+          return raw.name;
+        }
+      },
+      evolvesToSections,
+      raw,
+      forms: [],
+    };
+
+    out.set(record.section, pokemon);
   }
 
-  return { pokemons, errors };
+  return { errors };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                 Conversions                                */
+/* -------------------------------------------------------------------------- */
 
 const OVERRIDE_NAMES_TO_KEYS: Record<string, string> = {
   "Nidoran♀": "nidoran-f",

@@ -43,3 +43,5 @@ Pool {
 
 Don't use a pool. Keep the same layout we have now, but with PBSPokemon and such instead of PBSRecord.
 parsed.pokemons should be a map, and when parsing forms it should append them to the pokemon with that section
+
+Forms shouldn't contain a bucket index because that requires buckets to be eagerly loaded. Instead you could walk buckets, look up pokemon in the map, look up form by index, and add them to a disabled map when extracting.

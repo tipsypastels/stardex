@@ -11,10 +11,6 @@ export const TYPE_KEY_PAIRS = (() => {
       return equatable(left) === equatable(right);
     },
 
-    select(left: string[]) {
-      return (right: string[]) => this.equal(left, right);
-    },
-
     ordering(left: string[], right: string[]) {
       return new Array(Math.max(left.length, right.length))
         .fill(undefined)
