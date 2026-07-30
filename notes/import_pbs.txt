@@ -41,3 +41,12 @@ All the possible keys of a hypothetical bucket choices map
 - The PBSFormBucket object - no, no way to efficiently check if an individual form is included.
   - Or do both and have derived state for every form.
     - Or just compute it on import. Yeah.
+
+Error handling flow notes
+
+- Because several steps have their own upload buttons, they all need to display errors.
+- The next button is disabled if there are errors. Skip is not, just ignore the errors.
+- A step with an empty state should render in its empty state if there are errors, for example the dex picker. Because if you end up pressing remove files with errors it would pull the state you're working on out from under you in the case of a partially valid file.
+- The landing page works a bit different since it auto advances on file upload. The button is never disabled, but the handler checks for errors. Uploading files always overwrites, so no remove files with errors button is shown.
+- It should be impossible to advance past the landing with zero pokemon (which is a late error). The landing does not have a skip button or a remove files with errors button. So by getting past the landing you at least have one valid pokemon.txt, though anything you upload later may be wholly and partially invalid.
+  - Maybe possible if you edit the file while importing, but I'm going to call that unspecified behaviour. And it wouldn't crash or anything, just be confusing.
