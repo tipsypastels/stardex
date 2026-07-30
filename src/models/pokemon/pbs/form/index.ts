@@ -58,6 +58,8 @@ export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemo
         };
         if (alt) {
           raw.alt = alt.kind;
+        } else if (species.hasCustomTypeIcons && types && species.getCustomTypeIconIndex(types)) {
+          // Do nothing, having the type will set the icon. Do not set an alt.
         } else {
           raw.customAltName = formName;
         }
