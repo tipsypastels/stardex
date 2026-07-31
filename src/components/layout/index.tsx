@@ -1,11 +1,7 @@
 import type { JSXElement } from "solid-js";
-// TODO
-// import { ProjectsModal, ProjectsSelect } from "../projects";
-// import { Controls } from "./controls";
-import { Footer } from "./footer";
-// import { MobileJump } from "./jump";
 import { Controls } from "./controls";
-import { MobileJump } from "./jump";
+import { Footer } from "./footer";
+import { Jump } from "./jump";
 import { Logo } from "./logo";
 import { ProjectsModal, ProjectsSelect } from "./projects";
 import { Toast } from "./toast";
@@ -51,7 +47,7 @@ export function Layout(props: LayoutProps) {
             <main class="mx-4 md:mx-0">{props.children}</main>
 
             <Toast />
-            <MobileJump />
+            <Jump />
           </div>
         </div>
 
