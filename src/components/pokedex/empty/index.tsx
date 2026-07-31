@@ -16,7 +16,7 @@ import { ImportRegionModal } from "./import_region";
 import { PokedexEmptyTutorial } from "./tutorial";
 
 export interface PokedexEmptyProps {
-  afterImport?(): void;
+  afterActionChange(): void;
 }
 
 export function PokedexEmpty(props: PokedexEmptyProps) {
@@ -44,7 +44,7 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
           toasts.add("upload", "Save file loaded!");
         });
 
-        props.afterImport?.();
+        props.afterActionChange?.();
       } catch (error) {
         setImportError(error);
       }
@@ -53,7 +53,7 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
       // they'll see the errors soon anyways and if not they're not relevant.
       const { list } = parsePokemonListText(text);
       pokemons.setFromRaw(list);
-      props.afterImport?.();
+      props.afterActionChange();
     } else {
       alert("Unknown file format.");
     }
@@ -117,14 +117,14 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
 
       <Show when={pbsState.phase}>
         {(phase) => (
-          <ImportPBSModal state={pbsState} phase={phase()} afterImport={props.afterImport} />
+          <ImportPBSModal state={pbsState} phase={phase()} afterImport={props.afterActionChange} />
         )}
       </Show>
 
       <Show when={importRegionModalOpen()}>
         <ImportRegionModal
           onClose={() => setImportRegionModalOpen(false)}
-          afterImport={props.afterImport}
+          afterImport={props.afterActionChange}
         />
       </Show>
 

@@ -15,6 +15,7 @@ export interface PokedexActionsProps {
   zapper: boolean;
   setZapper(zapper: boolean): void;
   onAutosort(request: AutosortRequest): void;
+  afterActionChange(): void;
 }
 
 export function PokedexActions(props: PokedexActionsProps) {
@@ -51,6 +52,8 @@ export function PokedexActions(props: PokedexActionsProps) {
       customIcons.clear();
       toasts.add("trash", "Pokédex cleared! A blank slate...");
     });
+
+    props.afterActionChange();
   }
 
   return (
@@ -88,15 +91,10 @@ export function PokedexActions(props: PokedexActionsProps) {
                 disabled={isEmpty()}
                 onClick={toggleZapper}
               />
-              <ActionBarItem
-                name="Clear"
-                icon="trash"
-                disabled={isEmpty()}
-                onClick={clearPokedex}
-              />
             </>
           )}
         </Show>
+        <ActionBarItem name="Clear" icon="trash" disabled={isEmpty()} onClick={clearPokedex} />
       </ActionBar>
 
       <Show when={isNonTextMode()}>

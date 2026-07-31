@@ -7,6 +7,7 @@ import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
 import { PokedexActions } from "../actions";
 import { toastDescriptionOfAutosortRequest } from "../actions/autosort";
+import { PokedexEmpty } from "../empty";
 import { PokedexIconsView } from "./icons";
 import { PokedexNamesView } from "./names";
 import { PokedexTextViewLazy } from "./text.lazy";
@@ -33,12 +34,14 @@ export interface PokedexModeProps {
 
 export interface PokedexModeViewProps extends PokedexModeProps {
   zapper: boolean;
+  setAfterActionChange(f: (() => void) | undefined): void;
 }
 
 export function PokedexMode(props: PokedexModeProps) {
   const formatInfo = () => MODE_INFOS[pokedexMode.key];
-
   const [zapper, setZapper] = createSignal(false);
+
+  let afterActionChange: (() => void) | undefined;
 
   function onAutosort(request: AutosortRequest) {
     batch(() => {
@@ -53,12 +56,19 @@ export function PokedexMode(props: PokedexModeProps) {
 
   return (
     <>
-      <PokedexActions zapper={zapper()} setZapper={setZapper} onAutosort={onAutosort} />
+      <PokedexActions
+        zapper={zapper()}
+        setZapper={setZapper}
+        onAutosort={onAutosort}
+        afterActionChange={() => afterActionChange?.()}
+      />
       <Dynamic
         component={formatInfo().component}
         zapper={zapper()}
         setEditingId={props.setEditingId}
+        setAfterActionChange={(f) => (afterActionChange = f)}
       />
+      <PokedexEmpty afterActionChange={() => afterActionChange?.()} />
     </>
   );
 }

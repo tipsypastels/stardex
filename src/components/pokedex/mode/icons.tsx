@@ -4,7 +4,6 @@ import { pokemonsFiltered } from "../../../models/pokedex/filter";
 import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { TypeDots } from "../../types/util/dots";
-import { PokedexEmpty } from "../empty";
 import { PokemonIcon } from "../util/icon/pokemon";
 import { onClickPokemon } from "./util/click";
 import { createDraggable } from "./util/drag";
@@ -28,7 +27,6 @@ export function PokedexIconsView(props: PokedexModeViewProps) {
           </ol>
         </WithFilterNone>
       </Show>
-      <PokedexEmpty />
     </>
   );
 }

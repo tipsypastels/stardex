@@ -11,11 +11,11 @@ import {
   placeholder,
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
-import { createEffect, onCleanup, untrack } from "solid-js";
+import { createEffect, onCleanup, onMount, untrack } from "solid-js";
+import type { PokedexModeViewProps } from "..";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
-import { PokedexEmpty } from "../../empty";
 import { autocomplete } from "./autocomplete";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
@@ -23,9 +23,22 @@ import { parseInitial, parser } from "./parse";
 import { highlightTheme, selectionMark, theme } from "./theme";
 import { tooltip } from "./tooltip";
 
-export function PokedexTextView() {
+export function PokedexTextView(props: PokedexModeViewProps) {
   let parent!: HTMLDivElement;
   let view: EditorView | undefined;
+
+  onMount(() => {
+    props.setAfterActionChange(() => {
+      if (view) {
+        view.setState(createState());
+        parseInitial(view.state);
+      }
+    });
+  });
+
+  onCleanup(() => {
+    props.setAfterActionChange(undefined);
+  });
 
   createEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -36,19 +49,7 @@ export function PokedexTextView() {
     onCleanup(() => view?.destroy());
   });
 
-  return (
-    <>
-      <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
-      <PokedexEmpty
-        afterImport={() => {
-          if (view) {
-            view.setState(createState());
-            parseInitial(view.state);
-          }
-        }}
-      />
-    </>
-  );
+  return <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />;
 }
 
 function createState() {
