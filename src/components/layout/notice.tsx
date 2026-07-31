@@ -67,7 +67,7 @@ const NOTICES = [
                 <span class="transition-colors duration-200 hover:text-[#FB5687]">old Stardex</span>
                 .
               </li>
-              <li>The text editor can now autocomplete Pokémon, forms, and families.</li>
+              <li>The text editor can now autocomplete Pokémon, types, forms, and families.</li>
             </ul>
           </div>
 
@@ -87,7 +87,7 @@ const NOTICES = [
           <div class="mb-2">
             <h3 class="mb-1 text-lg font-bold">Have an empty project? More ways to start:</h3>
             <ul class="list-inside list-disc">
-              <li>Importing from Essentials PBS files!</li>
+              <li>Importing from Essentials PBS files.</li>
               <li>Import all the Pokémon from a canon region.</li>
             </ul>
           </div>
