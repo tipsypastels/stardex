@@ -1,0 +1,3 @@
+[FOOBAR]
+Name = Foo Bar
+Types = GRASS,POISON
