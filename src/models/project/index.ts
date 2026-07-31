@@ -1,5 +1,5 @@
 import * as v from "valibot";
-import { id } from "../../utils/id";
+import { makeId } from "../../utils/id";
 import { PokedexModeKey } from "../pokedex/mode";
 import { RawCustomIconsMetadata } from "../pokemon/custom_icon/metadata";
 import { RawPokemonList } from "../pokemon/list";
@@ -77,7 +77,7 @@ export const PROJECTS = (() => {
   function makeDuplicateImpl(name: string, dormantModels: RawProjectModels) {
     return make({
       v: PROJECT_VERSION,
-      id: id(),
+      id: makeId(),
       name: `Copy of ${name}`,
       dormantModels,
     });

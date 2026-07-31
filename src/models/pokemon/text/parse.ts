@@ -1,7 +1,7 @@
 import type { Diagnostic } from "@codemirror/lint";
 import type { SyntaxNodeRef, Tree } from "@lezer/common";
 import type { RawBuiltinPokemon, RawPokemon } from "..";
-import { id } from "../../../utils/id";
+import { makeId } from "../../../utils/id";
 import type { Span } from "../../../utils/span";
 import type { RawPokemonList } from "../list";
 import { Species, SPECIES } from "../species";
@@ -16,7 +16,7 @@ export interface ParsePokemonListTextResult {
 }
 
 export function parsePokemonListText(text: string) {
-  return parsePokemonListTextFromLezerTree(parser.parse(text), text, id);
+  return parsePokemonListTextFromLezerTree(parser.parse(text), text, makeId);
 }
 
 export function parsePokemonListTextFromLezerTree(

@@ -3,7 +3,7 @@ import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
 import { PROJECTS, RawProject, RawProjectModels, type ProjectWithDormantModels } from ".";
 import { mustIndex } from "../../utils/assert";
-import { id } from "../../utils/id";
+import { makeId } from "../../utils/id";
 import { stored } from "../../utils/storage";
 import { POKEDEX_MODES, pokedexMode } from "../pokedex/mode";
 import {
@@ -132,7 +132,7 @@ export const PROJECT_LISTS = (() => {
             all.length,
             PROJECTS.make({
               v: PROJECT_VERSION,
-              id: id(),
+              id: makeId(),
               name: `Untitled Project ${all.length + 1}`,
               dormantModels: {
                 pokemons: { v: POKEMON_LIST_VERSION, all: [] },

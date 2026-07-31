@@ -1,5 +1,5 @@
 import * as v from "valibot";
-import { id } from "../../utils/id";
+import { makeId } from "../../utils/id";
 import { TYPES, type Type } from "../type";
 import { SPECIES, type Species, type SpeciesAlt } from "./species";
 import { POKEMON_VERSION, V0_RawPokemon, V0_upgradeRawPokemon } from "./versioned";
@@ -81,7 +81,7 @@ export interface BuiltinPokemon {
 
 export const BUILTIN_POKEMONS = (() => {
   function of(species: Species) {
-    return make({ v: POKEMON_VERSION, id: id(), species: species.key });
+    return make({ v: POKEMON_VERSION, id: makeId(), species: species.key });
   }
 
   function make(raw: RawBuiltinPokemon): BuiltinPokemon {
@@ -165,7 +165,7 @@ export interface CustomPokemon {
 
 export const CUSTOM_POKEMONS = (() => {
   function of(name: string, typeKeys: string[]) {
-    return make({ v: POKEMON_VERSION, id: id(), name, types: typeKeys });
+    return make({ v: POKEMON_VERSION, id: makeId(), name, types: typeKeys });
   }
 
   function make(raw: RawCustomPokemon): CustomPokemon {

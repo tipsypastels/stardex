@@ -1,6 +1,6 @@
 import * as v from "valibot";
 import { RawCustomPokemon, type RawBuiltinPokemon, type RawPokemon } from ".";
-import { id } from "../../utils/id";
+import { makeId } from "../../utils/id";
 import type { RawPokemonList } from "./list";
 import { PokemonListTextDiffBuilder } from "./text/diff";
 
@@ -41,7 +41,7 @@ export function V0_upgradeRawBuiltinPokemon(
   const { species, type, ...rest } = raw;
   return {
     v: POKEMON_VERSION,
-    id: id(),
+    id: makeId(),
     species: species.key,
     types: type,
     ...rest,
@@ -52,7 +52,7 @@ export function V0_upgradeRawCustomPokemon(
   raw: v.InferOutput<typeof V0_RawCustomPokemon>,
 ): RawCustomPokemon {
   const { key: _key, type, ...rest } = raw;
-  return { v: POKEMON_VERSION, id: id(), types: type, ...rest };
+  return { v: POKEMON_VERSION, id: makeId(), types: type, ...rest };
 }
 
 export function V0_upgradeRawPokemon(raw: v.InferOutput<typeof V0_RawPokemon>): RawPokemon {

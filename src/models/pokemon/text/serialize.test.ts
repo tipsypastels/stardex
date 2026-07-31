@@ -1,10 +1,10 @@
 import { describe, expect, test } from "vitest";
 import type { RawPokemon } from "..";
-import { id } from "../../../utils/id";
+import { makeId } from "../../../utils/id";
 import { serializeRawPokemonListToText } from "./serialize";
 
 describe(serializeRawPokemonListToText, () => {
-  const header = () => ({ v: 1 as const, id: id() });
+  const header = () => ({ v: 1 as const, id: makeId() });
 
   function s(pokemons: RawPokemon[], textDiff?: string[], strict?: boolean) {
     return serializeRawPokemonListToText({ pokemons, textDiff, strict });

@@ -2,4 +2,4 @@
 import { nanoid } from "nanoid";
 
 // https://zelark.github.io/nano-id-cc/
-export const id = () => nanoid(8);
+export const makeId = () => nanoid(8);

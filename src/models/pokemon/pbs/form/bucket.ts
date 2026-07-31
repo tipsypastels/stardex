@@ -1,5 +1,5 @@
 import type { PBSForm } from ".";
-import { mapOfArraysAppend } from "../../../../utils/collection";
+import { mapOfArraysAppend } from "../../../../utils/collection/map";
 import { sortStrings } from "../../../../utils/string";
 import type { PBSPokemon } from "../pokemon";
 

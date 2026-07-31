@@ -1,5 +1,5 @@
 import type { RawPokemon } from "..";
-import { iterMap } from "../../../utils/collection";
+import { iterMap } from "../../../utils/collection/iter";
 import type { Spanned } from "../../../utils/span";
 import { capitalize, capitalizeWords } from "../../../utils/string";
 import { pokemons } from "../list";

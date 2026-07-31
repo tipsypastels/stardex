@@ -1,5 +1,5 @@
 import { createStore } from "solid-js/store";
-import { id } from "../../utils/id";
+import { makeId } from "../../utils/id";
 
 export interface Toast {
   id: string;
@@ -15,7 +15,7 @@ export const toasts = (() => {
       return all[0];
     },
     add(icon: string, text: string) {
-      setAll(all.length, { id: id(), icon, text });
+      setAll(all.length, { id: makeId(), icon, text });
     },
     next() {
       setAll((all) => all.slice(1));

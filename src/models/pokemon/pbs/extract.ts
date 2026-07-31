@@ -1,5 +1,5 @@
 import type { RawPokemon } from "..";
-import { iterFilter } from "../../../utils/collection";
+import { iterFilter } from "../../../utils/collection/iter";
 import type { PBSDex } from "./dex";
 import type { PBSForm } from "./form";
 import type { PBSPokemon } from "./pokemon";

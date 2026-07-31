@@ -1,6 +1,6 @@
 import type { RawBuiltinPokemon, RawPokemon } from "..";
 import type { NamedText } from "../../../utils/fs/named_text";
-import { id } from "../../../utils/id";
+import { makeId } from "../../../utils/id";
 import { SPECIES } from "../species";
 import { POKEMON_VERSION } from "../versioned";
 import type { PBSForm } from "./form";
@@ -37,7 +37,7 @@ export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>
       if (species) {
         const raw: RawBuiltinPokemon = {
           v: POKEMON_VERSION,
-          id: id(),
+          id: makeId(),
           species: species.key,
         };
         if (types) {
@@ -47,7 +47,7 @@ export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>
       } else if (types) {
         return {
           v: POKEMON_VERSION,
-          id: id(),
+          id: makeId(),
           name: speciesName,
           types,
         };
