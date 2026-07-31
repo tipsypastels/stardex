@@ -2,7 +2,7 @@ import { ReactiveSet } from "@solid-primitives/set";
 import { createEffect, createRoot } from "solid-js";
 import * as v from "valibot";
 import { stored } from "../../../utils/storage";
-import { catchInitialValidationError } from "../../ui/error/validation";
+import { catchStartupError } from "../../ui/error";
 
 export const CUSTOM_ICONS_METADATA_VERSION = 1;
 
@@ -16,7 +16,7 @@ export const customIconsMetadata = createRoot(() => {
   const store = stored("stardex_custom_icons_metadata");
   const pokemonIds = new ReactiveSet<string>();
 
-  const caught = catchInitialValidationError(() => {
+  const caught = catchStartupError(() => {
     const raw = store.load();
     if (!raw) return;
     for (const pokemonId of v.parse(RawCustomIconsMetadata, raw).pokemonIds) {

@@ -1,21 +1,40 @@
-import { unsafeWipeEverythingAndReload } from "../../../models/wipe";
-import { Button } from "../../common/button";
-import { ButtonLink, Link } from "../../common/link";
-import { createErrorDumper } from "../util.ts";
+import { createSignal, Show, type JSXElement } from "solid-js";
+import { startupError } from "../../models/ui/error";
+import { unsafeWipeEverythingAndReload } from "../../models/util/database";
+import { saveErrorDumpToFile } from "../../utils/fs/web/error_dump";
+import { Button } from "../common/button";
+import { ButtonLink, Link } from "../common/link";
 
-export interface InitialValidationErrorProps {
-  error: unknown;
+export interface CatchStartupErrorProps {
+  children: JSXElement;
 }
 
-export function InitialValidationError(props: InitialValidationErrorProps) {
-  const dumper = createErrorDumper(() => props.error);
+export function CatchStartupError(props: CatchStartupErrorProps) {
+  return (
+    <Show when={startupError()} fallback={props.children}>
+      {(error) => <StartupError error={error()} />}
+    </Show>
+  );
+}
+
+interface StartupErrorProps {
+  error: Error;
+}
+
+function StartupError(props: StartupErrorProps) {
+  const [dumped, setDumped] = createSignal(false);
+
+  function dump() {
+    saveErrorDumpToFile(props.error);
+    setDumped(true);
+  }
 
   function wipeEverythingAndReload() {
     if (!confirm("Are you sure? You really will lose everything.")) {
       return;
     }
     if (
-      !dumper.made &&
+      !dumped() &&
       !confirm("You don't even want to make an error dump? You're just going to rawdog it?")
     ) {
       return;
@@ -32,7 +51,7 @@ export function InitialValidationError(props: InitialValidationErrorProps) {
 
       <p class="mb-4">
         This is most likely a bug with Stardex. You can{" "}
-        <ButtonLink onClick={dumper.make}>save an error dump</ButtonLink> and upload it to the{" "}
+        <ButtonLink onClick={dump}>save an error dump</ButtonLink> and upload it to the{" "}
         <Link blank to="https://github.com/tipsypastels/stardex">
           project GitHub
         </Link>{" "}

@@ -1,5 +1,5 @@
 import { onCleanup } from "solid-js";
-import { unsafeWipeEverythingAndReload } from "../../models/wipe";
+import { unsafeWipeEverythingAndReload } from "../../models/util/wipe";
 
 export function Logo() {
   const onClick = createNthClickHandler(import.meta.env.DEV ? 3 : 15, () => {

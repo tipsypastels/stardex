@@ -3,7 +3,7 @@
 import "./app.css";
 
 import { render } from "solid-js/web";
-import { CatchValidationError } from "./components/error/validation";
+import { CatchStartupError } from "./components/error/startup";
 import { Export } from "./components/export";
 import { Layout } from "./components/layout";
 import { Pokedex } from "./components/pokedex";
@@ -13,7 +13,7 @@ import { TypeSuggestions } from "./components/types/util/suggestions";
 
 function App() {
   return (
-    <CatchValidationError>
+    <CatchStartupError>
       <Layout>
         <TypeSuggestions />
 
@@ -22,7 +22,7 @@ function App() {
         <Recommendations />
         <Export />
       </Layout>
-    </CatchValidationError>
+    </CatchStartupError>
   );
 }
 

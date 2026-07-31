@@ -5,7 +5,7 @@ import { POKEMONS, RawPokemon, type Pokemon } from ".";
 import { makeId } from "../../utils/id";
 import { stored } from "../../utils/storage";
 import type { Region } from "../region";
-import { catchInitialValidationError } from "../ui/error/validation";
+import { catchStartupError } from "../ui/error";
 import { runAutosort, type AutosortRequest } from "./autosort";
 import { createPokemonMutator } from "./mutator";
 import {
@@ -44,7 +44,7 @@ export const POKEMON_LISTS = (() => {
       const [all, setAll] = createStore<Pokemon[]>([]);
       const [textDiff, setTextDiff] = createSignal<string[]>();
 
-      const caught = catchInitialValidationError(() => {
+      const caught = catchStartupError(() => {
         const raw_ = store.load();
         if (!raw_) return;
 

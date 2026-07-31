@@ -1,6 +1,8 @@
 import { batch, createResource, createRoot } from "solid-js";
 import { assert } from "../../../utils/assert";
 import { blobToDataUrl } from "../../../utils/fs/web";
+import type { RawJSONExportCustomIcons } from "../../export";
+import { projects } from "../../project/list";
 import {
   addBulkCustomIconsDbEntries,
   addCustomIconsDbEntry,
@@ -8,9 +10,7 @@ import {
   deleteCustomIconsDbEntry,
   getCustomIconDbEntries,
   type CustomIconsDbEntry,
-} from "../../database";
-import type { RawJSONExportCustomIcons } from "../../export";
-import { projects } from "../../project/list";
+} from "../../util/database";
 import { customIconsMetadata } from "./metadata";
 
 export type CustomIconResult =
