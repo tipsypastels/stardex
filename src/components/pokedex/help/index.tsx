@@ -11,7 +11,11 @@ import { ImportPBSModal } from "./import_pbs";
 import { createImportPBSState } from "./import_pbs/state";
 import { ImportRegionModal } from "./import_region";
 
-export function PokedexHelp() {
+export interface PokedexHelpProps {
+  afterImport?(): void;
+}
+
+export function PokedexHelp(props: PokedexHelpProps) {
   const [manuallyOpened, setManuallyOpened] = createSignal(false);
   const [importRegionModalOpen, setImportRegionModalOpen] = createSignal(false);
   const pbsState = createImportPBSState();
@@ -30,12 +34,15 @@ export function PokedexHelp() {
           loadJSONExport(jsonExport);
           toasts.add("upload", "Save file loaded!");
         });
+
+        props.afterImport?.();
       } catch {
         // TODO: Display a late validation error.
         alert("Error!");
       }
     } else if (file.type === "text/plain") {
       alert("TODO: Importing text files.");
+      props.afterImport?.();
     } else {
       alert("Unknown file format.");
     }
@@ -84,13 +91,6 @@ export function PokedexHelp() {
               Start from a canon region.
             </ButtonLink>
           </li>
-          <Show when={pokedexMode.key === "text"}>
-            <li>
-              <ButtonLink onClick={() => {}}>
-                Start from a sample project to learn the syntax.
-              </ButtonLink>
-            </li>
-          </Show>
         </ul>
       </div>
 
@@ -105,11 +105,16 @@ export function PokedexHelp() {
       </Show>
 
       <Show when={pbsState.phase}>
-        {(phase) => <ImportPBSModal state={pbsState} phase={phase()} />}
+        {(phase) => (
+          <ImportPBSModal state={pbsState} phase={phase()} afterImport={props.afterImport} />
+        )}
       </Show>
 
       <Show when={importRegionModalOpen()}>
-        <ImportRegionModal onClose={() => setImportRegionModalOpen(false)} />
+        <ImportRegionModal
+          onClose={() => setImportRegionModalOpen(false)}
+          afterImport={props.afterImport}
+        />
       </Show>
     </Show>
   );

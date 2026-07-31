@@ -2,6 +2,7 @@ import { closeBrackets, closeBracketsKeymap, completionKeymap } from "@codemirro
 import { bracketMatching } from "@codemirror/language";
 import { lintKeymap } from "@codemirror/lint";
 import { searchKeymap } from "@codemirror/search";
+import { EditorState } from "@codemirror/state";
 import {
   highlightActiveLine,
   highlightActiveLineGutter,
@@ -16,7 +17,6 @@ import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
 import { PokedexHelp } from "../../help";
 import { autocomplete } from "./autocomplete";
-import { createCachedHeightTracker } from "./height";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
@@ -25,53 +25,58 @@ import { tooltip } from "./tooltip";
 
 export function PokedexTextView() {
   let parent!: HTMLDivElement;
+  let view: EditorView | undefined;
 
   createEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     projects.activeId;
-
-    const ids: Spanned<string>[] = [];
-    const doc = untrack(() => serializePokemonListToText({ eachId: (id) => ids.push(id) }));
-
-    const view = new EditorView({
-      doc,
-      parent,
-      extensions: [
-        minimalSetup,
-        // From basicsetup
-        lineNumbers(),
-        bracketMatching(),
-        closeBrackets(),
-        highlightActiveLine(),
-        highlightActiveLineGutter(),
-        keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap, ...searchKeymap]),
-
-        // From stardex
-        placeholder("Enter some Pokémon, one per line..."),
-        theme,
-        selectionMark,
-        highlightTheme,
-
-        language,
-        trackingIds,
-        initialTrackingIds.of(ids),
-        parser,
-        autocomplete,
-        tooltip,
-      ],
-    });
+    view = new EditorView({ parent, state: createState() });
 
     parseInitial(view.state);
-    onCleanup(() => view.destroy());
+    onCleanup(() => view?.destroy());
   });
-
-  createCachedHeightTracker(() => parent);
 
   return (
     <>
       <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
-      {/* TODO: Reload the editor state when importing. */}
-      <PokedexHelp />
+      <PokedexHelp
+        afterImport={() => {
+          if (view) {
+            view.setState(createState());
+          }
+        }}
+      />
     </>
   );
+}
+
+function createState() {
+  const ids: Spanned<string>[] = [];
+  const doc = untrack(() => serializePokemonListToText({ eachId: (id) => ids.push(id) }));
+  return EditorState.create({
+    doc,
+    extensions: [
+      minimalSetup,
+      // From basicsetup
+      lineNumbers(),
+      bracketMatching(),
+      closeBrackets(),
+      highlightActiveLine(),
+      highlightActiveLineGutter(),
+      keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap, ...searchKeymap]),
+
+      // From stardex
+      placeholder("Enter some Pokémon, one per line..."),
+      theme,
+      selectionMark,
+      highlightTheme,
+
+      language,
+      trackingIds,
+      initialTrackingIds.of(ids),
+      parser,
+      autocomplete,
+      tooltip,
+    ],
+  });
 }

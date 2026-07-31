@@ -7,6 +7,7 @@ import type { ImportPBSFinishPhase, ImportPBSState } from "./state";
 export interface ImportPBSModalFinishProps {
   state: ImportPBSState;
   phase: ImportPBSFinishPhase;
+  afterImport?(): void;
 }
 
 export function ImportPBSModalFinish(props: ImportPBSModalFinishProps) {
@@ -74,6 +75,7 @@ export function ImportPBSModalFinishFooter(props: ImportPBSModalFinishProps) {
         onClick={async () => {
           setFinishing(true);
           await importPBS(props.state, props.phase);
+          props.afterImport?.();
         }}
         disabled={finishing() || props.state.files.errors.length > 0}
       >

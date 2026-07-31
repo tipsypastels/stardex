@@ -11,6 +11,7 @@ import type { ImportPBSPhase, ImportPBSState } from "./state";
 export interface ImportPBSModalProps {
   state: ImportPBSState;
   phase: ImportPBSPhase;
+  afterImport?(): void;
 }
 
 export function ImportPBSModal(props: ImportPBSModalProps) {
@@ -54,7 +55,13 @@ export function ImportPBSModal(props: ImportPBSModalProps) {
       case "finish": {
         return {
           children: makeChildren(<ImportPBSModalFinish state={props.state} phase={props.phase} />),
-          footer: <ImportPBSModalFinishFooter state={props.state} phase={props.phase} />,
+          footer: (
+            <ImportPBSModalFinishFooter
+              state={props.state}
+              phase={props.phase}
+              afterImport={props.afterImport}
+            />
+          ),
         };
       }
     }

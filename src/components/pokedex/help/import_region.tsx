@@ -8,6 +8,7 @@ import { Modal } from "../../common/menus/modal";
 
 export interface ImportRegionModalProps {
   onClose(): void;
+  afterImport?(): void;
 }
 
 export function ImportRegionModal(props: ImportRegionModalProps) {
@@ -20,6 +21,8 @@ export function ImportRegionModal(props: ImportRegionModalProps) {
       toasts.add(region.icon, `Imported ${region.name} Pokédex!`);
       props.onClose();
     });
+
+    props.afterImport?.();
   }
 
   return (
