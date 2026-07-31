@@ -77,7 +77,7 @@ export const PROJECT_LISTS = (() => {
         const raw_ = store.load();
         if (!raw_) return;
 
-        const raw = v.parse(RawProjectList, raw_);
+        const raw = v.parse(VAny_RawProjectList, raw_);
 
         setAll(raw.all.map(PROJECTS.make));
         setActiveId(raw.activeId);
