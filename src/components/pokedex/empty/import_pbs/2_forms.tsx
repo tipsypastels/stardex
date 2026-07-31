@@ -205,7 +205,7 @@ export function CustomInner(props: CustomInnerProps) {
     return (
       <>
         <strong>Form:</strong> {bucket.formName}
-        <ul class="list-inside list-disc text-sm text-foreground-muted">
+        <ul class="list-inside list-disc overflow-hidden text-sm text-nowrap text-foreground-muted">
           <li>{renderNameList(current().bucket.forms, (form) => form.speciesName, 3)}.</li>
           <li>{renderKnown()}</li>
         </ul>
@@ -218,7 +218,7 @@ export function CustomInner(props: CustomInnerProps) {
       <>
         <strong>Forms of {bucket.speciesNames.length === 1 ? "Pokémon" : "Family"}:</strong>{" "}
         {bucket.speciesNames[0]}
-        <ul class="list-inside list-disc text-sm text-foreground-muted">
+        <ul class="list-inside list-disc overflow-hidden text-sm text-nowrap text-foreground-muted">
           <li>{renderNameList(bucket.formNames, (s) => s, 2)}.</li>
           <li>{renderKnown()}</li>
         </ul>
