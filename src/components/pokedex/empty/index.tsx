@@ -11,11 +11,11 @@ import { ImportPBSModal } from "./import_pbs";
 import { createImportPBSState } from "./import_pbs/state";
 import { ImportRegionModal } from "./import_region";
 
-export interface PokedexHelpProps {
+export interface PokedexEmptyProps {
   afterImport?(): void;
 }
 
-export function PokedexHelp(props: PokedexHelpProps) {
+export function PokedexEmpty(props: PokedexEmptyProps) {
   const [manuallyOpened, setManuallyOpened] = createSignal(false);
   const [importRegionModalOpen, setImportRegionModalOpen] = createSignal(false);
   const pbsState = createImportPBSState();

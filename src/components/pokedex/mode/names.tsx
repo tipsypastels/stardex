@@ -5,7 +5,7 @@ import type { Pokemon } from "../../../models/pokemon";
 import { pokemons } from "../../../models/pokemon/list";
 import { excludedTypes } from "../../../models/type/excluded";
 import { Icon } from "../../common/icon";
-import { PokedexHelp } from "../help";
+import { PokedexEmpty } from "../empty";
 import { onClickPokemon } from "./util/click";
 import { createDraggable } from "./util/drag";
 import { WithFilterNone } from "./util/filter_none";
@@ -30,7 +30,7 @@ export function PokedexNamesView(props: PokedexModeViewProps) {
           </ol>
         </WithFilterNone>
       </Show>
-      <PokedexHelp />
+      <PokedexEmpty />
     </>
   );
 }

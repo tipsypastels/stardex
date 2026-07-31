@@ -15,7 +15,7 @@ import { createEffect, onCleanup, untrack } from "solid-js";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
-import { PokedexHelp } from "../../help";
+import { PokedexEmpty } from "../../empty";
 import { autocomplete } from "./autocomplete";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
@@ -39,7 +39,7 @@ export function PokedexTextView() {
   return (
     <>
       <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
-      <PokedexHelp
+      <PokedexEmpty
         afterImport={() => {
           if (view) {
             view.setState(createState());
