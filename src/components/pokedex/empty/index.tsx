@@ -103,8 +103,8 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
       <Show when={pokedexMode.key !== "text"}>
         <div class="mt-2 text-center text-base text-foreground-muted">
           Don't want a visual editor? Try out{" "}
-          <ButtonLink onClick={() => (pokedexMode.key = "text")}>text mode</ButtonLink> for an
-          improved version of the{" "}
+          <ButtonLink onClick={() => (pokedexMode.key = "text")}>text editor mode</ButtonLink> for
+          an improved version of the{" "}
           <span class="transition-colors duration-200 hover:text-[#FB5687]">old Stardex</span>{" "}
           experience.
         </div>

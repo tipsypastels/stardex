@@ -2,6 +2,7 @@ import type { JSXElement } from "solid-js";
 import { Controls } from "./controls";
 import { Footer } from "./footer";
 import { Logo } from "./logo";
+import { Notice } from "./notice";
 import { ProjectsModal, ProjectsSelect } from "./projects";
 import { Toast } from "./toast";
 
@@ -35,8 +36,7 @@ export function Layout(props: LayoutProps) {
             </div>
 
             <ProjectsModal />
-
-            {/* TODO: <Notices /> */}
+            <Notice />
 
             {/* <h2 class="border-y border-divider-light py-4 text-2xl font-bold text-foreground-muted">
               {activeProjectName}

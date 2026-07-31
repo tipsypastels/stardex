@@ -6,6 +6,8 @@ import { ProjectsHotkeyButton } from "./projects";
 
 const [open, setOpen] = createSignal(false);
 
+export { setOpen as setHotkeysOpen };
+
 export function Hotkeys() {
   createHotkeys();
 
