@@ -1,9 +1,64 @@
-import { Show } from "solid-js";
-import { pokedexMode } from "../../../models/pokedex/mode";
-import { pokemons } from "../../../models/pokemon/list";
-import { Icon } from "../../common/icon";
+import { createSignal, Show } from "solid-js";
+import { pokedexMode } from "../../models/pokedex/mode";
+import { pokemons } from "../../models/pokemon/list";
+import { Icon } from "../common/icon";
+import { ButtonLink } from "../common/link";
+import { Modal } from "../common/menus/modal";
+import { PokedexImport } from "./import";
 
-export function PokedexEmptyTutorial() {
+export interface PokedexEmptyProps {
+  afterActionChange(): void;
+}
+
+export function PokedexEmpty(props: PokedexEmptyProps) {
+  const [manuallyOpened, setManuallyOpened] = createSignal(false);
+
+  return (
+    <Show
+      when={pokemons.all.length === 0}
+      fallback={
+        <>
+          <div class="mt-2 text-right">
+            <ButtonLink onClick={() => setManuallyOpened(true)} small>
+              Need help?
+            </ButtonLink>
+          </div>
+
+          <Show when={manuallyOpened()}>
+            <Modal title="What to Know" onClose={() => setManuallyOpened(false)}>
+              <Tutorial />
+            </Modal>
+          </Show>
+        </>
+      }
+    >
+      <div
+        class="mt-4 rounded-t-md border-2 border-primary p-4"
+        classList={{ "mb-2 rounded-b-md": pokemons.all.length > 0 }}
+      >
+        <h2 class="mb-2 text-xl font-bold text-primary">What to Know</h2>
+        <Tutorial />
+      </div>
+
+      <div class="rounded-b-md border-2 border-t-0 border-primary p-4">
+        <h3 class="mb-2 text-lg font-bold text-primary">Other Ways to Start</h3>
+        <PokedexImport afterImport={props.afterActionChange} />
+      </div>
+
+      <Show when={pokedexMode.key !== "text"}>
+        <div class="mt-2 text-center text-base text-foreground-muted">
+          Don't want a visual editor? Try out{" "}
+          <ButtonLink onClick={() => (pokedexMode.key = "text")}>text editor mode</ButtonLink> for
+          an improved version of the{" "}
+          <span class="transition-colors duration-200 hover:text-[#FB5687]">old Stardex</span>{" "}
+          experience.
+        </div>
+      </Show>
+    </Show>
+  );
+}
+
+function Tutorial() {
   return (
     <ul class="ml-4 list-disc">
       <Show

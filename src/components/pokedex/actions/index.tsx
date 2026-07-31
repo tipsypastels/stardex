@@ -5,8 +5,11 @@ import type { AutosortRequest } from "../../../models/pokemon/autosort";
 import { customIcons } from "../../../models/pokemon/custom_icon";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
+import { Button } from "../../common/button";
 import { ActionBar, ActionBarItem } from "../../common/menus/action_bar";
+import { Modal } from "../../common/menus/modal";
 import { AddPokemon } from "../add";
+import { PokedexImport } from "../import";
 import { AutosortPokedexModal } from "./autosort";
 import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
 import { PokedexModeModal } from "./mode";
@@ -19,7 +22,7 @@ export interface PokedexActionsProps {
 }
 
 export function PokedexActions(props: PokedexActionsProps) {
-  const [modal, setModal] = createSignal<"mode" | "filter" | "autosort">();
+  const [modal, setModal] = createSignal<"mode" | "filter" | "autosort" | "import" | "clear">();
 
   const isNonTextMode = () => pokedexMode.key !== "text";
   const isEmpty = () => pokemons.all.length === 0;
@@ -43,11 +46,8 @@ export function PokedexActions(props: PokedexActionsProps) {
   }
 
   function clearPokedex() {
-    if (!confirm("Are you sure you want to clear your Pokédex? You won't be getting it back.")) {
-      return;
-    }
-
     batch(() => {
+      setModal(undefined);
       pokemons.clear();
       customIcons.clear();
       toasts.add("trash", "Pokédex cleared! A blank slate...");
@@ -94,7 +94,13 @@ export function PokedexActions(props: PokedexActionsProps) {
             </>
           )}
         </Show>
-        <ActionBarItem name="Clear" icon="trash" disabled={isEmpty()} onClick={clearPokedex} />
+        <ActionBarItem name="Import" icon="file-import" onClick={() => setModal("import")} />
+        <ActionBarItem
+          name="Clear"
+          icon="trash"
+          disabled={isEmpty()}
+          onClick={() => setModal("clear")}
+        />
       </ActionBar>
 
       <Show when={isNonTextMode()}>
@@ -121,7 +127,35 @@ export function PokedexActions(props: PokedexActionsProps) {
             onClose={() => setModal(undefined)}
           />
         </Match>
+
+        <Match when={modal() === "clear"}>
+          <Modal
+            title="Clear Pokédex"
+            onClose={() => setModal(undefined)}
+            footer={
+              <div class="flex flex-col justify-center">
+                <Button onClick={clearPokedex} look="error">
+                  Clear
+                </Button>
+              </div>
+            }
+            footerHasDivider
+          >
+            Are you sure you want to clear your Pokédex? You won't be getting any of it back.
+          </Modal>
+        </Match>
       </Switch>
+
+      {/* NOTE: This has to be rendered unconditionally instead of matched because it contains its own modals. Instead it takes a render prop to show the base modal contents and we render that conditionally. */}
+      <PokedexImport afterImport={props.afterActionChange}>
+        {(instructions) => (
+          <Show when={modal() === "import"}>
+            <Modal title="Import Pokédex" onClose={() => setModal(undefined)}>
+              {instructions}
+            </Modal>
+          </Show>
+        )}
+      </PokedexImport>
     </>
   );
 }

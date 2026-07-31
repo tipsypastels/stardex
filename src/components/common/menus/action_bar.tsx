@@ -35,7 +35,7 @@ export function ActionBarItem(props: ActionBarItemProps) {
         id={props.id}
         class="flex cursor-pointer items-center justify-center gap-1 px-4 py-2 text-sm font-bold"
         classList={{
-          "cursor-not-allowed opacity-70": props.disabled,
+          "cursor-not-allowed! opacity-70": props.disabled,
           "text-primary": props.active,
         }}
         disabled={props.disabled}

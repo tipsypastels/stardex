@@ -17,14 +17,18 @@ let onClosePrev: (() => void) | undefined;
 
 export function Modal(props: ModalProps) {
   onMount(() => {
-    onClosePrev?.();
-    onClosePrev = props.onClose;
-  });
+    // See comment below;
+    // eslint-disable-next-line solid/reactivity
+    const { onClose } = props;
 
-  onCleanup(() => {
-    if (onClosePrev === props.onClose) {
-      onClosePrev = undefined;
-    }
+    onClosePrev?.();
+    onClosePrev = onClose;
+
+    onCleanup(() => {
+      if (onClosePrev === onClose) {
+        onClosePrev = undefined;
+      }
+    });
   });
 
   function handleClick(e: MouseEvent) {
