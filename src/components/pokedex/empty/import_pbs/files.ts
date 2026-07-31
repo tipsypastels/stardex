@@ -1,4 +1,5 @@
 import { batch, createSignal } from "solid-js";
+import type { PokemonIdDump } from "../../../../models/pokemon/id_dump";
 import type { PBSDex } from "../../../../models/pokemon/pbs/dex";
 import type { PBSError } from "../../../../models/pokemon/pbs/error";
 import type { PBSPokemon } from "../../../../models/pokemon/pbs/pokemon";
@@ -22,7 +23,7 @@ export interface ImportPBSParsed {
   dexes: Map<number, PBSDex>;
 }
 
-export function createImportPBSFiles(): ImportPBSFiles {
+export function createImportPBSFiles(makeIdDump?: () => PokemonIdDump | undefined): ImportPBSFiles {
   const [files, setFiles] = createSignal<NamedText[]>([]);
   const [parsed, setParsed] = createSignal<ImportPBSParsed>({
     pokemons: new Map(),
@@ -35,7 +36,7 @@ export function createImportPBSFiles(): ImportPBSFiles {
     const oldFiles = overwrite ? [] : files();
     const newFiles = await readFileListAsNamedTextAsync(fileList);
     const allFiles = mergeNamedTextArrays(oldFiles, newFiles);
-    const result = await parse(allFiles);
+    const result = await parse(allFiles, makeIdDump);
 
     batch(() => {
       setFiles(allFiles);
@@ -73,7 +74,7 @@ export function createImportPBSFiles(): ImportPBSFiles {
         }
       }
       const files = this.files.filter((file) => !filesWithErrors.has(file.name));
-      const result = await parse(files);
+      const result = await parse(files, makeIdDump);
 
       batch(() => {
         setFiles(files);
@@ -84,13 +85,14 @@ export function createImportPBSFiles(): ImportPBSFiles {
   };
 }
 
-async function parse(files: NamedText[]) {
+async function parse(files: NamedText[], makeIdDump?: () => PokemonIdDump | undefined) {
   const parsed: ImportPBSParsed = {
     pokemons: new Map(),
     formsCount: 0,
     dexes: new Map(),
   };
   const errors: ImportPBSError[] = [];
+  const idDump = makeIdDump?.();
 
   files.sort((left, right) => sortStrings(left.name, right.name));
 
@@ -110,14 +112,14 @@ async function parse(files: NamedText[]) {
 
   for (const file of pokemonFiles) {
     const { parsePBSAsPokemons } = await import("../../../../models/pokemon/pbs/pokemon");
-    const result = parsePBSAsPokemons(file, parsed.pokemons);
+    const result = parsePBSAsPokemons(file, parsed.pokemons, idDump);
 
     errors.push(...errorsFromModelErrors(result.errors));
   }
 
   for (const file of formFiles) {
     const { parsePBSAsForms } = await import("../../../../models/pokemon/pbs/form");
-    const result = parsePBSAsForms(file, parsed.pokemons);
+    const result = parsePBSAsForms(file, parsed.pokemons, idDump);
 
     errors.push(...errorsFromModelErrors(result.errors));
     parsed.formsCount += result.count;

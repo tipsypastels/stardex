@@ -1,5 +1,7 @@
 import { Show } from "solid-js";
 import { pokedexMode } from "../../../models/pokedex/mode";
+import { pokemons } from "../../../models/pokemon/list";
+import { Icon } from "../../common/icon";
 
 export function PokedexEmptyTutorial() {
   return (
@@ -12,6 +14,15 @@ export function PokedexEmptyTutorial() {
             <li>Click on a Pokémon you've added to change its type, form, or settings.</li>
             <li>Drag and drop Pokémon you've added to reorder them.</li>
             <li>You'll be given recommendations and statistics based on your Pokédex.</li>
+            <Show when={pokemons.all.length > 0}>
+              <li>
+                To reimport your Pokédex, choose{" "}
+                <strong class="text-foreground-muted">
+                  <Icon name="trash" /> Clear
+                </strong>{" "}
+                first.
+              </li>
+            </Show>
           </>
         }
       >

@@ -1,0 +1,3 @@
+[BULBASAUR]
+Name = Bulbasaur
+Types = GRASS,POISON

@@ -1,6 +1,7 @@
 import type { RawBuiltinPokemon, RawPokemon } from "../..";
 import type { NamedText } from "../../../../utils/fs/named_text";
 import { makeId } from "../../../../utils/id";
+import type { PokemonIdDump, RawPokemonWithoutClaimedId } from "../../id_dump";
 import { SPECIES, type Species } from "../../species";
 import { POKEMON_VERSION } from "../../versioned";
 import { parsePBSAsRecords } from "../parse";
@@ -15,7 +16,11 @@ export interface PBSForm {
   raw: RawPokemon;
 }
 
-export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemon>) {
+export function parsePBSAsForms(
+  file: NamedText,
+  pokemons: Map<string, PBSPokemon>,
+  idDump?: PokemonIdDump,
+) {
   const { records, errors } = parsePBSAsRecords(file);
   let count = 0;
 
@@ -46,14 +51,13 @@ export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemo
 
     const formName = getFormName(formNameMaybeWithSpeciesName, record.section, pokemon.speciesName);
 
-    const raw = ((): RawPokemon => {
+    const rawWithoutId = ((): RawPokemonWithoutClaimedId => {
       if ("species" in pokemon.raw) {
         const species = SPECIES.of(pokemon.raw.species);
         const alt = getAlt(formName, species);
         const types = getPBSRecordTypeKeys(record, alt?.typeKeys ?? pokemon.raw.types);
-        const raw: RawBuiltinPokemon = {
+        const raw: Omit<RawBuiltinPokemon, "id"> = {
           v: POKEMON_VERSION,
-          id: makeId(),
           species: species.key,
         };
         if (alt) {
@@ -71,13 +75,17 @@ export function parsePBSAsForms(file: NamedText, pokemons: Map<string, PBSPokemo
         const types = getPBSRecordTypeKeys(record) ?? pokemon.raw.types;
         return {
           v: POKEMON_VERSION,
-          id: makeId(),
           name: pokemon.speciesName,
           types,
           altName: formName,
         };
       }
     })();
+
+    const raw: RawPokemon = {
+      ...rawWithoutId,
+      id: idDump?.claim(rawWithoutId) ?? makeId(),
+    };
 
     pokemon.forms[record.subsection] = {
       section: record.section,

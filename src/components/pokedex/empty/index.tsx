@@ -2,6 +2,7 @@ import { batch, createSignal, Show } from "solid-js";
 import * as v from "valibot";
 import { loadJSONExport, VAny_RawJSONExport } from "../../../models/export";
 import { pokedexMode } from "../../../models/pokedex/mode";
+import { PokemonIdDump } from "../../../models/pokemon/id_dump";
 import { pokemons } from "../../../models/pokemon/list";
 import { parsePokemonListText } from "../../../models/pokemon/text/parse";
 import { toasts } from "../../../models/ui/toast";
@@ -22,7 +23,11 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
   const [manuallyOpened, setManuallyOpened] = createSignal(false);
   const [importRegionModalOpen, setImportRegionModalOpen] = createSignal(false);
   const [importError, setImportError] = createSignal<unknown>();
-  const pbsState = createImportPBSState();
+
+  const pbsState = createImportPBSState(() => {
+    if (pokemons.all.length === 0) return;
+    return new PokemonIdDump(pokemons.toRaw().all);
+  });
 
   async function loadJSONOrTextExport([file]: FileList) {
     if (!file) return;

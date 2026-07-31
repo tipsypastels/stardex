@@ -1,6 +1,7 @@
 import type { RawBuiltinPokemon, RawPokemon } from "..";
 import type { NamedText } from "../../../utils/fs/named_text";
 import { makeId } from "../../../utils/id";
+import type { PokemonIdDump, RawPokemonWithoutClaimedId } from "../id_dump";
 import { SPECIES } from "../species";
 import { POKEMON_VERSION } from "../versioned";
 import type { PBSForm } from "./form";
@@ -16,7 +17,11 @@ export interface PBSPokemon {
   forms: (PBSForm | undefined)[];
 }
 
-export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>) {
+export function parsePBSAsPokemons(
+  file: NamedText,
+  out: Map<string, PBSPokemon>,
+  idDump?: PokemonIdDump,
+) {
   const { records, errors } = parsePBSAsRecords(file);
 
   for (const record of records) {
@@ -33,11 +38,10 @@ export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>
     const species = SPECIES.tryOf(getSpeciesKey(speciesName));
     const types = getPBSRecordTypeKeys(record, species?.typeKeys);
 
-    const raw = ((): RawPokemon | undefined => {
+    const rawWithoutId = ((): RawPokemonWithoutClaimedId | undefined => {
       if (species) {
-        const raw: RawBuiltinPokemon = {
+        const raw: Omit<RawBuiltinPokemon, "id"> = {
           v: POKEMON_VERSION,
-          id: makeId(),
           species: species.key,
         };
         if (types) {
@@ -47,7 +51,6 @@ export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>
       } else if (types) {
         return {
           v: POKEMON_VERSION,
-          id: makeId(),
           name: speciesName,
           types,
         };
@@ -59,7 +62,12 @@ export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>
         });
       }
     })();
-    if (!raw) continue;
+    if (!rawWithoutId) continue;
+
+    const raw: RawPokemon = {
+      ...rawWithoutId,
+      id: idDump?.claim(rawWithoutId) ?? makeId(),
+    };
 
     // Evolutions is always represented as
     // SECTION,Method,Param,SECTION2,Method2,Param2,...
@@ -70,10 +78,10 @@ export function parsePBSAsPokemons(file: NamedText, out: Map<string, PBSPokemon>
     const pokemon: PBSPokemon = {
       section: record.section,
       get speciesName() {
-        if ("species" in raw) {
-          return SPECIES.of(raw.species).name;
+        if ("species" in rawWithoutId) {
+          return SPECIES.of(rawWithoutId.species).name;
         } else {
-          return raw.name;
+          return rawWithoutId.name;
         }
       },
       evolvesToSections,

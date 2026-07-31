@@ -1,5 +1,6 @@
 import { ReactiveMap } from "@solid-primitives/map";
 import { createResource, createRoot, createSignal, type Setter } from "solid-js";
+import type { PokemonIdDump } from "../../../../models/pokemon/id_dump";
 import type { PBSFormBucket } from "../../../../models/pokemon/pbs/form/bucket";
 import { createImportPBSFiles, type ImportPBSFiles } from "./files";
 
@@ -74,9 +75,9 @@ export interface ImportPBSState {
   close(): void;
 }
 
-export function createImportPBSState(): ImportPBSState {
+export function createImportPBSState(makeIdDump?: () => PokemonIdDump | undefined): ImportPBSState {
   const [phase, setPhase] = createSignal<ImportPBSPhase>();
-  const files = createImportPBSFiles();
+  const files = createImportPBSFiles(makeIdDump);
 
   return {
     get phase() {
