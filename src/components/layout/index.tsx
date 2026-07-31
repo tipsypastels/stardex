@@ -5,6 +5,7 @@ import type { JSXElement } from "solid-js";
 import { Footer } from "./footer";
 // import { MobileJump } from "./jump";
 import { Controls } from "./controls";
+import { MobileJump } from "./jump";
 import { Logo } from "./logo";
 import { ProjectsModal, ProjectsSelect } from "./projects";
 import { Toast } from "./toast";
@@ -16,6 +17,8 @@ export interface LayoutProps {
 export function Layout(props: LayoutProps) {
   return (
     <>
+      <div id="top" />
+
       <div class="flex min-h-screen flex-col">
         <div class="grow">
           <div class="sticky top-4 ml-4 hidden lg:block">
@@ -48,7 +51,7 @@ export function Layout(props: LayoutProps) {
             <main class="mx-4 md:mx-0">{props.children}</main>
 
             <Toast />
-            {/* <MobileJump /> */}
+            <MobileJump />
           </div>
         </div>
 
