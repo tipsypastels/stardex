@@ -43,6 +43,7 @@ export function PokedexTextView() {
         afterImport={() => {
           if (view) {
             view.setState(createState());
+            parseInitial(view.state);
           }
         }}
       />
