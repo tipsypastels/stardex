@@ -7,9 +7,11 @@ import { toasts } from "../../../models/ui/toast";
 import { readFileAsTextAsync } from "../../../utils/fs/web";
 import { ButtonLink, UploadLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
+import { PokedexEmptyImportError } from "./error";
 import { ImportPBSModal } from "./import_pbs";
 import { createImportPBSState } from "./import_pbs/state";
 import { ImportRegionModal } from "./import_region";
+import { PokedexEmptyTutorial } from "./tutorial";
 
 export interface PokedexEmptyProps {
   afterImport?(): void;
@@ -18,6 +20,7 @@ export interface PokedexEmptyProps {
 export function PokedexEmpty(props: PokedexEmptyProps) {
   const [manuallyOpened, setManuallyOpened] = createSignal(false);
   const [importRegionModalOpen, setImportRegionModalOpen] = createSignal(false);
+  const [importError, setImportError] = createSignal<unknown>();
   const pbsState = createImportPBSState();
 
   async function loadJSONOrTextExport([file]: FileList) {
@@ -36,9 +39,8 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
         });
 
         props.afterImport?.();
-      } catch {
-        // TODO: Display a late validation error.
-        alert("Error!");
+      } catch (error) {
+        setImportError(error);
       }
     } else if (file.type === "text/plain") {
       alert("TODO: Importing text files.");
@@ -61,7 +63,7 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
 
           <Show when={manuallyOpened()}>
             <Modal title="What to Know" onClose={() => setManuallyOpened(false)}>
-              <Tutorial />
+              <PokedexEmptyTutorial />
             </Modal>
           </Show>
         </>
@@ -72,7 +74,7 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
         classList={{ "mb-2 rounded-b-md": pokemons.all.length > 0 }}
       >
         <h2 class="mb-2 text-xl font-bold text-primary">What to Know</h2>
-        <Tutorial />
+        <PokedexEmptyTutorial />
       </div>
 
       <div class="rounded-b-md border-2 border-t-0 border-primary p-4">
@@ -116,106 +118,12 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
           afterImport={props.afterImport}
         />
       </Show>
-    </Show>
-  );
-}
 
-function Tutorial() {
-  return (
-    <ul class="ml-4 list-disc">
-      <Show
-        when={pokedexMode.key === "text"}
-        fallback={
-          <>
-            <li>Enter a Pokémon's name above to add it to your dex.</li>
-            <li>Click on a Pokémon you've added to change its type or settings.</li>
-            <li>Drag and drop Pokémon you've added to reorder them.</li>
-            <li>You'll be given recommendations and statistics based on your Pokédex.</li>
-          </>
-        }
-      >
-        <li>Type or paste in one Pokémon name per line.</li>
-        <li>Autocomplete suggestions will be provided as you type.</li>
-        <li>
-          Blank lines are ignored, as are comments, which start with{" "}
-          <code class="text-sm text-editor-comment">#</code>.
-        </li>
-        <li>
-          To set a Pokémon's type, write it after the name in parentheses:
-          <ul class="ml-6 list-disc">
-            <li>
-              <code class="text-sm">
-                <span class="text-editor-name">Oshawott</span>{" "}
-                <span class="text-editor-punctuation">(</span>
-                <span class="text-editor-type-name">Fire</span>
-                <span class="text-editor-punctuation">)</span>
-              </code>
-            </li>
-            <li>
-              <code class="text-sm">
-                <span class="text-editor-name">Xatu</span>{" "}
-                <span class="text-editor-punctuation">(</span>
-                <span class="text-editor-type-name">MyCustomType</span>
-                <span class="text-editor-punctuation">/</span>
-                <span class="text-editor-type-name">Flying</span>
-                <span class="text-editor-punctuation">)</span>
-              </code>
-            </li>
-          </ul>
-        </li>
-        <li>
-          To set a Pokémon's form name, write it in those same parentheses, followed by a colon:
-          <ul class="ml-6 list-disc">
-            <li>
-              <code class="text-sm">
-                <span class="text-editor-name">Zoroark</span>{" "}
-                <span class="text-editor-punctuation">(</span>
-                <span class="text-editor-alt-name">Hisuian</span>
-                <span class="text-editor-punctuation">:)</span>
-              </code>
-            </li>
-            <li>
-              <code class="text-sm">
-                <span class="text-editor-name">Raichu</span>{" "}
-                <span class="text-editor-punctuation">(</span>
-                <span class="text-editor-alt-name">Mega Y</span>
-                <span class="text-editor-punctuation">:)</span>
-              </code>
-            </li>
-            <li>
-              <code class="text-sm">
-                <span class="text-editor-name">Politoed</span>{" "}
-                <span class="text-editor-punctuation">(</span>
-                <span class="text-editor-alt-name">MyRegionian</span>
-                <span class="text-editor-punctuation">:</span>
-                <span class="text-editor-type-name">Water</span>
-                <span class="text-editor-punctuation">/</span>
-                <span class="text-editor-type-name">Grass</span>
-                <span class="text-editor-punctuation">)</span>
-              </code>
-            </li>
-          </ul>
-        </li>
-        <li>You'll be given recommendations and statistics based on your Pokédex.</li>
-        <li>
-          To exclude a Pokémon from recommendations, write{" "}
-          <code class="text-sm text-editor-modifier">@exclude</code> or{" "}
-          <code class="text-sm text-editor-modifier">@ignore</code> after its name:
-          <ul class="ml-6 list-disc">
-            <li>
-              <code class="text-sm">
-                <span class="text-editor-name">MySpecialLegendary</span>{" "}
-                <span class="text-editor-punctuation">(</span>
-                <span class="text-editor-type-name">Fairy</span>
-                <span class="text-editor-punctuation">/</span>
-                <span class="text-editor-type-name">Normal</span>
-                <span class="text-editor-punctuation">)</span>{" "}
-                <span class="text-editor-modifier">@exclude</span>
-              </code>
-            </li>
-          </ul>
-        </li>
+      <Show when={importError()}>
+        {(error) => (
+          <PokedexEmptyImportError error={error()} onClose={() => setImportError(undefined)} />
+        )}
       </Show>
-    </ul>
+    </Show>
   );
 }

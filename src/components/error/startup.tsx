@@ -51,7 +51,7 @@ function StartupError(props: StartupErrorProps) {
 
       <p class="mb-4">
         This is most likely a bug with Stardex. You can{" "}
-        <ButtonLink onClick={dump}>save an error dump</ButtonLink> and upload it to the{" "}
+        <ButtonLink onClick={dump}>save an error dump</ButtonLink> and open an issue at the{" "}
         <Link blank to="https://github.com/tipsypastels/stardex">
           project GitHub
         </Link>{" "}
