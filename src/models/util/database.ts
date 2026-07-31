@@ -22,41 +22,18 @@ export function getCustomIconDbEntries(
   });
 }
 
-export function addCustomIconsDbEntry(entry: CustomIconsDbEntry, f?: () => void) {
+export function addCustomIconsDbEntry(entry: CustomIconsDbEntry) {
   withDb((db) => {
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
-    const request = store.put(entry);
-
-    request.onsuccess = () => {
-      console.log(`Custom icon "${entry.projectId}-${entry.pokemonId}" uploaded!`);
-      f?.();
-    };
-  });
-}
-
-export function deleteCustomIconsDbEntry(entry: Omit<CustomIconsDbEntry, "blob">, f?: () => void) {
-  withDb((db) => {
-    const transaction = db.transaction("customIcons", "readwrite");
-    const store = transaction.objectStore("customIcons");
-    const request = store.delete([entry.projectId, entry.pokemonId]);
-
-    request.onsuccess = () => {
-      f?.();
-    };
+    store.put(entry);
   });
 }
 
 export function addBulkCustomIconsDbEntries(
   projectId: string,
   entries: Omit<CustomIconsDbEntry, "projectId">[],
-  f?: () => void,
 ) {
-  if (entries.length === 0) {
-    f?.();
-    return;
-  }
-
   withDb((db) => {
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
@@ -72,15 +49,32 @@ export function addBulkCustomIconsDbEntries(
         );
       };
     }
+  });
+}
 
-    transaction.oncomplete = () => {
-      console.log(`${entries.length} custom icons for "${projectId}" uploaded!`);
-      f?.();
+export function deleteBulkCustomIconDbEntries(projectId: string) {
+  withDb((db) => {
+    const transaction = db.transaction("customIcons", "readwrite");
+    const store = transaction.objectStore("customIcons");
+    const index = store.index("projectId");
+    const request = index.openCursor(projectId);
+
+    request.onsuccess = (event) => {
+      // @ts-expect-error Untyped.
+      const cursor: IDBCursor | null = event.target.result;
+      if (cursor) {
+        cursor.delete();
+        cursor.continue();
+      }
     };
   });
 }
 
-export function deleteBulkCustomIconDbEntries(projectId: string, f?: () => void) {
+export function deleteBulkCustomIconDbEntriesWherePokemonIdNot(
+  projectId: string,
+  keepPokemonIds: ReadonlySet<string>,
+  f?: (deleteCount: number) => void,
+) {
   withDb((db) => {
     const transaction = db.transaction("customIcons", "readwrite");
     const store = transaction.objectStore("customIcons");
@@ -93,14 +87,14 @@ export function deleteBulkCustomIconDbEntries(projectId: string, f?: () => void)
       // @ts-expect-error Untyped.
       const cursor: IDBCursor | null = event.target.result;
       if (cursor) {
-        cursor.delete();
-        cursor.continue();
-        i++;
-      } else {
-        if (i > 0) {
-          console.log(`${i} custom icons for "${projectId}" deleted!`);
+        const [, pokemonId] = cursor.primaryKey as [string, string];
+        if (!keepPokemonIds.has(pokemonId)) {
+          cursor.delete();
+          i++;
         }
-        f?.();
+        cursor.continue();
+      } else {
+        f?.(i);
       }
     };
   });

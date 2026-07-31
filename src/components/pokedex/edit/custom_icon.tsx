@@ -1,6 +1,7 @@
 import { batch, createEffect, createSignal, Show, type Accessor } from "solid-js";
 import type { Pokemon } from "../../../models/pokemon";
 import { customIcons } from "../../../models/pokemon/custom_icon";
+import { customIconsMetadata } from "../../../models/pokemon/custom_icon/metadata";
 import { blobToDataUrl } from "../../../utils/fs/web";
 import { Button } from "../../common/button";
 import { Icon } from "../../common/icon";
@@ -295,7 +296,7 @@ export function createCustomIconUploadState(pokemonId: Accessor<string>): Custom
       return customIcons.pokemonIds.has(pokemonId());
     },
     delete() {
-      customIcons.delete(pokemonId());
+      customIconsMetadata.pokemonIds.delete(pokemonId());
     },
   };
 }
