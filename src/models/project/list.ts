@@ -17,7 +17,12 @@ import { regions } from "../region/set";
 import { strictness, STRICTNESSES } from "../strictness";
 import { EXCLUDED_TYPES_VERSION, excludedTypes } from "../type/excluded";
 import { catchStartupError } from "../ui/error";
-import { PROJECT_LIST_VERSION, PROJECT_VERSION } from "./versioned";
+import {
+  PROJECT_LIST_VERSION,
+  PROJECT_VERSION,
+  V0_RawProjectList,
+  V0_upgradeRawProjectList,
+} from "./versioned";
 
 export type RawProjectList = v.InferOutput<typeof RawProjectList>;
 export const RawProjectList = v.object({
@@ -25,6 +30,11 @@ export const RawProjectList = v.object({
   all: v.array(RawProject),
   activeId: v.string(),
 });
+
+export const VAny_RawProjectList = v.union([
+  RawProjectList,
+  v.pipe(V0_RawProjectList, v.transform(V0_upgradeRawProjectList)),
+]);
 
 export const PROJECT_LISTS = (() => {
   const defaults: RawProjectList = {
