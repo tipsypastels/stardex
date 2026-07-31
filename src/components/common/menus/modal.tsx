@@ -33,9 +33,13 @@ export function Modal(props: ModalProps) {
     }
   }
 
-  createEffect(() => {
-    hotkeys("esc", props.onClose);
-    onCleanup(() => hotkeys.unbind("esc", props.onClose));
+  onMount(() => {
+    // This is stable, and we have to capture it here because
+    // accessing the props of an unmounted component will error.
+    // eslint-disable-next-line solid/reactivity
+    const { onClose } = props;
+    hotkeys("esc", onClose);
+    onCleanup(() => hotkeys.unbind("esc", onClose));
   });
 
   createEffect(() => {
