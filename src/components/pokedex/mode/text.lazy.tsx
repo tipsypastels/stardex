@@ -8,7 +8,7 @@ export function PokedexTextViewLazy() {
   return (
     <Suspense
       fallback={
-        <Empty class="border-t-0">
+        <Empty class="rounded-t-none border-t-0">
           <Icon name="spinner" class="fa-spin" />
         </Empty>
       }

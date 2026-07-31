@@ -5,6 +5,7 @@ import type {
   PBSFormBucketByLine,
 } from "../../../../models/pokemon/pbs/form/bucket";
 import { Button, UploadButton } from "../../../common/button";
+import { Empty } from "../../../common/empty";
 import { Checkbox } from "../../../common/forms/checkbox";
 import { Icon } from "../../../common/icon";
 import { ButtonLink } from "../../../common/link";
@@ -122,7 +123,14 @@ export function ImportPBSModalForms(props: ImportPBSModalFormsProps) {
 
 function Custom(props: ImportPBSModalFormsProps) {
   return (
-    <Show when={props.phase.forms.customBuckets} fallback="TODO Loading">
+    <Show
+      when={props.phase.forms.customBuckets}
+      fallback={
+        <Empty>
+          <Icon name="spinner" class="fa-spin" />
+        </Empty>
+      }
+    >
       {(buckets) => (
         <Show
           when={buckets().length === props.phase.forms.customChoices.size}
