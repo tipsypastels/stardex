@@ -6,14 +6,20 @@ import { pokemons } from "../../../models/pokemon/list";
 import { parsePokemonListText } from "../../../models/pokemon/text/parse";
 import { toasts } from "../../../models/ui/toast";
 import { readFileAsTextAsync } from "../../../utils/fs/web";
-import { ButtonLink, Link, UploadLink } from "../../common/link";
+import { Link } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { ImportPBSModal } from "./pbs";
 import { createImportPBSState } from "./pbs/state";
 import { ImportRegionModal } from "./region";
 
+export interface PokedexImportRenderPropOptions {
+  openProject(fileList: FileList): Promise<void>;
+  openPBS(): void;
+  openRegion(): void;
+}
+
 export interface PokedexImportProps {
-  children?(instructions: JSXElement): JSXElement;
+  children(options: PokedexImportRenderPropOptions): JSXElement;
   afterImport(): void;
 }
 
@@ -56,27 +62,13 @@ export function PokedexImport(props: PokedexImportProps) {
     }
   }
 
-  const instructions = (
-    <ul class="ml-4 list-disc">
-      <li>
-        <UploadLink accept="text/plain,application/json" onUpload={loadJSONOrTextExport}>
-          Import a Stardex project.
-        </UploadLink>
-      </li>
-      <li>
-        <ButtonLink onClick={() => pbsState.open()}>Import Essentials PBS files.</ButtonLink>
-      </li>
-      <li>
-        <ButtonLink onClick={() => setImportRegionModalOpen(true)}>
-          Start from a canon region.
-        </ButtonLink>
-      </li>
-    </ul>
-  );
-
   return (
     <>
-      {props.children ? props.children(instructions) : instructions}
+      {props.children({
+        openProject: loadJSONOrTextExport,
+        openPBS: () => pbsState.open(),
+        openRegion: () => setImportRegionModalOpen(true),
+      })}
 
       <Show when={pbsState.phase}>
         {(phase) => (

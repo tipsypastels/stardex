@@ -1,8 +1,7 @@
 import { createSignal, Show } from "solid-js";
 import { pokedexMode } from "../../models/pokedex/mode";
 import { pokemons } from "../../models/pokemon/list";
-import { Icon } from "../common/icon";
-import { ButtonLink } from "../common/link";
+import { ButtonLink, UploadLink } from "../common/link";
 import { Modal } from "../common/menus/modal";
 import { PokedexImport } from "./import";
 
@@ -42,7 +41,30 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
 
       <div class="rounded-b-md border-2 border-t-0 border-primary p-4">
         <h3 class="mb-2 text-lg font-bold text-primary">Other Ways to Start</h3>
-        <PokedexImport afterImport={props.afterActionChange} />
+        <PokedexImport afterImport={props.afterActionChange}>
+          {(importActions) => (
+            <ul class="ml-4 list-disc">
+              <li>
+                <UploadLink
+                  accept="text/plain,application/json"
+                  onUpload={importActions.openProject}
+                >
+                  Import a Stardex project.
+                </UploadLink>
+              </li>
+              <li>
+                <ButtonLink onClick={importActions.openPBS}>
+                  Import Essentials PBS files.
+                </ButtonLink>
+              </li>
+              <li>
+                <ButtonLink onClick={importActions.openRegion}>
+                  Start from a canon region.
+                </ButtonLink>
+              </li>
+            </ul>
+          )}
+        </PokedexImport>
       </div>
 
       <Show when={pokedexMode.key !== "text"}>
@@ -69,15 +91,6 @@ function Tutorial() {
             <li>Click on a Pokémon you've added to change its type, form, or settings.</li>
             <li>Drag and drop Pokémon you've added to reorder them.</li>
             <li>You'll be given recommendations and statistics based on your Pokédex.</li>
-            <Show when={pokemons.all.length > 0}>
-              <li>
-                To reimport your Pokédex, choose{" "}
-                <strong class="text-foreground-muted">
-                  <Icon name="trash" /> Clear
-                </strong>{" "}
-                first.
-              </li>
-            </Show>
           </>
         }
       >

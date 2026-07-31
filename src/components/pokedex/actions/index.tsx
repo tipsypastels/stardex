@@ -9,9 +9,9 @@ import { Button } from "../../common/button";
 import { ActionBar, ActionBarItem } from "../../common/menus/action_bar";
 import { Modal } from "../../common/menus/modal";
 import { AddPokemon } from "../add";
-import { PokedexImport } from "../import";
 import { AutosortPokedexModal } from "./autosort";
 import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
+import { ImportPokedexViaAction } from "./import";
 import { PokedexModeModal } from "./mode";
 
 export interface PokedexActionsProps {
@@ -94,10 +94,10 @@ export function PokedexActions(props: PokedexActionsProps) {
             </>
           )}
         </Show>
-        <ActionBarItem name="Import" icon="file-import" onClick={() => setModal("import")} />
+        <ActionBarItem name="Import" icon="upload" onClick={() => setModal("import")} />
         <ActionBarItem
           name="Clear"
-          icon="trash"
+          icon="square-x"
           disabled={isEmpty()}
           onClick={() => setModal("clear")}
         />
@@ -146,16 +146,12 @@ export function PokedexActions(props: PokedexActionsProps) {
         </Match>
       </Switch>
 
-      {/* NOTE: This has to be rendered unconditionally instead of matched because it contains its own modals. Instead it takes a render prop to show the base modal contents and we render that conditionally. */}
-      <PokedexImport afterImport={props.afterActionChange}>
-        {(instructions) => (
-          <Show when={modal() === "import"}>
-            <Modal title="Import Pokédex" onClose={() => setModal(undefined)}>
-              {instructions}
-            </Modal>
-          </Show>
-        )}
-      </PokedexImport>
+      {/* NOTE: This has to be rendered unconditionally instead of matched because it contains its own modals. It does the conditional check internally instead. */}
+      <ImportPokedexViaAction
+        isOpen={modal() === "import"}
+        onClose={() => setModal(undefined)}
+        afterImport={props.afterActionChange}
+      />
     </>
   );
 }
