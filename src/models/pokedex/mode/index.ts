@@ -27,7 +27,7 @@ export const POKEDEX_MODES = (() => {
       const store = stored("stardex_pokedex_mode");
       const [key, setKey] = createSignal(defaultKey);
 
-      const caught = catchStartupError(() => {
+      const caught = catchStartupError("pokedexMode", () => {
         const key = store.load();
         if (key) setKey(v.parse(VAny_PokedexModeKey, key));
       });

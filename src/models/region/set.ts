@@ -11,7 +11,7 @@ export const regions = createRoot(() => {
   const keys = new ReactiveSet<RegionKey>(REGIONS.recommendedKeys);
   const all = createMemo(() => [...keys].map(REGIONS.of));
 
-  const caught = catchStartupError(() => {
+  const caught = catchStartupError("regionsSet", () => {
     const raw = store.load();
     if (!raw) return;
     for (const key of v.parse(v.array(RegionKey), raw)) {

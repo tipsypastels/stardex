@@ -19,7 +19,7 @@ export const EXCLUDED_TYPES_SETS = (() => {
 
       const all = new ReactiveSet<string>();
 
-      const caught = catchStartupError(() => {
+      const caught = catchStartupError("excludedTypes", () => {
         const raw = store.load();
         if (!raw) return;
         for (const type of v.parse(RawExcludedTypesSet, raw).all) {

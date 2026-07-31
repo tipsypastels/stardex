@@ -5,6 +5,7 @@ interface ErrorDump {
   date: string;
   userAgent: string;
   locals: Record<string, unknown>;
+  model?: string;
   error: {
     name?: string;
     message: string;
@@ -14,11 +15,12 @@ interface ErrorDump {
   };
 }
 
-export function saveErrorDumpToFile(error: unknown) {
+export function saveErrorDumpToFile(error: unknown, model?: string) {
   const dump: ErrorDump = {
     date: new Date().toString(),
     userAgent: navigator.userAgent,
     locals: {},
+    model,
     error: convertError(error),
   };
 

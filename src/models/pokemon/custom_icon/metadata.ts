@@ -16,7 +16,7 @@ export const customIconsMetadata = createRoot(() => {
   const store = stored("stardex_custom_icons_metadata");
   const pokemonIds = new ReactiveSet<string>();
 
-  const caught = catchStartupError(() => {
+  const caught = catchStartupError("customIconsMetadata", () => {
     const raw = store.load();
     if (!raw) return;
     for (const pokemonId of v.parse(RawCustomIconsMetadata, raw).pokemonIds) {

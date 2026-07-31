@@ -44,7 +44,7 @@ export const POKEMON_LISTS = (() => {
       const [all, setAll] = createStore<Pokemon[]>([]);
       const [textDiff, setTextDiff] = createSignal<string[]>();
 
-      const caught = catchStartupError(() => {
+      const caught = catchStartupError("pokemonList", () => {
         const raw_ = store.load();
         if (!raw_) return;
 

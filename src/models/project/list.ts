@@ -73,7 +73,7 @@ export const PROJECT_LISTS = (() => {
       const [activeId, setActiveId] = createSignal(defaults.activeId);
       const active = createMemo(() => all.find((project) => project.id === activeId())!);
 
-      const caught = catchStartupError(() => {
+      const caught = catchStartupError("projectList", () => {
         const raw_ = store.load();
         if (!raw_) return;
 

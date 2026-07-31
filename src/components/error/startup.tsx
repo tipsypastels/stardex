@@ -1,5 +1,5 @@
 import { createSignal, Show, type JSXElement } from "solid-js";
-import { startupError } from "../../models/ui/error";
+import { startupError, type StartupError } from "../../models/ui/error";
 import { unsafeWipeEverythingAndReload } from "../../models/util/database";
 import { saveErrorDumpToFile } from "../../utils/fs/web/error_dump";
 import { Button } from "../common/button";
@@ -18,14 +18,14 @@ export function CatchStartupError(props: CatchStartupErrorProps) {
 }
 
 interface StartupErrorProps {
-  error: Error;
+  error: StartupError;
 }
 
 function StartupError(props: StartupErrorProps) {
   const [dumped, setDumped] = createSignal(false);
 
   function dump() {
-    saveErrorDumpToFile(props.error);
+    saveErrorDumpToFile(props.error.inner, props.error.model);
     setDumped(true);
   }
 
