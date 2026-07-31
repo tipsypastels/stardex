@@ -3,6 +3,7 @@ import * as v from "valibot";
 import { loadJSONExport, VAny_RawJSONExport } from "../../../models/export";
 import { pokedexMode } from "../../../models/pokedex/mode";
 import { pokemons } from "../../../models/pokemon/list";
+import { parsePokemonListText } from "../../../models/pokemon/text/parse";
 import { toasts } from "../../../models/ui/toast";
 import { readFileAsTextAsync } from "../../../utils/fs/web";
 import { ButtonLink, UploadLink } from "../../common/link";
@@ -43,7 +44,10 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
         setImportError(error);
       }
     } else if (file.type === "text/plain") {
-      alert("TODO: Importing text files.");
+      // NOTE: We ignore errors here. If they're in text mode
+      // they'll see the errors soon anyways and if not they're not relevant.
+      const { list } = parsePokemonListText(text);
+      pokemons.setFromRaw(list);
       props.afterImport?.();
     } else {
       alert("Unknown file format.");
