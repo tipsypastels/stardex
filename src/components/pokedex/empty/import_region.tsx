@@ -28,7 +28,7 @@ export function ImportRegionModal(props: ImportRegionModalProps) {
   return (
     <Modal
       title="Import Region"
-      onClose={props.onClose}
+      onClose={() => props.onClose()}
       footer={
         <div class="flex flex-col justify-center">
           <Button onClick={doImport}>Import</Button>

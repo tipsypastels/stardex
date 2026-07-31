@@ -13,7 +13,7 @@ export interface RegionsModalProps {
 
 export function RegionsModal(props: RegionsModalProps) {
   return (
-    <Modal title="Regions" onClose={props.onClose}>
+    <Modal title="Regions" onClose={() => props.onClose()}>
       <div class="mb-4 grid grid-cols-2 gap-4">
         <For each={REGIONS.all}>
           {(region) => (

@@ -8,7 +8,7 @@ export interface PokedexEmptyImportErrorProps {
 
 export function PokedexEmptyImportError(props: PokedexEmptyImportErrorProps) {
   return (
-    <Modal title="Invalid Project" onClose={props.onClose}>
+    <Modal title="Invalid Project" onClose={() => props.onClose()}>
       <p class="mb-2">This project is corrupted and could not be loaded.</p>
       <p>
         This may be a bug with Stardex. You can open an issue at the{" "}

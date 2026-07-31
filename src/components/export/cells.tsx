@@ -62,7 +62,7 @@ export function ExportCellsModal(props: ExportCellsModalProps) {
   return (
     <Modal
       title="Export Cells"
-      onClose={props.onClose}
+      onClose={() => props.onClose()}
       footer={
         <div class="flex flex-col justify-center">
           <Button onClick={copy}>Copy to Clipboard</Button>

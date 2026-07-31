@@ -8,7 +8,7 @@ export interface StrictnessModalProps {
 
 export function StrictnessModal(props: StrictnessModalProps) {
   return (
-    <Modal title="Strictness" onClose={props.onClose}>
+    <Modal title="Strictness" onClose={() => props.onClose()}>
       <ModePicker
         modes={STRICTNESSES.options}
         activeIndex={strictness.index}

@@ -44,7 +44,7 @@ export function AutosortPokedexModal(props: AutosortPokedexModalProps) {
   return (
     <Modal
       title="Sort Pokédex"
-      onClose={props.onClose}
+      onClose={() => props.onClose()}
       footer={
         <div class="flex flex-col justify-center">
           <Button onClick={() => props.onAutosort(request())}>Sort</Button>

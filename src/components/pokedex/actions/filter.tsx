@@ -31,7 +31,7 @@ export function FilterPokedexModal(props: FilterPokedexModalProps) {
   }
 
   return (
-    <Modal title="Filter Pokédex" onClose={props.onClose}>
+    <Modal title="Filter Pokédex" onClose={() => props.onClose()}>
       <IconPickerGrid>
         <IconPickerGridItem
           name="Any"

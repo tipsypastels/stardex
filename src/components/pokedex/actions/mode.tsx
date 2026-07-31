@@ -8,7 +8,7 @@ export interface PokedexModeModalProps {
 
 export function PokedexModeModal(props: PokedexModeModalProps) {
   return (
-    <Modal title="Pokédex Mode" onClose={props.onClose}>
+    <Modal title="Pokédex Mode" onClose={() => props.onClose()}>
       <ModePicker
         modes={POKEDEX_MODES.options}
         activeIndex={pokedexMode.index}

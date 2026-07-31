@@ -40,7 +40,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
       fallback={
         <Modal
           title={`Edit ${pokemon().name}`}
-          onClose={props.onClose}
+          onClose={() => props.onClose()}
           footer={
             <div class="flex">
               <ButtonLink look="warning" onClick={onRemove}>

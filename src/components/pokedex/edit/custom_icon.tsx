@@ -212,7 +212,7 @@ export function EditPokemonCustomIconModal(props: EditPokemonCustomIconModalProp
   return (
     <Modal
       title={`Edit ${props.pokemon.name}'s Custom Icon`}
-      onClose={props.onClose}
+      onClose={() => props.onClose()}
       footer={
         <div class="flex">
           <ButtonLink look="secondary" onClick={props.onClose}>

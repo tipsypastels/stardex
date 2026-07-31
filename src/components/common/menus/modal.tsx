@@ -1,5 +1,5 @@
 import hotkeys from "hotkeys-js";
-import { createEffect, onCleanup, type JSXElement } from "solid-js";
+import { createEffect, onCleanup, onMount, type JSXElement } from "solid-js";
 import { Portal } from "solid-js/web";
 import { ButtonIcon } from "../button";
 
@@ -13,7 +13,20 @@ export interface ModalProps {
   onClose(): void;
 }
 
+let onClosePrev: (() => void) | undefined;
+
 export function Modal(props: ModalProps) {
+  onMount(() => {
+    onClosePrev?.();
+    onClosePrev = props.onClose;
+  });
+
+  onCleanup(() => {
+    if (onClosePrev === props.onClose) {
+      onClosePrev = undefined;
+    }
+  });
+
   function handleClick(e: MouseEvent) {
     if ((e.target as HTMLElement)?.parentNode === ref) {
       props.onClose();
@@ -22,7 +35,7 @@ export function Modal(props: ModalProps) {
 
   createEffect(() => {
     hotkeys("esc", props.onClose);
-    onCleanup(() => hotkeys.unbind("esc"));
+    onCleanup(() => hotkeys.unbind("esc", props.onClose));
   });
 
   createEffect(() => {

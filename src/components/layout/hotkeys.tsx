@@ -33,7 +33,7 @@ interface HotkeysModalProps {
 
 function HotkeysModal(props: HotkeysModalProps) {
   return (
-    <Modal title="Hotkeys" onClose={props.onClose}>
+    <Modal title="Hotkeys" onClose={() => props.onClose()}>
       <ul class="grid grid-cols-2 gap-4">
         <For each={HOTKEYS}>
           {(hotkey) => (
