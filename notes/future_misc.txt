@@ -1,0 +1,28 @@
+- Let custom mons specify evolutions, or read them from PBS files. Also support changing builtins.
+  - A sort option that keeps families together even for cross-gen evos, etc.
+
+- Export pbs form buckets? This script was supposed to do it:
+
+  #!/usr/bin/env npx ts-node --swc
+  // @ts-check
+
+  import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+  import { getPBSFormFilterBuckets } from "../src/models/pokemon/pbs/form.ts";
+  import { parsePBSAsRecords } from "../src/models/pokemon/pbs/parse.ts";
+
+  const records = readdirSync("samples/pbs")
+    .filter((path) => /^pokemon.*.txt$/.test(path))
+    .map((path) => ({ name: path, text: readFileSync(samples/pbs/${path}, "utf-8") }))
+    .flatMap((file) => parsePBSAsRecords(file).out);
+
+  const buckets = getPBSFormFilterBuckets(records);
+
+  writeFileSync("samples/pbs/buckets.json", JSON.stringify(buckets, null, 2));
+
+But it doesn't work because neither node nor ts-node can import bare filenames of recursive deps of the pbs model files. I could switch to allowTsExtension but I'm pretty sure buckets are fine by now and don't need manual verification.
+
+- Have a way to disable suggesting alts in text mode autocomplete.
+
+- theoretical pre type change alt forms, just have -fairy alt etc, when exclude changes walk pokemon and toggle that alt (dont set it on unless no alt and default types)
+
+- Either remove custom alt form should specify types warning or add a marker to mons imported from pbs and disable it for them.

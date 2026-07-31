@@ -29,7 +29,7 @@ export const TYPE_KEY_PAIRS = (() => {
     },
 
     set(pokemon: Pokemon, keys: string[] | undefined) {
-      keys = keys?.filter((s) => !!s);
+      keys = [...new Set(keys?.filter((s) => !!s))];
       if (!keys || keys.length === 0) {
         if (pokemon.isBuiltin()) {
           pokemon.changedTypeKeys = undefined;
