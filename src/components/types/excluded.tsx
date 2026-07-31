@@ -1,9 +1,8 @@
-import { Show } from "solid-js";
 import { BUILTIN_TYPES, type Type } from "../../models/type";
 import { excludedTypes } from "../../models/type/excluded";
-import { Icon } from "../common/icon";
+import { Checkbox } from "../common/forms/checkbox";
 import { Modal } from "../common/menus/modal";
-import { TypeName } from "../types/util/name";
+import { TypeName } from "./util/name";
 
 export interface ExcludedTypesModalProps {
   onClose(): void;
@@ -13,7 +12,7 @@ export function ExcludedTypesModal(props: ExcludedTypesModalProps) {
   return (
     <Modal title="Excluded Types" onClose={() => props.onClose()}>
       <p class="mb-4">Hacking a game without later types?</p>
-      <ul class="mb-4 pl-2">
+      <ul class="mb-4">
         <Option type={BUILTIN_TYPES.of("dark")} />
         <Option type={BUILTIN_TYPES.of("steel")} />
         <Option type={BUILTIN_TYPES.of("fairy")} />
@@ -34,30 +33,16 @@ function Option(props: OptionProps) {
   const excluded = () => excludedTypes.all.has(props.type.key);
 
   return (
-    <li class="mb-2 last:mb-0">
-      <label class="flex cursor-pointer items-center gap-2">
-        <input
-          type="checkbox"
-          class="hidden"
-          checked={excluded()}
-          onChange={() => excludedTypes.toggle(props.type.key)}
-        />
-
-        <div
-          class="flex h-8 w-8 items-center justify-center rounded-md border-2 border-divider-heavy"
-          style={{ color: props.type.color }}
-        >
-          <Show when={excluded()}>
-            <Icon name="times" />
-          </Show>
-        </div>
-
-        <div>
-          <strong>
+    <li class="mb-1 last:mb-0">
+      <Checkbox
+        name={
+          <>
             Exclude <TypeName type={props.type} />
-          </strong>
-        </div>
-      </label>
+          </>
+        }
+        checked={excluded()}
+        onChange={() => excludedTypes.toggle(props.type.key)}
+      />
     </li>
   );
 }
