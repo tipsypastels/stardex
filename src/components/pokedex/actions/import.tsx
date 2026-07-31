@@ -1,4 +1,5 @@
 import { Show } from "solid-js";
+import { pokemons } from "../../../models/pokemon/list";
 import { REGIONS } from "../../../models/region";
 import { Icon } from "../../common/icon";
 import { Modal } from "../../common/menus/modal";
@@ -59,6 +60,13 @@ export function ImportPokedexViaAction(props: ImportPokedexViaActionProps) {
                 </button>
               </li>
             </ul>
+
+            <Show when={pokemons.all.length > 0}>
+              <div class="mt-2 text-sm">
+                <strong class="text-warning">Warning:</strong> Your Pokédex isn't empty. Importing
+                anything will overwrite it.
+              </div>
+            </Show>
           </Modal>
         </Show>
       )}
