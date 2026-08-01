@@ -63,7 +63,7 @@ class NoticeOption {
 }
 
 const NOTICE_OPTIONS: NoticeOption[] = [
-  new NoticeOption(1785543180089, () => (
+  new NoticeOption(1785643275569, () => (
     <>
       <div class="mb-2">
         <h3 class="mb-1 text-lg font-bold">A new (old) Pokédex mode:</h3>
