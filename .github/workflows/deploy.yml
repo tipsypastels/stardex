@@ -1,8 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  # push:
-    # branches: "2"
+  push:
+    branches: "main"
   workflow_dispatch:
 
 jobs:
@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: "2"
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -25,14 +23,14 @@ jobs:
 
       - name: build
         env:
-          GH_REPO_NAME: "${{ github.event.repository.name }}"
+          BASE: "/${{ github.event.repository.name }}"
         run: |
           npm run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "build/"
+          path: "dist/"
 
   deploy:
     needs: build_site
