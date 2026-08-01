@@ -66,7 +66,7 @@ export function Export() {
               <p class="mb-2">
                 This creates cells from your Pokédex that you can paste into Google Sheets.
               </p>
-              <p class="text-sm font-bold text-error">
+              <p class="text-sm font-bold text-warning">
                 <Icon name="times" /> Not Importable
               </p>
             </div>
