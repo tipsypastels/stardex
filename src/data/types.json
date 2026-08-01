@@ -17,7 +17,7 @@
   "water": {
     "name": "Water",
     "color": "rgb(104, 144, 240)",
-    "icon": "water"
+    "icon": "droplet"
   },
   "flying": {
     "name": "Flying",
