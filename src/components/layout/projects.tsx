@@ -14,7 +14,7 @@ export function ProjectsHotkeyButton() {
 
 export function ProjectsSelect() {
   return (
-    <div class="w-max">
+    <div class="w-max bg-background">
       <div class="mb-1 flex text-sm">
         <div class="grow font-bold">Projects</div>
         <button
