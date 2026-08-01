@@ -33,24 +33,35 @@ export function ImportPBSModalLanding() {
 export function ImportPBSModalLandingFooter(props: ImportPBSModalLandingProps) {
   const [uploading, setUploading] = createSignal(false);
   return (
-    <div class="flex flex-col justify-center">
-      <UploadButton
-        accept="text/plain"
-        multiple
-        disabled={uploading()}
-        // eslint-disable-next-line solid/reactivity
-        onUpload={async (fileList) => {
-          setUploading(true);
-          await props.state.files.importOverwrite(fileList);
-          if (props.state.files.errors.length === 0) {
-            props.state.gotoDexes();
-          } else {
-            setUploading(false);
-          }
-        }}
-      >
-        Upload PBS Files
-      </UploadButton>
-    </div>
+    <>
+      <div class="mb-2 flex flex-col justify-center">
+        <UploadButton
+          accept="text/plain"
+          multiple
+          disabled={uploading()}
+          // eslint-disable-next-line solid/reactivity
+          onUpload={async (fileList) => {
+            setUploading(true);
+            await props.state.files.importOverwrite(fileList);
+            if (props.state.files.errors.length === 0) {
+              props.state.gotoDexes();
+            } else {
+              setUploading(false);
+            }
+          }}
+        >
+          Upload PBS Files
+        </UploadButton>
+      </div>
+
+      <div class="text-center text-sm">
+        <strong>Tip:</strong> You can upload multiple files at once
+        <span class="max-md:hidden">
+          {" "}
+          using {navigator.platform.startsWith("Mac") ? "Cmd" : "Ctrl"}- or Shift-clicks
+        </span>
+        .
+      </div>
+    </>
   );
 }
