@@ -1,4 +1,4 @@
-import { createEffect, createMemo, createSignal, Show } from "solid-js";
+import { createEffect, createMemo, createSignal, Show, type JSXElement } from "solid-js";
 import { pokedexMode } from "../../models/pokedex/mode";
 import { dark } from "../../models/ui/dark";
 import { stored } from "../../utils/storage";
@@ -14,7 +14,7 @@ export function Notice() {
 
   const [lastDismissedMs, setLastDismissedMs] = createSignal(initialLastDismissedMs);
   const notice = createMemo(() =>
-    NOTICES.find((notice) => notice.date.getTime() > lastDismissedMs()),
+    NOTICE_OPTIONS.find((notice) => notice.timestampMs > lastDismissedMs()),
   );
 
   createEffect(() => {
@@ -45,73 +45,81 @@ export function Notice() {
   );
 }
 
-const NOTICES = [
-  {
-    // TODO: Change the date to release.
-    date: new Date("Fri Jul 31 2026 06:06:15 GMT-0700 (Pacific Daylight Time)"),
-    render() {
-      return (
-        <>
-          <div class="mb-2">
-            <h3 class="mb-1 text-lg font-bold">A new (old) Pokédex mode:</h3>
-            <ul class="list-inside list-disc">
-              <li>
-                Added a fully-featured{" "}
-                <ButtonLink
-                  onClick={() => (pokedexMode.key = "text")}
-                  disabled={pokedexMode.key === "text"}
-                >
-                  text editor mode
-                </ButtonLink>{" "}
-                inspired by the{" "}
-                <span class="transition-colors duration-200 hover:text-[#FB5687]">old Stardex</span>
-                .
-              </li>
-              <li>The text editor can now autocomplete Pokémon, types, forms, and families.</li>
-            </ul>
-          </div>
+class NoticeOption {
+  readonly timestampMs: number;
+  readonly render: () => JSXElement;
 
-          <div class="mb-2">
-            <h3 class="mb-1 text-lg font-bold">New options when editing Pokémon:</h3>
-            <ul class="list-inside list-disc">
-              <li>
-                Support for forms! Non-cosmetic forms are built-in. You can create your own too.
-              </li>
-              <li>
-                Support for custom icons! Use of party icons is recommended. Stardex can crop them
-                to one frame or remove backgrounds when uploading.
-              </li>
-            </ul>
-          </div>
+  #date?: Date;
 
-          <div class="mb-2">
-            <h3 class="mb-1 text-lg font-bold">Have an empty project? More ways to start:</h3>
-            <ul class="list-inside list-disc">
-              <li>Importing from Essentials PBS files.</li>
-              <li>Import all the Pokémon from a canon region.</li>
-            </ul>
-          </div>
+  constructor(timestampMs: number, render: () => JSXElement) {
+    this.timestampMs = timestampMs;
+    this.render = render;
+  }
 
-          <div>
-            <h3 class="mb-1 text-lg font-bold">Interface improvements:</h3>
-            <ul class="list-inside list-disc">
-              <li>
-                Added <ButtonLink onClick={() => (dark.on = !dark.on)}>dark mode</ButtonLink>!
-              </li>
-              <li>Drag and drop Pokémon that doesn't suck. Sorry for putting you through that.</li>
-              <li>Sort your Pokémon by Pokédex numbers or types.</li>
-              <li>Zapper mode to delete Pokémon quickly.</li>
-              <li class="max-md:hidden">
-                <ButtonLink onClick={() => setHotkeysOpen(true)}>Hotkeys</ButtonLink> for easy
-                navigation on desktop.
-              </li>
-              <li>Restructured the app to put everything on one page.</li>
-            </ul>
-          </div>
-        </>
-      );
-    },
-  },
+  get date() {
+    this.#date ??= new Date(this.timestampMs);
+    return this.#date;
+  }
+}
+
+const NOTICE_OPTIONS: NoticeOption[] = [
+  new NoticeOption(1785543180089, () => (
+    <>
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">A new (old) Pokédex mode:</h3>
+        <ul class="list-inside list-disc">
+          <li>
+            Added a fully-featured{" "}
+            <ButtonLink
+              onClick={() => (pokedexMode.key = "text")}
+              disabled={pokedexMode.key === "text"}
+            >
+              text editor mode
+            </ButtonLink>{" "}
+            inspired by the{" "}
+            <span class="transition-colors duration-200 hover:text-[#FB5687]">old Stardex</span>.
+          </li>
+          <li>The text editor can now autocomplete Pokémon, types, forms, and families.</li>
+        </ul>
+      </div>
+
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">New options when editing Pokémon:</h3>
+        <ul class="list-inside list-disc">
+          <li>Support for forms! Non-cosmetic forms are built-in. You can create your own too.</li>
+          <li>
+            Support for custom icons! Use of party icons is recommended. Stardex can crop them to
+            one frame or remove backgrounds when uploading.
+          </li>
+        </ul>
+      </div>
+
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">More ways to import:</h3>
+        <ul class="list-inside list-disc">
+          <li>Import from Essentials PBS files.</li>
+          <li>Import the Pokédex of a canon region.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-1 text-lg font-bold">Interface improvements:</h3>
+        <ul class="list-inside list-disc">
+          <li>
+            Added <ButtonLink onClick={() => (dark.on = !dark.on)}>dark mode</ButtonLink>!
+          </li>
+          <li>Drag and drop Pokémon that doesn't suck. Sorry for putting you through that.</li>
+          <li>Sort your Pokémon by Pokédex numbers or types.</li>
+          <li>Zapper mode to delete Pokémon quickly.</li>
+          <li class="max-md:hidden">
+            <ButtonLink onClick={() => setHotkeysOpen(true)}>Hotkeys</ButtonLink> for easy
+            navigation on desktop.
+          </li>
+          <li>Restructured the app to put everything on one page.</li>
+        </ul>
+      </div>
+    </>
+  )),
 ];
 
 // prettier-ignore
