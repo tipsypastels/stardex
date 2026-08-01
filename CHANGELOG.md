@@ -2,6 +2,7 @@
 
 The biggest update yet!
 
+- Dark mode!
 - Added a fully-featured text editor mode that can autocomplete Pokémon, types, forms, and families.
 - Support for forms. Non-cosmetic forms of builtin Pokémon are included as options by default, but you can set your own arbitrary form when editing a Pokémon.
 - Support for custom icons, along with some basic image editing options you can choose before upload like cropping a two-frame party icon to one frame and removing backgrounds.
