@@ -65,7 +65,9 @@ function StartupError(props: StartupErrorProps) {
       </p>
 
       <div>
-        <Button onClick={wipeEverythingAndReload}>Wipe Everything and Reload</Button>
+        <Button onClick={wipeEverythingAndReload} look="error">
+          Wipe Everything and Reload
+        </Button>
       </div>
     </div>
   );
