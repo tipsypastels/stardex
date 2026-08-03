@@ -42,6 +42,7 @@
     "@types/node": "^26.1.1",
     "@types/randomcolor": "^0.5.9",
     "@types/sortablejs": "^1.15.9",
+    "canvas": "^3.2.3",
     "eslint": "^9.39.5",
     "eslint-plugin-solid": "^0.14.5",
     "globals": "^17.7.0",

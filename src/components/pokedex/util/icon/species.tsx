@@ -1,6 +1,9 @@
-// From https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png.
-const SHEET = "pokemonicons-sheet.png?v22";
-const SHEET_WIDTH = 480;
+// Increment this every time you regenerate icons.
+const CACHE_BUSTER = 0;
+// This corresponds to a SCALE_MULT of 2.
+// You'll need to regenerate icons if these change.
+const WIDTH = 80;
+const HEIGHT = 60;
 
 export interface SpeciesIconProps {
   index: number;
@@ -8,25 +11,14 @@ export interface SpeciesIconProps {
 }
 
 export function SpeciesIcon(props: SpeciesIconProps) {
-  const top = () => Math.floor(props.index / 12) * 30;
-  const left = () => (props.index % 12) * 40;
-
   return (
-    <div class="block h-15 w-20 overflow-hidden dim">
-      <div
-        role="img"
-        title={props.name}
-        aria-label={props.name}
-        class="h-7.5 w-10 origin-top-left"
-        style={{
-          "background-image": `url('${SHEET}')`,
-          "background-repeat": "no-repeat",
-          "background-position": `-${left()}px -${top()}px`,
-          "background-size": `${SHEET_WIDTH}px`,
-          "image-rendering": "pixelated",
-          "transform": `scale(2)`,
-        }}
-      />
-    </div>
+    <img
+      alt={props.name}
+      title={props.name}
+      src={`species_icons/${props.index}.png?${CACHE_BUSTER}`}
+      width={WIDTH}
+      height={HEIGHT}
+      style={{ "image-rendering": "pixelated" }}
+    />
   );
 }
