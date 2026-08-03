@@ -1,4 +1,5 @@
-const SHEET = "https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png?v22";
+// From https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png.
+const SHEET = "pokemonicons-sheet.png?v22";
 const SHEET_WIDTH = 480;
 
 export interface SpeciesIconProps {
