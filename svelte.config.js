@@ -8,10 +8,10 @@ const config = {
   preprocess: [vitePreprocess()],
 
   kit: {
-    adapter: adapter(),
-    paths: {
-      base: process.argv.includes("dev") ? "" : `/${process.env.GH_REPO_NAME}`,
-    },
+    adapter: adapter({
+      pages: "dist",
+      assets: "dist",
+    }),
   },
 };
 
