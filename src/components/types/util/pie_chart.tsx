@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { For } from "solid-js";
 import type { Allotment } from "../../../metrics/allotment";
 import { PieChart } from "../../common/graphs/pie_chart";
 import { TypeName } from "./name";
@@ -8,8 +8,6 @@ export interface TypePieChartProps {
 }
 
 export function TypePieChart(props: TypePieChartProps) {
-  const [donut, setDonut] = createSignal(true);
-
   const types = () => [...props.allotment.types.values()];
   const slices = () =>
     types().map(({ type, ratio }) => ({
@@ -20,10 +18,7 @@ export function TypePieChart(props: TypePieChartProps) {
 
   return (
     <div class="mx-auto flex w-fit flex-col items-center gap-4 lg:flex-row">
-      <div onClick={() => setDonut((donut) => !donut)}>
-        <PieChart slices={slices()} class="dim" donut={donut()} />
-      </div>
-
+      <PieChart slices={slices()} class="dim" donut />
       <div>
         <ol>
           <For each={types()}>
