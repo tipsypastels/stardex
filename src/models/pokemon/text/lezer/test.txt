@@ -21,7 +21,7 @@ Bar
 
 ==>
 
-Program(Listing(Name), Listing(Name))
+Program(Listing(Name), Newline, Listing(Name))
 
 # Specs
 
@@ -33,7 +33,9 @@ Baz (Form Name:Fire/Flying)
 
 Program(
   Listing(Name, Spec(TypeList(TypeName))), 
+  Newline,
   Listing(Name, Spec(TypeList(TypeName, TypeName))), 
+  Newline,
   Listing(Name, Spec(AltName, SpecSeparator, TypeList(TypeName, TypeName)))
 )
 
@@ -49,9 +51,12 @@ Baz
 
 Program(
   Listing(Name),
+  Newline,
   Comment,
+  Newline,
   Listing(Name, Modifier),
-  Blank,
+  Newline,
+  Newline,
   Listing(Name)
 )
 
@@ -64,6 +69,7 @@ Baz
 
 Program(
   Listing(Name, InlineComment),
+  Newline,
   Listing(Name)
 )
 
@@ -97,6 +103,7 @@ Bar (Water:)
 ==>
 
 Program(
-  Listing(Name, Spec(SpecSeparator, TypeList(TypeName)))
+  Listing(Name, Spec(SpecSeparator, TypeList(TypeName))),
+  Newline,
   Listing(Name, Spec(AltName, SpecSeparator))
 )

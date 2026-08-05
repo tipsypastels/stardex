@@ -1,13 +1,9 @@
-@top Program { (Listing | Comment | Blank)* }
+@top Program { (Listing | Comment | Newline)* }
 
-@skip { space | newline }
+@skip { space }
 
 @external tokens nameTokenizer from "./tokens" { Name }
 @external tokens altNameTokenizer from "./tokens" { AltName }
-
-@external tokens blankTokenizer from "./tokens.js" { Blank }
-@external tokens newlineTokenizer from "./tokens.js" { newline }
-
 @external tokens commentTokenizer from "./tokens.js" { Comment, InlineComment }
 
 Listing {
@@ -38,6 +34,7 @@ Modifier {
   space { $[ \t]+ }
   ident { $[A-Za-z0-9]+ }
   SpecSeparator { ":" }
+  Newline { "\n" }
 
   "("
   ")"

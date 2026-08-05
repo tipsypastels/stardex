@@ -29,6 +29,7 @@ export function parsePokemonListTextFromLezerTree(
   const errors: Diagnostic[] = [];
 
   let listing: Listing | undefined;
+  let justIgnoredSoleNewline = false;
 
   function slice(span: Span) {
     return text.slice(span.from, span.to);
@@ -39,6 +40,7 @@ export function parsePokemonListTextFromLezerTree(
       switch (ref.name) {
         case "Listing": {
           listing = new Listing(ref.node, slice, getId);
+          justIgnoredSoleNewline = false;
           break;
         }
         case "Name": {
@@ -67,10 +69,15 @@ export function parsePokemonListTextFromLezerTree(
         }
         case "Comment": {
           textDiff.verbatim(slice(ref));
+          justIgnoredSoleNewline = false;
           break;
         }
-        case "Blank": {
-          textDiff.blank(1);
+        case "Newline": {
+          if (!justIgnoredSoleNewline) {
+            justIgnoredSoleNewline = true;
+          } else {
+            textDiff.blank(1);
+          }
           break;
         }
       }

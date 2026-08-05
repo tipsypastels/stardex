@@ -1,5 +1,5 @@
-import { ExternalTokenizer, InputStream } from "@lezer/lr";
-import { AltName, Blank, Comment, InlineComment, Name, newline } from "./index.terms";
+import { ExternalTokenizer } from "@lezer/lr";
+import { AltName, Comment, InlineComment, Name } from "./index.terms";
 
 /* --------------------------------- Sigils --------------------------------- */
 
@@ -74,39 +74,6 @@ function isTypeList(chars: number[]) {
   const str = chars.map((c) => String.fromCharCode(c)).join("");
   if (str.trim().length === 0) return false;
   return str.split("/").every((part) => /^[ \t]*[A-Za-z0-9]+[ \t]*$/.test(part));
-}
-
-/* -------------------------------------------------------------------------- */
-/*                              Blanks & Newlines                             */
-/* -------------------------------------------------------------------------- */
-
-export const blankTokenizer = new ExternalTokenizer((input, stack) => {
-  const ch = input.peek(0);
-  if (!isNewline(ch)) return;
-  if (!stack.canShift(Blank)) return;
-  const width = newlineWidth(input);
-  if (followedByAnotherNewline(input, width)) {
-    input.acceptToken(Blank, width);
-  }
-});
-
-export const newlineTokenizer = new ExternalTokenizer((input) => {
-  const ch = input.peek(0);
-  if (!isNewline(ch)) return;
-  const width = newlineWidth(input);
-  if (!followedByAnotherNewline(input, width)) {
-    input.acceptToken(newline, width);
-  }
-});
-
-function newlineWidth(input: InputStream) {
-  return input.peek(0) === CR && input.peek(1) === NL ? 2 : 1;
-}
-
-function followedByAnotherNewline(input: InputStream, width: number) {
-  let off = width;
-  while (isSpace(input.peek(off))) off++;
-  return isNewline(input.peek(off));
 }
 
 /* -------------------------------------------------------------------------- */
