@@ -36,112 +36,105 @@ export const VAny_RawPokemonList = v.union([
 /*                                    List                                    */
 /* -------------------------------------------------------------------------- */
 
-export const POKEMON_LISTS = (() => {
-  function initial() {
-    return createRoot(() => {
-      const store = stored("stardex_pokemon");
+export const pokemons = createRoot(() => {
+  const store = stored("stardex_pokemon");
 
-      const [all, setAll] = createStore<Pokemon[]>([]);
-      const [textDiff, setTextDiff] = createSignal<string[]>();
+  const [all, setAll] = createStore<Pokemon[]>([]);
+  const [textDiff, setTextDiff] = createSignal<string[]>();
 
-      const caught = catchStartupError("pokemonList", () => {
-        const raw_ = store.load();
-        if (!raw_) return;
+  const caught = catchStartupError("pokemonList", () => {
+    const raw_ = store.load();
+    if (!raw_) return;
 
-        const raw = v.parse(VAny_RawPokemonList, raw_);
+    const raw = v.parse(VAny_RawPokemonList, raw_);
 
+    setAll(raw.all.map(POKEMONS.make));
+    setTextDiff(raw.textDiff);
+  });
+
+  if (!caught) {
+    createEffect(() => {
+      store.dump({
+        v: POKEMON_LIST_VERSION,
+        all: [...all],
+        textDiff: textDiff(),
+      });
+    });
+  }
+
+  return {
+    all,
+
+    get textDiff() {
+      return textDiff();
+    },
+
+    mutator(id: string) {
+      return createPokemonMutator(id, setAll);
+    },
+
+    push(pokemon: Pokemon) {
+      setAll(all.length, pokemon);
+    },
+
+    pushMany(pokemons: Pokemon[]) {
+      setAll((all) => all.concat(pokemons));
+    },
+
+    move(index: number, toIndex: number) {
+      setAll(
+        produce((all) => {
+          const [pokemon] = all.splice(index, 1);
+          all.splice(toIndex, 0, pokemon);
+        }),
+      );
+    },
+
+    delete(id: string) {
+      setAll((all) => all.filter((pokemon) => pokemon.id !== id));
+    },
+
+    autosort(request: AutosortRequest) {
+      setAll((all) => runAutosort(all, request));
+    },
+
+    clear() {
+      this.setFromRaw({ v: POKEMON_LIST_VERSION, all: [] });
+    },
+
+    setFromRaw(raw: RawPokemonList) {
+      batch(() => {
         setAll(raw.all.map(POKEMONS.make));
         setTextDiff(raw.textDiff);
       });
+    },
 
-      if (!caught) {
-        createEffect(() => {
-          store.dump({
-            v: POKEMON_LIST_VERSION,
-            all: [...all],
-            textDiff: textDiff(),
-          });
-        });
-      }
-
-      return {
-        all,
-
-        get textDiff() {
-          return textDiff();
-        },
-
-        mutator(id: string) {
-          return createPokemonMutator(id, setAll);
-        },
-
-        push(pokemon: Pokemon) {
-          setAll(all.length, pokemon);
-        },
-
-        pushMany(pokemons: Pokemon[]) {
-          setAll((all) => all.concat(pokemons));
-        },
-
-        move(index: number, toIndex: number) {
-          setAll(
-            produce((all) => {
-              const [pokemon] = all.splice(index, 1);
-              all.splice(toIndex, 0, pokemon);
+    setFromRegion(region: Region) {
+      batch(() => {
+        setAll(
+          region.members.map((member) =>
+            POKEMONS.make({
+              v: POKEMON_VERSION,
+              id: makeId(),
+              species: member.speciesKey,
+              alt: member.altKind,
             }),
-          );
-        },
+          ),
+        );
+        setTextDiff(undefined);
+      });
+    },
 
-        delete(id: string) {
-          setAll((all) => all.filter((pokemon) => pokemon.id !== id));
-        },
-
-        autosort(request: AutosortRequest) {
-          setAll((all) => runAutosort(all, request));
-        },
-
-        clear() {
-          this.setFromRaw({ v: POKEMON_LIST_VERSION, all: [] });
-        },
-
-        setFromRaw(raw: RawPokemonList) {
-          batch(() => {
-            setAll(raw.all.map(POKEMONS.make));
-            setTextDiff(raw.textDiff);
-          });
-        },
-
-        setFromRegion(region: Region) {
-          batch(() => {
-            setAll(
-              region.members.map((member) =>
-                POKEMONS.make({
-                  v: POKEMON_VERSION,
-                  id: makeId(),
-                  species: member.speciesKey,
-                  alt: member.altKind,
-                }),
-              ),
-            );
-            setTextDiff(undefined);
-          });
-        },
-
-        toRaw(): RawPokemonList {
-          return {
-            v: POKEMON_LIST_VERSION,
-            all: all.map((pokemon) => pokemon.toRaw()),
-            textDiff: textDiff(),
-          };
-        },
-
-        toJSON(): unknown {
-          return this.toRaw();
-        },
+    toRaw(): RawPokemonList {
+      return {
+        v: POKEMON_LIST_VERSION,
+        all: all.map((pokemon) => pokemon.toRaw()),
+        textDiff: textDiff(),
       };
-    });
-  }
-  return { initial };
-})();
+    },
 
-export const pokemons = POKEMON_LISTS.initial();
+    toJSON(): unknown {
+      return this.toRaw();
+    },
+  };
+});

@@ -36,146 +36,138 @@ export const VAny_RawProjectList = v.union([
   v.pipe(V0_RawProjectList, v.transform(V0_upgradeRawProjectList)),
 ]);
 
-export const PROJECT_LISTS = (() => {
-  const defaults: RawProjectList = {
-    v: PROJECT_LIST_VERSION,
-    all: [{ v: PROJECT_VERSION, id: "default", name: "Untitled Project 1" }],
-    activeId: "default",
-  };
+const DEFAULTS: RawProjectList = {
+  v: PROJECT_LIST_VERSION,
+  all: [{ v: PROJECT_VERSION, id: "default", name: "Untitled Project 1" }],
+  activeId: "default",
+};
 
-  function getModels(): RawProjectModels {
-    return {
-      pokemons: pokemons.toRaw(),
-      regions: regions.toRaw(),
-      strictness: strictness.key,
-      pokedexMode: pokedexMode.key,
-      customIconsMetadata: customIconsMetadata.toRaw(),
-      excludedTypes: excludedTypes.toRaw(),
-    };
-  }
+export const projects = createRoot(() => {
+  const store = stored("stardex_projects");
 
-  function setModels(models: RawProjectModels) {
-    batch(() => {
-      pokemons.setFromRaw(models.pokemons);
-      regions.set(models.regions);
-      strictness.key = models.strictness;
-      pokedexMode.key = models.pokedexMode;
-      customIconsMetadata.setFromRaw(models.customIconsMetadata);
-      excludedTypes.setFromRaw(models.excludedTypes);
-    });
-  }
+  const [all, setAll] = createStore(DEFAULTS.all.map(PROJECTS.make));
+  const [activeId, setActiveId] = createSignal(DEFAULTS.activeId);
+  const active = createMemo(() => all.find((project) => project.id === activeId())!);
 
-  function initial() {
-    return createRoot(() => {
-      const store = stored("stardex_projects");
+  const caught = catchStartupError("projectList", () => {
+    const raw_ = store.load();
+    if (!raw_) return;
 
-      const [all, setAll] = createStore(defaults.all.map(PROJECTS.make));
-      const [activeId, setActiveId] = createSignal(defaults.activeId);
-      const active = createMemo(() => all.find((project) => project.id === activeId())!);
+    const raw = v.parse(VAny_RawProjectList, raw_);
 
-      const caught = catchStartupError("projectList", () => {
-        const raw_ = store.load();
-        if (!raw_) return;
+    setAll(raw.all.map(PROJECTS.make));
+    setActiveId(raw.activeId);
+  });
 
-        const raw = v.parse(VAny_RawProjectList, raw_);
-
-        setAll(raw.all.map(PROJECTS.make));
-        setActiveId(raw.activeId);
+  if (!caught) {
+    createEffect(() => {
+      store.dump({
+        v: PROJECT_LIST_VERSION,
+        all: [...all],
+        activeId: activeId(),
       });
-
-      if (!caught) {
-        createEffect(() => {
-          store.dump({
-            v: PROJECT_LIST_VERSION,
-            all: [...all],
-            activeId: activeId(),
-          });
-        });
-      }
-
-      function findIndex(id: string) {
-        return mustIndex(
-          all.findIndex((p) => p.id === id),
-          `Can't find project with ID ${id}`,
-        );
-      }
-
-      return {
-        all,
-
-        get activeId() {
-          return activeId();
-        },
-
-        get active() {
-          return active();
-        },
-
-        setName(id: string, name: string) {
-          setAll((project) => project.id === id, "name", name);
-        },
-
-        setActive(id: string) {
-          if (id === activeId()) {
-            return;
-          }
-
-          const oldActiveId = activeId();
-          const oldActiveIndex = findIndex(oldActiveId);
-          const oldModels = getModels();
-
-          const newActiveIndex = findIndex(id);
-          const { dormantModels: newModels, ...newActive } = all[
-            newActiveIndex
-          ] as ProjectWithDormantModels;
-
-          batch(() => {
-            setAll(oldActiveIndex, "dormantModels", oldModels);
-            setAll(newActiveIndex, newActive);
-            setActiveId(id);
-            setModels(newModels);
-          });
-        },
-
-        pushEmpty() {
-          setAll(
-            all.length,
-            PROJECTS.make({
-              v: PROJECT_VERSION,
-              id: makeId(),
-              name: `Untitled Project ${all.length + 1}`,
-              dormantModels: {
-                pokemons: { v: POKEMON_LIST_VERSION, all: [] },
-                regions: REGIONS.recommendedKeys,
-                strictness: STRICTNESSES.defaultKey,
-                pokedexMode: POKEDEX_MODES.defaultKey,
-                customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonIds: [] },
-                excludedTypes: { v: EXCLUDED_TYPES_VERSION, all: [] },
-              },
-            }),
-          );
-        },
-
-        pushDuplicate(id: string) {
-          const index = findIndex(id);
-          const project = all[index];
-          const duplicate = PROJECTS.makeDuplicate(project, getModels);
-
-          setAll(
-            produce((all) => {
-              all.splice(index + 1, 0, duplicate);
-            }),
-          );
-        },
-
-        delete(id: string) {
-          setAll((all) => all.filter((project) => project.id !== id));
-        },
-      };
     });
   }
 
-  return { initial };
-})();
+  function findIndex(id: string) {
+    return mustIndex(
+      all.findIndex((p) => p.id === id),
+      `Can't find project with ID ${id}`,
+    );
+  }
 
-export const projects = PROJECT_LISTS.initial();
+  return {
+    all,
+
+    get activeId() {
+      return activeId();
+    },
+
+    get active() {
+      return active();
+    },
+
+    setName(id: string, name: string) {
+      setAll((project) => project.id === id, "name", name);
+    },
+
+    setActive(id: string) {
+      if (id === activeId()) {
+        return;
+      }
+
+      const oldActiveId = activeId();
+      const oldActiveIndex = findIndex(oldActiveId);
+      const oldModels = getModels();
+
+      const newActiveIndex = findIndex(id);
+      const { dormantModels: newModels, ...newActive } = all[
+        newActiveIndex
+      ] as ProjectWithDormantModels;
+
+      batch(() => {
+        setAll(oldActiveIndex, "dormantModels", oldModels);
+        setAll(newActiveIndex, newActive);
+        setActiveId(id);
+        setModels(newModels);
+      });
+    },
+
+    pushEmpty() {
+      setAll(
+        all.length,
+        PROJECTS.make({
+          v: PROJECT_VERSION,
+          id: makeId(),
+          name: `Untitled Project ${all.length + 1}`,
+          dormantModels: {
+            pokemons: { v: POKEMON_LIST_VERSION, all: [] },
+            regions: REGIONS.recommendedKeys,
+            strictness: STRICTNESSES.defaultKey,
+            pokedexMode: POKEDEX_MODES.defaultKey,
+            customIconsMetadata: { v: CUSTOM_ICONS_METADATA_VERSION, pokemonIds: [] },
+            excludedTypes: { v: EXCLUDED_TYPES_VERSION, all: [] },
+          },
+        }),
+      );
+    },
+
+    pushDuplicate(id: string) {
+      const index = findIndex(id);
+      const project = all[index];
+      const duplicate = PROJECTS.makeDuplicate(project, getModels);
+
+      setAll(
+        produce((all) => {
+          all.splice(index + 1, 0, duplicate);
+        }),
+      );
+    },
+
+    delete(id: string) {
+      setAll((all) => all.filter((project) => project.id !== id));
+    },
+  };
+});
+
+function getModels(): RawProjectModels {
+  return {
+    pokemons: pokemons.toRaw(),
+    regions: regions.toRaw(),
+    strictness: strictness.key,
+    pokedexMode: pokedexMode.key,
+    customIconsMetadata: customIconsMetadata.toRaw(),
+    excludedTypes: excludedTypes.toRaw(),
+  };
+}
+
+function setModels(models: RawProjectModels) {
+  batch(() => {
+    pokemons.setFromRaw(models.pokemons);
+    regions.set(models.regions);
+    strictness.key = models.strictness;
+    pokedexMode.key = models.pokedexMode;
+    customIconsMetadata.setFromRaw(models.customIconsMetadata);
+    excludedTypes.setFromRaw(models.excludedTypes);
+  });
+}

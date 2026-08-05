@@ -12,60 +12,52 @@ export const RawExcludedTypesSet = v.object({
   all: v.array(v.string()),
 });
 
-export const EXCLUDED_TYPES_SETS = (() => {
-  function initial() {
-    return createRoot(() => {
-      const store = stored("stardex_excluded_types");
+export const excludedTypes = createRoot(() => {
+  const store = stored("stardex_excluded_types");
 
-      const all = new ReactiveSet<string>();
+  const all = new ReactiveSet<string>();
 
-      const caught = catchStartupError("excludedTypes", () => {
-        const raw = store.load();
-        if (!raw) return;
-        for (const type of v.parse(RawExcludedTypesSet, raw).all) {
-          all.add(type);
-        }
-      });
+  const caught = catchStartupError("excludedTypes", () => {
+    const raw = store.load();
+    if (!raw) return;
+    for (const type of v.parse(RawExcludedTypesSet, raw).all) {
+      all.add(type);
+    }
+  });
 
-      if (!caught) {
-        createEffect(() => {
-          store.dump({
-            v: EXCLUDED_TYPES_VERSION,
-            all: [...all],
-          } satisfies RawExcludedTypesSet);
-        });
-      }
-
-      return {
-        all: all as ReadonlySet<string>,
-
-        toggle(typeKey: string) {
-          if (all.has(typeKey)) {
-            all.delete(typeKey);
-          } else {
-            all.add(typeKey);
-          }
-        },
-        setFromRaw(raw: RawExcludedTypesSet) {
-          all.clear();
-          for (const type of raw.all) {
-            all.add(type);
-          }
-        },
-        toRaw(): RawExcludedTypesSet {
-          return {
-            v: EXCLUDED_TYPES_VERSION,
-            all: [...all],
-          };
-        },
-        toJSON(): unknown {
-          return this.toRaw();
-        },
-      };
+  if (!caught) {
+    createEffect(() => {
+      store.dump({
+        v: EXCLUDED_TYPES_VERSION,
+        all: [...all],
+      } satisfies RawExcludedTypesSet);
     });
   }
 
-  return { initial };
-})();
+  return {
+    all: all as ReadonlySet<string>,
 
-export const excludedTypes = EXCLUDED_TYPES_SETS.initial();
+    toggle(typeKey: string) {
+      if (all.has(typeKey)) {
+        all.delete(typeKey);
+      } else {
+        all.add(typeKey);
+      }
+    },
+    setFromRaw(raw: RawExcludedTypesSet) {
+      all.clear();
+      for (const type of raw.all) {
+        all.add(type);
+      }
+    },
+    toRaw(): RawExcludedTypesSet {
+      return {
+        v: EXCLUDED_TYPES_VERSION,
+        all: [...all],
+      };
+    },
+    toJSON(): unknown {
+      return this.toRaw();
+    },
+  };
+});

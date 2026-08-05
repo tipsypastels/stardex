@@ -17,51 +17,45 @@ const VAny_PokedexModeKey = v.union([
   v.pipe(V0_PokedexModeKey, v.transform(V0_upgradePokedexModeKey)),
 ]);
 
-export const POKEDEX_MODES = (() => {
-  const keys = KEYS;
-  const defaultKey: PokedexModeKey = "icons";
-  const options = keys.map((key) => ({ key, ...RAW_DATA[key] }));
+export const POKEDEX_MODES = {
+  keys: KEYS,
+  defaultKey: "icons" as PokedexModeKey,
+  options: KEYS.map((key) => ({ key, ...RAW_DATA[key] })),
+};
 
-  function initial() {
-    return createRoot(() => {
-      const store = stored("stardex_pokedex_mode");
-      const [key, setKey] = createSignal(defaultKey);
+export const pokedexMode = createRoot(() => {
+  const store = stored("stardex_pokedex_mode");
+  const [key, setKey] = createSignal(POKEDEX_MODES.defaultKey);
 
-      const caught = catchStartupError("pokedexMode", () => {
-        const key = store.load();
-        if (key) setKey(v.parse(VAny_PokedexModeKey, key));
-      });
+  const caught = catchStartupError("pokedexMode", () => {
+    const key = store.load();
+    if (key) setKey(v.parse(VAny_PokedexModeKey, key));
+  });
 
-      if (!caught) {
-        createEffect(() => {
-          store.dump(key());
-        });
-      }
-
-      return {
-        get key() {
-          return key();
-        },
-        set key(key: PokedexModeKey) {
-          setKey(key);
-        },
-        get name() {
-          return RAW_DATA[key()].name;
-        },
-        get icon() {
-          return RAW_DATA[key()].icon;
-        },
-        get description() {
-          return RAW_DATA[key()].description;
-        },
-        get index() {
-          return POKEDEX_MODES.keys.indexOf(key());
-        },
-      };
+  if (!caught) {
+    createEffect(() => {
+      store.dump(key());
     });
   }
 
-  return { keys, defaultKey, options, initial };
-})();
-
-export const pokedexMode = POKEDEX_MODES.initial();
+  return {
+    get key() {
+      return key();
+    },
+    set key(key: PokedexModeKey) {
+      setKey(key);
+    },
+    get name() {
+      return RAW_DATA[key()].name;
+    },
+    get icon() {
+      return RAW_DATA[key()].icon;
+    },
+    get description() {
+      return RAW_DATA[key()].description;
+    },
+    get index() {
+      return POKEDEX_MODES.keys.indexOf(key());
+    },
+  };
+});
