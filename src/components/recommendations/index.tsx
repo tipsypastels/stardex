@@ -1,4 +1,5 @@
 import { createSignal, Show } from "solid-js";
+import { recommendations } from "../../models/metrics";
 import { pokemons } from "../../models/pokemon/list";
 import { regions } from "../../models/region/set";
 import { strictness } from "../../models/strictness";
@@ -44,9 +45,9 @@ export function Recommendations() {
       </ActionBar>
 
       <Show when={pokemons.all.length > 0 && regions.all.length > 0} fallback={emptyFallbacks()}>
-        <RecommendedChangeGroup change="remove" title="Too Many" />
-        <RecommendedChangeGroup change="add" title="Too Few" />
-        <RecommendedChangeGroup change="none" title="Just Right" />
+        <RecommendedChangeGroup recommendations={recommendations.value.remove} title="Too Many" />
+        <RecommendedChangeGroup recommendations={recommendations.value.add} title="Too Few" />
+        <RecommendedChangeGroup recommendations={recommendations.value.none} title="Just Right" />
       </Show>
 
       <Show when={modal() === "regions"}>

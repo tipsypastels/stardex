@@ -3,6 +3,7 @@ import { sortStrings } from "../utils/string";
 import type { AllotedType, Allotment } from "./allotment";
 
 export type RecommendedChange = "none" | "add" | "remove";
+export type Recommendations = Record<RecommendedChange, Recommendation[]>;
 
 export interface Recommendation {
   type: Type;
@@ -17,8 +18,7 @@ export function createRecommendations(
   maxDiff: number,
   excludedTypeKeys: ReadonlySet<string>,
 ) {
-  const recs: Recommendation[] = [];
-
+  const out: Recommendations = { none: [], add: [], remove: [] };
   const own = withEmptiesAndSortedByTypeName(ownAllot);
   const against = withEmptiesAndSortedByTypeName(againstAllot);
 
@@ -37,10 +37,10 @@ export function createRecommendations(
     const type = ownAllotedType.type;
     const change = chooseChange(ownRatio, againstRatio, maxDiff);
 
-    recs.push({ type, ownRatio, againstRatio, change });
+    out[change].push({ type, ownRatio, againstRatio, change });
   }
 
-  return recs;
+  return out;
 }
 
 function withEmptiesAndSortedByTypeName(allot: Allotment): AllotedType[] {
