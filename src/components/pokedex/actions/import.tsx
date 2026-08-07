@@ -63,7 +63,7 @@ export function ImportPokedexViaAction(props: ImportPokedexViaActionProps) {
 
             <Show when={pokemons.all.length > 0}>
               <div class="mt-2 text-sm">
-                <strong class="text-warning">Warning:</strong> Your Pokédex isn't empty. Importing
+                <strong class="text-danger">Danger:</strong> Your Pokédex isn't empty. Importing
                 anything will overwrite it.
               </div>
             </Show>

@@ -50,12 +50,12 @@ export function ImportPBSErrors(props: ImportPBSErrorsProps) {
       </Show>
 
       <Show when={errors().modelErrors.length > 0}>
-        <ul class="mt-2 rounded-md border-2 border-error p-2 text-sm">
+        <ul class="mt-2 rounded-md border-2 border-danger p-2 text-sm">
           <For each={errors().modelErrors}>
             {(error) => (
               <li class="mb-2 last:mb-0">
                 <div>
-                  <span class="text-error">{renderModelErrorLine(error)}</span>{" "}
+                  <span class="text-danger">{renderModelErrorLine(error)}</span>{" "}
                   <span class="text-foreground-muted">
                     ({error.fileName} line {error.lineIndex + 1})
                   </span>

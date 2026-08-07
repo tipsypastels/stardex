@@ -44,7 +44,7 @@ function StartupError(props: StartupErrorProps) {
 
   return (
     <div class="m-auto w-200 max-w-full px-4 pt-8 md:px-0">
-      <h1 class="mb-2 border-b-2 border-b-error pb-2 text-3xl font-bold text-error">Error!</h1>
+      <h1 class="mb-2 border-b-2 border-b-danger pb-2 text-3xl font-bold text-danger">Error!</h1>
       <p class="mb-4">
         <strong>Your Stardex state is corrupted and could not be loaded.</strong>
       </p>

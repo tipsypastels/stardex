@@ -16,7 +16,10 @@
   --color-secondary-foreground: var(--secondary-foreground);
 
   --color-warning: var(--warning);
-  --color-error: var(--error);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
 
   --color-footer: var(--footer);
   --color-footer-foreground: var(--footer-foreground);
@@ -59,7 +62,10 @@
   --secondary-foreground: white;
 
   --warning: var(--color-amber-600);
-  --error: var(--color-red-600);
+  --warning-foreground: white;
+
+  --danger: var(--color-red-600);
+  --danger-foreground: white;
 
   --footer: var(--secondary);
   --footer-foreground: var(--secondary-foreground);
@@ -96,7 +102,10 @@
   --secondary-foreground: black;
 
   --warning: var(--color-amber-400);
-  --error: var(--color-red-600);
+  --warning-foreground: white;
+
+  --danger: var(--color-red-500);
+  --danger-foreground: white;
 
   --footer: var(--color-slate-900);
   --footer-foreground: var(--foreground);
