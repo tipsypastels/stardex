@@ -8,11 +8,13 @@ import { ButtonLink } from "../common/link";
 import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
 import { Section } from "../layout/section";
 import { RecommendedChangeGroup } from "./group";
+import { createPipRecommendations, PipRecommendations } from "./pip";
 import { regionsIcon, RegionsModal } from "./regions";
 import { StrictnessModal } from "./strictness";
 
 export function Recommendations() {
   const [modal, setModal] = createSignal<"regions" | "strictness">();
+  const pip = createPipRecommendations();
 
   function emptyFallbacks() {
     return (
@@ -34,29 +36,36 @@ export function Recommendations() {
   }
 
   return (
-    <Section id="recommendations" title="Recommendations" hasActions>
-      <ActionBar>
-        <ActionBarItem name="Regions" icon={regionsIcon()} onClick={() => setModal("regions")} />
-        <ActionBarItem
-          name="Strictness"
-          icon={strictness.icon}
-          onClick={() => setModal("strictness")}
-        />
-      </ActionBar>
+    <>
+      <Section id="recommendations" title="Recommendations" hasActions>
+        <ActionBar>
+          <ActionBarItem name="Regions" icon={regionsIcon()} onClick={() => setModal("regions")} />
+          <ActionBarItem
+            name="Strictness"
+            icon={strictness.icon}
+            onClick={() => setModal("strictness")}
+          />
+          <ActionBarItem name="Pop Out" icon="picture-in-picture" onClick={() => pip.toggle()} />
+        </ActionBar>
 
-      <Show when={pokemons.all.length > 0 && regions.all.length > 0} fallback={emptyFallbacks()}>
-        <RecommendedChangeGroup recommendations={recommendations.value.remove} title="Too Many" />
-        <RecommendedChangeGroup recommendations={recommendations.value.add} title="Too Few" />
-        <RecommendedChangeGroup recommendations={recommendations.value.none} title="Just Right" />
-      </Show>
+        <Show when={pokemons.all.length > 0 && regions.all.length > 0} fallback={emptyFallbacks()}>
+          <RecommendedChangeGroup recommendations={recommendations.value.remove} title="Too Many" />
+          <RecommendedChangeGroup recommendations={recommendations.value.add} title="Too Few" />
+          <RecommendedChangeGroup recommendations={recommendations.value.none} title="Just Right" />
+        </Show>
 
-      <Show when={modal() === "regions"}>
-        <RegionsModal onClose={() => setModal(undefined)} />
-      </Show>
+        <Show when={modal() === "regions"}>
+          <RegionsModal onClose={() => setModal(undefined)} />
+        </Show>
 
-      <Show when={modal() === "strictness"}>
-        <StrictnessModal onClose={() => setModal(undefined)} />
+        <Show when={modal() === "strictness"}>
+          <StrictnessModal onClose={() => setModal(undefined)} />
+        </Show>
+      </Section>
+
+      <Show when={pip.inOrAnimating}>
+        <PipRecommendations pip={pip} />
       </Show>
-    </Section>
+    </>
   );
 }
