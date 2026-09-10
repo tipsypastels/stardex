@@ -149,6 +149,10 @@
     @apply text-secondary!;
   }
 
+  input::-webkit-calendar-picker-indicator {
+    @apply hidden!;
+  }
+
   code {
     @apply text-sm md:text-base;
   }
