@@ -1,4 +1,4 @@
-import { createMemo, createSignal, For, Show } from "solid-js";
+import { batch, createMemo, createSignal, For, Show } from "solid-js";
 import { pokemons } from "../../models/pokemon/list";
 import { CUSTOM_TYPES, type Type } from "../../models/type";
 import { customTypeColors } from "../../models/type/custom_colors";
@@ -84,7 +84,15 @@ function CustomType(props: CustomTypeProps) {
             name="Rename"
             icon="pen-to-square"
             onClick={() => {
-              // TODO
+              const name = prompt(`Enter a new name for the "${props.type.name}" type...`)?.trim();
+              if (name && name !== props.type.name) {
+                const newType = CUSTOM_TYPES.of(name.toLowerCase());
+
+                batch(() => {
+                  pokemons.bulkReplaceTypeKey(props.type.key, newType.key);
+                  customTypeColors.replaceKey(props.type.key, newType.key);
+                });
+              }
             }}
           />
           <DropdownDivider />

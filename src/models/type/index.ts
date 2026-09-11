@@ -90,7 +90,7 @@ export const CUSTOM_TYPES = createRoot(() => {
       }
     }
 
-    return [...found];
+    return [...found].sort((a, b) => sortStrings(a.name, b.name));
   }
 
   return {

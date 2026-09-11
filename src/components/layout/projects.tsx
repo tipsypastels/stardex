@@ -126,7 +126,7 @@ function ProjectOption(props: ProjectOptionProps) {
             name="Rename Project"
             icon="pen-to-square"
             onClick={() => {
-              const name = prompt(`Enter a new name for "${props.project.name}"...`);
+              const name = prompt(`Enter a new name for "${props.project.name}"...`)?.trim();
               if (name && name !== props.project.name) {
                 projects.setName(props.project.id, name);
               }

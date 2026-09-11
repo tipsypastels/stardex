@@ -47,6 +47,13 @@ export const customTypeColors = createRoot(() => {
     delete(key: string) {
       all.delete(key);
     },
+    replaceKey(oldKey: string, newKey: string) {
+      const color = all.get(oldKey);
+      if (color) {
+        all.delete(oldKey);
+        all.set(newKey, color);
+      }
+    },
     toRaw,
     setFromRaw,
   };
