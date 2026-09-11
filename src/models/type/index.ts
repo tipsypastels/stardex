@@ -1,19 +1,18 @@
-import { ReactiveSet } from "@solid-primitives/set";
 import randomColor from "randomcolor";
-import { createEffect, createRoot, createSignal } from "solid-js";
-import * as v from "valibot";
+import { createRoot } from "solid-js";
 import RAW_DATA from "../../data/types.json" with { type: "json" };
 import { must } from "../../utils/assert";
-import { stored } from "../../utils/storage";
 import { capitalize, sortStrings } from "../../utils/string";
 import type { Pokemon } from "../pokemon";
-import { catchStartupError } from "../ui/error";
+import { customTypeColors } from "./custom_colors";
 
-/* -------------------------------------------------------------------------- */
-/*                                   Shared                                   */
-/* -------------------------------------------------------------------------- */
-
-export type Type = BuiltinType | CustomType;
+export interface Type {
+  key: string;
+  name: string;
+  color: string;
+  icon: string;
+  kind: "builtin" | "custom";
+}
 
 export const TYPES = {
   of(key: string) {
@@ -34,18 +33,6 @@ export const TYPES = {
   },
 };
 
-/* -------------------------------------------------------------------------- */
-/*                                   Builtin                                  */
-/* -------------------------------------------------------------------------- */
-
-export interface BuiltinType {
-  readonly key: string;
-  readonly name: string;
-  readonly color: string;
-  readonly icon: string;
-  readonly kind: "builtin";
-}
-
 export const BUILTIN_TYPES = (() => {
   const keys = Object.keys(RAW_DATA);
   const all = keys.map(make);
@@ -63,49 +50,11 @@ export const BUILTIN_TYPES = (() => {
   return { keys, all, map, of };
 })();
 
-/* -------------------------------------------------------------------------- */
-/*                                   Custom                                   */
-/* -------------------------------------------------------------------------- */
-
-export interface CustomType {
-  readonly key: string;
-  readonly name: string;
-  readonly color: string;
-  setColor(color: string): void;
-  resetColor(): void;
-  readonly icon: string;
-  readonly kind: "custom";
-}
-
 export const CUSTOM_TYPES = createRoot(() => {
   // Note: this is not used directly in the custom
   // editor because it's never cleared, so types exist
   // in it that are no longer actually present in dex.
-  const cache = new Map<string, CustomType>();
-  const hasCustomColors = new ReactiveSet<string>();
-
-  const store = stored("stardex_custom_type_colors");
-  const caught = catchStartupError("customTypeColors", () => {
-    const raw_ = store.load();
-    if (!raw_) return;
-
-    const raw = v.parse(v.record(v.string(), v.string()), raw_);
-
-    for (const [key, color] of Object.entries(raw)) {
-      of(key).setColor(color);
-    }
-  });
-
-  if (!caught) {
-    createEffect(() => {
-      const record: Record<string, string> = {};
-      for (const key of hasCustomColors) {
-        const type = cache.get(key);
-        if (type) record[key] = type.color;
-      }
-      store.dump(record);
-    });
-  }
+  const cache = new Map<string, Type>();
 
   function of(key: string) {
     const cached = cache.get(key);
@@ -116,22 +65,14 @@ export const CUSTOM_TYPES = createRoot(() => {
     return made;
   }
 
-  function make(key: string): CustomType {
+  function make(key: string): Type {
     const name = capitalize(key);
-    const [color, setColor] = createSignal(randomColor({ seed: key }));
+    const defaultColor = randomColor({ seed: key });
     return {
       key,
       name,
       get color() {
-        return color();
-      },
-      setColor(color) {
-        setColor(color);
-        hasCustomColors.add(key);
-      },
-      resetColor() {
-        setColor(randomColor({ seed: key }));
-        hasCustomColors.delete(key);
+        return customTypeColors.get(key) ?? defaultColor;
       },
       icon: "question-circle",
       kind: "custom",
@@ -139,7 +80,7 @@ export const CUSTOM_TYPES = createRoot(() => {
   }
 
   function onPokemons(pokemons: Pokemon[]) {
-    const found = new Set<CustomType>();
+    const found = new Set<Type>();
 
     for (const pokemon of pokemons) {
       for (const type of pokemon.types) {
@@ -152,5 +93,8 @@ export const CUSTOM_TYPES = createRoot(() => {
     return [...found];
   }
 
-  return { of, onPokemons };
+  return {
+    of,
+    onPokemons,
+  };
 });

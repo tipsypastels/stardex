@@ -1,6 +1,7 @@
 import { createMemo, For } from "solid-js";
 import { pokemons } from "../../models/pokemon/list";
 import { CUSTOM_TYPES } from "../../models/type";
+import { customTypeColors } from "../../models/type/custom_colors";
 import { Modal } from "../common/menus/modal";
 import { TypeName } from "./util/name";
 
@@ -25,7 +26,7 @@ export function CustomTypesModal(props: CustomTypesModalProps) {
                   type="color"
                   value={type.color}
                   onInput={(event) => {
-                    type.setColor(event.target.value);
+                    customTypeColors.set(type.key, event.target.value);
                   }}
                 />
               </div>
