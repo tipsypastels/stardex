@@ -1,18 +1,19 @@
+import { ReactiveSet } from "@solid-primitives/set";
 import randomColor from "randomcolor";
-import { createSignal } from "solid-js";
+import { createEffect, createRoot, createSignal } from "solid-js";
+import * as v from "valibot";
 import RAW_DATA from "../../data/types.json" with { type: "json" };
 import { must } from "../../utils/assert";
+import { stored } from "../../utils/storage";
 import { capitalize, sortStrings } from "../../utils/string";
 import type { Pokemon } from "../pokemon";
-import { unwrap } from 'solid-js/store';
+import { catchStartupError } from "../ui/error";
 
-export interface Type {
-  key: string;
-  name: string;
-  color: string;
-  icon: string;
-  kind: "builtin" | "custom";
-}
+/* -------------------------------------------------------------------------- */
+/*                                   Shared                                   */
+/* -------------------------------------------------------------------------- */
+
+export type Type = BuiltinType | CustomType;
 
 export const TYPES = {
   of(key: string) {
@@ -33,6 +34,18 @@ export const TYPES = {
   },
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                   Builtin                                  */
+/* -------------------------------------------------------------------------- */
+
+export interface BuiltinType {
+  readonly key: string;
+  readonly name: string;
+  readonly color: string;
+  readonly icon: string;
+  readonly kind: "builtin";
+}
+
 export const BUILTIN_TYPES = (() => {
   const keys = Object.keys(RAW_DATA);
   const all = keys.map(make);
@@ -50,11 +63,49 @@ export const BUILTIN_TYPES = (() => {
   return { keys, all, map, of };
 })();
 
-export const CUSTOM_TYPES = (() => {
+/* -------------------------------------------------------------------------- */
+/*                                   Custom                                   */
+/* -------------------------------------------------------------------------- */
+
+export interface CustomType {
+  readonly key: string;
+  readonly name: string;
+  readonly color: string;
+  setColor(color: string): void;
+  resetColor(): void;
+  readonly icon: string;
+  readonly kind: "custom";
+}
+
+export const CUSTOM_TYPES = createRoot(() => {
   // Note: this is not used directly in the custom
   // editor because it's never cleared, so types exist
   // in it that are no longer actually present in dex.
-  const cache = new Map<string, Type>();
+  const cache = new Map<string, CustomType>();
+  const hasCustomColors = new ReactiveSet<string>();
+
+  const store = stored("stardex_custom_type_colors");
+  const caught = catchStartupError("customTypeColors", () => {
+    const raw_ = store.load();
+    if (!raw_) return;
+
+    const raw = v.parse(v.record(v.string(), v.string()), raw_);
+
+    for (const [key, color] of Object.entries(raw)) {
+      of(key).setColor(color);
+    }
+  });
+
+  if (!caught) {
+    createEffect(() => {
+      const record: Record<string, string> = {};
+      for (const key of hasCustomColors) {
+        const type = cache.get(key);
+        if (type) record[key] = type.color;
+      }
+      store.dump(record);
+    });
+  }
 
   function of(key: string) {
     const cached = cache.get(key);
@@ -65,7 +116,7 @@ export const CUSTOM_TYPES = (() => {
     return made;
   }
 
-  function make(key: string): Type {
+  function make(key: string): CustomType {
     const name = capitalize(key);
     const [color, setColor] = createSignal(randomColor({ seed: key }));
     return {
@@ -74,8 +125,13 @@ export const CUSTOM_TYPES = (() => {
       get color() {
         return color();
       },
-      set color(color: string) {
+      setColor(color) {
         setColor(color);
+        hasCustomColors.add(key);
+      },
+      resetColor() {
+        setColor(randomColor({ seed: key }));
+        hasCustomColors.delete(key);
       },
       icon: "question-circle",
       kind: "custom",
@@ -83,15 +139,12 @@ export const CUSTOM_TYPES = (() => {
   }
 
   function onPokemons(pokemons: Pokemon[]) {
-    const found = new Set<Type>();
+    const found = new Set<CustomType>();
 
     for (const pokemon of pokemons) {
       for (const type of pokemon.types) {
         if (type.kind === "custom") {
-          // This needs unwrap because pokemons.all[i].types is still proxied,
-          // and catches the proxy trap claiming that we're mutating an object improperly,
-          // which we're actually not - it's not a true field of pokemon, it's a getter.
-          found.add(unwrap(type));
+          found.add(type);
         }
       }
     }
@@ -100,4 +153,4 @@ export const CUSTOM_TYPES = (() => {
   }
 
   return { of, onPokemons };
-})();
+});

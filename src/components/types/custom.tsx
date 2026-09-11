@@ -25,7 +25,7 @@ export function CustomTypesModal(props: CustomTypesModalProps) {
                   type="color"
                   value={type.color}
                   onInput={(event) => {
-                    type.color = event.target.value;
+                    type.setColor(event.target.value);
                   }}
                 />
               </div>
