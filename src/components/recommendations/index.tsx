@@ -1,4 +1,4 @@
-import { createSignal, Show } from "solid-js";
+import { createEffect, createSignal, Show } from "solid-js";
 import { recommendations } from "../../models/metrics";
 import { pokemons } from "../../models/pokemon/list";
 import { regions } from "../../models/region/set";
@@ -8,13 +8,14 @@ import { ButtonLink } from "../common/link";
 import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
 import { Section } from "../layout/section";
 import { RecommendedChangeGroup } from "./group";
-import { createPipRecommendations, PipRecommendations } from "./pip";
+import { PipRecommendations } from "./pip";
 import { regionsIcon, RegionsModal } from "./regions";
 import { StrictnessModal } from "./strictness";
 
 export function Recommendations() {
   const [modal, setModal] = createSignal<"regions" | "strictness">();
-  const pip = createPipRecommendations();
+  const [pip, setPip] = createSignal(false);
+  const nonEmpty = () => pokemons.all.length > 0 && regions.all.length > 0;
 
   function emptyFallbacks() {
     return (
@@ -35,6 +36,12 @@ export function Recommendations() {
     );
   }
 
+  createEffect(() => {
+    if (pip() && !nonEmpty()) {
+      setPip(false);
+    }
+  });
+
   return (
     <>
       <Section id="recommendations" title="Recommendations" hasActions>
@@ -45,10 +52,16 @@ export function Recommendations() {
             icon={strictness.icon}
             onClick={() => setModal("strictness")}
           />
-          <ActionBarItem name="Pop Out" icon="picture-in-picture" onClick={() => pip.toggle()} />
+          <ActionBarItem
+            name="Pop Out"
+            icon="picture-in-picture"
+            onClick={() => setPip((pip) => !pip)}
+            active={pip()}
+            disabled={!nonEmpty()}
+          />
         </ActionBar>
 
-        <Show when={pokemons.all.length > 0 && regions.all.length > 0} fallback={emptyFallbacks()}>
+        <Show when={nonEmpty()} fallback={emptyFallbacks()}>
           <RecommendedChangeGroup recommendations={recommendations.value.remove} title="Too Many" />
           <RecommendedChangeGroup recommendations={recommendations.value.add} title="Too Few" />
           <RecommendedChangeGroup recommendations={recommendations.value.none} title="Just Right" />
@@ -63,8 +76,8 @@ export function Recommendations() {
         </Show>
       </Section>
 
-      <Show when={pip.inOrAnimating}>
-        <PipRecommendations pip={pip} />
+      <Show when={pip()}>
+        <PipRecommendations onClose={() => setPip(false)} />
       </Show>
     </>
   );
