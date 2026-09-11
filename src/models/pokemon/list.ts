@@ -7,7 +7,7 @@ import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchStartupError } from "../ui/error";
 import { runAutosort, type AutosortRequest } from "./autosort";
-import { createPokemonMutator } from "./mutator";
+import { createPokemonMutator, pokemonListBulkReplaceTypeKey } from "./mutator";
 import {
   POKEMON_LIST_VERSION,
   POKEMON_VERSION,
@@ -92,6 +92,10 @@ export const pokemons = createRoot(() => {
 
     delete(id: string) {
       setAll((all) => all.filter((pokemon) => pokemon.id !== id));
+    },
+
+    bulkReplaceTypeKey(oldKey: string, newKey: string) {
+      pokemonListBulkReplaceTypeKey(oldKey, newKey, setAll);
     },
 
     autosort(request: AutosortRequest) {

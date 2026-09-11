@@ -2,6 +2,8 @@ import randomColor from "randomcolor";
 import RAW_DATA from "../../data/types.json" with { type: "json" };
 import { must } from "../../utils/assert";
 import { capitalize, sortStrings } from "../../utils/string";
+import type { Pokemon } from "../pokemon";
+import { customTypeColors } from "./custom_colors";
 
 export interface Type {
   key: string;
@@ -48,6 +50,9 @@ export const BUILTIN_TYPES = (() => {
 })();
 
 export const CUSTOM_TYPES = (() => {
+  // Note: this is not used directly in the custom
+  // editor because it's never cleared, so types exist
+  // in it that are no longer actually present in dex.
   const cache = new Map<string, Type>();
 
   function of(key: string) {
@@ -61,9 +66,34 @@ export const CUSTOM_TYPES = (() => {
 
   function make(key: string): Type {
     const name = capitalize(key);
-    const color = randomColor({ seed: key });
-    return { key, name, color, icon: "question-circle", kind: "custom" };
+    const defaultColor = randomColor({ seed: key });
+    return {
+      key,
+      name,
+      get color() {
+        return customTypeColors.get(key) ?? defaultColor;
+      },
+      icon: "question-circle",
+      kind: "custom",
+    };
   }
 
-  return { of };
+  function onPokemons(pokemons: Pokemon[]) {
+    const found = new Set<Type>();
+
+    for (const pokemon of pokemons) {
+      for (const type of pokemon.types) {
+        if (type.kind === "custom") {
+          found.add(type);
+        }
+      }
+    }
+
+    return [...found].sort((a, b) => sortStrings(a.name, b.name));
+  }
+
+  return {
+    of,
+    onPokemons,
+  };
 })();

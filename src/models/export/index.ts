@@ -8,6 +8,7 @@ import { projects } from "../project/list";
 import { RegionKey } from "../region";
 import { regions } from "../region/set";
 import { strictness, StrictnessKey } from "../strictness";
+import { customTypeColors } from "../type/custom_colors";
 import { excludedTypes, RawExcludedTypesSet } from "../type/excluded";
 import { V0_RawJSONExport, V0_upgradeRawJSONExport } from "./versioned";
 
@@ -26,6 +27,7 @@ export const RawJSONExport = v.object({
   pokedexMode: PokedexModeKey,
   customIcons: RawJSONExportCustomIcons,
   excludedTypes: RawExcludedTypesSet,
+  customTypeColors: v.optional(v.record(v.string(), v.string())),
 });
 
 export type RawJSONExportCustomIcons = v.InferOutput<typeof RawJSONExportCustomIcons>;
@@ -48,6 +50,10 @@ export function loadJSONExport(raw: RawJSONExport) {
     pokedexMode.key = raw.pokedexMode;
     excludedTypes.setFromRaw(raw.excludedTypes);
     customIcons.setFromRawExport(raw.customIcons);
+
+    if (raw.customTypeColors) {
+      customTypeColors.setFromRaw(raw.customTypeColors);
+    }
   });
 }
 
@@ -61,6 +67,7 @@ export function saveJSONExport() {
     pokedexMode: pokedexMode.key,
     excludedTypes: excludedTypes.toRaw(),
     customIcons: customIcons.toRawExport(),
+    customTypeColors: customTypeColors.toRaw(),
   };
   saveToFile(`Stardex ${json.projectName}.json`, "json", JSON.stringify(json));
 }

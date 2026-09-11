@@ -2,11 +2,15 @@ import {
   batch,
   createContext,
   createEffect,
+  createSignal,
   onCleanup,
   useContext,
   type JSXElement,
 } from "solid-js";
+import { Portal } from "solid-js/web";
 import { Icon } from "../icon";
+
+const root = document.getElementById("root-modal")!;
 
 export interface DropdownProps {
   children: JSXElement;
@@ -14,26 +18,71 @@ export interface DropdownProps {
 }
 
 export function Dropdown(props: DropdownProps) {
-  let ref!: HTMLDivElement;
+  interface Position {
+    top?: number;
+    bottom?: number;
+    right: number;
+  }
+
+  const [position, setPosition] = createSignal<Position>({ top: 0, right: 0 });
+
+  let anchor!: HTMLDivElement;
+  let panel: HTMLDivElement | undefined;
+
+  function updatePosition() {
+    if (!anchor) return;
+    const rect = anchor.getBoundingClientRect();
+    const right = window.innerWidth - rect.right;
+
+    const panelHeight = panel?.offsetHeight ?? 0;
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const fitsBelow = spaceBelow >= panelHeight || panelHeight === 0;
+    if (fitsBelow) {
+      setPosition({ top: rect.bottom, right });
+    } else {
+      setPosition({ bottom: window.innerHeight - rect.top, right });
+    }
+  }
 
   function handleClick(event: MouseEvent) {
-    if (!ref?.contains(event.target as Node)) {
+    const node = event.target as Node;
+    if (!anchor?.contains(node) && !panel?.contains(node)) {
+      event.stopPropagation();
       props.onClose();
     }
   }
 
   createEffect(() => {
+    updatePosition();
+
     document.body.addEventListener("click", handleClick, true);
-    onCleanup(() => document.body.removeEventListener("click", handleClick, true));
+    window.addEventListener("resize", updatePosition, true);
+    window.addEventListener("scroll", updatePosition, true);
+
+    onCleanup(() => {
+      document.body.removeEventListener("click", handleClick, true);
+      window.removeEventListener("resize", updatePosition, true);
+      window.removeEventListener("scroll", updatePosition, true);
+    });
   });
 
   return (
     // eslint-disable-next-line solid/reactivity
     <OnCloseContext.Provider value={props.onClose}>
-      <div class="relative" ref={ref}>
-        <div class="absolute -top-4 right-0 z-60 w-max rounded-md border-2 border-divider-light bg-background shadow-lg">
-          <ul class="appearance-auto py-2">{props.children}</ul>
-        </div>
+      <div class="relative" ref={anchor}>
+        <Portal mount={root}>
+          <div
+            ref={panel}
+            class="fixed z-60 w-max rounded-md border-2 border-divider-light bg-background shadow-lg"
+            style={{
+              top: position().top !== undefined ? `${position().top}px` : undefined,
+              bottom: position().bottom !== undefined ? `${position().bottom}px` : undefined,
+              right: `${position().right}px`,
+            }}
+          >
+            <ul class="appearance-auto py-2">{props.children}</ul>
+          </div>
+        </Portal>
       </div>
     </OnCloseContext.Provider>
   );
@@ -67,6 +116,25 @@ export function DropdownItem(props: DropdownItemProps) {
 
 export function DropdownDivider() {
   return <li class="mb-2 border-b-2 border-b-divider-light pb-2" />;
+}
+
+export interface DropdownTriggerProps {
+  title: string;
+  open: boolean;
+  onClick(): void;
+}
+
+export function DropdownTrigger(props: DropdownTriggerProps) {
+  return (
+    <button
+      class="cursor-pointer text-foreground-muted"
+      classList={{ "text-primary!": props.open }}
+      title={props.title}
+      onClick={() => props.onClick()}
+    >
+      <Icon name="ellipsis" />
+    </button>
+  );
 }
 
 const OnCloseContext = createContext<() => void>();

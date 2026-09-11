@@ -94,3 +94,23 @@ export function createPokemonMutator(
     },
   };
 }
+
+/* -------------------------------------------------------------------------- */
+/*                            Bulk implementations                            */
+/* -------------------------------------------------------------------------- */
+
+export function pokemonListBulkReplaceTypeKey(
+  oldKey: string,
+  newKey: string,
+  setAll: SetStoreFunction<Pokemon[]>,
+) {
+  setAll(
+    (pokemon) => pokemon.typeKeys.includes(oldKey),
+    produce((pokemon) => {
+      TYPE_KEY_PAIRS.set(
+        pokemon,
+        pokemon.typeKeys.map((key) => (key === oldKey ? newKey : key)),
+      );
+    }),
+  );
+}
