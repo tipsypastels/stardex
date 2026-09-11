@@ -18,7 +18,13 @@ export interface DropdownProps {
 }
 
 export function Dropdown(props: DropdownProps) {
-  const [position, setPosition] = createSignal({ top: 0, right: 0 });
+  interface Position {
+    top?: number;
+    bottom?: number;
+    right: number;
+  }
+
+  const [position, setPosition] = createSignal<Position>({ top: 0, right: 0 });
 
   let anchor!: HTMLDivElement;
   let panel: HTMLDivElement | undefined;
@@ -26,7 +32,16 @@ export function Dropdown(props: DropdownProps) {
   function updatePosition() {
     if (!anchor) return;
     const rect = anchor.getBoundingClientRect();
-    setPosition({ top: rect.bottom, right: window.innerWidth - rect.right });
+    const right = window.innerWidth - rect.right;
+
+    const panelHeight = panel?.offsetHeight ?? 0;
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const fitsBelow = spaceBelow >= panelHeight || panelHeight === 0;
+    if (fitsBelow) {
+      setPosition({ top: rect.bottom, right });
+    } else {
+      setPosition({ bottom: window.innerHeight - rect.top, right });
+    }
   }
 
   function handleClick(event: MouseEvent) {
@@ -60,7 +75,8 @@ export function Dropdown(props: DropdownProps) {
             ref={panel}
             class="fixed z-60 w-max rounded-md border-2 border-divider-light bg-background shadow-lg"
             style={{
-              top: `${position().top}px`,
+              top: position().top !== undefined ? `${position().top}px` : undefined,
+              bottom: position().bottom !== undefined ? `${position().bottom}px` : undefined,
               right: `${position().right}px`,
             }}
           >
