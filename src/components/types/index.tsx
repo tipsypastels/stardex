@@ -1,5 +1,7 @@
-import { createSignal, Show } from "solid-js";
+import { createMemo, createSignal, Show } from "solid-js";
 import { pokemonsAllotment } from "../../models/metrics";
+import { pokemons } from "../../models/pokemon/list";
+import { CUSTOM_TYPES } from "../../models/type";
 import { excludedTypes } from "../../models/type/excluded";
 import { Empty } from "../common/empty";
 import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
@@ -10,6 +12,7 @@ import { TypePieChart } from "./util/pie_chart";
 
 export function Types() {
   const [modal, setModal] = createSignal<"excluded" | "custom">();
+  const customTypes = createMemo(() => CUSTOM_TYPES.onPokemons(pokemons.all));
 
   return (
     <Section id="types" title="Types" hasActions>
@@ -19,7 +22,12 @@ export function Types() {
           icon={excludedTypes.all.size === 0 ? "eye" : "eye-closed"}
           onClick={() => setModal("excluded")}
         />
-        <ActionBarItem name="Custom" icon="question-circle" onClick={() => setModal("custom")} />
+        <ActionBarItem
+          name="Custom"
+          icon="question-circle"
+          onClick={() => setModal("custom")}
+          disabled={customTypes().length === 0}
+        />
       </ActionBar>
       <Show
         when={pokemonsAllotment.value.total > 0}
@@ -31,7 +39,7 @@ export function Types() {
         <ExcludedTypesModal onClose={() => setModal()} />
       </Show>
       <Show when={modal() === "custom"}>
-        <CustomTypesModal onClose={() => setModal()} />
+        <CustomTypesModal types={customTypes()} onClose={() => setModal()} />
       </Show>
     </Section>
   );
