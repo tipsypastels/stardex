@@ -19,7 +19,7 @@ import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
 import { clearPokedexModeRefreshCallback, setPokedexModeRefreshCallback } from "../refresh";
 import { autocomplete } from "./autocomplete";
-import { filtering } from "./filter";
+import { filtering, formatLineNumbersWithFilteredLines } from "./filter";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
@@ -73,7 +73,6 @@ function createState() {
     extensions: [
       minimalSetup,
       // From basicsetup
-      lineNumbers(),
       bracketMatching(),
       closeBrackets(),
       highlightActiveLine(),
@@ -81,6 +80,7 @@ function createState() {
       keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap, ...searchKeymap]),
 
       // From stardex
+      lineNumbers({ formatNumber: formatLineNumbersWithFilteredLines }),
       placeholder("Enter some Pokémon, one per line..."),
       theme,
       selectionMark,

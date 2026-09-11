@@ -30,18 +30,24 @@ const filterState = StateField.define<IdSet | undefined>({
   update: (set) => set,
 });
 
-const hiddenLines = StateField.define<DecorationSet>({
+export interface HiddenLinesComputed {
+  decorations: DecorationSet;
+  visibleLineNumbers?: number[];
+}
+
+const hiddenLines = StateField.define<HiddenLinesComputed>({
   create: decorateHiddenLines,
   update: (set) => set,
-  provide: (field) => EditorView.decorations.from(field),
+  provide: (field) => EditorView.decorations.from(field, (hiddenLines) => hiddenLines.decorations),
 });
 
 function decorateHiddenLines(state: EditorState) {
   const idSet = state.field(filterState);
-  if (!idSet) return Decoration.none;
+  if (!idSet) return { decorations: Decoration.none };
 
   const trackedIds = getAllTrackedIds(state);
   const hiddenLineNumbers: number[] = [];
+  const visibleLineNumbers: number[] = [];
 
   let pokemonIndex = 0;
 
@@ -57,20 +63,19 @@ function decorateHiddenLines(state: EditorState) {
     const isTrackedLine = trackedId && trackedId.from <= line.from && line.to <= trackedId.to;
     const visible = isTrackedLine && idSet.has(trackedId.value);
 
-    if (!visible) {
+    if (visible) {
+      visibleLineNumbers.push(lineNo);
+    } else {
       hiddenLineNumbers.push(lineNo);
     }
   }
 
   const hiddenSpans: Span[] = [];
 
-  // Groups consecutive hidden lines. Hidden lines attach BACKWARDS,
-  // consuming the newline of the non-hidden line before. This is needed
-  // or else codemirror will get the line numbers wrong.
   let i = 0;
+
   while (i < hiddenLineNumbers.length) {
     let j = i;
-
     while (
       j + 1 < hiddenLineNumbers.length &&
       hiddenLineNumbers[j + 1] === hiddenLineNumbers[j] + 1
@@ -80,17 +85,28 @@ function decorateHiddenLines(state: EditorState) {
 
     const firstLine = state.doc.line(hiddenLineNumbers[i]);
     const lastLine = state.doc.line(hiddenLineNumbers[j]);
+    const hasNextLine = hiddenLineNumbers[j] < state.doc.lines;
 
-    if (firstLine.number === 1) {
+    if (hasNextLine) {
       hiddenSpans.push({ from: firstLine.from, to: Math.min(lastLine.to + 1, state.doc.length) });
-    } else {
+    } else if (firstLine.number > 1) {
       hiddenSpans.push({ from: firstLine.from - 1, to: lastLine.to });
+    } else {
+      hiddenSpans.push({ from: firstLine.from, to: lastLine.to });
     }
 
     i = j + 1;
   }
 
-  return Decoration.set(
+  const decorations = Decoration.set(
     hiddenSpans.map((span) => Decoration.replace({}).range(span.from, span.to)),
   );
+
+  return { decorations, visibleLineNumbers };
+}
+
+export function formatLineNumbersWithFilteredLines(lineNo: number, state: EditorState) {
+  const visibleLineNumbers = state.field(hiddenLines, false)?.visibleLineNumbers;
+  const shown = visibleLineNumbers?.find((n) => n >= lineNo) ?? lineNo;
+  return String(shown);
 }
