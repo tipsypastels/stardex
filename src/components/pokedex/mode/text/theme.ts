@@ -112,7 +112,7 @@ export const theme = EditorView.theme({
     border: "2px solid var(--warning)",
   },
   ".cm-diagnostic-error": {
-    border: "2px solid var(--error)",
+    border: "2px solid var(--danger)",
   },
 
   /* --------------------------------- Tooltip -------------------------------- */

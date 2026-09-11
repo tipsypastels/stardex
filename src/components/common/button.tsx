@@ -5,7 +5,7 @@ import { Icon } from "./icon";
 const LOOKS = {
   primary: tw`bg-primary text-primary-foreground`,
   secondary: tw`bg-secondary text-secondary-foreground`,
-  error: tw`bg-error text-white`,
+  error: tw`bg-danger text-danger-foreground`,
 };
 
 export interface ButtonProps {

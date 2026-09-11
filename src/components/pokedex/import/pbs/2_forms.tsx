@@ -178,7 +178,7 @@ export function CustomInner(props: CustomInnerProps) {
             </span>
           </Match>
           <Match when={knownCount === 0}>
-            <span class="text-error">
+            <span class="text-danger">
               <Icon name="times" /> No
             </span>
           </Match>
