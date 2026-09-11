@@ -34,14 +34,11 @@ export interface PokedexModeProps {
 
 export interface PokedexModeViewProps extends PokedexModeProps {
   zapper: boolean;
-  setAfterActionChange(f: (() => void) | undefined): void;
 }
 
 export function PokedexMode(props: PokedexModeProps) {
   const formatInfo = () => MODE_INFOS[pokedexMode.key];
   const [zapper, setZapper] = createSignal(false);
-
-  let afterActionChange: (() => void) | undefined;
 
   function onAutosort(request: AutosortRequest) {
     batch(() => {
@@ -56,19 +53,13 @@ export function PokedexMode(props: PokedexModeProps) {
 
   return (
     <>
-      <PokedexActions
-        zapper={zapper()}
-        setZapper={setZapper}
-        onAutosort={onAutosort}
-        afterActionChange={() => afterActionChange?.()}
-      />
+      <PokedexActions zapper={zapper()} setZapper={setZapper} onAutosort={onAutosort} />
       <Dynamic
         component={formatInfo().component}
         zapper={zapper()}
         setEditingId={props.setEditingId}
-        setAfterActionChange={(f) => (afterActionChange = f)}
       />
-      <PokedexEmpty afterActionChange={() => afterActionChange?.()} />
+      <PokedexEmpty />
     </>
   );
 }

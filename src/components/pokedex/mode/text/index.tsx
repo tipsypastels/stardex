@@ -12,23 +12,29 @@ import {
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
 import { createEffect, onCleanup, onMount, untrack } from "solid-js";
-import type { PokedexModeViewProps } from "..";
+import { pokemonsFiltered } from "../../../../models/pokedex/filter";
+import { pokemons } from "../../../../models/pokemon/list";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
+import { clearPokedexModeRefreshCallback, setPokedexModeRefreshCallback } from "../refresh";
 import { autocomplete } from "./autocomplete";
+import { filtering } from "./filter";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
 import { highlightTheme, selectionMark, theme } from "./theme";
 import { tooltip } from "./tooltip";
 
-export function PokedexTextView(props: PokedexModeViewProps) {
+export function PokedexTextView() {
   let parent!: HTMLDivElement;
   let view: EditorView | undefined;
 
   onMount(() => {
-    props.setAfterActionChange(() => {
+    setPokedexModeRefreshCallback(() => {
+      // eslint-disable-next-line no-console
+      console.log("Text editor refreshing...");
+
       if (view) {
         view.setState(createState());
         parseInitial(view.state);
@@ -37,7 +43,7 @@ export function PokedexTextView(props: PokedexModeViewProps) {
   });
 
   onCleanup(() => {
-    props.setAfterActionChange(undefined);
+    clearPokedexModeRefreshCallback();
   });
 
   createEffect(() => {
@@ -55,6 +61,13 @@ export function PokedexTextView(props: PokedexModeViewProps) {
 function createState() {
   const ids: Spanned<string>[] = [];
   const doc = untrack(() => serializePokemonListToText({ eachId: (id) => ids.push(id) }));
+
+  const filter = filtering(
+    untrack(() =>
+      pokemonsFiltered.all.length < pokemons.all.length ? pokemonsFiltered.all : undefined,
+    ),
+  );
+
   return EditorState.create({
     doc,
     extensions: [
@@ -79,6 +92,7 @@ function createState() {
       parser,
       autocomplete,
       tooltip,
+      filter,
     ],
   });
 }

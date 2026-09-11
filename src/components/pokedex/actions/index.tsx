@@ -8,6 +8,7 @@ import { Button } from "../../common/button";
 import { ActionBar, ActionBarItem } from "../../common/menus/action_bar";
 import { Modal } from "../../common/menus/modal";
 import { AddPokemon } from "../add";
+import { runPokedexModeRefreshCallback } from "../mode/refresh";
 import { AutosortPokedexModal } from "./autosort";
 import { filterPokedexActionIcon, FilterPokedexModal } from "./filter";
 import { ImportPokedexViaAction } from "./import";
@@ -17,7 +18,6 @@ export interface PokedexActionsProps {
   zapper: boolean;
   setZapper(zapper: boolean): void;
   onAutosort(request: AutosortRequest): void;
-  afterActionChange(): void;
 }
 
 export function PokedexActions(props: PokedexActionsProps) {
@@ -50,8 +50,7 @@ export function PokedexActions(props: PokedexActionsProps) {
       pokemons.clear();
       toasts.add("square-x", "Pokédex cleared! A blank slate...");
     });
-
-    props.afterActionChange();
+    runPokedexModeRefreshCallback();
   }
 
   return (
@@ -63,17 +62,17 @@ export function PokedexActions(props: PokedexActionsProps) {
           icon={pokedexMode.icon}
           onClick={() => setModal("mode")}
         />
+        <ActionBarItem
+          id="pokedex-filter"
+          name="Filter"
+          icon={filterPokedexActionIcon(pokedexFilter.state)}
+          active={!!pokedexFilter.state}
+          disabled={isEmpty()}
+          onClick={() => setModal("filter")}
+        />
         <Show when={isNonTextMode()}>
           {(_) => (
             <>
-              <ActionBarItem
-                id="pokedex-filter"
-                name="Filter"
-                icon={filterPokedexActionIcon(pokedexFilter.state)}
-                active={!!pokedexFilter.state}
-                disabled={isEmpty()}
-                onClick={() => setModal("filter")}
-              />
               <ActionBarItem
                 id="pokedex-sort"
                 name="Sort"
@@ -111,7 +110,12 @@ export function PokedexActions(props: PokedexActionsProps) {
         </Match>
 
         <Match when={modal() === "filter"}>
-          <FilterPokedexModal onClose={() => setModal(undefined)} />
+          <FilterPokedexModal
+            onClose={() => {
+              setModal(undefined);
+              runPokedexModeRefreshCallback();
+            }}
+          />
         </Match>
 
         <Match when={modal() === "autosort"}>
@@ -148,7 +152,7 @@ export function PokedexActions(props: PokedexActionsProps) {
       <ImportPokedexViaAction
         isOpen={modal() === "import"}
         onClose={() => setModal(undefined)}
-        afterImport={props.afterActionChange}
+        afterImport={runPokedexModeRefreshCallback}
       />
     </>
   );

@@ -4,12 +4,9 @@ import { pokemons } from "../../models/pokemon/list";
 import { ButtonLink, UploadLink } from "../common/link";
 import { Modal } from "../common/menus/modal";
 import { PokedexImport } from "./import";
+import { runPokedexModeRefreshCallback } from "./mode/refresh";
 
-export interface PokedexEmptyProps {
-  afterActionChange(): void;
-}
-
-export function PokedexEmpty(props: PokedexEmptyProps) {
+export function PokedexEmpty() {
   const [manuallyOpened, setManuallyOpened] = createSignal(false);
 
   return (
@@ -41,7 +38,7 @@ export function PokedexEmpty(props: PokedexEmptyProps) {
 
       <div class="rounded-b-md border-2 border-t-0 border-primary p-4">
         <h3 class="mb-2 text-lg font-bold text-primary">Other Ways to Start</h3>
-        <PokedexImport afterImport={props.afterActionChange}>
+        <PokedexImport afterImport={runPokedexModeRefreshCallback}>
           {(importActions) => (
             <ul class="ml-4 list-disc">
               <li>

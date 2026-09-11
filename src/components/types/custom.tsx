@@ -5,6 +5,7 @@ import { customTypeColors } from "../../models/type/custom_colors";
 import { Empty } from "../common/empty";
 import { Dropdown, DropdownDivider, DropdownItem, DropdownTrigger } from "../common/menus/dropdown";
 import { Modal } from "../common/menus/modal";
+import { runPokedexModeRefreshCallback } from "../pokedex/mode/refresh";
 import { TypeName } from "./util/name";
 
 export interface CustomTypesModalProps {
@@ -93,6 +94,8 @@ function CustomType(props: CustomTypeProps) {
                   pokemons.bulkReplaceTypeKey(props.type.key, newType.key);
                   customTypeColors.replaceKey(props.type.key, newType.key);
                 });
+
+                runPokedexModeRefreshCallback();
               }
             }}
           />
