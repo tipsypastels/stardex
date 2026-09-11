@@ -30,7 +30,8 @@ export function Dropdown(props: DropdownProps) {
   }
 
   function handleClick(event: MouseEvent) {
-    if (!anchor?.contains(event.target as Node)) {
+    const node = event.target as Node;
+    if (!anchor?.contains(node) && !panel?.contains(node)) {
       event.stopPropagation();
       props.onClose();
     }

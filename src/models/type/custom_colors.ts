@@ -7,21 +7,24 @@ export type RawCustomTypeColors = v.InferOutput<typeof RawCustomTypeColors>;
 export const RawCustomTypeColors = v.record(v.string(), v.string());
 
 export const customTypeColors = createRoot(() => {
+  const store = stored("stardex_custom_type_colors");
   const all = new ReactiveMap<string, string>();
 
+  let caught = false;
+
   try {
-    const store = stored("stardex_custom_type_colors");
-    const raw_ = store.load();
-    if (raw_) {
-      const raw = v.parse(RawCustomTypeColors, raw_);
-      setFromRaw(raw);
-      createEffect(() => store.dump(toRaw()));
-    }
+    const raw = store.load();
+    if (raw) setFromRaw(v.parse(RawCustomTypeColors, raw));
   } catch (error) {
-    // Custom types are an extremely tertiary feature - if they're corrupted somehow,
-    // do nothing instead of saying the whole project is corrupt.
+    // Custom type colours are an extremely tertiary feature - if
+    // they're corrupted somehow, do nothing instead of saying the
+    // whole project is corrupt.
     // eslint-disable-next-line no-console
     console.warn("Invalid custom type colors:", error);
+    caught = true;
+  }
+  if (!caught) {
+    createEffect(() => store.dump(toRaw()));
   }
 
   function toRaw(): RawCustomTypeColors {
