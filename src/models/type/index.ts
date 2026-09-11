@@ -1,7 +1,10 @@
 import randomColor from "randomcolor";
+import { createSignal } from "solid-js";
 import RAW_DATA from "../../data/types.json" with { type: "json" };
 import { must } from "../../utils/assert";
 import { capitalize, sortStrings } from "../../utils/string";
+import type { Pokemon } from "../pokemon";
+import { unwrap } from 'solid-js/store';
 
 export interface Type {
   key: string;
@@ -48,6 +51,9 @@ export const BUILTIN_TYPES = (() => {
 })();
 
 export const CUSTOM_TYPES = (() => {
+  // Note: this is not used directly in the custom
+  // editor because it's never cleared, so types exist
+  // in it that are no longer actually present in dex.
   const cache = new Map<string, Type>();
 
   function of(key: string) {
@@ -61,9 +67,37 @@ export const CUSTOM_TYPES = (() => {
 
   function make(key: string): Type {
     const name = capitalize(key);
-    const color = randomColor({ seed: key });
-    return { key, name, color, icon: "question-circle", kind: "custom" };
+    const [color, setColor] = createSignal(randomColor({ seed: key }));
+    return {
+      key,
+      name,
+      get color() {
+        return color();
+      },
+      set color(color: string) {
+        setColor(color);
+      },
+      icon: "question-circle",
+      kind: "custom",
+    };
   }
 
-  return { of };
+  function onPokemons(pokemons: Pokemon[]) {
+    const found = new Set<Type>();
+
+    for (const pokemon of pokemons) {
+      for (const type of pokemon.types) {
+        if (type.kind === "custom") {
+          // This needs unwrap because pokemons.all[i].types is still proxied,
+          // and catches the proxy trap claiming that we're mutating an object improperly,
+          // which we're actually not - it's not a true field of pokemon, it's a getter.
+          found.add(unwrap(type));
+        }
+      }
+    }
+
+    return [...found];
+  }
+
+  return { of, onPokemons };
 })();

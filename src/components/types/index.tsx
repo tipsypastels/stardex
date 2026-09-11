@@ -4,11 +4,12 @@ import { excludedTypes } from "../../models/type/excluded";
 import { Empty } from "../common/empty";
 import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
 import { Section } from "../layout/section";
+import { CustomTypesModal } from "./custom";
 import { ExcludedTypesModal } from "./excluded";
 import { TypePieChart } from "./util/pie_chart";
 
 export function Types() {
-  const [excludedModalOpen, setExcludedModalOpen] = createSignal(false);
+  const [modal, setModal] = createSignal<"excluded" | "custom">();
 
   return (
     <Section id="types" title="Types" hasActions>
@@ -16,8 +17,9 @@ export function Types() {
         <ActionBarItem
           name="Exclude"
           icon={excludedTypes.all.size === 0 ? "eye" : "eye-closed"}
-          onClick={() => setExcludedModalOpen(true)}
+          onClick={() => setModal("excluded")}
         />
+        <ActionBarItem name="Custom" icon="question-circle" onClick={() => setModal("custom")} />
       </ActionBar>
       <Show
         when={pokemonsAllotment.value.total > 0}
@@ -25,8 +27,11 @@ export function Types() {
       >
         <TypePieChart allotment={pokemonsAllotment.value} />
       </Show>
-      <Show when={excludedModalOpen()}>
-        <ExcludedTypesModal onClose={() => setExcludedModalOpen(false)} />
+      <Show when={modal() === "excluded"}>
+        <ExcludedTypesModal onClose={() => setModal()} />
+      </Show>
+      <Show when={modal() === "custom"}>
+        <CustomTypesModal onClose={() => setModal()} />
       </Show>
     </Section>
   );
