@@ -3,7 +3,7 @@ import { customIcons } from "../../models/pokemon/custom_icon";
 import type { Project } from "../../models/project";
 import { projects } from "../../models/project/list";
 import { Icon } from "../common/icon";
-import { Dropdown, DropdownDivider, DropdownItem } from "../common/menus/dropdown";
+import { Dropdown, DropdownDivider, DropdownItem, DropdownTrigger } from "../common/menus/dropdown";
 import { Modal } from "../common/menus/modal";
 
 const [modalOpen, setModalOpen] = createSignal(false);
@@ -113,14 +113,11 @@ function ProjectOption(props: ProjectOptionProps) {
           <div class="grow">{props.project.name}</div>
         </label>
 
-        <button
-          class="cursor-pointer text-foreground-muted"
-          classList={{ "text-primary!": dropdownOpen() }}
+        <DropdownTrigger
           title="Actions"
+          open={dropdownOpen()}
           onClick={() => props.setDropdownId(props.project.id)}
-        >
-          <Icon name="ellipsis" />
-        </button>
+        />
       </div>
 
       <Show when={dropdownOpen()}>

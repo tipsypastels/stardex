@@ -1,8 +1,7 @@
 import { createSignal, For, Show } from "solid-js";
 import { type Type } from "../../models/type";
 import { customTypeColors } from "../../models/type/custom_colors";
-import { Icon } from "../common/icon";
-import { Dropdown, DropdownItem } from "../common/menus/dropdown";
+import { Dropdown, DropdownDivider, DropdownItem, DropdownTrigger } from "../common/menus/dropdown";
 import { Modal } from "../common/menus/modal";
 import { TypeName } from "./util/name";
 
@@ -25,7 +24,7 @@ export function CustomTypesModal(props: CustomTypesModalProps) {
       </ul>
       <p class="text-sm">
         <strong>Tip:</strong> To add new custom types, just enter the type name on any Pokémon's
-        type list.
+        type list. This menu lets you tweak custom types you've already added.
       </p>
     </Modal>
   );
@@ -49,14 +48,11 @@ function CustomType(props: CustomTypeProps) {
           <TypeName type={props.type} />
         </div>
 
-        <button
-          class="cursor-pointer text-foreground-muted"
-          classList={{ "text-primary!": dropdownOpen() }}
+        <DropdownTrigger
           title="Actions"
+          open={dropdownOpen()}
           onClick={() => props.setDropdownKey(props.type.key)}
-        >
-          <Icon name="ellipsis" />
-        </button>
+        />
       </div>
 
       <input
@@ -71,6 +67,14 @@ function CustomType(props: CustomTypeProps) {
 
       <Show when={dropdownOpen()}>
         <Dropdown onClose={() => props.setDropdownKey(undefined)}>
+          <DropdownItem
+            name="Rename"
+            icon="pen-to-square"
+            onClick={() => {
+              // TODO
+            }}
+          />
+          <DropdownDivider />
           <DropdownItem
             name="Edit Colour"
             icon="paintbrush"
