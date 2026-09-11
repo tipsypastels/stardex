@@ -1,5 +1,4 @@
 import randomColor from "randomcolor";
-import { createRoot } from "solid-js";
 import RAW_DATA from "../../data/types.json" with { type: "json" };
 import { must } from "../../utils/assert";
 import { capitalize, sortStrings } from "../../utils/string";
@@ -50,7 +49,7 @@ export const BUILTIN_TYPES = (() => {
   return { keys, all, map, of };
 })();
 
-export const CUSTOM_TYPES = createRoot(() => {
+export const CUSTOM_TYPES = (() => {
   // Note: this is not used directly in the custom
   // editor because it's never cleared, so types exist
   // in it that are no longer actually present in dex.
@@ -97,4 +96,4 @@ export const CUSTOM_TYPES = createRoot(() => {
     of,
     onPokemons,
   };
-});
+})();
