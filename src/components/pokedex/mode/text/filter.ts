@@ -23,7 +23,7 @@ const initialFilter = Facet.define<IdSet | undefined, IdSet | undefined>({
   combine: (sets) => sets.at(-1),
 });
 
-const filterState = StateField.define<IdSet | undefined>({
+export const filterState = StateField.define<IdSet | undefined>({
   create: (state) => state.facet(initialFilter),
   // We don't need to handle updates because afterActionChange
   // recreates the editor state when setting a filter.

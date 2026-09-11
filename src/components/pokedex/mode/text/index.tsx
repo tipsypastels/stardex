@@ -20,6 +20,7 @@ import type { Spanned } from "../../../../utils/span";
 import { clearPokedexModeRefreshCallback, setPokedexModeRefreshCallback } from "../refresh";
 import { autocomplete } from "./autocomplete";
 import { filtering, formatLineNumbersWithFilteredLines } from "./filter";
+import { inlayHints } from "./hints";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
@@ -93,6 +94,7 @@ function createState() {
       autocomplete,
       tooltip,
       filter,
+      inlayHints,
     ],
   });
 }
