@@ -70,7 +70,8 @@ function CustomType(props: CustomTypeProps) {
 
       <input
         ref={colorInput}
-        class="hidden"
+        // iOS doesn't allow virtual clicks to display:none elements.
+        class="pointer-events-none absolute h-0 w-0 opacity-0"
         type="color"
         value={props.type.color}
         onInput={(event) => {
@@ -100,6 +101,7 @@ function CustomType(props: CustomTypeProps) {
             name="Edit Colour"
             icon="paintbrush"
             onClick={() => {
+              colorInput?.focus();
               colorInput?.click();
             }}
           />
