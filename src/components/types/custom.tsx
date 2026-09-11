@@ -1,6 +1,8 @@
-import { For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { type Type } from "../../models/type";
 import { customTypeColors } from "../../models/type/custom_colors";
+import { Icon } from "../common/icon";
+import { Dropdown, DropdownItem } from "../common/menus/dropdown";
 import { Modal } from "../common/menus/modal";
 import { TypeName } from "./util/name";
 
@@ -10,28 +12,81 @@ export interface CustomTypesModalProps {
 }
 
 export function CustomTypesModal(props: CustomTypesModalProps) {
+  const [dropdownKey, setDropdownKey] = createSignal<string>();
+
   return (
     <Modal title="Custom Types" onClose={() => props.onClose()}>
       <ul class="mb-4">
         <For each={props.types}>
           {(type) => (
-            <li class="flex border-b-2 border-b-divider-light py-2 first:pt-0 last:border-b-0 last:pb-0">
-              <div class="grow">
-                <TypeName type={type} />
-              </div>
-              <div class="dim">
-                <input
-                  type="color"
-                  value={type.color}
-                  onInput={(event) => {
-                    customTypeColors.set(type.key, event.target.value);
-                  }}
-                />
-              </div>
-            </li>
+            <CustomType type={type} dropdownKey={dropdownKey()} setDropdownKey={setDropdownKey} />
           )}
         </For>
       </ul>
+      <p class="text-sm">
+        <strong>Tip:</strong> To add new custom types, just enter the type name on any Pokémon's
+        type list.
+      </p>
     </Modal>
+  );
+}
+
+interface CustomTypeProps {
+  type: Type;
+  dropdownKey: string | undefined;
+  setDropdownKey(key: string | undefined): void;
+}
+
+function CustomType(props: CustomTypeProps) {
+  const dropdownOpen = () => props.dropdownKey === props.type.key;
+
+  let colorInput: HTMLInputElement | undefined;
+
+  return (
+    <li>
+      <div class="flex items-center">
+        <div class="flex grow py-2">
+          <TypeName type={props.type} />
+        </div>
+
+        <button
+          class="cursor-pointer text-foreground-muted"
+          classList={{ "text-primary!": dropdownOpen() }}
+          title="Actions"
+          onClick={() => props.setDropdownKey(props.type.key)}
+        >
+          <Icon name="ellipsis" />
+        </button>
+      </div>
+
+      <input
+        ref={colorInput}
+        class="hidden"
+        type="color"
+        value={props.type.color}
+        onInput={(event) => {
+          customTypeColors.set(props.type.key, event.target.value);
+        }}
+      />
+
+      <Show when={dropdownOpen()}>
+        <Dropdown onClose={() => props.setDropdownKey(undefined)}>
+          <DropdownItem
+            name="Edit Colour"
+            icon="paintbrush"
+            onClick={() => {
+              colorInput?.click();
+            }}
+          />
+          <DropdownItem
+            name="Reset Colour"
+            icon="paintbrush-slash"
+            onClick={() => {
+              customTypeColors.delete(props.type.key);
+            }}
+          />
+        </Dropdown>
+      </Show>
+    </li>
   );
 }
