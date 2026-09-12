@@ -38,7 +38,7 @@ export function PokedexTextView() {
 
       if (view) {
         view.setState(createState());
-        parseInitial(view.state);
+        parseInitial(view);
       }
     });
   });
@@ -52,7 +52,7 @@ export function PokedexTextView() {
     projects.activeId;
     view = new EditorView({ parent, state: createState() });
 
-    parseInitial(view.state);
+    parseInitial(view);
     onCleanup(() => view?.destroy());
   });
 

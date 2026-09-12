@@ -10,6 +10,7 @@ import { parsePokemonListTextFromLezerTree } from "../../../../models/pokemon/te
 import { makeId } from "../../../../utils/id";
 import type { Span } from "../../../../utils/span";
 import { getTrackedIdAtSpan } from "./metadata";
+import { forceRefresh } from "./refresh";
 
 const current = createRoot(() => {
   const [list, setList] = createSignal<RawPokemonList>();
@@ -55,9 +56,11 @@ const current = createRoot(() => {
   };
 });
 
-export function parseInitial(state: EditorState) {
-  ensureSyntaxTree(state, state.doc.length, 5000);
-  current.parse(state, true);
+export function parseInitial(view: EditorView) {
+  ensureSyntaxTree(view.state, view.state.doc.length, 5000);
+  view.dispatch({ effects: forceRefresh.of() });
+
+  current.parse(view.state, true);
 }
 
 export function getPokemonAtSpan(state: EditorState, span: Span) {

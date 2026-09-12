@@ -3,11 +3,21 @@ import { EditorState, Range, StateField } from "@codemirror/state";
 import { Decoration, EditorView, WidgetType, type DecorationSet } from "@codemirror/view";
 import { filterState } from "./filter";
 import { getPokemonAtSpan } from "./parse";
+import { forceRefresh } from "./refresh";
 
 export const inlayHints = StateField.define<DecorationSet>({
-  create: decorateTypeHints,
-  update: (value) => value,
-  provide: (field) => EditorView.decorations.from(field),
+  create() {
+    return Decoration.none;
+  },
+  update(oldDecorations, tr) {
+    if (tr.effects.some((effect) => effect.is(forceRefresh))) {
+      return decorateTypeHints(tr.state);
+    }
+    return oldDecorations;
+  },
+  provide(field) {
+    return EditorView.decorations.from(field);
+  },
 });
 
 function decorateTypeHints(state: EditorState) {
