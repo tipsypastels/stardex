@@ -99,7 +99,10 @@ export const pokemons = createRoot(() => {
     },
 
     autosort(request: AutosortRequest) {
-      setAll((all) => runAutosort(all, request));
+      batch(() => {
+        setAll((all) => runAutosort(all, request));
+        setTextDiff();
+      });
     },
 
     clear() {

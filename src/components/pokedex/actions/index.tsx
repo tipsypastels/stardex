@@ -70,16 +70,16 @@ export function PokedexActions(props: PokedexActionsProps) {
           disabled={isEmpty()}
           onClick={() => setModal("filter")}
         />
+        <ActionBarItem
+          id="pokedex-sort"
+          name="Sort"
+          icon="arrow-down-1-9"
+          disabled={isEmpty()}
+          onClick={() => setModal("autosort")}
+        />
         <Show when={isNonTextMode()}>
           {(_) => (
             <>
-              <ActionBarItem
-                id="pokedex-sort"
-                name="Sort"
-                icon="arrow-down-1-9"
-                disabled={isEmpty()}
-                onClick={() => setModal("autosort")}
-              />
               <ActionBarItem
                 id="pokedex-zapper"
                 name="Zap"
@@ -125,6 +125,7 @@ export function PokedexActions(props: PokedexActionsProps) {
                 setModal(undefined);
                 props.onAutosort(request);
               });
+              runPokedexModeRefreshCallback();
             }}
             onClose={() => setModal(undefined)}
           />
