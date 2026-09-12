@@ -27,7 +27,7 @@ export function PokedexActions(props: PokedexActionsProps) {
   const isEmpty = () => pokemons.all.length === 0;
 
   createEffect(() => {
-    if (isEmpty() || !isNonTextMode()) {
+    if (isEmpty()) {
       props.setZapper(false);
     }
   });
@@ -77,20 +77,14 @@ export function PokedexActions(props: PokedexActionsProps) {
           disabled={isEmpty()}
           onClick={() => setModal("autosort")}
         />
-        <Show when={isNonTextMode()}>
-          {(_) => (
-            <>
-              <ActionBarItem
-                id="pokedex-zapper"
-                name="Zap"
-                icon="bolt"
-                active={props.zapper}
-                disabled={isEmpty()}
-                onClick={toggleZapper}
-              />
-            </>
-          )}
-        </Show>
+        <ActionBarItem
+          id="pokedex-zapper"
+          name="Zap"
+          icon="bolt"
+          active={props.zapper}
+          disabled={isEmpty()}
+          onClick={toggleZapper}
+        />
         <ActionBarItem name="Import" icon="upload" onClick={() => setModal("import")} />
         <ActionBarItem
           name="Clear"

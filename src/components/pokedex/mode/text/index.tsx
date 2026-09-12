@@ -12,6 +12,7 @@ import {
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
 import { createEffect, onCleanup, onMount, Show, untrack } from "solid-js";
+import type { PokedexModeViewProps } from "..";
 import { pokemonsFiltered } from "../../../../models/pokedex/filter";
 import { pokemons } from "../../../../models/pokemon/list";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
@@ -27,8 +28,9 @@ import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
 import { highlightTheme, selectionMark, theme } from "./theme";
 import { tooltip } from "./tooltip";
+import { setZapperEnabled, zapper } from "./zapper";
 
-export function PokedexTextView() {
+export function PokedexTextView(props: PokedexModeViewProps) {
   let parent!: HTMLDivElement;
   let view: EditorView | undefined;
 
@@ -38,7 +40,7 @@ export function PokedexTextView() {
       console.log("Text editor refreshing...");
 
       if (view) {
-        view.setState(createState());
+        view.setState(createState(props));
         parseInitial(view);
       }
     });
@@ -51,10 +53,15 @@ export function PokedexTextView() {
   createEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     projects.activeId;
-    view = new EditorView({ parent, state: createState() });
+    view = new EditorView({ parent, state: createState(props) });
 
     parseInitial(view);
     onCleanup(() => view?.destroy());
+  });
+
+  createEffect(() => {
+    if (!view) return;
+    view.dispatch({ effects: setZapperEnabled.of(props.zapper) });
   });
 
   return (
@@ -67,7 +74,7 @@ export function PokedexTextView() {
   );
 }
 
-function createState() {
+function createState(props: PokedexModeViewProps) {
   const ids: Spanned<string>[] = [];
   const doc = untrack(() => serializePokemonListToText({ eachId: (id) => ids.push(id) }));
 
@@ -103,6 +110,7 @@ function createState() {
       tooltip,
       filter,
       inlayHints,
+      zapper(untrack(() => props.zapper)),
     ],
   });
 }
