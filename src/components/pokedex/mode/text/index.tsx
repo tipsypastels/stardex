@@ -11,13 +11,14 @@ import {
   placeholder,
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
-import { createEffect, onCleanup, onMount, untrack } from "solid-js";
+import { createEffect, onCleanup, onMount, Show, untrack } from "solid-js";
 import { pokemonsFiltered } from "../../../../models/pokedex/filter";
 import { pokemons } from "../../../../models/pokemon/list";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
 import { clearPokedexModeRefreshCallback, setPokedexModeRefreshCallback } from "../refresh";
+import { FilterNone } from "../util/filter_none";
 import { autocomplete } from "./autocomplete";
 import { filtering, formatLineNumbersWithFilteredLines } from "./filter";
 import { inlayHints } from "./hints";
@@ -56,7 +57,14 @@ export function PokedexTextView() {
     onCleanup(() => view?.destroy());
   });
 
-  return <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />;
+  return (
+    <>
+      <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
+      <Show when={pokemons.all.length > 0 && pokemonsFiltered.all.length === 0}>
+        <FilterNone />
+      </Show>
+    </>
+  );
 }
 
 function createState() {
