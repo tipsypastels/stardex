@@ -1,4 +1,4 @@
-import { syntaxTree } from "@codemirror/language";
+import { ensureSyntaxTree, syntaxTree } from "@codemirror/language";
 import { type Diagnostic, linter } from "@codemirror/lint";
 import type { EditorState, Extension } from "@codemirror/state";
 import { EditorView } from "codemirror";
@@ -56,9 +56,7 @@ const current = createRoot(() => {
 });
 
 export function parseInitial(state: EditorState) {
-  // Don't overwrite the pokedex, first of all because we know it can't have changed yet,
-  // but more importantly because the syntax tree may not have been fully initialized,
-  // which would result in us losing pokemon.
+  ensureSyntaxTree(state, state.doc.length, 5000);
   current.parse(state, true);
 }
 
