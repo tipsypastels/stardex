@@ -18,7 +18,6 @@ export function ExportCellsModal(props: ExportCellsModalProps) {
 
     for (const pokemon of pokemons.all) {
       out.push([
-        makeCell(pokemon.species?.id?.toString() ?? ""),
         makeCell(pokemon.nameWithAltNameOrNoAltName),
         ...pokemon.types.map((type) => makeCell(type.name, type.color)),
       ]);
@@ -30,7 +29,6 @@ export function ExportCellsModal(props: ExportCellsModalProps) {
           `
         <table cellspacing="0" cellpadding="0" dir="ltr" border="1" style="table-layout: fixed; font-size: 10pt; font-family: arial,sans,sans-serif; width: 0; border-collapse: collapse; border: none;">
           <colgroup>
-            <col width="30">
             <col width="200">
             <col width="100">
             <col width="100">
