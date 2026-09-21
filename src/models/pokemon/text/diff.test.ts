@@ -1,5 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { PokemonListTextDiffBuilder, readPokemonListTextDiff } from "./diff";
+import {
+  getPokemonListTextDiffVerbatimSuffixAt,
+  PokemonListTextDiffBuilder,
+  readPokemonListTextDiff,
+  setPokemonListTextDiffVerbatimSuffixAt,
+  unsetPokemonListTextDiffVerbatimSuffixAt,
+} from "./diff";
 
 describe(PokemonListTextDiffBuilder, () => {
   const b = () => new PokemonListTextDiffBuilder();
@@ -63,5 +69,83 @@ describe(readPokemonListTextDiff, () => {
       { type: "entries", count: 4 },
       { type: "verbatim", line: "quux" },
     ]);
+  });
+});
+
+describe(getPokemonListTextDiffVerbatimSuffixAt, () => {
+  test("empty", () => {
+    expect(getPokemonListTextDiffVerbatimSuffixAt([], 0)).toBeUndefined();
+  });
+
+  test("single entry no diff", () => {
+    expect(getPokemonListTextDiffVerbatimSuffixAt(["\0e1"], 0)).toBeUndefined();
+  });
+
+  test("single entry has diff", () => {
+    expect(getPokemonListTextDiffVerbatimSuffixAt(["\0wx"], 0)).toBe("x");
+  });
+
+  test("multiple entries one has diff", () => {
+    expect(getPokemonListTextDiffVerbatimSuffixAt(["\0wx", "\0e1"], 0)).toBe("x");
+    expect(getPokemonListTextDiffVerbatimSuffixAt(["\0e1", "\0wx"], 1)).toBe("x");
+    expect(getPokemonListTextDiffVerbatimSuffixAt(["\0e2", "\0wx"], 2)).toBe("x");
+  });
+
+  test("with blank and verbatim lines", () => {
+    expect(getPokemonListTextDiffVerbatimSuffixAt(["\0e2", "x", "\0e2", "\0wx"], 4)).toBe("x");
+  });
+});
+
+describe(setPokemonListTextDiffVerbatimSuffixAt, () => {
+  test("throws on overflow", () => {
+    expect(() => setPokemonListTextDiffVerbatimSuffixAt([], 0, "")).toThrow();
+    expect(() => setPokemonListTextDiffVerbatimSuffixAt(["\0e1"], 1, "")).toThrow();
+  });
+
+  test("setting a single entry", () => {
+    expect(setPokemonListTextDiffVerbatimSuffixAt(["\0e1"], 0, "x")).toEqual(["\0wx"]);
+  });
+
+  test("setting an entry at the start of a run", () => {
+    expect(setPokemonListTextDiffVerbatimSuffixAt(["\0e3"], 0, "x")).toEqual(["\0wx", "\0e2"]);
+  });
+
+  test("setting an entry at the end of a run", () => {
+    expect(setPokemonListTextDiffVerbatimSuffixAt(["\0e3"], 2, "x")).toEqual(["\0e2", "\0wx"]);
+  });
+
+  test("setting an entry in the middle of a run", () => {
+    expect(setPokemonListTextDiffVerbatimSuffixAt(["\0e3"], 1, "x")).toEqual([
+      "\0e1",
+      "\0wx",
+      "\0e1",
+    ]);
+  });
+});
+
+describe(unsetPokemonListTextDiffVerbatimSuffixAt, () => {
+  test("throws on overflow", () => {
+    expect(() => unsetPokemonListTextDiffVerbatimSuffixAt([], 0)).toThrow();
+    expect(() => unsetPokemonListTextDiffVerbatimSuffixAt(["\0e1"], 1)).toThrow();
+  });
+
+  test("noop", () => {
+    expect(unsetPokemonListTextDiffVerbatimSuffixAt(["\0e1"], 0)).toEqual(["\0e1"]);
+  });
+
+  test("unsetting a single entry", () => {
+    expect(unsetPokemonListTextDiffVerbatimSuffixAt(["\0wx"], 0)).toEqual(["\0e1"]);
+  });
+
+  test("unsetting an entry at the start of a run", () => {
+    expect(unsetPokemonListTextDiffVerbatimSuffixAt(["\0wx", "\0e2"], 0)).toEqual(["\0e3"]);
+  });
+
+  test("unsetting an entry at the end of a run", () => {
+    expect(unsetPokemonListTextDiffVerbatimSuffixAt(["\0e2", "\0wx"], 2)).toEqual(["\0e3"]);
+  });
+
+  test("unsetting an entry in the middle of a run", () => {
+    expect(unsetPokemonListTextDiffVerbatimSuffixAt(["\0e1", "\0wx", "\0e1"], 1)).toEqual(["\0e3"]);
   });
 });

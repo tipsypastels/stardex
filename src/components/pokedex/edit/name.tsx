@@ -9,7 +9,7 @@ export interface EditPokemonNameProps {
 
 export function EditPokemonName(props: EditPokemonNameProps) {
   return (
-    <div class="mb-4">
+    <div class="mb-2">
       <h2 class="font-bold">Name</h2>
 
       <div>

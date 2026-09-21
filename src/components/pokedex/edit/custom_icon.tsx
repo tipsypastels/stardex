@@ -14,7 +14,7 @@ export interface EditPokemonCustomIconLinkProps {
 
 export function EditPokemonCustomIconLink(props: EditPokemonCustomIconLinkProps) {
   return (
-    <div class="mb-4">
+    <div class="mb-2">
       <h2 class="font-bold">Custom Icon</h2>
       <ul>
         <li>

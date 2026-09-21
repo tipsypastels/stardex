@@ -7,6 +7,7 @@ import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchStartupError } from "../ui/error";
 import { runAutosort, type AutosortRequest } from "./autosort";
+import { createPokemonCommenter } from "./comment";
 import { createPokemonMutator, pokemonListBulkReplaceTypeKey } from "./mutator";
 import {
   POKEMON_LIST_VERSION,
@@ -71,6 +72,10 @@ export const pokemons = createRoot(() => {
 
     mutator(id: string) {
       return createPokemonMutator(id, setAll);
+    },
+
+    commenter(index: number) {
+      return createPokemonCommenter(all, textDiff, setTextDiff, index);
     },
 
     push(pokemon: Pokemon) {

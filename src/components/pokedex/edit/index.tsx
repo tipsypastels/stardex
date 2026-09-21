@@ -5,6 +5,7 @@ import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { PokemonIcon } from "../util/icon/pokemon";
 import { EditPokemonBehavior } from "./behavior";
+import { EditPokemonComment } from "./comment";
 import {
   createCustomIconUploadState,
   EditPokemonCustomIconLink,
@@ -19,7 +20,8 @@ export interface EditPokemonModalProps {
 }
 
 export function EditPokemonModal(props: EditPokemonModalProps) {
-  const pokemon = createMemo(() => pokemons.all.find((pokemon) => pokemon.id === props.id)!);
+  const index = createMemo(() => pokemons.all.findIndex((pokemon) => pokemon.id === props.id));
+  const pokemon = createMemo(() => pokemons.all[index()]);
   const mutator = createMemo(() => pokemons.mutator(props.id));
 
   const customIconState = createCustomIconUploadState(() => props.id);
@@ -68,6 +70,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
             <EditPokemonTypes pokemon={pokemon()} mutator={mutator()} />
             <EditPokemonCustomIconLink state={customIconState} />
             <EditPokemonBehavior pokemon={pokemon()} mutator={mutator()} />
+            <EditPokemonComment index={index()} />
           </div>
         </Modal>
       }
