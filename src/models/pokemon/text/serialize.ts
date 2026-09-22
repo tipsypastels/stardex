@@ -30,12 +30,11 @@ export function serializeRawPokemonListToText({
   verbatimText,
   eachId,
 }: SerializeRawPokemonListToTextOptions) {
-  const lines: string[] = [];
-  const idSpans = new IdSpanTracker(eachId);
+  const buffer = new SpannedLineBuffer(eachId);
   const iter = pokemons[Symbol.iterator]();
 
   if (verbatimText && verbatimText[PLVT_BEFORE_ALL].length > 0) {
-    lines.push(...verbatimText[PLVT_BEFORE_ALL]);
+    buffer.unspanned(verbatimText[PLVT_BEFORE_ALL]);
   }
 
   for (let i = 0; ; i++) {
@@ -43,18 +42,18 @@ export function serializeRawPokemonListToText({
     if (result.done) break;
 
     const pokemon = result.value;
-    pushPokemonLines(lines, pokemon, idSpans);
+    buffer.spanned(pokemon.id, serializePokemon(pokemon));
 
     const verbatimLinesAfter = verbatimText?.[PLVT_AFTER_ENTRIES]?.[i];
     if (verbatimLinesAfter) {
-      lines.push(...verbatimLinesAfter);
+      buffer.unspanned(verbatimLinesAfter);
     }
   }
 
-  return lines.join("\n");
+  return buffer.finish();
 }
 
-function pushPokemonLines(lines: string[], pokemon: RawPokemon, idSpans: IdSpanTracker) {
+function serializePokemon(pokemon: RawPokemon) {
   let line = "species" in pokemon ? SPECIES.of(pokemon.species).name : pokemon.name;
 
   const altName = (() => {
@@ -87,9 +86,7 @@ function pushPokemonLines(lines: string[], pokemon: RawPokemon, idSpans: IdSpanT
     line += ` # ${pokemon.comment}`;
   }
 
-  idSpans.track(pokemon.id, line.length);
-
-  lines.push(line);
+  return line;
 }
 
 function mustDisambiguateSingleTypeForKnownAltTypeHack(pokemon: RawPokemon) {
@@ -101,25 +98,30 @@ function mustDisambiguateSingleTypeForKnownAltTypeHack(pokemon: RawPokemon) {
   );
 }
 
-class IdSpanTracker {
+class SpannedLineBuffer {
   #eachId?: (id: Spanned<string>) => void;
 
-  #lineStartIndex = 0;
+  #lines: string[] = [];
+  #length = 0;
 
   constructor(eachId?: (id: Spanned<string>) => void) {
     this.#eachId = eachId;
   }
 
-  blank(length: number) {
-    this.#lineStartIndex += length;
+  unspanned(lines: string[]) {
+    for (const line of lines) {
+      this.#lines.push(line);
+      this.#length += line.length + 1;
+    }
   }
 
-  ignore(length: number) {
-    this.#lineStartIndex += length + 1;
+  spanned(id: string, line: string) {
+    this.#eachId?.({ value: id, from: this.#length, to: this.#length + line.length });
+    this.#lines.push(line);
+    this.#length += line.length + 1;
   }
 
-  track(id: string, length: number) {
-    this.#eachId?.({ value: id, from: this.#lineStartIndex, to: this.#lineStartIndex + length });
-    this.#lineStartIndex += length + 1;
+  finish() {
+    return this.#lines.join("\n");
   }
 }
