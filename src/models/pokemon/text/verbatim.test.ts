@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { deletePokemonListVerbatimTextEntry } from "./verbatim";
+import { deletePokemonListVerbatimTextEntry, RawPokemonListVerbatimTextBuilder } from "./verbatim";
 
 describe(deletePokemonListVerbatimTextEntry, () => {
   test("moves entries after the deleted index down one", () => {
@@ -7,13 +7,13 @@ describe(deletePokemonListVerbatimTextEntry, () => {
       deletePokemonListVerbatimTextEntry(
         {
           beforeAll: ["zzz"],
-          afterEntryIndices: { 0: ["hi"], 2: ["bye"], 3: ["xd"] },
+          afterEntries: { 0: ["hi"], 2: ["bye"], 3: ["xd"] },
         },
         1,
       ),
     ).toEqual({
       beforeAll: ["zzz"],
-      afterEntryIndices: { 0: ["hi"], 1: ["bye"], 2: ["xd"] },
+      afterEntries: { 0: ["hi"], 1: ["bye"], 2: ["xd"] },
     });
   });
 
@@ -22,13 +22,13 @@ describe(deletePokemonListVerbatimTextEntry, () => {
       deletePokemonListVerbatimTextEntry(
         {
           beforeAll: ["zzz"],
-          afterEntryIndices: { 0: ["hi"], 1: ["bye"] },
+          afterEntries: { 0: ["hi"], 1: ["bye"] },
         },
         1,
       ),
     ).toEqual({
       beforeAll: ["zzz"],
-      afterEntryIndices: { 0: ["hi", "bye"] },
+      afterEntries: { 0: ["hi", "bye"] },
     });
   });
 
@@ -37,13 +37,44 @@ describe(deletePokemonListVerbatimTextEntry, () => {
       deletePokemonListVerbatimTextEntry(
         {
           beforeAll: ["zzz"],
-          afterEntryIndices: { 0: ["hi"], 1: ["bye"] },
+          afterEntries: { 0: ["hi"], 1: ["bye"] },
         },
         0,
       ),
     ).toEqual({
       beforeAll: ["zzz", "hi"],
-      afterEntryIndices: { 0: ["bye"] },
+      afterEntries: { 0: ["bye"] },
+    });
+  });
+});
+
+describe(RawPokemonListVerbatimTextBuilder, () => {
+  const b = () => new RawPokemonListVerbatimTextBuilder();
+
+  test("empty", () => {
+    expect(b().finish()).toEqual({ beforeAll: [], afterEntries: [] });
+  });
+
+  test("verbatim before any entry goes to beforeAll", () => {
+    expect(b().verbatim("x").finish()).toEqual({ beforeAll: ["x"], afterEntries: [] });
+  });
+
+  test("entry indices", () => {
+    expect(
+      b().verbatim("x").entry().verbatim("y").verbatim("z").entry().verbatim("za").finish(),
+    ).toEqual({
+      beforeAll: ["x"],
+      afterEntries: [
+        [0, ["y", "z"]],
+        [1, ["za"]],
+      ],
+    });
+  });
+
+  test("does not output empty line arrays", () => {
+    expect(b().entry().entry().verbatim("x").finish()).toEqual({
+      beforeAll: [],
+      afterEntries: [[1, ["x"]]],
     });
   });
 });

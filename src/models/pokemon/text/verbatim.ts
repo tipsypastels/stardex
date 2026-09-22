@@ -3,12 +3,12 @@ import * as v from "valibot";
 export type RawPokemonListVerbatimText = v.InferOutput<typeof RawPokemonListVerbatimText>;
 export const RawPokemonListVerbatimText = v.object({
   beforeAll: v.array(v.string()),
-  afterEntryIndices: v.array(v.tuple([v.number(), v.array(v.string())])),
+  afterEntries: v.array(v.tuple([v.number(), v.array(v.string())])),
 });
 
 export interface PokemonListVerbatimText {
   beforeAll: string[];
-  afterEntryIndices: Record<number, string[]>;
+  afterEntries: Record<number, string[]>;
 }
 
 export function pokemonListVerbatimTextFromRaw(
@@ -16,7 +16,7 @@ export function pokemonListVerbatimTextFromRaw(
 ): PokemonListVerbatimText {
   return {
     beforeAll: raw.beforeAll,
-    afterEntryIndices: Object.fromEntries(raw.afterEntryIndices.map(([i, v]) => [i, v])),
+    afterEntries: Object.fromEntries(raw.afterEntries.map(([i, v]) => [i, v])),
   };
 }
 
@@ -25,7 +25,7 @@ export function pokemonListVerbatimTextToRaw(
 ): RawPokemonListVerbatimText {
   return {
     beforeAll: verbatimText.beforeAll,
-    afterEntryIndices: Object.entries(verbatimText.afterEntryIndices).map(([i, v]) => [+i, v]),
+    afterEntries: Object.entries(verbatimText.afterEntries).map(([i, v]) => [+i, v]),
   };
 }
 
@@ -35,51 +35,79 @@ export function deletePokemonListVerbatimTextEntry(
 ) {
   const out: PokemonListVerbatimText = {
     beforeAll: verbatimText.beforeAll,
-    afterEntryIndices: {},
+    afterEntries: {},
   };
 
-  for (const index_ in verbatimText.afterEntryIndices) {
+  for (const index_ in verbatimText.afterEntries) {
     const index = +index_;
-    const lines = verbatimText.afterEntryIndices[index];
+    const lines = verbatimText.afterEntries[index];
 
     if (index === 0 && deleteIndex === 0) {
       out.beforeAll.push(...lines);
     } else if (index >= deleteIndex) {
       const movedIndex = index - 1;
 
-      out.afterEntryIndices[movedIndex] ??= [];
-      out.afterEntryIndices[movedIndex].push(...lines);
+      out.afterEntries[movedIndex] ??= [];
+      out.afterEntries[movedIndex].push(...lines);
     } else {
-      out.afterEntryIndices[index] = lines;
+      out.afterEntries[index] = lines;
     }
   }
 
   return out;
 }
 
-export class PokemonListVerbatimTextBuilder {
-  #beforeEntryIndices: Record<number, string[]> = {};
-  #entryIndex = 0;
-  #verbatimLines: string[] = [];
+abstract class BuilderImpl<FinishedAfterEntries> {
+  #beforeAll: string[] = [];
+  #afterEntries: Record<number, string[]> = {};
+
+  #currentEntry?: {
+    index: number;
+    lines: string[];
+  };
+
+  protected abstract finishAfterEntries(
+    afterEntries: Record<number, string[]>,
+  ): FinishedAfterEntries;
 
   entry() {
-    if (this.#verbatimLines.length > 0) {
-      this.#beforeEntryIndices[this.#entryIndex] = this.#verbatimLines;
-      this.#verbatimLines = [];
-    }
-    this.#entryIndex++;
+    const oldIndex = this.#currentEntry?.index;
+
+    this.#flushEntry();
+    this.#currentEntry = { index: oldIndex == null ? 0 : oldIndex + 1, lines: [] };
+
     return this;
   }
 
   verbatim(line: string) {
-    this.#verbatimLines.push(line);
+    (this.#currentEntry?.lines ?? this.#beforeAll).push(line);
     return this;
   }
 
-  finish(): PokemonListVerbatimText {
+  finish() {
+    this.#flushEntry();
     return {
-      afterEntryIndices: this.#beforeEntryIndices,
-      beforeAll: this.#verbatimLines,
+      beforeAll: this.#beforeAll,
+      afterEntries: this.finishAfterEntries(this.#afterEntries),
     };
+  }
+
+  #flushEntry() {
+    if (this.#currentEntry && this.#currentEntry.lines.length > 0) {
+      this.#afterEntries[this.#currentEntry.index] = this.#currentEntry.lines;
+    }
+    this.#currentEntry = undefined;
+  }
+}
+
+export class PokemonListVerbatimTextBuilder extends BuilderImpl<Record<number, string[]>> {
+  protected finishAfterEntries(afterEntries: Record<number, string[]>) {
+    return afterEntries;
+  }
+}
+
+export class RawPokemonListVerbatimTextBuilder extends BuilderImpl<[number, string[]][]> {
+  protected finishAfterEntries(afterEntries: Record<number, string[]>) {
+    return Object.entries(afterEntries).map(([i, v]) => [+i, v] as [number, string[]]);
   }
 }
