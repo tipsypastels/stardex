@@ -67,4 +67,40 @@ describe(V1_upgradeRawPokemonList, () => {
       ],
     });
   });
+
+  test("textdiff entry with verbatim text buffering bug is accounted for", () => {
+    expect(
+      V1_upgradeRawPokemonList({
+        v: 1,
+        all: [
+          { v: 1, species: "charmander", id: "lhnCpXEF" },
+          { v: 1, species: "charmeleon", id: "mpXojvOc" },
+          { v: 1, species: "charizard", id: "nenS7SZP" },
+          { v: 1, species: "squirtle", id: "K0EpXxtP" },
+          { v: 1, species: "wartortle", id: "sOBFneZr" },
+          { v: 1, species: "blastoise", id: "55I65eCC" },
+        ],
+        textDiff: [
+          "\u0000e2",
+          "\u0000w# x",
+          "\u0000e2",
+          "\u0000b1",
+          "# Water starters",
+          "\u0000b1",
+          "\u0000e3",
+        ],
+      }),
+    ).toEqual({
+      v: 2,
+      all: [
+        { v: 1, species: "charmander", id: "lhnCpXEF" },
+        { v: 1, species: "charmeleon", id: "mpXojvOc" },
+        { v: 1, species: "charizard", id: "nenS7SZP", comment: "x" },
+        { v: 1, species: "squirtle", id: "K0EpXxtP" },
+        { v: 1, species: "wartortle", id: "sOBFneZr" },
+        { v: 1, species: "blastoise", id: "55I65eCC" },
+      ],
+      verbatimText: [[], { 2: ["", "# Water starters", ""] }],
+    });
+  });
 });

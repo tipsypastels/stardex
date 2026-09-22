@@ -27,23 +27,41 @@ export function V1_upgradeRawPokemonList(
   if (raw.textDiff) {
     let entryCount = 0;
 
+    // Fix for a bug in text diffs: adding an entry with verbatim text
+    // did not flush the entry buffer, so the following entry will
+    // have an additional count of whatever was before the entry with
+    // verbatim text. Or, if the entry with verbatim text is followed
+    // by non-entries, ghost entries will appear after it and then be flushed.
+    let entryWithoutVerbatimTextRunCount = 0;
+
     for (const textDiffEntry of raw.textDiff) {
       if (textDiffEntry.startsWith("\0e")) {
-        const count = +textDiffEntry.slice(2);
+        const count = +textDiffEntry.slice(2) - entryWithoutVerbatimTextRunCount;
         entryCount += count;
-        for (let i = 0; i < count; i++) verbatimText.entry();
+        entryWithoutVerbatimTextRunCount += count;
+        for (let i = 0; i < count; i++) {
+          verbatimText.entry();
+        }
       } else if (textDiffEntry.startsWith("\0w")) {
         const suffix = textDiffEntry.slice(2);
         const comment = suffix.replace(/^\s*#\s*/, "");
 
         const pokemon = all.at(entryCount);
-        if (pokemon) pokemon.comment = comment;
+        if (pokemon) {
+          pokemon.comment = comment;
+        }
+
         entryCount++;
         verbatimText.entry();
       } else if (textDiffEntry.startsWith("\0b")) {
         const count = +textDiffEntry.slice(2);
-        for (let i = 0; i < count; i++) verbatimText.verbatim("");
+        entryWithoutVerbatimTextRunCount = 0;
+
+        for (let i = 0; i < count; i++) {
+          verbatimText.verbatim("");
+        }
       } else {
+        entryWithoutVerbatimTextRunCount = 0;
         verbatimText.verbatim(textDiffEntry);
       }
     }
