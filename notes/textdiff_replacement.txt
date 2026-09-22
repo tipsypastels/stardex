@@ -1,0 +1,25 @@
+The textdiff system in 3.0 is bad and hard to work with. 
+
+- It doesn't update when pokemon are deleted in non-text mode, which results in blank lines, comments, and inline comments shifting around.
+- It requires parsing every time it's read.
+- It makes inline comments unnecessarily hard to read/write in non-text mode (O(N)).
+
+Rejected alternatives:
+
+- Store the whole text. This would introduce possibilities for it to get out of sync, especially if there are syntax changes. We could regenerate it from the main list whenever text view opens but we'd need to diff it and oh look we're at a worse version of the original problem.
+
+- Go back to storing text metadata on the pokemon directly. This is probably the right solution for inlineComment, but not for line comments and certainly not errors. It would cause them to be deleted when the pokemon is even though they're not semantically attached to it.
+
+Possible alternative:
+
+First, move inlineComment onto pokemon, which solves the complex accessors issue.
+
+Second, store the text diff instead as a map of line numbers to verbatim content. When serializing, first build the lines array and then splice the verbatim lines into it. This would not shift weirdly if a pokemon is deleted, since the next pokemon is now on that line.
+
+No, that would still cause shifting. Deleting something above the text diff causes it to move down.
+
+Have it be { [entry index]: [verbatim lines], [Infinity]: [...] }? No, same issue.
+
+Key it off the pokemon's id? Maybe, requires manual work in delete to move it to the next entry. Would also need an end entry. No, id tracking is still best effort and this would make text diffs also best effort as a consequence.
+
+{ [entry index]: [verbatim lines], [Infinity]: [...] }, but after deleting a mon, move all indices greater than it down by one.

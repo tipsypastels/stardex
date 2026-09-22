@@ -2,12 +2,13 @@ import { describe, expect, test } from "vitest";
 import type { RawPokemon } from "..";
 import { makeId } from "../../../utils/id";
 import { serializeRawPokemonListToText } from "./serialize";
+import type { PokemonListVerbatimText } from "./verbatim";
 
 describe(serializeRawPokemonListToText, () => {
   const header = () => ({ v: 1 as const, id: makeId() });
 
-  function s(pokemons: RawPokemon[], textDiff?: string[], strict?: boolean) {
-    return serializeRawPokemonListToText({ pokemons, textDiff, strict });
+  function s(pokemons: RawPokemon[], verbatimText?: PokemonListVerbatimText) {
+    return serializeRawPokemonListToText({ pokemons, verbatimText });
   }
 
   test("empty", () => {
@@ -52,9 +53,9 @@ describe(serializeRawPokemonListToText, () => {
     );
   });
 
-  test("text diff", () => {
-    expect(s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e1"])).toEqual("\nBulbasaur");
-    expect(s([{ ...header(), species: "bulbasaur" }], ["# Hello", "\0e1"])).toEqual(
+  test("verbatim text", () => {
+    expect(s([{ ...header(), species: "bulbasaur" }], [[""], {}])).toEqual("\nBulbasaur");
+    expect(s([{ ...header(), species: "bulbasaur" }], [["# Hello"], {}])).toEqual(
       "# Hello\nBulbasaur",
     );
 
@@ -65,47 +66,13 @@ describe(serializeRawPokemonListToText, () => {
           { ...header(), species: "ivysaur" },
           { ...header(), species: "venusaur" },
         ],
-        ["# Best Starters", "\0e3", "\0b2"],
+        [["# Best Starters"], { 2: ["", ""] }],
       ),
     ).toEqual("# Best Starters\nBulbasaur\nIvysaur\nVenusaur\n\n");
   });
 
-  test("text diff being longer than list is ignored", () => {
-    expect(s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e2"])).toEqual("\nBulbasaur");
-  });
-
-  test("list being longer than text diff is ignored", () => {
-    expect(
-      s(
-        [
-          { ...header(), species: "bulbasaur" },
-          { ...header(), species: "ivysaur" },
-        ],
-        ["\0b1", "\0e1"],
-      ),
-    ).toEqual("\nBulbasaur");
-  });
-
-  test("both of those can be made to throw", () => {
-    expect(() => s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e2"], true)).toThrow(
-      new Error("Text diff entry count exceeded Pokemon list length"),
-    );
-
-    expect(() =>
-      s(
-        [
-          { ...header(), species: "bulbasaur" },
-          { ...header(), species: "ivysaur" },
-        ],
-        ["\0b1", "\0e1"],
-        true,
-      ),
-    ).toThrow(new Error("Pokemon list length exceeded text diff entry count"));
-  });
-
-  test("except with a trivial diff, which is always ignored", () => {
-    s([{ ...header(), species: "bulbasaur" }], [], true);
-    s([{ ...header(), species: "bulbasaur" }], ["\0e2"], true);
+  test("verbatim text after entries out of range is ignored", () => {
+    expect(s([{ ...header(), species: "bulbasaur" }], [[], { 1: ["xd"] }])).toEqual("Bulbasaur");
   });
 
   test("disambiguating the known alt type hack", () => {

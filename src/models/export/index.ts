@@ -1,41 +1,32 @@
 import { batch } from "solid-js";
 import * as v from "valibot";
 import { saveToFile } from "../../utils/fs/web";
-import { pokedexMode, PokedexModeKey } from "../pokedex/mode";
+import { pokedexMode } from "../pokedex/mode";
 import { customIcons } from "../pokemon/custom_icon";
-import { pokemons, RawPokemonList } from "../pokemon/list";
+import { pokemons } from "../pokemon/list";
 import { projects } from "../project/list";
-import { RegionKey } from "../region";
 import { regions } from "../region/set";
-import { strictness, StrictnessKey } from "../strictness";
+import { strictness } from "../strictness";
 import { customTypeColors } from "../type/custom_colors";
-import { excludedTypes, RawExcludedTypesSet } from "../type/excluded";
-import { V0_RawJSONExport, V0_upgradeRawJSONExport } from "./versioned";
+import { excludedTypes } from "../type/excluded";
+import { V0_RawJSONExport, V0_upgradeRawJSONExport } from "./versioned/v0";
+import { V1_RawJSONExport, V1_upgradeRawJSONExport } from "./versioned/v1";
+import { V2_RawJSONExport, V2_RawJSONExportCustomIcons } from "./versioned/v2";
 
-export const JSON_EXPORT_VERSION = 1;
-
-export const RawJSONExportCustomIcons = v.object({
-  dataUrls: v.record(v.string(), v.string()),
-});
-
-export const RawJSONExport = v.object({
-  v: v.literal(JSON_EXPORT_VERSION),
-  projectName: v.optional(v.string()),
-  pokemons: RawPokemonList,
-  regions: v.array(RegionKey),
-  strictness: StrictnessKey,
-  pokedexMode: PokedexModeKey,
-  customIcons: RawJSONExportCustomIcons,
-  excludedTypes: RawExcludedTypesSet,
-  customTypeColors: v.optional(v.record(v.string(), v.string())),
-});
+export const JSON_EXPORT_VERSION = 2;
 
 export type RawJSONExportCustomIcons = v.InferOutput<typeof RawJSONExportCustomIcons>;
 export type RawJSONExport = v.InferOutput<typeof RawJSONExport>;
+export {
+  V2_RawJSONExport as RawJSONExport,
+  V2_RawJSONExportCustomIcons as RawJSONExportCustomIcons,
+};
 
+// prettier-ignore
 export const VAny_RawJSONExport = v.union([
-  RawJSONExport,
-  v.pipe(V0_RawJSONExport, v.transform(V0_upgradeRawJSONExport)),
+  V2_RawJSONExport,
+  v.pipe(V1_RawJSONExport, v.transform(V1_upgradeRawJSONExport)),
+  v.pipe(V0_RawJSONExport, v.transform(V0_upgradeRawJSONExport), v.transform(V1_upgradeRawJSONExport)),
 ]);
 
 export function loadJSONExport(raw: RawJSONExport) {

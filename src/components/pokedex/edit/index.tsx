@@ -20,8 +20,7 @@ export interface EditPokemonModalProps {
 }
 
 export function EditPokemonModal(props: EditPokemonModalProps) {
-  const index = createMemo(() => pokemons.all.findIndex((pokemon) => pokemon.id === props.id));
-  const pokemon = createMemo(() => pokemons.all[index()]);
+  const pokemon = createMemo(() => pokemons.all.find((pokemon) => pokemon.id === props.id)!);
   const mutator = createMemo(() => pokemons.mutator(props.id));
 
   const customIconState = createCustomIconUploadState(() => props.id);
@@ -54,7 +53,6 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
               </ButtonLink>
             </div>
           }
-          footerHasDivider
         >
           <div class="relative">
             <div class="absolute top-0 right-0 rounded-md border-2 border-divider-heavy p-2">
@@ -70,7 +68,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
             <EditPokemonTypes pokemon={pokemon()} mutator={mutator()} />
             <EditPokemonCustomIconLink state={customIconState} />
             <EditPokemonBehavior pokemon={pokemon()} mutator={mutator()} />
-            <EditPokemonComment index={index()} />
+            <EditPokemonComment pokemon={pokemon()} mutator={mutator()} />
           </div>
         </Modal>
       }

@@ -1,39 +1,24 @@
 import * as v from "valibot";
 import { makeId } from "../../utils/id";
-import { PokedexModeKey } from "../pokedex/mode";
-import { RawCustomIconsMetadata } from "../pokemon/custom_icon/metadata";
-import { RawPokemonList } from "../pokemon/list";
-import { RegionKey } from "../region";
-import { StrictnessKey } from "../strictness";
-import { RawExcludedTypesSet } from "../type/excluded";
-import { PROJECT_VERSION, V0_RawProject, V0_upgradeRawProject } from "./versioned";
+import { V0_RawProject, V0_upgradeRawProject } from "./versioned/v0";
+import { V1_RawProject, V1_upgradeRawProject } from "./versioned/v1";
+import { V2_RawProject, V2_RawProjectModels } from "./versioned/v2";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
 /* -------------------------------------------------------------------------- */
 
-export const RawProjectModels = v.object({
-  pokemons: RawPokemonList,
-  regions: v.array(RegionKey),
-  strictness: StrictnessKey,
-  pokedexMode: PokedexModeKey,
-  customIconsMetadata: RawCustomIconsMetadata,
-  excludedTypes: RawExcludedTypesSet,
-});
-
-export const RawProject = v.object({
-  v: v.literal(PROJECT_VERSION),
-  id: v.string(),
-  name: v.string(),
-  dormantModels: v.optional(RawProjectModels),
-});
+export const PROJECT_VERSION = 2;
 
 export type RawProjectModels = v.InferOutput<typeof RawProjectModels>;
 export type RawProject = v.InferOutput<typeof RawProject>;
+export { V2_RawProject as RawProject, V2_RawProjectModels as RawProjectModels };
 
+// prettier-ignore
 export const VAny_RawProject = v.union([
-  RawProject,
-  v.pipe(V0_RawProject, v.transform(V0_upgradeRawProject)),
+  V2_RawProject,
+  v.pipe(V1_RawProject, v.transform(V1_upgradeRawProject)),
+  v.pipe(V0_RawProject, v.transform(V0_upgradeRawProject), v.transform(V1_upgradeRawProject)),
 ]);
 
 /* -------------------------------------------------------------------------- */

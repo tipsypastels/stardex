@@ -11,6 +11,7 @@ export interface PokemonMutator {
   unsetTypeKeysAndAlt(): void;
   setCustomAltName(altName: string | undefined): void;
   setExclude(exclude: boolean): void;
+  setComment(comment: string | undefined): void;
 }
 
 export function createPokemonMutator(
@@ -89,6 +90,15 @@ export function createPokemonMutator(
         (all) => all.id === id,
         produce((pokemon) => {
           pokemon.exclude = exclude || undefined;
+        }),
+      );
+    },
+
+    setComment(comment) {
+      setAll(
+        (all) => all.id === id,
+        produce((pokemon) => {
+          pokemon.comment = comment || undefined;
         }),
       );
     },
