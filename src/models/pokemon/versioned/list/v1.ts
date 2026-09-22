@@ -1,6 +1,6 @@
 import * as v from "valibot";
-import { RawPokemonListVerbatimTextBuilder } from "../../text/verbatim";
-import { V1_RawPokemon } from "../pokemon/v1";
+import { PokemonListVerbatimTextBuilder } from "../../text/verbatim";
+import { V1_RawPokemon } from "../v1";
 import type { V2_RawPokemonList } from "./v2";
 
 /**
@@ -18,7 +18,7 @@ export function V1_upgradeRawPokemonList(
   raw: v.InferOutput<typeof V1_RawPokemonList>,
 ): v.InferOutput<typeof V2_RawPokemonList> {
   const all: v.InferOutput<typeof V1_RawPokemon>[] = [];
-  const verbatimText = new RawPokemonListVerbatimTextBuilder();
+  const verbatimText = new PokemonListVerbatimTextBuilder();
 
   for (const pokemon of raw.all) {
     all.push({ ...pokemon });
@@ -37,7 +37,7 @@ export function V1_upgradeRawPokemonList(
         const comment = suffix.replace(/^\s*#\s*/, "");
 
         const pokemon = all.at(entryCount);
-        if (pokemon) pokemon.inlineComment = comment;
+        if (pokemon) pokemon.comment = comment;
         entryCount++;
         verbatimText.entry();
       } else if (textDiffEntry.startsWith("\0b")) {

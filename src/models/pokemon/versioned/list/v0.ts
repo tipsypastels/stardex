@@ -1,6 +1,6 @@
 import * as v from "valibot";
-import { V0_RawBuiltinPokemon, V0_RawCustomPokemon, V0_upgradeRawPokemon } from "../pokemon/v0";
-import type { V1_RawPokemon } from "../pokemon/v1";
+import { V0_RawBuiltinPokemon, V0_RawCustomPokemon, V0_upgradeRawPokemon } from "../v0";
+import type { V1_RawPokemon } from "../v1";
 import type { V1_RawPokemonList } from "./v1";
 
 /**

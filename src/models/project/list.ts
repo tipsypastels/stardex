@@ -1,7 +1,7 @@
 import { batch, createEffect, createMemo, createRoot, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
-import { PROJECTS, RawProject, RawProjectModels, type ProjectWithDormantModels } from ".";
+import { PROJECT_VERSION, PROJECTS, RawProjectModels, type ProjectWithDormantModels } from ".";
 import { mustIndex } from "../../utils/assert";
 import { makeId } from "../../utils/id";
 import { stored } from "../../utils/storage";
@@ -10,30 +10,26 @@ import {
   CUSTOM_ICONS_METADATA_VERSION,
   customIconsMetadata,
 } from "../pokemon/custom_icon/metadata";
-import { pokemons } from "../pokemon/list";
-import { POKEMON_LIST_VERSION } from "../pokemon/versioned";
+import { POKEMON_LIST_VERSION, pokemons } from "../pokemon/list";
 import { REGIONS } from "../region";
 import { regions } from "../region/set";
 import { strictness, STRICTNESSES } from "../strictness";
 import { EXCLUDED_TYPES_VERSION, excludedTypes } from "../type/excluded";
 import { catchStartupError } from "../ui/error";
-import {
-  PROJECT_LIST_VERSION,
-  PROJECT_VERSION,
-  V0_RawProjectList,
-  V0_upgradeRawProjectList,
-} from "./versioned";
+import { V0_RawProjectList, V0_upgradeRawProjectList } from "./versioned/v0";
+import { V1_RawProjectList, V1_upgradeRawProjectList } from "./versioned/v1";
+import { V2_RawProjectList } from "./versioned/v2";
+
+export const PROJECT_LIST_VERSION = 2;
 
 export type RawProjectList = v.InferOutput<typeof RawProjectList>;
-export const RawProjectList = v.object({
-  v: v.literal(PROJECT_VERSION),
-  all: v.array(RawProject),
-  activeId: v.string(),
-});
+export { V2_RawProjectList as RawProjectList };
 
+// prettier-ignore
 export const VAny_RawProjectList = v.union([
-  RawProjectList,
-  v.pipe(V0_RawProjectList, v.transform(V0_upgradeRawProjectList)),
+  V2_RawProjectList,
+  v.pipe(V1_RawProjectList, v.transform(V1_upgradeRawProjectList)),
+  v.pipe(V0_RawProjectList, v.transform(V0_upgradeRawProjectList), v.transform(V1_upgradeRawProjectList)),
 ]);
 
 const DEFAULTS: RawProjectList = {
@@ -121,7 +117,7 @@ export const projects = createRoot(() => {
           id: makeId(),
           name: `Untitled Project ${all.length + 1}`,
           dormantModels: {
-            pokemons: { v: POKEMON_LIST_VERSION, all: [] },
+            pokemons: { v: POKEMON_LIST_VERSION, all: [], verbatimText: [[], {}] },
             regions: REGIONS.recommendedKeys,
             strictness: STRICTNESSES.defaultKey,
             pokedexMode: POKEDEX_MODES.defaultKey,

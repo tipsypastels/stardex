@@ -1,74 +1,51 @@
 import * as v from "valibot";
 
-export type RawPokemonListVerbatimText = v.InferOutput<typeof RawPokemonListVerbatimText>;
-export const RawPokemonListVerbatimText = v.object({
-  beforeAll: v.array(v.string()),
-  afterEntries: v.array(v.tuple([v.number(), v.array(v.string())])),
-});
+export const PLVT_BEFORE_ALL = 0;
+export const PLVT_AFTER_ENTRIES = 1;
 
-export interface PokemonListVerbatimText {
-  beforeAll: string[];
-  afterEntries: Record<number, string[]>;
-}
-
-export function pokemonListVerbatimTextFromRaw(
-  raw: RawPokemonListVerbatimText,
-): PokemonListVerbatimText {
-  return {
-    beforeAll: raw.beforeAll,
-    afterEntries: Object.fromEntries(raw.afterEntries.map(([i, v]) => [i, v])),
-  };
-}
-
-export function pokemonListVerbatimTextToRaw(
-  verbatimText: PokemonListVerbatimText,
-): RawPokemonListVerbatimText {
-  return {
-    beforeAll: verbatimText.beforeAll,
-    afterEntries: Object.entries(verbatimText.afterEntries).map(([i, v]) => [+i, v]),
-  };
-}
+export type PokemonListVerbatimText = v.InferOutput<typeof PokemonListVerbatimText>;
+export const PokemonListVerbatimText = v.tuple([
+  v.array(v.string()),
+  v.record(v.string(), v.array(v.string())),
+]);
 
 export function deletePokemonListVerbatimTextEntry(
   verbatimText: PokemonListVerbatimText,
   deleteIndex: number,
 ) {
-  const out: PokemonListVerbatimText = {
-    beforeAll: verbatimText.beforeAll,
-    afterEntries: {},
-  };
+  if (deleteIndex < 0) {
+    return verbatimText;
+  }
 
-  for (const index_ in verbatimText.afterEntries) {
+  const out: PokemonListVerbatimText = [verbatimText[PLVT_BEFORE_ALL], {}];
+
+  for (const index_ in verbatimText[PLVT_AFTER_ENTRIES]) {
     const index = +index_;
-    const lines = verbatimText.afterEntries[index];
+    const lines = verbatimText[PLVT_AFTER_ENTRIES][index];
 
     if (index === 0 && deleteIndex === 0) {
-      out.beforeAll.push(...lines);
+      out[PLVT_BEFORE_ALL].push(...lines);
     } else if (index >= deleteIndex) {
       const movedIndex = index - 1;
 
-      out.afterEntries[movedIndex] ??= [];
-      out.afterEntries[movedIndex].push(...lines);
+      out[PLVT_AFTER_ENTRIES][movedIndex] ??= [];
+      out[PLVT_AFTER_ENTRIES][movedIndex].push(...lines);
     } else {
-      out.afterEntries[index] = lines;
+      out[PLVT_AFTER_ENTRIES][index] = lines;
     }
   }
 
   return out;
 }
 
-abstract class BuilderImpl<FinishedAfterEntries> {
+export class PokemonListVerbatimTextBuilder {
   #beforeAll: string[] = [];
-  #afterEntries: Record<number, string[]> = {};
+  #afterEntries: Record<string, string[]> = {};
 
   #currentEntry?: {
     index: number;
     lines: string[];
   };
-
-  protected abstract finishAfterEntries(
-    afterEntries: Record<number, string[]>,
-  ): FinishedAfterEntries;
 
   entry() {
     const oldIndex = this.#currentEntry?.index;
@@ -84,12 +61,9 @@ abstract class BuilderImpl<FinishedAfterEntries> {
     return this;
   }
 
-  finish() {
+  finish(): PokemonListVerbatimText {
     this.#flushEntry();
-    return {
-      beforeAll: this.#beforeAll,
-      afterEntries: this.finishAfterEntries(this.#afterEntries),
-    };
+    return [this.#beforeAll, this.#afterEntries];
   }
 
   #flushEntry() {
@@ -97,17 +71,5 @@ abstract class BuilderImpl<FinishedAfterEntries> {
       this.#afterEntries[this.#currentEntry.index] = this.#currentEntry.lines;
     }
     this.#currentEntry = undefined;
-  }
-}
-
-export class PokemonListVerbatimTextBuilder extends BuilderImpl<Record<number, string[]>> {
-  protected finishAfterEntries(afterEntries: Record<number, string[]>) {
-    return afterEntries;
-  }
-}
-
-export class RawPokemonListVerbatimTextBuilder extends BuilderImpl<[number, string[]][]> {
-  protected finishAfterEntries(afterEntries: Record<number, string[]>) {
-    return Object.entries(afterEntries).map(([i, v]) => [+i, v] as [number, string[]]);
   }
 }

@@ -1,15 +1,11 @@
 import * as v from "valibot";
-import type { RawProject } from ".";
-import { V0_PokedexModeKey, V0_upgradePokedexModeKey } from "../pokedex/mode/versioned";
-import { CUSTOM_ICONS_METADATA_VERSION } from "../pokemon/custom_icon/metadata";
-import { V0_RawPokemonList, V0_upgradeRawPokemonList } from "../pokemon/versioned";
-import { RegionKey } from "../region";
-import { StrictnessKey } from "../strictness";
-import { EXCLUDED_TYPES_VERSION } from "../type/excluded";
-import { RawProjectList } from "./list";
-
-export const PROJECT_VERSION = 1;
-export const PROJECT_LIST_VERSION = 1;
+import { V0_PokedexModeKey, V0_upgradePokedexModeKey } from "../../pokedex/mode/versioned";
+import { CUSTOM_ICONS_METADATA_VERSION } from "../../pokemon/custom_icon/metadata";
+import { V0_RawPokemonList, V0_upgradeRawPokemonList } from "../../pokemon/versioned/list/v0";
+import { RegionKey } from "../../region";
+import { StrictnessKey } from "../../strictness";
+import { EXCLUDED_TYPES_VERSION } from "../../type/excluded";
+import type { V1_RawProject, V1_RawProjectList } from "./v1";
 
 /**
  * Project V0:
@@ -34,9 +30,11 @@ export const V0_RawProject = v.object({
   modelState: v.optional(V0_RawProjectModels),
 });
 
-export function V0_upgradeRawProject(raw: v.InferOutput<typeof V0_RawProject>): RawProject {
+export function V0_upgradeRawProject(
+  raw: v.InferOutput<typeof V0_RawProject>,
+): v.InferOutput<typeof V1_RawProject> {
   return {
-    v: PROJECT_VERSION,
+    v: 1,
     id: raw.id,
     name: raw.name,
     dormantModels: raw.modelState
@@ -56,7 +54,7 @@ export const V0_RawProjectList = v.array(V0_RawProject);
 
 export function V0_upgradeRawProjectList(
   raws: v.InferOutput<typeof V0_RawProjectList>,
-): RawProjectList {
+): v.InferOutput<typeof V1_RawProjectList> {
   const activeId = raws.find((raw) => raw.active)!.id;
-  return { v: PROJECT_LIST_VERSION, all: raws.map(V0_upgradeRawProject), activeId };
+  return { v: 1, all: raws.map(V0_upgradeRawProject), activeId };
 }

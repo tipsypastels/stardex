@@ -4,7 +4,7 @@ const Shared = v.object({
   v: v.literal(1),
   id: v.string(),
   exclude: v.optional(v.boolean()),
-  inlineComment: v.optional(v.string()),
+  comment: v.optional(v.string()),
 });
 
 export const V1_RawBuiltinPokemon = v.object({

@@ -1,5 +1,5 @@
 import * as v from "valibot";
-import { makeId } from "../../../../utils/id";
+import { makeId } from "../../../utils/id";
 import { V1_RawBuiltinPokemon, V1_RawCustomPokemon, V1_RawPokemon } from "./v1";
 
 /**

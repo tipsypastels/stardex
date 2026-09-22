@@ -5,7 +5,7 @@ import { capitalize, capitalizeWords } from "../../../utils/string";
 import { pokemons } from "../list";
 import { SPECIES } from "../species";
 import { transformAltNameWithAliases } from "./alt_name";
-import { pokemonListTextDiffIsTrivial, readPokemonListTextDiff } from "./diff";
+import { PLVT_AFTER_ENTRIES, PLVT_BEFORE_ALL, type PokemonListVerbatimText } from "./verbatim";
 
 export interface SerializePokemonListToTextOptions {
   eachId?(id: Spanned<string>): void;
@@ -14,80 +14,47 @@ export interface SerializePokemonListToTextOptions {
 export function serializePokemonListToText({ eachId }: SerializePokemonListToTextOptions = {}) {
   return serializeRawPokemonListToText({
     pokemons: iterMap(pokemons.all, (pokemon) => pokemon.toRaw()),
-    textDiff: pokemons.textDiff,
+    verbatimText: pokemons.verbatimText,
     eachId,
   });
 }
 
 export interface SerializeRawPokemonListToTextOptions {
   pokemons: Iterable<RawPokemon>;
-  textDiff?: string[];
-  strict?: boolean;
+  verbatimText?: PokemonListVerbatimText;
   eachId?(id: Spanned<string>): void;
 }
 
 export function serializeRawPokemonListToText({
   pokemons,
-  textDiff,
-  strict,
+  verbatimText,
   eachId,
 }: SerializeRawPokemonListToTextOptions) {
   const lines: string[] = [];
   const idSpans = new IdSpanTracker(eachId);
+  const iter = pokemons[Symbol.iterator]();
 
-  if (textDiff && !pokemonListTextDiffIsTrivial(textDiff)) {
-    const pokemonsIter = pokemons[Symbol.iterator]();
+  if (verbatimText && verbatimText[PLVT_BEFORE_ALL].length > 0) {
+    lines.push(...verbatimText[PLVT_BEFORE_ALL]);
+  }
 
-    function readOne() {
-      const result = pokemonsIter.next();
-      if (result.done) {
-        if (strict) throw new Error("Text diff entry count exceeded Pokemon list length");
-        return;
-      }
-      return result.value;
-    }
+  for (let i = 0; ; i++) {
+    const result = iter.next();
+    if (result.done) break;
 
-    for (const entry of readPokemonListTextDiff(textDiff)) {
-      switch (entry.type) {
-        case "blanks": {
-          lines.push(...new Array(entry.count).map(() => ""));
-          idSpans.blank(entry.count);
-          break;
-        }
-        case "entries": {
-          for (let i = 0; i < entry.count; i++) {
-            const pokemon = readOne();
-            if (!pokemon) break;
-            lines.push(toLine(pokemon, idSpans));
-          }
-          break;
-        }
-        case "entry-with-verbatim-suffix": {
-          const pokemon = readOne();
-          if (!pokemon) break;
-          lines.push(toLine(pokemon, idSpans, entry.suffix));
-          break;
-        }
-        case "verbatim": {
-          lines.push(entry.line);
-          idSpans.ignore(entry.line.length);
-          break;
-        }
-      }
-    }
-    if (strict && !pokemonsIter.next().done) {
-      throw new Error("Pokemon list length exceeded text diff entry count");
-    }
-  } else {
-    for (const pokemon of pokemons) {
-      lines.push(toLine(pokemon, idSpans));
+    const pokemon = result.value;
+    pushPokemonLines(lines, pokemon, idSpans);
+
+    const verbatimLinesAfter = verbatimText?.[PLVT_AFTER_ENTRIES]?.[i];
+    if (verbatimLinesAfter) {
+      lines.push(...verbatimLinesAfter);
     }
   }
 
   return lines.join("\n");
 }
 
-function toLine(pokemon: RawPokemon, idSpans: IdSpanTracker, verbatimSuffix?: string) {
+function pushPokemonLines(lines: string[], pokemon: RawPokemon, idSpans: IdSpanTracker) {
   let line = "species" in pokemon ? SPECIES.of(pokemon.species).name : pokemon.name;
 
   const altName = (() => {
@@ -116,13 +83,13 @@ function toLine(pokemon: RawPokemon, idSpans: IdSpanTracker, verbatimSuffix?: st
   if (pokemon.exclude) {
     line += " @exclude";
   }
-  if (verbatimSuffix) {
-    line += ` ${verbatimSuffix}`;
+  if (pokemon.comment) {
+    line += ` # ${pokemon.comment}`;
   }
 
   idSpans.track(pokemon.id, line.length);
 
-  return line;
+  lines.push(line);
 }
 
 function mustDisambiguateSingleTypeForKnownAltTypeHack(pokemon: RawPokemon) {

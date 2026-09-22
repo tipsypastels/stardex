@@ -12,7 +12,7 @@ describe(V1_upgradeRawPokemonList, () => {
     ).toEqual({
       v: 2,
       all: [],
-      verbatimText: { beforeAll: [], afterEntries: [] },
+      verbatimText: [[], {}],
     });
   });
 
@@ -25,8 +25,8 @@ describe(V1_upgradeRawPokemonList, () => {
       }),
     ).toEqual({
       v: 2,
-      all: [{ v: 1, id: "x", species: "bulbasaur", inlineComment: "hi" }],
-      verbatimText: { beforeAll: [], afterEntries: [] },
+      all: [{ v: 1, id: "x", species: "bulbasaur", comment: "hi" }],
+      verbatimText: [[], {}],
     });
   });
 
@@ -55,16 +55,16 @@ describe(V1_upgradeRawPokemonList, () => {
       v: 2,
       all: [
         { v: 1, id: "x", species: "bulbasaur" },
-        { v: 1, id: "y", species: "ivysaur", inlineComment: "haha ivysuar" },
+        { v: 1, id: "y", species: "ivysaur", comment: "haha ivysuar" },
         { v: 1, id: "z", species: "venusaur" },
       ],
-      verbatimText: {
-        beforeAll: [""],
-        afterEntries: [
-          [0, ["", "", "# hello, world", ""]],
-          [2, [""]],
-        ],
-      },
+      verbatimText: [
+        [""],
+        {
+          0: ["", "", "# hello, world", ""],
+          2: [""],
+        },
+      ],
     });
   });
 });
