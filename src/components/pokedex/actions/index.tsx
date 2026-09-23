@@ -23,11 +23,11 @@ export interface PokedexActionsProps {
 export function PokedexActions(props: PokedexActionsProps) {
   const [modal, setModal] = createSignal<"mode" | "filter" | "autosort" | "import" | "clear">();
 
-  const isNonTextMode = () => pokedexMode.key !== "text";
+  const isTextMode = () => pokedexMode.key === "text";
   const isEmpty = () => pokemons.all.length === 0;
 
   createEffect(() => {
-    if (isEmpty()) {
+    if (isEmpty() || isTextMode()) {
       props.setZapper(false);
     }
   });
@@ -82,7 +82,7 @@ export function PokedexActions(props: PokedexActionsProps) {
           name="Zap"
           icon="bolt"
           active={props.zapper}
-          disabled={isEmpty()}
+          disabled={isEmpty() || isTextMode()}
           onClick={toggleZapper}
         />
         <ActionBarItem name="Import" icon="upload" onClick={() => setModal("import")} />
@@ -94,7 +94,7 @@ export function PokedexActions(props: PokedexActionsProps) {
         />
       </ActionBar>
 
-      <Show when={isNonTextMode()}>
+      <Show when={!isTextMode()}>
         <AddPokemon />
       </Show>
 
