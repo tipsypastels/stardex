@@ -84,16 +84,17 @@ const NOTICE_OPTIONS: NoticeOption[] = [
         </ul>
       </div>
       <div class="mb-2">
-        <h3 class="mb-1 text-lg font-bold">Comments for notetaking:</h3>
+        <h3 class="mb-1 text-lg font-bold">More tools when editing Pokémon:</h3>
         <ul class="list-inside list-disc">
           <li>
             The edit Pokémon popup now has a "comment" field. Comments do nothing, but you can use
-            them to add notes that might be helpful to you.
-          </li>
-          <li>
-            This is equivalent to adding a{" "}
+            them to add notes that might be helpful to you. This is equivalent to adding a{" "}
             <code class="break-inside-avoid text-sm text-editor-comment"># comment</code> in the
             text editor mode. If you use multiple modes, you can edit the same comments from either.
+          </li>
+          <li>
+            The same popup now has a "Duplicate" button. This will insert a copy of the same Pokémon
+            right after, which you can then edit independently.
           </li>
         </ul>
       </div>
