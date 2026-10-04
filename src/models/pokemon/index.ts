@@ -2,41 +2,26 @@ import * as v from "valibot";
 import { makeId } from "../../utils/id";
 import { TYPES, type Type } from "../type";
 import { SPECIES, type Species, type SpeciesAlt } from "./species";
-import { POKEMON_VERSION, V0_RawPokemon, V0_upgradeRawPokemon } from "./versioned";
+import { V0_RawPokemon, V0_upgradeRawPokemon } from "./versioned/v0";
+import { V1_RawBuiltinPokemon, V1_RawCustomPokemon, V1_RawPokemon } from "./versioned/v1";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
 /* -------------------------------------------------------------------------- */
 
+export const POKEMON_VERSION = 1;
+
 export type RawBuiltinPokemon = v.InferOutput<typeof RawBuiltinPokemon>;
 export type RawCustomPokemon = v.InferOutput<typeof RawCustomPokemon>;
 export type RawPokemon = v.InferOutput<typeof RawPokemon>;
-
-const RawSharedPokemon = v.object({
-  v: v.literal(POKEMON_VERSION),
-  id: v.string(),
-  exclude: v.optional(v.boolean()),
-});
-
-export const RawBuiltinPokemon = v.object({
-  ...RawSharedPokemon.entries,
-  species: v.string(),
-  alt: v.optional(v.string()),
-  customAltName: v.optional(v.string()),
-  types: v.optional(v.array(v.string())),
-});
-
-export const RawCustomPokemon = v.object({
-  ...RawSharedPokemon.entries,
-  name: v.string(),
-  altName: v.optional(v.string()),
-  types: v.array(v.string()),
-});
-
-export const RawPokemon = v.union([RawBuiltinPokemon, RawCustomPokemon]);
+export {
+  V1_RawBuiltinPokemon as RawBuiltinPokemon,
+  V1_RawCustomPokemon as RawCustomPokemon,
+  V1_RawPokemon as RawPokemon,
+};
 
 export const VAny_RawPokemon = v.union([
-  RawPokemon,
+  V1_RawPokemon,
   v.pipe(V0_RawPokemon, v.transform(V0_upgradeRawPokemon)),
 ]);
 
@@ -46,15 +31,11 @@ export const VAny_RawPokemon = v.union([
 
 export type Pokemon = BuiltinPokemon | CustomPokemon;
 
-export const POKEMONS = (() => {
-  function make(raw: RawPokemon) {
+export const POKEMONS = {
+  make(raw: RawPokemon) {
     return "species" in raw ? BUILTIN_POKEMONS.make(raw) : CUSTOM_POKEMONS.make(raw);
-  }
-  function fromOrThrow(raw: unknown) {
-    return make(v.parse(VAny_RawPokemon, raw));
-  }
-  return { make, fromOrThrow };
-})();
+  },
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                   Builtin                                  */
@@ -73,6 +54,7 @@ export interface BuiltinPokemon {
   readonly typeKeys: string[];
   readonly types: Type[];
   exclude: boolean | undefined;
+  comment: string | undefined;
   isBuiltin(): this is BuiltinPokemon;
   isCustom(): this is CustomPokemon;
   toRaw(): RawBuiltinPokemon;
@@ -116,6 +98,7 @@ export const BUILTIN_POKEMONS = (() => {
         return this.typeKeys.map(TYPES.of);
       },
       exclude: raw.exclude,
+      comment: raw.comment,
       isBuiltin(): this is BuiltinPokemon {
         return true;
       },
@@ -131,6 +114,7 @@ export const BUILTIN_POKEMONS = (() => {
           customAltName: this.customAltName,
           types: this.changedTypeKeys,
           exclude: this.exclude || undefined,
+          comment: this.comment || undefined,
         };
       },
       toJSON(): unknown {
@@ -157,6 +141,7 @@ export interface CustomPokemon {
   typeKeys: string[];
   readonly types: Type[];
   exclude: boolean | undefined;
+  comment: string | undefined;
   isBuiltin(): this is BuiltinPokemon;
   isCustom(): this is CustomPokemon;
   toRaw(): RawCustomPokemon;
@@ -195,6 +180,7 @@ export const CUSTOM_POKEMONS = (() => {
         return this.typeKeys.map(TYPES.of);
       },
       exclude: raw.exclude,
+      comment: raw.comment,
       isBuiltin(): this is BuiltinPokemon {
         return false;
       },
@@ -209,6 +195,7 @@ export const CUSTOM_POKEMONS = (() => {
           altName: this.altName,
           types: this.typeKeys,
           exclude: this.exclude || undefined,
+          comment: this.comment || undefined,
         };
       },
       toJSON(): unknown {

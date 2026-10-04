@@ -11,33 +11,41 @@ import {
   placeholder,
 } from "@codemirror/view";
 import { EditorView, minimalSetup } from "codemirror";
-import { createEffect, onCleanup, onMount, untrack } from "solid-js";
-import type { PokedexModeViewProps } from "..";
+import { createEffect, onCleanup, onMount, Show, untrack } from "solid-js";
+import { pokemonsFiltered } from "../../../../models/pokedex/filter";
+import { pokemons } from "../../../../models/pokemon/list";
 import { serializePokemonListToText } from "../../../../models/pokemon/text/serialize";
 import { projects } from "../../../../models/project/list";
 import type { Spanned } from "../../../../utils/span";
+import { clearPokedexModeRefreshCallback, setPokedexModeRefreshCallback } from "../refresh";
+import { FilterNone } from "../util/filter_none";
 import { autocomplete } from "./autocomplete";
+import { filtering, formatLineNumbersWithFilteredLines } from "./filter";
+import { inlayHints } from "./hints";
 import { language } from "./language";
 import { initialTrackingIds, trackingIds } from "./metadata";
 import { parseInitial, parser } from "./parse";
 import { highlightTheme, selectionMark, theme } from "./theme";
 import { tooltip } from "./tooltip";
 
-export function PokedexTextView(props: PokedexModeViewProps) {
+export function PokedexTextView() {
   let parent!: HTMLDivElement;
   let view: EditorView | undefined;
 
   onMount(() => {
-    props.setAfterActionChange(() => {
+    setPokedexModeRefreshCallback(() => {
+      // eslint-disable-next-line no-console
+      console.log("Text editor refreshing...");
+
       if (view) {
         view.setState(createState());
-        parseInitial(view.state);
+        parseInitial(view);
       }
     });
   });
 
   onCleanup(() => {
-    props.setAfterActionChange(undefined);
+    clearPokedexModeRefreshCallback();
   });
 
   createEffect(() => {
@@ -45,22 +53,35 @@ export function PokedexTextView(props: PokedexModeViewProps) {
     projects.activeId;
     view = new EditorView({ parent, state: createState() });
 
-    parseInitial(view.state);
+    parseInitial(view);
     onCleanup(() => view?.destroy());
   });
 
-  return <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />;
+  return (
+    <>
+      <div class="rounded-b-md border-2 border-t-0 border-secondary" ref={parent} />
+      <Show when={pokemons.all.length > 0 && pokemonsFiltered.all.length === 0}>
+        <FilterNone />
+      </Show>
+    </>
+  );
 }
 
 function createState() {
   const ids: Spanned<string>[] = [];
   const doc = untrack(() => serializePokemonListToText({ eachId: (id) => ids.push(id) }));
+
+  const filter = filtering(
+    untrack(() =>
+      pokemonsFiltered.all.length < pokemons.all.length ? pokemonsFiltered.all : undefined,
+    ),
+  );
+
   return EditorState.create({
     doc,
     extensions: [
       minimalSetup,
       // From basicsetup
-      lineNumbers(),
       bracketMatching(),
       closeBrackets(),
       highlightActiveLine(),
@@ -68,6 +89,7 @@ function createState() {
       keymap.of([...closeBracketsKeymap, ...completionKeymap, ...lintKeymap, ...searchKeymap]),
 
       // From stardex
+      lineNumbers({ formatNumber: formatLineNumbersWithFilteredLines }),
       placeholder("Enter some Pokémon, one per line..."),
       theme,
       selectionMark,
@@ -79,6 +101,8 @@ function createState() {
       parser,
       autocomplete,
       tooltip,
+      filter,
+      inlayHints,
     ],
   });
 }

@@ -11,6 +11,7 @@ export interface InputProps {
   value: string;
   list?: string;
   short?: boolean;
+  placeholder?: string;
   visuallyLowercase?: boolean;
   onInput?(e: Event & { currentTarget: HTMLInputElement }): void;
   onChange?(e: Event & { currentTarget: HTMLInputElement }): void;
@@ -27,6 +28,7 @@ export function Input(props: InputProps) {
       type="text"
       value={props.value}
       list={props.list}
+      placeholder={props.placeholder}
       onInput={(e) => props.onInput?.(e)}
       onChange={(e) => props.onChange?.(e)}
       onBlur={(e) => props.onBlur?.(e)}

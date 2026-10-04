@@ -1,4 +1,5 @@
 import { createSignal, Show } from "solid-js";
+import { globalInterfaceOptions } from "../../models/interface";
 import { recommendations } from "../../models/metrics";
 import { pokemons } from "../../models/pokemon/list";
 import { regions } from "../../models/region/set";
@@ -8,11 +9,13 @@ import { ButtonLink } from "../common/link";
 import { ActionBar, ActionBarItem } from "../common/menus/action_bar";
 import { Section } from "../layout/section";
 import { RecommendedChangeGroup } from "./group";
+import { PipRecommendations } from "./pip";
 import { regionsIcon, RegionsModal } from "./regions";
 import { StrictnessModal } from "./strictness";
 
 export function Recommendations() {
   const [modal, setModal] = createSignal<"regions" | "strictness">();
+  const nonEmpty = () => pokemons.all.length > 0 && regions.all.length > 0;
 
   function emptyFallbacks() {
     return (
@@ -34,29 +37,35 @@ export function Recommendations() {
   }
 
   return (
-    <Section id="recommendations" title="Recommendations" hasActions>
-      <ActionBar>
-        <ActionBarItem name="Regions" icon={regionsIcon()} onClick={() => setModal("regions")} />
-        <ActionBarItem
-          name="Strictness"
-          icon={strictness.icon}
-          onClick={() => setModal("strictness")}
-        />
-      </ActionBar>
+    <>
+      <Section id="recommendations" title="Recommendations" hasActions>
+        <ActionBar>
+          <ActionBarItem name="Regions" icon={regionsIcon()} onClick={() => setModal("regions")} />
+          <ActionBarItem
+            name="Strictness"
+            icon={strictness.icon}
+            onClick={() => setModal("strictness")}
+          />
+        </ActionBar>
 
-      <Show when={pokemons.all.length > 0 && regions.all.length > 0} fallback={emptyFallbacks()}>
-        <RecommendedChangeGroup recommendations={recommendations.value.remove} title="Too Many" />
-        <RecommendedChangeGroup recommendations={recommendations.value.add} title="Too Few" />
-        <RecommendedChangeGroup recommendations={recommendations.value.none} title="Just Right" />
-      </Show>
+        <Show when={nonEmpty()} fallback={emptyFallbacks()}>
+          <RecommendedChangeGroup recommendations={recommendations.value.remove} title="Too Many" />
+          <RecommendedChangeGroup recommendations={recommendations.value.add} title="Too Few" />
+          <RecommendedChangeGroup recommendations={recommendations.value.none} title="Just Right" />
+        </Show>
 
-      <Show when={modal() === "regions"}>
-        <RegionsModal onClose={() => setModal(undefined)} />
-      </Show>
+        <Show when={modal() === "regions"}>
+          <RegionsModal onClose={() => setModal(undefined)} />
+        </Show>
 
-      <Show when={modal() === "strictness"}>
-        <StrictnessModal onClose={() => setModal(undefined)} />
+        <Show when={modal() === "strictness"}>
+          <StrictnessModal onClose={() => setModal(undefined)} />
+        </Show>
+      </Section>
+
+      <Show when={globalInterfaceOptions.pipRecommendations && nonEmpty()}>
+        <PipRecommendations />
       </Show>
-    </Section>
+    </>
   );
 }

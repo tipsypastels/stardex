@@ -1,35 +1,36 @@
 import { batch, createEffect, createRoot, createSignal } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 import * as v from "valibot";
-import { POKEMONS, RawPokemon, type Pokemon } from ".";
+import { POKEMON_VERSION, POKEMONS, type Pokemon } from ".";
 import { makeId } from "../../utils/id";
 import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchStartupError } from "../ui/error";
 import { runAutosort, type AutosortRequest } from "./autosort";
-import { createPokemonMutator } from "./mutator";
+import { createPokemonMutator, pokemonListBulkReplaceTypeKey } from "./mutator";
 import {
-  POKEMON_LIST_VERSION,
-  POKEMON_VERSION,
-  V0_RawPokemonList,
-  V0_upgradeRawPokemonList,
-} from "./versioned";
+  deletePokemonListVerbatimTextEntry,
+  splicePokemonListVerbatimTextEntry,
+  type PokemonListVerbatimText,
+} from "./text/verbatim";
+import { V0_RawPokemonList, V0_upgradeRawPokemonList } from "./versioned/list/v0";
+import { V1_RawPokemonList, V1_upgradeRawPokemonList } from "./versioned/list/v1";
+import { V2_RawPokemonList } from "./versioned/list/v2";
 
 /* -------------------------------------------------------------------------- */
 /*                                     Raw                                    */
 /* -------------------------------------------------------------------------- */
 
+export const POKEMON_LIST_VERSION = 2;
+
 export type RawPokemonList = v.InferOutput<typeof RawPokemonList>;
+export { V2_RawPokemonList as RawPokemonList };
 
-export const RawPokemonList = v.object({
-  v: v.literal(POKEMON_LIST_VERSION),
-  all: v.array(RawPokemon),
-  textDiff: v.optional(v.array(v.string())),
-});
-
+// prettier-ignore
 export const VAny_RawPokemonList = v.union([
-  RawPokemonList,
-  v.pipe(V0_RawPokemonList, v.transform(V0_upgradeRawPokemonList)),
+  V2_RawPokemonList,
+  v.pipe(V1_RawPokemonList, v.transform(V1_upgradeRawPokemonList)),
+  v.pipe(V0_RawPokemonList, v.transform(V0_upgradeRawPokemonList), v.transform(V1_upgradeRawPokemonList)),
 ]);
 
 /* -------------------------------------------------------------------------- */
@@ -40,7 +41,7 @@ export const pokemons = createRoot(() => {
   const store = stored("stardex_pokemon");
 
   const [all, setAll] = createStore<Pokemon[]>([]);
-  const [textDiff, setTextDiff] = createSignal<string[]>();
+  const [verbatimText, setVerbatimText] = createSignal<PokemonListVerbatimText>([[], {}]);
 
   const caught = catchStartupError("pokemonList", () => {
     const raw_ = store.load();
@@ -49,7 +50,7 @@ export const pokemons = createRoot(() => {
     const raw = v.parse(VAny_RawPokemonList, raw_);
 
     setAll(raw.all.map(POKEMONS.make));
-    setTextDiff(raw.textDiff);
+    setVerbatimText(raw.verbatimText);
   });
 
   if (!caught) {
@@ -57,7 +58,7 @@ export const pokemons = createRoot(() => {
       store.dump({
         v: POKEMON_LIST_VERSION,
         all: [...all],
-        textDiff: textDiff(),
+        verbatimText: verbatimText(),
       });
     });
   }
@@ -65,8 +66,8 @@ export const pokemons = createRoot(() => {
   return {
     all,
 
-    get textDiff() {
-      return textDiff();
+    get verbatimText() {
+      return verbatimText();
     },
 
     mutator(id: string) {
@@ -91,21 +92,60 @@ export const pokemons = createRoot(() => {
     },
 
     delete(id: string) {
-      setAll((all) => all.filter((pokemon) => pokemon.id !== id));
+      batch(() => {
+        let index = -1;
+
+        setAll(
+          produce((all) => {
+            index = all.findIndex((pokemon) => pokemon.id === id);
+            all.splice(index, 1);
+          }),
+        );
+        setVerbatimText((verbatimText) => deletePokemonListVerbatimTextEntry(verbatimText, index));
+      });
+    },
+
+    duplicate(oldId: string, newId: string) {
+      batch(() => {
+        let oldIndex = -1;
+
+        setAll(
+          produce((all) => {
+            oldIndex = all.findIndex((pokemon) => pokemon.id === oldId);
+            if (oldIndex === -1) return;
+
+            const pokemon = all[oldIndex];
+            const newPokemon = POKEMONS.make({ ...pokemon.toRaw(), id: newId });
+
+            all.splice(oldIndex + 1, 0, newPokemon);
+          }),
+        );
+
+        setVerbatimText((verbatimText) =>
+          splicePokemonListVerbatimTextEntry(verbatimText, oldIndex),
+        );
+      });
+    },
+
+    bulkReplaceTypeKey(oldKey: string, newKey: string) {
+      pokemonListBulkReplaceTypeKey(oldKey, newKey, setAll);
     },
 
     autosort(request: AutosortRequest) {
-      setAll((all) => runAutosort(all, request));
+      batch(() => {
+        setAll((all) => runAutosort(all, request));
+        setVerbatimText([[], {}]);
+      });
     },
 
     clear() {
-      this.setFromRaw({ v: POKEMON_LIST_VERSION, all: [] });
+      this.setFromRaw({ v: POKEMON_LIST_VERSION, all: [], verbatimText: [[], {}] });
     },
 
     setFromRaw(raw: RawPokemonList) {
       batch(() => {
         setAll(raw.all.map(POKEMONS.make));
-        setTextDiff(raw.textDiff);
+        setVerbatimText(raw.verbatimText);
       });
     },
 
@@ -121,7 +161,7 @@ export const pokemons = createRoot(() => {
             }),
           ),
         );
-        setTextDiff(undefined);
+        setVerbatimText([[], {}]);
       });
     },
 
@@ -129,7 +169,7 @@ export const pokemons = createRoot(() => {
       return {
         v: POKEMON_LIST_VERSION,
         all: all.map((pokemon) => pokemon.toRaw()),
-        textDiff: textDiff(),
+        verbatimText: verbatimText(),
       };
     },
 

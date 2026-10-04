@@ -1,9 +1,9 @@
 import type { RawBuiltinPokemon, RawPokemon } from "../..";
+import { POKEMON_VERSION } from "../..";
 import type { NamedText } from "../../../../utils/fs/named_text";
 import { makeId } from "../../../../utils/id";
 import type { PokemonIdDump, RawPokemonWithoutClaimedId } from "../../id_dump";
 import { SPECIES, type Species } from "../../species";
-import { POKEMON_VERSION } from "../../versioned";
 import { parsePBSAsRecords } from "../parse";
 import type { PBSPokemon } from "../pokemon";
 import { getPBSRecordTypeKeys } from "../type";

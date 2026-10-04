@@ -11,6 +11,7 @@ export interface PokemonMutator {
   unsetTypeKeysAndAlt(): void;
   setCustomAltName(altName: string | undefined): void;
   setExclude(exclude: boolean): void;
+  setComment(comment: string | undefined): void;
 }
 
 export function createPokemonMutator(
@@ -92,5 +93,34 @@ export function createPokemonMutator(
         }),
       );
     },
+
+    setComment(comment) {
+      setAll(
+        (all) => all.id === id,
+        produce((pokemon) => {
+          pokemon.comment = comment || undefined;
+        }),
+      );
+    },
   };
+}
+
+/* -------------------------------------------------------------------------- */
+/*                            Bulk implementations                            */
+/* -------------------------------------------------------------------------- */
+
+export function pokemonListBulkReplaceTypeKey(
+  oldKey: string,
+  newKey: string,
+  setAll: SetStoreFunction<Pokemon[]>,
+) {
+  setAll(
+    (pokemon) => pokemon.typeKeys.includes(oldKey),
+    produce((pokemon) => {
+      TYPE_KEY_PAIRS.set(
+        pokemon,
+        pokemon.typeKeys.map((key) => (key === oldKey ? newKey : key)),
+      );
+    }),
+  );
 }

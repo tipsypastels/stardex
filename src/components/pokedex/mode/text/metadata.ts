@@ -14,11 +14,10 @@ import type { Span, Spanned } from "../../../../utils/span";
 export const trackingIds = StateField.define<RangeSet<TrackedId>>({
   create(state) {
     const seeds = state.facet(initialTrackingIds);
-    const seedSet = RangeSet.of(
+    return RangeSet.of(
       seeds.map(({ value, from, to }) => new TrackedId(value).range(from, to)),
       true,
     );
-    return reconcile(state, seedSet);
   },
   update(value, tr) {
     if (tr.docChanged && tr.isUserEvent("move.line")) {

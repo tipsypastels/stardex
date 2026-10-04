@@ -35,7 +35,7 @@ export function EditPokemonTypes(props: EditPokemonTypesProps) {
   }
 
   return (
-    <div class="mb-4">
+    <div class="mb-2">
       <h2 class="font-bold">Types</h2>
       <div>
         <div class="mb-2">

@@ -1,14 +1,15 @@
 import type { Diagnostic } from "@codemirror/lint";
 import type { SyntaxNodeRef, Tree } from "@lezer/common";
 import type { RawBuiltinPokemon, RawPokemon } from "..";
+import { POKEMON_VERSION } from "..";
 import { makeId } from "../../../utils/id";
 import type { Span } from "../../../utils/span";
 import type { RawPokemonList } from "../list";
+import { POKEMON_LIST_VERSION } from "../list";
 import { Species, SPECIES } from "../species";
-import { POKEMON_LIST_VERSION, POKEMON_VERSION } from "../versioned";
 import { transformAltNameWithAliases } from "./alt_name";
-import { PokemonListTextDiffBuilder } from "./diff";
 import { parser } from "./lezer";
+import { PokemonListVerbatimTextBuilder } from "./verbatim";
 
 export interface ParsePokemonListTextResult {
   list: RawPokemonList;
@@ -25,7 +26,7 @@ export function parsePokemonListTextFromLezerTree(
   getId: (span: Span) => string,
 ): ParsePokemonListTextResult {
   const pokemons: RawPokemon[] = [];
-  const textDiff = new PokemonListTextDiffBuilder();
+  const verbatimText = new PokemonListVerbatimTextBuilder();
   const errors: Diagnostic[] = [];
 
   let listing: Listing | undefined;
@@ -68,7 +69,7 @@ export function parsePokemonListTextFromLezerTree(
           break;
         }
         case "Comment": {
-          textDiff.verbatim(slice(ref));
+          verbatimText.verbatim(slice(ref));
           justIgnoredSoleNewline = false;
           break;
         }
@@ -76,7 +77,7 @@ export function parsePokemonListTextFromLezerTree(
           if (!justIgnoredSoleNewline) {
             justIgnoredSoleNewline = true;
           } else {
-            textDiff.blank(1);
+            verbatimText.verbatim("");
           }
           break;
         }
@@ -85,7 +86,7 @@ export function parsePokemonListTextFromLezerTree(
     leave(node) {
       switch (node.name) {
         case "Listing": {
-          listing?.finish(pokemons, textDiff, errors);
+          listing?.finish(pokemons, verbatimText, errors);
           listing = undefined;
           break;
         }
@@ -97,7 +98,7 @@ export function parsePokemonListTextFromLezerTree(
     list: {
       v: POKEMON_LIST_VERSION,
       all: pokemons,
-      textDiff: textDiff.finish(),
+      verbatimText: verbatimText.finish(),
     },
     errors,
   };
@@ -145,7 +146,11 @@ class Listing {
     this.#explicitSpecSeparator = true;
   }
 
-  finish(pokemons: RawPokemon[], textDiff: PokemonListTextDiffBuilder, errors: Diagnostic[]) {
+  finish(
+    pokemons: RawPokemon[],
+    verbatimText: PokemonListVerbatimTextBuilder,
+    errors: Diagnostic[],
+  ) {
     const warn = (message: string, span?: Span) => {
       const { from, to } = span ?? this.#node;
       errors.push({ severity: "warning", message, from, to });
@@ -154,7 +159,7 @@ class Listing {
     const error = (message: string, span?: Span) => {
       const { from, to } = span ?? this.#node;
       errors.push({ severity: "error", message, from, to });
-      textDiff.verbatim(this.#slice(this.#node));
+      verbatimText.verbatim(this.#slice(this.#node));
     };
 
     // Probably can only happen when compiler recovery weirdness.
@@ -225,15 +230,12 @@ class Listing {
     if (exclude) {
       pokemon.exclude = true;
     }
+    if (this.#comment) {
+      pokemon.comment = this.#slice(this.#comment).replace(/^\s*#\s*/, "");
+    }
 
     pokemons.push(pokemon);
-
-    if (this.#comment) {
-      const comment = this.#slice(this.#comment);
-      textDiff.entryWithVerbatimSuffix(comment);
-    } else {
-      textDiff.entry();
-    }
+    verbatimText.entry();
   }
 }
 

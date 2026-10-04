@@ -1,4 +1,4 @@
-import { syntaxTree } from "@codemirror/language";
+import { ensureSyntaxTree, syntaxTree } from "@codemirror/language";
 import { type Diagnostic, linter } from "@codemirror/lint";
 import type { EditorState, Extension } from "@codemirror/state";
 import { EditorView } from "codemirror";
@@ -10,6 +10,7 @@ import { parsePokemonListTextFromLezerTree } from "../../../../models/pokemon/te
 import { makeId } from "../../../../utils/id";
 import type { Span } from "../../../../utils/span";
 import { getTrackedIdAtSpan } from "./metadata";
+import { forceRefresh } from "./refresh";
 
 const current = createRoot(() => {
   const [list, setList] = createSignal<RawPokemonList>();
@@ -55,11 +56,11 @@ const current = createRoot(() => {
   };
 });
 
-export function parseInitial(state: EditorState) {
-  // Don't overwrite the pokedex, first of all because we know it can't have changed yet,
-  // but more importantly because the syntax tree may not have been fully initialized,
-  // which would result in us losing pokemon.
-  current.parse(state, true);
+export function parseInitial(view: EditorView) {
+  ensureSyntaxTree(view.state, view.state.doc.length, 5000);
+  view.dispatch({ effects: forceRefresh.of() });
+
+  current.parse(view.state, true);
 }
 
 export function getPokemonAtSpan(state: EditorState, span: Span) {

@@ -1,10 +1,9 @@
 import { batch } from "solid-js";
 import type { RawPokemon } from "../../../../models/pokemon";
-import { pokemons } from "../../../../models/pokemon/list";
+import { POKEMON_LIST_VERSION, pokemons } from "../../../../models/pokemon/list";
 import type { ExtractPBSPokemonsToRawPokemonsOptions } from "../../../../models/pokemon/pbs/extract";
 import type { PBSForm } from "../../../../models/pokemon/pbs/form";
 import { SPECIES } from "../../../../models/pokemon/species";
-import { POKEMON_LIST_VERSION } from "../../../../models/pokemon/versioned";
 import { TYPE_KEY_PAIRS } from "../../../../models/type/key_pair";
 import { toasts } from "../../../../models/ui/toast";
 import type { ImportPBSFinishPhase, ImportPBSState } from "./state";
@@ -18,7 +17,7 @@ export async function importPBS(state: ImportPBSState, phase: ImportPBSFinishPha
 
   batch(() => {
     state.close();
-    pokemons.setFromRaw({ v: POKEMON_LIST_VERSION, all: rawPokemons });
+    pokemons.setFromRaw({ v: POKEMON_LIST_VERSION, all: rawPokemons, verbatimText: [[], {}] });
     toasts.add("file-arrow-up", `Imported PBS file${state.files.files.length === 1 ? "" : "s"}!`);
   });
 }

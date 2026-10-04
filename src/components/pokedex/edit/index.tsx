@@ -1,10 +1,13 @@
 import { batch, createMemo, Show } from "solid-js";
+import { customIcons } from "../../../models/pokemon/custom_icon";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
+import { makeId } from "../../../utils/id";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { PokemonIcon } from "../util/icon/pokemon";
 import { EditPokemonBehavior } from "./behavior";
+import { EditPokemonComment } from "./comment";
 import {
   createCustomIconUploadState,
   EditPokemonCustomIconLink,
@@ -32,6 +35,19 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
     });
   }
 
+  function onDuplicate() {
+    batch(() => {
+      toasts.add("clone-plus", `Duplicated ${pokemon().name}!`);
+
+      const newId = makeId();
+
+      pokemons.duplicate(props.id, newId);
+      customIcons.duplicate(props.id, newId);
+
+      props.onClose();
+    });
+  }
+
   return (
     <Show
       when={customIconState.uploaded}
@@ -45,6 +61,12 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
                 Remove
               </ButtonLink>
 
+              <div class="text-secondary">&nbsp;/&nbsp;</div>
+
+              <ButtonLink look="secondary" onClick={onDuplicate}>
+                Duplicate
+              </ButtonLink>
+
               <div class="grow" />
 
               <ButtonLink look="secondary" onClick={props.onClose}>
@@ -52,7 +74,6 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
               </ButtonLink>
             </div>
           }
-          footerHasDivider
         >
           <div class="relative">
             <div class="absolute top-0 right-0 rounded-md border-2 border-divider-heavy p-2">
@@ -68,6 +89,7 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
             <EditPokemonTypes pokemon={pokemon()} mutator={mutator()} />
             <EditPokemonCustomIconLink state={customIconState} />
             <EditPokemonBehavior pokemon={pokemon()} mutator={mutator()} />
+            <EditPokemonComment pokemon={pokemon()} mutator={mutator()} />
           </div>
         </Modal>
       }

@@ -124,6 +124,13 @@ export const theme = EditorView.theme({
     paddingLeft: "calc(var(--spacing) * 4)",
     paddingRight: "calc(var(--spacing) * 4)",
   },
+
+  /* ------------------------------- Inlay Hints ------------------------------ */
+
+  ".cm-type-hint": {
+    fontStyle: "italic",
+    opacity: "0.55",
+  },
 });
 
 export const highlightTheme = syntaxHighlighting(

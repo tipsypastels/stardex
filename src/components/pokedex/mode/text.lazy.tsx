@@ -1,11 +1,10 @@
 import { lazy, Suspense } from "solid-js";
-import type { PokedexModeViewProps } from ".";
 import { Empty } from "../../common/empty";
 import { Icon } from "../../common/icon";
 
 const Text = lazy(() => import("./text").then((mod) => ({ default: mod.PokedexTextView })));
 
-export function PokedexTextViewLazy(props: PokedexModeViewProps) {
+export function PokedexTextViewLazy() {
   return (
     <Suspense
       fallback={
@@ -14,7 +13,7 @@ export function PokedexTextViewLazy(props: PokedexModeViewProps) {
         </Empty>
       }
     >
-      <Text {...props} />
+      <Text />
     </Suspense>
   );
 }

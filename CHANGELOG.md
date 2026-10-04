@@ -1,3 +1,11 @@
+### October 4, 2026
+
+- Recolour custom types.
+- Comments in the edit Pokémon popup.
+- Filter and sort in text editor mode.
+- Fix bugs in text editor's handling of blank lines and comments.
+- Floating recommendations that remain on-screen regardless of your scroll position.
+
 ### August 1, 2026
 
 The biggest update yet!

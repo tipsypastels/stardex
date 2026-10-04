@@ -1,13 +1,19 @@
 import { describe, expect, test } from "vitest";
 import type { RawPokemon } from "..";
 import { makeId } from "../../../utils/id";
+import type { Spanned } from "../../../utils/span";
 import { serializeRawPokemonListToText } from "./serialize";
+import type { PokemonListVerbatimText } from "./verbatim";
 
 describe(serializeRawPokemonListToText, () => {
   const header = () => ({ v: 1 as const, id: makeId() });
 
-  function s(pokemons: RawPokemon[], textDiff?: string[], strict?: boolean) {
-    return serializeRawPokemonListToText({ pokemons, textDiff, strict });
+  function s(
+    pokemons: RawPokemon[],
+    verbatimText?: PokemonListVerbatimText,
+    eachId?: (id: Spanned<string>) => void,
+  ) {
+    return serializeRawPokemonListToText({ pokemons, verbatimText, eachId });
   }
 
   test("empty", () => {
@@ -52,9 +58,9 @@ describe(serializeRawPokemonListToText, () => {
     );
   });
 
-  test("text diff", () => {
-    expect(s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e1"])).toEqual("\nBulbasaur");
-    expect(s([{ ...header(), species: "bulbasaur" }], ["# Hello", "\0e1"])).toEqual(
+  test("verbatim text", () => {
+    expect(s([{ ...header(), species: "bulbasaur" }], [[""], {}])).toEqual("\nBulbasaur");
+    expect(s([{ ...header(), species: "bulbasaur" }], [["# Hello"], {}])).toEqual(
       "# Hello\nBulbasaur",
     );
 
@@ -65,47 +71,13 @@ describe(serializeRawPokemonListToText, () => {
           { ...header(), species: "ivysaur" },
           { ...header(), species: "venusaur" },
         ],
-        ["# Best Starters", "\0e3", "\0b2"],
+        [["# Best Starters"], { 2: ["", ""] }],
       ),
     ).toEqual("# Best Starters\nBulbasaur\nIvysaur\nVenusaur\n\n");
   });
 
-  test("text diff being longer than list is ignored", () => {
-    expect(s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e2"])).toEqual("\nBulbasaur");
-  });
-
-  test("list being longer than text diff is ignored", () => {
-    expect(
-      s(
-        [
-          { ...header(), species: "bulbasaur" },
-          { ...header(), species: "ivysaur" },
-        ],
-        ["\0b1", "\0e1"],
-      ),
-    ).toEqual("\nBulbasaur");
-  });
-
-  test("both of those can be made to throw", () => {
-    expect(() => s([{ ...header(), species: "bulbasaur" }], ["\0b1", "\0e2"], true)).toThrow(
-      new Error("Text diff entry count exceeded Pokemon list length"),
-    );
-
-    expect(() =>
-      s(
-        [
-          { ...header(), species: "bulbasaur" },
-          { ...header(), species: "ivysaur" },
-        ],
-        ["\0b1", "\0e1"],
-        true,
-      ),
-    ).toThrow(new Error("Pokemon list length exceeded text diff entry count"));
-  });
-
-  test("except with a trivial diff, which is always ignored", () => {
-    s([{ ...header(), species: "bulbasaur" }], [], true);
-    s([{ ...header(), species: "bulbasaur" }], ["\0e2"], true);
+  test("verbatim text after entries out of range is ignored", () => {
+    expect(s([{ ...header(), species: "bulbasaur" }], [[], { 1: ["xd"] }])).toEqual("Bulbasaur");
   });
 
   test("disambiguating the known alt type hack", () => {
@@ -115,5 +87,33 @@ describe(serializeRawPokemonListToText, () => {
         { ...header(), species: "calyrex", types: ["shadow"] },
       ]),
     ).toEqual("Calyrex (:Ice)\nCalyrex (:Shadow)");
+  });
+
+  test("id span tracking", () => {
+    const spans: Spanned<string>[] = [];
+
+    expect(
+      s(
+        [
+          { v: 1, id: "a", species: "bulbasaur" },
+          { v: 1, id: "b", species: "ivysaur" },
+          { v: 1, id: "c", species: "venusaur" },
+          { v: 1, id: "d", species: "charmander" },
+          { v: 1, id: "e", species: "charmeleon" },
+          { v: 1, id: "f", species: "charizard" },
+        ],
+        [["", ""], { 2: ["", "# Fire", ""] }],
+        (span) => spans.push(span),
+      ),
+    ).toEqual(`\n\nBulbasaur\nIvysaur\nVenusaur\n\n# Fire\n\nCharmander\nCharmeleon\nCharizard`);
+
+    expect(spans).toEqual([
+      { value: "a", from: 2, to: 11 },
+      { value: "b", from: 12, to: 19 },
+      { value: "c", from: 20, to: 28 },
+      { value: "d", from: 38, to: 48 },
+      { value: "e", from: 49, to: 59 },
+      { value: "f", from: 60, to: 69 },
+    ] satisfies Spanned<string>[]);
   });
 });

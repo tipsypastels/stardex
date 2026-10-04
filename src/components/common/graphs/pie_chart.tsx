@@ -28,7 +28,11 @@ export function PieChart(props: PieChartProps) {
       style={{ height: `${props.diameter ?? 250}px` }}
     >
       <For each={slicesWithMeta()}>
-        {(slice) => <path data-name={slice.name} d={slice.d} style={{ fill: slice.color }} />}
+        {(slice) => (
+          <path d={slice.d} style={{ fill: slice.color }}>
+            <title>{slice.name}</title>
+          </path>
+        )}
       </For>
       {props.donut ? <circle r={0.6} cx={0} cy={0} fill="var(--background)" /> : null}
     </svg>

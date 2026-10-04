@@ -1,6 +1,7 @@
 import { batch, For, Show } from "solid-js";
 import { pokemonsAllotment } from "../../../models/metrics";
 import { pokedexFilter, type PokedexFilterState } from "../../../models/pokedex/filter";
+import { pokedexMode } from "../../../models/pokedex/mode";
 import { BUILTIN_TYPES, TYPES, type Type } from "../../../models/type";
 import { toasts } from "../../../models/ui/toast";
 import { IconPickerGrid, IconPickerGridItem } from "../../common/menus/icon_picker_grid";
@@ -49,8 +50,9 @@ export function FilterPokedexModal(props: FilterPokedexModalProps) {
         </For>
       </IconPickerGrid>
       <div class="text-sm">
-        <strong>Tip:</strong> You can't drag to reorder your Pokédex while filtering. That would be
-        weird.
+        <strong>Tip:</strong> You can't{" "}
+        {pokedexMode.key === "text" ? "edit your Pokédex" : "drag to reorder your Pokédex"} while
+        filtering. That would be weird.
       </div>
     </Modal>
   );
