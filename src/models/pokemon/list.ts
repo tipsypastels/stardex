@@ -7,7 +7,6 @@ import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchStartupError } from "../ui/error";
 import { runAutosort, type AutosortRequest } from "./autosort";
-import { customIcons } from "./custom_icon";
 import { createPokemonMutator, pokemonListBulkReplaceTypeKey } from "./mutator";
 import {
   deletePokemonListVerbatimTextEntry,
@@ -106,31 +105,25 @@ export const pokemons = createRoot(() => {
       });
     },
 
-    duplicate(id: string) {
+    duplicate(oldId: string, newId: string) {
       batch(() => {
-        const newId = makeId();
-
-        let old: { id: string; index: number } | undefined;
+        let oldIndex = -1;
 
         setAll(
           produce((all) => {
-            const index = all.findIndex((pokemon) => pokemon.id === id);
-            if (index === -1) return;
+            oldIndex = all.findIndex((pokemon) => pokemon.id === oldId);
+            if (oldIndex === -1) return;
 
-            const pokemon = all[index];
+            const pokemon = all[oldIndex];
             const newPokemon = POKEMONS.make({ ...pokemon.toRaw(), id: newId });
 
-            old = { id: pokemon.id, index };
-            all.splice(index + 1, 0, newPokemon);
+            all.splice(oldIndex + 1, 0, newPokemon);
           }),
         );
 
-        if (old) {
-          setVerbatimText((verbatimText) =>
-            splicePokemonListVerbatimTextEntry(verbatimText, old!.index),
-          );
-          customIcons.duplicate(old.id, newId);
-        }
+        setVerbatimText((verbatimText) =>
+          splicePokemonListVerbatimTextEntry(verbatimText, oldIndex),
+        );
       });
     },
 

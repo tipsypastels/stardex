@@ -1,6 +1,8 @@
 import { batch, createMemo, Show } from "solid-js";
+import { customIcons } from "../../../models/pokemon/custom_icon";
 import { pokemons } from "../../../models/pokemon/list";
 import { toasts } from "../../../models/ui/toast";
+import { makeId } from "../../../utils/id";
 import { ButtonLink } from "../../common/link";
 import { Modal } from "../../common/menus/modal";
 import { PokemonIcon } from "../util/icon/pokemon";
@@ -36,7 +38,14 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
   function onDuplicate() {
     batch(() => {
       toasts.add("clone-plus", `Duplicated ${pokemon().name}!`);
-      pokemons.duplicate(props.id);
+
+      batch(() => {
+        const newId = makeId();
+
+        pokemons.duplicate(props.id, newId);
+        customIcons.duplicate(props.id, newId);
+      });
+
       props.onClose();
     });
   }
