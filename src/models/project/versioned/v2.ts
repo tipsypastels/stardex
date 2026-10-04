@@ -4,6 +4,7 @@ import { RawCustomIconsMetadata } from "../../pokemon/custom_icon/metadata";
 import { V2_RawPokemonList } from "../../pokemon/versioned/list/v2";
 import { RegionKey } from "../../region";
 import { StrictnessKey } from "../../strictness";
+import { RawCustomTypeColors } from "../../type/custom_colors";
 import { RawExcludedTypesSet } from "../../type/excluded";
 
 export const V2_RawProjectModels = v.object({
@@ -13,6 +14,7 @@ export const V2_RawProjectModels = v.object({
   pokedexMode: PokedexModeKey,
   customIconsMetadata: RawCustomIconsMetadata,
   excludedTypes: RawExcludedTypesSet,
+  customTypeColors: v.optional(RawCustomTypeColors),
 });
 
 export const V2_RawProject = v.object({

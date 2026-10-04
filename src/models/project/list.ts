@@ -14,6 +14,7 @@ import { POKEMON_LIST_VERSION, pokemons } from "../pokemon/list";
 import { REGIONS } from "../region";
 import { regions } from "../region/set";
 import { strictness, STRICTNESSES } from "../strictness";
+import { customTypeColors } from "../type/custom_colors";
 import { EXCLUDED_TYPES_VERSION, excludedTypes } from "../type/excluded";
 import { catchStartupError } from "../ui/error";
 import { V0_RawProjectList, V0_upgradeRawProjectList } from "./versioned/v0";
@@ -146,6 +147,8 @@ export const projects = createRoot(() => {
   };
 });
 
+// NOTE: Keep these in sync with {load,save}JSONExport in export/index.ts.
+
 function getModels(): RawProjectModels {
   return {
     pokemons: pokemons.toRaw(),
@@ -154,8 +157,7 @@ function getModels(): RawProjectModels {
     pokedexMode: pokedexMode.key,
     customIconsMetadata: customIconsMetadata.toRaw(),
     excludedTypes: excludedTypes.toRaw(),
-
-    // TODO: Custom type colors here?
+    customTypeColors: customTypeColors.toRaw(),
   };
 }
 
@@ -168,6 +170,8 @@ function setModels(models: RawProjectModels) {
     customIconsMetadata.setFromRaw(models.customIconsMetadata);
     excludedTypes.setFromRaw(models.excludedTypes);
 
-    // TODO: Custom type colors here?
+    if (models.customTypeColors) {
+      customTypeColors.setFromRaw(models.customTypeColors);
+    }
   });
 }

@@ -3,6 +3,7 @@ import { PokedexModeKey } from "../../pokedex/mode";
 import { V2_RawPokemonList } from "../../pokemon/versioned/list/v2";
 import { RegionKey } from "../../region";
 import { StrictnessKey } from "../../strictness";
+import { RawCustomTypeColors } from "../../type/custom_colors";
 import { RawExcludedTypesSet } from "../../type/excluded";
 
 export const V2_RawJSONExportCustomIcons = v.object({
@@ -18,5 +19,5 @@ export const V2_RawJSONExport = v.object({
   pokedexMode: PokedexModeKey,
   customIcons: V2_RawJSONExportCustomIcons,
   excludedTypes: RawExcludedTypesSet,
-  customTypeColors: v.optional(v.record(v.string(), v.string())),
+  customTypeColors: v.optional(RawCustomTypeColors),
 });

@@ -29,6 +29,8 @@ export const VAny_RawJSONExport = v.union([
   v.pipe(V0_RawJSONExport, v.transform(V0_upgradeRawJSONExport), v.transform(V1_upgradeRawJSONExport)),
 ]);
 
+// NOTE: Keep these in sync with {get,set}Models in project/list.ts.
+
 export function loadJSONExport(raw: RawJSONExport) {
   batch(() => {
     if (raw.projectName && projects.active.name.includes("Untitled")) {
