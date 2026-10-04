@@ -1,9 +1,12 @@
 import { createEffect, createMemo, createSignal, Show, type JSXElement } from "solid-js";
+import { globalInterfaceOptions } from "../../models/interface";
 import { pokedexMode } from "../../models/pokedex/mode";
 import { dark } from "../../models/ui/dark";
 import { stored } from "../../utils/storage";
+import { Icon } from "../common/icon";
 import { ButtonLink } from "../common/link";
 import { setHotkeysOpen } from "./hotkeys";
+import { setInterfaceOpen } from "./interface";
 
 export function Notice() {
   const store = stored("stardex_last_dismissed_notice");
@@ -63,30 +66,80 @@ class NoticeOption {
 }
 
 const NOTICE_OPTIONS: NoticeOption[] = [
-  /*new NoticeOption(9999999999999, () => (
+  new NoticeOption(1791142644191, () => (
     <>
-      <ul class="list-inside list-disc">
-        <li>
-          You can now change the colour of any <strong>custom types</strong> in your Pokédex. Custom
-          types are still added and applied the same way - just enter the name on any Pokémon's type
-          list. Once you have some, you'll be able to change their colours from the{" "}
-          <strong>Custom</strong> tool in the <strong>Types</strong> section.
-        </li>
-        <li>pop out recs</li>
-        <li>
-          The <strong>Filter</strong> and <strong>Sort</strong> tools can now be used even when your
-          Pokédex is in text editor mode.
-        </li>
-        <li>
-          The edit Pokémon popup now has a "comment" field. Comments do nothing, but you can use
-          them to add notes that might be helpful to you. This is equivalent to adding a{" "}
-          <code class="break-inside-avoid text-sm text-editor-comment"># comment</code> in the text
-          editor mode. If you use multiple modes, you can edit the same comments from either.
-        </li>
-        <li>Fixed a bug where switching from text editor mode to a visual mode and back could</li>
-      </ul>
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">Improvements to custom types:</h3>
+        <ul class="list-inside list-disc">
+          <li>
+            You can now change the colour of any <strong>custom types</strong> in your Pokédex.
+            Custom types are still added and applied the same way - just enter the name on any
+            Pokémon's type list. Once you have some, you'll be able to change their colours from the{" "}
+            <strong>Custom</strong> popup in the <strong>Types</strong> section.
+          </li>
+          <li>
+            The same popup also lets you rename custom types without needing to manually rename them
+            everywhere they're used.
+          </li>
+        </ul>
+      </div>
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">Comments for notetaking:</h3>
+        <ul class="list-inside list-disc">
+          <li>
+            The edit Pokémon popup now has a "comment" field. Comments do nothing, but you can use
+            them to add notes that might be helpful to you.
+          </li>
+          <li>
+            This is equivalent to adding a{" "}
+            <code class="break-inside-avoid text-sm text-editor-comment"># comment</code> in the
+            text editor mode. If you use multiple modes, you can edit the same comments from either.
+          </li>
+        </ul>
+      </div>
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">Text editor improvements:</h3>
+        <ul class="list-inside list-disc">
+          <li>
+            The <strong>Filter</strong> and <strong>Sort</strong> tools can now be used even when
+            your Pokédex is in text editor mode.
+          </li>
+          <li>
+            Fixed various bugs where switching the text editor mode off and on again could mess up
+            blank lines and comments.
+          </li>
+        </ul>
+      </div>
+      <div class="mb-2">
+        <h3 class="mb-1 text-lg font-bold">New layout menu:</h3>
+        <ul class="list-inside list-disc">
+          <li>
+            A{" "}
+            <ButtonLink onClick={() => setInterfaceOpen(true)}>
+              new menu with global layout controls
+            </ButtonLink>{" "}
+            has been introduced. On desktop, it's the <Icon name="table-layout" /> icon in the top
+            left controls. On mobile, it's part of the new <Icon name="bars" /> menu in the top
+            right, which also contains an easier to access dark mode toggle.
+          </li>
+          <li>
+            So far, the menu has one option: a{" "}
+            <ButtonLink
+              onClick={() =>
+                (globalInterfaceOptions.pipRecommendations =
+                  !globalInterfaceOptions.pipRecommendations)
+              }
+            >
+              floating recommendations toggle
+            </ButtonLink>
+            , which causes recommendations to remain on-screen at the bottom right regardless of
+            your scroll position.
+          </li>
+          <li>Expect some other layout options in the future.</li>
+        </ul>
+      </div>
     </>
-  )),*/
+  )),
   new NoticeOption(1785643275569, () => (
     <>
       <div class="mb-2">
