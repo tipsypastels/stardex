@@ -92,6 +92,7 @@ export interface DropdownItemProps {
   name: string;
   icon: string;
   onClick(): void;
+  dontCloseOnClick?: boolean;
 }
 
 export function DropdownItem(props: DropdownItemProps) {
@@ -103,7 +104,7 @@ export function DropdownItem(props: DropdownItemProps) {
         onClick={() => {
           batch(() => {
             props.onClick();
-            onClose?.();
+            if (!props.dontCloseOnClick) onClose?.();
           });
         }}
       >

@@ -1,6 +1,7 @@
 import type { JSXElement } from "solid-js";
-import { Controls } from "./controls";
+import { Controls, MobileControls } from "./controls";
 import { Footer } from "./footer";
+import { InterfaceModal } from "./interface";
 import { Logo } from "./logo";
 import { Notice } from "./notice";
 import { ProjectsModal, ProjectsSelect } from "./projects";
@@ -14,6 +15,8 @@ export function Layout(props: LayoutProps) {
   return (
     <>
       <div id="top" />
+
+      <MobileControls />
 
       <div class="flex min-h-screen flex-col">
         <div class="grow">
@@ -36,6 +39,7 @@ export function Layout(props: LayoutProps) {
             </div>
 
             <ProjectsModal />
+            <InterfaceModal />
             <Notice />
 
             {/* <h2 class="border-y border-divider-light py-4 text-2xl font-bold text-foreground-muted">

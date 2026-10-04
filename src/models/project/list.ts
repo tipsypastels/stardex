@@ -154,6 +154,8 @@ function getModels(): RawProjectModels {
     pokedexMode: pokedexMode.key,
     customIconsMetadata: customIconsMetadata.toRaw(),
     excludedTypes: excludedTypes.toRaw(),
+
+    // TODO: Custom type colors here?
   };
 }
 
@@ -165,5 +167,7 @@ function setModels(models: RawProjectModels) {
     pokedexMode.key = models.pokedexMode;
     customIconsMetadata.setFromRaw(models.customIconsMetadata);
     excludedTypes.setFromRaw(models.excludedTypes);
+
+    // TODO: Custom type colors here?
   });
 }

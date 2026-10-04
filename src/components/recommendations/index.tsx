@@ -1,4 +1,5 @@
-import { createEffect, createSignal, Show } from "solid-js";
+import { createSignal, Show } from "solid-js";
+import { globalInterfaceOptions } from "../../models/interface";
 import { recommendations } from "../../models/metrics";
 import { pokemons } from "../../models/pokemon/list";
 import { regions } from "../../models/region/set";
@@ -14,7 +15,6 @@ import { StrictnessModal } from "./strictness";
 
 export function Recommendations() {
   const [modal, setModal] = createSignal<"regions" | "strictness">();
-  const [pip, setPip] = createSignal(false);
   const nonEmpty = () => pokemons.all.length > 0 && regions.all.length > 0;
 
   function emptyFallbacks() {
@@ -36,12 +36,6 @@ export function Recommendations() {
     );
   }
 
-  createEffect(() => {
-    if (pip() && !nonEmpty()) {
-      setPip(false);
-    }
-  });
-
   return (
     <>
       <Section id="recommendations" title="Recommendations" hasActions>
@@ -51,13 +45,6 @@ export function Recommendations() {
             name="Strictness"
             icon={strictness.icon}
             onClick={() => setModal("strictness")}
-          />
-          <ActionBarItem
-            name="Pop Out"
-            icon="picture-in-picture"
-            onClick={() => setPip((pip) => !pip)}
-            active={pip()}
-            disabled={!nonEmpty()}
           />
         </ActionBar>
 
@@ -76,8 +63,8 @@ export function Recommendations() {
         </Show>
       </Section>
 
-      <Show when={pip()}>
-        <PipRecommendations onClose={() => setPip(false)} />
+      <Show when={globalInterfaceOptions.pipRecommendations && nonEmpty()}>
+        <PipRecommendations />
       </Show>
     </>
   );
