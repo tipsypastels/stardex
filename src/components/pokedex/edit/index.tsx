@@ -39,12 +39,10 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
     batch(() => {
       toasts.add("clone-plus", `Duplicated ${pokemon().name}!`);
 
-      batch(() => {
-        const newId = makeId();
+      const newId = makeId();
 
-        pokemons.duplicate(props.id, newId);
-        customIcons.duplicate(props.id, newId);
-      });
+      pokemons.duplicate(props.id, newId);
+      customIcons.duplicate(props.id, newId);
 
       props.onClose();
     });
