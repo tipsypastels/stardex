@@ -12,7 +12,16 @@ export function InterfaceModal() {
     <Show when={open()}>
       <Modal title="Layout" onClose={() => setOpen(false)}>
         <Checkbox
-          name="Float Recommendations"
+          name={
+            <div>
+              <div>Floating Recommendations</div>
+              <div class="text-base">
+                Recommendations will remain on-screen at the bottom right regardless of your scroll
+                position.
+              </div>
+            </div>
+          }
+          alignTop
           checked={globalInterfaceOptions.pipRecommendations}
           onChange={(checked) => (globalInterfaceOptions.pipRecommendations = checked)}
         />

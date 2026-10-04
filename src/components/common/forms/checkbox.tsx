@@ -5,6 +5,7 @@ export interface CheckboxProps {
   name: JSXElement;
   radio?: boolean;
   checked: boolean | undefined;
+  alignTop?: boolean;
   onChange?(checked: boolean): void;
   onClick?(): void;
   children?: JSXElement;
@@ -23,6 +24,7 @@ export function Checkbox(props: CheckboxProps) {
   return (
     <label
       class="flex w-fit cursor-pointer items-center select-none"
+      classList={{ "items-start!": props.alignTop }}
       onClick={() => props.onClick?.()}
     >
       <input

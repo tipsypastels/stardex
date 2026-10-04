@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 import type { Recommendation } from "../../metrics/recommendations";
 import { globalInterfaceOptions } from "../../models/interface";
 import { recommendations } from "../../models/metrics";
@@ -8,22 +8,20 @@ import { Icon } from "../common/icon";
 export function PipRecommendations() {
   function change(recommendations: Recommendation[], label: string) {
     return (
-      <div>
-        <strong>{label}</strong>
-        <ul class="flex dim">
-          <For each={recommendations}>
-            {(recommendation) => (
-              <li
-                class="pr-1"
-                style={{ color: recommendation.type.color }}
-                title={recommendation.type.name}
-              >
-                <Icon name={recommendation.type.icon} />
-              </li>
-            )}
-          </For>
-        </ul>
-      </div>
+      <Show when={recommendations.length > 0}>
+        <div>
+          <strong>{label}</strong>
+          <ul class="grid grid-cols-6 gap-x-1 dim md:grid-cols-8">
+            <For each={recommendations}>
+              {(recommendation) => (
+                <li style={{ color: recommendation.type.color }} title={recommendation.type.name}>
+                  <Icon name={recommendation.type.icon} />
+                </li>
+              )}
+            </For>
+          </ul>
+        </div>
+      </Show>
     );
   }
 
