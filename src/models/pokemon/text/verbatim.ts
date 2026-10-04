@@ -9,6 +9,26 @@ export const PokemonListVerbatimText = v.tuple([
   v.record(v.string(), v.array(v.string())),
 ]);
 
+export function splicePokemonListVerbatimTextEntry(
+  verbatimText: PokemonListVerbatimText,
+  spliceIndex: number,
+) {
+  if (spliceIndex < 0) {
+    return verbatimText;
+  }
+
+  const out: PokemonListVerbatimText = [verbatimText[PLVT_BEFORE_ALL], {}];
+
+  for (const index_ in verbatimText[PLVT_AFTER_ENTRIES]) {
+    const index = +index_;
+    const lines = verbatimText[PLVT_AFTER_ENTRIES][index];
+
+    out[PLVT_AFTER_ENTRIES][index + (index >= spliceIndex ? 1 : 0)] = lines;
+  }
+
+  return out;
+}
+
 export function deletePokemonListVerbatimTextEntry(
   verbatimText: PokemonListVerbatimText,
   deleteIndex: number,

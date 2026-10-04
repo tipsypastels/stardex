@@ -7,8 +7,13 @@ import { stored } from "../../utils/storage";
 import type { Region } from "../region";
 import { catchStartupError } from "../ui/error";
 import { runAutosort, type AutosortRequest } from "./autosort";
+import { customIcons } from "./custom_icon";
 import { createPokemonMutator, pokemonListBulkReplaceTypeKey } from "./mutator";
-import { deletePokemonListVerbatimTextEntry, type PokemonListVerbatimText } from "./text/verbatim";
+import {
+  deletePokemonListVerbatimTextEntry,
+  splicePokemonListVerbatimTextEntry,
+  type PokemonListVerbatimText,
+} from "./text/verbatim";
 import { V0_RawPokemonList, V0_upgradeRawPokemonList } from "./versioned/list/v0";
 import { V1_RawPokemonList, V1_upgradeRawPokemonList } from "./versioned/list/v1";
 import { V2_RawPokemonList } from "./versioned/list/v2";
@@ -98,6 +103,34 @@ export const pokemons = createRoot(() => {
           }),
         );
         setVerbatimText((verbatimText) => deletePokemonListVerbatimTextEntry(verbatimText, index));
+      });
+    },
+
+    duplicate(id: string) {
+      batch(() => {
+        const newId = makeId();
+
+        let old: { id: string; index: number } | undefined;
+
+        setAll(
+          produce((all) => {
+            const index = all.findIndex((pokemon) => pokemon.id === id);
+            if (index === -1) return;
+
+            const pokemon = all[index];
+            const newPokemon = POKEMONS.make({ ...pokemon.toRaw(), id: newId });
+
+            old = { id: pokemon.id, index };
+            all.splice(index + 1, 0, newPokemon);
+          }),
+        );
+
+        if (old) {
+          setVerbatimText((verbatimText) =>
+            splicePokemonListVerbatimTextEntry(verbatimText, old!.index),
+          );
+          customIcons.duplicate(old.id, newId);
+        }
       });
     },
 

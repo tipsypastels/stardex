@@ -33,6 +33,14 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
     });
   }
 
+  function onDuplicate() {
+    batch(() => {
+      toasts.add("clone-plus", `Duplicated ${pokemon().name}!`);
+      pokemons.duplicate(props.id);
+      props.onClose();
+    });
+  }
+
   return (
     <Show
       when={customIconState.uploaded}
@@ -44,6 +52,12 @@ export function EditPokemonModal(props: EditPokemonModalProps) {
             <div class="flex">
               <ButtonLink look="warning" onClick={onRemove}>
                 Remove
+              </ButtonLink>
+
+              <div class="text-secondary">&nbsp;/&nbsp;</div>
+
+              <ButtonLink look="secondary" onClick={onDuplicate}>
+                Duplicate
               </ButtonLink>
 
               <div class="grow" />

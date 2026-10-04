@@ -1,5 +1,18 @@
 import { describe, expect, test } from "vitest";
-import { deletePokemonListVerbatimTextEntry, PokemonListVerbatimTextBuilder } from "./verbatim";
+import {
+  deletePokemonListVerbatimTextEntry,
+  PokemonListVerbatimTextBuilder,
+  splicePokemonListVerbatimTextEntry,
+} from "./verbatim";
+
+describe(splicePokemonListVerbatimTextEntry, () => {
+  test("moves everything after or equal to the spliced index up one", () => {
+    expect(splicePokemonListVerbatimTextEntry([[], { 0: ["hi"], 2: ["bye"] }], 0)).toEqual([
+      [],
+      { 1: ["hi"], 3: ["bye"] },
+    ]);
+  });
+});
 
 describe(deletePokemonListVerbatimTextEntry, () => {
   test("moves entries after the deleted index down one", () => {

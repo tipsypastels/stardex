@@ -105,6 +105,26 @@ export const customIcons = createRoot(() => {
       });
     },
 
+    duplicate(oldPokemonId: string, newPokemonId: string) {
+      const dataUrl = dataUrls()?.[oldPokemonId];
+      if (!dataUrl) return;
+
+      batch(() => {
+        this.pokemonIds.add(newPokemonId);
+        mutateDataUrls((dataUrls) => ({ ...dataUrls, [newPokemonId]: dataUrl }));
+      });
+
+      fetch(dataUrl)
+        .then((res) => res.blob())
+        .then((blob) =>
+          addCustomIconsDbEntry({
+            pokemonId: newPokemonId,
+            projectId: projects.activeId,
+            blob,
+          }),
+        );
+    },
+
     deleteProject(projectId: string) {
       assert(projectId !== projects.activeId, "Can't delete custom icons for the active project.");
       // We don't need to update state because we know this isn't the active project.
