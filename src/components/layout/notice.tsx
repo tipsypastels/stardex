@@ -63,6 +63,30 @@ class NoticeOption {
 }
 
 const NOTICE_OPTIONS: NoticeOption[] = [
+  /*new NoticeOption(9999999999999, () => (
+    <>
+      <ul class="list-inside list-disc">
+        <li>
+          You can now change the colour of any <strong>custom types</strong> in your Pokédex. Custom
+          types are still added and applied the same way - just enter the name on any Pokémon's type
+          list. Once you have some, you'll be able to change their colours from the{" "}
+          <strong>Custom</strong> tool in the <strong>Types</strong> section.
+        </li>
+        <li>pop out recs</li>
+        <li>
+          The <strong>Filter</strong> and <strong>Sort</strong> tools can now be used even when your
+          Pokédex is in text editor mode.
+        </li>
+        <li>
+          The edit Pokémon popup now has a "comment" field. Comments do nothing, but you can use
+          them to add notes that might be helpful to you. This is equivalent to adding a{" "}
+          <code class="break-inside-avoid text-sm text-editor-comment"># comment</code> in the text
+          editor mode. If you use multiple modes, you can edit the same comments from either.
+        </li>
+        <li>Fixed a bug where switching from text editor mode to a visual mode and back could</li>
+      </ul>
+    </>
+  )),*/
   new NoticeOption(1785643275569, () => (
     <>
       <div class="mb-2">
