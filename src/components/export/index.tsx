@@ -9,17 +9,19 @@ import { ButtonLink } from "../common/link";
 import { Modal } from "../common/menus/modal";
 import { Section } from "../layout/section";
 import { ExportCellsModal } from "./cells";
+import { ExportScreenshotModal } from "./screenshot";
 
 export function Export() {
-  const [modal, setModal] = createSignal<"cells" | "help">();
+  const [modal, setModal] = createSignal<"cells" | "help" | "screenshot">();
 
   return (
     <Section id="export" title="Export">
       <Show when={pokemons.all.length > 0} fallback={<Empty>Don't make me say it again!</Empty>}>
-        <div class="mb-4 flex gap-2">
+        <div class="mb-4 flex flex-col gap-4 lg:flex-row lg:gap-2">
           <Button onClick={saveJSONExport}>As JSON</Button>
           <Button onClick={saveTextExport}>As Text File</Button>
           <Button onClick={() => setModal("cells")}>As Spreadsheet Cells</Button>
+          <Button onClick={() => setModal("screenshot")}>As Screenshot</Button>
         </div>
 
         <div>
@@ -29,6 +31,10 @@ export function Export() {
 
       <Show when={modal() === "cells"}>
         <ExportCellsModal onClose={() => setModal(undefined)} />
+      </Show>
+
+      <Show when={modal() === "screenshot"}>
+        <ExportScreenshotModal onClose={() => setModal(undefined)} />
       </Show>
 
       <Show when={modal() === "help"}>
@@ -61,10 +67,21 @@ export function Export() {
               </p>
             </div>
 
-            <div>
+            <div class="mb-4">
               <LinedSubheading>As Spreadsheet Cells</LinedSubheading>
               <p class="mb-2">
                 This creates cells from your Pokédex that you can paste into Google Sheets.
+              </p>
+              <p class="text-sm font-bold text-warning">
+                <Icon name="times" /> Not Importable
+              </p>
+            </div>
+
+            <div>
+              <LinedSubheading>As Screenshot</LinedSubheading>
+              <p class="mb-2">
+                This creates a compact image of your metrics (types and recommendations) to share
+                with others.
               </p>
               <p class="text-sm font-bold text-warning">
                 <Icon name="times" /> Not Importable

@@ -73,3 +73,15 @@ function chooseChange(ownRatio: number, againstRatio: number, maxDiff: number): 
   }
   return "none";
 }
+
+export function getRecommendationsByType(recommendations: Recommendations) {
+  const out: Record<string, Recommendation> = {};
+
+  for (const change in recommendations) {
+    for (const recommendation of recommendations[change as RecommendedChange]) {
+      out[recommendation.type.key] = recommendation;
+    }
+  }
+
+  return out;
+}
