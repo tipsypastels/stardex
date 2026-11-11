@@ -30,6 +30,7 @@
     "dom-to-image-more": "^3.11.0",
     "fuse.js": "^7.5.0",
     "hotkeys-js": "^4.0.4",
+    "html2canvas-pro": "^2.5.0",
     "modern-screenshot": "^4.7.0",
     "randomcolor": "^0.6.2",
     "scroll-into-view-promise": "^1.0.0",

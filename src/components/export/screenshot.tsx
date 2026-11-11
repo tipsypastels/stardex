@@ -1,4 +1,5 @@
-import { domToBlob } from "modern-screenshot";
+// import { domToBlob } from "modern-screenshot";
+import html2canvas from "html2canvas-pro";
 import { batch, onMount } from "solid-js";
 import { getRecommendationsByType } from "../../metrics/recommendations";
 import { pokemonsAllotment, recommendations } from "../../models/metrics";
@@ -23,9 +24,16 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   onMount(() => {
     if (!inner) return;
     setTimeout(() => {
-      blobPromise = domToBlob(inner, {
-        backgroundColor: "var(--background)",
-      });
+      // blobPromise = domToBlob(inner, {
+      //   backgroundColor: "var(--background)",
+      // });
+
+      blobPromise = (async () => {
+        const canvas = await html2canvas(inner);
+        return new Promise<Blob>((ok, err) =>
+          canvas.toBlob((blob) => (blob ? ok(blob) : err(new Error("Blob failed.")))),
+        );
+      })();
     }, 200);
   });
 
