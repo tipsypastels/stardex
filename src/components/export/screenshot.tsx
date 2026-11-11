@@ -41,17 +41,21 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   async function save() {
     if (!blobPromise) return;
     const blob = await blobPromise;
+    const filename = `Stardex ${projects.active.name}.png`;
+    const file = new File([blob], filename, { type: "image/png" });
 
-    const objectUrl = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    if (navigator.canShare?.({ files: [file] })) {
+      await navigator.share({ files: [file], title: filename });
+    } else {
+      const objectUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
 
-    a.href = objectUrl;
-    a.download = `Stardex ${projects.active.name}.png`;
-    a.click();
+      a.href = objectUrl;
+      a.download = `Stardex ${projects.active.name}.png`;
+      a.click();
 
-    setTimeout(() => {
-      URL.revokeObjectURL(objectUrl);
-    }, 1000);
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+    }
 
     batch(() => {
       toasts.add("save", "Screenshot saved!");
