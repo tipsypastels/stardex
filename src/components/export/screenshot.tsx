@@ -1,5 +1,5 @@
 import domToImage from "dom-to-image-more";
-import { batch } from "solid-js";
+import { batch, onMount } from "solid-js";
 import { getRecommendationsByType } from "../../metrics/recommendations";
 import { pokemonsAllotment, recommendations } from "../../models/metrics";
 import { pokemons } from "../../models/pokemon/list";
@@ -18,49 +18,54 @@ export interface ExportScreenshotModalProps {
 
 export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   let inner: HTMLDivElement | undefined;
+  let blobPromise: Promise<Blob> | undefined;
 
-  async function make(toastIcon: string, toastText: string, f: (dataUrl: string) => Promise<void>) {
+  onMount(() => {
     if (!inner) return;
+    blobPromise = (async () => {
+      const dataUrl = await domToImage.toPng(inner, {
+        bgcolor: "var(--background)",
+        ignoreCSSRuleErrors: true,
+      });
+      const response = await fetch(dataUrl);
+      const blob = response.blob();
 
-    const dataUrl = await domToImage.toPng(inner, {
-      bgcolor: "var(--background)",
-      ignoreCSSRuleErrors: true,
-      style: {
-        borderWidth: "2px",
-        borderColor: "var(--primary)",
-        borderRadius: "var(--radius-lg)",
-      },
-    });
-    await f(dataUrl);
+      // eslint-disable-next-line no-console
+      console.debug("Generated screenshot blob.");
+      return blob;
+    })();
+  });
+
+  async function save() {
+    if (!blobPromise) return;
+    const blob = await blobPromise;
+
+    const objectUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = objectUrl;
+    a.download = `Stardex ${projects.active.name}.png`;
+    a.click();
+
+    setTimeout(() => {
+      URL.revokeObjectURL(objectUrl);
+    }, 1000);
 
     batch(() => {
-      toasts.add(toastIcon, toastText);
-      // props.onClose();
+      toasts.add("save", "Screenshot saved!");
+      props.onClose();
     });
   }
 
-  function save() {
-    make("save", "Screenshot saved!", (dataUrl) => {
-      let onclick: () => void = () => {};
+  async function copy() {
+    if (!blobPromise) return;
+    const blob = await blobPromise;
 
-      const a = document.createElement("a");
-      const promise = new Promise<void>((ok) => (onclick = ok));
+    await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
 
-      a.href = dataUrl;
-      a.download = `Stardex ${projects.active.name}.png`;
-      a.onclick = onclick;
-      a.click();
-
-      return promise.then(() => {
-        // a.remove();
-      });
-    });
-  }
-
-  function copy() {
-    make("copy", "Screenshot copied!", async (dataUrl) => {
-      const blob = await fetch(dataUrl).then((res) => res.blob());
-      await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+    batch(() => {
+      toasts.add("copy", "Screenshot copied!");
+      props.onClose();
     });
   }
 
