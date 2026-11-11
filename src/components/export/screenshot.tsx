@@ -22,18 +22,20 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
 
   onMount(() => {
     if (!inner) return;
-    blobPromise = (async () => {
-      const dataUrl = await domToImage.toPng(inner, {
-        bgcolor: "var(--background)",
-        ignoreCSSRuleErrors: true,
-      });
-      const response = await fetch(dataUrl);
-      const blob = response.blob();
+    setTimeout(() => {
+      blobPromise = (async () => {
+        const dataUrl = await domToImage.toPng(inner, {
+          bgcolor: "var(--background)",
+          ignoreCSSRuleErrors: true,
+        });
+        const response = await fetch(dataUrl);
+        const blob = response.blob();
 
-      // eslint-disable-next-line no-console
-      console.debug("Generated screenshot blob.");
-      return blob;
-    })();
+        // eslint-disable-next-line no-console
+        console.debug("Generated screenshot blob.");
+        return blob;
+      })();
+    }, 200);
   });
 
   async function save() {
