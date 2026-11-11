@@ -46,14 +46,14 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
 
   function save() {
     return make("save", "Screenshot saved!", (dataUrl) => {
-      let onclick: () => void = () => {};
+      let _onclick: () => void = () => {};
 
       const a = document.createElement("a");
-      const promise = new Promise<void>((ok) => (onclick = ok));
+      const promise = new Promise<void>((ok) => (_onclick = ok));
 
       a.href = dataUrl;
       a.download = `Stardex ${projects.active.name}.png`;
-      a.onclick = onclick;
+      // a.onclick = onclick;
       a.click();
 
       return promise.then(() => {

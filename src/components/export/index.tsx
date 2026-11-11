@@ -17,7 +17,7 @@ export function Export() {
   return (
     <Section id="export" title="Export">
       <Show when={pokemons.all.length > 0} fallback={<Empty>Don't make me say it again!</Empty>}>
-        <div class="mb-4 flex flex-col gap-4 lg:flex-row lg:gap-2">
+        <div class="mb-4 flex flex-col gap-2 lg:flex-row">
           <Button onClick={saveJSONExport}>As JSON</Button>
           <Button onClick={saveTextExport}>As Text File</Button>
           <Button onClick={() => setModal("cells")}>As Spreadsheet Cells</Button>
