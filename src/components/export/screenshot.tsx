@@ -1,4 +1,3 @@
-import html2canvas from "html2canvas-pro";
 import { batch, onMount } from "solid-js";
 import { getRecommendationsByType } from "../../metrics/recommendations";
 import { pokemonsAllotment, recommendations } from "../../models/metrics";
@@ -24,6 +23,8 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
     if (!inner) return;
     setTimeout(() => {
       blobPromise = (async () => {
+        const { default: html2canvas } = await import("html2canvas-pro");
+
         const documentStyle = getComputedStyle(document.documentElement);
         const backgroundColor = documentStyle.getPropertyValue("--background");
         const canvas = await html2canvas(inner, { backgroundColor });
