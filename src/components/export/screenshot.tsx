@@ -1,4 +1,4 @@
-import { domToBlob } from "modern-screenshot";
+import { domToBlob, type Options as ScreenshotOptions } from "modern-screenshot";
 import { batch, onMount } from "solid-js";
 import { getRecommendationsByType } from "../../metrics/recommendations";
 import { pokemonsAllotment, recommendations } from "../../models/metrics";
@@ -23,9 +23,26 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   onMount(() => {
     if (!inner) return;
     setTimeout(() => {
-      blobPromise = domToBlob(inner, {
-        backgroundColor: "var(--background)",
-      });
+      blobPromise = (async () => {
+        await document.fonts.ready;
+
+        const { width, height } = inner.getBoundingClientRect();
+        const options: ScreenshotOptions = {
+          width,
+          height,
+          scale: 2,
+          backgroundColor: "var(--background)",
+          onCloneNode(node) {
+            if (!(node instanceof HTMLElement)) return;
+            node.style.boxSizing = "border-box";
+          },
+        };
+
+        // Dummy run to ensure fonts load properly.
+        await domToBlob(inner, options);
+
+        return await domToBlob(inner, options);
+      })();
     }, 200);
   });
 
