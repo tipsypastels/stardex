@@ -25,7 +25,7 @@ export function Types() {
         when={pokemonsAllotment.value.total > 0}
         fallback={<Empty>You have no Pokémon yet.</Empty>}
       >
-        <TypePieChart allotment={pokemonsAllotment.value} />
+        <TypePieChart allotment={pokemonsAllotment.value} class="lg:flex-row" />
       </Show>
       <Show when={modal() === "excluded"}>
         <ExcludedTypesModal onClose={() => setModal()} />
