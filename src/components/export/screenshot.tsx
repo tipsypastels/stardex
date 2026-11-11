@@ -1,4 +1,4 @@
-import domToImage from "dom-to-image-more";
+import { domToBlob } from "modern-screenshot";
 import { batch, onMount } from "solid-js";
 import { getRecommendationsByType } from "../../metrics/recommendations";
 import { pokemonsAllotment, recommendations } from "../../models/metrics";
@@ -23,18 +23,9 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   onMount(() => {
     if (!inner) return;
     setTimeout(() => {
-      blobPromise = (async () => {
-        const dataUrl = await domToImage.toPng(inner, {
-          bgcolor: "var(--background)",
-          ignoreCSSRuleErrors: true,
-        });
-        const response = await fetch(dataUrl);
-        const blob = response.blob();
-
-        // eslint-disable-next-line no-console
-        console.debug("Generated screenshot blob.");
-        return blob;
-      })();
+      blobPromise = domToBlob(inner, {
+        backgroundColor: "var(--background)",
+      });
     }, 200);
   });
 
@@ -85,7 +76,7 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
       }
     >
       <div class="flex overflow-x-scroll border-2 border-divider-heavy select-none">
-        <div class="flex grow flex-col gap-4 p-4 pt-8" ref={inner} data-screenshot-outer>
+        <div class="flex grow flex-col gap-4 p-4 pt-8" ref={inner}>
           <ScreenshotTypePieChart />
           <div class="text-center text-sm">
             <div class="text-secondary">
