@@ -40,7 +40,7 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
 
     batch(() => {
       toasts.add(toastIcon, toastText);
-      props.onClose();
+      // props.onClose();
     });
   }
 
