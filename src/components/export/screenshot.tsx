@@ -7,7 +7,6 @@ import { projects } from "../../models/project/list";
 import { strictness } from "../../models/strictness";
 import type { Type } from "../../models/type";
 import { toasts } from "../../models/ui/toast";
-import { tw } from "../../utils/string";
 import { Button } from "../common/button";
 import { Icon } from "../common/icon";
 import { Modal } from "../common/menus/modal";
@@ -26,10 +25,6 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
     const dataUrl = await domToImage.toPng(inner, {
       bgcolor: "var(--background)",
       ignoreCSSRuleErrors: true,
-      onclone(node) {
-        if (!(node instanceof HTMLElement) || !("screenshotOuter" in node.dataset)) return;
-        node.classList.add(tw`border-2`, tw`border-divider-heavy`, tw`bg-red-500`);
-      },
       style: {
         borderWidth: "2px",
         borderColor: "var(--primary)",
@@ -45,7 +40,7 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   }
 
   function save() {
-    return make("save", "Screenshot saved!", (dataUrl) => {
+    make("save", "Screenshot saved!", (dataUrl) => {
       let onclick: () => void = () => {};
 
       const a = document.createElement("a");
