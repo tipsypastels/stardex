@@ -1,3 +1,7 @@
+### November 10, 2026
+
+- You can now use "Export Screenshot" in the Export section to create a compact screenshot that combines your types, recommendations, and project info into one for showing off.
+
 ### October 4, 2026
 
 - Recolour custom types.

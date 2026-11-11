@@ -66,6 +66,16 @@ class NoticeOption {
 }
 
 const NOTICE_OPTIONS: NoticeOption[] = [
+  new NoticeOption(1794368469301, () => (
+    <>
+      You can now use "Export Screenshot" in the{" "}
+      <a class="text-primary" href="#export">
+        Export
+      </a>{" "}
+      section to create a compact screenshot that combines your types, recommendations, and project
+      info into one for showing off.
+    </>
+  )),
   new NoticeOption(1791142644191, () => (
     <>
       <div class="mb-2">
