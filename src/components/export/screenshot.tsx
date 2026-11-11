@@ -1,4 +1,3 @@
-// import { domToBlob } from "modern-screenshot";
 import html2canvas from "html2canvas-pro";
 import { batch, onMount } from "solid-js";
 import { getRecommendationsByType } from "../../metrics/recommendations";
@@ -24,15 +23,14 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
   onMount(() => {
     if (!inner) return;
     setTimeout(() => {
-      // blobPromise = domToBlob(inner, {
-      //   backgroundColor: "var(--background)",
-      // });
-
       blobPromise = (async () => {
-        const canvas = await html2canvas(inner);
-        return new Promise<Blob>((ok, err) =>
-          canvas.toBlob((blob) => (blob ? ok(blob) : err(new Error("Blob failed.")))),
-        );
+        const documentStyle = getComputedStyle(document.documentElement);
+        const backgroundColor = documentStyle.getPropertyValue("--background");
+        const canvas = await html2canvas(inner, { backgroundColor });
+
+        return new Promise<Blob>((ok, err) => {
+          canvas.toBlob((blob) => (blob ? ok(blob) : err(new Error("Failed to create blob."))));
+        });
       })();
     }, 200);
   });
