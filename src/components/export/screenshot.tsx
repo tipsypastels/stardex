@@ -45,7 +45,7 @@ export function ExportScreenshotModal(props: ExportScreenshotModalProps) {
     const file = new File([blob], filename, { type: "image/png" });
 
     if (navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file], title: filename });
+      await navigator.share({ files: [file], title: filename }).catch(() => {});
     } else {
       const objectUrl = URL.createObjectURL(blob);
       const a = document.createElement("a");
